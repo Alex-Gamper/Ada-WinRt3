@@ -53,12 +53,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiActiveSensingMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -69,7 +69,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiActiveSensingMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiActiveSensingMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiActiveSensingMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiActiveSensingMessage do
@@ -78,7 +79,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -91,10 +92,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -104,10 +109,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -117,10 +126,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -133,12 +146,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiChannelPressureMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiChannelPressureMessage, IMidiChannelPressureMessage_Ptr);
    begin
       if this.m_IMidiChannelPressureMessage /= null then
          if this.m_IMidiChannelPressureMessage.all /= null then
-            RefCount := this.m_IMidiChannelPressureMessage.all.Release;
+            temp := this.m_IMidiChannelPressureMessage.all.Release;
             Free (this.m_IMidiChannelPressureMessage);
          end if;
       end if;
@@ -154,9 +167,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiChannelPressureMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiChannelPressureMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiChannelPressureMessage");
       m_Factory    : access IMidiChannelPressureMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiChannelPressureMessage;
    begin
       return RetVal : MidiChannelPressureMessage do
@@ -165,9 +179,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiChannelPressureMessage (channel, pressure, m_ComRetVal'Access);
             Retval.m_IMidiChannelPressureMessage := new Windows.Devices.Midi.IMidiChannelPressureMessage;
             Retval.m_IMidiChannelPressureMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -180,10 +194,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiChannelPressureMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -193,10 +211,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiChannelPressureMessage.all.get_Pressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -206,14 +228,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiChannelPressureMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiChannelPressureMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -223,14 +249,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiChannelPressureMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiChannelPressureMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -240,14 +270,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiChannelPressureMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiChannelPressureMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -260,12 +294,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiContinueMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -276,7 +310,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiContinueMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiContinueMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiContinueMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiContinueMessage do
@@ -285,7 +320,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -298,10 +333,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -311,10 +350,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -324,10 +367,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -340,12 +387,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiControlChangeMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiControlChangeMessage, IMidiControlChangeMessage_Ptr);
    begin
       if this.m_IMidiControlChangeMessage /= null then
          if this.m_IMidiControlChangeMessage.all /= null then
-            RefCount := this.m_IMidiControlChangeMessage.all.Release;
+            temp := this.m_IMidiControlChangeMessage.all.Release;
             Free (this.m_IMidiControlChangeMessage);
          end if;
       end if;
@@ -362,9 +409,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiControlChangeMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiControlChangeMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiControlChangeMessage");
       m_Factory    : access IMidiControlChangeMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiControlChangeMessage;
    begin
       return RetVal : MidiControlChangeMessage do
@@ -373,9 +421,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiControlChangeMessage (channel, controller, controlValue, m_ComRetVal'Access);
             Retval.m_IMidiControlChangeMessage := new Windows.Devices.Midi.IMidiControlChangeMessage;
             Retval.m_IMidiControlChangeMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -388,10 +436,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiControlChangeMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -401,10 +453,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiControlChangeMessage.all.get_Controller (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -414,10 +470,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiControlChangeMessage.all.get_ControlValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -427,14 +487,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiControlChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiControlChangeMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -444,14 +508,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiControlChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiControlChangeMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -461,14 +529,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiControlChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiControlChangeMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -481,12 +553,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiInPort) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiInPort, IMidiInPort_Ptr);
    begin
       if this.m_IMidiInPort /= null then
          if this.m_IMidiInPort.all /= null then
-            RefCount := this.m_IMidiInPort.all.Release;
+            temp := this.m_IMidiInPort.all.Release;
             Free (this.m_IMidiInPort);
          end if;
       end if;
@@ -501,16 +573,16 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiInPort is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiInPort");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiInPort");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiInPortStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MidiInPort.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -528,7 +600,7 @@ package body WinRt.Windows.Devices.Midi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MidiInPort.Kind_Delegate, AsyncOperationCompletedHandler_MidiInPort.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -542,10 +614,10 @@ package body WinRt.Windows.Devices.Midi is
          Hr := RoGetActivationFactory (m_hString, IID_IMidiInPortStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -557,36 +629,40 @@ package body WinRt.Windows.Devices.Midi is
                      Retval.m_IMidiInPort := new Windows.Devices.Midi.IMidiInPort;
                      Retval.m_IMidiInPort.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiInPort");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiInPort");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiInPortStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMidiInPortStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -600,10 +676,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMidiInPort.all.add_MessageReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -613,9 +693,13 @@ package body WinRt.Windows.Devices.Midi is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMidiInPort.all.remove_MessageReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeviceId
@@ -624,13 +708,17 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMidiInPort.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -639,13 +727,17 @@ package body WinRt.Windows.Devices.Midi is
       this : in out MidiInPort
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiInPort_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiInPort.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -657,12 +749,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiMessageReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessageReceivedEventArgs, IMidiMessageReceivedEventArgs_Ptr);
    begin
       if this.m_IMidiMessageReceivedEventArgs /= null then
          if this.m_IMidiMessageReceivedEventArgs.all /= null then
-            RefCount := this.m_IMidiMessageReceivedEventArgs.all.Release;
+            temp := this.m_IMidiMessageReceivedEventArgs.all.Release;
             Free (this.m_IMidiMessageReceivedEventArgs);
          end if;
       end if;
@@ -677,10 +769,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.IMidiMessage is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       Hr := this.m_IMidiMessageReceivedEventArgs.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -693,12 +789,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiNoteOffMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiNoteOffMessage, IMidiNoteOffMessage_Ptr);
    begin
       if this.m_IMidiNoteOffMessage /= null then
          if this.m_IMidiNoteOffMessage.all /= null then
-            RefCount := this.m_IMidiNoteOffMessage.all.Release;
+            temp := this.m_IMidiNoteOffMessage.all.Release;
             Free (this.m_IMidiNoteOffMessage);
          end if;
       end if;
@@ -715,9 +811,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiNoteOffMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiNoteOffMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiNoteOffMessage");
       m_Factory    : access IMidiNoteOffMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiNoteOffMessage;
    begin
       return RetVal : MidiNoteOffMessage do
@@ -726,9 +823,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiNoteOffMessage (channel, note, velocity, m_ComRetVal'Access);
             Retval.m_IMidiNoteOffMessage := new Windows.Devices.Midi.IMidiNoteOffMessage;
             Retval.m_IMidiNoteOffMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -741,10 +838,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiNoteOffMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -754,10 +855,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiNoteOffMessage.all.get_Note (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -767,10 +872,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiNoteOffMessage.all.get_Velocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -780,14 +889,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiNoteOffMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiNoteOffMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -797,14 +910,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiNoteOffMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiNoteOffMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -814,14 +931,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiNoteOffMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiNoteOffMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -834,12 +955,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiNoteOnMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiNoteOnMessage, IMidiNoteOnMessage_Ptr);
    begin
       if this.m_IMidiNoteOnMessage /= null then
          if this.m_IMidiNoteOnMessage.all /= null then
-            RefCount := this.m_IMidiNoteOnMessage.all.Release;
+            temp := this.m_IMidiNoteOnMessage.all.Release;
             Free (this.m_IMidiNoteOnMessage);
          end if;
       end if;
@@ -856,9 +977,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiNoteOnMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiNoteOnMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiNoteOnMessage");
       m_Factory    : access IMidiNoteOnMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiNoteOnMessage;
    begin
       return RetVal : MidiNoteOnMessage do
@@ -867,9 +989,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiNoteOnMessage (channel, note, velocity, m_ComRetVal'Access);
             Retval.m_IMidiNoteOnMessage := new Windows.Devices.Midi.IMidiNoteOnMessage;
             Retval.m_IMidiNoteOnMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -882,10 +1004,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiNoteOnMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -895,10 +1021,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiNoteOnMessage.all.get_Note (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -908,10 +1038,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiNoteOnMessage.all.get_Velocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -921,14 +1055,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiNoteOnMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiNoteOnMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -938,14 +1076,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiNoteOnMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiNoteOnMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -955,14 +1097,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiNoteOnMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiNoteOnMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -975,12 +1121,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiOutPort) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiOutPort, IMidiOutPort_Ptr);
    begin
       if this.m_IMidiOutPort /= null then
          if this.m_IMidiOutPort.all /= null then
-            RefCount := this.m_IMidiOutPort.all.Release;
+            temp := this.m_IMidiOutPort.all.Release;
             Free (this.m_IMidiOutPort);
          end if;
       end if;
@@ -995,16 +1141,16 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.IMidiOutPort is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiOutPort");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiOutPort");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiOutPortStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IMidiOutPort.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1022,7 +1168,7 @@ package body WinRt.Windows.Devices.Midi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IMidiOutPort.Kind_Delegate, AsyncOperationCompletedHandler_IMidiOutPort.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1035,10 +1181,10 @@ package body WinRt.Windows.Devices.Midi is
       Hr := RoGetActivationFactory (m_hString, IID_IMidiOutPortStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1048,36 +1194,40 @@ package body WinRt.Windows.Devices.Midi is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_deviceId);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_deviceId);
       return m_RetVal;
    end;
 
    function GetDeviceSelector_MidiOutPort
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiOutPort");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiOutPort");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiOutPortStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMidiOutPortStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1090,9 +1240,13 @@ package body WinRt.Windows.Devices.Midi is
       midiMessage : Windows.Devices.Midi.IMidiMessage
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMidiOutPort.all.SendMessage (midiMessage);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendBuffer
@@ -1101,9 +1255,13 @@ package body WinRt.Windows.Devices.Midi is
       midiData : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMidiOutPort.all.SendBuffer (midiData);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeviceId
@@ -1112,13 +1270,17 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMidiOutPort.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1127,13 +1289,17 @@ package body WinRt.Windows.Devices.Midi is
       this : in out MidiOutPort
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiOutPort_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiOutPort.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1145,12 +1311,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiPitchBendChangeMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiPitchBendChangeMessage, IMidiPitchBendChangeMessage_Ptr);
    begin
       if this.m_IMidiPitchBendChangeMessage /= null then
          if this.m_IMidiPitchBendChangeMessage.all /= null then
-            RefCount := this.m_IMidiPitchBendChangeMessage.all.Release;
+            temp := this.m_IMidiPitchBendChangeMessage.all.Release;
             Free (this.m_IMidiPitchBendChangeMessage);
          end if;
       end if;
@@ -1166,9 +1332,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiPitchBendChangeMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiPitchBendChangeMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiPitchBendChangeMessage");
       m_Factory    : access IMidiPitchBendChangeMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiPitchBendChangeMessage;
    begin
       return RetVal : MidiPitchBendChangeMessage do
@@ -1177,9 +1344,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiPitchBendChangeMessage (channel, bend, m_ComRetVal'Access);
             Retval.m_IMidiPitchBendChangeMessage := new Windows.Devices.Midi.IMidiPitchBendChangeMessage;
             Retval.m_IMidiPitchBendChangeMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1192,10 +1359,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiPitchBendChangeMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1205,10 +1376,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IMidiPitchBendChangeMessage.all.get_Bend (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1218,14 +1393,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiPitchBendChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiPitchBendChangeMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1235,14 +1414,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiPitchBendChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiPitchBendChangeMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1252,14 +1435,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiPitchBendChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiPitchBendChangeMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1272,12 +1459,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiPolyphonicKeyPressureMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiPolyphonicKeyPressureMessage, IMidiPolyphonicKeyPressureMessage_Ptr);
    begin
       if this.m_IMidiPolyphonicKeyPressureMessage /= null then
          if this.m_IMidiPolyphonicKeyPressureMessage.all /= null then
-            RefCount := this.m_IMidiPolyphonicKeyPressureMessage.all.Release;
+            temp := this.m_IMidiPolyphonicKeyPressureMessage.all.Release;
             Free (this.m_IMidiPolyphonicKeyPressureMessage);
          end if;
       end if;
@@ -1294,9 +1481,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiPolyphonicKeyPressureMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiPolyphonicKeyPressureMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiPolyphonicKeyPressureMessage");
       m_Factory    : access IMidiPolyphonicKeyPressureMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage;
    begin
       return RetVal : MidiPolyphonicKeyPressureMessage do
@@ -1305,9 +1493,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiPolyphonicKeyPressureMessage (channel, note, pressure, m_ComRetVal'Access);
             Retval.m_IMidiPolyphonicKeyPressureMessage := new Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage;
             Retval.m_IMidiPolyphonicKeyPressureMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1320,10 +1508,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiPolyphonicKeyPressureMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1333,10 +1525,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiPolyphonicKeyPressureMessage.all.get_Note (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1346,10 +1542,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiPolyphonicKeyPressureMessage.all.get_Pressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1359,14 +1559,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiPolyphonicKeyPressureMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1376,14 +1580,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiPolyphonicKeyPressureMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1393,14 +1601,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiPolyphonicKeyPressureMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1413,12 +1625,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiProgramChangeMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiProgramChangeMessage, IMidiProgramChangeMessage_Ptr);
    begin
       if this.m_IMidiProgramChangeMessage /= null then
          if this.m_IMidiProgramChangeMessage.all /= null then
-            RefCount := this.m_IMidiProgramChangeMessage.all.Release;
+            temp := this.m_IMidiProgramChangeMessage.all.Release;
             Free (this.m_IMidiProgramChangeMessage);
          end if;
       end if;
@@ -1434,9 +1646,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiProgramChangeMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiProgramChangeMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiProgramChangeMessage");
       m_Factory    : access IMidiProgramChangeMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiProgramChangeMessage;
    begin
       return RetVal : MidiProgramChangeMessage do
@@ -1445,9 +1658,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiProgramChangeMessage (channel, program, m_ComRetVal'Access);
             Retval.m_IMidiProgramChangeMessage := new Windows.Devices.Midi.IMidiProgramChangeMessage;
             Retval.m_IMidiProgramChangeMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1460,10 +1673,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiProgramChangeMessage.all.get_Channel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1473,10 +1690,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiProgramChangeMessage.all.get_Program (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1486,14 +1707,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiProgramChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiProgramChangeMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1503,14 +1728,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiProgramChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiProgramChangeMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1520,14 +1749,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiProgramChangeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiProgramChangeMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1540,12 +1773,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiSongPositionPointerMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiSongPositionPointerMessage, IMidiSongPositionPointerMessage_Ptr);
    begin
       if this.m_IMidiSongPositionPointerMessage /= null then
          if this.m_IMidiSongPositionPointerMessage.all /= null then
-            RefCount := this.m_IMidiSongPositionPointerMessage.all.Release;
+            temp := this.m_IMidiSongPositionPointerMessage.all.Release;
             Free (this.m_IMidiSongPositionPointerMessage);
          end if;
       end if;
@@ -1560,9 +1793,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiSongPositionPointerMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSongPositionPointerMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSongPositionPointerMessage");
       m_Factory    : access IMidiSongPositionPointerMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiSongPositionPointerMessage;
    begin
       return RetVal : MidiSongPositionPointerMessage do
@@ -1571,9 +1805,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiSongPositionPointerMessage (beats, m_ComRetVal'Access);
             Retval.m_IMidiSongPositionPointerMessage := new Windows.Devices.Midi.IMidiSongPositionPointerMessage;
             Retval.m_IMidiSongPositionPointerMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1586,10 +1820,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IMidiSongPositionPointerMessage.all.get_Beats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1599,14 +1837,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSongPositionPointerMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSongPositionPointerMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1616,14 +1858,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSongPositionPointerMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSongPositionPointerMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1633,14 +1879,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSongPositionPointerMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSongPositionPointerMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1653,12 +1903,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiSongSelectMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiSongSelectMessage, IMidiSongSelectMessage_Ptr);
    begin
       if this.m_IMidiSongSelectMessage /= null then
          if this.m_IMidiSongSelectMessage.all /= null then
-            RefCount := this.m_IMidiSongSelectMessage.all.Release;
+            temp := this.m_IMidiSongSelectMessage.all.Release;
             Free (this.m_IMidiSongSelectMessage);
          end if;
       end if;
@@ -1673,9 +1923,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiSongSelectMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSongSelectMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSongSelectMessage");
       m_Factory    : access IMidiSongSelectMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiSongSelectMessage;
    begin
       return RetVal : MidiSongSelectMessage do
@@ -1684,9 +1935,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiSongSelectMessage (song, m_ComRetVal'Access);
             Retval.m_IMidiSongSelectMessage := new Windows.Devices.Midi.IMidiSongSelectMessage;
             Retval.m_IMidiSongSelectMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1699,10 +1950,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiSongSelectMessage.all.get_Song (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1712,14 +1967,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSongSelectMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSongSelectMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1729,14 +1988,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSongSelectMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSongSelectMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1746,14 +2009,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSongSelectMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSongSelectMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1766,12 +2033,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiStartMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -1782,7 +2049,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiStartMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiStartMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiStartMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiStartMessage do
@@ -1791,7 +2059,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1804,10 +2072,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1817,10 +2089,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1830,10 +2106,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1846,12 +2126,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiStopMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -1862,7 +2142,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiStopMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiStopMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiStopMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiStopMessage do
@@ -1871,7 +2152,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1884,10 +2165,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1897,10 +2182,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1910,10 +2199,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1926,12 +2219,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiSynthesizer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiSynthesizer, IMidiSynthesizer_Ptr);
    begin
       if this.m_IMidiSynthesizer /= null then
          if this.m_IMidiSynthesizer.all /= null then
-            RefCount := this.m_IMidiSynthesizer.all.Release;
+            temp := this.m_IMidiSynthesizer.all.Release;
             Free (this.m_IMidiSynthesizer);
          end if;
       end if;
@@ -1943,15 +2236,15 @@ package body WinRt.Windows.Devices.Midi is
    function CreateAsync
    return WinRt.Windows.Devices.Midi.MidiSynthesizer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSynthesizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSynthesizer");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiSynthesizerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MidiSynthesizer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1969,7 +2262,7 @@ package body WinRt.Windows.Devices.Midi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MidiSynthesizer.Kind_Delegate, AsyncOperationCompletedHandler_MidiSynthesizer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1983,10 +2276,10 @@ package body WinRt.Windows.Devices.Midi is
          Hr := RoGetActivationFactory (m_hString, IID_IMidiSynthesizerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1998,15 +2291,15 @@ package body WinRt.Windows.Devices.Midi is
                      Retval.m_IMidiSynthesizer := new Windows.Devices.Midi.IMidiSynthesizer;
                      Retval.m_IMidiSynthesizer.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2016,15 +2309,15 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiSynthesizer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSynthesizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSynthesizer");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiSynthesizerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MidiSynthesizer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2042,7 +2335,7 @@ package body WinRt.Windows.Devices.Midi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MidiSynthesizer.Kind_Delegate, AsyncOperationCompletedHandler_MidiSynthesizer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2056,10 +2349,10 @@ package body WinRt.Windows.Devices.Midi is
          Hr := RoGetActivationFactory (m_hString, IID_IMidiSynthesizerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (audioDevice.m_IDeviceInformation.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2071,15 +2364,15 @@ package body WinRt.Windows.Devices.Midi is
                      Retval.m_IMidiSynthesizer := new Windows.Devices.Midi.IMidiSynthesizer;
                      Retval.m_IMidiSynthesizer.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2089,17 +2382,21 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSynthesizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSynthesizer");
       m_Factory        : access WinRt.Windows.Devices.Midi.IMidiSynthesizerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMidiSynthesizerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSynthesizer (midiDevice.m_IDeviceInformation.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2112,11 +2409,15 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IMidiSynthesizer.all.get_AudioDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -2128,10 +2429,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMidiSynthesizer.all.get_Volume (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2141,9 +2446,13 @@ package body WinRt.Windows.Devices.Midi is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMidiSynthesizer.all.put_Volume (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendMessage
@@ -2152,13 +2461,17 @@ package body WinRt.Windows.Devices.Midi is
       midiMessage : Windows.Devices.Midi.IMidiMessage
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiOutPort := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSynthesizer_Interface, WinRt.Windows.Devices.Midi.IMidiOutPort, WinRt.Windows.Devices.Midi.IID_IMidiOutPort'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSynthesizer.all);
       Hr := m_Interface.SendMessage (midiMessage);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendBuffer
@@ -2167,13 +2480,17 @@ package body WinRt.Windows.Devices.Midi is
       midiData : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiOutPort := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSynthesizer_Interface, WinRt.Windows.Devices.Midi.IMidiOutPort, WinRt.Windows.Devices.Midi.IID_IMidiOutPort'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSynthesizer.all);
       Hr := m_Interface.SendBuffer (midiData);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeviceId
@@ -2182,17 +2499,21 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiOutPort := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSynthesizer_Interface, WinRt.Windows.Devices.Midi.IMidiOutPort, WinRt.Windows.Devices.Midi.IID_IMidiOutPort'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSynthesizer.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2201,13 +2522,17 @@ package body WinRt.Windows.Devices.Midi is
       this : in out MidiSynthesizer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiSynthesizer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiSynthesizer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2219,12 +2544,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiSystemExclusiveMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -2239,9 +2564,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiSystemExclusiveMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSystemExclusiveMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSystemExclusiveMessage");
       m_Factory    : access IMidiSystemExclusiveMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiSystemExclusiveMessage do
@@ -2250,9 +2576,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiSystemExclusiveMessage (rawData, m_ComRetVal'Access);
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2265,10 +2591,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2278,10 +2608,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2291,10 +2625,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2307,12 +2645,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiSystemResetMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -2323,7 +2661,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiSystemResetMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSystemResetMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiSystemResetMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiSystemResetMessage do
@@ -2332,7 +2671,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2345,10 +2684,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2358,10 +2701,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2371,10 +2718,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2387,12 +2738,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiTimeCodeMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiTimeCodeMessage, IMidiTimeCodeMessage_Ptr);
    begin
       if this.m_IMidiTimeCodeMessage /= null then
          if this.m_IMidiTimeCodeMessage.all /= null then
-            RefCount := this.m_IMidiTimeCodeMessage.all.Release;
+            temp := this.m_IMidiTimeCodeMessage.all.Release;
             Free (this.m_IMidiTimeCodeMessage);
          end if;
       end if;
@@ -2408,9 +2759,10 @@ package body WinRt.Windows.Devices.Midi is
    )
    return MidiTimeCodeMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiTimeCodeMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiTimeCodeMessage");
       m_Factory    : access IMidiTimeCodeMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiTimeCodeMessage;
    begin
       return RetVal : MidiTimeCodeMessage do
@@ -2419,9 +2771,9 @@ package body WinRt.Windows.Devices.Midi is
             Hr := m_Factory.CreateMidiTimeCodeMessage (frameType, values, m_ComRetVal'Access);
             Retval.m_IMidiTimeCodeMessage := new Windows.Devices.Midi.IMidiTimeCodeMessage;
             Retval.m_IMidiTimeCodeMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2434,10 +2786,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiTimeCodeMessage.all.get_FrameType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2447,10 +2803,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IMidiTimeCodeMessage.all.get_Values (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2460,14 +2820,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiTimeCodeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiTimeCodeMessage.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2477,14 +2841,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiTimeCodeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiTimeCodeMessage.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2494,14 +2862,18 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Midi.IMidiMessage := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Midi.IMidiTimeCodeMessage_Interface, WinRt.Windows.Devices.Midi.IMidiMessage, WinRt.Windows.Devices.Midi.IID_IMidiMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMidiTimeCodeMessage.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2514,12 +2886,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiTimingClockMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -2530,7 +2902,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiTimingClockMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiTimingClockMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiTimingClockMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiTimingClockMessage do
@@ -2539,7 +2912,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2552,10 +2925,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2565,10 +2942,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2578,10 +2959,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2594,12 +2979,12 @@ package body WinRt.Windows.Devices.Midi is
    end;
 
    procedure Finalize (this : in out MidiTuneRequestMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMidiMessage, IMidiMessage_Ptr);
    begin
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
-            RefCount := this.m_IMidiMessage.all.Release;
+            temp := this.m_IMidiMessage.all.Release;
             Free (this.m_IMidiMessage);
          end if;
       end if;
@@ -2610,7 +2995,8 @@ package body WinRt.Windows.Devices.Midi is
 
    function Constructor return MidiTuneRequestMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Midi.MidiTuneRequestMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Midi.MidiTuneRequestMessage");
       m_ComRetVal  : aliased Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiTuneRequestMessage do
@@ -2619,7 +3005,7 @@ package body WinRt.Windows.Devices.Midi is
             Retval.m_IMidiMessage := new Windows.Devices.Midi.IMidiMessage;
             Retval.m_IMidiMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2632,10 +3018,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMidiMessage.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2645,10 +3035,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMidiMessage.all.get_RawData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2658,10 +3052,14 @@ package body WinRt.Windows.Devices.Midi is
    )
    return WinRt.Windows.Devices.Midi.MidiMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Midi.MidiMessageType;
    begin
       Hr := this.m_IMidiMessage.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

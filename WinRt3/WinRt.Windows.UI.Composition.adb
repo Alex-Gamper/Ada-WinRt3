@@ -61,12 +61,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionObject) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionObject, ICompositionObject_Ptr);
    begin
       if this.m_ICompositionObject /= null then
          if this.m_ICompositionObject.all /= null then
-            RefCount := this.m_ICompositionObject.all.Release;
+            temp := this.m_ICompositionObject.all.Release;
             Free (this.m_ICompositionObject);
          end if;
       end if;
@@ -85,18 +85,22 @@ package body WinRt.Windows.UI.Composition is
       animation : Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.CompositionObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionObject");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionObjectStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.StartAnimationWithIAnimationObject (target, HStr_propertyName, animation.m_ICompositionAnimation.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure StartAnimationGroupWithIAnimationObject
@@ -105,16 +109,20 @@ package body WinRt.Windows.UI.Composition is
       animation : Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.CompositionObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionObject");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionObjectStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.StartAnimationGroupWithIAnimationObject (target, animation);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -126,11 +134,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Compositor'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositor;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Compositor do
          Hr := this.m_ICompositionObject.all.get_Compositor (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
          Retval.m_ICompositor.all := m_ComRetVal;
       end return;
@@ -142,11 +154,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Core.CoreDispatcher'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreDispatcher;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreDispatcher do
          Hr := this.m_ICompositionObject.all.get_Dispatcher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreDispatcher := new Windows.UI.Core.ICoreDispatcher;
          Retval.m_ICoreDispatcher.all := m_ComRetVal;
       end return;
@@ -158,11 +174,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPropertySet;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPropertySet do
          Hr := this.m_ICompositionObject.all.get_Properties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionPropertySet := new Windows.UI.Composition.ICompositionPropertySet;
          Retval.m_ICompositionPropertySet.all := m_ComRetVal;
       end return;
@@ -175,11 +195,15 @@ package body WinRt.Windows.UI.Composition is
       animation : Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionObject.all.StartAnimation (HStr_propertyName, animation.m_ICompositionAnimation.all);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure StopAnimation
@@ -188,11 +212,15 @@ package body WinRt.Windows.UI.Composition is
       propertyName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionObject.all.StopAnimation (HStr_propertyName);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    function get_Comment
@@ -201,17 +229,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.get_Comment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -221,15 +253,19 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.put_Comment (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ImplicitAnimations
@@ -238,15 +274,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ImplicitAnimationCollection'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IImplicitAnimationCollection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ImplicitAnimationCollection do
          m_Interface := QInterface (this.m_ICompositionObject.all);
          Hr := m_Interface.get_ImplicitAnimations (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IImplicitAnimationCollection := new Windows.UI.Composition.IImplicitAnimationCollection;
          Retval.m_IImplicitAnimationCollection.all := m_ComRetVal;
       end return;
@@ -258,13 +298,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.ImplicitAnimationCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.put_ImplicitAnimations (value.m_IImplicitAnimationCollection.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartAnimationGroup
@@ -273,13 +317,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.StartAnimationGroup (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopAnimationGroup
@@ -288,13 +336,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.StopAnimationGroup (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DispatcherQueue
@@ -303,15 +355,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.System.DispatcherQueue'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject3, WinRt.Windows.UI.Composition.IID_ICompositionObject3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          m_Interface := QInterface (this.m_ICompositionObject.all);
          Hr := m_Interface.get_DispatcherQueue (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
@@ -324,19 +380,23 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationController'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IAnimationController;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject4, WinRt.Windows.UI.Composition.IID_ICompositionObject4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.AnimationController do
          m_Interface := QInterface (this.m_ICompositionObject.all);
          Hr := m_Interface.TryGetAnimationController (HStr_propertyName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAnimationController := new Windows.UI.Composition.IAnimationController;
          Retval.m_IAnimationController.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_propertyName);
+         tmp := WindowsDeleteString (HStr_propertyName);
       end return;
    end;
 
@@ -345,13 +405,17 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PopulatePropertyInfo
@@ -361,15 +425,19 @@ package body WinRt.Windows.UI.Composition is
       propertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IAnimationObject := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.IAnimationObject, WinRt.Windows.UI.Composition.IID_IAnimationObject'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionObject.all);
       Hr := m_Interface.PopulatePropertyInfo (HStr_propertyName, propertyInfo.m_IAnimationPropertyInfo.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_propertyName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    -----------------------------------------------------------------------------
@@ -381,12 +449,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionLight) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionLight, ICompositionLight_Ptr);
    begin
       if this.m_ICompositionLight /= null then
          if this.m_ICompositionLight.all /= null then
-            RefCount := this.m_ICompositionLight.all.Release;
+            temp := this.m_ICompositionLight.all.Release;
             Free (this.m_ICompositionLight);
          end if;
       end if;
@@ -404,11 +472,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.VisualUnorderedCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisualUnorderedCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.VisualUnorderedCollection do
          Hr := this.m_ICompositionLight.all.get_Targets (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisualUnorderedCollection := new Windows.UI.Composition.IVisualUnorderedCollection;
          Retval.m_IVisualUnorderedCollection.all := m_ComRetVal;
       end return;
@@ -420,15 +492,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.VisualUnorderedCollection'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisualUnorderedCollection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionLight_Interface, WinRt.Windows.UI.Composition.ICompositionLight2, WinRt.Windows.UI.Composition.IID_ICompositionLight2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.VisualUnorderedCollection do
          m_Interface := QInterface (this.m_ICompositionLight.all);
          Hr := m_Interface.get_ExclusionsFromTargets (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisualUnorderedCollection := new Windows.UI.Composition.IVisualUnorderedCollection;
          Retval.m_IVisualUnorderedCollection.all := m_ComRetVal;
       end return;
@@ -440,14 +516,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionLight_Interface, WinRt.Windows.UI.Composition.ICompositionLight3, WinRt.Windows.UI.Composition.IID_ICompositionLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionLight.all);
       Hr := m_Interface.get_IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -457,13 +537,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionLight_Interface, WinRt.Windows.UI.Composition.ICompositionLight3, WinRt.Windows.UI.Composition.IID_ICompositionLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionLight.all);
       Hr := m_Interface.put_IsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -475,12 +559,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out AmbientLight) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAmbientLight, IAmbientLight_Ptr);
    begin
       if this.m_IAmbientLight /= null then
          if this.m_IAmbientLight.all /= null then
-            RefCount := this.m_IAmbientLight.all.Release;
+            temp := this.m_IAmbientLight.all.Release;
             Free (this.m_IAmbientLight);
          end if;
       end if;
@@ -495,10 +579,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IAmbientLight.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -508,9 +596,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAmbientLight.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Intensity
@@ -519,14 +611,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IAmbientLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IAmbientLight_Interface, WinRt.Windows.UI.Composition.IAmbientLight2, WinRt.Windows.UI.Composition.IID_IAmbientLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAmbientLight.all);
       Hr := m_Interface.get_Intensity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -536,13 +632,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IAmbientLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IAmbientLight_Interface, WinRt.Windows.UI.Composition.IAmbientLight2, WinRt.Windows.UI.Composition.IID_IAmbientLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAmbientLight.all);
       Hr := m_Interface.put_Intensity (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -554,12 +654,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out AnimationController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAnimationController, IAnimationController_Ptr);
    begin
       if this.m_IAnimationController /= null then
          if this.m_IAnimationController.all /= null then
-            RefCount := this.m_IAnimationController.all.Release;
+            temp := this.m_IAnimationController.all.Release;
             Free (this.m_IAnimationController);
          end if;
       end if;
@@ -571,34 +671,42 @@ package body WinRt.Windows.UI.Composition is
    function get_MaxPlaybackRate
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.AnimationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.AnimationController");
       m_Factory        : access WinRt.Windows.UI.Composition.IAnimationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAnimationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxPlaybackRate (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_MinPlaybackRate
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.AnimationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.AnimationController");
       m_Factory        : access WinRt.Windows.UI.Composition.IAnimationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAnimationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MinPlaybackRate (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -611,10 +719,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IAnimationController.all.get_PlaybackRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -624,9 +736,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAnimationController.all.put_PlaybackRate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Progress
@@ -635,10 +751,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IAnimationController.all.get_Progress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -648,9 +768,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAnimationController.all.put_Progress (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProgressBehavior
@@ -659,10 +783,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationControllerProgressBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationControllerProgressBehavior;
    begin
       Hr := this.m_IAnimationController.all.get_ProgressBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -672,9 +800,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationControllerProgressBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAnimationController.all.put_ProgressBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Pause
@@ -682,9 +814,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out AnimationController
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAnimationController.all.Pause;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Resume
@@ -692,9 +828,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out AnimationController
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAnimationController.all.Resume;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -706,12 +846,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out AnimationPropertyInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAnimationPropertyInfo, IAnimationPropertyInfo_Ptr);
    begin
       if this.m_IAnimationPropertyInfo /= null then
          if this.m_IAnimationPropertyInfo.all /= null then
-            RefCount := this.m_IAnimationPropertyInfo.all.Release;
+            temp := this.m_IAnimationPropertyInfo.all.Release;
             Free (this.m_IAnimationPropertyInfo);
          end if;
       end if;
@@ -726,10 +866,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationPropertyAccessMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationPropertyAccessMode;
    begin
       Hr := this.m_IAnimationPropertyInfo.all.get_AccessMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -739,9 +883,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationPropertyAccessMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAnimationPropertyInfo.all.put_AccessMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -753,12 +901,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionAnimation, ICompositionAnimation_Ptr);
    begin
       if this.m_ICompositionAnimation /= null then
          if this.m_ICompositionAnimation.all /= null then
-            RefCount := this.m_ICompositionAnimation.all.Release;
+            temp := this.m_ICompositionAnimation.all.Release;
             Free (this.m_ICompositionAnimation);
          end if;
       end if;
@@ -775,9 +923,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionAnimation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionAnimation.all.ClearAllParameters;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ClearParameter
@@ -786,11 +938,15 @@ package body WinRt.Windows.UI.Composition is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.ClearParameter (HStr_key);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetColorParameter
@@ -800,11 +956,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetColorParameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetMatrix3x2Parameter
@@ -814,11 +974,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetMatrix3x2Parameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetMatrix4x4Parameter
@@ -828,11 +992,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetMatrix4x4Parameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetQuaternionParameter
@@ -842,11 +1010,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetQuaternionParameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetReferenceParameter
@@ -856,11 +1028,15 @@ package body WinRt.Windows.UI.Composition is
       compositionObject_p : Windows.UI.Composition.CompositionObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetReferenceParameter (HStr_key, compositionObject_p.m_ICompositionObject.all);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetScalarParameter
@@ -870,11 +1046,15 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetScalarParameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetVector2Parameter
@@ -884,11 +1064,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetVector2Parameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetVector3Parameter
@@ -898,11 +1082,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetVector3Parameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetVector4Parameter
@@ -912,11 +1100,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := this.m_ICompositionAnimation.all.SetVector4Parameter (HStr_key, value);
-      Hr := WindowsDeleteString (HStr_key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure SetBooleanParameter
@@ -926,15 +1118,19 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimation_Interface, WinRt.Windows.UI.Composition.ICompositionAnimation2, WinRt.Windows.UI.Composition.IID_ICompositionAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionAnimation.all);
       Hr := m_Interface.SetBooleanParameter (HStr_key, value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    function get_Target
@@ -943,17 +1139,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimation_Interface, WinRt.Windows.UI.Composition.ICompositionAnimation2, WinRt.Windows.UI.Composition.IID_ICompositionAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionAnimation.all);
       Hr := m_Interface.get_Target (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -963,15 +1163,19 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimation_Interface, WinRt.Windows.UI.Composition.ICompositionAnimation2, WinRt.Windows.UI.Composition.IID_ICompositionAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionAnimation.all);
       Hr := m_Interface.put_Target (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_InitialValueExpressions
@@ -980,15 +1184,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.InitialValueExpressionCollection'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionAnimation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimation_Interface, WinRt.Windows.UI.Composition.ICompositionAnimation3, WinRt.Windows.UI.Composition.IID_ICompositionAnimation3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.InitialValueExpressionCollection do
          m_Interface := QInterface (this.m_ICompositionAnimation.all);
          Hr := m_Interface.get_InitialValueExpressions (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1001,15 +1209,19 @@ package body WinRt.Windows.UI.Composition is
       source : Windows.UI.Composition.IAnimationObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionAnimation4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_parameterName : WinRt.HString := To_HString (parameterName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_parameterName : constant WinRt.HString := To_HString (parameterName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimation_Interface, WinRt.Windows.UI.Composition.ICompositionAnimation4, WinRt.Windows.UI.Composition.IID_ICompositionAnimation4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionAnimation.all);
       Hr := m_Interface.SetExpressionReferenceParameter (HStr_parameterName, source);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_parameterName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_parameterName);
    end;
 
    -----------------------------------------------------------------------------
@@ -1021,12 +1233,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out KeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyFrameAnimation, IKeyFrameAnimation_Ptr);
    begin
       if this.m_IKeyFrameAnimation /= null then
          if this.m_IKeyFrameAnimation.all /= null then
-            RefCount := this.m_IKeyFrameAnimation.all.Release;
+            temp := this.m_IKeyFrameAnimation.all.Release;
             Free (this.m_IKeyFrameAnimation);
          end if;
       end if;
@@ -1044,10 +1256,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_DelayTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1057,9 +1273,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyFrameAnimation.all.put_DelayTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -1068,10 +1288,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1081,9 +1305,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyFrameAnimation.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IterationBehavior
@@ -1092,10 +1320,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationIterationBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationIterationBehavior;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_IterationBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1105,9 +1337,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationIterationBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyFrameAnimation.all.put_IterationBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IterationCount
@@ -1116,10 +1352,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_IterationCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1129,9 +1369,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyFrameAnimation.all.put_IterationCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyFrameCount
@@ -1140,10 +1384,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_KeyFrameCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1153,10 +1401,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationStopBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationStopBehavior;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_StopBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1166,9 +1418,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationStopBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyFrameAnimation.all.put_StopBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertExpressionKeyFrame
@@ -1178,11 +1434,15 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IKeyFrameAnimation.all.InsertExpressionKeyFrame (normalizedProgressKey, HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure InsertExpressionKeyFrame
@@ -1193,11 +1453,15 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IKeyFrameAnimation.all.InsertExpressionKeyFrame (normalizedProgressKey, HStr_value, easingFunction.m_ICompositionEasingFunction.all);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Direction
@@ -1206,14 +1470,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationDirection is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IKeyFrameAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationDirection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IKeyFrameAnimation_Interface, WinRt.Windows.UI.Composition.IKeyFrameAnimation2, WinRt.Windows.UI.Composition.IID_IKeyFrameAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyFrameAnimation.all);
       Hr := m_Interface.get_Direction (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1223,13 +1491,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IKeyFrameAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IKeyFrameAnimation_Interface, WinRt.Windows.UI.Composition.IKeyFrameAnimation2, WinRt.Windows.UI.Composition.IID_IKeyFrameAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyFrameAnimation.all);
       Hr := m_Interface.put_Direction (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DelayBehavior
@@ -1238,14 +1510,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationDelayBehavior is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IKeyFrameAnimation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationDelayBehavior;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IKeyFrameAnimation_Interface, WinRt.Windows.UI.Composition.IKeyFrameAnimation3, WinRt.Windows.UI.Composition.IID_IKeyFrameAnimation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyFrameAnimation.all);
       Hr := m_Interface.get_DelayBehavior (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1255,13 +1531,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationDelayBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IKeyFrameAnimation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IKeyFrameAnimation_Interface, WinRt.Windows.UI.Composition.IKeyFrameAnimation3, WinRt.Windows.UI.Composition.IID_IKeyFrameAnimation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyFrameAnimation.all);
       Hr := m_Interface.put_DelayBehavior (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1273,12 +1553,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out BooleanKeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBooleanKeyFrameAnimation, IBooleanKeyFrameAnimation_Ptr);
    begin
       if this.m_IBooleanKeyFrameAnimation /= null then
          if this.m_IBooleanKeyFrameAnimation.all /= null then
-            RefCount := this.m_IBooleanKeyFrameAnimation.all.Release;
+            temp := this.m_IBooleanKeyFrameAnimation.all.Release;
             Free (this.m_IBooleanKeyFrameAnimation);
          end if;
       end if;
@@ -1294,9 +1574,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBooleanKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1308,12 +1592,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INaturalMotionAnimation, INaturalMotionAnimation_Ptr);
    begin
       if this.m_INaturalMotionAnimation /= null then
          if this.m_INaturalMotionAnimation.all /= null then
-            RefCount := this.m_INaturalMotionAnimation.all.Release;
+            temp := this.m_INaturalMotionAnimation.all.Release;
             Free (this.m_INaturalMotionAnimation);
          end if;
       end if;
@@ -1331,10 +1615,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationDelayBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationDelayBehavior;
    begin
       Hr := this.m_INaturalMotionAnimation.all.get_DelayBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1344,9 +1632,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationDelayBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INaturalMotionAnimation.all.put_DelayBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DelayTime
@@ -1355,10 +1647,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_INaturalMotionAnimation.all.get_DelayTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1368,9 +1664,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INaturalMotionAnimation.all.put_DelayTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StopBehavior
@@ -1379,10 +1679,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AnimationStopBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.AnimationStopBehavior;
    begin
       Hr := this.m_INaturalMotionAnimation.all.get_StopBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1392,9 +1696,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.AnimationStopBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INaturalMotionAnimation.all.put_StopBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1406,12 +1714,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ScalarNaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScalarNaturalMotionAnimation, IScalarNaturalMotionAnimation_Ptr);
    begin
       if this.m_IScalarNaturalMotionAnimation /= null then
          if this.m_IScalarNaturalMotionAnimation.all /= null then
-            RefCount := this.m_IScalarNaturalMotionAnimation.all.Release;
+            temp := this.m_IScalarNaturalMotionAnimation.all.Release;
             Free (this.m_IScalarNaturalMotionAnimation);
          end if;
       end if;
@@ -1429,13 +1737,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return IReference_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.get_FinalValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1445,9 +1757,13 @@ package body WinRt.Windows.UI.Composition is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.put_FinalValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialValue
@@ -1456,13 +1772,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return IReference_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.get_InitialValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1472,9 +1792,13 @@ package body WinRt.Windows.UI.Composition is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.put_InitialValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialVelocity
@@ -1483,10 +1807,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.get_InitialVelocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1496,9 +1824,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.put_InitialVelocity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1510,12 +1842,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out BounceScalarNaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBounceScalarNaturalMotionAnimation, IBounceScalarNaturalMotionAnimation_Ptr);
    begin
       if this.m_IBounceScalarNaturalMotionAnimation /= null then
          if this.m_IBounceScalarNaturalMotionAnimation.all /= null then
-            RefCount := this.m_IBounceScalarNaturalMotionAnimation.all.Release;
+            temp := this.m_IBounceScalarNaturalMotionAnimation.all.Release;
             Free (this.m_IBounceScalarNaturalMotionAnimation);
          end if;
       end if;
@@ -1530,10 +1862,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IBounceScalarNaturalMotionAnimation.all.get_Acceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1543,9 +1879,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceScalarNaturalMotionAnimation.all.put_Acceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Restitution
@@ -1554,10 +1894,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IBounceScalarNaturalMotionAnimation.all.get_Restitution (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1567,9 +1911,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceScalarNaturalMotionAnimation.all.put_Restitution (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1581,12 +1929,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Vector2NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVector2NaturalMotionAnimation, IVector2NaturalMotionAnimation_Ptr);
    begin
       if this.m_IVector2NaturalMotionAnimation /= null then
          if this.m_IVector2NaturalMotionAnimation.all /= null then
-            RefCount := this.m_IVector2NaturalMotionAnimation.all.Release;
+            temp := this.m_IVector2NaturalMotionAnimation.all.Release;
             Free (this.m_IVector2NaturalMotionAnimation);
          end if;
       end if;
@@ -1604,13 +1952,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return IReference_Vector2.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Vector2.Kind;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.get_FinalValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Vector2 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1620,9 +1972,13 @@ package body WinRt.Windows.UI.Composition is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.put_FinalValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialValue
@@ -1631,13 +1987,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return IReference_Vector2.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Vector2.Kind;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.get_InitialValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Vector2 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1647,9 +2007,13 @@ package body WinRt.Windows.UI.Composition is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.put_InitialValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialVelocity
@@ -1658,10 +2022,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.get_InitialVelocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1671,9 +2039,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.put_InitialVelocity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1685,12 +2057,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out BounceVector2NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBounceVector2NaturalMotionAnimation, IBounceVector2NaturalMotionAnimation_Ptr);
    begin
       if this.m_IBounceVector2NaturalMotionAnimation /= null then
          if this.m_IBounceVector2NaturalMotionAnimation.all /= null then
-            RefCount := this.m_IBounceVector2NaturalMotionAnimation.all.Release;
+            temp := this.m_IBounceVector2NaturalMotionAnimation.all.Release;
             Free (this.m_IBounceVector2NaturalMotionAnimation);
          end if;
       end if;
@@ -1705,10 +2077,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IBounceVector2NaturalMotionAnimation.all.get_Acceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1718,9 +2094,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceVector2NaturalMotionAnimation.all.put_Acceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Restitution
@@ -1729,10 +2109,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IBounceVector2NaturalMotionAnimation.all.get_Restitution (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1742,9 +2126,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceVector2NaturalMotionAnimation.all.put_Restitution (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1756,12 +2144,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Vector3NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVector3NaturalMotionAnimation, IVector3NaturalMotionAnimation_Ptr);
    begin
       if this.m_IVector3NaturalMotionAnimation /= null then
          if this.m_IVector3NaturalMotionAnimation.all /= null then
-            RefCount := this.m_IVector3NaturalMotionAnimation.all.Release;
+            temp := this.m_IVector3NaturalMotionAnimation.all.Release;
             Free (this.m_IVector3NaturalMotionAnimation);
          end if;
       end if;
@@ -1779,13 +2167,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return IReference_Vector3.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.get_FinalValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Vector3 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1795,9 +2187,13 @@ package body WinRt.Windows.UI.Composition is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.put_FinalValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialValue
@@ -1806,13 +2202,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return IReference_Vector3.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.get_InitialValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Vector3 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1822,9 +2222,13 @@ package body WinRt.Windows.UI.Composition is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.put_InitialValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialVelocity
@@ -1833,10 +2237,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.get_InitialVelocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1846,9 +2254,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.put_InitialVelocity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1860,12 +2272,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out BounceVector3NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBounceVector3NaturalMotionAnimation, IBounceVector3NaturalMotionAnimation_Ptr);
    begin
       if this.m_IBounceVector3NaturalMotionAnimation /= null then
          if this.m_IBounceVector3NaturalMotionAnimation.all /= null then
-            RefCount := this.m_IBounceVector3NaturalMotionAnimation.all.Release;
+            temp := this.m_IBounceVector3NaturalMotionAnimation.all.Release;
             Free (this.m_IBounceVector3NaturalMotionAnimation);
          end if;
       end if;
@@ -1880,10 +2292,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IBounceVector3NaturalMotionAnimation.all.get_Acceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1893,9 +2309,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceVector3NaturalMotionAnimation.all.put_Acceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Restitution
@@ -1904,10 +2324,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IBounceVector3NaturalMotionAnimation.all.get_Restitution (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1917,9 +2341,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceVector3NaturalMotionAnimation.all.put_Restitution (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1931,12 +2359,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ColorKeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorKeyFrameAnimation, IColorKeyFrameAnimation_Ptr);
    begin
       if this.m_IColorKeyFrameAnimation /= null then
          if this.m_IColorKeyFrameAnimation.all /= null then
-            RefCount := this.m_IColorKeyFrameAnimation.all.Release;
+            temp := this.m_IColorKeyFrameAnimation.all.Release;
             Free (this.m_IColorKeyFrameAnimation);
          end if;
       end if;
@@ -1951,10 +2379,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorSpace is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionColorSpace;
    begin
       Hr := this.m_IColorKeyFrameAnimation.all.get_InterpolationColorSpace (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1964,9 +2396,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionColorSpace
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorKeyFrameAnimation.all.put_InterpolationColorSpace (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -1976,9 +2412,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -1989,9 +2429,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2003,12 +2447,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionAnimationGroup) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionAnimationGroup, ICompositionAnimationGroup_Ptr);
    begin
       if this.m_ICompositionAnimationGroup /= null then
          if this.m_ICompositionAnimationGroup.all /= null then
-            RefCount := this.m_ICompositionAnimationGroup.all.Release;
+            temp := this.m_ICompositionAnimationGroup.all.Release;
             Free (this.m_ICompositionAnimationGroup);
          end if;
       end if;
@@ -2023,10 +2467,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ICompositionAnimationGroup.all.get_Count (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2036,9 +2484,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionAnimationGroup.all.Add (value.m_ICompositionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -2047,9 +2499,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionAnimationGroup.all.Remove (value.m_ICompositionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAll
@@ -2057,9 +2513,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionAnimationGroup
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionAnimationGroup.all.RemoveAll;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.CompositionAnimation>
@@ -2069,15 +2529,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionAnimation.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (213227842, 50931, 22623, (154, 146, 180, 126, 141, 211, 142, 191 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimationGroup_Interface, IIterable_ICompositionAnimation.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionAnimationGroup.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2090,12 +2554,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionBrush, ICompositionBrush_Ptr);
    begin
       if this.m_ICompositionBrush /= null then
          if this.m_ICompositionBrush.all /= null then
-            RefCount := this.m_ICompositionBrush.all.Release;
+            temp := this.m_ICompositionBrush.all.Release;
             Free (this.m_ICompositionBrush);
          end if;
       end if;
@@ -2116,12 +2580,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionBackdropBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionBackdropBrush, ICompositionBackdropBrush_Ptr);
    begin
       if this.m_ICompositionBackdropBrush /= null then
          if this.m_ICompositionBackdropBrush.all /= null then
-            RefCount := this.m_ICompositionBackdropBrush.all.Release;
+            temp := this.m_ICompositionBackdropBrush.all.Release;
             Free (this.m_ICompositionBackdropBrush);
          end if;
       end if;
@@ -2139,12 +2603,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionBatchCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionBatchCompletedEventArgs, ICompositionBatchCompletedEventArgs_Ptr);
    begin
       if this.m_ICompositionBatchCompletedEventArgs /= null then
          if this.m_ICompositionBatchCompletedEventArgs.all /= null then
-            RefCount := this.m_ICompositionBatchCompletedEventArgs.all.Release;
+            temp := this.m_ICompositionBatchCompletedEventArgs.all.Release;
             Free (this.m_ICompositionBatchCompletedEventArgs);
          end if;
       end if;
@@ -2162,12 +2626,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionCapabilities, ICompositionCapabilities_Ptr);
    begin
       if this.m_ICompositionCapabilities /= null then
          if this.m_ICompositionCapabilities.all /= null then
-            RefCount := this.m_ICompositionCapabilities.all.Release;
+            temp := this.m_ICompositionCapabilities.all.Release;
             Free (this.m_ICompositionCapabilities);
          end if;
       end if;
@@ -2179,20 +2643,24 @@ package body WinRt.Windows.UI.Composition is
    function GetForCurrentView
    return WinRt.Windows.UI.Composition.CompositionCapabilities is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.CompositionCapabilities");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionCapabilities");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionCapabilitiesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionCapabilities;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionCapabilities do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionCapabilitiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICompositionCapabilities := new Windows.UI.Composition.ICompositionCapabilities;
             Retval.m_ICompositionCapabilities.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2205,10 +2673,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionCapabilities.all.AreEffectsSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2218,10 +2690,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionCapabilities.all.AreEffectsFast (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2232,10 +2708,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionCapabilities.all.add_Changed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2245,9 +2725,13 @@ package body WinRt.Windows.UI.Composition is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionCapabilities.all.remove_Changed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2259,12 +2743,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionClip) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionClip, ICompositionClip_Ptr);
    begin
       if this.m_ICompositionClip /= null then
          if this.m_ICompositionClip.all /= null then
-            RefCount := this.m_ICompositionClip.all.Release;
+            temp := this.m_ICompositionClip.all.Release;
             Free (this.m_ICompositionClip);
          end if;
       end if;
@@ -2282,14 +2766,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_AnchorPoint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2299,13 +2787,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_AnchorPoint (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CenterPoint
@@ -2314,14 +2806,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_CenterPoint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2331,13 +2827,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_CenterPoint (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -2346,14 +2846,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_Offset (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2363,13 +2867,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_Offset (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngle
@@ -2378,14 +2886,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_RotationAngle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2395,13 +2907,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_RotationAngle (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngleInDegrees
@@ -2410,14 +2926,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_RotationAngleInDegrees (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2427,13 +2947,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_RotationAngleInDegrees (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -2442,14 +2966,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_Scale (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2459,13 +2987,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_Scale (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransformMatrix
@@ -2474,14 +3006,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.get_TransformMatrix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2491,13 +3027,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
       Hr := m_Interface.put_TransformMatrix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2509,12 +3049,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionColorBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionColorBrush, ICompositionColorBrush_Ptr);
    begin
       if this.m_ICompositionColorBrush /= null then
          if this.m_ICompositionColorBrush.all /= null then
-            RefCount := this.m_ICompositionColorBrush.all.Release;
+            temp := this.m_ICompositionColorBrush.all.Release;
             Free (this.m_ICompositionColorBrush);
          end if;
       end if;
@@ -2529,10 +3069,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ICompositionColorBrush.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2542,9 +3086,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionColorBrush.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2556,12 +3104,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionColorGradientStop) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionColorGradientStop, ICompositionColorGradientStop_Ptr);
    begin
       if this.m_ICompositionColorGradientStop /= null then
          if this.m_ICompositionColorGradientStop.all /= null then
-            RefCount := this.m_ICompositionColorGradientStop.all.Release;
+            temp := this.m_ICompositionColorGradientStop.all.Release;
             Free (this.m_ICompositionColorGradientStop);
          end if;
       end if;
@@ -2576,10 +3124,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ICompositionColorGradientStop.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2589,9 +3141,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionColorGradientStop.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -2600,10 +3156,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionColorGradientStop.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2613,9 +3173,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionColorGradientStop.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2627,12 +3191,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionColorGradientStopCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionColorGradientStopCollection, ICompositionColorGradientStopCollection_Ptr);
    begin
       if this.m_ICompositionColorGradientStopCollection /= null then
          if this.m_ICompositionColorGradientStopCollection.all /= null then
-            RefCount := this.m_ICompositionColorGradientStopCollection.all.Release;
+            temp := this.m_ICompositionColorGradientStopCollection.all.Release;
             Free (this.m_ICompositionColorGradientStopCollection);
          end if;
       end if;
@@ -2648,15 +3212,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (254606017, 52668, 23630, (167, 210, 163, 145, 79, 182, 52, 38 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IIterable_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2668,8 +3236,9 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
@@ -2677,7 +3246,10 @@ package body WinRt.Windows.UI.Composition is
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
          m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
@@ -2689,15 +3261,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2707,15 +3283,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2727,15 +3307,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.IndexOf (value.m_ICompositionColorGradientStop.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2746,14 +3330,18 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionColorGradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.SetAt (index, value.m_ICompositionColorGradientStop.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -2763,14 +3351,18 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionColorGradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.InsertAt (index, value.m_ICompositionColorGradientStop.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -2779,14 +3371,18 @@ package body WinRt.Windows.UI.Composition is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -2795,14 +3391,18 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionColorGradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.Append (value.m_ICompositionColorGradientStop.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -2810,14 +3410,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionColorGradientStopCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -2825,14 +3429,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionColorGradientStopCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -2843,8 +3451,9 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
@@ -2852,7 +3461,10 @@ package body WinRt.Windows.UI.Composition is
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2862,15 +3474,19 @@ package body WinRt.Windows.UI.Composition is
       items : Windows.UI.Composition.ICompositionColorGradientStop_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_ICompositionColorGradientStopCollection.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2882,12 +3498,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionCommitBatch) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionCommitBatch, ICompositionCommitBatch_Ptr);
    begin
       if this.m_ICompositionCommitBatch /= null then
          if this.m_ICompositionCommitBatch.all /= null then
-            RefCount := this.m_ICompositionCommitBatch.all.Release;
+            temp := this.m_ICompositionCommitBatch.all.Release;
             Free (this.m_ICompositionCommitBatch);
          end if;
       end if;
@@ -2902,10 +3518,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionCommitBatch.all.get_IsActive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2915,10 +3535,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionCommitBatch.all.get_IsEnded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2929,10 +3553,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionCommitBatch.all.add_Completed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2942,9 +3570,13 @@ package body WinRt.Windows.UI.Composition is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionCommitBatch.all.remove_Completed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2956,12 +3588,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionShape) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionShape, ICompositionShape_Ptr);
    begin
       if this.m_ICompositionShape /= null then
          if this.m_ICompositionShape.all /= null then
-            RefCount := this.m_ICompositionShape.all.Release;
+            temp := this.m_ICompositionShape.all.Release;
             Free (this.m_ICompositionShape);
          end if;
       end if;
@@ -2979,10 +3611,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionShape.all.get_CenterPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2992,9 +3628,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionShape.all.put_CenterPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -3003,10 +3643,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionShape.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3016,9 +3660,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionShape.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngle
@@ -3027,10 +3675,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionShape.all.get_RotationAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3040,9 +3692,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionShape.all.put_RotationAngle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngleInDegrees
@@ -3051,10 +3707,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionShape.all.get_RotationAngleInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3064,9 +3724,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionShape.all.put_RotationAngleInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -3075,10 +3739,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionShape.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3088,9 +3756,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionShape.all.put_Scale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransformMatrix
@@ -3099,10 +3771,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
    begin
       Hr := this.m_ICompositionShape.all.get_TransformMatrix (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3112,9 +3788,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionShape.all.put_TransformMatrix (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3126,12 +3806,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionContainerShape) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionContainerShape, ICompositionContainerShape_Ptr);
    begin
       if this.m_ICompositionContainerShape /= null then
          if this.m_ICompositionContainerShape.all /= null then
-            RefCount := this.m_ICompositionContainerShape.all.Release;
+            temp := this.m_ICompositionContainerShape.all.Release;
             Free (this.m_ICompositionContainerShape);
          end if;
       end if;
@@ -3146,11 +3826,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionShapeCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShapeCollection do
          Hr := this.m_ICompositionContainerShape.all.get_Shapes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -3165,12 +3849,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionDrawingSurface) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionDrawingSurface, ICompositionDrawingSurface_Ptr);
    begin
       if this.m_ICompositionDrawingSurface /= null then
          if this.m_ICompositionDrawingSurface.all /= null then
-            RefCount := this.m_ICompositionDrawingSurface.all.Release;
+            temp := this.m_ICompositionDrawingSurface.all.Release;
             Free (this.m_ICompositionDrawingSurface);
          end if;
       end if;
@@ -3188,10 +3872,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXAlphaMode;
    begin
       Hr := this.m_ICompositionDrawingSurface.all.get_AlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3201,10 +3889,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ICompositionDrawingSurface.all.get_PixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3214,10 +3906,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ICompositionDrawingSurface.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3227,14 +3923,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
       Hr := m_Interface.get_SizeInt32 (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3244,13 +3944,17 @@ package body WinRt.Windows.UI.Composition is
       sizePixels : Windows.Graphics.SizeInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
       Hr := m_Interface.Resize (sizePixels);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Scroll
@@ -3259,13 +3963,17 @@ package body WinRt.Windows.UI.Composition is
       offset : Windows.Graphics.PointInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
       Hr := m_Interface.Scroll (offset);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Scroll
@@ -3275,13 +3983,17 @@ package body WinRt.Windows.UI.Composition is
       scrollRect : Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
       Hr := m_Interface.Scroll (offset, scrollRect);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ScrollWithClip
@@ -3291,13 +4003,17 @@ package body WinRt.Windows.UI.Composition is
       clipRect : Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
       Hr := m_Interface.ScrollWithClip (offset, clipRect);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ScrollWithClip
@@ -3308,13 +4024,17 @@ package body WinRt.Windows.UI.Composition is
       scrollRect : Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
       Hr := m_Interface.ScrollWithClip (offset, clipRect, scrollRect);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3326,12 +4046,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionEasingFunction) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionEasingFunction, ICompositionEasingFunction_Ptr);
    begin
       if this.m_ICompositionEasingFunction /= null then
          if this.m_ICompositionEasingFunction.all /= null then
-            RefCount := this.m_ICompositionEasingFunction.all.Release;
+            temp := this.m_ICompositionEasingFunction.all.Release;
             Free (this.m_ICompositionEasingFunction);
          end if;
       end if;
@@ -3352,12 +4072,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionEffectBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionEffectBrush, ICompositionEffectBrush_Ptr);
    begin
       if this.m_ICompositionEffectBrush /= null then
          if this.m_ICompositionEffectBrush.all /= null then
-            RefCount := this.m_ICompositionEffectBrush.all.Release;
+            temp := this.m_ICompositionEffectBrush.all.Release;
             Free (this.m_ICompositionEffectBrush);
          end if;
       end if;
@@ -3373,15 +4093,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionEffectBrush.all.GetSourceParameter (HStr_name, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3392,11 +4116,15 @@ package body WinRt.Windows.UI.Composition is
       source : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ICompositionEffectBrush.all.SetSourceParameter (HStr_name, source.m_ICompositionBrush.all);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    -----------------------------------------------------------------------------
@@ -3408,12 +4136,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionEffectFactory) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionEffectFactory, ICompositionEffectFactory_Ptr);
    begin
       if this.m_ICompositionEffectFactory /= null then
          if this.m_ICompositionEffectFactory.all /= null then
-            RefCount := this.m_ICompositionEffectFactory.all.Release;
+            temp := this.m_ICompositionEffectFactory.all.Release;
             Free (this.m_ICompositionEffectFactory);
          end if;
       end if;
@@ -3428,11 +4156,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionEffectBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectBrush do
          Hr := this.m_ICompositionEffectFactory.all.CreateBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionEffectBrush := new Windows.UI.Composition.ICompositionEffectBrush;
          Retval.m_ICompositionEffectBrush.all := m_ComRetVal;
       end return;
@@ -3444,10 +4176,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_ICompositionEffectFactory.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3457,10 +4193,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactoryLoadStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionEffectFactoryLoadStatus;
    begin
       Hr := this.m_ICompositionEffectFactory.all.get_LoadStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3473,12 +4213,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionEffectSourceParameter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionEffectSourceParameter, ICompositionEffectSourceParameter_Ptr);
    begin
       if this.m_ICompositionEffectSourceParameter /= null then
          if this.m_ICompositionEffectSourceParameter.all /= null then
-            RefCount := this.m_ICompositionEffectSourceParameter.all.Release;
+            temp := this.m_ICompositionEffectSourceParameter.all.Release;
             Free (this.m_ICompositionEffectSourceParameter);
          end if;
       end if;
@@ -3493,11 +4233,12 @@ package body WinRt.Windows.UI.Composition is
    )
    return CompositionEffectSourceParameter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEffectSourceParameter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEffectSourceParameter");
       m_Factory    : access ICompositionEffectSourceParameterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Composition.ICompositionEffectSourceParameter;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : CompositionEffectSourceParameter do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEffectSourceParameterFactory'Access , m_Factory'Address);
@@ -3505,10 +4246,10 @@ package body WinRt.Windows.UI.Composition is
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
             Retval.m_ICompositionEffectSourceParameter := new Windows.UI.Composition.ICompositionEffectSourceParameter;
             Retval.m_ICompositionEffectSourceParameter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3521,13 +4262,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICompositionEffectSourceParameter.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3540,12 +4285,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionGeometry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionGeometry, ICompositionGeometry_Ptr);
    begin
       if this.m_ICompositionGeometry /= null then
          if this.m_ICompositionGeometry.all /= null then
-            RefCount := this.m_ICompositionGeometry.all.Release;
+            temp := this.m_ICompositionGeometry.all.Release;
             Free (this.m_ICompositionGeometry);
          end if;
       end if;
@@ -3563,10 +4308,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionGeometry.all.get_TrimEnd (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3576,9 +4325,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGeometry.all.put_TrimEnd (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TrimOffset
@@ -3587,10 +4340,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionGeometry.all.get_TrimOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3600,9 +4357,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGeometry.all.put_TrimOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TrimStart
@@ -3611,10 +4372,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionGeometry.all.get_TrimStart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3624,9 +4389,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGeometry.all.put_TrimStart (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3638,12 +4407,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionEllipseGeometry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionEllipseGeometry, ICompositionEllipseGeometry_Ptr);
    begin
       if this.m_ICompositionEllipseGeometry /= null then
          if this.m_ICompositionEllipseGeometry.all /= null then
-            RefCount := this.m_ICompositionEllipseGeometry.all.Release;
+            temp := this.m_ICompositionEllipseGeometry.all.Release;
             Free (this.m_ICompositionEllipseGeometry);
          end if;
       end if;
@@ -3658,10 +4427,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionEllipseGeometry.all.get_Center (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3671,9 +4444,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionEllipseGeometry.all.put_Center (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Radius
@@ -3682,10 +4459,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionEllipseGeometry.all.get_Radius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3695,9 +4476,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionEllipseGeometry.all.put_Radius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3709,12 +4494,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionGeometricClip) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionGeometricClip, ICompositionGeometricClip_Ptr);
    begin
       if this.m_ICompositionGeometricClip /= null then
          if this.m_ICompositionGeometricClip.all /= null then
-            RefCount := this.m_ICompositionGeometricClip.all.Release;
+            temp := this.m_ICompositionGeometricClip.all.Release;
             Free (this.m_ICompositionGeometricClip);
          end if;
       end if;
@@ -3729,11 +4514,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometry;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometry do
          Hr := this.m_ICompositionGeometricClip.all.get_Geometry (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionGeometry := new Windows.UI.Composition.ICompositionGeometry;
          Retval.m_ICompositionGeometry.all := m_ComRetVal;
       end return;
@@ -3745,9 +4534,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionGeometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGeometricClip.all.put_Geometry (value.m_ICompositionGeometry.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ViewBox
@@ -3756,11 +4549,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionViewBox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionViewBox;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionViewBox do
          Hr := this.m_ICompositionGeometricClip.all.get_ViewBox (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionViewBox := new Windows.UI.Composition.ICompositionViewBox;
          Retval.m_ICompositionViewBox.all := m_ComRetVal;
       end return;
@@ -3772,9 +4569,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionViewBox'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGeometricClip.all.put_ViewBox (value.m_ICompositionViewBox.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3786,12 +4587,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionGradientBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionGradientBrush, ICompositionGradientBrush_Ptr);
    begin
       if this.m_ICompositionGradientBrush /= null then
          if this.m_ICompositionGradientBrush.all /= null then
-            RefCount := this.m_ICompositionGradientBrush.all.Release;
+            temp := this.m_ICompositionGradientBrush.all.Release;
             Free (this.m_ICompositionGradientBrush);
          end if;
       end if;
@@ -3809,10 +4610,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_AnchorPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3822,9 +4627,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_AnchorPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CenterPoint
@@ -3833,10 +4642,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_CenterPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3846,9 +4659,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_CenterPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ColorStops
@@ -3857,11 +4674,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorGradientStopCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStopCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStopCollection do
          Hr := this.m_ICompositionGradientBrush.all.get_ColorStops (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionColorGradientStopCollection := new Windows.UI.Composition.ICompositionColorGradientStopCollection;
          Retval.m_ICompositionColorGradientStopCollection.all := m_ComRetVal;
       end return;
@@ -3873,10 +4694,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGradientExtendMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGradientExtendMode;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_ExtendMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3886,9 +4711,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionGradientExtendMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_ExtendMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InterpolationSpace
@@ -3897,10 +4726,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorSpace is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionColorSpace;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_InterpolationSpace (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3910,9 +4743,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionColorSpace
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_InterpolationSpace (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -3921,10 +4758,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3934,9 +4775,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngle
@@ -3945,10 +4790,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_RotationAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3958,9 +4807,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_RotationAngle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngleInDegrees
@@ -3969,10 +4822,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_RotationAngleInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3982,9 +4839,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_RotationAngleInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -3993,10 +4854,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4006,9 +4871,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_Scale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransformMatrix
@@ -4017,10 +4886,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_TransformMatrix (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4030,9 +4903,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGradientBrush.all.put_TransformMatrix (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MappingMode
@@ -4041,14 +4918,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionMappingMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGradientBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionMappingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGradientBrush_Interface, WinRt.Windows.UI.Composition.ICompositionGradientBrush2, WinRt.Windows.UI.Composition.IID_ICompositionGradientBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionGradientBrush.all);
       Hr := m_Interface.get_MappingMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4058,13 +4939,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionMappingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGradientBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGradientBrush_Interface, WinRt.Windows.UI.Composition.ICompositionGradientBrush2, WinRt.Windows.UI.Composition.IID_ICompositionGradientBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionGradientBrush.all);
       Hr := m_Interface.put_MappingMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4076,12 +4961,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionGraphicsDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionGraphicsDevice, ICompositionGraphicsDevice_Ptr);
    begin
       if this.m_ICompositionGraphicsDevice /= null then
          if this.m_ICompositionGraphicsDevice.all /= null then
-            RefCount := this.m_ICompositionGraphicsDevice.all.Release;
+            temp := this.m_ICompositionGraphicsDevice.all.Release;
             Free (this.m_ICompositionGraphicsDevice);
          end if;
       end if;
@@ -4099,11 +4984,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionDrawingSurface;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionDrawingSurface do
          Hr := this.m_ICompositionGraphicsDevice.all.CreateDrawingSurface (sizePixels, pixelFormat, alphaMode, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionDrawingSurface := new Windows.UI.Composition.ICompositionDrawingSurface;
          Retval.m_ICompositionDrawingSurface.all := m_ComRetVal;
       end return;
@@ -4116,10 +5005,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionGraphicsDevice.all.add_RenderingDeviceReplaced (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4129,9 +5022,13 @@ package body WinRt.Windows.UI.Composition is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionGraphicsDevice.all.remove_RenderingDeviceReplaced (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateDrawingSurface2
@@ -4143,15 +5040,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionDrawingSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionDrawingSurface do
          m_Interface := QInterface (this.m_ICompositionGraphicsDevice.all);
          Hr := m_Interface.CreateDrawingSurface2 (sizePixels, pixelFormat, alphaMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionDrawingSurface := new Windows.UI.Composition.ICompositionDrawingSurface;
          Retval.m_ICompositionDrawingSurface.all := m_ComRetVal;
       end return;
@@ -4166,15 +5067,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionVirtualDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionVirtualDrawingSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionVirtualDrawingSurface do
          m_Interface := QInterface (this.m_ICompositionGraphicsDevice.all);
          Hr := m_Interface.CreateVirtualDrawingSurface (sizePixels, pixelFormat, alphaMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionVirtualDrawingSurface := new Windows.UI.Composition.ICompositionVirtualDrawingSurface;
          Retval.m_ICompositionVirtualDrawingSurface.all := m_ComRetVal;
       end return;
@@ -4189,15 +5094,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionMipmapSurface'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionMipmapSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice3, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionMipmapSurface do
          m_Interface := QInterface (this.m_ICompositionGraphicsDevice.all);
          Hr := m_Interface.CreateMipmapSurface (sizePixels, pixelFormat, alphaMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionMipmapSurface := new Windows.UI.Composition.ICompositionMipmapSurface;
          Retval.m_ICompositionMipmapSurface.all := m_ComRetVal;
       end return;
@@ -4208,13 +5117,17 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionGraphicsDevice
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice3, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionGraphicsDevice.all);
       Hr := m_Interface.Trim;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4226,12 +5139,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionLineGeometry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionLineGeometry, ICompositionLineGeometry_Ptr);
    begin
       if this.m_ICompositionLineGeometry /= null then
          if this.m_ICompositionLineGeometry.all /= null then
-            RefCount := this.m_ICompositionLineGeometry.all.Release;
+            temp := this.m_ICompositionLineGeometry.all.Release;
             Free (this.m_ICompositionLineGeometry);
          end if;
       end if;
@@ -4246,10 +5159,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLineGeometry.all.get_Start (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4259,9 +5176,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionLineGeometry.all.put_Start (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_End
@@ -4270,10 +5191,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLineGeometry.all.get_End (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4283,9 +5208,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionLineGeometry.all.put_End (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4297,12 +5226,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionLinearGradientBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionLinearGradientBrush, ICompositionLinearGradientBrush_Ptr);
    begin
       if this.m_ICompositionLinearGradientBrush /= null then
          if this.m_ICompositionLinearGradientBrush.all /= null then
-            RefCount := this.m_ICompositionLinearGradientBrush.all.Release;
+            temp := this.m_ICompositionLinearGradientBrush.all.Release;
             Free (this.m_ICompositionLinearGradientBrush);
          end if;
       end if;
@@ -4317,10 +5246,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLinearGradientBrush.all.get_EndPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4330,9 +5263,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionLinearGradientBrush.all.put_EndPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartPoint
@@ -4341,10 +5278,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLinearGradientBrush.all.get_StartPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4354,9 +5295,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionLinearGradientBrush.all.put_StartPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4368,12 +5313,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionMaskBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionMaskBrush, ICompositionMaskBrush_Ptr);
    begin
       if this.m_ICompositionMaskBrush /= null then
          if this.m_ICompositionMaskBrush.all /= null then
-            RefCount := this.m_ICompositionMaskBrush.all.Release;
+            temp := this.m_ICompositionMaskBrush.all.Release;
             Free (this.m_ICompositionMaskBrush);
          end if;
       end if;
@@ -4388,11 +5333,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionMaskBrush.all.get_Mask (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -4404,9 +5353,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionMaskBrush.all.put_Mask (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -4415,11 +5368,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionMaskBrush.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -4431,9 +5388,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionMaskBrush.all.put_Source (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4445,12 +5406,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionMipmapSurface) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionMipmapSurface, ICompositionMipmapSurface_Ptr);
    begin
       if this.m_ICompositionMipmapSurface /= null then
          if this.m_ICompositionMipmapSurface.all /= null then
-            RefCount := this.m_ICompositionMipmapSurface.all.Release;
+            temp := this.m_ICompositionMipmapSurface.all.Release;
             Free (this.m_ICompositionMipmapSurface);
          end if;
       end if;
@@ -4465,10 +5426,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_LevelCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4478,10 +5443,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXAlphaMode;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_AlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4491,10 +5460,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_PixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4504,10 +5477,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_SizeInt32 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4518,11 +5495,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionDrawingSurface;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionDrawingSurface do
          Hr := this.m_ICompositionMipmapSurface.all.GetDrawingSurfaceForLevel (level, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionDrawingSurface := new Windows.UI.Composition.ICompositionDrawingSurface;
          Retval.m_ICompositionDrawingSurface.all := m_ComRetVal;
       end return;
@@ -4537,12 +5518,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionNineGridBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionNineGridBrush, ICompositionNineGridBrush_Ptr);
    begin
       if this.m_ICompositionNineGridBrush /= null then
          if this.m_ICompositionNineGridBrush.all /= null then
-            RefCount := this.m_ICompositionNineGridBrush.all.Release;
+            temp := this.m_ICompositionNineGridBrush.all.Release;
             Free (this.m_ICompositionNineGridBrush);
          end if;
       end if;
@@ -4557,10 +5538,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_BottomInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4570,9 +5555,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_BottomInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BottomInsetScale
@@ -4581,10 +5570,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_BottomInsetScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4594,9 +5587,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_BottomInsetScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCenterHollow
@@ -4605,10 +5602,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_IsCenterHollow (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4618,9 +5619,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_IsCenterHollow (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftInset
@@ -4629,10 +5634,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_LeftInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4642,9 +5651,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_LeftInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftInsetScale
@@ -4653,10 +5666,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_LeftInsetScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4666,9 +5683,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_LeftInsetScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightInset
@@ -4677,10 +5698,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_RightInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4690,9 +5715,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_RightInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightInsetScale
@@ -4701,10 +5730,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_RightInsetScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4714,9 +5747,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_RightInsetScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -4725,11 +5762,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionNineGridBrush.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -4741,9 +5782,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_Source (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TopInset
@@ -4752,10 +5797,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_TopInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4765,9 +5814,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_TopInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TopInsetScale
@@ -4776,10 +5829,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.get_TopInsetScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4789,9 +5846,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.put_TopInsetScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetInsets
@@ -4800,9 +5861,13 @@ package body WinRt.Windows.UI.Composition is
       inset : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.SetInsets (inset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetInsets
@@ -4814,9 +5879,13 @@ package body WinRt.Windows.UI.Composition is
       bottom : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.SetInsets (left, top, right, bottom);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetInsetScales
@@ -4825,9 +5894,13 @@ package body WinRt.Windows.UI.Composition is
       scale : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.SetInsetScales (scale);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetInsetScales
@@ -4839,9 +5912,13 @@ package body WinRt.Windows.UI.Composition is
       bottom : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionNineGridBrush.all.SetInsetScales (left, top, right, bottom);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4853,12 +5930,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionPath) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionPath, ICompositionPath_Ptr);
    begin
       if this.m_ICompositionPath /= null then
          if this.m_ICompositionPath.all /= null then
-            RefCount := this.m_ICompositionPath.all.Release;
+            temp := this.m_ICompositionPath.all.Release;
             Free (this.m_ICompositionPath);
          end if;
       end if;
@@ -4873,9 +5950,10 @@ package body WinRt.Windows.UI.Composition is
    )
    return CompositionPath is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Composition.CompositionPath");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionPath");
       m_Factory    : access ICompositionPathFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Composition.ICompositionPath;
    begin
       return RetVal : CompositionPath do
@@ -4884,9 +5962,9 @@ package body WinRt.Windows.UI.Composition is
             Hr := m_Factory.Create (source, m_ComRetVal'Access);
             Retval.m_ICompositionPath := new Windows.UI.Composition.ICompositionPath;
             Retval.m_ICompositionPath.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4902,12 +5980,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionPathGeometry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionPathGeometry, ICompositionPathGeometry_Ptr);
    begin
       if this.m_ICompositionPathGeometry /= null then
          if this.m_ICompositionPathGeometry.all /= null then
-            RefCount := this.m_ICompositionPathGeometry.all.Release;
+            temp := this.m_ICompositionPathGeometry.all.Release;
             Free (this.m_ICompositionPathGeometry);
          end if;
       end if;
@@ -4922,11 +6000,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionPath'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPath;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPath do
          Hr := this.m_ICompositionPathGeometry.all.get_Path (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionPath := new Windows.UI.Composition.ICompositionPath;
          Retval.m_ICompositionPath.all := m_ComRetVal;
       end return;
@@ -4938,9 +6020,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionPathGeometry.all.put_Path (value.m_ICompositionPath.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4952,12 +6038,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionProjectedShadow) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionProjectedShadow, ICompositionProjectedShadow_Ptr);
    begin
       if this.m_ICompositionProjectedShadow /= null then
          if this.m_ICompositionProjectedShadow.all /= null then
-            RefCount := this.m_ICompositionProjectedShadow.all.Release;
+            temp := this.m_ICompositionProjectedShadow.all.Release;
             Free (this.m_ICompositionProjectedShadow);
          end if;
       end if;
@@ -4972,10 +6058,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.get_BlurRadiusMultiplier (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4985,9 +6075,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.put_BlurRadiusMultiplier (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Casters
@@ -4996,11 +6090,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionProjectedShadowCasterCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowCasterCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowCasterCollection do
          Hr := this.m_ICompositionProjectedShadow.all.get_Casters (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionProjectedShadowCasterCollection := new Windows.UI.Composition.ICompositionProjectedShadowCasterCollection;
          Retval.m_ICompositionProjectedShadowCasterCollection.all := m_ComRetVal;
       end return;
@@ -5012,11 +6110,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionLight'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLight;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLight do
          Hr := this.m_ICompositionProjectedShadow.all.get_LightSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionLight := new Windows.UI.Composition.ICompositionLight;
          Retval.m_ICompositionLight.all := m_ComRetVal;
       end return;
@@ -5028,9 +6130,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionLight'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.put_LightSource (value.m_ICompositionLight.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxBlurRadius
@@ -5039,10 +6145,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.get_MaxBlurRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5052,9 +6162,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.put_MaxBlurRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinBlurRadius
@@ -5063,10 +6177,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.get_MinBlurRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5076,9 +6194,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadow.all.put_MinBlurRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Receivers
@@ -5087,11 +6209,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiverUnorderedCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiverUnorderedCollection do
          Hr := this.m_ICompositionProjectedShadow.all.get_Receivers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionProjectedShadowReceiverUnorderedCollection := new Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection;
          Retval.m_ICompositionProjectedShadowReceiverUnorderedCollection.all := m_ComRetVal;
       end return;
@@ -5106,12 +6232,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionProjectedShadowCaster) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionProjectedShadowCaster, ICompositionProjectedShadowCaster_Ptr);
    begin
       if this.m_ICompositionProjectedShadowCaster /= null then
          if this.m_ICompositionProjectedShadowCaster.all /= null then
-            RefCount := this.m_ICompositionProjectedShadowCaster.all.Release;
+            temp := this.m_ICompositionProjectedShadowCaster.all.Release;
             Free (this.m_ICompositionProjectedShadowCaster);
          end if;
       end if;
@@ -5126,11 +6252,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionProjectedShadowCaster.all.get_Brush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -5142,9 +6272,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCaster.all.put_Brush (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CastingVisual
@@ -5153,11 +6287,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionProjectedShadowCaster.all.get_CastingVisual (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -5169,9 +6307,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCaster.all.put_CastingVisual (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5183,12 +6325,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionProjectedShadowCasterCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionProjectedShadowCasterCollection, ICompositionProjectedShadowCasterCollection_Ptr);
    begin
       if this.m_ICompositionProjectedShadowCasterCollection /= null then
          if this.m_ICompositionProjectedShadowCasterCollection.all /= null then
-            RefCount := this.m_ICompositionProjectedShadowCasterCollection.all.Release;
+            temp := this.m_ICompositionProjectedShadowCasterCollection.all.Release;
             Free (this.m_ICompositionProjectedShadowCasterCollection);
          end if;
       end if;
@@ -5200,17 +6342,21 @@ package body WinRt.Windows.UI.Composition is
    function get_MaxRespectedCasters
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.CompositionProjectedShadowCasterCollection");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionProjectedShadowCasterCollection");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollectionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionProjectedShadowCasterCollectionStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxRespectedCasters (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5223,10 +6369,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.get_Count (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5237,9 +6387,13 @@ package body WinRt.Windows.UI.Composition is
       reference : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.InsertAbove (newCaster.m_ICompositionProjectedShadowCaster.all, reference.m_ICompositionProjectedShadowCaster.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAtBottom
@@ -5248,9 +6402,13 @@ package body WinRt.Windows.UI.Composition is
       newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.InsertAtBottom (newCaster.m_ICompositionProjectedShadowCaster.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAtTop
@@ -5259,9 +6417,13 @@ package body WinRt.Windows.UI.Composition is
       newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.InsertAtTop (newCaster.m_ICompositionProjectedShadowCaster.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertBelow
@@ -5271,9 +6433,13 @@ package body WinRt.Windows.UI.Composition is
       reference : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.InsertBelow (newCaster.m_ICompositionProjectedShadowCaster.all, reference.m_ICompositionProjectedShadowCaster.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -5282,9 +6448,13 @@ package body WinRt.Windows.UI.Composition is
       caster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.Remove (caster.m_ICompositionProjectedShadowCaster.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAll
@@ -5292,9 +6462,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionProjectedShadowCasterCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowCasterCollection.all.RemoveAll;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.CompositionProjectedShadowCaster>
@@ -5304,15 +6478,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionProjectedShadowCaster.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3090160386, 17051, 23921, (171, 12, 141, 17, 65, 177, 42, 195 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollection_Interface, IIterable_ICompositionProjectedShadowCaster.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionProjectedShadowCasterCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5325,12 +6503,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionProjectedShadowReceiver) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionProjectedShadowReceiver, ICompositionProjectedShadowReceiver_Ptr);
    begin
       if this.m_ICompositionProjectedShadowReceiver /= null then
          if this.m_ICompositionProjectedShadowReceiver.all /= null then
-            RefCount := this.m_ICompositionProjectedShadowReceiver.all.Release;
+            temp := this.m_ICompositionProjectedShadowReceiver.all.Release;
             Free (this.m_ICompositionProjectedShadowReceiver);
          end if;
       end if;
@@ -5345,11 +6523,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionProjectedShadowReceiver.all.get_ReceivingVisual (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -5361,9 +6543,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowReceiver.all.put_ReceivingVisual (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5375,12 +6561,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionProjectedShadowReceiverUnorderedCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionProjectedShadowReceiverUnorderedCollection, ICompositionProjectedShadowReceiverUnorderedCollection_Ptr);
    begin
       if this.m_ICompositionProjectedShadowReceiverUnorderedCollection /= null then
          if this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all /= null then
-            RefCount := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.Release;
+            temp := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.Release;
             Free (this.m_ICompositionProjectedShadowReceiverUnorderedCollection);
          end if;
       end if;
@@ -5395,9 +6581,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.Add (value.m_ICompositionProjectedShadowReceiver.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Count
@@ -5406,10 +6596,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.get_Count (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5419,9 +6613,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.Remove (value.m_ICompositionProjectedShadowReceiver.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAll
@@ -5429,9 +6627,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionProjectedShadowReceiverUnorderedCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.RemoveAll;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.CompositionProjectedShadowReceiver>
@@ -5441,15 +6643,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionProjectedShadowReceiver.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3799472680, 60488, 23736, (179, 82, 118, 247, 249, 129, 215, 164 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection_Interface, IIterable_ICompositionProjectedShadowReceiver.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5462,12 +6668,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionPropertySet) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionPropertySet, ICompositionPropertySet_Ptr);
    begin
       if this.m_ICompositionPropertySet /= null then
          if this.m_ICompositionPropertySet.all /= null then
-            RefCount := this.m_ICompositionPropertySet.all.Release;
+            temp := this.m_ICompositionPropertySet.all.Release;
             Free (this.m_ICompositionPropertySet);
          end if;
       end if;
@@ -5483,11 +6689,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertColor (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertMatrix3x2
@@ -5497,11 +6707,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertMatrix3x2 (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertMatrix4x4
@@ -5511,11 +6725,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertMatrix4x4 (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertQuaternion
@@ -5525,11 +6743,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertQuaternion (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertScalar
@@ -5539,11 +6761,15 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertScalar (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertVector2
@@ -5553,11 +6779,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertVector2 (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertVector3
@@ -5567,11 +6797,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertVector3 (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    procedure InsertVector4
@@ -5581,11 +6815,15 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.InsertVector4 (HStr_propertyName, value);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    function TryGetColor
@@ -5596,12 +6834,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetColor (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5613,12 +6855,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetMatrix3x2 (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5630,12 +6876,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetMatrix4x4 (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5647,12 +6897,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetQuaternion (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5664,12 +6918,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetScalar (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5681,12 +6939,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetVector2 (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5698,12 +6960,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetVector3 (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5715,12 +6981,16 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetVector4 (HStr_propertyName, value, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5731,15 +7001,19 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionPropertySet2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionPropertySet_Interface, WinRt.Windows.UI.Composition.ICompositionPropertySet2, WinRt.Windows.UI.Composition.IID_ICompositionPropertySet2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionPropertySet.all);
       Hr := m_Interface.InsertBoolean (HStr_propertyName, value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_propertyName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
    end;
 
    function TryGetBoolean
@@ -5750,16 +7024,20 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionPropertySet2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionPropertySet_Interface, WinRt.Windows.UI.Composition.ICompositionPropertySet2, WinRt.Windows.UI.Composition.IID_ICompositionPropertySet2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionPropertySet.all);
       Hr := m_Interface.TryGetBoolean (HStr_propertyName, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_propertyName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_ComRetVal;
    end;
 
@@ -5772,12 +7050,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionRadialGradientBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionRadialGradientBrush, ICompositionRadialGradientBrush_Ptr);
    begin
       if this.m_ICompositionRadialGradientBrush /= null then
          if this.m_ICompositionRadialGradientBrush.all /= null then
-            RefCount := this.m_ICompositionRadialGradientBrush.all.Release;
+            temp := this.m_ICompositionRadialGradientBrush.all.Release;
             Free (this.m_ICompositionRadialGradientBrush);
          end if;
       end if;
@@ -5792,10 +7070,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.get_EllipseCenter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5805,9 +7087,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.put_EllipseCenter (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EllipseRadius
@@ -5816,10 +7102,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.get_EllipseRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5829,9 +7119,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.put_EllipseRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GradientOriginOffset
@@ -5840,10 +7134,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.get_GradientOriginOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5853,9 +7151,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.put_GradientOriginOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5867,12 +7169,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionRectangleGeometry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionRectangleGeometry, ICompositionRectangleGeometry_Ptr);
    begin
       if this.m_ICompositionRectangleGeometry /= null then
          if this.m_ICompositionRectangleGeometry.all /= null then
-            RefCount := this.m_ICompositionRectangleGeometry.all.Release;
+            temp := this.m_ICompositionRectangleGeometry.all.Release;
             Free (this.m_ICompositionRectangleGeometry);
          end if;
       end if;
@@ -5887,10 +7189,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRectangleGeometry.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5900,9 +7206,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRectangleGeometry.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Size
@@ -5911,10 +7221,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRectangleGeometry.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5924,9 +7238,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRectangleGeometry.all.put_Size (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5938,12 +7256,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionRoundedRectangleGeometry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionRoundedRectangleGeometry, ICompositionRoundedRectangleGeometry_Ptr);
    begin
       if this.m_ICompositionRoundedRectangleGeometry /= null then
          if this.m_ICompositionRoundedRectangleGeometry.all /= null then
-            RefCount := this.m_ICompositionRoundedRectangleGeometry.all.Release;
+            temp := this.m_ICompositionRoundedRectangleGeometry.all.Release;
             Free (this.m_ICompositionRoundedRectangleGeometry);
          end if;
       end if;
@@ -5958,10 +7276,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.get_CornerRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5971,9 +7293,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.put_CornerRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -5982,10 +7308,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5995,9 +7325,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Size
@@ -6006,10 +7340,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6019,9 +7357,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.put_Size (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6033,12 +7375,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionScopedBatch) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionScopedBatch, ICompositionScopedBatch_Ptr);
    begin
       if this.m_ICompositionScopedBatch /= null then
          if this.m_ICompositionScopedBatch.all /= null then
-            RefCount := this.m_ICompositionScopedBatch.all.Release;
+            temp := this.m_ICompositionScopedBatch.all.Release;
             Free (this.m_ICompositionScopedBatch);
          end if;
       end if;
@@ -6053,10 +7395,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionScopedBatch.all.get_IsActive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6066,10 +7412,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionScopedBatch.all.get_IsEnded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6078,9 +7428,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionScopedBatch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionScopedBatch.all.End_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Resume
@@ -6088,9 +7442,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionScopedBatch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionScopedBatch.all.Resume;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Suspend
@@ -6098,9 +7456,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionScopedBatch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionScopedBatch.all.Suspend;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Completed
@@ -6110,10 +7472,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionScopedBatch.all.add_Completed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6123,9 +7489,13 @@ package body WinRt.Windows.UI.Composition is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionScopedBatch.all.remove_Completed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6137,12 +7507,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionShadow) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionShadow, ICompositionShadow_Ptr);
    begin
       if this.m_ICompositionShadow /= null then
          if this.m_ICompositionShadow.all /= null then
-            RefCount := this.m_ICompositionShadow.all.Release;
+            temp := this.m_ICompositionShadow.all.Release;
             Free (this.m_ICompositionShadow);
          end if;
       end if;
@@ -6178,8 +7548,9 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionShape'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShape;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
@@ -6187,7 +7558,10 @@ package body WinRt.Windows.UI.Composition is
       return RetVal : WinRt.Windows.UI.Composition.CompositionShape do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionShape := new Windows.UI.Composition.ICompositionShape;
          Retval.m_ICompositionShape.all := m_ComRetVal;
       end return;
@@ -6199,15 +7573,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6217,15 +7595,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6237,15 +7619,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_ICompositionShape.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6256,14 +7642,18 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionShape'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_ICompositionShape.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -6273,14 +7663,18 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionShape'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_ICompositionShape.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -6289,14 +7683,18 @@ package body WinRt.Windows.UI.Composition is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -6305,14 +7703,18 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionShape'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_ICompositionShape.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -6320,14 +7722,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionShapeCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -6335,14 +7741,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionShapeCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -6353,8 +7763,9 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
@@ -6362,7 +7773,10 @@ package body WinRt.Windows.UI.Composition is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6372,15 +7786,19 @@ package body WinRt.Windows.UI.Composition is
       items : Windows.UI.Composition.ICompositionShape_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.CompositionShape>
@@ -6390,15 +7808,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionShape.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (288730613, 56082, 21992, (174, 15, 189, 141, 145, 75, 211, 153 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6411,12 +7833,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionSpriteShape) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionSpriteShape, ICompositionSpriteShape_Ptr);
    begin
       if this.m_ICompositionSpriteShape /= null then
          if this.m_ICompositionSpriteShape.all /= null then
-            RefCount := this.m_ICompositionSpriteShape.all.Release;
+            temp := this.m_ICompositionSpriteShape.all.Release;
             Free (this.m_ICompositionSpriteShape);
          end if;
       end if;
@@ -6431,11 +7853,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionSpriteShape.all.get_FillBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -6447,9 +7873,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_FillBrush (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Geometry
@@ -6458,11 +7888,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometry;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometry do
          Hr := this.m_ICompositionSpriteShape.all.get_Geometry (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionGeometry := new Windows.UI.Composition.ICompositionGeometry;
          Retval.m_ICompositionGeometry.all := m_ComRetVal;
       end return;
@@ -6474,9 +7908,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionGeometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_Geometry (value.m_ICompositionGeometry.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsStrokeNonScaling
@@ -6485,10 +7923,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_IsStrokeNonScaling (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6498,9 +7940,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_IsStrokeNonScaling (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeBrush
@@ -6509,11 +7955,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionSpriteShape.all.get_StrokeBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -6525,9 +7975,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeBrush (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashArray
@@ -6536,11 +7990,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStrokeDashArray'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionStrokeDashArray do
          Hr := this.m_ICompositionSpriteShape.all.get_StrokeDashArray (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -6552,10 +8010,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStrokeCap is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeCap;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeDashCap (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6565,9 +8027,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionStrokeCap
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeDashCap (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashOffset
@@ -6576,10 +8042,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeDashOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6589,9 +8059,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeDashOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeEndCap
@@ -6600,10 +8074,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStrokeCap is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeCap;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeEndCap (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6613,9 +8091,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionStrokeCap
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeEndCap (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeLineJoin
@@ -6624,10 +8106,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStrokeLineJoin is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeLineJoin;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeLineJoin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6637,9 +8123,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionStrokeLineJoin
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeLineJoin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeMiterLimit
@@ -6648,10 +8138,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeMiterLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6661,9 +8155,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeMiterLimit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeStartCap
@@ -6672,10 +8170,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStrokeCap is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeCap;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeStartCap (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6685,9 +8187,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionStrokeCap
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeStartCap (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeThickness
@@ -6696,10 +8202,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6709,9 +8219,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSpriteShape.all.put_StrokeThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6738,15 +8252,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Single;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6756,15 +8274,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6774,15 +8296,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6794,15 +8320,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6813,14 +8343,18 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -6830,14 +8364,18 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -6846,14 +8384,18 @@ package body WinRt.Windows.UI.Composition is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -6862,14 +8404,18 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -6877,14 +8423,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionStrokeDashArray
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -6892,14 +8442,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out CompositionStrokeDashArray
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -6910,8 +8464,9 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
@@ -6919,7 +8474,10 @@ package body WinRt.Windows.UI.Composition is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6929,15 +8487,19 @@ package body WinRt.Windows.UI.Composition is
       items : WinRt.Single_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<System.Single>
@@ -6947,15 +8509,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Single.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2954620497, 1594, 24538, (189, 114, 215, 102, 55, 187, 140, 184 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6968,12 +8534,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionSurfaceBrush) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionSurfaceBrush, ICompositionSurfaceBrush_Ptr);
    begin
       if this.m_ICompositionSurfaceBrush /= null then
          if this.m_ICompositionSurfaceBrush.all /= null then
-            RefCount := this.m_ICompositionSurfaceBrush.all.Release;
+            temp := this.m_ICompositionSurfaceBrush.all.Release;
             Free (this.m_ICompositionSurfaceBrush);
          end if;
       end if;
@@ -6988,10 +8554,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionBitmapInterpolationMode;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_BitmapInterpolationMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7001,9 +8571,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBitmapInterpolationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.put_BitmapInterpolationMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HorizontalAlignmentRatio
@@ -7012,10 +8586,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_HorizontalAlignmentRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7025,9 +8603,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.put_HorizontalAlignmentRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Stretch
@@ -7036,10 +8618,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStretch is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionStretch;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_Stretch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7049,9 +8635,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionStretch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.put_Stretch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Surface
@@ -7060,10 +8650,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ICompositionSurface is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurface;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_Surface (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7073,9 +8667,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.ICompositionSurface
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.put_Surface (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VerticalAlignmentRatio
@@ -7084,10 +8682,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_VerticalAlignmentRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7097,9 +8699,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.put_VerticalAlignmentRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AnchorPoint
@@ -7108,14 +8714,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_AnchorPoint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7125,13 +8735,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_AnchorPoint (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CenterPoint
@@ -7140,14 +8754,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_CenterPoint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7157,13 +8775,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_CenterPoint (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -7172,14 +8794,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_Offset (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7189,13 +8815,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_Offset (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngle
@@ -7204,14 +8834,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_RotationAngle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7221,13 +8855,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_RotationAngle (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngleInDegrees
@@ -7236,14 +8874,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_RotationAngleInDegrees (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7253,13 +8895,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_RotationAngleInDegrees (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -7268,14 +8914,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_Scale (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7285,13 +8935,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_Scale (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransformMatrix
@@ -7300,14 +8954,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_TransformMatrix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7317,13 +8975,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_TransformMatrix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SnapToPixels
@@ -7332,14 +8994,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush3, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.get_SnapToPixels (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7349,13 +9015,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush3, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
       Hr := m_Interface.put_SnapToPixels (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7367,12 +9037,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionTarget) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionTarget, ICompositionTarget_Ptr);
    begin
       if this.m_ICompositionTarget /= null then
          if this.m_ICompositionTarget.all /= null then
-            RefCount := this.m_ICompositionTarget.all.Release;
+            temp := this.m_ICompositionTarget.all.Release;
             Free (this.m_ICompositionTarget);
          end if;
       end if;
@@ -7390,11 +9060,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionTarget.all.get_Root (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -7406,9 +9080,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionTarget.all.put_Root (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7420,12 +9098,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionTransform) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionTransform, ICompositionTransform_Ptr);
    begin
       if this.m_ICompositionTransform /= null then
          if this.m_ICompositionTransform.all /= null then
-            RefCount := this.m_ICompositionTransform.all.Release;
+            temp := this.m_ICompositionTransform.all.Release;
             Free (this.m_ICompositionTransform);
          end if;
       end if;
@@ -7446,12 +9124,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionViewBox) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionViewBox, ICompositionViewBox_Ptr);
    begin
       if this.m_ICompositionViewBox /= null then
          if this.m_ICompositionViewBox.all /= null then
-            RefCount := this.m_ICompositionViewBox.all.Release;
+            temp := this.m_ICompositionViewBox.all.Release;
             Free (this.m_ICompositionViewBox);
          end if;
       end if;
@@ -7466,10 +9144,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionViewBox.all.get_HorizontalAlignmentRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7479,9 +9161,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionViewBox.all.put_HorizontalAlignmentRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -7490,10 +9176,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionViewBox.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7503,9 +9193,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionViewBox.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Size
@@ -7514,10 +9208,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionViewBox.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7527,9 +9225,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionViewBox.all.put_Size (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Stretch
@@ -7538,10 +9240,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionStretch is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionStretch;
    begin
       Hr := this.m_ICompositionViewBox.all.get_Stretch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7551,9 +9257,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionStretch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionViewBox.all.put_Stretch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VerticalAlignmentRatio
@@ -7562,10 +9272,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ICompositionViewBox.all.get_VerticalAlignmentRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7575,9 +9289,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionViewBox.all.put_VerticalAlignmentRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7589,12 +9307,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionVirtualDrawingSurface) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionVirtualDrawingSurface, ICompositionVirtualDrawingSurface_Ptr);
    begin
       if this.m_ICompositionVirtualDrawingSurface /= null then
          if this.m_ICompositionVirtualDrawingSurface.all /= null then
-            RefCount := this.m_ICompositionVirtualDrawingSurface.all.Release;
+            temp := this.m_ICompositionVirtualDrawingSurface.all.Release;
             Free (this.m_ICompositionVirtualDrawingSurface);
          end if;
       end if;
@@ -7612,10 +9330,14 @@ package body WinRt.Windows.UI.Composition is
       rects : Windows.Graphics.RectInt32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_rects is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Graphics.RectInt32_Ptr);
    begin
       Hr := this.m_ICompositionVirtualDrawingSurface.all.Trim (WinRt.UInt32(rects'Length), Convert_rects (rects (rects'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7627,12 +9349,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CompositionVisualSurface) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionVisualSurface, ICompositionVisualSurface_Ptr);
    begin
       if this.m_ICompositionVisualSurface /= null then
          if this.m_ICompositionVisualSurface.all /= null then
-            RefCount := this.m_ICompositionVisualSurface.all.Release;
+            temp := this.m_ICompositionVisualSurface.all.Release;
             Free (this.m_ICompositionVisualSurface);
          end if;
       end if;
@@ -7647,11 +9369,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionVisualSurface.all.get_SourceVisual (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -7663,9 +9389,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionVisualSurface.all.put_SourceVisual (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SourceOffset
@@ -7674,10 +9404,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionVisualSurface.all.get_SourceOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7687,9 +9421,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionVisualSurface.all.put_SourceOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SourceSize
@@ -7698,10 +9436,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionVisualSurface.all.get_SourceSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7711,9 +9453,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionVisualSurface.all.put_SourceSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7725,12 +9471,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Compositor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositor, ICompositor_Ptr);
    begin
       if this.m_ICompositor /= null then
          if this.m_ICompositor.all /= null then
-            RefCount := this.m_ICompositor.all.Release;
+            temp := this.m_ICompositor.all.Release;
             Free (this.m_ICompositor);
          end if;
       end if;
@@ -7741,7 +9487,8 @@ package body WinRt.Windows.UI.Composition is
 
    function Constructor return Compositor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
       m_ComRetVal  : aliased Windows.UI.Composition.ICompositor;
    begin
       return RetVal : Compositor do
@@ -7750,7 +9497,7 @@ package body WinRt.Windows.UI.Composition is
             Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
             Retval.m_ICompositor.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7760,34 +9507,42 @@ package body WinRt.Windows.UI.Composition is
    function get_MaxGlobalPlaybackRate
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositorStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxGlobalPlaybackRate (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_MinGlobalPlaybackRate
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositorStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MinGlobalPlaybackRate (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7800,11 +9555,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ColorKeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IColorKeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ColorKeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateColorKeyFrameAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IColorKeyFrameAnimation := new Windows.UI.Composition.IColorKeyFrameAnimation;
          Retval.m_IColorKeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -7816,11 +9575,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorBrush do
          Hr := this.m_ICompositor.all.CreateColorBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionColorBrush := new Windows.UI.Composition.ICompositionColorBrush;
          Retval.m_ICompositionColorBrush.all := m_ComRetVal;
       end return;
@@ -7833,11 +9596,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorBrush do
          Hr := this.m_ICompositor.all.CreateColorBrush (color, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionColorBrush := new Windows.UI.Composition.ICompositionColorBrush;
          Retval.m_ICompositionColorBrush.all := m_ComRetVal;
       end return;
@@ -7849,11 +9616,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ContainerVisual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IContainerVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ContainerVisual do
          Hr := this.m_ICompositor.all.CreateContainerVisual (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContainerVisual := new Windows.UI.Composition.IContainerVisual;
          Retval.m_IContainerVisual.all := m_ComRetVal;
       end return;
@@ -7867,11 +9638,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CubicBezierEasingFunction'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICubicBezierEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CubicBezierEasingFunction do
          Hr := this.m_ICompositor.all.CreateCubicBezierEasingFunction (controlPoint1, controlPoint2, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICubicBezierEasingFunction := new Windows.UI.Composition.ICubicBezierEasingFunction;
          Retval.m_ICubicBezierEasingFunction.all := m_ComRetVal;
       end return;
@@ -7884,11 +9659,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactory'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectFactory;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectFactory do
          Hr := this.m_ICompositor.all.CreateEffectFactory (graphicsEffect, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionEffectFactory := new Windows.UI.Composition.ICompositionEffectFactory;
          Retval.m_ICompositionEffectFactory.all := m_ComRetVal;
       end return;
@@ -7902,11 +9681,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactory'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectFactory;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectFactory do
          Hr := this.m_ICompositor.all.CreateEffectFactory (graphicsEffect, animatableProperties, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionEffectFactory := new Windows.UI.Composition.ICompositionEffectFactory;
          Retval.m_ICompositionEffectFactory.all := m_ComRetVal;
       end return;
@@ -7918,11 +9701,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_ICompositor.all.CreateExpressionAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -7935,15 +9722,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
-      HStr_expression : WinRt.HString := To_HString (expression);
+      HStr_expression : constant WinRt.HString := To_HString (expression);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_ICompositor.all.CreateExpressionAnimation (HStr_expression, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_expression);
+         tmp := WindowsDeleteString (HStr_expression);
       end return;
    end;
 
@@ -7953,11 +9744,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.InsetClip'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IInsetClip;
    begin
       return RetVal : WinRt.Windows.UI.Composition.InsetClip do
          Hr := this.m_ICompositor.all.CreateInsetClip (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInsetClip := new Windows.UI.Composition.IInsetClip;
          Retval.m_IInsetClip.all := m_ComRetVal;
       end return;
@@ -7973,11 +9768,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.InsetClip'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IInsetClip;
    begin
       return RetVal : WinRt.Windows.UI.Composition.InsetClip do
          Hr := this.m_ICompositor.all.CreateInsetClip (leftInset, topInset, rightInset, bottomInset, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInsetClip := new Windows.UI.Composition.IInsetClip;
          Retval.m_IInsetClip.all := m_ComRetVal;
       end return;
@@ -7989,11 +9788,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.LinearEasingFunction'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ILinearEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.LinearEasingFunction do
          Hr := this.m_ICompositor.all.CreateLinearEasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILinearEasingFunction := new Windows.UI.Composition.ILinearEasingFunction;
          Retval.m_ILinearEasingFunction.all := m_ComRetVal;
       end return;
@@ -8005,11 +9808,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPropertySet;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPropertySet do
          Hr := this.m_ICompositor.all.CreatePropertySet (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionPropertySet := new Windows.UI.Composition.ICompositionPropertySet;
          Retval.m_ICompositionPropertySet.all := m_ComRetVal;
       end return;
@@ -8021,11 +9828,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.QuaternionKeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IQuaternionKeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.QuaternionKeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateQuaternionKeyFrameAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IQuaternionKeyFrameAnimation := new Windows.UI.Composition.IQuaternionKeyFrameAnimation;
          Retval.m_IQuaternionKeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -8037,11 +9848,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ScalarKeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IScalarKeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ScalarKeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateScalarKeyFrameAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IScalarKeyFrameAnimation := new Windows.UI.Composition.IScalarKeyFrameAnimation;
          Retval.m_IScalarKeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -8054,11 +9869,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionScopedBatch'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionScopedBatch;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionScopedBatch do
          Hr := this.m_ICompositor.all.CreateScopedBatch (batchType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionScopedBatch := new Windows.UI.Composition.ICompositionScopedBatch;
          Retval.m_ICompositionScopedBatch.all := m_ComRetVal;
       end return;
@@ -8070,11 +9889,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.SpriteVisual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ISpriteVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpriteVisual do
          Hr := this.m_ICompositor.all.CreateSpriteVisual (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpriteVisual := new Windows.UI.Composition.ISpriteVisual;
          Retval.m_ISpriteVisual.all := m_ComRetVal;
       end return;
@@ -8086,11 +9909,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionSurfaceBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurfaceBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSurfaceBrush do
          Hr := this.m_ICompositor.all.CreateSurfaceBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionSurfaceBrush := new Windows.UI.Composition.ICompositionSurfaceBrush;
          Retval.m_ICompositionSurfaceBrush.all := m_ComRetVal;
       end return;
@@ -8103,11 +9930,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionSurfaceBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurfaceBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSurfaceBrush do
          Hr := this.m_ICompositor.all.CreateSurfaceBrush (surface, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionSurfaceBrush := new Windows.UI.Composition.ICompositionSurfaceBrush;
          Retval.m_ICompositionSurfaceBrush.all := m_ComRetVal;
       end return;
@@ -8119,11 +9950,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionTarget'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionTarget;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionTarget do
          Hr := this.m_ICompositor.all.CreateTargetForCurrentView (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionTarget := new Windows.UI.Composition.ICompositionTarget;
          Retval.m_ICompositionTarget.all := m_ComRetVal;
       end return;
@@ -8135,11 +9970,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Vector2KeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVector2KeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector2KeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateVector2KeyFrameAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVector2KeyFrameAnimation := new Windows.UI.Composition.IVector2KeyFrameAnimation;
          Retval.m_IVector2KeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -8151,11 +9990,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Vector3KeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVector3KeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector3KeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateVector3KeyFrameAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVector3KeyFrameAnimation := new Windows.UI.Composition.IVector3KeyFrameAnimation;
          Retval.m_IVector3KeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -8167,11 +10010,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Vector4KeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVector4KeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector4KeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateVector4KeyFrameAnimation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVector4KeyFrameAnimation := new Windows.UI.Composition.IVector4KeyFrameAnimation;
          Retval.m_IVector4KeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -8184,11 +10031,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionCommitBatch'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionCommitBatch;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionCommitBatch do
          Hr := this.m_ICompositor.all.GetCommitBatch (batchType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionCommitBatch := new Windows.UI.Composition.ICompositionCommitBatch;
          Retval.m_ICompositionCommitBatch.all := m_ComRetVal;
       end return;
@@ -8200,15 +10051,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.AmbientLight'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IAmbientLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.AmbientLight do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateAmbientLight (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAmbientLight := new Windows.UI.Composition.IAmbientLight;
          Retval.m_IAmbientLight.all := m_ComRetVal;
       end return;
@@ -8220,15 +10075,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionAnimationGroup'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionAnimationGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionAnimationGroup do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateAnimationGroup (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionAnimationGroup := new Windows.UI.Composition.ICompositionAnimationGroup;
          Retval.m_ICompositionAnimationGroup.all := m_ComRetVal;
       end return;
@@ -8240,15 +10099,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBackdropBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBackdropBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBackdropBrush do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateBackdropBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBackdropBrush := new Windows.UI.Composition.ICompositionBackdropBrush;
          Retval.m_ICompositionBackdropBrush.all := m_ComRetVal;
       end return;
@@ -8260,15 +10123,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.DistantLight'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IDistantLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.DistantLight do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateDistantLight (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDistantLight := new Windows.UI.Composition.IDistantLight;
          Retval.m_IDistantLight.all := m_ComRetVal;
       end return;
@@ -8280,15 +10147,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.DropShadow'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IDropShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.DropShadow do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateDropShadow (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDropShadow := new Windows.UI.Composition.IDropShadow;
          Retval.m_IDropShadow.all := m_ComRetVal;
       end return;
@@ -8300,15 +10171,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ImplicitAnimationCollection'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IImplicitAnimationCollection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ImplicitAnimationCollection do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateImplicitAnimationCollection (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IImplicitAnimationCollection := new Windows.UI.Composition.IImplicitAnimationCollection;
          Retval.m_IImplicitAnimationCollection.all := m_ComRetVal;
       end return;
@@ -8320,15 +10195,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.LayerVisual'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ILayerVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.LayerVisual do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateLayerVisual (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILayerVisual := new Windows.UI.Composition.ILayerVisual;
          Retval.m_ILayerVisual.all := m_ComRetVal;
       end return;
@@ -8340,15 +10219,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionMaskBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionMaskBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionMaskBrush do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateMaskBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionMaskBrush := new Windows.UI.Composition.ICompositionMaskBrush;
          Retval.m_ICompositionMaskBrush.all := m_ComRetVal;
       end return;
@@ -8360,15 +10243,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionNineGridBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionNineGridBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionNineGridBrush do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateNineGridBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionNineGridBrush := new Windows.UI.Composition.ICompositionNineGridBrush;
          Retval.m_ICompositionNineGridBrush.all := m_ComRetVal;
       end return;
@@ -8380,15 +10267,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.PointLight'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IPointLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.PointLight do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreatePointLight (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPointLight := new Windows.UI.Composition.IPointLight;
          Retval.m_IPointLight.all := m_ComRetVal;
       end return;
@@ -8400,15 +10291,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.SpotLight'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ISpotLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpotLight do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateSpotLight (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpotLight := new Windows.UI.Composition.ISpotLight;
          Retval.m_ISpotLight.all := m_ComRetVal;
       end return;
@@ -8420,15 +10315,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.StepEasingFunction'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateStepEasingFunction (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
          Retval.m_IStepEasingFunction.all := m_ComRetVal;
       end return;
@@ -8441,15 +10340,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.StepEasingFunction'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateStepEasingFunction (stepCount, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
          Retval.m_IStepEasingFunction.all := m_ComRetVal;
       end return;
@@ -8461,15 +10364,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBackdropBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBackdropBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor3, WinRt.Windows.UI.Composition.IID_ICompositor3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBackdropBrush do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateHostBackdropBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBackdropBrush := new Windows.UI.Composition.ICompositionBackdropBrush;
          Retval.m_ICompositionBackdropBrush.all := m_ComRetVal;
       end return;
@@ -8481,15 +10388,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateColorGradientStop (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
@@ -8503,15 +10414,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateColorGradientStop (offset, color, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
@@ -8523,15 +10438,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionLinearGradientBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLinearGradientBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLinearGradientBrush do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateLinearGradientBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionLinearGradientBrush := new Windows.UI.Composition.ICompositionLinearGradientBrush;
          Retval.m_ICompositionLinearGradientBrush.all := m_ComRetVal;
       end return;
@@ -8543,15 +10462,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.SpringScalarNaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ISpringScalarNaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpringScalarNaturalMotionAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateSpringScalarAnimation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpringScalarNaturalMotionAnimation := new Windows.UI.Composition.ISpringScalarNaturalMotionAnimation;
          Retval.m_ISpringScalarNaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -8563,15 +10486,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.SpringVector2NaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ISpringVector2NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpringVector2NaturalMotionAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateSpringVector2Animation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpringVector2NaturalMotionAnimation := new Windows.UI.Composition.ISpringVector2NaturalMotionAnimation;
          Retval.m_ISpringVector2NaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -8583,15 +10510,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.SpringVector3NaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ISpringVector3NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpringVector3NaturalMotionAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateSpringVector3Animation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpringVector3NaturalMotionAnimation := new Windows.UI.Composition.ISpringVector3NaturalMotionAnimation;
          Retval.m_ISpringVector3NaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -8603,17 +10534,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositor.all);
       Hr := m_Interface.get_Comment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8623,15 +10558,19 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositor.all);
       Hr := m_Interface.put_Comment (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_GlobalPlaybackRate
@@ -8640,14 +10579,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositor.all);
       Hr := m_Interface.get_GlobalPlaybackRate (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8657,13 +10600,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositor.all);
       Hr := m_Interface.put_GlobalPlaybackRate (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateBounceScalarAnimation
@@ -8672,15 +10619,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.BounceScalarNaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IBounceScalarNaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceScalarNaturalMotionAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateBounceScalarAnimation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBounceScalarNaturalMotionAnimation := new Windows.UI.Composition.IBounceScalarNaturalMotionAnimation;
          Retval.m_IBounceScalarNaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -8692,15 +10643,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.BounceVector2NaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IBounceVector2NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceVector2NaturalMotionAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateBounceVector2Animation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBounceVector2NaturalMotionAnimation := new Windows.UI.Composition.IBounceVector2NaturalMotionAnimation;
          Retval.m_IBounceVector2NaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -8712,15 +10667,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.BounceVector3NaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceVector3NaturalMotionAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateBounceVector3Animation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBounceVector3NaturalMotionAnimation := new Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
          Retval.m_IBounceVector3NaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -8732,15 +10691,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionContainerShape'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionContainerShape;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionContainerShape do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateContainerShape (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionContainerShape := new Windows.UI.Composition.ICompositionContainerShape;
          Retval.m_ICompositionContainerShape.all := m_ComRetVal;
       end return;
@@ -8752,15 +10715,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionEllipseGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEllipseGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEllipseGeometry do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateEllipseGeometry (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionEllipseGeometry := new Windows.UI.Composition.ICompositionEllipseGeometry;
          Retval.m_ICompositionEllipseGeometry.all := m_ComRetVal;
       end return;
@@ -8772,15 +10739,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionLineGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLineGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLineGeometry do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateLineGeometry (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionLineGeometry := new Windows.UI.Composition.ICompositionLineGeometry;
          Retval.m_ICompositionLineGeometry.all := m_ComRetVal;
       end return;
@@ -8792,15 +10763,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionPathGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPathGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPathGeometry do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreatePathGeometry (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionPathGeometry := new Windows.UI.Composition.ICompositionPathGeometry;
          Retval.m_ICompositionPathGeometry.all := m_ComRetVal;
       end return;
@@ -8813,15 +10788,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionPathGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPathGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPathGeometry do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreatePathGeometry (path.m_ICompositionPath.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionPathGeometry := new Windows.UI.Composition.ICompositionPathGeometry;
          Retval.m_ICompositionPathGeometry.all := m_ComRetVal;
       end return;
@@ -8833,15 +10812,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.PathKeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IPathKeyFrameAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.PathKeyFrameAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreatePathKeyFrameAnimation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPathKeyFrameAnimation := new Windows.UI.Composition.IPathKeyFrameAnimation;
          Retval.m_IPathKeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -8853,15 +10836,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionRectangleGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionRectangleGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionRectangleGeometry do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateRectangleGeometry (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionRectangleGeometry := new Windows.UI.Composition.ICompositionRectangleGeometry;
          Retval.m_ICompositionRectangleGeometry.all := m_ComRetVal;
       end return;
@@ -8873,15 +10860,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionRoundedRectangleGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionRoundedRectangleGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionRoundedRectangleGeometry do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateRoundedRectangleGeometry (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionRoundedRectangleGeometry := new Windows.UI.Composition.ICompositionRoundedRectangleGeometry;
          Retval.m_ICompositionRoundedRectangleGeometry.all := m_ComRetVal;
       end return;
@@ -8893,15 +10884,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ShapeVisual'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IShapeVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ShapeVisual do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateShapeVisual (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IShapeVisual := new Windows.UI.Composition.IShapeVisual;
          Retval.m_IShapeVisual.all := m_ComRetVal;
       end return;
@@ -8913,15 +10908,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionSpriteShape'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSpriteShape;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSpriteShape do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateSpriteShape (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionSpriteShape := new Windows.UI.Composition.ICompositionSpriteShape;
          Retval.m_ICompositionSpriteShape.all := m_ComRetVal;
       end return;
@@ -8934,15 +10933,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionSpriteShape'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSpriteShape;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSpriteShape do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateSpriteShape (geometry.m_ICompositionGeometry.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionSpriteShape := new Windows.UI.Composition.ICompositionSpriteShape;
          Retval.m_ICompositionSpriteShape.all := m_ComRetVal;
       end return;
@@ -8954,15 +10957,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionViewBox'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionViewBox;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionViewBox do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateViewBox (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionViewBox := new Windows.UI.Composition.ICompositionViewBox;
          Retval.m_ICompositionViewBox.all := m_ComRetVal;
       end return;
@@ -8973,8 +10980,9 @@ package body WinRt.Windows.UI.Composition is
       this : in out Compositor
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -8982,7 +10990,6 @@ package body WinRt.Windows.UI.Composition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -8998,7 +11005,7 @@ package body WinRt.Windows.UI.Composition is
    begin
       m_Interface := QInterface (this.m_ICompositor.all);
       Hr := m_Interface.RequestCommitAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -9006,9 +11013,9 @@ package body WinRt.Windows.UI.Composition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -9020,15 +11027,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGeometricClip'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometricClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometricClip do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateGeometricClip (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionGeometricClip := new Windows.UI.Composition.ICompositionGeometricClip;
          Retval.m_ICompositionGeometricClip.all := m_ComRetVal;
       end return;
@@ -9041,15 +11052,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGeometricClip'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometricClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometricClip do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateGeometricClip (geometry.m_ICompositionGeometry.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionGeometricClip := new Windows.UI.Composition.ICompositionGeometricClip;
          Retval.m_ICompositionGeometricClip.all := m_ComRetVal;
       end return;
@@ -9061,15 +11076,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.RedirectVisual'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IRedirectVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RedirectVisual do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateRedirectVisual (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRedirectVisual := new Windows.UI.Composition.IRedirectVisual;
          Retval.m_IRedirectVisual.all := m_ComRetVal;
       end return;
@@ -9082,15 +11101,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.RedirectVisual'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IRedirectVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RedirectVisual do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateRedirectVisual (source.m_IVisual.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRedirectVisual := new Windows.UI.Composition.IRedirectVisual;
          Retval.m_IRedirectVisual.all := m_ComRetVal;
       end return;
@@ -9102,15 +11125,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.BooleanKeyFrameAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IBooleanKeyFrameAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BooleanKeyFrameAnimation do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateBooleanKeyFrameAnimation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBooleanKeyFrameAnimation := new Windows.UI.Composition.IBooleanKeyFrameAnimation;
          Retval.m_IBooleanKeyFrameAnimation.all := m_ComRetVal;
       end return;
@@ -9122,15 +11149,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowCaster;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow, WinRt.Windows.UI.Composition.IID_ICompositorWithProjectedShadow'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateProjectedShadowCaster (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionProjectedShadowCaster := new Windows.UI.Composition.ICompositionProjectedShadowCaster;
          Retval.m_ICompositionProjectedShadowCaster.all := m_ComRetVal;
       end return;
@@ -9142,15 +11173,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionProjectedShadow'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow, WinRt.Windows.UI.Composition.IID_ICompositorWithProjectedShadow'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadow do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateProjectedShadow (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionProjectedShadow := new Windows.UI.Composition.ICompositionProjectedShadow;
          Retval.m_ICompositionProjectedShadow.all := m_ComRetVal;
       end return;
@@ -9162,15 +11197,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowReceiver;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow, WinRt.Windows.UI.Composition.IID_ICompositorWithProjectedShadow'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateProjectedShadowReceiver (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionProjectedShadowReceiver := new Windows.UI.Composition.ICompositionProjectedShadowReceiver;
          Retval.m_ICompositionProjectedShadowReceiver.all := m_ComRetVal;
       end return;
@@ -9182,15 +11221,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionRadialGradientBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithRadialGradient := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionRadialGradientBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithRadialGradient, WinRt.Windows.UI.Composition.IID_ICompositorWithRadialGradient'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionRadialGradientBrush do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateRadialGradientBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionRadialGradientBrush := new Windows.UI.Composition.ICompositionRadialGradientBrush;
          Retval.m_ICompositionRadialGradientBrush.all := m_ComRetVal;
       end return;
@@ -9202,15 +11245,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionVisualSurface'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithVisualSurface := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionVisualSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithVisualSurface, WinRt.Windows.UI.Composition.IID_ICompositorWithVisualSurface'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionVisualSurface do
          m_Interface := QInterface (this.m_ICompositor.all);
          Hr := m_Interface.CreateVisualSurface (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionVisualSurface := new Windows.UI.Composition.ICompositionVisualSurface;
          Retval.m_ICompositionVisualSurface.all := m_ComRetVal;
       end return;
@@ -9221,13 +11268,17 @@ package body WinRt.Windows.UI.Composition is
       this : in out Compositor
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositor.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9239,12 +11290,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Visual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisual, IVisual_Ptr);
    begin
       if this.m_IVisual /= null then
          if this.m_IVisual.all /= null then
-            RefCount := this.m_IVisual.all.Release;
+            temp := this.m_IVisual.all.Release;
             Free (this.m_IVisual);
          end if;
       end if;
@@ -9262,10 +11313,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IVisual.all.get_AnchorPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9275,9 +11330,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_AnchorPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackfaceVisibility
@@ -9286,10 +11345,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBackfaceVisibility is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionBackfaceVisibility;
    begin
       Hr := this.m_IVisual.all.get_BackfaceVisibility (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9299,9 +11362,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBackfaceVisibility
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_BackfaceVisibility (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BorderMode
@@ -9310,10 +11377,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBorderMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionBorderMode;
    begin
       Hr := this.m_IVisual.all.get_BorderMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9323,9 +11394,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBorderMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_BorderMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CenterPoint
@@ -9334,10 +11409,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_CenterPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9347,9 +11426,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_CenterPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Clip
@@ -9358,11 +11441,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionClip'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionClip;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionClip do
          Hr := this.m_IVisual.all.get_Clip (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionClip := new Windows.UI.Composition.ICompositionClip;
          Retval.m_ICompositionClip.all := m_ComRetVal;
       end return;
@@ -9374,9 +11461,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionClip'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_Clip (value.m_ICompositionClip.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CompositeMode
@@ -9385,10 +11476,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionCompositeMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionCompositeMode;
    begin
       Hr := this.m_IVisual.all.get_CompositeMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9398,9 +11493,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionCompositeMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_CompositeMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsVisible
@@ -9409,10 +11508,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVisual.all.get_IsVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9422,9 +11525,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_IsVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -9433,10 +11540,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9446,9 +11557,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Opacity
@@ -9457,10 +11572,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IVisual.all.get_Opacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9470,9 +11589,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_Opacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Orientation
@@ -9481,10 +11604,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_IVisual.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9494,9 +11621,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_Orientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Parent
@@ -9505,11 +11636,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ContainerVisual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IContainerVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ContainerVisual do
          Hr := this.m_IVisual.all.get_Parent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContainerVisual := new Windows.UI.Composition.IContainerVisual;
          Retval.m_IContainerVisual.all := m_ComRetVal;
       end return;
@@ -9521,10 +11656,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IVisual.all.get_RotationAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9534,9 +11673,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_RotationAngle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngleInDegrees
@@ -9545,10 +11688,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IVisual.all.get_RotationAngleInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9558,9 +11705,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_RotationAngleInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAxis
@@ -9569,10 +11720,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_RotationAxis (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9582,9 +11737,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_RotationAxis (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -9593,10 +11752,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9606,9 +11769,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_Scale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Size
@@ -9617,10 +11784,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IVisual.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9630,9 +11801,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_Size (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransformMatrix
@@ -9641,10 +11816,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix4x4 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix4x4;
    begin
       Hr := this.m_IVisual.all.get_TransformMatrix (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9654,9 +11833,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisual.all.put_TransformMatrix (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ParentForTransform
@@ -9665,15 +11848,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          m_Interface := QInterface (this.m_IVisual.all);
          Hr := m_Interface.get_ParentForTransform (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -9685,13 +11872,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.put_ParentForTransform (value.m_IVisual.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelativeOffsetAdjustment
@@ -9700,14 +11891,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.get_RelativeOffsetAdjustment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9717,13 +11912,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.put_RelativeOffsetAdjustment (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelativeSizeAdjustment
@@ -9732,14 +11931,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.get_RelativeSizeAdjustment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9749,13 +11952,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.put_RelativeSizeAdjustment (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsHitTestVisible
@@ -9764,14 +11971,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual3, WinRt.Windows.UI.Composition.IID_IVisual3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.get_IsHitTestVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9781,13 +11992,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual3, WinRt.Windows.UI.Composition.IID_IVisual3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
       Hr := m_Interface.put_IsHitTestVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9799,12 +12014,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ContainerVisual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContainerVisual, IContainerVisual_Ptr);
    begin
       if this.m_IContainerVisual /= null then
          if this.m_IContainerVisual.all /= null then
-            RefCount := this.m_IContainerVisual.all.Release;
+            temp := this.m_IContainerVisual.all.Release;
             Free (this.m_IContainerVisual);
          end if;
       end if;
@@ -9822,11 +12037,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.VisualCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisualCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.VisualCollection do
          Hr := this.m_IContainerVisual.all.get_Children (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisualCollection := new Windows.UI.Composition.IVisualCollection;
          Retval.m_IVisualCollection.all := m_ComRetVal;
       end return;
@@ -9841,12 +12060,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out CubicBezierEasingFunction) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICubicBezierEasingFunction, ICubicBezierEasingFunction_Ptr);
    begin
       if this.m_ICubicBezierEasingFunction /= null then
          if this.m_ICubicBezierEasingFunction.all /= null then
-            RefCount := this.m_ICubicBezierEasingFunction.all.Release;
+            temp := this.m_ICubicBezierEasingFunction.all.Release;
             Free (this.m_ICubicBezierEasingFunction);
          end if;
       end if;
@@ -9861,10 +12080,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICubicBezierEasingFunction.all.get_ControlPoint1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9874,10 +12097,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICubicBezierEasingFunction.all.get_ControlPoint2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9890,12 +12117,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out DistantLight) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDistantLight, IDistantLight_Ptr);
    begin
       if this.m_IDistantLight /= null then
          if this.m_IDistantLight.all /= null then
-            RefCount := this.m_IDistantLight.all.Release;
+            temp := this.m_IDistantLight.all.Release;
             Free (this.m_IDistantLight);
          end if;
       end if;
@@ -9910,10 +12137,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDistantLight.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9923,9 +12154,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDistantLight.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CoordinateSpace
@@ -9934,11 +12169,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IDistantLight.all.get_CoordinateSpace (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -9950,9 +12189,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDistantLight.all.put_CoordinateSpace (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Direction
@@ -9961,10 +12204,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IDistantLight.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9974,9 +12221,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDistantLight.all.put_Direction (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Intensity
@@ -9985,14 +12236,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IDistantLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IDistantLight_Interface, WinRt.Windows.UI.Composition.IDistantLight2, WinRt.Windows.UI.Composition.IID_IDistantLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDistantLight.all);
       Hr := m_Interface.get_Intensity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10002,13 +12257,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IDistantLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IDistantLight_Interface, WinRt.Windows.UI.Composition.IDistantLight2, WinRt.Windows.UI.Composition.IID_IDistantLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDistantLight.all);
       Hr := m_Interface.put_Intensity (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10020,12 +12279,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out DropShadow) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDropShadow, IDropShadow_Ptr);
    begin
       if this.m_IDropShadow /= null then
          if this.m_IDropShadow.all /= null then
-            RefCount := this.m_IDropShadow.all.Release;
+            temp := this.m_IDropShadow.all.Release;
             Free (this.m_IDropShadow);
          end if;
       end if;
@@ -10040,10 +12299,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IDropShadow.all.get_BlurRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10053,9 +12316,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDropShadow.all.put_BlurRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Color
@@ -10064,10 +12331,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDropShadow.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10077,9 +12348,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDropShadow.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Mask
@@ -10088,11 +12363,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_IDropShadow.all.get_Mask (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -10104,9 +12383,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDropShadow.all.put_Mask (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -10115,10 +12398,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IDropShadow.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10128,9 +12415,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDropShadow.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Opacity
@@ -10139,10 +12430,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IDropShadow.all.get_Opacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10152,9 +12447,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDropShadow.all.put_Opacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SourcePolicy
@@ -10163,14 +12462,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionDropShadowSourcePolicy is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IDropShadow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionDropShadowSourcePolicy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IDropShadow_Interface, WinRt.Windows.UI.Composition.IDropShadow2, WinRt.Windows.UI.Composition.IID_IDropShadow2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDropShadow.all);
       Hr := m_Interface.get_SourcePolicy (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10180,13 +12483,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionDropShadowSourcePolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IDropShadow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IDropShadow_Interface, WinRt.Windows.UI.Composition.IDropShadow2, WinRt.Windows.UI.Composition.IID_IDropShadow2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDropShadow.all);
       Hr := m_Interface.put_SourcePolicy (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10198,12 +12505,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ExpressionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IExpressionAnimation, IExpressionAnimation_Ptr);
    begin
       if this.m_IExpressionAnimation /= null then
          if this.m_IExpressionAnimation.all /= null then
-            RefCount := this.m_IExpressionAnimation.all.Release;
+            temp := this.m_IExpressionAnimation.all.Release;
             Free (this.m_IExpressionAnimation);
          end if;
       end if;
@@ -10218,13 +12525,17 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IExpressionAnimation.all.get_Expression (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10234,11 +12545,15 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IExpressionAnimation.all.put_Expression (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -10250,12 +12565,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ImplicitAnimationCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IImplicitAnimationCollection, IImplicitAnimationCollection_Ptr);
    begin
       if this.m_IImplicitAnimationCollection /= null then
          if this.m_IImplicitAnimationCollection.all /= null then
-            RefCount := this.m_IImplicitAnimationCollection.all.Release;
+            temp := this.m_IImplicitAnimationCollection.all.Release;
             Free (this.m_IImplicitAnimationCollection);
          end if;
       end if;
@@ -10272,17 +12587,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.ICompositionAnimationBase is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionAnimationBase;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -10292,15 +12611,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10311,17 +12634,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -10331,15 +12658,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10351,17 +12682,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.Insert (HStr_key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -10371,16 +12706,20 @@ package body WinRt.Windows.UI.Composition is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -10388,14 +12727,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out ImplicitAnimationCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImplicitAnimationCollection.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10422,20 +12765,24 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased HString;
       AdaRetval        : WString;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10445,15 +12792,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10464,17 +12815,21 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -10484,15 +12839,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10504,19 +12863,23 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
-      HStr_value : WinRt.HString := To_HString (value);
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_value : constant WinRt.HString := To_HString (value);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Insert (HStr_key, HStr_value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_value);
       return m_ComRetVal;
    end;
 
@@ -10526,16 +12889,20 @@ package body WinRt.Windows.UI.Composition is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -10543,14 +12910,18 @@ package body WinRt.Windows.UI.Composition is
       this : in out InitialValueExpressionCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10562,12 +12933,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out InsetClip) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInsetClip, IInsetClip_Ptr);
    begin
       if this.m_IInsetClip /= null then
          if this.m_IInsetClip.all /= null then
-            RefCount := this.m_IInsetClip.all.Release;
+            temp := this.m_IInsetClip.all.Release;
             Free (this.m_IInsetClip);
          end if;
       end if;
@@ -10582,10 +12953,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInsetClip.all.get_BottomInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10595,9 +12970,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInsetClip.all.put_BottomInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftInset
@@ -10606,10 +12985,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInsetClip.all.get_LeftInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10619,9 +13002,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInsetClip.all.put_LeftInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightInset
@@ -10630,10 +13017,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInsetClip.all.get_RightInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10643,9 +13034,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInsetClip.all.put_RightInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TopInset
@@ -10654,10 +13049,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInsetClip.all.get_TopInset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10667,9 +13066,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInsetClip.all.put_TopInset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10681,12 +13084,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out LayerVisual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILayerVisual, ILayerVisual_Ptr);
    begin
       if this.m_ILayerVisual /= null then
          if this.m_ILayerVisual.all /= null then
-            RefCount := this.m_ILayerVisual.all.Release;
+            temp := this.m_ILayerVisual.all.Release;
             Free (this.m_ILayerVisual);
          end if;
       end if;
@@ -10701,11 +13104,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionEffectBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectBrush do
          Hr := this.m_ILayerVisual.all.get_Effect (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionEffectBrush := new Windows.UI.Composition.ICompositionEffectBrush;
          Retval.m_ICompositionEffectBrush.all := m_ComRetVal;
       end return;
@@ -10717,9 +13124,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionEffectBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILayerVisual.all.put_Effect (value.m_ICompositionEffectBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Shadow
@@ -10728,15 +13139,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionShadow'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ILayerVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ILayerVisual_Interface, WinRt.Windows.UI.Composition.ILayerVisual2, WinRt.Windows.UI.Composition.IID_ILayerVisual2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShadow do
          m_Interface := QInterface (this.m_ILayerVisual.all);
          Hr := m_Interface.get_Shadow (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionShadow := new Windows.UI.Composition.ICompositionShadow;
          Retval.m_ICompositionShadow.all := m_ComRetVal;
       end return;
@@ -10748,13 +13163,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionShadow'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ILayerVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ILayerVisual_Interface, WinRt.Windows.UI.Composition.ILayerVisual2, WinRt.Windows.UI.Composition.IID_ILayerVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILayerVisual.all);
       Hr := m_Interface.put_Shadow (value.m_ICompositionShadow.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10766,12 +13185,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out LinearEasingFunction) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILinearEasingFunction, ILinearEasingFunction_Ptr);
    begin
       if this.m_ILinearEasingFunction /= null then
          if this.m_ILinearEasingFunction.all /= null then
-            RefCount := this.m_ILinearEasingFunction.all.Release;
+            temp := this.m_ILinearEasingFunction.all.Release;
             Free (this.m_ILinearEasingFunction);
          end if;
       end if;
@@ -10789,12 +13208,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out PathKeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPathKeyFrameAnimation, IPathKeyFrameAnimation_Ptr);
    begin
       if this.m_IPathKeyFrameAnimation /= null then
          if this.m_IPathKeyFrameAnimation.all /= null then
-            RefCount := this.m_IPathKeyFrameAnimation.all.Release;
+            temp := this.m_IPathKeyFrameAnimation.all.Release;
             Free (this.m_IPathKeyFrameAnimation);
          end if;
       end if;
@@ -10810,9 +13229,13 @@ package body WinRt.Windows.UI.Composition is
       path : Windows.UI.Composition.CompositionPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPathKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, path.m_ICompositionPath.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -10823,9 +13246,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPathKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, path.m_ICompositionPath.all, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10837,12 +13264,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out PointLight) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointLight, IPointLight_Ptr);
    begin
       if this.m_IPointLight /= null then
          if this.m_IPointLight.all /= null then
-            RefCount := this.m_IPointLight.all.Release;
+            temp := this.m_IPointLight.all.Release;
             Free (this.m_IPointLight);
          end if;
       end if;
@@ -10857,10 +13284,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IPointLight.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10870,9 +13301,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointLight.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ConstantAttenuation
@@ -10881,10 +13316,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IPointLight.all.get_ConstantAttenuation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10894,9 +13333,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointLight.all.put_ConstantAttenuation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CoordinateSpace
@@ -10905,11 +13348,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IPointLight.all.get_CoordinateSpace (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -10921,9 +13368,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointLight.all.put_CoordinateSpace (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LinearAttenuation
@@ -10932,10 +13383,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IPointLight.all.get_LinearAttenuation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10945,9 +13400,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointLight.all.put_LinearAttenuation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -10956,10 +13415,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IPointLight.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10969,9 +13432,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointLight.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_QuadraticAttenuation
@@ -10980,10 +13447,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IPointLight.all.get_QuadraticAttenuation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10993,9 +13464,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointLight.all.put_QuadraticAttenuation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Intensity
@@ -11004,14 +13479,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IPointLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IPointLight_Interface, WinRt.Windows.UI.Composition.IPointLight2, WinRt.Windows.UI.Composition.IID_IPointLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointLight.all);
       Hr := m_Interface.get_Intensity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11021,13 +13500,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IPointLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IPointLight_Interface, WinRt.Windows.UI.Composition.IPointLight2, WinRt.Windows.UI.Composition.IID_IPointLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointLight.all);
       Hr := m_Interface.put_Intensity (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinAttenuationCutoff
@@ -11036,14 +13519,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IPointLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IPointLight_Interface, WinRt.Windows.UI.Composition.IPointLight3, WinRt.Windows.UI.Composition.IID_IPointLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointLight.all);
       Hr := m_Interface.get_MinAttenuationCutoff (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11053,13 +13540,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IPointLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IPointLight_Interface, WinRt.Windows.UI.Composition.IPointLight3, WinRt.Windows.UI.Composition.IID_IPointLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointLight.all);
       Hr := m_Interface.put_MinAttenuationCutoff (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxAttenuationCutoff
@@ -11068,14 +13559,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IPointLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IPointLight_Interface, WinRt.Windows.UI.Composition.IPointLight3, WinRt.Windows.UI.Composition.IID_IPointLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointLight.all);
       Hr := m_Interface.get_MaxAttenuationCutoff (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11085,13 +13580,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IPointLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IPointLight_Interface, WinRt.Windows.UI.Composition.IPointLight3, WinRt.Windows.UI.Composition.IID_IPointLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointLight.all);
       Hr := m_Interface.put_MaxAttenuationCutoff (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11103,12 +13602,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out QuaternionKeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IQuaternionKeyFrameAnimation, IQuaternionKeyFrameAnimation_Ptr);
    begin
       if this.m_IQuaternionKeyFrameAnimation /= null then
          if this.m_IQuaternionKeyFrameAnimation.all /= null then
-            RefCount := this.m_IQuaternionKeyFrameAnimation.all.Release;
+            temp := this.m_IQuaternionKeyFrameAnimation.all.Release;
             Free (this.m_IQuaternionKeyFrameAnimation);
          end if;
       end if;
@@ -11124,9 +13623,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IQuaternionKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -11137,9 +13640,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IQuaternionKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11151,12 +13658,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out RedirectVisual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRedirectVisual, IRedirectVisual_Ptr);
    begin
       if this.m_IRedirectVisual /= null then
          if this.m_IRedirectVisual.all /= null then
-            RefCount := this.m_IRedirectVisual.all.Release;
+            temp := this.m_IRedirectVisual.all.Release;
             Free (this.m_IRedirectVisual);
          end if;
       end if;
@@ -11171,11 +13678,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IRedirectVisual.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -11187,9 +13698,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRedirectVisual.all.put_Source (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11201,12 +13716,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out RenderingDeviceReplacedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRenderingDeviceReplacedEventArgs, IRenderingDeviceReplacedEventArgs_Ptr);
    begin
       if this.m_IRenderingDeviceReplacedEventArgs /= null then
          if this.m_IRenderingDeviceReplacedEventArgs.all /= null then
-            RefCount := this.m_IRenderingDeviceReplacedEventArgs.all.Release;
+            temp := this.m_IRenderingDeviceReplacedEventArgs.all.Release;
             Free (this.m_IRenderingDeviceReplacedEventArgs);
          end if;
       end if;
@@ -11221,11 +13736,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionGraphicsDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGraphicsDevice;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGraphicsDevice do
          Hr := this.m_IRenderingDeviceReplacedEventArgs.all.get_GraphicsDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionGraphicsDevice := new Windows.UI.Composition.ICompositionGraphicsDevice;
          Retval.m_ICompositionGraphicsDevice.all := m_ComRetVal;
       end return;
@@ -11240,12 +13759,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ScalarKeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScalarKeyFrameAnimation, IScalarKeyFrameAnimation_Ptr);
    begin
       if this.m_IScalarKeyFrameAnimation /= null then
          if this.m_IScalarKeyFrameAnimation.all /= null then
-            RefCount := this.m_IScalarKeyFrameAnimation.all.Release;
+            temp := this.m_IScalarKeyFrameAnimation.all.Release;
             Free (this.m_IScalarKeyFrameAnimation);
          end if;
       end if;
@@ -11261,9 +13780,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScalarKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -11274,9 +13797,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScalarKeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11288,12 +13815,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out ShapeVisual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IShapeVisual, IShapeVisual_Ptr);
    begin
       if this.m_IShapeVisual /= null then
          if this.m_IShapeVisual.all /= null then
-            RefCount := this.m_IShapeVisual.all.Release;
+            temp := this.m_IShapeVisual.all.Release;
             Free (this.m_IShapeVisual);
          end if;
       end if;
@@ -11308,11 +13835,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionShapeCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShapeCollection do
          Hr := this.m_IShapeVisual.all.get_Shapes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -11324,11 +13855,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionViewBox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionViewBox;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionViewBox do
          Hr := this.m_IShapeVisual.all.get_ViewBox (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionViewBox := new Windows.UI.Composition.ICompositionViewBox;
          Retval.m_ICompositionViewBox.all := m_ComRetVal;
       end return;
@@ -11340,9 +13875,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionViewBox'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShapeVisual.all.put_ViewBox (value.m_ICompositionViewBox.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11354,12 +13893,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out SpotLight) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpotLight, ISpotLight_Ptr);
    begin
       if this.m_ISpotLight /= null then
          if this.m_ISpotLight.all /= null then
-            RefCount := this.m_ISpotLight.all.Release;
+            temp := this.m_ISpotLight.all.Release;
             Free (this.m_ISpotLight);
          end if;
       end if;
@@ -11374,10 +13913,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_ConstantAttenuation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11387,9 +13930,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_ConstantAttenuation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CoordinateSpace
@@ -11398,11 +13945,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ISpotLight.all.get_CoordinateSpace (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -11414,9 +13965,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_CoordinateSpace (value.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Direction
@@ -11425,10 +13980,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpotLight.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11438,9 +13997,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_Direction (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InnerConeAngle
@@ -11449,10 +14012,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_InnerConeAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11462,9 +14029,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_InnerConeAngle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InnerConeAngleInDegrees
@@ -11473,10 +14044,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_InnerConeAngleInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11486,9 +14061,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_InnerConeAngleInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InnerConeColor
@@ -11497,10 +14076,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ISpotLight.all.get_InnerConeColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11510,9 +14093,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_InnerConeColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LinearAttenuation
@@ -11521,10 +14108,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_LinearAttenuation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11534,9 +14125,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_LinearAttenuation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Offset
@@ -11545,10 +14140,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpotLight.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11558,9 +14157,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_Offset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OuterConeAngle
@@ -11569,10 +14172,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_OuterConeAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11582,9 +14189,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_OuterConeAngle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OuterConeAngleInDegrees
@@ -11593,10 +14204,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_OuterConeAngleInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11606,9 +14221,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_OuterConeAngleInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OuterConeColor
@@ -11617,10 +14236,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ISpotLight.all.get_OuterConeColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11630,9 +14253,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_OuterConeColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_QuadraticAttenuation
@@ -11641,10 +14268,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpotLight.all.get_QuadraticAttenuation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11654,9 +14285,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpotLight.all.put_QuadraticAttenuation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InnerConeIntensity
@@ -11665,14 +14300,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight2, WinRt.Windows.UI.Composition.IID_ISpotLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.get_InnerConeIntensity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11682,13 +14321,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight2, WinRt.Windows.UI.Composition.IID_ISpotLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.put_InnerConeIntensity (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OuterConeIntensity
@@ -11697,14 +14340,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight2, WinRt.Windows.UI.Composition.IID_ISpotLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.get_OuterConeIntensity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11714,13 +14361,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight2, WinRt.Windows.UI.Composition.IID_ISpotLight2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.put_OuterConeIntensity (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinAttenuationCutoff
@@ -11729,14 +14380,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight3, WinRt.Windows.UI.Composition.IID_ISpotLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.get_MinAttenuationCutoff (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11746,13 +14401,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight3, WinRt.Windows.UI.Composition.IID_ISpotLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.put_MinAttenuationCutoff (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxAttenuationCutoff
@@ -11761,14 +14420,18 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight3, WinRt.Windows.UI.Composition.IID_ISpotLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.get_MaxAttenuationCutoff (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11778,13 +14441,17 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpotLight3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpotLight_Interface, WinRt.Windows.UI.Composition.ISpotLight3, WinRt.Windows.UI.Composition.IID_ISpotLight3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpotLight.all);
       Hr := m_Interface.put_MaxAttenuationCutoff (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11796,12 +14463,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out SpringScalarNaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpringScalarNaturalMotionAnimation, ISpringScalarNaturalMotionAnimation_Ptr);
    begin
       if this.m_ISpringScalarNaturalMotionAnimation /= null then
          if this.m_ISpringScalarNaturalMotionAnimation.all /= null then
-            RefCount := this.m_ISpringScalarNaturalMotionAnimation.all.Release;
+            temp := this.m_ISpringScalarNaturalMotionAnimation.all.Release;
             Free (this.m_ISpringScalarNaturalMotionAnimation);
          end if;
       end if;
@@ -11816,10 +14483,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpringScalarNaturalMotionAnimation.all.get_DampingRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11829,9 +14500,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpringScalarNaturalMotionAnimation.all.put_DampingRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Period
@@ -11840,10 +14515,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpringScalarNaturalMotionAnimation.all.get_Period (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11853,9 +14532,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpringScalarNaturalMotionAnimation.all.put_Period (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11867,12 +14550,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out SpringVector2NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpringVector2NaturalMotionAnimation, ISpringVector2NaturalMotionAnimation_Ptr);
    begin
       if this.m_ISpringVector2NaturalMotionAnimation /= null then
          if this.m_ISpringVector2NaturalMotionAnimation.all /= null then
-            RefCount := this.m_ISpringVector2NaturalMotionAnimation.all.Release;
+            temp := this.m_ISpringVector2NaturalMotionAnimation.all.Release;
             Free (this.m_ISpringVector2NaturalMotionAnimation);
          end if;
       end if;
@@ -11887,10 +14570,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpringVector2NaturalMotionAnimation.all.get_DampingRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11900,9 +14587,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpringVector2NaturalMotionAnimation.all.put_DampingRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Period
@@ -11911,10 +14602,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpringVector2NaturalMotionAnimation.all.get_Period (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11924,9 +14619,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpringVector2NaturalMotionAnimation.all.put_Period (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11938,12 +14637,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out SpringVector3NaturalMotionAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpringVector3NaturalMotionAnimation, ISpringVector3NaturalMotionAnimation_Ptr);
    begin
       if this.m_ISpringVector3NaturalMotionAnimation /= null then
          if this.m_ISpringVector3NaturalMotionAnimation.all /= null then
-            RefCount := this.m_ISpringVector3NaturalMotionAnimation.all.Release;
+            temp := this.m_ISpringVector3NaturalMotionAnimation.all.Release;
             Free (this.m_ISpringVector3NaturalMotionAnimation);
          end if;
       end if;
@@ -11958,10 +14657,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISpringVector3NaturalMotionAnimation.all.get_DampingRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11971,9 +14674,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpringVector3NaturalMotionAnimation.all.put_DampingRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Period
@@ -11982,10 +14689,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpringVector3NaturalMotionAnimation.all.get_Period (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11995,9 +14706,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpringVector3NaturalMotionAnimation.all.put_Period (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12009,12 +14724,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out SpriteVisual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpriteVisual, ISpriteVisual_Ptr);
    begin
       if this.m_ISpriteVisual /= null then
          if this.m_ISpriteVisual.all /= null then
-            RefCount := this.m_ISpriteVisual.all.Release;
+            temp := this.m_ISpriteVisual.all.Release;
             Free (this.m_ISpriteVisual);
          end if;
       end if;
@@ -12029,11 +14744,15 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ISpriteVisual.all.get_Brush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -12045,9 +14764,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpriteVisual.all.put_Brush (value.m_ICompositionBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Shadow
@@ -12056,15 +14779,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Windows.UI.Composition.CompositionShadow'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpriteVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpriteVisual_Interface, WinRt.Windows.UI.Composition.ISpriteVisual2, WinRt.Windows.UI.Composition.IID_ISpriteVisual2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShadow do
          m_Interface := QInterface (this.m_ISpriteVisual.all);
          Hr := m_Interface.get_Shadow (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionShadow := new Windows.UI.Composition.ICompositionShadow;
          Retval.m_ICompositionShadow.all := m_ComRetVal;
       end return;
@@ -12076,13 +14803,17 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.UI.Composition.CompositionShadow'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpriteVisual2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpriteVisual_Interface, WinRt.Windows.UI.Composition.ISpriteVisual2, WinRt.Windows.UI.Composition.IID_ISpriteVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpriteVisual.all);
       Hr := m_Interface.put_Shadow (value.m_ICompositionShadow.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12094,12 +14825,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out StepEasingFunction) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStepEasingFunction, IStepEasingFunction_Ptr);
    begin
       if this.m_IStepEasingFunction /= null then
          if this.m_IStepEasingFunction.all /= null then
-            RefCount := this.m_IStepEasingFunction.all.Release;
+            temp := this.m_IStepEasingFunction.all.Release;
             Free (this.m_IStepEasingFunction);
          end if;
       end if;
@@ -12114,10 +14845,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IStepEasingFunction.all.get_FinalStep (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12127,9 +14862,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStepEasingFunction.all.put_FinalStep (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InitialStep
@@ -12138,10 +14877,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IStepEasingFunction.all.get_InitialStep (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12151,9 +14894,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStepEasingFunction.all.put_InitialStep (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsFinalStepSingleFrame
@@ -12162,10 +14909,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStepEasingFunction.all.get_IsFinalStepSingleFrame (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12175,9 +14926,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStepEasingFunction.all.put_IsFinalStepSingleFrame (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsInitialStepSingleFrame
@@ -12186,10 +14941,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStepEasingFunction.all.get_IsInitialStepSingleFrame (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12199,9 +14958,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStepEasingFunction.all.put_IsInitialStepSingleFrame (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StepCount
@@ -12210,10 +14973,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IStepEasingFunction.all.get_StepCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12223,9 +14990,13 @@ package body WinRt.Windows.UI.Composition is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStepEasingFunction.all.put_StepCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12237,12 +15008,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Vector2KeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVector2KeyFrameAnimation, IVector2KeyFrameAnimation_Ptr);
    begin
       if this.m_IVector2KeyFrameAnimation /= null then
          if this.m_IVector2KeyFrameAnimation.all /= null then
-            RefCount := this.m_IVector2KeyFrameAnimation.all.Release;
+            temp := this.m_IVector2KeyFrameAnimation.all.Release;
             Free (this.m_IVector2KeyFrameAnimation);
          end if;
       end if;
@@ -12258,9 +15029,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector2KeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -12271,9 +15046,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector2KeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12285,12 +15064,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Vector3KeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVector3KeyFrameAnimation, IVector3KeyFrameAnimation_Ptr);
    begin
       if this.m_IVector3KeyFrameAnimation /= null then
          if this.m_IVector3KeyFrameAnimation.all /= null then
-            RefCount := this.m_IVector3KeyFrameAnimation.all.Release;
+            temp := this.m_IVector3KeyFrameAnimation.all.Release;
             Free (this.m_IVector3KeyFrameAnimation);
          end if;
       end if;
@@ -12306,9 +15085,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector3KeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -12319,9 +15102,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector3KeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12333,12 +15120,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out Vector4KeyFrameAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVector4KeyFrameAnimation, IVector4KeyFrameAnimation_Ptr);
    begin
       if this.m_IVector4KeyFrameAnimation /= null then
          if this.m_IVector4KeyFrameAnimation.all /= null then
-            RefCount := this.m_IVector4KeyFrameAnimation.all.Release;
+            temp := this.m_IVector4KeyFrameAnimation.all.Release;
             Free (this.m_IVector4KeyFrameAnimation);
          end if;
       end if;
@@ -12354,9 +15141,13 @@ package body WinRt.Windows.UI.Composition is
       value : Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector4KeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertKeyFrame
@@ -12367,9 +15158,13 @@ package body WinRt.Windows.UI.Composition is
       easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVector4KeyFrameAnimation.all.InsertKeyFrame (normalizedProgressKey, value, easingFunction.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12381,12 +15176,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out VisualCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisualCollection, IVisualCollection_Ptr);
    begin
       if this.m_IVisualCollection /= null then
          if this.m_IVisualCollection.all /= null then
-            RefCount := this.m_IVisualCollection.all.Release;
+            temp := this.m_IVisualCollection.all.Release;
             Free (this.m_IVisualCollection);
          end if;
       end if;
@@ -12401,10 +15196,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IVisualCollection.all.get_Count (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12415,9 +15214,13 @@ package body WinRt.Windows.UI.Composition is
       sibling : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualCollection.all.InsertAbove (newChild.m_IVisual.all, sibling.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAtBottom
@@ -12426,9 +15229,13 @@ package body WinRt.Windows.UI.Composition is
       newChild : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualCollection.all.InsertAtBottom (newChild.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAtTop
@@ -12437,9 +15244,13 @@ package body WinRt.Windows.UI.Composition is
       newChild : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualCollection.all.InsertAtTop (newChild.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertBelow
@@ -12449,9 +15260,13 @@ package body WinRt.Windows.UI.Composition is
       sibling : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualCollection.all.InsertBelow (newChild.m_IVisual.all, sibling.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -12460,9 +15275,13 @@ package body WinRt.Windows.UI.Composition is
       child : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualCollection.all.Remove (child.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAll
@@ -12470,9 +15289,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out VisualCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualCollection.all.RemoveAll;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Visual>
@@ -12482,15 +15305,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVisual.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1324187086, 58540, 22673, (155, 82, 121, 157, 112, 223, 71, 254 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisualCollection_Interface, IIterable_IVisual.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12503,12 +15330,12 @@ package body WinRt.Windows.UI.Composition is
    end;
 
    procedure Finalize (this : in out VisualUnorderedCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisualUnorderedCollection, IVisualUnorderedCollection_Ptr);
    begin
       if this.m_IVisualUnorderedCollection /= null then
          if this.m_IVisualUnorderedCollection.all /= null then
-            RefCount := this.m_IVisualUnorderedCollection.all.Release;
+            temp := this.m_IVisualUnorderedCollection.all.Release;
             Free (this.m_IVisualUnorderedCollection);
          end if;
       end if;
@@ -12523,10 +15350,14 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IVisualUnorderedCollection.all.get_Count (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12536,9 +15367,13 @@ package body WinRt.Windows.UI.Composition is
       newVisual : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualUnorderedCollection.all.Add (newVisual.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -12547,9 +15382,13 @@ package body WinRt.Windows.UI.Composition is
       visual_p : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualUnorderedCollection.all.Remove (visual_p.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAll
@@ -12557,9 +15396,13 @@ package body WinRt.Windows.UI.Composition is
       this : in out VisualUnorderedCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualUnorderedCollection.all.RemoveAll;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Visual>
@@ -12569,15 +15412,19 @@ package body WinRt.Windows.UI.Composition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVisual.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1324187086, 58540, 22673, (155, 82, 121, 157, 112, 223, 71, 254 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisualUnorderedCollection_Interface, IIterable_IVisual.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualUnorderedCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

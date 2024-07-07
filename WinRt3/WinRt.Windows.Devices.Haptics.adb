@@ -50,85 +50,105 @@ package body WinRt.Windows.Devices.Haptics is
       function get_Click
       return WinRt.UInt16 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
          m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt16;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Click (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_BuzzContinuous
       return WinRt.UInt16 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
          m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt16;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BuzzContinuous (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_RumbleContinuous
       return WinRt.UInt16 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
          m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt16;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RumbleContinuous (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Press
       return WinRt.UInt16 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
          m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt16;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Press (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Release
       return WinRt.UInt16 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.KnownSimpleHapticsControllerWaveforms");
          m_Factory        : access WinRt.Windows.Devices.Haptics.IKnownSimpleHapticsControllerWaveformsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt16;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimpleHapticsControllerWaveformsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Release (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -143,12 +163,12 @@ package body WinRt.Windows.Devices.Haptics is
    end;
 
    procedure Finalize (this : in out SimpleHapticsController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISimpleHapticsController, ISimpleHapticsController_Ptr);
    begin
       if this.m_ISimpleHapticsController /= null then
          if this.m_ISimpleHapticsController.all /= null then
-            RefCount := this.m_ISimpleHapticsController.all.Release;
+            temp := this.m_ISimpleHapticsController.all.Release;
             Free (this.m_ISimpleHapticsController);
          end if;
       end if;
@@ -163,13 +183,17 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -179,13 +203,17 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return IVectorView_ISimpleHapticsControllerFeedback.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISimpleHapticsControllerFeedback.Kind;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_SupportedFeedback (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ISimpleHapticsControllerFeedback (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -195,10 +223,14 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_IsIntensitySupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -208,10 +240,14 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_IsPlayCountSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -221,10 +257,14 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_IsPlayDurationSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -234,10 +274,14 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_IsReplayPauseIntervalSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -246,9 +290,13 @@ package body WinRt.Windows.Devices.Haptics is
       this : in out SimpleHapticsController
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISimpleHapticsController.all.StopFeedback;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendHapticFeedback
@@ -257,9 +305,13 @@ package body WinRt.Windows.Devices.Haptics is
       feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISimpleHapticsController.all.SendHapticFeedback (feedback.m_ISimpleHapticsControllerFeedback.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendHapticFeedback
@@ -269,9 +321,13 @@ package body WinRt.Windows.Devices.Haptics is
       intensity : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISimpleHapticsController.all.SendHapticFeedback (feedback.m_ISimpleHapticsControllerFeedback.all, intensity);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendHapticFeedbackForDuration
@@ -282,9 +338,13 @@ package body WinRt.Windows.Devices.Haptics is
       playDuration : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISimpleHapticsController.all.SendHapticFeedbackForDuration (feedback.m_ISimpleHapticsControllerFeedback.all, intensity, playDuration);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendHapticFeedbackForPlayCount
@@ -296,9 +356,13 @@ package body WinRt.Windows.Devices.Haptics is
       replayPauseInterval : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISimpleHapticsController.all.SendHapticFeedbackForPlayCount (feedback.m_ISimpleHapticsControllerFeedback.all, intensity, playCount, replayPauseInterval);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -310,12 +374,12 @@ package body WinRt.Windows.Devices.Haptics is
    end;
 
    procedure Finalize (this : in out SimpleHapticsControllerFeedback) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISimpleHapticsControllerFeedback, ISimpleHapticsControllerFeedback_Ptr);
    begin
       if this.m_ISimpleHapticsControllerFeedback /= null then
          if this.m_ISimpleHapticsControllerFeedback.all /= null then
-            RefCount := this.m_ISimpleHapticsControllerFeedback.all.Release;
+            temp := this.m_ISimpleHapticsControllerFeedback.all.Release;
             Free (this.m_ISimpleHapticsControllerFeedback);
          end if;
       end if;
@@ -330,10 +394,14 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_ISimpleHapticsControllerFeedback.all.get_Waveform (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -343,10 +411,14 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISimpleHapticsControllerFeedback.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -359,12 +431,12 @@ package body WinRt.Windows.Devices.Haptics is
    end;
 
    procedure Finalize (this : in out VibrationDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVibrationDevice, IVibrationDevice_Ptr);
    begin
       if this.m_IVibrationDevice /= null then
          if this.m_IVibrationDevice.all /= null then
-            RefCount := this.m_IVibrationDevice.all.Release;
+            temp := this.m_IVibrationDevice.all.Release;
             Free (this.m_IVibrationDevice);
          end if;
       end if;
@@ -376,15 +448,15 @@ package body WinRt.Windows.Devices.Haptics is
    function RequestAccessAsync
    return WinRt.Windows.Devices.Haptics.VibrationAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
       m_Factory        : access WinRt.Windows.Devices.Haptics.IVibrationDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_VibrationAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -402,7 +474,7 @@ package body WinRt.Windows.Devices.Haptics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VibrationAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_VibrationAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -415,10 +487,10 @@ package body WinRt.Windows.Devices.Haptics is
       Hr := RoGetActivationFactory (m_hString, IID_IVibrationDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -428,35 +500,39 @@ package body WinRt.Windows.Devices.Haptics is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
       m_Factory        : access WinRt.Windows.Devices.Haptics.IVibrationDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVibrationDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -466,16 +542,16 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Windows.Devices.Haptics.VibrationDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
       m_Factory        : access WinRt.Windows.Devices.Haptics.IVibrationDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_VibrationDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -493,7 +569,7 @@ package body WinRt.Windows.Devices.Haptics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VibrationDevice.Kind_Delegate, AsyncOperationCompletedHandler_VibrationDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -507,10 +583,10 @@ package body WinRt.Windows.Devices.Haptics is
          Hr := RoGetActivationFactory (m_hString, IID_IVibrationDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -522,31 +598,31 @@ package body WinRt.Windows.Devices.Haptics is
                      Retval.m_IVibrationDevice := new Windows.Devices.Haptics.IVibrationDevice;
                      Retval.m_IVibrationDevice.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDefaultAsync
    return WinRt.Windows.Devices.Haptics.VibrationDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
       m_Factory        : access WinRt.Windows.Devices.Haptics.IVibrationDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_VibrationDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -564,7 +640,7 @@ package body WinRt.Windows.Devices.Haptics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VibrationDevice.Kind_Delegate, AsyncOperationCompletedHandler_VibrationDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -578,10 +654,10 @@ package body WinRt.Windows.Devices.Haptics is
          Hr := RoGetActivationFactory (m_hString, IID_IVibrationDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -593,30 +669,30 @@ package body WinRt.Windows.Devices.Haptics is
                      Retval.m_IVibrationDevice := new Windows.Devices.Haptics.IVibrationDevice;
                      Retval.m_IVibrationDevice.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function FindAllAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Haptics.VibrationDevice");
       m_Factory        : access WinRt.Windows.Devices.Haptics.IVibrationDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -634,7 +710,7 @@ package body WinRt.Windows.Devices.Haptics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -647,10 +723,10 @@ package body WinRt.Windows.Devices.Haptics is
       Hr := RoGetActivationFactory (m_hString, IID_IVibrationDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -660,15 +736,15 @@ package body WinRt.Windows.Devices.Haptics is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -681,13 +757,17 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVibrationDevice.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -697,11 +777,15 @@ package body WinRt.Windows.Devices.Haptics is
    )
    return WinRt.Windows.Devices.Haptics.SimpleHapticsController'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_IVibrationDevice.all.get_SimpleHapticsController (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;

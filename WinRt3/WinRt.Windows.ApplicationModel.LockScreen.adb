@@ -44,12 +44,12 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    end;
 
    procedure Finalize (this : in out LockApplicationHost) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILockApplicationHost, ILockApplicationHost_Ptr);
    begin
       if this.m_ILockApplicationHost /= null then
          if this.m_ILockApplicationHost.all /= null then
-            RefCount := this.m_ILockApplicationHost.all.Release;
+            temp := this.m_ILockApplicationHost.all.Release;
             Free (this.m_ILockApplicationHost);
          end if;
       end if;
@@ -61,20 +61,24 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.LockScreen.LockApplicationHost is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.LockScreen.LockApplicationHost");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.LockScreen.LockApplicationHost");
       m_Factory        : access WinRt.Windows.ApplicationModel.LockScreen.ILockApplicationHostStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.LockScreen.ILockApplicationHost;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.LockScreen.LockApplicationHost do
          Hr := RoGetActivationFactory (m_hString, IID_ILockApplicationHostStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILockApplicationHost := new Windows.ApplicationModel.LockScreen.ILockApplicationHost;
             Retval.m_ILockApplicationHost.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -86,9 +90,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       this : in out LockApplicationHost
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockApplicationHost.all.RequestUnlock;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Unlocking
@@ -98,10 +106,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILockApplicationHost.all.add_Unlocking (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -111,9 +123,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockApplicationHost.all.remove_Unlocking (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -125,12 +141,12 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    end;
 
    procedure Finalize (this : in out LockScreenBadge) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILockScreenBadge, ILockScreenBadge_Ptr);
    begin
       if this.m_ILockScreenBadge /= null then
          if this.m_ILockScreenBadge.all /= null then
-            RefCount := this.m_ILockScreenBadge.all.Release;
+            temp := this.m_ILockScreenBadge.all.Release;
             Free (this.m_ILockScreenBadge);
          end if;
       end if;
@@ -145,10 +161,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_ILockScreenBadge.all.get_Logo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -158,10 +178,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_ILockScreenBadge.all.get_Glyph (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -171,13 +195,17 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_ILockScreenBadge.all.get_Number (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -187,13 +215,17 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILockScreenBadge.all.get_AutomationName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -202,9 +234,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       this : in out LockScreenBadge
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockScreenBadge.all.LaunchApp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -216,12 +252,12 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    end;
 
    procedure Finalize (this : in out LockScreenInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILockScreenInfo, ILockScreenInfo_Ptr);
    begin
       if this.m_ILockScreenInfo /= null then
          if this.m_ILockScreenInfo.all /= null then
-            RefCount := this.m_ILockScreenInfo.all.Release;
+            temp := this.m_ILockScreenInfo.all.Release;
             Free (this.m_ILockScreenInfo);
          end if;
       end if;
@@ -237,10 +273,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILockScreenInfo.all.add_LockScreenImageChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -250,9 +290,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockScreenInfo.all.remove_LockScreenImageChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LockScreenImage
@@ -261,10 +305,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_ILockScreenInfo.all.get_LockScreenImage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -275,10 +323,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILockScreenInfo.all.add_BadgesChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -288,9 +340,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockScreenInfo.all.remove_BadgesChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Badges
@@ -299,13 +355,17 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return IVectorView_ILockScreenBadge.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ILockScreenBadge.Kind;
    begin
       Hr := this.m_ILockScreenInfo.all.get_Badges (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ILockScreenBadge (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -316,10 +376,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILockScreenInfo.all.add_DetailTextChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -329,9 +393,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockScreenInfo.all.remove_DetailTextChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DetailText
@@ -340,13 +408,17 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ILockScreenInfo.all.get_DetailText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -357,10 +429,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILockScreenInfo.all.add_AlarmIconChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -370,9 +446,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockScreenInfo.all.remove_AlarmIconChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AlarmIcon
@@ -381,10 +461,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_ILockScreenInfo.all.get_AlarmIcon (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -397,12 +481,12 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    end;
 
    procedure Finalize (this : in out LockScreenUnlockingDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILockScreenUnlockingDeferral, ILockScreenUnlockingDeferral_Ptr);
    begin
       if this.m_ILockScreenUnlockingDeferral /= null then
          if this.m_ILockScreenUnlockingDeferral.all /= null then
-            RefCount := this.m_ILockScreenUnlockingDeferral.all.Release;
+            temp := this.m_ILockScreenUnlockingDeferral.all.Release;
             Free (this.m_ILockScreenUnlockingDeferral);
          end if;
       end if;
@@ -416,9 +500,13 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       this : in out LockScreenUnlockingDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILockScreenUnlockingDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -430,12 +518,12 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    end;
 
    procedure Finalize (this : in out LockScreenUnlockingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILockScreenUnlockingEventArgs, ILockScreenUnlockingEventArgs_Ptr);
    begin
       if this.m_ILockScreenUnlockingEventArgs /= null then
          if this.m_ILockScreenUnlockingEventArgs.all /= null then
-            RefCount := this.m_ILockScreenUnlockingEventArgs.all.Release;
+            temp := this.m_ILockScreenUnlockingEventArgs.all.Release;
             Free (this.m_ILockScreenUnlockingEventArgs);
          end if;
       end if;
@@ -450,11 +538,15 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.LockScreen.ILockScreenUnlockingDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.LockScreen.LockScreenUnlockingDeferral do
          Hr := this.m_ILockScreenUnlockingEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILockScreenUnlockingDeferral := new Windows.ApplicationModel.LockScreen.ILockScreenUnlockingDeferral;
          Retval.m_ILockScreenUnlockingDeferral.all := m_ComRetVal;
       end return;
@@ -466,10 +558,14 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ILockScreenUnlockingEventArgs.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

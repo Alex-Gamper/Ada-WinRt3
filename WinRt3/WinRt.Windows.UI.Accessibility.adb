@@ -42,12 +42,12 @@ package body WinRt.Windows.UI.Accessibility is
    end;
 
    procedure Finalize (this : in out ScreenReaderPositionChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScreenReaderPositionChangedEventArgs, IScreenReaderPositionChangedEventArgs_Ptr);
    begin
       if this.m_IScreenReaderPositionChangedEventArgs /= null then
          if this.m_IScreenReaderPositionChangedEventArgs.all /= null then
-            RefCount := this.m_IScreenReaderPositionChangedEventArgs.all.Release;
+            temp := this.m_IScreenReaderPositionChangedEventArgs.all.Release;
             Free (this.m_IScreenReaderPositionChangedEventArgs);
          end if;
       end if;
@@ -62,10 +62,14 @@ package body WinRt.Windows.UI.Accessibility is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IScreenReaderPositionChangedEventArgs.all.get_ScreenPositionInRawPixels (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -75,10 +79,14 @@ package body WinRt.Windows.UI.Accessibility is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IScreenReaderPositionChangedEventArgs.all.get_IsReadingText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -91,12 +99,12 @@ package body WinRt.Windows.UI.Accessibility is
    end;
 
    procedure Finalize (this : in out ScreenReaderService) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScreenReaderService, IScreenReaderService_Ptr);
    begin
       if this.m_IScreenReaderService /= null then
          if this.m_IScreenReaderService.all /= null then
-            RefCount := this.m_IScreenReaderService.all.Release;
+            temp := this.m_IScreenReaderService.all.Release;
             Free (this.m_IScreenReaderService);
          end if;
       end if;
@@ -107,7 +115,8 @@ package body WinRt.Windows.UI.Accessibility is
 
    function Constructor return ScreenReaderService is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Accessibility.ScreenReaderService");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Accessibility.ScreenReaderService");
       m_ComRetVal  : aliased Windows.UI.Accessibility.IScreenReaderService;
    begin
       return RetVal : ScreenReaderService do
@@ -116,7 +125,7 @@ package body WinRt.Windows.UI.Accessibility is
             Retval.m_IScreenReaderService := new Windows.UI.Accessibility.IScreenReaderService;
             Retval.m_IScreenReaderService.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -129,11 +138,15 @@ package body WinRt.Windows.UI.Accessibility is
    )
    return WinRt.Windows.UI.Accessibility.ScreenReaderPositionChangedEventArgs'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
    begin
       return RetVal : WinRt.Windows.UI.Accessibility.ScreenReaderPositionChangedEventArgs do
          Hr := this.m_IScreenReaderService.all.get_CurrentScreenReaderPosition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IScreenReaderPositionChangedEventArgs := new Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
          Retval.m_IScreenReaderPositionChangedEventArgs.all := m_ComRetVal;
       end return;
@@ -146,10 +159,14 @@ package body WinRt.Windows.UI.Accessibility is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IScreenReaderService.all.add_ScreenReaderPositionChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -159,9 +176,13 @@ package body WinRt.Windows.UI.Accessibility is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScreenReaderService.all.remove_ScreenReaderPositionChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Accessibility;

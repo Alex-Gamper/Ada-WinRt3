@@ -47,12 +47,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeDevicePreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeDevicePreview, IGazeDevicePreview_Ptr);
    begin
       if this.m_IGazeDevicePreview /= null then
          if this.m_IGazeDevicePreview.all /= null then
-            RefCount := this.m_IGazeDevicePreview.all.Release;
+            temp := this.m_IGazeDevicePreview.all.Release;
             Free (this.m_IGazeDevicePreview);
          end if;
       end if;
@@ -67,10 +67,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IGazeDevicePreview.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -80,10 +84,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGazeDevicePreview.all.get_CanTrackEyes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -93,10 +101,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGazeDevicePreview.all.get_CanTrackHead (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -106,10 +118,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazeDeviceConfigurationStatePreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.GazeDeviceConfigurationStatePreview;
    begin
       Hr := this.m_IGazeDevicePreview.all.get_ConfigurationState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -119,13 +135,13 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -143,7 +159,7 @@ package body WinRt.Windows.Devices.Input.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -156,7 +172,7 @@ package body WinRt.Windows.Devices.Input.Preview is
       Hr := this.m_IGazeDevicePreview.all.RequestCalibrationAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -166,9 +182,9 @@ package body WinRt.Windows.Devices.Input.Preview is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -184,10 +200,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IGazeDevicePreview.all.GetNumericControlDescriptions (usagePage, usageId, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -199,10 +219,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IGazeDevicePreview.all.GetBooleanControlDescriptions (usagePage, usageId, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -215,12 +239,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeDeviceWatcherAddedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeDeviceWatcherAddedPreviewEventArgs, IGazeDeviceWatcherAddedPreviewEventArgs_Ptr);
    begin
       if this.m_IGazeDeviceWatcherAddedPreviewEventArgs /= null then
          if this.m_IGazeDeviceWatcherAddedPreviewEventArgs.all /= null then
-            RefCount := this.m_IGazeDeviceWatcherAddedPreviewEventArgs.all.Release;
+            temp := this.m_IGazeDeviceWatcherAddedPreviewEventArgs.all.Release;
             Free (this.m_IGazeDeviceWatcherAddedPreviewEventArgs);
          end if;
       end if;
@@ -235,11 +259,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazeDevicePreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazeDevicePreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazeDevicePreview do
          Hr := this.m_IGazeDeviceWatcherAddedPreviewEventArgs.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazeDevicePreview := new Windows.Devices.Input.Preview.IGazeDevicePreview;
          Retval.m_IGazeDevicePreview.all := m_ComRetVal;
       end return;
@@ -254,12 +282,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeDeviceWatcherPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeDeviceWatcherPreview, IGazeDeviceWatcherPreview_Ptr);
    begin
       if this.m_IGazeDeviceWatcherPreview /= null then
          if this.m_IGazeDeviceWatcherPreview.all /= null then
-            RefCount := this.m_IGazeDeviceWatcherPreview.all.Release;
+            temp := this.m_IGazeDeviceWatcherPreview.all.Release;
             Free (this.m_IGazeDeviceWatcherPreview);
          end if;
       end if;
@@ -275,10 +303,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.add_Added (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -288,9 +320,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.remove_Added (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Removed
@@ -300,10 +336,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.add_Removed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -313,9 +353,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.remove_Removed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Updated
@@ -325,10 +369,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.add_Updated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -338,9 +386,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.remove_Updated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -350,10 +402,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -363,9 +419,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -373,9 +433,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       this : in out GazeDeviceWatcherPreview
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -383,9 +447,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       this : in out GazeDeviceWatcherPreview
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeDeviceWatcherPreview.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -397,12 +465,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeDeviceWatcherRemovedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeDeviceWatcherRemovedPreviewEventArgs, IGazeDeviceWatcherRemovedPreviewEventArgs_Ptr);
    begin
       if this.m_IGazeDeviceWatcherRemovedPreviewEventArgs /= null then
          if this.m_IGazeDeviceWatcherRemovedPreviewEventArgs.all /= null then
-            RefCount := this.m_IGazeDeviceWatcherRemovedPreviewEventArgs.all.Release;
+            temp := this.m_IGazeDeviceWatcherRemovedPreviewEventArgs.all.Release;
             Free (this.m_IGazeDeviceWatcherRemovedPreviewEventArgs);
          end if;
       end if;
@@ -417,11 +485,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazeDevicePreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazeDevicePreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazeDevicePreview do
          Hr := this.m_IGazeDeviceWatcherRemovedPreviewEventArgs.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazeDevicePreview := new Windows.Devices.Input.Preview.IGazeDevicePreview;
          Retval.m_IGazeDevicePreview.all := m_ComRetVal;
       end return;
@@ -436,12 +508,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeDeviceWatcherUpdatedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeDeviceWatcherUpdatedPreviewEventArgs, IGazeDeviceWatcherUpdatedPreviewEventArgs_Ptr);
    begin
       if this.m_IGazeDeviceWatcherUpdatedPreviewEventArgs /= null then
          if this.m_IGazeDeviceWatcherUpdatedPreviewEventArgs.all /= null then
-            RefCount := this.m_IGazeDeviceWatcherUpdatedPreviewEventArgs.all.Release;
+            temp := this.m_IGazeDeviceWatcherUpdatedPreviewEventArgs.all.Release;
             Free (this.m_IGazeDeviceWatcherUpdatedPreviewEventArgs);
          end if;
       end if;
@@ -456,11 +528,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazeDevicePreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazeDevicePreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazeDevicePreview do
          Hr := this.m_IGazeDeviceWatcherUpdatedPreviewEventArgs.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazeDevicePreview := new Windows.Devices.Input.Preview.IGazeDevicePreview;
          Retval.m_IGazeDevicePreview.all := m_ComRetVal;
       end return;
@@ -475,12 +551,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeEnteredPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeEnteredPreviewEventArgs, IGazeEnteredPreviewEventArgs_Ptr);
    begin
       if this.m_IGazeEnteredPreviewEventArgs /= null then
          if this.m_IGazeEnteredPreviewEventArgs.all /= null then
-            RefCount := this.m_IGazeEnteredPreviewEventArgs.all.Release;
+            temp := this.m_IGazeEnteredPreviewEventArgs.all.Release;
             Free (this.m_IGazeEnteredPreviewEventArgs);
          end if;
       end if;
@@ -495,10 +571,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGazeEnteredPreviewEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -508,9 +588,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeEnteredPreviewEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentPoint
@@ -519,11 +603,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazePointPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazePointPreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazePointPreview do
          Hr := this.m_IGazeEnteredPreviewEventArgs.all.get_CurrentPoint (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazePointPreview := new Windows.Devices.Input.Preview.IGazePointPreview;
          Retval.m_IGazePointPreview.all := m_ComRetVal;
       end return;
@@ -538,12 +626,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeExitedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeExitedPreviewEventArgs, IGazeExitedPreviewEventArgs_Ptr);
    begin
       if this.m_IGazeExitedPreviewEventArgs /= null then
          if this.m_IGazeExitedPreviewEventArgs.all /= null then
-            RefCount := this.m_IGazeExitedPreviewEventArgs.all.Release;
+            temp := this.m_IGazeExitedPreviewEventArgs.all.Release;
             Free (this.m_IGazeExitedPreviewEventArgs);
          end if;
       end if;
@@ -558,10 +646,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGazeExitedPreviewEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -571,9 +663,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeExitedPreviewEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentPoint
@@ -582,11 +678,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazePointPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazePointPreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazePointPreview do
          Hr := this.m_IGazeExitedPreviewEventArgs.all.get_CurrentPoint (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazePointPreview := new Windows.Devices.Input.Preview.IGazePointPreview;
          Retval.m_IGazePointPreview.all := m_ComRetVal;
       end return;
@@ -601,12 +701,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeInputSourcePreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeInputSourcePreview, IGazeInputSourcePreview_Ptr);
    begin
       if this.m_IGazeInputSourcePreview /= null then
          if this.m_IGazeInputSourcePreview.all /= null then
-            RefCount := this.m_IGazeInputSourcePreview.all.Release;
+            temp := this.m_IGazeInputSourcePreview.all.Release;
             Free (this.m_IGazeInputSourcePreview);
          end if;
       end if;
@@ -618,40 +718,48 @@ package body WinRt.Windows.Devices.Input.Preview is
    function GetForCurrentView
    return WinRt.Windows.Devices.Input.Preview.GazeInputSourcePreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Input.Preview.GazeInputSourcePreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.Preview.GazeInputSourcePreview");
       m_Factory        : access WinRt.Windows.Devices.Input.Preview.IGazeInputSourcePreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazeInputSourcePreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazeInputSourcePreview do
          Hr := RoGetActivationFactory (m_hString, IID_IGazeInputSourcePreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGazeInputSourcePreview := new Windows.Devices.Input.Preview.IGazeInputSourcePreview;
             Retval.m_IGazeInputSourcePreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function CreateWatcher
    return WinRt.Windows.Devices.Input.Preview.GazeDeviceWatcherPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Input.Preview.GazeInputSourcePreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.Preview.GazeInputSourcePreview");
       m_Factory        : access WinRt.Windows.Devices.Input.Preview.IGazeInputSourcePreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazeDeviceWatcherPreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazeDeviceWatcherPreview do
          Hr := RoGetActivationFactory (m_hString, IID_IGazeInputSourcePreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGazeDeviceWatcherPreview := new Windows.Devices.Input.Preview.IGazeDeviceWatcherPreview;
             Retval.m_IGazeDeviceWatcherPreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -665,10 +773,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeInputSourcePreview.all.add_GazeMoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -678,9 +790,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeInputSourcePreview.all.remove_GazeMoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GazeEntered
@@ -690,10 +806,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeInputSourcePreview.all.add_GazeEntered (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -703,9 +823,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeInputSourcePreview.all.remove_GazeEntered (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GazeExited
@@ -715,10 +839,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGazeInputSourcePreview.all.add_GazeExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -728,9 +856,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeInputSourcePreview.all.remove_GazeExited (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -742,12 +874,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazeMovedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazeMovedPreviewEventArgs, IGazeMovedPreviewEventArgs_Ptr);
    begin
       if this.m_IGazeMovedPreviewEventArgs /= null then
          if this.m_IGazeMovedPreviewEventArgs.all /= null then
-            RefCount := this.m_IGazeMovedPreviewEventArgs.all.Release;
+            temp := this.m_IGazeMovedPreviewEventArgs.all.Release;
             Free (this.m_IGazeMovedPreviewEventArgs);
          end if;
       end if;
@@ -762,10 +894,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGazeMovedPreviewEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -775,9 +911,13 @@ package body WinRt.Windows.Devices.Input.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGazeMovedPreviewEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentPoint
@@ -786,11 +926,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazePointPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazePointPreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazePointPreview do
          Hr := this.m_IGazeMovedPreviewEventArgs.all.get_CurrentPoint (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazePointPreview := new Windows.Devices.Input.Preview.IGazePointPreview;
          Retval.m_IGazePointPreview.all := m_ComRetVal;
       end return;
@@ -802,13 +946,17 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return IVector_IGazePointPreview.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IGazePointPreview.Kind;
    begin
       Hr := this.m_IGazeMovedPreviewEventArgs.all.GetIntermediatePoints (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IGazePointPreview (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -821,12 +969,12 @@ package body WinRt.Windows.Devices.Input.Preview is
    end;
 
    procedure Finalize (this : in out GazePointPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGazePointPreview, IGazePointPreview_Ptr);
    begin
       if this.m_IGazePointPreview /= null then
          if this.m_IGazePointPreview.all /= null then
-            RefCount := this.m_IGazePointPreview.all.Release;
+            temp := this.m_IGazePointPreview.all.Release;
             Free (this.m_IGazePointPreview);
          end if;
       end if;
@@ -841,11 +989,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.Input.Preview.GazeDevicePreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.Preview.IGazeDevicePreview;
    begin
       return RetVal : WinRt.Windows.Devices.Input.Preview.GazeDevicePreview do
          Hr := this.m_IGazePointPreview.all.get_SourceDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGazeDevicePreview := new Windows.Devices.Input.Preview.IGazeDevicePreview;
          Retval.m_IGazeDevicePreview.all := m_ComRetVal;
       end return;
@@ -857,13 +1009,17 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return IReference_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_IGazePointPreview.all.get_EyeGazePosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -873,13 +1029,17 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return IReference_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_IGazePointPreview.all.get_HeadGazePosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -889,10 +1049,14 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IGazePointPreview.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -902,11 +1066,15 @@ package body WinRt.Windows.Devices.Input.Preview is
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidInputReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidInputReport;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidInputReport do
          Hr := this.m_IGazePointPreview.all.get_HidInputReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHidInputReport := new Windows.Devices.HumanInterfaceDevice.IHidInputReport;
          Retval.m_IHidInputReport.all := m_ComRetVal;
       end return;

@@ -52,12 +52,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out ImageVariableDescriptorPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IImageVariableDescriptorPreview, IImageVariableDescriptorPreview_Ptr);
    begin
       if this.m_IImageVariableDescriptorPreview /= null then
          if this.m_IImageVariableDescriptorPreview.all /= null then
-            RefCount := this.m_IImageVariableDescriptorPreview.all.Release;
+            temp := this.m_IImageVariableDescriptorPreview.all.Release;
             Free (this.m_IImageVariableDescriptorPreview);
          end if;
       end if;
@@ -72,10 +72,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_IImageVariableDescriptorPreview.all.get_BitmapPixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -85,10 +89,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IImageVariableDescriptorPreview.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -98,10 +106,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IImageVariableDescriptorPreview.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -111,17 +123,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IImageVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageVariableDescriptorPreview.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -131,17 +147,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IImageVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageVariableDescriptorPreview.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -151,14 +171,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IImageVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageVariableDescriptorPreview.all);
       Hr := m_Interface.get_ModelFeatureKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -168,14 +192,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IImageVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageVariableDescriptorPreview.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -188,12 +216,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out InferencingOptionsPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInferencingOptionsPreview, IInferencingOptionsPreview_Ptr);
    begin
       if this.m_IInferencingOptionsPreview /= null then
          if this.m_IInferencingOptionsPreview.all /= null then
-            RefCount := this.m_IInferencingOptionsPreview.all.Release;
+            temp := this.m_IInferencingOptionsPreview.all.Release;
             Free (this.m_IInferencingOptionsPreview);
          end if;
       end if;
@@ -208,10 +236,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelDeviceKindPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.LearningModelDeviceKindPreview;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.get_PreferredDeviceKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -221,9 +253,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : Windows.AI.MachineLearning.Preview.LearningModelDeviceKindPreview
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.put_PreferredDeviceKind (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsTracingEnabled
@@ -232,10 +268,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.get_IsTracingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -245,9 +285,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.put_IsTracingEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxBatchSize
@@ -256,10 +300,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.get_MaxBatchSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -269,9 +317,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.put_MaxBatchSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinimizeMemoryAllocation
@@ -280,10 +332,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.get_MinimizeMemoryAllocation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -293,9 +349,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.put_MinimizeMemoryAllocation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReclaimMemoryAfterEvaluation
@@ -304,10 +364,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.get_ReclaimMemoryAfterEvaluation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -317,9 +381,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInferencingOptionsPreview.all.put_ReclaimMemoryAfterEvaluation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -331,12 +399,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out LearningModelBindingPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelBindingPreview, ILearningModelBindingPreview_Ptr);
    begin
       if this.m_ILearningModelBindingPreview /= null then
          if this.m_ILearningModelBindingPreview.all /= null then
-            RefCount := this.m_ILearningModelBindingPreview.all.Release;
+            temp := this.m_ILearningModelBindingPreview.all.Release;
             Free (this.m_ILearningModelBindingPreview);
          end if;
       end if;
@@ -351,9 +419,10 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return LearningModelBindingPreview is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.Preview.LearningModelBindingPreview");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.Preview.LearningModelBindingPreview");
       m_Factory    : access ILearningModelBindingPreviewFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.AI.MachineLearning.Preview.ILearningModelBindingPreview;
    begin
       return RetVal : LearningModelBindingPreview do
@@ -362,9 +431,9 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
             Hr := m_Factory.CreateFromModel (model.m_ILearningModelPreview.all, m_ComRetVal'Access);
             Retval.m_ILearningModelBindingPreview := new Windows.AI.MachineLearning.Preview.ILearningModelBindingPreview;
             Retval.m_ILearningModelBindingPreview.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -378,11 +447,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILearningModelBindingPreview.all.Bind (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure Bind
@@ -393,11 +466,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       metadata : Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILearningModelBindingPreview.all.Bind (HStr_name, value, metadata);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure Clear
@@ -405,9 +482,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       this : in out LearningModelBindingPreview
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILearningModelBindingPreview.all.Clear;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IMapView`2<System.String,System.Object>
@@ -418,17 +499,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ILearningModelBindingPreview_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBindingPreview.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -438,15 +523,19 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ILearningModelBindingPreview_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBindingPreview.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -457,17 +546,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ILearningModelBindingPreview_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBindingPreview.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -478,14 +571,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       second : access GenericObject_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ILearningModelBindingPreview_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBindingPreview.all);
       Hr := m_Interface.Split (first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -497,12 +594,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out LearningModelDescriptionPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelDescriptionPreview, ILearningModelDescriptionPreview_Ptr);
    begin
       if this.m_ILearningModelDescriptionPreview /= null then
          if this.m_ILearningModelDescriptionPreview.all /= null then
-            RefCount := this.m_ILearningModelDescriptionPreview.all.Release;
+            temp := this.m_ILearningModelDescriptionPreview.all.Release;
             Free (this.m_ILearningModelDescriptionPreview);
          end if;
       end if;
@@ -517,13 +614,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_Author (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -533,13 +634,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -549,13 +654,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_Domain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -565,13 +674,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -581,10 +694,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_Version (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -594,13 +711,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IMapView_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_Metadata (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -610,13 +731,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IIterable_ILearningModelVariableDescriptorPreview.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_ILearningModelVariableDescriptorPreview.Kind;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_InputFeatures (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_ILearningModelVariableDescriptorPreview (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -626,13 +751,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IIterable_ILearningModelVariableDescriptorPreview.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_ILearningModelVariableDescriptorPreview.Kind;
    begin
       Hr := this.m_ILearningModelDescriptionPreview.all.get_OutputFeatures (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_ILearningModelVariableDescriptorPreview (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -645,12 +774,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out LearningModelEvaluationResultPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelEvaluationResultPreview, ILearningModelEvaluationResultPreview_Ptr);
    begin
       if this.m_ILearningModelEvaluationResultPreview /= null then
          if this.m_ILearningModelEvaluationResultPreview.all /= null then
-            RefCount := this.m_ILearningModelEvaluationResultPreview.all.Release;
+            temp := this.m_ILearningModelEvaluationResultPreview.all.Release;
             Free (this.m_ILearningModelEvaluationResultPreview);
          end if;
       end if;
@@ -665,13 +794,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelEvaluationResultPreview.all.get_CorrelationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -681,13 +814,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_ILearningModelEvaluationResultPreview.all.get_Outputs (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -700,12 +837,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out LearningModelPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelPreview, ILearningModelPreview_Ptr);
    begin
       if this.m_ILearningModelPreview /= null then
          if this.m_ILearningModelPreview.all /= null then
-            RefCount := this.m_ILearningModelPreview.all.Release;
+            temp := this.m_ILearningModelPreview.all.Release;
             Free (this.m_ILearningModelPreview);
          end if;
       end if;
@@ -720,15 +857,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.Preview.LearningModelPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.Preview.LearningModelPreview");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.Preview.ILearningModelPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModelPreview.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -746,7 +883,7 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModelPreview.Kind_Delegate, AsyncOperationCompletedHandler_LearningModelPreview.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -760,10 +897,10 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadModelFromStorageFileAsync (modelFile, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -775,15 +912,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
                      Retval.m_ILearningModelPreview := new Windows.AI.MachineLearning.Preview.ILearningModelPreview;
                      Retval.m_ILearningModelPreview.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -793,15 +930,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.Preview.LearningModelPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.Preview.LearningModelPreview");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.Preview.ILearningModelPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModelPreview.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -819,7 +956,7 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModelPreview.Kind_Delegate, AsyncOperationCompletedHandler_LearningModelPreview.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -833,10 +970,10 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadModelFromStreamAsync (modelStream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -848,15 +985,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
                      Retval.m_ILearningModelPreview := new Windows.AI.MachineLearning.Preview.ILearningModelPreview;
                      Retval.m_ILearningModelPreview.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -871,14 +1008,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelEvaluationResultPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationId : WinRt.HString := To_HString (correlationId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationId : constant WinRt.HString := To_HString (correlationId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModelEvaluationResultPreview.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -896,7 +1033,7 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModelEvaluationResultPreview.Kind_Delegate, AsyncOperationCompletedHandler_LearningModelEvaluationResultPreview.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -910,7 +1047,7 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
          Hr := this.m_ILearningModelPreview.all.EvaluateAsync (binding.m_ILearningModelBindingPreview.all, HStr_correlationId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -922,14 +1059,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
                   Retval.m_ILearningModelEvaluationResultPreview := new Windows.AI.MachineLearning.Preview.ILearningModelEvaluationResultPreview;
                   Retval.m_ILearningModelEvaluationResultPreview.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_correlationId);
+         tmp := WindowsDeleteString (HStr_correlationId);
       end return;
    end;
 
@@ -941,14 +1078,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelEvaluationResultPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationId : WinRt.HString := To_HString (correlationId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationId : constant WinRt.HString := To_HString (correlationId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModelEvaluationResultPreview.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -966,7 +1103,7 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModelEvaluationResultPreview.Kind_Delegate, AsyncOperationCompletedHandler_LearningModelEvaluationResultPreview.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -980,7 +1117,7 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
          Hr := this.m_ILearningModelPreview.all.EvaluateFeaturesAsync (features, HStr_correlationId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -992,14 +1129,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
                   Retval.m_ILearningModelEvaluationResultPreview := new Windows.AI.MachineLearning.Preview.ILearningModelEvaluationResultPreview;
                   Retval.m_ILearningModelEvaluationResultPreview.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_correlationId);
+         tmp := WindowsDeleteString (HStr_correlationId);
       end return;
    end;
 
@@ -1009,11 +1146,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelDescriptionPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.ILearningModelDescriptionPreview;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.Preview.LearningModelDescriptionPreview do
          Hr := this.m_ILearningModelPreview.all.get_Description (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILearningModelDescriptionPreview := new Windows.AI.MachineLearning.Preview.ILearningModelDescriptionPreview;
          Retval.m_ILearningModelDescriptionPreview.all := m_ComRetVal;
       end return;
@@ -1025,11 +1166,15 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.InferencingOptionsPreview'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.IInferencingOptionsPreview;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.Preview.InferencingOptionsPreview do
          Hr := this.m_ILearningModelPreview.all.get_InferencingOptions (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInferencingOptionsPreview := new Windows.AI.MachineLearning.Preview.IInferencingOptionsPreview;
          Retval.m_IInferencingOptionsPreview.all := m_ComRetVal;
       end return;
@@ -1041,9 +1186,13 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
       value : Windows.AI.MachineLearning.Preview.InferencingOptionsPreview'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILearningModelPreview.all.put_InferencingOptions (value.m_IInferencingOptionsPreview.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1055,12 +1204,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out LearningModelVariableDescriptorPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelVariableDescriptorPreview, ILearningModelVariableDescriptorPreview_Ptr);
    begin
       if this.m_ILearningModelVariableDescriptorPreview /= null then
          if this.m_ILearningModelVariableDescriptorPreview.all /= null then
-            RefCount := this.m_ILearningModelVariableDescriptorPreview.all.Release;
+            temp := this.m_ILearningModelVariableDescriptorPreview.all.Release;
             Free (this.m_ILearningModelVariableDescriptorPreview);
          end if;
       end if;
@@ -1075,13 +1224,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelVariableDescriptorPreview.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1091,13 +1244,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelVariableDescriptorPreview.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1107,10 +1264,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview;
    begin
       Hr := this.m_ILearningModelVariableDescriptorPreview.all.get_ModelFeatureKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1120,10 +1281,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILearningModelVariableDescriptorPreview.all.get_IsRequired (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1136,12 +1301,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out MapVariableDescriptorPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapVariableDescriptorPreview, IMapVariableDescriptorPreview_Ptr);
    begin
       if this.m_IMapVariableDescriptorPreview /= null then
          if this.m_IMapVariableDescriptorPreview.all /= null then
-            RefCount := this.m_IMapVariableDescriptorPreview.all.Release;
+            temp := this.m_IMapVariableDescriptorPreview.all.Release;
             Free (this.m_IMapVariableDescriptorPreview);
          end if;
       end if;
@@ -1156,10 +1321,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.FeatureElementKindPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.FeatureElementKindPreview;
    begin
       Hr := this.m_IMapVariableDescriptorPreview.all.get_KeyKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1169,13 +1338,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IIterable_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_HString.Kind;
    begin
       Hr := this.m_IMapVariableDescriptorPreview.all.get_ValidStringKeys (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1185,13 +1358,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IIterable_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_Int64.Kind;
    begin
       Hr := this.m_IMapVariableDescriptorPreview.all.get_ValidIntegerKeys (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1201,10 +1378,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview;
    begin
       Hr := this.m_IMapVariableDescriptorPreview.all.get_Fields (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1214,17 +1395,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IMapVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapVariableDescriptorPreview.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1234,17 +1419,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IMapVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapVariableDescriptorPreview.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1254,14 +1443,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IMapVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapVariableDescriptorPreview.all);
       Hr := m_Interface.get_ModelFeatureKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1271,14 +1464,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.IMapVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapVariableDescriptorPreview.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1291,12 +1488,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out SequenceVariableDescriptorPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISequenceVariableDescriptorPreview, ISequenceVariableDescriptorPreview_Ptr);
    begin
       if this.m_ISequenceVariableDescriptorPreview /= null then
          if this.m_ISequenceVariableDescriptorPreview.all /= null then
-            RefCount := this.m_ISequenceVariableDescriptorPreview.all.Release;
+            temp := this.m_ISequenceVariableDescriptorPreview.all.Release;
             Free (this.m_ISequenceVariableDescriptorPreview);
          end if;
       end if;
@@ -1311,10 +1508,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview;
    begin
       Hr := this.m_ISequenceVariableDescriptorPreview.all.get_ElementType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1324,17 +1525,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ISequenceVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceVariableDescriptorPreview.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1344,17 +1549,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ISequenceVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceVariableDescriptorPreview.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1364,14 +1573,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ISequenceVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceVariableDescriptorPreview.all);
       Hr := m_Interface.get_ModelFeatureKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1381,14 +1594,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ISequenceVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceVariableDescriptorPreview.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1401,12 +1618,12 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    end;
 
    procedure Finalize (this : in out TensorVariableDescriptorPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorVariableDescriptorPreview, ITensorVariableDescriptorPreview_Ptr);
    begin
       if this.m_ITensorVariableDescriptorPreview /= null then
          if this.m_ITensorVariableDescriptorPreview.all /= null then
-            RefCount := this.m_ITensorVariableDescriptorPreview.all.Release;
+            temp := this.m_ITensorVariableDescriptorPreview.all.Release;
             Free (this.m_ITensorVariableDescriptorPreview);
          end if;
       end if;
@@ -1421,10 +1638,14 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.FeatureElementKindPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.FeatureElementKindPreview;
    begin
       Hr := this.m_ITensorVariableDescriptorPreview.all.get_DataType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1434,13 +1655,17 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return IIterable_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_Int64.Kind;
    begin
       Hr := this.m_ITensorVariableDescriptorPreview.all.get_Shape (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1450,17 +1675,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ITensorVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorVariableDescriptorPreview.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1470,17 +1699,21 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ITensorVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorVariableDescriptorPreview.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1490,14 +1723,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.Preview.LearningModelFeatureKindPreview;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ITensorVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorVariableDescriptorPreview.all);
       Hr := m_Interface.get_ModelFeatureKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1507,14 +1744,18 @@ package body WinRt.Windows.AI.MachineLearning.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.Preview.ITensorVariableDescriptorPreview_Interface, WinRt.Windows.AI.MachineLearning.Preview.ILearningModelVariableDescriptorPreview, WinRt.Windows.AI.MachineLearning.Preview.IID_ILearningModelVariableDescriptorPreview'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorVariableDescriptorPreview.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

@@ -42,12 +42,12 @@ package body WinRt.Windows.Devices.Spi.Provider is
    end;
 
    procedure Finalize (this : in out ProviderSpiConnectionSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProviderSpiConnectionSettings, IProviderSpiConnectionSettings_Ptr);
    begin
       if this.m_IProviderSpiConnectionSettings /= null then
          if this.m_IProviderSpiConnectionSettings.all /= null then
-            RefCount := this.m_IProviderSpiConnectionSettings.all.Release;
+            temp := this.m_IProviderSpiConnectionSettings.all.Release;
             Free (this.m_IProviderSpiConnectionSettings);
          end if;
       end if;
@@ -62,9 +62,10 @@ package body WinRt.Windows.Devices.Spi.Provider is
    )
    return ProviderSpiConnectionSettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Spi.Provider.ProviderSpiConnectionSettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Spi.Provider.ProviderSpiConnectionSettings");
       m_Factory    : access IProviderSpiConnectionSettingsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings;
    begin
       return RetVal : ProviderSpiConnectionSettings do
@@ -73,9 +74,9 @@ package body WinRt.Windows.Devices.Spi.Provider is
             Hr := m_Factory.Create (chipSelectLine, m_ComRetVal'Access);
             Retval.m_IProviderSpiConnectionSettings := new Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings;
             Retval.m_IProviderSpiConnectionSettings.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -88,10 +89,14 @@ package body WinRt.Windows.Devices.Spi.Provider is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.get_ChipSelectLine (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -101,9 +106,13 @@ package body WinRt.Windows.Devices.Spi.Provider is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.put_ChipSelectLine (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Mode
@@ -112,10 +121,14 @@ package body WinRt.Windows.Devices.Spi.Provider is
    )
    return WinRt.Windows.Devices.Spi.Provider.ProviderSpiMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.Provider.ProviderSpiMode;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -125,9 +138,13 @@ package body WinRt.Windows.Devices.Spi.Provider is
       value : Windows.Devices.Spi.Provider.ProviderSpiMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DataBitLength
@@ -136,10 +153,14 @@ package body WinRt.Windows.Devices.Spi.Provider is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.get_DataBitLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -149,9 +170,13 @@ package body WinRt.Windows.Devices.Spi.Provider is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.put_DataBitLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClockFrequency
@@ -160,10 +185,14 @@ package body WinRt.Windows.Devices.Spi.Provider is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.get_ClockFrequency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -173,9 +202,13 @@ package body WinRt.Windows.Devices.Spi.Provider is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.put_ClockFrequency (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SharingMode
@@ -184,10 +217,14 @@ package body WinRt.Windows.Devices.Spi.Provider is
    )
    return WinRt.Windows.Devices.Spi.Provider.ProviderSpiSharingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.Provider.ProviderSpiSharingMode;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.get_SharingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -197,9 +234,13 @@ package body WinRt.Windows.Devices.Spi.Provider is
       value : Windows.Devices.Spi.Provider.ProviderSpiSharingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderSpiConnectionSettings.all.put_SharingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.Spi.Provider;

@@ -43,12 +43,12 @@ package body WinRt.Windows.UI.Input.Inking.Preview is
    end;
 
    procedure Finalize (this : in out PalmRejectionDelayZonePreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPalmRejectionDelayZonePreview, IPalmRejectionDelayZonePreview_Ptr);
    begin
       if this.m_IPalmRejectionDelayZonePreview /= null then
          if this.m_IPalmRejectionDelayZonePreview.all /= null then
-            RefCount := this.m_IPalmRejectionDelayZonePreview.all.Release;
+            temp := this.m_IPalmRejectionDelayZonePreview.all.Release;
             Free (this.m_IPalmRejectionDelayZonePreview);
          end if;
       end if;
@@ -64,20 +64,24 @@ package body WinRt.Windows.UI.Input.Inking.Preview is
    )
    return WinRt.Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview");
       m_Factory        : access WinRt.Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreview;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview do
          Hr := RoGetActivationFactory (m_hString, IID_IPalmRejectionDelayZonePreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateForVisual (inputPanelVisual.m_IVisual.all, inputPanelRect, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPalmRejectionDelayZonePreview := new Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreview;
             Retval.m_IPalmRejectionDelayZonePreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -90,20 +94,24 @@ package body WinRt.Windows.UI.Input.Inking.Preview is
    )
    return WinRt.Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview");
       m_Factory        : access WinRt.Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreview;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.Preview.PalmRejectionDelayZonePreview do
          Hr := RoGetActivationFactory (m_hString, IID_IPalmRejectionDelayZonePreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateForVisual (inputPanelVisual.m_IVisual.all, inputPanelRect, viewportVisual.m_IVisual.all, viewportRect, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPalmRejectionDelayZonePreview := new Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreview;
             Retval.m_IPalmRejectionDelayZonePreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -115,13 +123,17 @@ package body WinRt.Windows.UI.Input.Inking.Preview is
       this : in out PalmRejectionDelayZonePreview
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Preview.IPalmRejectionDelayZonePreview_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPalmRejectionDelayZonePreview.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Input.Inking.Preview;

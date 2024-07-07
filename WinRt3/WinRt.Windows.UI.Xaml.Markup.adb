@@ -45,12 +45,12 @@ package body WinRt.Windows.UI.Xaml.Markup is
    end;
 
    procedure Finalize (this : in out MarkupExtension) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMarkupExtension, IMarkupExtension_Ptr);
    begin
       if this.m_IMarkupExtension /= null then
          if this.m_IMarkupExtension.all /= null then
-            RefCount := this.m_IMarkupExtension.all.Release;
+            temp := this.m_IMarkupExtension.all.Release;
             Free (this.m_IMarkupExtension);
          end if;
       end if;
@@ -66,9 +66,10 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return MarkupExtension is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.MarkupExtension");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.MarkupExtension");
       m_Factory    : access IMarkupExtensionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Markup.IMarkupExtension;
    begin
       return RetVal : MarkupExtension do
@@ -77,9 +78,9 @@ package body WinRt.Windows.UI.Xaml.Markup is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMarkupExtension := new Windows.UI.Xaml.Markup.IMarkupExtension;
             Retval.m_IMarkupExtension.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -92,14 +93,18 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Markup.IMarkupExtensionOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Markup.IMarkupExtension_Interface, WinRt.Windows.UI.Xaml.Markup.IMarkupExtensionOverrides, WinRt.Windows.UI.Xaml.Markup.IID_IMarkupExtensionOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMarkupExtension.all);
       Hr := m_Interface.ProvideValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -112,12 +117,12 @@ package body WinRt.Windows.UI.Xaml.Markup is
    end;
 
    procedure Finalize (this : in out XamlBinaryWriter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlBinaryWriter, IXamlBinaryWriter_Ptr);
    begin
       if this.m_IXamlBinaryWriter /= null then
          if this.m_IXamlBinaryWriter.all /= null then
-            RefCount := this.m_IXamlBinaryWriter.all.Release;
+            temp := this.m_IXamlBinaryWriter.all.Release;
             Free (this.m_IXamlBinaryWriter);
          end if;
       end if;
@@ -134,17 +139,21 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return WinRt.Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBinaryWriter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBinaryWriter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBinaryWriterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBinaryWriterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Write (inputStreams, outputStreams, xamlMetadataProvider, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -160,12 +169,12 @@ package body WinRt.Windows.UI.Xaml.Markup is
    end;
 
    procedure Finalize (this : in out XamlBindingHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlBindingHelper, IXamlBindingHelper_Ptr);
    begin
       if this.m_IXamlBindingHelper /= null then
          if this.m_IXamlBindingHelper.all /= null then
-            RefCount := this.m_IXamlBindingHelper.all.Release;
+            temp := this.m_IXamlBindingHelper.all.Release;
             Free (this.m_IXamlBindingHelper);
          end if;
       end if;
@@ -177,20 +186,24 @@ package body WinRt.Windows.UI.Xaml.Markup is
    function get_DataTemplateComponentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DataTemplateComponentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -200,17 +213,21 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Markup.IDataTemplateComponent;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDataTemplateComponent (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -220,16 +237,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.UI.Xaml.Markup.IDataTemplateComponent
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetDataTemplateComponent (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SuspendRendering
@@ -237,16 +258,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       target : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SuspendRendering (target.m_IUIElement.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ResumeRendering
@@ -254,16 +279,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       target : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ResumeRendering (target.m_IUIElement.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function ConvertValue
@@ -273,17 +302,21 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ConvertValue (type_x, value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -294,18 +327,22 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromString (dependencyObject, propertyToSet.m_IDependencyProperty.all, HStr_value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_value);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure SetPropertyFromBoolean
@@ -315,16 +352,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromBoolean (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromChar16
@@ -334,16 +375,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Wide_Char
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromChar16 (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromDateTime
@@ -353,16 +398,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromDateTime (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromDouble
@@ -372,16 +421,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromDouble (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromInt32
@@ -391,16 +444,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromInt32 (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromUInt32
@@ -410,16 +467,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromUInt32 (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromInt64
@@ -429,16 +490,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Int64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromInt64 (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromUInt64
@@ -448,16 +513,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromUInt64 (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromSingle
@@ -467,16 +536,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromSingle (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromPoint
@@ -486,16 +559,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromPoint (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromRect
@@ -505,16 +582,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromRect (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromSize
@@ -524,16 +605,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromSize (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromTimeSpan
@@ -543,16 +628,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromTimeSpan (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromByte
@@ -562,16 +651,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromByte (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromUri
@@ -581,16 +674,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromUri (dependencyObject, propertyToSet.m_IDependencyProperty.all, value.m_IUriRuntimeClass.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetPropertyFromObject
@@ -600,16 +697,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPropertyFromObject (dependencyObject, propertyToSet.m_IDependencyProperty.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -624,12 +725,12 @@ package body WinRt.Windows.UI.Xaml.Markup is
    end;
 
    procedure Finalize (this : in out XamlMarkupHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlMarkupHelper, IXamlMarkupHelper_Ptr);
    begin
       if this.m_IXamlMarkupHelper /= null then
          if this.m_IXamlMarkupHelper.all /= null then
-            RefCount := this.m_IXamlMarkupHelper.all.Release;
+            temp := this.m_IXamlMarkupHelper.all.Release;
             Free (this.m_IXamlMarkupHelper);
          end if;
       end if;
@@ -643,16 +744,20 @@ package body WinRt.Windows.UI.Xaml.Markup is
       element : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlMarkupHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlMarkupHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlMarkupHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlMarkupHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.UnloadObject (element.m_IDependencyObject.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -667,12 +772,12 @@ package body WinRt.Windows.UI.Xaml.Markup is
    end;
 
    procedure Finalize (this : in out XamlReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlReader, IXamlReader_Ptr);
    begin
       if this.m_IXamlReader /= null then
          if this.m_IXamlReader.all /= null then
-            RefCount := this.m_IXamlReader.all.Release;
+            temp := this.m_IXamlReader.all.Release;
             Free (this.m_IXamlReader);
          end if;
       end if;
@@ -687,19 +792,23 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlReader");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_xaml : WinRt.HString := To_HString (xaml);
+      HStr_xaml : constant WinRt.HString := To_HString (xaml);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlReaderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Load (HStr_xaml, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_xaml);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_xaml);
       return m_ComRetVal;
    end;
 
@@ -709,19 +818,23 @@ package body WinRt.Windows.UI.Xaml.Markup is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlReader");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_xaml : WinRt.HString := To_HString (xaml);
+      HStr_xaml : constant WinRt.HString := To_HString (xaml);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlReaderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.LoadWithInitialTemplateValidation (HStr_xaml, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_xaml);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_xaml);
       return m_ComRetVal;
    end;
 

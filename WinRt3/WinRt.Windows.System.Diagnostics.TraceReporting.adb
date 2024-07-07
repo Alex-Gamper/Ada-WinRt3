@@ -43,17 +43,21 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsScenarioEnabled (scenarioId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -68,19 +72,23 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
-         HStr_outputDirectory : WinRt.HString := To_HString (outputDirectory);
+         HStr_outputDirectory : constant WinRt.HString := To_HString (outputDirectory);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryEscalateScenario (scenarioId, escalationType, HStr_outputDirectory, timestampOutputDirectory, forceEscalationUpload, triggers, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_outputDirectory);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_outputDirectory);
          return m_ComRetVal;
       end;
 
@@ -94,38 +102,46 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState;
-         HStr_partner : WinRt.HString := To_HString (partner);
-         HStr_feature : WinRt.HString := To_HString (feature);
+         HStr_partner : constant WinRt.HString := To_HString (partner);
+         HStr_feature : constant WinRt.HString := To_HString (feature);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DownloadLatestSettingsForNamespace (HStr_partner, HStr_feature, isScenarioNamespace, downloadOverCostedNetwork, downloadOverBattery, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_partner);
-         Hr := WindowsDeleteString (HStr_feature);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_partner);
+         tmp := WindowsDeleteString (HStr_feature);
          return m_ComRetVal;
       end;
 
       function GetActiveScenarioList
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetActiveScenarioList (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -137,17 +153,21 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ForceUpload (latency, uploadOverCostedNetwork, uploadOverBattery, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -159,17 +179,21 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotState is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotState;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsTraceRunning (slotType, scenarioId, traceProfileHash, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -179,20 +203,24 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceRuntimeInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticTraceRuntimeInfo;
       begin
          return RetVal : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceRuntimeInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetActiveTraceRuntime (slotType, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IPlatformDiagnosticTraceRuntimeInfo := new Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticTraceRuntimeInfo;
                Retval.m_IPlatformDiagnosticTraceRuntimeInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -202,17 +230,21 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActions");
          m_Factory        : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticActionsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticActionsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetKnownTraceList (slotType, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -227,12 +259,12 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    end;
 
    procedure Finalize (this : in out PlatformDiagnosticTraceInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlatformDiagnosticTraceInfo, IPlatformDiagnosticTraceInfo_Ptr);
    begin
       if this.m_IPlatformDiagnosticTraceInfo /= null then
          if this.m_IPlatformDiagnosticTraceInfo.all /= null then
-            RefCount := this.m_IPlatformDiagnosticTraceInfo.all.Release;
+            temp := this.m_IPlatformDiagnosticTraceInfo.all.Release;
             Free (this.m_IPlatformDiagnosticTraceInfo);
          end if;
       end if;
@@ -247,10 +279,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlatformDiagnosticTraceInfo.all.get_ScenarioId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -260,10 +296,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IPlatformDiagnosticTraceInfo.all.get_ProfileHash (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -273,10 +313,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPlatformDiagnosticTraceInfo.all.get_IsExclusive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,10 +330,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPlatformDiagnosticTraceInfo.all.get_IsAutoLogger (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -299,10 +347,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IPlatformDiagnosticTraceInfo.all.get_MaxTraceDurationFileTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -312,10 +364,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTracePriority is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTracePriority;
    begin
       Hr := this.m_IPlatformDiagnosticTraceInfo.all.get_Priority (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -328,12 +384,12 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    end;
 
    procedure Finalize (this : in out PlatformDiagnosticTraceRuntimeInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlatformDiagnosticTraceRuntimeInfo, IPlatformDiagnosticTraceRuntimeInfo_Ptr);
    begin
       if this.m_IPlatformDiagnosticTraceRuntimeInfo /= null then
          if this.m_IPlatformDiagnosticTraceRuntimeInfo.all /= null then
-            RefCount := this.m_IPlatformDiagnosticTraceRuntimeInfo.all.Release;
+            temp := this.m_IPlatformDiagnosticTraceRuntimeInfo.all.Release;
             Free (this.m_IPlatformDiagnosticTraceRuntimeInfo);
          end if;
       end if;
@@ -348,10 +404,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IPlatformDiagnosticTraceRuntimeInfo.all.get_RuntimeFileTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -361,10 +421,14 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IPlatformDiagnosticTraceRuntimeInfo.all.get_EtwRuntimeFileTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

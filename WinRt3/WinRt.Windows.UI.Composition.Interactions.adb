@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out CompositionConditionalValue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionConditionalValue, ICompositionConditionalValue_Ptr);
    begin
       if this.m_ICompositionConditionalValue /= null then
          if this.m_ICompositionConditionalValue.all /= null then
-            RefCount := this.m_ICompositionConditionalValue.all.Release;
+            temp := this.m_ICompositionConditionalValue.all.Release;
             Free (this.m_ICompositionConditionalValue);
          end if;
       end if;
@@ -66,20 +66,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.CompositionConditionalValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.CompositionConditionalValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.CompositionConditionalValue");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.ICompositionConditionalValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.ICompositionConditionalValue;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.CompositionConditionalValue do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionConditionalValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICompositionConditionalValue := new Windows.UI.Composition.Interactions.ICompositionConditionalValue;
             Retval.m_ICompositionConditionalValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -92,11 +96,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_ICompositionConditionalValue.all.get_Condition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -108,9 +116,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionConditionalValue.all.put_Condition (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Value
@@ -119,11 +131,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_ICompositionConditionalValue.all.get_Value (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -135,9 +151,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionConditionalValue.all.put_Value (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -149,12 +169,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out CompositionInteractionSourceCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionInteractionSourceCollection, ICompositionInteractionSourceCollection_Ptr);
    begin
       if this.m_ICompositionInteractionSourceCollection /= null then
          if this.m_ICompositionInteractionSourceCollection.all /= null then
-            RefCount := this.m_ICompositionInteractionSourceCollection.all.Release;
+            temp := this.m_ICompositionInteractionSourceCollection.all.Release;
             Free (this.m_ICompositionInteractionSourceCollection);
          end if;
       end if;
@@ -169,10 +189,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ICompositionInteractionSourceCollection.all.get_Count (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -182,9 +206,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.ICompositionInteractionSource
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionInteractionSourceCollection.all.Add (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -193,9 +221,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.ICompositionInteractionSource
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionInteractionSourceCollection.all.Remove (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAll
@@ -203,9 +235,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       this : in out CompositionInteractionSourceCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionInteractionSourceCollection.all.RemoveAll;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Interactions.ICompositionInteractionSource>
@@ -215,15 +251,19 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionInteractionSource.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (398790177, 52080, 23083, (183, 151, 168, 220, 1, 169, 145, 19 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSourceCollection_Interface, IIterable_ICompositionInteractionSource.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionInteractionSourceCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -236,12 +276,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionSourceConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionSourceConfiguration, IInteractionSourceConfiguration_Ptr);
    begin
       if this.m_IInteractionSourceConfiguration /= null then
          if this.m_IInteractionSourceConfiguration.all /= null then
-            RefCount := this.m_IInteractionSourceConfiguration.all.Release;
+            temp := this.m_IInteractionSourceConfiguration.all.Release;
             Free (this.m_IInteractionSourceConfiguration);
          end if;
       end if;
@@ -256,10 +296,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode;
    begin
       Hr := this.m_IInteractionSourceConfiguration.all.get_PositionXSourceMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -269,9 +313,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionSourceConfiguration.all.put_PositionXSourceMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PositionYSourceMode
@@ -280,10 +328,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode;
    begin
       Hr := this.m_IInteractionSourceConfiguration.all.get_PositionYSourceMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -293,9 +345,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionSourceConfiguration.all.put_PositionYSourceMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScaleSourceMode
@@ -304,10 +360,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode;
    begin
       Hr := this.m_IInteractionSourceConfiguration.all.get_ScaleSourceMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -317,9 +377,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionSourceConfiguration.all.put_ScaleSourceMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -331,12 +395,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTracker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTracker, IInteractionTracker_Ptr);
    begin
       if this.m_IInteractionTracker /= null then
          if this.m_IInteractionTracker.all /= null then
-            RefCount := this.m_IInteractionTracker.all.Release;
+            temp := this.m_IInteractionTracker.all.Release;
             Free (this.m_IInteractionTracker);
          end if;
       end if;
@@ -351,20 +415,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTracker is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTracker;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionTracker do
          Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInteractionTracker := new Windows.UI.Composition.Interactions.IInteractionTracker;
             Retval.m_IInteractionTracker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -375,20 +443,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTracker is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTracker;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionTracker do
          Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithOwner (compositor.m_ICompositor.all, owner, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInteractionTracker := new Windows.UI.Composition.Interactions.IInteractionTracker;
             Retval.m_IInteractionTracker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -399,16 +471,20 @@ package body WinRt.Windows.UI.Composition.Interactions is
       axisMode : Windows.UI.Composition.Interactions.InteractionBindingAxisModes
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, axisMode);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetBindingMode
@@ -418,17 +494,21 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTracker");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionBindingAxisModes;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -441,11 +521,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.CompositionInteractionSourceCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.ICompositionInteractionSourceCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.CompositionInteractionSourceCollection do
          Hr := this.m_IInteractionTracker.all.get_InteractionSources (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionInteractionSourceCollection := new Windows.UI.Composition.Interactions.ICompositionInteractionSourceCollection;
          Retval.m_ICompositionInteractionSourceCollection.all := m_ComRetVal;
       end return;
@@ -457,10 +541,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInteractionTracker.all.get_IsPositionRoundingSuggested (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -470,10 +558,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTracker.all.get_MaxPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -483,9 +575,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.put_MaxPosition (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxScale
@@ -494,10 +590,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTracker.all.get_MaxScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -507,9 +607,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.put_MaxScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinPosition
@@ -518,10 +622,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTracker.all.get_MinPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -531,9 +639,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.put_MinPosition (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinScale
@@ -542,10 +654,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTracker.all.get_MinScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -555,9 +671,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.put_MinScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NaturalRestingPosition
@@ -566,10 +686,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTracker.all.get_NaturalRestingPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -579,10 +703,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTracker.all.get_NaturalRestingScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -592,10 +720,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerOwner is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTrackerOwner;
    begin
       Hr := this.m_IInteractionTracker.all.get_Owner (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -605,10 +737,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTracker.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -618,13 +754,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return IReference_Vector3.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_IInteractionTracker.all.get_PositionInertiaDecayRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Vector3 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -634,9 +774,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.put_PositionInertiaDecayRate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PositionVelocityInPixelsPerSecond
@@ -645,10 +789,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTracker.all.get_PositionVelocityInPixelsPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -658,10 +806,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTracker.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -671,13 +823,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return IReference_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IInteractionTracker.all.get_ScaleInertiaDecayRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -687,9 +843,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.put_ScaleInertiaDecayRate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScaleVelocityInPercentPerSecond
@@ -698,10 +858,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTracker.all.get_ScaleVelocityInPercentPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -712,9 +876,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       positionThreshold : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.AdjustPositionXIfGreaterThanThreshold (adjustment, positionThreshold);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AdjustPositionYIfGreaterThanThreshold
@@ -724,9 +892,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       positionThreshold : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.AdjustPositionYIfGreaterThanThreshold (adjustment, positionThreshold);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigurePositionXInertiaModifiers
@@ -735,9 +907,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       modifiers : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.ConfigurePositionXInertiaModifiers (modifiers);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigurePositionYInertiaModifiers
@@ -746,9 +922,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       modifiers : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.ConfigurePositionYInertiaModifiers (modifiers);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureScaleInertiaModifiers
@@ -757,9 +937,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       modifiers : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTracker.all.ConfigureScaleInertiaModifiers (modifiers);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryUpdatePosition
@@ -769,10 +953,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdatePosition (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -783,10 +971,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdatePositionBy (amount, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -797,10 +989,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdatePositionWithAnimation (animation.m_ICompositionAnimation.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -811,10 +1007,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdatePositionWithAdditionalVelocity (velocityInPixelsPerSecond, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -826,10 +1026,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdateScale (value, centerPoint, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -841,10 +1045,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdateScaleWithAnimation (animation.m_ICompositionAnimation.all, centerPoint, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -856,10 +1064,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTracker.all.TryUpdateScaleWithAdditionalVelocity (velocityInPercentPerSecond, centerPoint, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -869,13 +1081,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker2, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.ConfigureCenterPointXInertiaModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureCenterPointYInertiaModifiers
@@ -884,13 +1100,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker2, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.ConfigureCenterPointYInertiaModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureVector2PositionInertiaModifiers
@@ -899,13 +1119,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       modifiers : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker3, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.ConfigureVector2PositionInertiaModifiers (modifiers);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryUpdatePosition
@@ -916,14 +1140,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker4, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.TryUpdatePosition (value, option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -935,14 +1163,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker4, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.TryUpdatePositionBy (amount, option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -952,14 +1184,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker4, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.get_IsInertiaFromImpulse (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -972,14 +1208,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTracker_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTracker5, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTracker5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTracker.all);
       Hr := m_Interface.TryUpdatePosition (value, option, posUpdateOption, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -992,12 +1232,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerCustomAnimationStateEnteredArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerCustomAnimationStateEnteredArgs, IInteractionTrackerCustomAnimationStateEnteredArgs_Ptr);
    begin
       if this.m_IInteractionTrackerCustomAnimationStateEnteredArgs /= null then
          if this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all /= null then
-            RefCount := this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all.Release;
+            temp := this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all.Release;
             Free (this.m_IInteractionTrackerCustomAnimationStateEnteredArgs);
          end if;
       end if;
@@ -1012,10 +1252,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1025,14 +1269,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs2, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTrackerCustomAnimationStateEnteredArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all);
       Hr := m_Interface.get_IsFromBinding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1045,12 +1293,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerIdleStateEnteredArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerIdleStateEnteredArgs, IInteractionTrackerIdleStateEnteredArgs_Ptr);
    begin
       if this.m_IInteractionTrackerIdleStateEnteredArgs /= null then
          if this.m_IInteractionTrackerIdleStateEnteredArgs.all /= null then
-            RefCount := this.m_IInteractionTrackerIdleStateEnteredArgs.all.Release;
+            temp := this.m_IInteractionTrackerIdleStateEnteredArgs.all.Release;
             Free (this.m_IInteractionTrackerIdleStateEnteredArgs);
          end if;
       end if;
@@ -1065,10 +1313,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTrackerIdleStateEnteredArgs.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1078,14 +1330,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerIdleStateEnteredArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerIdleStateEnteredArgs_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerIdleStateEnteredArgs2, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTrackerIdleStateEnteredArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTrackerIdleStateEnteredArgs.all);
       Hr := m_Interface.get_IsFromBinding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1098,12 +1354,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerInertiaModifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerInertiaModifier, IInteractionTrackerInertiaModifier_Ptr);
    begin
       if this.m_IInteractionTrackerInertiaModifier /= null then
          if this.m_IInteractionTrackerInertiaModifier.all /= null then
-            RefCount := this.m_IInteractionTrackerInertiaModifier.all.Release;
+            temp := this.m_IInteractionTrackerInertiaModifier.all.Release;
             Free (this.m_IInteractionTrackerInertiaModifier);
          end if;
       end if;
@@ -1124,12 +1380,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerInertiaMotion) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerInertiaMotion, IInteractionTrackerInertiaMotion_Ptr);
    begin
       if this.m_IInteractionTrackerInertiaMotion /= null then
          if this.m_IInteractionTrackerInertiaMotion.all /= null then
-            RefCount := this.m_IInteractionTrackerInertiaMotion.all.Release;
+            temp := this.m_IInteractionTrackerInertiaMotion.all.Release;
             Free (this.m_IInteractionTrackerInertiaMotion);
          end if;
       end if;
@@ -1144,20 +1400,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaMotion is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerInertiaMotion");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerInertiaMotion");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaMotionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTrackerInertiaMotion;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaMotion do
          Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerInertiaMotionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInteractionTrackerInertiaMotion := new Windows.UI.Composition.Interactions.IInteractionTrackerInertiaMotion;
             Retval.m_IInteractionTrackerInertiaMotion.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1170,11 +1430,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_IInteractionTrackerInertiaMotion.all.get_Condition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -1186,9 +1450,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerInertiaMotion.all.put_Condition (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Motion
@@ -1197,11 +1465,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_IInteractionTrackerInertiaMotion.all.get_Motion (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -1213,9 +1485,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerInertiaMotion.all.put_Motion (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1227,12 +1503,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerInertiaNaturalMotion) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerInertiaNaturalMotion, IInteractionTrackerInertiaNaturalMotion_Ptr);
    begin
       if this.m_IInteractionTrackerInertiaNaturalMotion /= null then
          if this.m_IInteractionTrackerInertiaNaturalMotion.all /= null then
-            RefCount := this.m_IInteractionTrackerInertiaNaturalMotion.all.Release;
+            temp := this.m_IInteractionTrackerInertiaNaturalMotion.all.Release;
             Free (this.m_IInteractionTrackerInertiaNaturalMotion);
          end if;
       end if;
@@ -1247,20 +1523,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaNaturalMotionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTrackerInertiaNaturalMotion;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion do
          Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerInertiaNaturalMotionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInteractionTrackerInertiaNaturalMotion := new Windows.UI.Composition.Interactions.IInteractionTrackerInertiaNaturalMotion;
             Retval.m_IInteractionTrackerInertiaNaturalMotion.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1273,11 +1553,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_IInteractionTrackerInertiaNaturalMotion.all.get_Condition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -1289,9 +1573,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerInertiaNaturalMotion.all.put_Condition (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NaturalMotion
@@ -1300,11 +1588,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ScalarNaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IScalarNaturalMotionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ScalarNaturalMotionAnimation do
          Hr := this.m_IInteractionTrackerInertiaNaturalMotion.all.get_NaturalMotion (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IScalarNaturalMotionAnimation := new Windows.UI.Composition.IScalarNaturalMotionAnimation;
          Retval.m_IScalarNaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -1316,9 +1608,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ScalarNaturalMotionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerInertiaNaturalMotion.all.put_NaturalMotion (value.m_IScalarNaturalMotionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1330,12 +1626,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerInertiaRestingValue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerInertiaRestingValue, IInteractionTrackerInertiaRestingValue_Ptr);
    begin
       if this.m_IInteractionTrackerInertiaRestingValue /= null then
          if this.m_IInteractionTrackerInertiaRestingValue.all /= null then
-            RefCount := this.m_IInteractionTrackerInertiaRestingValue.all.Release;
+            temp := this.m_IInteractionTrackerInertiaRestingValue.all.Release;
             Free (this.m_IInteractionTrackerInertiaRestingValue);
          end if;
       end if;
@@ -1350,20 +1646,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaRestingValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTrackerInertiaRestingValue;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue do
          Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerInertiaRestingValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInteractionTrackerInertiaRestingValue := new Windows.UI.Composition.Interactions.IInteractionTrackerInertiaRestingValue;
             Retval.m_IInteractionTrackerInertiaRestingValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1376,11 +1676,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_IInteractionTrackerInertiaRestingValue.all.get_Condition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -1392,9 +1696,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerInertiaRestingValue.all.put_Condition (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RestingValue
@@ -1403,11 +1711,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_IInteractionTrackerInertiaRestingValue.all.get_RestingValue (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -1419,9 +1731,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerInertiaRestingValue.all.put_RestingValue (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1433,12 +1749,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerInertiaStateEnteredArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerInertiaStateEnteredArgs, IInteractionTrackerInertiaStateEnteredArgs_Ptr);
    begin
       if this.m_IInteractionTrackerInertiaStateEnteredArgs /= null then
          if this.m_IInteractionTrackerInertiaStateEnteredArgs.all /= null then
-            RefCount := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.Release;
+            temp := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.Release;
             Free (this.m_IInteractionTrackerInertiaStateEnteredArgs);
          end if;
       end if;
@@ -1453,13 +1769,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return IReference_Vector3.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_ModifiedRestingPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Vector3 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1469,13 +1789,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return IReference_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_ModifiedRestingScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1485,10 +1809,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_NaturalRestingPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1498,10 +1826,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_NaturalRestingScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1511,10 +1843,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_PositionVelocityInPixelsPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1524,10 +1860,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1537,10 +1877,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.get_ScaleVelocityInPercentPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1550,14 +1894,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs2, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTrackerInertiaStateEnteredArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTrackerInertiaStateEnteredArgs.all);
       Hr := m_Interface.get_IsInertiaFromImpulse (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1567,14 +1915,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs3, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTrackerInertiaStateEnteredArgs3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTrackerInertiaStateEnteredArgs.all);
       Hr := m_Interface.get_IsFromBinding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1587,12 +1939,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerInteractingStateEnteredArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerInteractingStateEnteredArgs, IInteractionTrackerInteractingStateEnteredArgs_Ptr);
    begin
       if this.m_IInteractionTrackerInteractingStateEnteredArgs /= null then
          if this.m_IInteractionTrackerInteractingStateEnteredArgs.all /= null then
-            RefCount := this.m_IInteractionTrackerInteractingStateEnteredArgs.all.Release;
+            temp := this.m_IInteractionTrackerInteractingStateEnteredArgs.all.Release;
             Free (this.m_IInteractionTrackerInteractingStateEnteredArgs);
          end if;
       end if;
@@ -1607,10 +1959,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTrackerInteractingStateEnteredArgs.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1620,14 +1976,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInteractingStateEnteredArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInteractingStateEnteredArgs_Interface, WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInteractingStateEnteredArgs2, WinRt.Windows.UI.Composition.Interactions.IID_IInteractionTrackerInteractingStateEnteredArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInteractionTrackerInteractingStateEnteredArgs.all);
       Hr := m_Interface.get_IsFromBinding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1640,12 +2000,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerRequestIgnoredArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerRequestIgnoredArgs, IInteractionTrackerRequestIgnoredArgs_Ptr);
    begin
       if this.m_IInteractionTrackerRequestIgnoredArgs /= null then
          if this.m_IInteractionTrackerRequestIgnoredArgs.all /= null then
-            RefCount := this.m_IInteractionTrackerRequestIgnoredArgs.all.Release;
+            temp := this.m_IInteractionTrackerRequestIgnoredArgs.all.Release;
             Free (this.m_IInteractionTrackerRequestIgnoredArgs);
          end if;
       end if;
@@ -1660,10 +2020,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTrackerRequestIgnoredArgs.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1676,12 +2040,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerValuesChangedArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerValuesChangedArgs, IInteractionTrackerValuesChangedArgs_Ptr);
    begin
       if this.m_IInteractionTrackerValuesChangedArgs /= null then
          if this.m_IInteractionTrackerValuesChangedArgs.all /= null then
-            RefCount := this.m_IInteractionTrackerValuesChangedArgs.all.Release;
+            temp := this.m_IInteractionTrackerValuesChangedArgs.all.Release;
             Free (this.m_IInteractionTrackerValuesChangedArgs);
          end if;
       end if;
@@ -1696,10 +2060,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IInteractionTrackerValuesChangedArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1709,10 +2077,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInteractionTrackerValuesChangedArgs.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1722,10 +2094,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInteractionTrackerValuesChangedArgs.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1738,12 +2114,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerVector2InertiaModifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerVector2InertiaModifier, IInteractionTrackerVector2InertiaModifier_Ptr);
    begin
       if this.m_IInteractionTrackerVector2InertiaModifier /= null then
          if this.m_IInteractionTrackerVector2InertiaModifier.all /= null then
-            RefCount := this.m_IInteractionTrackerVector2InertiaModifier.all.Release;
+            temp := this.m_IInteractionTrackerVector2InertiaModifier.all.Release;
             Free (this.m_IInteractionTrackerVector2InertiaModifier);
          end if;
       end if;
@@ -1764,12 +2140,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out InteractionTrackerVector2InertiaNaturalMotion) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInteractionTrackerVector2InertiaNaturalMotion, IInteractionTrackerVector2InertiaNaturalMotion_Ptr);
    begin
       if this.m_IInteractionTrackerVector2InertiaNaturalMotion /= null then
          if this.m_IInteractionTrackerVector2InertiaNaturalMotion.all /= null then
-            RefCount := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.Release;
+            temp := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.Release;
             Free (this.m_IInteractionTrackerVector2InertiaNaturalMotion);
          end if;
       end if;
@@ -1784,20 +2160,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerVector2InertiaNaturalMotionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionTrackerVector2InertiaNaturalMotion;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion do
          Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerVector2InertiaNaturalMotionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInteractionTrackerVector2InertiaNaturalMotion := new Windows.UI.Composition.Interactions.IInteractionTrackerVector2InertiaNaturalMotion;
             Retval.m_IInteractionTrackerVector2InertiaNaturalMotion.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1810,11 +2190,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.ExpressionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.get_Condition (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
@@ -1826,9 +2210,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.ExpressionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.put_Condition (value.m_IExpressionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NaturalMotion
@@ -1837,11 +2225,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Vector2NaturalMotionAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVector2NaturalMotionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector2NaturalMotionAnimation do
          Hr := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.get_NaturalMotion (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVector2NaturalMotionAnimation := new Windows.UI.Composition.IVector2NaturalMotionAnimation;
          Retval.m_IVector2NaturalMotionAnimation.all := m_ComRetVal;
       end return;
@@ -1853,9 +2245,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Vector2NaturalMotionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.put_NaturalMotion (value.m_IVector2NaturalMotionAnimation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1867,12 +2263,12 @@ package body WinRt.Windows.UI.Composition.Interactions is
    end;
 
    procedure Finalize (this : in out VisualInteractionSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisualInteractionSource, IVisualInteractionSource_Ptr);
    begin
       if this.m_IVisualInteractionSource /= null then
          if this.m_IVisualInteractionSource.all /= null then
-            RefCount := this.m_IVisualInteractionSource.all.Release;
+            temp := this.m_IVisualInteractionSource.all.Release;
             Free (this.m_IVisualInteractionSource);
          end if;
       end if;
@@ -1890,20 +2286,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.VisualInteractionSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.VisualInteractionSource");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IVisualInteractionSource;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource do
          Hr := RoGetActivationFactory (m_hString, IID_IVisualInteractionSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIVisualElement (source, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVisualInteractionSource := new Windows.UI.Composition.Interactions.IVisualInteractionSource;
             Retval.m_IVisualInteractionSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1913,20 +2313,24 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.VisualInteractionSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Interactions.VisualInteractionSource");
       m_Factory        : access WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IVisualInteractionSource;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource do
          Hr := RoGetActivationFactory (m_hString, IID_IVisualInteractionSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (source.m_IVisual.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVisualInteractionSource := new Windows.UI.Composition.Interactions.IVisualInteractionSource;
             Retval.m_IVisualInteractionSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1939,10 +2343,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_IsPositionXRailsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1952,9 +2360,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_IsPositionXRailsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsPositionYRailsEnabled
@@ -1963,10 +2375,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_IsPositionYRailsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1976,9 +2392,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_IsPositionYRailsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ManipulationRedirectionMode
@@ -1987,10 +2407,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_ManipulationRedirectionMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2000,9 +2424,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_ManipulationRedirectionMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PositionXChainingMode
@@ -2011,10 +2439,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionChainingMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_PositionXChainingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2024,9 +2456,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionChainingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_PositionXChainingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PositionXSourceMode
@@ -2035,10 +2471,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionSourceMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_PositionXSourceMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2048,9 +2488,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionSourceMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_PositionXSourceMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PositionYChainingMode
@@ -2059,10 +2503,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionChainingMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_PositionYChainingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2072,9 +2520,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionChainingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_PositionYChainingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PositionYSourceMode
@@ -2083,10 +2535,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionSourceMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_PositionYSourceMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2096,9 +2552,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionSourceMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_PositionYSourceMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScaleChainingMode
@@ -2107,10 +2567,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionChainingMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_ScaleChainingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2120,9 +2584,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionChainingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_ScaleChainingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScaleSourceMode
@@ -2131,10 +2599,14 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.InteractionSourceMode;
    begin
       Hr := this.m_IVisualInteractionSource.all.get_ScaleSourceMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2144,9 +2616,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       value : Windows.UI.Composition.Interactions.InteractionSourceMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.put_ScaleSourceMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -2155,11 +2631,15 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Visual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IVisualInteractionSource.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisual := new Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
@@ -2171,9 +2651,13 @@ package body WinRt.Windows.UI.Composition.Interactions is
       pointerPoint : Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualInteractionSource.all.TryRedirectForManipulation (pointerPoint.m_IPointerPoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeltaPosition
@@ -2182,14 +2666,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.get_DeltaPosition (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2199,14 +2687,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.get_DeltaScale (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2216,14 +2708,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.get_Position (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2233,14 +2729,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.get_PositionVelocity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2250,14 +2750,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.get_Scale (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2267,14 +2771,18 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.get_ScaleVelocity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2284,13 +2792,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.ConfigureCenterPointXModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureCenterPointYModifiers
@@ -2299,13 +2811,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.ConfigureCenterPointYModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureDeltaPositionXModifiers
@@ -2314,13 +2830,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.ConfigureDeltaPositionXModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureDeltaPositionYModifiers
@@ -2329,13 +2849,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.ConfigureDeltaPositionYModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConfigureDeltaScaleModifiers
@@ -2344,13 +2868,17 @@ package body WinRt.Windows.UI.Composition.Interactions is
       conditionalValues : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource2, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisualInteractionSource.all);
       Hr := m_Interface.ConfigureDeltaScaleModifiers (conditionalValues);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerWheelConfig
@@ -2359,15 +2887,19 @@ package body WinRt.Windows.UI.Composition.Interactions is
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionSourceConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Interactions.IInteractionSourceConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource_Interface, WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource3, WinRt.Windows.UI.Composition.Interactions.IID_IVisualInteractionSource3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.Interactions.InteractionSourceConfiguration do
          m_Interface := QInterface (this.m_IVisualInteractionSource.all);
          Hr := m_Interface.get_PointerWheelConfig (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInteractionSourceConfiguration := new Windows.UI.Composition.Interactions.IInteractionSourceConfiguration;
          Retval.m_IInteractionSourceConfiguration.all := m_ComRetVal;
       end return;

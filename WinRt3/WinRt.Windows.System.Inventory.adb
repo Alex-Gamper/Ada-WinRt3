@@ -45,12 +45,12 @@ package body WinRt.Windows.System.Inventory is
    end;
 
    procedure Finalize (this : in out InstalledDesktopApp) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInstalledDesktopApp, IInstalledDesktopApp_Ptr);
    begin
       if this.m_IInstalledDesktopApp /= null then
          if this.m_IInstalledDesktopApp.all /= null then
-            RefCount := this.m_IInstalledDesktopApp.all.Release;
+            temp := this.m_IInstalledDesktopApp.all.Release;
             Free (this.m_IInstalledDesktopApp);
          end if;
       end if;
@@ -62,15 +62,15 @@ package body WinRt.Windows.System.Inventory is
    function GetInventoryAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Inventory.InstalledDesktopApp");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Inventory.InstalledDesktopApp");
       m_Factory        : access WinRt.Windows.System.Inventory.IInstalledDesktopAppStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -88,7 +88,7 @@ package body WinRt.Windows.System.Inventory is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -101,10 +101,10 @@ package body WinRt.Windows.System.Inventory is
       Hr := RoGetActivationFactory (m_hString, IID_IInstalledDesktopAppStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetInventoryAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -114,15 +114,15 @@ package body WinRt.Windows.System.Inventory is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -135,13 +135,17 @@ package body WinRt.Windows.System.Inventory is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInstalledDesktopApp.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -151,13 +155,17 @@ package body WinRt.Windows.System.Inventory is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInstalledDesktopApp.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -167,13 +175,17 @@ package body WinRt.Windows.System.Inventory is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInstalledDesktopApp.all.get_Publisher (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -183,13 +195,17 @@ package body WinRt.Windows.System.Inventory is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInstalledDesktopApp.all.get_DisplayVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -199,17 +215,21 @@ package body WinRt.Windows.System.Inventory is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Inventory.IInstalledDesktopApp_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInstalledDesktopApp.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

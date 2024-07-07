@@ -59,12 +59,12 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    end;
 
    procedure Finalize (this : in out RfcommDeviceService) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRfcommDeviceService, IRfcommDeviceService_Ptr);
    begin
       if this.m_IRfcommDeviceService /= null then
          if this.m_IRfcommDeviceService.all /= null then
-            RefCount := this.m_IRfcommDeviceService.all.Release;
+            temp := this.m_IRfcommDeviceService.all.Release;
             Free (this.m_IRfcommDeviceService);
          end if;
       end if;
@@ -79,20 +79,24 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceServiceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRfcommDeviceServiceStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelectorForBluetoothDevice (bluetoothDevice.m_IBluetoothDevice.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -103,20 +107,24 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceServiceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRfcommDeviceServiceStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelectorForBluetoothDevice (bluetoothDevice.m_IBluetoothDevice.all, cacheMode, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -127,20 +135,24 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceServiceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRfcommDeviceServiceStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelectorForBluetoothDeviceAndServiceId (bluetoothDevice.m_IBluetoothDevice.all, serviceId.m_IRfcommServiceId.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -152,20 +164,24 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceServiceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRfcommDeviceServiceStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelectorForBluetoothDeviceAndServiceId (bluetoothDevice.m_IBluetoothDevice.all, serviceId.m_IRfcommServiceId.all, cacheMode, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -175,16 +191,16 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceServiceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_RfcommDeviceService.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -202,7 +218,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_RfcommDeviceService.Kind_Delegate, AsyncOperationCompletedHandler_RfcommDeviceService.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -216,10 +232,10 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommDeviceServiceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -231,16 +247,16 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
                      Retval.m_IRfcommDeviceService := new Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService;
                      Retval.m_IRfcommDeviceService.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -250,20 +266,24 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceServiceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRfcommDeviceServiceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (serviceId.m_IRfcommServiceId.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -276,11 +296,15 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IRfcommDeviceService.all.get_ConnectionHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -292,13 +316,17 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IRfcommDeviceService.all.get_ConnectionServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -308,11 +336,15 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := this.m_IRfcommDeviceService.all.get_ServiceId (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          Retval.m_IRfcommServiceId.all := m_ComRetVal;
       end return;
@@ -324,10 +356,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Networking.Sockets.SocketProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketProtectionLevel;
    begin
       Hr := this.m_IRfcommDeviceService.all.get_ProtectionLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -337,10 +373,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Networking.Sockets.SocketProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketProtectionLevel;
    begin
       Hr := this.m_IRfcommDeviceService.all.get_MaxProtectionLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -350,13 +390,13 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -374,7 +414,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -387,7 +427,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       Hr := this.m_IRfcommDeviceService.all.GetSdpRawAttributesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -397,9 +437,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -414,13 +454,13 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -438,7 +478,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -451,7 +491,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       Hr := this.m_IRfcommDeviceService.all.GetSdpRawAttributesAsync (cacheMode, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -461,9 +501,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -477,15 +517,19 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothDevice'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothDevice;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService2, WinRt.Windows.Devices.Bluetooth.Rfcomm.IID_IRfcommDeviceService2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothDevice do
          m_Interface := QInterface (this.m_IRfcommDeviceService.all);
          Hr := m_Interface.get_Device (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBluetoothDevice := new Windows.Devices.Bluetooth.IBluetoothDevice;
          Retval.m_IBluetoothDevice.all := m_ComRetVal;
       end return;
@@ -496,13 +540,17 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       this : in out RfcommDeviceService
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRfcommDeviceService.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeviceAccessInformation
@@ -511,15 +559,19 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessInformation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceAccessInformation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService3, WinRt.Windows.Devices.Bluetooth.Rfcomm.IID_IRfcommDeviceService3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceAccessInformation do
          m_Interface := QInterface (this.m_IRfcommDeviceService.all);
          Hr := m_Interface.get_DeviceAccessInformation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceAccessInformation := new Windows.Devices.Enumeration.IDeviceAccessInformation;
          Retval.m_IDeviceAccessInformation.all := m_ComRetVal;
       end return;
@@ -531,14 +583,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommDeviceService3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -556,7 +608,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_DeviceAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -569,10 +621,10 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    begin
       m_Interface := QInterface (this.m_IRfcommDeviceService.all);
       Hr := m_Interface.RequestAccessAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -582,9 +634,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -601,12 +653,12 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    end;
 
    procedure Finalize (this : in out RfcommDeviceServicesResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRfcommDeviceServicesResult, IRfcommDeviceServicesResult_Ptr);
    begin
       if this.m_IRfcommDeviceServicesResult /= null then
          if this.m_IRfcommDeviceServicesResult.all /= null then
-            RefCount := this.m_IRfcommDeviceServicesResult.all.Release;
+            temp := this.m_IRfcommDeviceServicesResult.all.Release;
             Free (this.m_IRfcommDeviceServicesResult);
          end if;
       end if;
@@ -621,10 +673,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothError is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IRfcommDeviceServicesResult.all.get_Error (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -634,13 +690,17 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return IVectorView_IRfcommDeviceService.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IRfcommDeviceService.Kind;
    begin
       Hr := this.m_IRfcommDeviceServicesResult.all.get_Services (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IRfcommDeviceService (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -653,12 +713,12 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    end;
 
    procedure Finalize (this : in out RfcommServiceId) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRfcommServiceId, IRfcommServiceId_Ptr);
    begin
       if this.m_IRfcommServiceId /= null then
          if this.m_IRfcommServiceId.all /= null then
-            RefCount := this.m_IRfcommServiceId.all.Release;
+            temp := this.m_IRfcommServiceId.all.Release;
             Free (this.m_IRfcommServiceId);
          end if;
       end if;
@@ -673,20 +733,24 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromUuid (uuid, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -696,140 +760,168 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromShortId (shortId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SerialPort
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SerialPort (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ObexObjectPush
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ObexObjectPush (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ObexFileTransfer
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ObexFileTransfer (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PhoneBookAccessPce
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PhoneBookAccessPce (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PhoneBookAccessPse
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PhoneBookAccessPse (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_GenericFileTransfer
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceIdStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceIdStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_GenericFileTransfer (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
             Retval.m_IRfcommServiceId.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -842,10 +934,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IRfcommServiceId.all.get_Uuid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -855,10 +951,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IRfcommServiceId.all.AsShortId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -868,13 +968,17 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IRfcommServiceId.all.AsString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -887,12 +991,12 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    end;
 
    procedure Finalize (this : in out RfcommServiceProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRfcommServiceProvider, IRfcommServiceProvider_Ptr);
    begin
       if this.m_IRfcommServiceProvider /= null then
          if this.m_IRfcommServiceProvider.all /= null then
-            RefCount := this.m_IRfcommServiceProvider.all.Release;
+            temp := this.m_IRfcommServiceProvider.all.Release;
             Free (this.m_IRfcommServiceProvider);
          end if;
       end if;
@@ -907,15 +1011,15 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProviderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_RfcommServiceProvider.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -933,7 +1037,7 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_RfcommServiceProvider.Kind_Delegate, AsyncOperationCompletedHandler_RfcommServiceProvider.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -947,10 +1051,10 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
          Hr := RoGetActivationFactory (m_hString, IID_IRfcommServiceProviderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (serviceId.m_IRfcommServiceId.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -962,15 +1066,15 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
                      Retval.m_IRfcommServiceProvider := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider;
                      Retval.m_IRfcommServiceProvider.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -983,11 +1087,15 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := this.m_IRfcommServiceProvider.all.get_ServiceId (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          Retval.m_IRfcommServiceId.all := m_ComRetVal;
       end return;
@@ -999,10 +1107,14 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IRfcommServiceProvider.all.get_SdpRawAttributes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1012,9 +1124,13 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       listener : Windows.Networking.Sockets.StreamSocketListener'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRfcommServiceProvider.all.StartAdvertising (listener.m_IStreamSocketListener.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopAdvertising
@@ -1022,9 +1138,13 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       this : in out RfcommServiceProvider
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRfcommServiceProvider.all.StopAdvertising;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartAdvertising
@@ -1034,13 +1154,17 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       radioDiscoverable : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider_Interface, WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider2, WinRt.Windows.Devices.Bluetooth.Rfcomm.IID_IRfcommServiceProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRfcommServiceProvider.all);
       Hr := m_Interface.StartAdvertising (listener.m_IStreamSocketListener.all, radioDiscoverable);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.Bluetooth.Rfcomm;

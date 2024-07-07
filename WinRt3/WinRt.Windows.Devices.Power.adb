@@ -46,12 +46,12 @@ package body WinRt.Windows.Devices.Power is
    end;
 
    procedure Finalize (this : in out Battery) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBattery, IBattery_Ptr);
    begin
       if this.m_IBattery /= null then
          if this.m_IBattery.all /= null then
-            RefCount := this.m_IBattery.all.Release;
+            temp := this.m_IBattery.all.Release;
             Free (this.m_IBattery);
          end if;
       end if;
@@ -63,20 +63,24 @@ package body WinRt.Windows.Devices.Power is
    function get_AggregateBattery
    return WinRt.Windows.Devices.Power.Battery is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
       m_Factory        : access WinRt.Windows.Devices.Power.IBatteryStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBattery;
    begin
       return RetVal : WinRt.Windows.Devices.Power.Battery do
          Hr := RoGetActivationFactory (m_hString, IID_IBatteryStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AggregateBattery (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IBattery := new Windows.Devices.Power.IBattery;
             Retval.m_IBattery.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -86,16 +90,16 @@ package body WinRt.Windows.Devices.Power is
    )
    return WinRt.Windows.Devices.Power.Battery is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
       m_Factory        : access WinRt.Windows.Devices.Power.IBatteryStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Battery.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -113,7 +117,7 @@ package body WinRt.Windows.Devices.Power is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Battery.Kind_Delegate, AsyncOperationCompletedHandler_Battery.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -127,10 +131,10 @@ package body WinRt.Windows.Devices.Power is
          Hr := RoGetActivationFactory (m_hString, IID_IBatteryStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -142,36 +146,40 @@ package body WinRt.Windows.Devices.Power is
                      Retval.m_IBattery := new Windows.Devices.Power.IBattery;
                      Retval.m_IBattery.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
       m_Factory        : access WinRt.Windows.Devices.Power.IBatteryStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBatteryStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -184,13 +192,17 @@ package body WinRt.Windows.Devices.Power is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBattery.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -200,11 +212,15 @@ package body WinRt.Windows.Devices.Power is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          Hr := this.m_IBattery.all.GetReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -217,10 +233,14 @@ package body WinRt.Windows.Devices.Power is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBattery.all.add_ReportUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -230,9 +250,13 @@ package body WinRt.Windows.Devices.Power is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBattery.all.remove_ReportUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -244,12 +268,12 @@ package body WinRt.Windows.Devices.Power is
    end;
 
    procedure Finalize (this : in out BatteryReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBatteryReport, IBatteryReport_Ptr);
    begin
       if this.m_IBatteryReport /= null then
          if this.m_IBatteryReport.all /= null then
-            RefCount := this.m_IBatteryReport.all.Release;
+            temp := this.m_IBatteryReport.all.Release;
             Free (this.m_IBatteryReport);
          end if;
       end if;
@@ -264,13 +288,17 @@ package body WinRt.Windows.Devices.Power is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_ChargeRateInMilliwatts (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -280,13 +308,17 @@ package body WinRt.Windows.Devices.Power is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_DesignCapacityInMilliwattHours (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -296,13 +328,17 @@ package body WinRt.Windows.Devices.Power is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_FullChargeCapacityInMilliwattHours (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -312,13 +348,17 @@ package body WinRt.Windows.Devices.Power is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_RemainingCapacityInMilliwattHours (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -328,10 +368,14 @@ package body WinRt.Windows.Devices.Power is
    )
    return WinRt.Windows.System.Power.BatteryStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Power.BatteryStatus;
    begin
       Hr := this.m_IBatteryReport.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

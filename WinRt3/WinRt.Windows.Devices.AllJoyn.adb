@@ -60,12 +60,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynAboutData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynAboutData, IAllJoynAboutData_Ptr);
    begin
       if this.m_IAllJoynAboutData /= null then
          if this.m_IAllJoynAboutData.all /= null then
-            RefCount := this.m_IAllJoynAboutData.all.Release;
+            temp := this.m_IAllJoynAboutData.all.Release;
             Free (this.m_IAllJoynAboutData);
          end if;
       end if;
@@ -80,10 +80,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -93,9 +97,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynAboutData.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DefaultAppName
@@ -104,13 +112,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_DefaultAppName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -120,11 +132,15 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAllJoynAboutData.all.put_DefaultAppName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AppNames
@@ -133,13 +149,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IMap_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_AppNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMap_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -149,13 +169,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_DateOfManufacture (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -165,9 +189,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynAboutData.all.put_DateOfManufacture (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DefaultDescription
@@ -176,13 +204,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_DefaultDescription (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -192,11 +224,15 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAllJoynAboutData.all.put_DefaultDescription (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Descriptions
@@ -205,13 +241,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IMap_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_Descriptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMap_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -221,13 +261,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_DefaultManufacturer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -237,11 +281,15 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAllJoynAboutData.all.put_DefaultManufacturer (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Manufacturers
@@ -250,13 +298,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IMap_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_Manufacturers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMap_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -266,13 +318,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_ModelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -282,11 +338,15 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAllJoynAboutData.all.put_ModelNumber (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SoftwareVersion
@@ -295,13 +355,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_SoftwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -311,11 +375,15 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAllJoynAboutData.all.put_SoftwareVersion (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SupportUrl
@@ -324,11 +392,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAllJoynAboutData.all.get_SupportUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -340,9 +412,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynAboutData.all.put_SupportUrl (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppId
@@ -351,10 +427,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IAllJoynAboutData.all.get_AppId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -364,9 +444,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynAboutData.all.put_AppId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -378,12 +462,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynAboutDataView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynAboutDataView, IAllJoynAboutDataView_Ptr);
    begin
       if this.m_IAllJoynAboutDataView /= null then
          if this.m_IAllJoynAboutDataView.all /= null then
-            RefCount := this.m_IAllJoynAboutDataView.all.Release;
+            temp := this.m_IAllJoynAboutDataView.all.Release;
             Free (this.m_IAllJoynAboutDataView);
          end if;
       end if;
@@ -400,16 +484,16 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAboutDataView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynAboutDataView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynAboutDataView");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynAboutDataViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynAboutDataView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -427,7 +511,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -441,10 +525,10 @@ package body WinRt.Windows.Devices.AllJoyn is
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynAboutDataViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDataBySessionPortAsync (HStr_uniqueName, busAttachment.m_IAllJoynBusAttachment.all, sessionPort, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -456,16 +540,16 @@ package body WinRt.Windows.Devices.AllJoyn is
                      Retval.m_IAllJoynAboutDataView := new Windows.Devices.AllJoyn.IAllJoynAboutDataView;
                      Retval.m_IAllJoynAboutDataView.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
       end return;
    end;
 
@@ -478,16 +562,16 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAboutDataView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynAboutDataView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynAboutDataView");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynAboutDataViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynAboutDataView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -505,7 +589,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -519,10 +603,10 @@ package body WinRt.Windows.Devices.AllJoyn is
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynAboutDataViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDataBySessionPortAsync (HStr_uniqueName, busAttachment.m_IAllJoynBusAttachment.all, sessionPort, language.m_ILanguage.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -534,16 +618,16 @@ package body WinRt.Windows.Devices.AllJoyn is
                      Retval.m_IAllJoynAboutDataView := new Windows.Devices.AllJoyn.IAllJoynAboutDataView;
                      Retval.m_IAllJoynAboutDataView.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
       end return;
    end;
 
@@ -556,10 +640,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -569,13 +657,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -585,13 +677,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_AJSoftwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -601,10 +697,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_AppId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -614,13 +714,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_DateOfManufacture (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -630,11 +734,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Globalization.Language'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_IAllJoynAboutDataView.all.get_DefaultLanguage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILanguage := new Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
@@ -646,13 +754,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -662,13 +774,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_HardwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -678,13 +794,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_ModelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -694,13 +814,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_SoftwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -710,10 +834,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_SupportedLanguages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -723,11 +851,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAllJoynAboutDataView.all.get_SupportUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -739,13 +871,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_AppName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -755,13 +891,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -771,13 +911,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_DeviceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -787,13 +931,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAboutDataView.all.get_Manufacturer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -806,12 +954,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynAcceptSessionJoinerEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynAcceptSessionJoinerEventArgs, IAllJoynAcceptSessionJoinerEventArgs_Ptr);
    begin
       if this.m_IAllJoynAcceptSessionJoinerEventArgs /= null then
          if this.m_IAllJoynAcceptSessionJoinerEventArgs.all /= null then
-            RefCount := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.Release;
+            temp := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.Release;
             Free (this.m_IAllJoynAcceptSessionJoinerEventArgs);
          end if;
       end if;
@@ -830,11 +978,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynAcceptSessionJoinerEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynAcceptSessionJoinerEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynAcceptSessionJoinerEventArgs");
       m_Factory    : access IAllJoynAcceptSessionJoinerEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynAcceptSessionJoinerEventArgs;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
    begin
       return RetVal : AllJoynAcceptSessionJoinerEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynAcceptSessionJoinerEventArgsFactory'Access , m_Factory'Address);
@@ -842,10 +991,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_uniqueName, sessionPort, trafficType, proximity, acceptSessionJoiner, m_ComRetVal'Access);
             Retval.m_IAllJoynAcceptSessionJoinerEventArgs := new Windows.Devices.AllJoyn.IAllJoynAcceptSessionJoinerEventArgs;
             Retval.m_IAllJoynAcceptSessionJoinerEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
       end return;
    end;
 
@@ -858,13 +1007,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.get_UniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -874,10 +1027,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.get_SessionPort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -887,10 +1044,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynTrafficType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynTrafficType;
    begin
       Hr := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.get_TrafficType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -900,10 +1061,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.get_SamePhysicalNode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -913,10 +1078,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.get_SameNetwork (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -925,9 +1094,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       this : in out AllJoynAcceptSessionJoinerEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynAcceptSessionJoinerEventArgs.all.Accept_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -939,12 +1112,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynAuthenticationCompleteEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynAuthenticationCompleteEventArgs, IAllJoynAuthenticationCompleteEventArgs_Ptr);
    begin
       if this.m_IAllJoynAuthenticationCompleteEventArgs /= null then
          if this.m_IAllJoynAuthenticationCompleteEventArgs.all /= null then
-            RefCount := this.m_IAllJoynAuthenticationCompleteEventArgs.all.Release;
+            temp := this.m_IAllJoynAuthenticationCompleteEventArgs.all.Release;
             Free (this.m_IAllJoynAuthenticationCompleteEventArgs);
          end if;
       end if;
@@ -959,10 +1132,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism;
    begin
       Hr := this.m_IAllJoynAuthenticationCompleteEventArgs.all.get_AuthenticationMechanism (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -972,13 +1149,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynAuthenticationCompleteEventArgs.all.get_PeerUniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -988,10 +1169,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAllJoynAuthenticationCompleteEventArgs.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1004,12 +1189,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynBusAttachment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynBusAttachment, IAllJoynBusAttachment_Ptr);
    begin
       if this.m_IAllJoynBusAttachment /= null then
          if this.m_IAllJoynBusAttachment.all /= null then
-            RefCount := this.m_IAllJoynBusAttachment.all.Release;
+            temp := this.m_IAllJoynBusAttachment.all.Release;
             Free (this.m_IAllJoynBusAttachment);
          end if;
       end if;
@@ -1020,7 +1205,8 @@ package body WinRt.Windows.Devices.AllJoyn is
 
    function Constructor return AllJoynBusAttachment is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynBusAttachment;
    begin
       return RetVal : AllJoynBusAttachment do
@@ -1029,7 +1215,7 @@ package body WinRt.Windows.Devices.AllJoyn is
             Retval.m_IAllJoynBusAttachment := new Windows.Devices.AllJoyn.IAllJoynBusAttachment;
             Retval.m_IAllJoynBusAttachment.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1039,11 +1225,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynBusAttachment is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
       m_Factory    : access IAllJoynBusAttachmentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynBusAttachment;
-      HStr_connectionSpecification : WinRt.HString := To_HString (connectionSpecification);
+      HStr_connectionSpecification : constant WinRt.HString := To_HString (connectionSpecification);
    begin
       return RetVal : AllJoynBusAttachment do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynBusAttachmentFactory'Access , m_Factory'Address);
@@ -1051,10 +1238,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_connectionSpecification, m_ComRetVal'Access);
             Retval.m_IAllJoynBusAttachment := new Windows.Devices.AllJoyn.IAllJoynBusAttachment;
             Retval.m_IAllJoynBusAttachment.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_connectionSpecification);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_connectionSpecification);
       end return;
    end;
 
@@ -1064,20 +1251,24 @@ package body WinRt.Windows.Devices.AllJoyn is
    function GetDefault
    return WinRt.Windows.Devices.AllJoyn.AllJoynBusAttachment is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachmentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.IAllJoynBusAttachment;
    begin
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynBusAttachment do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynBusAttachmentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAllJoynBusAttachment := new Windows.Devices.AllJoyn.IAllJoynBusAttachment;
             Retval.m_IAllJoynBusAttachment.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1087,20 +1278,24 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusAttachment");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachmentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynBusAttachmentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetWatcher (requiredInterfaces, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceWatcher := new Windows.Devices.Enumeration.IDeviceWatcher;
             Retval.m_IDeviceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1113,11 +1308,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAboutData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.IAllJoynAboutData;
    begin
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynAboutData do
          Hr := this.m_IAllJoynBusAttachment.all.get_AboutData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAllJoynAboutData := new Windows.Devices.AllJoyn.IAllJoynAboutData;
          Retval.m_IAllJoynAboutData.all := m_ComRetVal;
       end return;
@@ -1129,13 +1328,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.get_ConnectionSpecification (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1145,10 +1348,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynBusAttachmentState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynBusAttachmentState;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1158,13 +1365,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.get_UniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1175,14 +1386,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Int32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1200,7 +1411,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Int32.Kind_Delegate, AsyncOperationCompletedHandler_Int32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1213,7 +1424,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       Hr := this.m_IAllJoynBusAttachment.all.PingAsync (HStr_uniqueName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1223,14 +1434,14 @@ package body WinRt.Windows.Devices.AllJoyn is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_uniqueName);
+      tmp := WindowsDeleteString (HStr_uniqueName);
       return m_RetVal;
    end;
 
@@ -1239,9 +1450,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       this : in out AllJoynBusAttachment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.Connect;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Disconnect
@@ -1249,9 +1464,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       this : in out AllJoynBusAttachment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.Disconnect;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StateChanged
@@ -1261,10 +1480,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.add_StateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1274,9 +1497,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.remove_StateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AuthenticationMechanisms
@@ -1285,13 +1512,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return IVector_AllJoynAuthenticationMechanism.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_AllJoynAuthenticationMechanism.Kind;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.get_AuthenticationMechanisms (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_AllJoynAuthenticationMechanism (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1302,10 +1533,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.add_CredentialsRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1315,9 +1550,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.remove_CredentialsRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CredentialsVerificationRequested
@@ -1327,10 +1566,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.add_CredentialsVerificationRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1340,9 +1583,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.remove_CredentialsVerificationRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AuthenticationComplete
@@ -1352,10 +1599,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.add_AuthenticationComplete (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1365,9 +1616,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusAttachment.all.remove_AuthenticationComplete (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetAboutDataAsync
@@ -1377,14 +1632,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAboutDataView'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynAboutDataView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1402,7 +1657,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1416,10 +1671,10 @@ package body WinRt.Windows.Devices.AllJoyn is
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynAboutDataView do
          m_Interface := QInterface (this.m_IAllJoynBusAttachment.all);
          Hr := m_Interface.GetAboutDataAsync (serviceInfo.m_IAllJoynServiceInfo.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1431,9 +1686,9 @@ package body WinRt.Windows.Devices.AllJoyn is
                   Retval.m_IAllJoynAboutDataView := new Windows.Devices.AllJoyn.IAllJoynAboutDataView;
                   Retval.m_IAllJoynAboutDataView.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1449,14 +1704,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAboutDataView'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynAboutDataView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1474,7 +1729,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynAboutDataView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1488,10 +1743,10 @@ package body WinRt.Windows.Devices.AllJoyn is
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynAboutDataView do
          m_Interface := QInterface (this.m_IAllJoynBusAttachment.all);
          Hr := m_Interface.GetAboutDataAsync (serviceInfo.m_IAllJoynServiceInfo.all, language.m_ILanguage.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1503,9 +1758,9 @@ package body WinRt.Windows.Devices.AllJoyn is
                   Retval.m_IAllJoynAboutDataView := new Windows.Devices.AllJoyn.IAllJoynAboutDataView;
                   Retval.m_IAllJoynAboutDataView.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1520,14 +1775,18 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment_Interface, WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2, WinRt.Windows.Devices.AllJoyn.IID_IAllJoynBusAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAllJoynBusAttachment.all);
       Hr := m_Interface.add_AcceptSessionJoinerRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1537,13 +1796,17 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment_Interface, WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2, WinRt.Windows.Devices.AllJoyn.IID_IAllJoynBusAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAllJoynBusAttachment.all);
       Hr := m_Interface.remove_AcceptSessionJoinerRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SessionJoined
@@ -1553,14 +1816,18 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment_Interface, WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2, WinRt.Windows.Devices.AllJoyn.IID_IAllJoynBusAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAllJoynBusAttachment.all);
       Hr := m_Interface.add_SessionJoined (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1570,13 +1837,17 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment_Interface, WinRt.Windows.Devices.AllJoyn.IAllJoynBusAttachment2, WinRt.Windows.Devices.AllJoyn.IID_IAllJoynBusAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAllJoynBusAttachment.all);
       Hr := m_Interface.remove_SessionJoined (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1588,12 +1859,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynBusAttachmentStateChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynBusAttachmentStateChangedEventArgs, IAllJoynBusAttachmentStateChangedEventArgs_Ptr);
    begin
       if this.m_IAllJoynBusAttachmentStateChangedEventArgs /= null then
          if this.m_IAllJoynBusAttachmentStateChangedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynBusAttachmentStateChangedEventArgs.all.Release;
+            temp := this.m_IAllJoynBusAttachmentStateChangedEventArgs.all.Release;
             Free (this.m_IAllJoynBusAttachmentStateChangedEventArgs);
          end if;
       end if;
@@ -1608,10 +1879,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynBusAttachmentState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynBusAttachmentState;
    begin
       Hr := this.m_IAllJoynBusAttachmentStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1621,10 +1896,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynBusAttachmentStateChangedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1637,12 +1916,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynBusObject) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynBusObject, IAllJoynBusObject_Ptr);
    begin
       if this.m_IAllJoynBusObject /= null then
          if this.m_IAllJoynBusObject.all /= null then
-            RefCount := this.m_IAllJoynBusObject.all.Release;
+            temp := this.m_IAllJoynBusObject.all.Release;
             Free (this.m_IAllJoynBusObject);
          end if;
       end if;
@@ -1657,11 +1936,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynBusObject is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObject");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObject");
       m_Factory    : access IAllJoynBusObjectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynBusObject;
-      HStr_objectPath : WinRt.HString := To_HString (objectPath);
+      HStr_objectPath : constant WinRt.HString := To_HString (objectPath);
    begin
       return RetVal : AllJoynBusObject do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynBusObjectFactory'Access , m_Factory'Address);
@@ -1669,10 +1949,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_objectPath, m_ComRetVal'Access);
             Retval.m_IAllJoynBusObject := new Windows.Devices.AllJoyn.IAllJoynBusObject;
             Retval.m_IAllJoynBusObject.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_objectPath);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_objectPath);
       end return;
    end;
 
@@ -1683,11 +1963,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynBusObject is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObject");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObject");
       m_Factory    : access IAllJoynBusObjectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynBusObject;
-      HStr_objectPath : WinRt.HString := To_HString (objectPath);
+      HStr_objectPath : constant WinRt.HString := To_HString (objectPath);
    begin
       return RetVal : AllJoynBusObject do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynBusObjectFactory'Access , m_Factory'Address);
@@ -1695,16 +1976,17 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.CreateWithBusAttachment (HStr_objectPath, busAttachment.m_IAllJoynBusAttachment.all, m_ComRetVal'Access);
             Retval.m_IAllJoynBusObject := new Windows.Devices.AllJoyn.IAllJoynBusObject;
             Retval.m_IAllJoynBusObject.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_objectPath);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_objectPath);
       end return;
    end;
 
    function Constructor return AllJoynBusObject is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObject");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObject");
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynBusObject;
    begin
       return RetVal : AllJoynBusObject do
@@ -1713,7 +1995,7 @@ package body WinRt.Windows.Devices.AllJoyn is
             Retval.m_IAllJoynBusObject := new Windows.Devices.AllJoyn.IAllJoynBusObject;
             Retval.m_IAllJoynBusObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1725,9 +2007,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       this : in out AllJoynBusObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusObject.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -1735,9 +2021,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       this : in out AllJoynBusObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusObject.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddProducer
@@ -1746,9 +2036,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       producer : Windows.Devices.AllJoyn.IAllJoynProducer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusObject.all.AddProducer (producer);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BusAttachment
@@ -1757,11 +2051,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynBusAttachment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.IAllJoynBusAttachment;
    begin
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynBusAttachment do
          Hr := this.m_IAllJoynBusObject.all.get_BusAttachment (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAllJoynBusAttachment := new Windows.Devices.AllJoyn.IAllJoynBusAttachment;
          Retval.m_IAllJoynBusAttachment.all := m_ComRetVal;
       end return;
@@ -1773,11 +2071,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.IAllJoynSession;
    begin
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynSession do
          Hr := this.m_IAllJoynBusObject.all.get_Session (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAllJoynSession := new Windows.Devices.AllJoyn.IAllJoynSession;
          Retval.m_IAllJoynSession.all := m_ComRetVal;
       end return;
@@ -1790,10 +2092,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynBusObject.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1803,9 +2109,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynBusObject.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1817,12 +2127,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynBusObjectStoppedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynBusObjectStoppedEventArgs, IAllJoynBusObjectStoppedEventArgs_Ptr);
    begin
       if this.m_IAllJoynBusObjectStoppedEventArgs /= null then
          if this.m_IAllJoynBusObjectStoppedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynBusObjectStoppedEventArgs.all.Release;
+            temp := this.m_IAllJoynBusObjectStoppedEventArgs.all.Release;
             Free (this.m_IAllJoynBusObjectStoppedEventArgs);
          end if;
       end if;
@@ -1837,9 +2147,10 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynBusObjectStoppedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObjectStoppedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynBusObjectStoppedEventArgs");
       m_Factory    : access IAllJoynBusObjectStoppedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynBusObjectStoppedEventArgs;
    begin
       return RetVal : AllJoynBusObjectStoppedEventArgs do
@@ -1848,9 +2159,9 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (status, m_ComRetVal'Access);
             Retval.m_IAllJoynBusObjectStoppedEventArgs := new Windows.Devices.AllJoyn.IAllJoynBusObjectStoppedEventArgs;
             Retval.m_IAllJoynBusObjectStoppedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1863,10 +2174,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynBusObjectStoppedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1879,12 +2194,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynCredentials) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynCredentials, IAllJoynCredentials_Ptr);
    begin
       if this.m_IAllJoynCredentials /= null then
          if this.m_IAllJoynCredentials.all /= null then
-            RefCount := this.m_IAllJoynCredentials.all.Release;
+            temp := this.m_IAllJoynCredentials.all.Release;
             Free (this.m_IAllJoynCredentials);
          end if;
       end if;
@@ -1899,10 +2214,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism;
    begin
       Hr := this.m_IAllJoynCredentials.all.get_AuthenticationMechanism (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1912,11 +2231,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IAllJoynCredentials.all.get_Certificate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -1928,9 +2251,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynCredentials.all.put_Certificate (value.m_ICertificate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PasswordCredential
@@ -1939,11 +2266,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IAllJoynCredentials.all.get_PasswordCredential (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
@@ -1955,9 +2286,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynCredentials.all.put_PasswordCredential (value.m_IPasswordCredential.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Timeout
@@ -1966,10 +2301,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAllJoynCredentials.all.get_Timeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1979,9 +2318,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynCredentials.all.put_Timeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1993,12 +2336,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynCredentialsRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynCredentialsRequestedEventArgs, IAllJoynCredentialsRequestedEventArgs_Ptr);
    begin
       if this.m_IAllJoynCredentialsRequestedEventArgs /= null then
          if this.m_IAllJoynCredentialsRequestedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynCredentialsRequestedEventArgs.all.Release;
+            temp := this.m_IAllJoynCredentialsRequestedEventArgs.all.Release;
             Free (this.m_IAllJoynCredentialsRequestedEventArgs);
          end if;
       end if;
@@ -2013,10 +2356,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IAllJoynCredentialsRequestedEventArgs.all.get_AttemptCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2026,11 +2373,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynCredentials'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.IAllJoynCredentials;
    begin
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynCredentials do
          Hr := this.m_IAllJoynCredentialsRequestedEventArgs.all.get_Credentials (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAllJoynCredentials := new Windows.Devices.AllJoyn.IAllJoynCredentials;
          Retval.m_IAllJoynCredentials.all := m_ComRetVal;
       end return;
@@ -2042,13 +2393,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynCredentialsRequestedEventArgs.all.get_PeerUniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2058,13 +2413,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynCredentialsRequestedEventArgs.all.get_RequestedUserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2074,11 +2433,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IAllJoynCredentialsRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -2093,12 +2456,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynCredentialsVerificationRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynCredentialsVerificationRequestedEventArgs, IAllJoynCredentialsVerificationRequestedEventArgs_Ptr);
    begin
       if this.m_IAllJoynCredentialsVerificationRequestedEventArgs /= null then
          if this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.Release;
+            temp := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.Release;
             Free (this.m_IAllJoynCredentialsVerificationRequestedEventArgs);
          end if;
       end if;
@@ -2113,10 +2476,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynAuthenticationMechanism;
    begin
       Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.get_AuthenticationMechanism (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2126,13 +2493,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.get_PeerUniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2142,11 +2513,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.get_PeerCertificate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -2158,10 +2533,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
    begin
       Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.get_PeerCertificateErrorSeverity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2171,10 +2550,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.get_PeerCertificateErrors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2184,10 +2567,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.get_PeerIntermediateCertificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2196,9 +2583,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       this : in out AllJoynCredentialsVerificationRequestedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.Accept_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -2207,11 +2598,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IAllJoynCredentialsVerificationRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -2226,12 +2621,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynMessageInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynMessageInfo, IAllJoynMessageInfo_Ptr);
    begin
       if this.m_IAllJoynMessageInfo /= null then
          if this.m_IAllJoynMessageInfo.all /= null then
-            RefCount := this.m_IAllJoynMessageInfo.all.Release;
+            temp := this.m_IAllJoynMessageInfo.all.Release;
             Free (this.m_IAllJoynMessageInfo);
          end if;
       end if;
@@ -2246,11 +2641,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynMessageInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynMessageInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynMessageInfo");
       m_Factory    : access IAllJoynMessageInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynMessageInfo;
-      HStr_senderUniqueName : WinRt.HString := To_HString (senderUniqueName);
+      HStr_senderUniqueName : constant WinRt.HString := To_HString (senderUniqueName);
    begin
       return RetVal : AllJoynMessageInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynMessageInfoFactory'Access , m_Factory'Address);
@@ -2258,10 +2654,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_senderUniqueName, m_ComRetVal'Access);
             Retval.m_IAllJoynMessageInfo := new Windows.Devices.AllJoyn.IAllJoynMessageInfo;
             Retval.m_IAllJoynMessageInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_senderUniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_senderUniqueName);
       end return;
    end;
 
@@ -2274,13 +2670,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynMessageInfo.all.get_SenderUniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2293,12 +2693,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynProducerStoppedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynProducerStoppedEventArgs, IAllJoynProducerStoppedEventArgs_Ptr);
    begin
       if this.m_IAllJoynProducerStoppedEventArgs /= null then
          if this.m_IAllJoynProducerStoppedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynProducerStoppedEventArgs.all.Release;
+            temp := this.m_IAllJoynProducerStoppedEventArgs.all.Release;
             Free (this.m_IAllJoynProducerStoppedEventArgs);
          end if;
       end if;
@@ -2313,9 +2713,10 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynProducerStoppedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynProducerStoppedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynProducerStoppedEventArgs");
       m_Factory    : access IAllJoynProducerStoppedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynProducerStoppedEventArgs;
    begin
       return RetVal : AllJoynProducerStoppedEventArgs do
@@ -2324,9 +2725,9 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (status, m_ComRetVal'Access);
             Retval.m_IAllJoynProducerStoppedEventArgs := new Windows.Devices.AllJoyn.IAllJoynProducerStoppedEventArgs;
             Retval.m_IAllJoynProducerStoppedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2339,10 +2740,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynProducerStoppedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2355,12 +2760,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynServiceInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynServiceInfo, IAllJoynServiceInfo_Ptr);
    begin
       if this.m_IAllJoynServiceInfo /= null then
          if this.m_IAllJoynServiceInfo.all /= null then
-            RefCount := this.m_IAllJoynServiceInfo.all.Release;
+            temp := this.m_IAllJoynServiceInfo.all.Release;
             Free (this.m_IAllJoynServiceInfo);
          end if;
       end if;
@@ -2377,12 +2782,13 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynServiceInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynServiceInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynServiceInfo");
       m_Factory    : access IAllJoynServiceInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynServiceInfo;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
-      HStr_objectPath : WinRt.HString := To_HString (objectPath);
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
+      HStr_objectPath : constant WinRt.HString := To_HString (objectPath);
    begin
       return RetVal : AllJoynServiceInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynServiceInfoFactory'Access , m_Factory'Address);
@@ -2390,11 +2796,11 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_uniqueName, HStr_objectPath, sessionPort, m_ComRetVal'Access);
             Retval.m_IAllJoynServiceInfo := new Windows.Devices.AllJoyn.IAllJoynServiceInfo;
             Retval.m_IAllJoynServiceInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
-         Hr := WindowsDeleteString (HStr_objectPath);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (HStr_objectPath);
       end return;
    end;
 
@@ -2407,16 +2813,16 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynServiceInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynServiceInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynServiceInfo");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynServiceInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynServiceInfo.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2434,7 +2840,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynServiceInfo.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynServiceInfo.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2448,10 +2854,10 @@ package body WinRt.Windows.Devices.AllJoyn is
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynServiceInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2463,16 +2869,16 @@ package body WinRt.Windows.Devices.AllJoyn is
                      Retval.m_IAllJoynServiceInfo := new Windows.Devices.AllJoyn.IAllJoynServiceInfo;
                      Retval.m_IAllJoynServiceInfo.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -2485,13 +2891,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynServiceInfo.all.get_UniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2501,13 +2911,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynServiceInfo.all.get_ObjectPath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2517,10 +2931,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IAllJoynServiceInfo.all.get_SessionPort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2533,12 +2951,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynServiceInfoRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynServiceInfoRemovedEventArgs, IAllJoynServiceInfoRemovedEventArgs_Ptr);
    begin
       if this.m_IAllJoynServiceInfoRemovedEventArgs /= null then
          if this.m_IAllJoynServiceInfoRemovedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynServiceInfoRemovedEventArgs.all.Release;
+            temp := this.m_IAllJoynServiceInfoRemovedEventArgs.all.Release;
             Free (this.m_IAllJoynServiceInfoRemovedEventArgs);
          end if;
       end if;
@@ -2553,11 +2971,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynServiceInfoRemovedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynServiceInfoRemovedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynServiceInfoRemovedEventArgs");
       m_Factory    : access IAllJoynServiceInfoRemovedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynServiceInfoRemovedEventArgs;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
    begin
       return RetVal : AllJoynServiceInfoRemovedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynServiceInfoRemovedEventArgsFactory'Access , m_Factory'Address);
@@ -2565,10 +2984,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_uniqueName, m_ComRetVal'Access);
             Retval.m_IAllJoynServiceInfoRemovedEventArgs := new Windows.Devices.AllJoyn.IAllJoynServiceInfoRemovedEventArgs;
             Retval.m_IAllJoynServiceInfoRemovedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
       end return;
    end;
 
@@ -2581,13 +3000,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynServiceInfoRemovedEventArgs.all.get_UniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2600,12 +3023,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynSession, IAllJoynSession_Ptr);
    begin
       if this.m_IAllJoynSession /= null then
          if this.m_IAllJoynSession.all /= null then
-            RefCount := this.m_IAllJoynSession.all.Release;
+            temp := this.m_IAllJoynSession.all.Release;
             Free (this.m_IAllJoynSession);
          end if;
       end if;
@@ -2620,15 +3043,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynSession is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSession");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynSession.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2646,7 +3069,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynSession.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynSession.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2660,10 +3083,10 @@ package body WinRt.Windows.Devices.AllJoyn is
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynSessionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFromServiceInfoAsync (serviceInfo.m_IAllJoynServiceInfo.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2675,15 +3098,15 @@ package body WinRt.Windows.Devices.AllJoyn is
                      Retval.m_IAllJoynSession := new Windows.Devices.AllJoyn.IAllJoynSession;
                      Retval.m_IAllJoynSession.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2694,15 +3117,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynSession is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSession");
       m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AllJoynSession.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2720,7 +3143,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AllJoynSession.Kind_Delegate, AsyncOperationCompletedHandler_AllJoynSession.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2734,10 +3157,10 @@ package body WinRt.Windows.Devices.AllJoyn is
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynSessionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFromServiceInfoAsync (serviceInfo.m_IAllJoynServiceInfo.all, busAttachment.m_IAllJoynBusAttachment.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2749,15 +3172,15 @@ package body WinRt.Windows.Devices.AllJoyn is
                      Retval.m_IAllJoynSession := new Windows.Devices.AllJoyn.IAllJoynSession;
                      Retval.m_IAllJoynSession.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2770,10 +3193,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynSession.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2783,10 +3210,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynSession.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2797,14 +3228,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Int32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2822,7 +3253,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Int32.Kind_Delegate, AsyncOperationCompletedHandler_Int32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2835,7 +3266,7 @@ package body WinRt.Windows.Devices.AllJoyn is
       Hr := this.m_IAllJoynSession.all.RemoveMemberAsync (HStr_uniqueName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2845,14 +3276,14 @@ package body WinRt.Windows.Devices.AllJoyn is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_uniqueName);
+      tmp := WindowsDeleteString (HStr_uniqueName);
       return m_RetVal;
    end;
 
@@ -2863,10 +3294,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynSession.all.add_MemberAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2876,9 +3311,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynSession.all.remove_MemberAdded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MemberRemoved
@@ -2888,10 +3327,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynSession.all.add_MemberRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2901,9 +3344,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynSession.all.remove_MemberRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Lost
@@ -2913,10 +3360,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAllJoynSession.all.add_Lost (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2926,9 +3377,13 @@ package body WinRt.Windows.Devices.AllJoyn is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAllJoynSession.all.remove_Lost (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2940,12 +3395,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynSessionJoinedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynSessionJoinedEventArgs, IAllJoynSessionJoinedEventArgs_Ptr);
    begin
       if this.m_IAllJoynSessionJoinedEventArgs /= null then
          if this.m_IAllJoynSessionJoinedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynSessionJoinedEventArgs.all.Release;
+            temp := this.m_IAllJoynSessionJoinedEventArgs.all.Release;
             Free (this.m_IAllJoynSessionJoinedEventArgs);
          end if;
       end if;
@@ -2960,9 +3415,10 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynSessionJoinedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionJoinedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionJoinedEventArgs");
       m_Factory    : access IAllJoynSessionJoinedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynSessionJoinedEventArgs;
    begin
       return RetVal : AllJoynSessionJoinedEventArgs do
@@ -2971,9 +3427,9 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (session.m_IAllJoynSession.all, m_ComRetVal'Access);
             Retval.m_IAllJoynSessionJoinedEventArgs := new Windows.Devices.AllJoyn.IAllJoynSessionJoinedEventArgs;
             Retval.m_IAllJoynSessionJoinedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2986,11 +3442,15 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.IAllJoynSession;
    begin
       return RetVal : WinRt.Windows.Devices.AllJoyn.AllJoynSession do
          Hr := this.m_IAllJoynSessionJoinedEventArgs.all.get_Session (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAllJoynSession := new Windows.Devices.AllJoyn.IAllJoynSession;
          Retval.m_IAllJoynSession.all := m_ComRetVal;
       end return;
@@ -3005,12 +3465,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynSessionLostEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynSessionLostEventArgs, IAllJoynSessionLostEventArgs_Ptr);
    begin
       if this.m_IAllJoynSessionLostEventArgs /= null then
          if this.m_IAllJoynSessionLostEventArgs.all /= null then
-            RefCount := this.m_IAllJoynSessionLostEventArgs.all.Release;
+            temp := this.m_IAllJoynSessionLostEventArgs.all.Release;
             Free (this.m_IAllJoynSessionLostEventArgs);
          end if;
       end if;
@@ -3025,9 +3485,10 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynSessionLostEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionLostEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionLostEventArgs");
       m_Factory    : access IAllJoynSessionLostEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynSessionLostEventArgs;
    begin
       return RetVal : AllJoynSessionLostEventArgs do
@@ -3036,9 +3497,9 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (reason, m_ComRetVal'Access);
             Retval.m_IAllJoynSessionLostEventArgs := new Windows.Devices.AllJoyn.IAllJoynSessionLostEventArgs;
             Retval.m_IAllJoynSessionLostEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3051,10 +3512,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Windows.Devices.AllJoyn.AllJoynSessionLostReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.AllJoyn.AllJoynSessionLostReason;
    begin
       Hr := this.m_IAllJoynSessionLostEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3067,12 +3532,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynSessionMemberAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynSessionMemberAddedEventArgs, IAllJoynSessionMemberAddedEventArgs_Ptr);
    begin
       if this.m_IAllJoynSessionMemberAddedEventArgs /= null then
          if this.m_IAllJoynSessionMemberAddedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynSessionMemberAddedEventArgs.all.Release;
+            temp := this.m_IAllJoynSessionMemberAddedEventArgs.all.Release;
             Free (this.m_IAllJoynSessionMemberAddedEventArgs);
          end if;
       end if;
@@ -3087,11 +3552,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynSessionMemberAddedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionMemberAddedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionMemberAddedEventArgs");
       m_Factory    : access IAllJoynSessionMemberAddedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynSessionMemberAddedEventArgs;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
    begin
       return RetVal : AllJoynSessionMemberAddedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynSessionMemberAddedEventArgsFactory'Access , m_Factory'Address);
@@ -3099,10 +3565,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_uniqueName, m_ComRetVal'Access);
             Retval.m_IAllJoynSessionMemberAddedEventArgs := new Windows.Devices.AllJoyn.IAllJoynSessionMemberAddedEventArgs;
             Retval.m_IAllJoynSessionMemberAddedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
       end return;
    end;
 
@@ -3115,13 +3581,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynSessionMemberAddedEventArgs.all.get_UniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3134,12 +3604,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynSessionMemberRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynSessionMemberRemovedEventArgs, IAllJoynSessionMemberRemovedEventArgs_Ptr);
    begin
       if this.m_IAllJoynSessionMemberRemovedEventArgs /= null then
          if this.m_IAllJoynSessionMemberRemovedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynSessionMemberRemovedEventArgs.all.Release;
+            temp := this.m_IAllJoynSessionMemberRemovedEventArgs.all.Release;
             Free (this.m_IAllJoynSessionMemberRemovedEventArgs);
          end if;
       end if;
@@ -3154,11 +3624,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynSessionMemberRemovedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionMemberRemovedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynSessionMemberRemovedEventArgs");
       m_Factory    : access IAllJoynSessionMemberRemovedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynSessionMemberRemovedEventArgs;
-      HStr_uniqueName : WinRt.HString := To_HString (uniqueName);
+      HStr_uniqueName : constant WinRt.HString := To_HString (uniqueName);
    begin
       return RetVal : AllJoynSessionMemberRemovedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynSessionMemberRemovedEventArgsFactory'Access , m_Factory'Address);
@@ -3166,10 +3637,10 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (HStr_uniqueName, m_ComRetVal'Access);
             Retval.m_IAllJoynSessionMemberRemovedEventArgs := new Windows.Devices.AllJoyn.IAllJoynSessionMemberRemovedEventArgs;
             Retval.m_IAllJoynSessionMemberRemovedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uniqueName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uniqueName);
       end return;
    end;
 
@@ -3182,13 +3653,17 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAllJoynSessionMemberRemovedEventArgs.all.get_UniqueName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3199,306 +3674,378 @@ package body WinRt.Windows.Devices.AllJoyn is
       function get_Ok
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ok (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Fail
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Fail (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_OperationTimedOut
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OperationTimedOut (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_OtherEndClosed
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OtherEndClosed (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ConnectionRefused
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ConnectionRefused (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_AuthenticationFailed
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AuthenticationFailed (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_AuthenticationRejectedByUser
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AuthenticationRejectedByUser (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_SslConnectFailed
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SslConnectFailed (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_SslIdentityVerificationFailed
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SslIdentityVerificationFailed (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InsufficientSecurity
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InsufficientSecurity (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument1
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument2
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument3
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument4
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument4 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument5
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument6
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument6 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument7
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InvalidArgument8
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynStatus");
          m_Factory        : access WinRt.Windows.Devices.AllJoyn.IAllJoynStatusStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAllJoynStatusStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InvalidArgument8 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -3513,12 +4060,12 @@ package body WinRt.Windows.Devices.AllJoyn is
    end;
 
    procedure Finalize (this : in out AllJoynWatcherStoppedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAllJoynWatcherStoppedEventArgs, IAllJoynWatcherStoppedEventArgs_Ptr);
    begin
       if this.m_IAllJoynWatcherStoppedEventArgs /= null then
          if this.m_IAllJoynWatcherStoppedEventArgs.all /= null then
-            RefCount := this.m_IAllJoynWatcherStoppedEventArgs.all.Release;
+            temp := this.m_IAllJoynWatcherStoppedEventArgs.all.Release;
             Free (this.m_IAllJoynWatcherStoppedEventArgs);
          end if;
       end if;
@@ -3533,9 +4080,10 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return AllJoynWatcherStoppedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynWatcherStoppedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.AllJoyn.AllJoynWatcherStoppedEventArgs");
       m_Factory    : access IAllJoynWatcherStoppedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.AllJoyn.IAllJoynWatcherStoppedEventArgs;
    begin
       return RetVal : AllJoynWatcherStoppedEventArgs do
@@ -3544,9 +4092,9 @@ package body WinRt.Windows.Devices.AllJoyn is
             Hr := m_Factory.Create (status, m_ComRetVal'Access);
             Retval.m_IAllJoynWatcherStoppedEventArgs := new Windows.Devices.AllJoyn.IAllJoynWatcherStoppedEventArgs;
             Retval.m_IAllJoynWatcherStoppedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3559,10 +4107,14 @@ package body WinRt.Windows.Devices.AllJoyn is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IAllJoynWatcherStoppedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

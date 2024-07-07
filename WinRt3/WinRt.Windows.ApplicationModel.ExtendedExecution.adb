@@ -45,12 +45,12 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    end;
 
    procedure Finalize (this : in out ExtendedExecutionRevokedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IExtendedExecutionRevokedEventArgs, IExtendedExecutionRevokedEventArgs_Ptr);
    begin
       if this.m_IExtendedExecutionRevokedEventArgs /= null then
          if this.m_IExtendedExecutionRevokedEventArgs.all /= null then
-            RefCount := this.m_IExtendedExecutionRevokedEventArgs.all.Release;
+            temp := this.m_IExtendedExecutionRevokedEventArgs.all.Release;
             Free (this.m_IExtendedExecutionRevokedEventArgs);
          end if;
       end if;
@@ -65,10 +65,14 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    )
    return WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionRevokedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionRevokedReason;
    begin
       Hr := this.m_IExtendedExecutionRevokedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -81,12 +85,12 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    end;
 
    procedure Finalize (this : in out ExtendedExecutionSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IExtendedExecutionSession, IExtendedExecutionSession_Ptr);
    begin
       if this.m_IExtendedExecutionSession /= null then
          if this.m_IExtendedExecutionSession.all /= null then
-            RefCount := this.m_IExtendedExecutionSession.all.Release;
+            temp := this.m_IExtendedExecutionSession.all.Release;
             Free (this.m_IExtendedExecutionSession);
          end if;
       end if;
@@ -97,7 +101,8 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
 
    function Constructor return ExtendedExecutionSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionSession");
       m_ComRetVal  : aliased Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
    begin
       return RetVal : ExtendedExecutionSession do
@@ -106,7 +111,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
             Retval.m_IExtendedExecutionSession := new Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
             Retval.m_IExtendedExecutionSession.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -119,10 +124,14 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    )
    return WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason;
    begin
       Hr := this.m_IExtendedExecutionSession.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -132,9 +141,13 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       value : Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IExtendedExecutionSession.all.put_Reason (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Description
@@ -143,13 +156,17 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IExtendedExecutionSession.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -159,11 +176,15 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IExtendedExecutionSession.all.put_Description (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_PercentProgress
@@ -172,10 +193,14 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IExtendedExecutionSession.all.get_PercentProgress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -185,9 +210,13 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IExtendedExecutionSession.all.put_PercentProgress (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Revoked
@@ -197,10 +226,14 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IExtendedExecutionSession.all.add_Revoked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -210,9 +243,13 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IExtendedExecutionSession.all.remove_Revoked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function RequestExtensionAsync
@@ -221,13 +258,13 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    )
    return WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ExtendedExecutionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -245,7 +282,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ExtendedExecutionResult.Kind_Delegate, AsyncOperationCompletedHandler_ExtendedExecutionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -258,7 +295,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       Hr := this.m_IExtendedExecutionSession.all.RequestExtensionAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -268,9 +305,9 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -283,13 +320,17 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       this : in out ExtendedExecutionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IExtendedExecutionSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.ApplicationModel.ExtendedExecution;

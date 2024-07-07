@@ -53,18 +53,22 @@ package body WinRt.Windows.Foundation.Diagnostics is
          relatedContext : WinRt.UInt64
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_operationName : WinRt.HString := To_HString (operationName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_operationName : constant WinRt.HString := To_HString (operationName);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TraceOperationCreation (traceLevel, source, platformId, operationId, HStr_operationName, relatedContext);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_operationName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_operationName);
       end;
 
       procedure TraceOperationCompletion
@@ -76,16 +80,20 @@ package body WinRt.Windows.Foundation.Diagnostics is
          status : Windows.Foundation.AsyncStatus
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TraceOperationCompletion (traceLevel, source, platformId, operationId, status);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure TraceOperationRelation
@@ -97,16 +105,20 @@ package body WinRt.Windows.Foundation.Diagnostics is
          relation : Windows.Foundation.Diagnostics.CausalityRelation
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TraceOperationRelation (traceLevel, source, platformId, operationId, relation);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure TraceSynchronousWorkStart
@@ -118,16 +130,20 @@ package body WinRt.Windows.Foundation.Diagnostics is
          work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TraceSynchronousWorkStart (traceLevel, source, platformId, operationId, work);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure TraceSynchronousWorkCompletion
@@ -137,16 +153,20 @@ package body WinRt.Windows.Foundation.Diagnostics is
          work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TraceSynchronousWorkCompletion (traceLevel, source, work);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_TracingStatusChanged
@@ -155,17 +175,21 @@ package body WinRt.Windows.Foundation.Diagnostics is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_TracingStatusChanged (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -174,16 +198,20 @@ package body WinRt.Windows.Foundation.Diagnostics is
          cookie : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_TracingStatusChanged (cookie);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end AsyncCausalityTracer;
@@ -197,12 +225,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out ErrorDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IErrorDetails, IErrorDetails_Ptr);
    begin
       if this.m_IErrorDetails /= null then
          if this.m_IErrorDetails.all /= null then
-            RefCount := this.m_IErrorDetails.all.Release;
+            temp := this.m_IErrorDetails.all.Release;
             Free (this.m_IErrorDetails);
          end if;
       end if;
@@ -217,15 +245,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.ErrorDetails is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ErrorDetails");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ErrorDetails");
       m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IErrorDetailsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ErrorDetails.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -243,7 +271,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ErrorDetails.Kind_Delegate, AsyncOperationCompletedHandler_ErrorDetails.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -257,10 +285,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
          Hr := RoGetActivationFactory (m_hString, IID_IErrorDetailsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromHResultAsync (errorCode, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -272,15 +300,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
                      Retval.m_IErrorDetails := new Windows.Foundation.Diagnostics.IErrorDetails;
                      Retval.m_IErrorDetails.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -293,13 +321,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IErrorDetails.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -309,13 +341,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IErrorDetails.all.get_LongDescription (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -325,11 +361,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IErrorDetails.all.get_HelpUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -344,12 +384,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out FileLoggingSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFileLoggingSession, IFileLoggingSession_Ptr);
    begin
       if this.m_IFileLoggingSession /= null then
          if this.m_IFileLoggingSession.all /= null then
-            RefCount := this.m_IFileLoggingSession.all.Release;
+            temp := this.m_IFileLoggingSession.all.Release;
             Free (this.m_IFileLoggingSession);
          end if;
       end if;
@@ -364,11 +404,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return FileLoggingSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.FileLoggingSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.FileLoggingSession");
       m_Factory    : access IFileLoggingSessionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.IFileLoggingSession;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : FileLoggingSession do
          Hr := RoGetActivationFactory (m_hString, IID_IFileLoggingSessionFactory'Access , m_Factory'Address);
@@ -376,10 +417,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
             Retval.m_IFileLoggingSession := new Windows.Foundation.Diagnostics.IFileLoggingSession;
             Retval.m_IFileLoggingSession.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -392,13 +433,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IFileLoggingSession.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -408,9 +453,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFileLoggingSession.all.AddLoggingChannel (loggingChannel_p);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddLoggingChannel
@@ -420,9 +469,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFileLoggingSession.all.AddLoggingChannel (loggingChannel_p, maxLevel);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveLoggingChannel
@@ -431,9 +484,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFileLoggingSession.all.RemoveLoggingChannel (loggingChannel_p);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CloseAndSaveToFileAsync
@@ -442,13 +499,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -466,7 +523,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -480,7 +537,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          Hr := this.m_IFileLoggingSession.all.CloseAndSaveToFileAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -492,9 +549,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -509,10 +566,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFileLoggingSession.all.add_LogFileGenerated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -522,9 +583,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFileLoggingSession.all.remove_LogFileGenerated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -532,13 +597,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out FileLoggingSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.IFileLoggingSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileLoggingSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -550,12 +619,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LogFileGeneratedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILogFileGeneratedEventArgs, ILogFileGeneratedEventArgs_Ptr);
    begin
       if this.m_ILogFileGeneratedEventArgs /= null then
          if this.m_ILogFileGeneratedEventArgs.all /= null then
-            RefCount := this.m_ILogFileGeneratedEventArgs.all.Release;
+            temp := this.m_ILogFileGeneratedEventArgs.all.Release;
             Free (this.m_ILogFileGeneratedEventArgs);
          end if;
       end if;
@@ -570,11 +639,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_ILogFileGeneratedEventArgs.all.get_File (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
@@ -589,12 +662,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LoggingActivity) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoggingActivity, ILoggingActivity_Ptr);
    begin
       if this.m_ILoggingActivity /= null then
          if this.m_ILoggingActivity.all /= null then
-            RefCount := this.m_ILoggingActivity.all.Release;
+            temp := this.m_ILoggingActivity.all.Release;
             Free (this.m_ILoggingActivity);
          end if;
       end if;
@@ -610,11 +683,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingActivity is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
       m_Factory    : access ILoggingActivityFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_activityName : WinRt.HString := To_HString (activityName);
+      HStr_activityName : constant WinRt.HString := To_HString (activityName);
    begin
       return RetVal : LoggingActivity do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingActivityFactory'Access , m_Factory'Address);
@@ -622,10 +696,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.CreateLoggingActivity (HStr_activityName, loggingChannel_p, m_ComRetVal'Access);
             Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
             Retval.m_ILoggingActivity.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activityName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activityName);
       end return;
    end;
 
@@ -637,11 +711,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingActivity is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
       m_Factory    : access ILoggingActivityFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_activityName : WinRt.HString := To_HString (activityName);
+      HStr_activityName : constant WinRt.HString := To_HString (activityName);
    begin
       return RetVal : LoggingActivity do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingActivityFactory'Access , m_Factory'Address);
@@ -649,10 +724,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.CreateLoggingActivityWithLevel (HStr_activityName, loggingChannel_p, level, m_ComRetVal'Access);
             Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
             Retval.m_ILoggingActivity.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activityName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activityName);
       end return;
    end;
 
@@ -665,13 +740,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILoggingActivity.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -681,10 +760,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ILoggingActivity.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -693,13 +776,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingActivity
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Channel
@@ -708,15 +795,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingChannel'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingActivity2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingChannel do
          m_Interface := QInterface (this.m_ILoggingActivity.all);
          Hr := m_Interface.get_Channel (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
          Retval.m_ILoggingChannel.all := m_ComRetVal;
       end return;
@@ -728,15 +819,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       stopEventName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_stopEventName : WinRt.HString := To_HString (stopEventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_stopEventName : constant WinRt.HString := To_HString (stopEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingActivity2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.StopActivity (HStr_stopEventName);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_stopEventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_stopEventName);
    end;
 
    procedure StopActivity
@@ -746,15 +841,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       fields : Windows.Foundation.Diagnostics.LoggingFields'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_stopEventName : WinRt.HString := To_HString (stopEventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_stopEventName : constant WinRt.HString := To_HString (stopEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingActivity2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.StopActivity (HStr_stopEventName, fields.m_ILoggingFields.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_stopEventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_stopEventName);
    end;
 
    procedure StopActivity
@@ -765,15 +864,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       options : Windows.Foundation.Diagnostics.LoggingOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_stopEventName : WinRt.HString := To_HString (stopEventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_stopEventName : constant WinRt.HString := To_HString (stopEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingActivity2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.StopActivity (HStr_stopEventName, fields.m_ILoggingFields.all, options.m_ILoggingOptions.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_stopEventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_stopEventName);
    end;
 
    function IsEnabled
@@ -782,14 +885,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -800,14 +907,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.IsEnabled (level, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -819,14 +930,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.IsEnabled (level, keywords, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -836,15 +951,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       eventName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.LogEvent (HStr_eventName);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    procedure LogEvent
@@ -854,15 +973,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       fields : Windows.Foundation.Diagnostics.LoggingFields'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.LogEvent (HStr_eventName, fields.m_ILoggingFields.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    procedure LogEvent
@@ -873,15 +996,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       level : Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.LogEvent (HStr_eventName, fields.m_ILoggingFields.all, level);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    procedure LogEvent
@@ -893,15 +1020,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       options : Windows.Foundation.Diagnostics.LoggingOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingActivity.all);
       Hr := m_Interface.LogEvent (HStr_eventName, fields.m_ILoggingFields.all, level, options.m_ILoggingOptions.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    function StartActivity
@@ -911,19 +1042,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingActivity.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -935,19 +1070,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingActivity.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, fields.m_ILoggingFields.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -960,19 +1099,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingActivity.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, fields.m_ILoggingFields.all, level, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -986,19 +1129,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingActivity.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, fields.m_ILoggingFields.all, level, options.m_ILoggingOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -1011,12 +1158,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LoggingChannel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoggingChannel, ILoggingChannel_Ptr);
    begin
       if this.m_ILoggingChannel /= null then
          if this.m_ILoggingChannel.all /= null then
-            RefCount := this.m_ILoggingChannel.all.Release;
+            temp := this.m_ILoggingChannel.all.Release;
             Free (this.m_ILoggingChannel);
          end if;
       end if;
@@ -1031,11 +1178,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
       m_Factory    : access ILoggingChannelFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingChannel do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory'Access , m_Factory'Address);
@@ -1043,10 +1191,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
             Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1057,11 +1205,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
       m_Factory    : access ILoggingChannelFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingChannel do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory2'Access , m_Factory'Address);
@@ -1069,10 +1218,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.CreateWithOptions (HStr_name, options.m_ILoggingChannelOptions.all, m_ComRetVal'Access);
             Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1084,11 +1233,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
       m_Factory    : access ILoggingChannelFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingChannel do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory2'Access , m_Factory'Address);
@@ -1096,10 +1246,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.CreateWithOptionsAndId (HStr_name, options.m_ILoggingChannelOptions.all, id, m_ComRetVal'Access);
             Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1112,13 +1262,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILoggingChannel.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1128,10 +1282,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILoggingChannel.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1141,10 +1299,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.LoggingLevel;
    begin
       Hr := this.m_ILoggingChannel.all.get_Level (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1154,11 +1316,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       eventString : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventString : WinRt.HString := To_HString (eventString);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventString : constant WinRt.HString := To_HString (eventString);
    begin
       Hr := this.m_ILoggingChannel.all.LogMessage (HStr_eventString);
-      Hr := WindowsDeleteString (HStr_eventString);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventString);
    end;
 
    procedure LogMessage
@@ -1168,11 +1334,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       level : Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventString : WinRt.HString := To_HString (eventString);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventString : constant WinRt.HString := To_HString (eventString);
    begin
       Hr := this.m_ILoggingChannel.all.LogMessage (HStr_eventString, level);
-      Hr := WindowsDeleteString (HStr_eventString);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventString);
    end;
 
    procedure LogValuePair
@@ -1182,11 +1352,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value2 : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value1 : WinRt.HString := To_HString (value1);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value1 : constant WinRt.HString := To_HString (value1);
    begin
       Hr := this.m_ILoggingChannel.all.LogValuePair (HStr_value1, value2);
-      Hr := WindowsDeleteString (HStr_value1);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value1);
    end;
 
    procedure LogValuePair
@@ -1197,11 +1371,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       level : Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value1 : WinRt.HString := To_HString (value1);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value1 : constant WinRt.HString := To_HString (value1);
    begin
       Hr := this.m_ILoggingChannel.all.LogValuePair (HStr_value1, value2, level);
-      Hr := WindowsDeleteString (HStr_value1);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value1);
    end;
 
    function add_LoggingEnabled
@@ -1211,10 +1389,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILoggingChannel.all.add_LoggingEnabled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1224,9 +1406,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingChannel.all.remove_LoggingEnabled (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -1234,13 +1420,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -1249,14 +1439,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingChannel2, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingChannel2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1266,14 +1460,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1284,14 +1482,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.IsEnabled (level, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1303,14 +1505,18 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.IsEnabled (level, keywords, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1320,15 +1526,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       eventName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.LogEvent (HStr_eventName);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    procedure LogEvent
@@ -1338,15 +1548,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       fields : Windows.Foundation.Diagnostics.LoggingFields'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.LogEvent (HStr_eventName, fields.m_ILoggingFields.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    procedure LogEvent
@@ -1357,15 +1571,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       level : Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.LogEvent (HStr_eventName, fields.m_ILoggingFields.all, level);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    procedure LogEvent
@@ -1377,15 +1595,19 @@ package body WinRt.Windows.Foundation.Diagnostics is
       options : Windows.Foundation.Diagnostics.LoggingOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_eventName : WinRt.HString := To_HString (eventName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_eventName : constant WinRt.HString := To_HString (eventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingChannel.all);
       Hr := m_Interface.LogEvent (HStr_eventName, fields.m_ILoggingFields.all, level, options.m_ILoggingOptions.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_eventName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_eventName);
    end;
 
    function StartActivity
@@ -1395,19 +1617,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingChannel.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -1419,19 +1645,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingChannel.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, fields.m_ILoggingFields.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -1444,19 +1674,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingChannel.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, fields.m_ILoggingFields.all, level, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -1470,19 +1704,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
-      HStr_startEventName : WinRt.HString := To_HString (startEventName);
+      HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingActivity do
          m_Interface := QInterface (this.m_ILoggingChannel.all);
          Hr := m_Interface.StartActivity (HStr_startEventName, fields.m_ILoggingFields.all, level, options.m_ILoggingOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_startEventName);
+         tmp := WindowsDeleteString (HStr_startEventName);
       end return;
    end;
 
@@ -1495,12 +1733,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LoggingChannelOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoggingChannelOptions, ILoggingChannelOptions_Ptr);
    begin
       if this.m_ILoggingChannelOptions /= null then
          if this.m_ILoggingChannelOptions.all /= null then
-            RefCount := this.m_ILoggingChannelOptions.all.Release;
+            temp := this.m_ILoggingChannelOptions.all.Release;
             Free (this.m_ILoggingChannelOptions);
          end if;
       end if;
@@ -1511,7 +1749,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
    function Constructor return LoggingChannelOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannelOptions;
    begin
       return RetVal : LoggingChannelOptions do
@@ -1520,7 +1759,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
             Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1530,9 +1769,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingChannelOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
       m_Factory    : access ILoggingChannelOptionsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannelOptions;
    begin
       return RetVal : LoggingChannelOptions do
@@ -1541,9 +1781,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.Create (group, m_ComRetVal'Access);
             Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
             Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1556,10 +1796,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ILoggingChannelOptions.all.get_Group (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1569,9 +1813,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingChannelOptions.all.put_Group (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1583,12 +1831,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LoggingFields) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoggingFields, ILoggingFields_Ptr);
    begin
       if this.m_ILoggingFields /= null then
          if this.m_ILoggingFields.all /= null then
-            RefCount := this.m_ILoggingFields.all.Release;
+            temp := this.m_ILoggingFields.all.Release;
             Free (this.m_ILoggingFields);
          end if;
       end if;
@@ -1599,7 +1847,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
    function Constructor return LoggingFields is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingFields");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingFields");
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingFields;
    begin
       return RetVal : LoggingFields do
@@ -1608,7 +1857,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Retval.m_ILoggingFields := new Windows.Foundation.Diagnostics.ILoggingFields;
             Retval.m_ILoggingFields.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1620,9 +1869,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingFields.all.Clear;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure BeginStruct
@@ -1631,11 +1884,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       name : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.BeginStruct (HStr_name);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure BeginStruct
@@ -1645,11 +1902,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.BeginStruct (HStr_name, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure EndStruct
@@ -1657,9 +1918,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingFields.all.EndStruct;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddEmpty
@@ -1668,11 +1933,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       name : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddEmpty (HStr_name);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddEmpty
@@ -1682,11 +1951,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddEmpty (HStr_name, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddEmpty
@@ -1697,11 +1970,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddEmpty (HStr_name, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt8
@@ -1711,11 +1988,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt8 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt8
@@ -1726,11 +2007,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt8 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt8
@@ -1742,11 +2027,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt8 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt8Array
@@ -1756,12 +2045,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt8Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt8Array
@@ -1772,12 +2065,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt8Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt8Array
@@ -1789,12 +2086,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt8Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt16
@@ -1804,11 +2105,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt16 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt16
@@ -1819,11 +2124,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt16 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt16
@@ -1835,11 +2144,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt16 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt16Array
@@ -1849,12 +2162,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int16_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int16_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt16Array
@@ -1865,12 +2182,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int16_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt16Array
@@ -1882,12 +2203,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int16_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt16
@@ -1897,11 +2222,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.UInt16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt16 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt16
@@ -1912,11 +2241,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt16 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt16
@@ -1928,11 +2261,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt16 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt16Array
@@ -1942,12 +2279,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.UInt16_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt16Array
@@ -1958,12 +2299,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt16Array
@@ -1975,12 +2320,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt32
@@ -1990,11 +2339,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt32 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt32
@@ -2005,11 +2358,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt32 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt32
@@ -2021,11 +2378,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt32 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt32Array
@@ -2035,12 +2396,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt32Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt32Array
@@ -2051,12 +2416,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt32Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt32Array
@@ -2068,12 +2437,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt32Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt32
@@ -2083,11 +2456,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt32 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt32
@@ -2098,11 +2475,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt32 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt32
@@ -2114,11 +2495,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt32 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt32Array
@@ -2128,12 +2513,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.UInt32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt32Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt32Array
@@ -2144,12 +2533,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt32Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt32Array
@@ -2161,12 +2554,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt32Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt64
@@ -2176,11 +2573,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt64 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt64
@@ -2191,11 +2592,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt64 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt64
@@ -2207,11 +2612,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddInt64 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt64Array
@@ -2221,12 +2630,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int64_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt64Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt64Array
@@ -2237,12 +2650,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt64Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddInt64Array
@@ -2254,12 +2671,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddInt64Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt64
@@ -2269,11 +2690,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt64 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt64
@@ -2284,11 +2709,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt64 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt64
@@ -2300,11 +2729,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt64 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt64Array
@@ -2314,12 +2747,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.UInt64_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt64_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt64Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt64Array
@@ -2330,12 +2767,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt64_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt64Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddUInt64Array
@@ -2347,12 +2788,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt64_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddUInt64Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSingle
@@ -2362,11 +2807,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddSingle (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSingle
@@ -2377,11 +2826,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddSingle (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSingle
@@ -2393,11 +2846,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddSingle (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSingleArray
@@ -2407,12 +2864,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Single_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddSingleArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSingleArray
@@ -2423,12 +2884,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddSingleArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSingleArray
@@ -2440,12 +2905,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddSingleArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDouble
@@ -2455,11 +2924,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddDouble (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDouble
@@ -2470,11 +2943,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddDouble (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDouble
@@ -2486,11 +2963,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddDouble (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDoubleArray
@@ -2500,12 +2981,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Double_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddDoubleArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDoubleArray
@@ -2516,12 +3001,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddDoubleArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDoubleArray
@@ -2533,12 +3022,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddDoubleArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddChar16
@@ -2548,11 +3041,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Wide_Char
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddChar16 (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddChar16
@@ -2563,11 +3060,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddChar16 (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddChar16
@@ -2579,11 +3080,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddChar16 (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddChar16Array
@@ -2593,12 +3098,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Wide_Char_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Wide_Char_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddChar16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddChar16Array
@@ -2609,12 +3118,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Wide_Char_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddChar16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddChar16Array
@@ -2626,12 +3139,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Wide_Char_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddChar16Array (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddBoolean
@@ -2641,11 +3158,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddBoolean (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddBoolean
@@ -2656,11 +3177,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddBoolean (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddBoolean
@@ -2672,11 +3197,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddBoolean (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddBooleanArray
@@ -2686,12 +3215,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Boolean_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddBooleanArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddBooleanArray
@@ -2702,12 +3235,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddBooleanArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddBooleanArray
@@ -2719,12 +3256,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddBooleanArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddString
@@ -2734,13 +3275,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ILoggingFields.all.AddString (HStr_name, HStr_value);
-      Hr := WindowsDeleteString (HStr_name);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure AddString
@@ -2751,13 +3296,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ILoggingFields.all.AddString (HStr_name, HStr_value, format);
-      Hr := WindowsDeleteString (HStr_name);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure AddString
@@ -2769,13 +3318,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ILoggingFields.all.AddString (HStr_name, HStr_value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure AddStringArray
@@ -2785,12 +3338,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.HString_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddStringArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddStringArray
@@ -2801,12 +3358,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddStringArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddStringArray
@@ -2818,12 +3379,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddStringArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddGuid
@@ -2833,11 +3398,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddGuid (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddGuid
@@ -2848,11 +3417,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddGuid (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddGuid
@@ -2864,11 +3437,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddGuid (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddGuidArray
@@ -2878,12 +3455,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Guid_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddGuidArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddGuidArray
@@ -2894,12 +3475,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddGuidArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddGuidArray
@@ -2911,12 +3496,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddGuidArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDateTime
@@ -2926,11 +3515,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddDateTime (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDateTime
@@ -2941,11 +3534,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddDateTime (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDateTime
@@ -2957,11 +3554,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddDateTime (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDateTimeArray
@@ -2971,12 +3572,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.DateTime_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.DateTime_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddDateTimeArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDateTimeArray
@@ -2987,12 +3592,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.DateTime_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddDateTimeArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddDateTimeArray
@@ -3004,12 +3613,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.DateTime_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddDateTimeArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddTimeSpan
@@ -3019,11 +3632,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddTimeSpan (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddTimeSpan
@@ -3034,11 +3651,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddTimeSpan (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddTimeSpan
@@ -3050,11 +3671,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddTimeSpan (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddTimeSpanArray
@@ -3064,12 +3689,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.TimeSpan_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.TimeSpan_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddTimeSpanArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddTimeSpanArray
@@ -3080,12 +3709,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.TimeSpan_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddTimeSpanArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddTimeSpanArray
@@ -3097,12 +3730,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.TimeSpan_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddTimeSpanArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddPoint
@@ -3112,11 +3749,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddPoint (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddPoint
@@ -3127,11 +3768,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddPoint (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddPoint
@@ -3143,11 +3788,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddPoint (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddPointArray
@@ -3157,12 +3806,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddPointArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddPointArray
@@ -3173,12 +3826,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddPointArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddPointArray
@@ -3190,12 +3847,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddPointArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSize
@@ -3205,11 +3866,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddSize (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSize
@@ -3220,11 +3885,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddSize (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSize
@@ -3236,11 +3905,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddSize (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSizeArray
@@ -3250,12 +3923,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Size_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Size_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddSizeArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSizeArray
@@ -3266,12 +3943,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Size_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddSizeArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddSizeArray
@@ -3283,12 +3964,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Size_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddSizeArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddRect
@@ -3298,11 +3983,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddRect (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddRect
@@ -3313,11 +4002,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddRect (HStr_name, value, format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddRect
@@ -3329,11 +4022,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILoggingFields.all.AddRect (HStr_name, value, format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddRectArray
@@ -3343,12 +4040,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Rect_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Rect_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddRectArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddRectArray
@@ -3359,12 +4060,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       format : Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Rect_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddRectArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure AddRectArray
@@ -3376,12 +4081,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Rect_Ptr);
    begin
       Hr := this.m_ILoggingFields.all.AddRectArray (HStr_name, WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), format, tags);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    -----------------------------------------------------------------------------
@@ -3393,12 +4102,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LoggingOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoggingOptions, ILoggingOptions_Ptr);
    begin
       if this.m_ILoggingOptions /= null then
          if this.m_ILoggingOptions.all /= null then
-            RefCount := this.m_ILoggingOptions.all.Release;
+            temp := this.m_ILoggingOptions.all.Release;
             Free (this.m_ILoggingOptions);
          end if;
       end if;
@@ -3413,9 +4122,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
       m_Factory    : access ILoggingOptionsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingOptions;
    begin
       return RetVal : LoggingOptions do
@@ -3424,15 +4134,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.CreateWithKeywords (keywords, m_ComRetVal'Access);
             Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
             Retval.m_ILoggingOptions.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return LoggingOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingOptions;
    begin
       return RetVal : LoggingOptions do
@@ -3441,7 +4152,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
             Retval.m_ILoggingOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3454,10 +4165,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_ILoggingOptions.all.get_Keywords (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3467,9 +4182,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingOptions.all.put_Keywords (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Tags
@@ -3478,10 +4197,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILoggingOptions.all.get_Tags (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3491,9 +4214,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingOptions.all.put_Tags (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Task
@@ -3502,10 +4229,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Int16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int16;
    begin
       Hr := this.m_ILoggingOptions.all.get_Task (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3515,9 +4246,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Int16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingOptions.all.put_Task (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Opcode
@@ -3526,10 +4261,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingOpcode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.LoggingOpcode;
    begin
       Hr := this.m_ILoggingOptions.all.get_Opcode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3539,9 +4278,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Diagnostics.LoggingOpcode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingOptions.all.put_Opcode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActivityId
@@ -3550,10 +4293,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ILoggingOptions.all.get_ActivityId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3563,9 +4310,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingOptions.all.put_ActivityId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelatedActivityId
@@ -3574,10 +4325,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ILoggingOptions.all.get_RelatedActivityId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3587,9 +4342,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingOptions.all.put_RelatedActivityId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3601,12 +4360,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out LoggingSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoggingSession, ILoggingSession_Ptr);
    begin
       if this.m_ILoggingSession /= null then
          if this.m_ILoggingSession.all /= null then
-            RefCount := this.m_ILoggingSession.all.Release;
+            temp := this.m_ILoggingSession.all.Release;
             Free (this.m_ILoggingSession);
          end if;
       end if;
@@ -3621,11 +4380,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return LoggingSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingSession");
       m_Factory    : access ILoggingSessionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingSession;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingSession do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingSessionFactory'Access , m_Factory'Address);
@@ -3633,10 +4393,10 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
             Retval.m_ILoggingSession := new Windows.Foundation.Diagnostics.ILoggingSession;
             Retval.m_ILoggingSession.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3649,13 +4409,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILoggingSession.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3667,14 +4431,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_fileName : WinRt.HString := To_HString (fileName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_fileName : constant WinRt.HString := To_HString (fileName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3692,7 +4456,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3706,7 +4470,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          Hr := this.m_ILoggingSession.all.SaveToFileAsync (folder, HStr_fileName, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3718,14 +4482,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_fileName);
+         tmp := WindowsDeleteString (HStr_fileName);
       end return;
    end;
 
@@ -3735,9 +4499,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingSession.all.AddLoggingChannel (loggingChannel_p);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddLoggingChannel
@@ -3747,9 +4515,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingSession.all.AddLoggingChannel (loggingChannel_p, maxLevel);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveLoggingChannel
@@ -3758,9 +4530,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoggingSession.all.RemoveLoggingChannel (loggingChannel_p);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -3768,13 +4544,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoggingSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3786,12 +4566,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out RuntimeBrokerErrorSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IErrorReportingSettings, IErrorReportingSettings_Ptr);
    begin
       if this.m_IErrorReportingSettings /= null then
          if this.m_IErrorReportingSettings.all /= null then
-            RefCount := this.m_IErrorReportingSettings.all.Release;
+            temp := this.m_IErrorReportingSettings.all.Release;
             Free (this.m_IErrorReportingSettings);
          end if;
       end if;
@@ -3802,7 +4582,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
    function Constructor return RuntimeBrokerErrorSettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings");
       m_ComRetVal  : aliased Windows.Foundation.Diagnostics.IErrorReportingSettings;
    begin
       return RetVal : RuntimeBrokerErrorSettings do
@@ -3811,7 +4592,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
             Retval.m_IErrorReportingSettings := new Windows.Foundation.Diagnostics.IErrorReportingSettings;
             Retval.m_IErrorReportingSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3824,9 +4605,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
       value : Windows.Foundation.Diagnostics.ErrorOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IErrorReportingSettings.all.SetErrorOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetErrorOptions
@@ -3835,10 +4620,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.ErrorOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ErrorOptions;
    begin
       Hr := this.m_IErrorReportingSettings.all.GetErrorOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3851,12 +4640,12 @@ package body WinRt.Windows.Foundation.Diagnostics is
    end;
 
    procedure Finalize (this : in out TracingStatusChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITracingStatusChangedEventArgs, ITracingStatusChangedEventArgs_Ptr);
    begin
       if this.m_ITracingStatusChangedEventArgs /= null then
          if this.m_ITracingStatusChangedEventArgs.all /= null then
-            RefCount := this.m_ITracingStatusChangedEventArgs.all.Release;
+            temp := this.m_ITracingStatusChangedEventArgs.all.Release;
             Free (this.m_ITracingStatusChangedEventArgs);
          end if;
       end if;
@@ -3871,10 +4660,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITracingStatusChangedEventArgs.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3884,10 +4677,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    )
    return WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Diagnostics.CausalityTraceLevel;
    begin
       Hr := this.m_ITracingStatusChangedEventArgs.all.get_TraceLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

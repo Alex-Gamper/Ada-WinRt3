@@ -42,17 +42,21 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
       function IsCurrentViewPresentedOnHolographicDisplay
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Holographic.HolographicApplicationPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Holographic.HolographicApplicationPreview");
          m_Factory        : access WinRt.Windows.ApplicationModel.Preview.Holographic.IHolographicApplicationPreviewStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicApplicationPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsCurrentViewPresentedOnHolographicDisplay (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -62,17 +66,21 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Holographic.HolographicApplicationPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Holographic.HolographicApplicationPreview");
          m_Factory        : access WinRt.Windows.ApplicationModel.Preview.Holographic.IHolographicApplicationPreviewStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicApplicationPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsHolographicActivation (activatedEventArgs, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -87,12 +95,12 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
    end;
 
    procedure Finalize (this : in out HolographicKeyboardPlacementOverridePreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHolographicKeyboardPlacementOverridePreview, IHolographicKeyboardPlacementOverridePreview_Ptr);
    begin
       if this.m_IHolographicKeyboardPlacementOverridePreview /= null then
          if this.m_IHolographicKeyboardPlacementOverridePreview.all /= null then
-            RefCount := this.m_IHolographicKeyboardPlacementOverridePreview.all.Release;
+            temp := this.m_IHolographicKeyboardPlacementOverridePreview.all.Release;
             Free (this.m_IHolographicKeyboardPlacementOverridePreview);
          end if;
       end if;
@@ -104,20 +112,24 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Preview.Holographic.HolographicKeyboardPlacementOverridePreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Holographic.HolographicKeyboardPlacementOverridePreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Holographic.HolographicKeyboardPlacementOverridePreview");
       m_Factory        : access WinRt.Windows.ApplicationModel.Preview.Holographic.IHolographicKeyboardPlacementOverridePreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Preview.Holographic.IHolographicKeyboardPlacementOverridePreview;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Preview.Holographic.HolographicKeyboardPlacementOverridePreview do
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicKeyboardPlacementOverridePreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHolographicKeyboardPlacementOverridePreview := new Windows.ApplicationModel.Preview.Holographic.IHolographicKeyboardPlacementOverridePreview;
             Retval.m_IHolographicKeyboardPlacementOverridePreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -132,9 +144,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
       normal : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHolographicKeyboardPlacementOverridePreview.all.SetPlacementOverride (coordinateSystem.m_ISpatialCoordinateSystem.all, topCenterPosition, normal);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPlacementOverride
@@ -146,9 +162,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
       maxSize : Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHolographicKeyboardPlacementOverridePreview.all.SetPlacementOverride (coordinateSystem.m_ISpatialCoordinateSystem.all, topCenterPosition, normal, maxSize);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ResetPlacementOverride
@@ -156,9 +176,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Holographic is
       this : in out HolographicKeyboardPlacementOverridePreview
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHolographicKeyboardPlacementOverridePreview.all.ResetPlacementOverride;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.ApplicationModel.Preview.Holographic;

@@ -57,12 +57,12 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    end;
 
    procedure Finalize (this : in out SpeechSynthesisStream) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechSynthesisStream, ISpeechSynthesisStream_Ptr);
    begin
       if this.m_ISpeechSynthesisStream /= null then
          if this.m_ISpeechSynthesisStream.all /= null then
-            RefCount := this.m_ISpeechSynthesisStream.all.Release;
+            temp := this.m_ISpeechSynthesisStream.all.Release;
             Free (this.m_ISpeechSynthesisStream);
          end if;
       end if;
@@ -77,13 +77,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return IVectorView_IMediaMarker.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaMarker.Kind;
    begin
       Hr := this.m_ISpeechSynthesisStream.all.get_Markers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMediaMarker (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -93,17 +97,21 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IContentTypeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IContentTypeProvider, WinRt.Windows.Storage.Streams.IID_IContentTypeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.get_ContentType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -113,14 +121,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -130,13 +142,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.put_Size (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetInputStreamAt
@@ -146,14 +162,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.GetInputStreamAt (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -164,14 +184,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.GetOutputStreamAt (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -181,14 +205,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.get_Position (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -198,13 +226,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       position : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.Seek (position);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CloneStream
@@ -213,14 +245,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.CloneStream (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -230,14 +266,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.get_CanRead (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -247,14 +287,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.get_CanWrite (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -265,14 +309,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IOutputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -290,7 +334,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -303,10 +347,10 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.WriteAsync (buffer, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -316,9 +360,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -332,14 +376,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IOutputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -357,7 +401,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -370,10 +414,10 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.FlushAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -383,9 +427,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -398,13 +442,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       this : in out SpeechSynthesisStream
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ReadAsync
@@ -416,14 +464,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IInputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -441,7 +489,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -454,10 +502,10 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.ReadAsync (buffer, count, options, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -467,9 +515,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -483,14 +531,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedMetadataTrackProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesisStream_Interface, WinRt.Windows.Media.Core.ITimedMetadataTrackProvider, WinRt.Windows.Media.Core.IID_ITimedMetadataTrackProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesisStream.all);
       Hr := m_Interface.get_TimedMetadataTracks (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -503,12 +555,12 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    end;
 
    procedure Finalize (this : in out SpeechSynthesizer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechSynthesizer, ISpeechSynthesizer_Ptr);
    begin
       if this.m_ISpeechSynthesizer /= null then
          if this.m_ISpeechSynthesizer.all /= null then
-            RefCount := this.m_ISpeechSynthesizer.all.Release;
+            temp := this.m_ISpeechSynthesizer.all.Release;
             Free (this.m_ISpeechSynthesizer);
          end if;
       end if;
@@ -519,7 +571,8 @@ package body WinRt.Windows.Media.SpeechSynthesis is
 
    function Constructor return SpeechSynthesizer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
       m_ComRetVal  : aliased Windows.Media.SpeechSynthesis.ISpeechSynthesizer;
    begin
       return RetVal : SpeechSynthesizer do
@@ -528,7 +581,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
             Retval.m_ISpeechSynthesizer := new Windows.Media.SpeechSynthesis.ISpeechSynthesizer;
             Retval.m_ISpeechSynthesizer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -541,15 +594,15 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
       m_Factory        : access WinRt.Windows.Media.SpeechSynthesis.IInstalledVoicesStatic2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -567,7 +620,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -580,10 +633,10 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       Hr := RoGetActivationFactory (m_hString, IID_IInstalledVoicesStatic2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TrySetDefaultVoiceAsync (voice.m_IVoiceInformation.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -593,52 +646,60 @@ package body WinRt.Windows.Media.SpeechSynthesis is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
    function get_AllVoices
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
       m_Factory        : access WinRt.Windows.Media.SpeechSynthesis.IInstalledVoicesStatic_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IInstalledVoicesStatic'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AllVoices (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_DefaultVoice
    return WinRt.Windows.Media.SpeechSynthesis.VoiceInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
       m_Factory        : access WinRt.Windows.Media.SpeechSynthesis.IInstalledVoicesStatic_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechSynthesis.IVoiceInformation;
    begin
       return RetVal : WinRt.Windows.Media.SpeechSynthesis.VoiceInformation do
          Hr := RoGetActivationFactory (m_hString, IID_IInstalledVoicesStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DefaultVoice (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVoiceInformation := new Windows.Media.SpeechSynthesis.IVoiceInformation;
             Retval.m_IVoiceInformation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -652,14 +713,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.SpeechSynthesisStream'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpeechSynthesisStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -677,7 +738,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpeechSynthesisStream.Kind_Delegate, AsyncOperationCompletedHandler_SpeechSynthesisStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -691,7 +752,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
          Hr := this.m_ISpeechSynthesizer.all.SynthesizeTextToStreamAsync (HStr_text, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -703,14 +764,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
                   Retval.m_ISpeechSynthesisStream := new Windows.Media.SpeechSynthesis.ISpeechSynthesisStream;
                   Retval.m_ISpeechSynthesisStream.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_text);
+         tmp := WindowsDeleteString (HStr_text);
       end return;
    end;
 
@@ -721,14 +782,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.SpeechSynthesisStream'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_Ssml : WinRt.HString := To_HString (Ssml);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_Ssml : constant WinRt.HString := To_HString (Ssml);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpeechSynthesisStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -746,7 +807,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpeechSynthesisStream.Kind_Delegate, AsyncOperationCompletedHandler_SpeechSynthesisStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -760,7 +821,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
          Hr := this.m_ISpeechSynthesizer.all.SynthesizeSsmlToStreamAsync (HStr_Ssml, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -772,14 +833,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
                   Retval.m_ISpeechSynthesisStream := new Windows.Media.SpeechSynthesis.ISpeechSynthesisStream;
                   Retval.m_ISpeechSynthesisStream.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_Ssml);
+         tmp := WindowsDeleteString (HStr_Ssml);
       end return;
    end;
 
@@ -789,9 +850,13 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : Windows.Media.SpeechSynthesis.VoiceInformation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechSynthesizer.all.put_Voice (value.m_IVoiceInformation.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Voice
@@ -800,11 +865,15 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.VoiceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechSynthesis.IVoiceInformation;
    begin
       return RetVal : WinRt.Windows.Media.SpeechSynthesis.VoiceInformation do
          Hr := this.m_ISpeechSynthesizer.all.get_Voice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVoiceInformation := new Windows.Media.SpeechSynthesis.IVoiceInformation;
          Retval.m_IVoiceInformation.all := m_ComRetVal;
       end return;
@@ -815,13 +884,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       this : in out SpeechSynthesizer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Options
@@ -830,15 +903,19 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.SpeechSynthesizerOptions'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizer_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizer2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizer2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.SpeechSynthesis.SpeechSynthesizerOptions do
          m_Interface := QInterface (this.m_ISpeechSynthesizer.all);
          Hr := m_Interface.get_Options (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechSynthesizerOptions := new Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions;
          Retval.m_ISpeechSynthesizerOptions.all := m_ComRetVal;
       end return;
@@ -853,12 +930,12 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    end;
 
    procedure Finalize (this : in out SpeechSynthesizerOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechSynthesizerOptions, ISpeechSynthesizerOptions_Ptr);
    begin
       if this.m_ISpeechSynthesizerOptions /= null then
          if this.m_ISpeechSynthesizerOptions.all /= null then
-            RefCount := this.m_ISpeechSynthesizerOptions.all.Release;
+            temp := this.m_ISpeechSynthesizerOptions.all.Release;
             Free (this.m_ISpeechSynthesizerOptions);
          end if;
       end if;
@@ -873,10 +950,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpeechSynthesizerOptions.all.get_IncludeWordBoundaryMetadata (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -886,9 +967,13 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechSynthesizerOptions.all.put_IncludeWordBoundaryMetadata (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IncludeSentenceBoundaryMetadata
@@ -897,10 +982,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpeechSynthesizerOptions.all.get_IncludeSentenceBoundaryMetadata (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -910,9 +999,13 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechSynthesizerOptions.all.put_IncludeSentenceBoundaryMetadata (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AudioVolume
@@ -921,14 +1014,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.get_AudioVolume (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -938,13 +1035,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.put_AudioVolume (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SpeakingRate
@@ -953,14 +1054,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.get_SpeakingRate (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -970,13 +1075,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.put_SpeakingRate (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AudioPitch
@@ -985,14 +1094,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.get_AudioPitch (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1002,13 +1115,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions2, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.put_AudioPitch (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppendedSilence
@@ -1017,14 +1134,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.SpeechAppendedSilence is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechSynthesis.SpeechAppendedSilence;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.get_AppendedSilence (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1034,13 +1155,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : Windows.Media.SpeechSynthesis.SpeechAppendedSilence
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.put_AppendedSilence (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PunctuationSilence
@@ -1049,14 +1174,18 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.SpeechPunctuationSilence is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechSynthesis.SpeechPunctuationSilence;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.get_PunctuationSilence (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1066,13 +1195,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       value : Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions_Interface, WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions3, WinRt.Windows.Media.SpeechSynthesis.IID_ISpeechSynthesizerOptions3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechSynthesizerOptions.all);
       Hr := m_Interface.put_PunctuationSilence (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1084,12 +1217,12 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    end;
 
    procedure Finalize (this : in out VoiceInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceInformation, IVoiceInformation_Ptr);
    begin
       if this.m_IVoiceInformation /= null then
          if this.m_IVoiceInformation.all /= null then
-            RefCount := this.m_IVoiceInformation.all.Release;
+            temp := this.m_IVoiceInformation.all.Release;
             Free (this.m_IVoiceInformation);
          end if;
       end if;
@@ -1104,13 +1237,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceInformation.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1120,13 +1257,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceInformation.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1136,13 +1277,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceInformation.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1152,13 +1297,17 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceInformation.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1168,10 +1317,14 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    )
    return WinRt.Windows.Media.SpeechSynthesis.VoiceGender is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechSynthesis.VoiceGender;
    begin
       Hr := this.m_IVoiceInformation.all.get_Gender (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

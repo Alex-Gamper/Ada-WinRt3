@@ -50,35 +50,39 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       function get_ServiceUri
       return WinRt.Windows.Foundation.Uri is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       begin
          return RetVal : WinRt.Windows.Foundation.Uri do
             Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_ServiceUri (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
                Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function GetGamerProfileAsync
       return WinRt.Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GameServicePropertyCollection.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -96,7 +100,7 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GameServicePropertyCollection.Kind_Delegate, AsyncOperationCompletedHandler_GameServicePropertyCollection.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -110,10 +114,10 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
             Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetGamerProfileAsync (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -125,30 +129,30 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
                         Retval.m_IGameServicePropertyCollection := new Windows.Phone.System.UserProfile.GameServices.Core.IGameServicePropertyCollection;
                         Retval.m_IGameServicePropertyCollection.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function GetInstalledGameItemsAsync
       return WinRt.Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GameServicePropertyCollection.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -166,7 +170,7 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GameServicePropertyCollection.Kind_Delegate, AsyncOperationCompletedHandler_GameServicePropertyCollection.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -180,10 +184,10 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
             Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetInstalledGameItemsAsync (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -195,15 +199,15 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
                         Retval.m_IGameServicePropertyCollection := new Windows.Phone.System.UserProfile.GameServices.Core.IGameServicePropertyCollection;
                         Retval.m_IGameServicePropertyCollection.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -213,15 +217,15 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -240,7 +244,7 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -253,10 +257,10 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetPartnerTokenAsync (audienceUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -266,32 +270,32 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
       function GetPrivilegesAsync
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -310,7 +314,7 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -323,10 +327,10 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetPrivilegesAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -336,17 +340,17 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -355,16 +359,20 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          achievementId : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GrantAchievement (achievementId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure GrantAvatarAward
@@ -372,16 +380,20 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          avatarAwardId : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GrantAvatarAward (avatarAwardId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure PostResult
@@ -393,16 +405,20 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          buffer : Windows.Storage.Streams.IBuffer
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameService'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.PostResult (gameVariant, scoreKind, scoreValue, gameOutcome, buffer);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure NotifyPartnerTokenExpired
@@ -410,32 +426,40 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
          audienceUri : Windows.Foundation.Uri'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameService2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.NotifyPartnerTokenExpired (audienceUri.m_IUriRuntimeClass.all);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetAuthenticationStatus
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.System.UserProfile.GameServices.Core.GameService");
          m_Factory        : access WinRt.Windows.Phone.System.UserProfile.GameServices.Core.IGameService2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameService2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAuthenticationStatus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -450,12 +474,12 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
    end;
 
    procedure Finalize (this : in out GameServicePropertyCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGameServicePropertyCollection, IGameServicePropertyCollection_Ptr);
    begin
       if this.m_IGameServicePropertyCollection /= null then
          if this.m_IGameServicePropertyCollection.all /= null then
-            RefCount := this.m_IGameServicePropertyCollection.all.Release;
+            temp := this.m_IGameServicePropertyCollection.all.Release;
             Free (this.m_IGameServicePropertyCollection);
          end if;
       end if;
@@ -471,14 +495,14 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInspectable.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -496,7 +520,7 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInspectable.Kind_Delegate, AsyncOperationCompletedHandler_IInspectable.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -509,7 +533,7 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
       Hr := this.m_IGameServicePropertyCollection.all.GetPropertyAsync (HStr_propertyName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -519,14 +543,14 @@ package body WinRt.Windows.Phone.System.UserProfile.GameServices.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_propertyName);
+      tmp := WindowsDeleteString (HStr_propertyName);
       return m_RetVal;
    end;
 

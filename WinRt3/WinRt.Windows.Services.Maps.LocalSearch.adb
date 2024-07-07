@@ -46,160 +46,192 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       function get_BankAndCreditUnions
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BankAndCreditUnions (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EatDrink
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EatDrink (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Hospitals
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Hospitals (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HotelsAndMotels
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HotelsAndMotels (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_All
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_All (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Parking
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Parking (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SeeDo
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SeeDo (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Shop
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalCategories");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalCategoriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILocalCategoriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Shop (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -214,12 +246,12 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    end;
 
    procedure Finalize (this : in out LocalLocation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILocalLocation, ILocalLocation_Ptr);
    begin
       if this.m_ILocalLocation /= null then
          if this.m_ILocalLocation.all /= null then
-            RefCount := this.m_ILocalLocation.all.Release;
+            temp := this.m_ILocalLocation.all.Release;
             Free (this.m_ILocalLocation);
          end if;
       end if;
@@ -234,11 +266,15 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Services.Maps.MapAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.IMapAddress;
    begin
       return RetVal : WinRt.Windows.Services.Maps.MapAddress do
          Hr := this.m_ILocalLocation.all.get_Address (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapAddress := new Windows.Services.Maps.IMapAddress;
          Retval.m_IMapAddress.all := m_ComRetVal;
       end return;
@@ -250,13 +286,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalLocation.all.get_Identifier (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -266,13 +306,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalLocation.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -282,13 +326,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalLocation.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -298,11 +346,15 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_ILocalLocation.all.get_Point (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -314,13 +366,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalLocation.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -330,13 +386,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalLocation.all.get_DataAttribution (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -346,17 +406,21 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation_Interface, WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2, WinRt.Windows.Services.Maps.LocalSearch.IID_ILocalLocation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILocalLocation.all);
       Hr := m_Interface.get_Category (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -366,15 +430,19 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Services.Maps.LocalSearch.LocalLocationRatingInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation_Interface, WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2, WinRt.Windows.Services.Maps.LocalSearch.IID_ILocalLocation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Services.Maps.LocalSearch.LocalLocationRatingInfo do
          m_Interface := QInterface (this.m_ILocalLocation.all);
          Hr := m_Interface.get_RatingInfo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILocalLocationRatingInfo := new Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo;
          Retval.m_ILocalLocationRatingInfo.all := m_ComRetVal;
       end return;
@@ -386,17 +454,21 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return IVectorView_ILocalLocationHoursOfOperationItem.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ILocalLocationHoursOfOperationItem.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation_Interface, WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2, WinRt.Windows.Services.Maps.LocalSearch.IID_ILocalLocation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILocalLocation.all);
       Hr := m_Interface.get_HoursOfOperation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ILocalLocationHoursOfOperationItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -413,17 +485,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       )
       return WinRt.Windows.Services.Maps.LocalSearch.LocalLocationFinderResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalLocationFinder");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.LocalLocationFinder");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.ILocalLocationFinderStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_searchTerm : WinRt.HString := To_HString (searchTerm);
-         HStr_localCategory : WinRt.HString := To_HString (localCategory);
+         temp             : WinRt.UInt32 := 0;
+         HStr_searchTerm : constant WinRt.HString := To_HString (searchTerm);
+         HStr_localCategory : constant WinRt.HString := To_HString (localCategory);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_LocalLocationFinderResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -441,7 +513,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LocalLocationFinderResult.Kind_Delegate, AsyncOperationCompletedHandler_LocalLocationFinderResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -455,10 +527,10 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
             Hr := RoGetActivationFactory (m_hString, IID_ILocalLocationFinderStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.FindLocalLocationsAsync (HStr_searchTerm, searchArea.m_IGeocircle.all, HStr_localCategory, maxResults, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -470,17 +542,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
                         Retval.m_ILocalLocationFinderResult := new Windows.Services.Maps.LocalSearch.ILocalLocationFinderResult;
                         Retval.m_ILocalLocationFinderResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_searchTerm);
-            Hr := WindowsDeleteString (HStr_localCategory);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_searchTerm);
+            tmp := WindowsDeleteString (HStr_localCategory);
          end return;
       end;
 
@@ -495,12 +567,12 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    end;
 
    procedure Finalize (this : in out LocalLocationFinderResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILocalLocationFinderResult, ILocalLocationFinderResult_Ptr);
    begin
       if this.m_ILocalLocationFinderResult /= null then
          if this.m_ILocalLocationFinderResult.all /= null then
-            RefCount := this.m_ILocalLocationFinderResult.all.Release;
+            temp := this.m_ILocalLocationFinderResult.all.Release;
             Free (this.m_ILocalLocationFinderResult);
          end if;
       end if;
@@ -515,13 +587,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return IVectorView_ILocalLocation.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ILocalLocation.Kind;
    begin
       Hr := this.m_ILocalLocationFinderResult.all.get_LocalLocations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ILocalLocation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -531,10 +607,14 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus;
    begin
       Hr := this.m_ILocalLocationFinderResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -547,12 +627,12 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    end;
 
    procedure Finalize (this : in out LocalLocationHoursOfOperationItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILocalLocationHoursOfOperationItem, ILocalLocationHoursOfOperationItem_Ptr);
    begin
       if this.m_ILocalLocationHoursOfOperationItem /= null then
          if this.m_ILocalLocationHoursOfOperationItem.all /= null then
-            RefCount := this.m_ILocalLocationHoursOfOperationItem.all.Release;
+            temp := this.m_ILocalLocationHoursOfOperationItem.all.Release;
             Free (this.m_ILocalLocationHoursOfOperationItem);
          end if;
       end if;
@@ -567,10 +647,14 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Globalization.DayOfWeek is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DayOfWeek;
    begin
       Hr := this.m_ILocalLocationHoursOfOperationItem.all.get_Day (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -580,10 +664,14 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILocalLocationHoursOfOperationItem.all.get_Start (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -593,10 +681,14 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILocalLocationHoursOfOperationItem.all.get_Span (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -609,12 +701,12 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    end;
 
    procedure Finalize (this : in out LocalLocationRatingInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILocalLocationRatingInfo, ILocalLocationRatingInfo_Ptr);
    begin
       if this.m_ILocalLocationRatingInfo /= null then
          if this.m_ILocalLocationRatingInfo.all /= null then
-            RefCount := this.m_ILocalLocationRatingInfo.all.Release;
+            temp := this.m_ILocalLocationRatingInfo.all.Release;
             Free (this.m_ILocalLocationRatingInfo);
          end if;
       end if;
@@ -629,13 +721,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_ILocalLocationRatingInfo.all.get_AggregateRating (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -645,13 +741,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_ILocalLocationRatingInfo.all.get_RatingCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -661,13 +761,17 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalLocationRatingInfo.all.get_ProviderIdentifier (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -681,20 +785,24 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       )
       return WinRt.Windows.Services.Maps.PlaceInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.PlaceInfoHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.PlaceInfoHelper");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.IPlaceInfoHelperStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
       begin
          return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IPlaceInfoHelperStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateFromLocalLocation (location.m_ILocalLocation.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
                Retval.m_IPlaceInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 

@@ -50,12 +50,12 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    end;
 
    procedure Finalize (this : in out AppCapability) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppCapability, IAppCapability_Ptr);
    begin
       if this.m_IAppCapability /= null then
          if this.m_IAppCapability.all /= null then
-            RefCount := this.m_IAppCapability.all.Release;
+            temp := this.m_IAppCapability.all.Release;
             Free (this.m_IAppCapability);
          end if;
       end if;
@@ -70,15 +70,15 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
       m_Factory        : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapabilityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -96,7 +96,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -109,10 +109,10 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       Hr := RoGetActivationFactory (m_hString, IID_IAppCapabilityStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessForCapabilitiesAsync (capabilityNames, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -122,15 +122,15 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -141,15 +141,15 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
       m_Factory        : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapabilityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -167,7 +167,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -180,10 +180,10 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       Hr := RoGetActivationFactory (m_hString, IID_IAppCapabilityStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessForCapabilitiesForUserAsync (user.m_IUser.all, capabilityNames, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -193,15 +193,15 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -211,22 +211,26 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapability is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
       m_Factory        : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapabilityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
-      HStr_capabilityName : WinRt.HString := To_HString (capabilityName);
+      HStr_capabilityName : constant WinRt.HString := To_HString (capabilityName);
    begin
       return RetVal : WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapability do
          Hr := RoGetActivationFactory (m_hString, IID_IAppCapabilityStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_capabilityName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAppCapability := new Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
             Retval.m_IAppCapability.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_capabilityName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_capabilityName);
       end return;
    end;
 
@@ -238,22 +242,26 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapability is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
       m_Factory        : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapabilityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
-      HStr_capabilityName : WinRt.HString := To_HString (capabilityName);
+      HStr_capabilityName : constant WinRt.HString := To_HString (capabilityName);
    begin
       return RetVal : WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapability do
          Hr := RoGetActivationFactory (m_hString, IID_IAppCapabilityStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithProcessIdForUser (user.m_IUser.all, HStr_capabilityName, pid, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAppCapability := new Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
             Retval.m_IAppCapability.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_capabilityName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_capabilityName);
       end return;
    end;
 
@@ -266,13 +274,17 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppCapability.all.get_CapabilityName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -282,11 +294,15 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAppCapability.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -298,13 +314,13 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppCapabilityAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -322,7 +338,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_AppCapabilityAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -335,7 +351,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       Hr := this.m_IAppCapability.all.RequestAccessAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -345,9 +361,9 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -361,10 +377,14 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
    begin
       Hr := this.m_IAppCapability.all.CheckAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -375,10 +395,14 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCapability.all.add_AccessChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -388,9 +412,13 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppCapability.all.remove_AccessChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -402,12 +430,12 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    end;
 
    procedure Finalize (this : in out AppCapabilityAccessChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppCapabilityAccessChangedEventArgs, IAppCapabilityAccessChangedEventArgs_Ptr);
    begin
       if this.m_IAppCapabilityAccessChangedEventArgs /= null then
          if this.m_IAppCapabilityAccessChangedEventArgs.all /= null then
-            RefCount := this.m_IAppCapabilityAccessChangedEventArgs.all.Release;
+            temp := this.m_IAppCapabilityAccessChangedEventArgs.all.Release;
             Free (this.m_IAppCapabilityAccessChangedEventArgs);
          end if;
       end if;

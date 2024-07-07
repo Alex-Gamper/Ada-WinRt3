@@ -49,12 +49,12 @@ package body WinRt.Windows.Perception.People is
    end;
 
    procedure Finalize (this : in out EyesPose) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEyesPose, IEyesPose_Ptr);
    begin
       if this.m_IEyesPose /= null then
          if this.m_IEyesPose.all /= null then
-            RefCount := this.m_IEyesPose.all.Release;
+            temp := this.m_IEyesPose.all.Release;
             Free (this.m_IEyesPose);
          end if;
       end if;
@@ -66,32 +66,36 @@ package body WinRt.Windows.Perception.People is
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.People.EyesPose");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.People.EyesPose");
       m_Factory        : access WinRt.Windows.Perception.People.IEyesPoseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IEyesPoseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function RequestAccessAsync
    return WinRt.Windows.UI.Input.GazeInputAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.People.EyesPose");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.People.EyesPose");
       m_Factory        : access WinRt.Windows.Perception.People.IEyesPoseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GazeInputAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -109,7 +113,7 @@ package body WinRt.Windows.Perception.People is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GazeInputAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_GazeInputAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -122,10 +126,10 @@ package body WinRt.Windows.Perception.People is
       Hr := RoGetActivationFactory (m_hString, IID_IEyesPoseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -135,15 +139,15 @@ package body WinRt.Windows.Perception.People is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -156,10 +160,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEyesPose.all.get_IsCalibrationValid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -169,10 +177,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IEyesPose.all.get_Gaze (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -182,11 +194,15 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Perception.PerceptionTimestamp'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_IEyesPose.all.get_UpdateTimestamp (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
@@ -201,12 +217,12 @@ package body WinRt.Windows.Perception.People is
    end;
 
    procedure Finalize (this : in out HandMeshObserver) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHandMeshObserver, IHandMeshObserver_Ptr);
    begin
       if this.m_IHandMeshObserver /= null then
          if this.m_IHandMeshObserver.all /= null then
-            RefCount := this.m_IHandMeshObserver.all.Release;
+            temp := this.m_IHandMeshObserver.all.Release;
             Free (this.m_IHandMeshObserver);
          end if;
       end if;
@@ -221,11 +237,15 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSource;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource do
          Hr := this.m_IHandMeshObserver.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialInteractionSource := new Windows.UI.Input.Spatial.ISpatialInteractionSource;
          Retval.m_ISpatialInteractionSource.all := m_ComRetVal;
       end return;
@@ -237,10 +257,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IHandMeshObserver.all.get_TriangleIndexCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -250,10 +274,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IHandMeshObserver.all.get_VertexCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -263,10 +291,14 @@ package body WinRt.Windows.Perception.People is
       indices : WinRt.UInt16_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_indices is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
    begin
       Hr := this.m_IHandMeshObserver.all.GetTriangleIndices (WinRt.UInt32(indices'Length), Convert_indices (indices (indices'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetVertexStateForPose
@@ -276,11 +308,15 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Perception.People.HandMeshVertexState'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.People.IHandMeshVertexState;
    begin
       return RetVal : WinRt.Windows.Perception.People.HandMeshVertexState do
          Hr := this.m_IHandMeshObserver.all.GetVertexStateForPose (handPose_p.m_IHandPose.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHandMeshVertexState := new Windows.Perception.People.IHandMeshVertexState;
          Retval.m_IHandMeshVertexState.all := m_ComRetVal;
       end return;
@@ -292,11 +328,15 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Perception.People.HandPose'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.People.IHandPose;
    begin
       return RetVal : WinRt.Windows.Perception.People.HandPose do
          Hr := this.m_IHandMeshObserver.all.get_NeutralPose (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHandPose := new Windows.Perception.People.IHandPose;
          Retval.m_IHandPose.all := m_ComRetVal;
       end return;
@@ -308,10 +348,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IHandMeshObserver.all.get_NeutralPoseVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -321,10 +365,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IHandMeshObserver.all.get_ModelId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -337,12 +385,12 @@ package body WinRt.Windows.Perception.People is
    end;
 
    procedure Finalize (this : in out HandMeshVertexState) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHandMeshVertexState, IHandMeshVertexState_Ptr);
    begin
       if this.m_IHandMeshVertexState /= null then
          if this.m_IHandMeshVertexState.all /= null then
-            RefCount := this.m_IHandMeshVertexState.all.Release;
+            temp := this.m_IHandMeshVertexState.all.Release;
             Free (this.m_IHandMeshVertexState);
          end if;
       end if;
@@ -357,11 +405,15 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_IHandMeshVertexState.all.get_CoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -373,10 +425,14 @@ package body WinRt.Windows.Perception.People is
       vertices : Windows.Perception.People.HandMeshVertex_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_vertices is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Perception.People.HandMeshVertex_Ptr);
    begin
       Hr := this.m_IHandMeshVertexState.all.GetVertices (WinRt.UInt32(vertices'Length), Convert_vertices (vertices (vertices'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UpdateTimestamp
@@ -385,11 +441,15 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Perception.PerceptionTimestamp'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_IHandMeshVertexState.all.get_UpdateTimestamp (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
@@ -404,12 +464,12 @@ package body WinRt.Windows.Perception.People is
    end;
 
    procedure Finalize (this : in out HandPose) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHandPose, IHandPose_Ptr);
    begin
       if this.m_IHandPose /= null then
          if this.m_IHandPose.all /= null then
-            RefCount := this.m_IHandPose.all.Release;
+            temp := this.m_IHandPose.all.Release;
             Free (this.m_IHandPose);
          end if;
       end if;
@@ -427,10 +487,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHandPose.all.TryGetJoint (coordinateSystem.m_ISpatialCoordinateSystem.all, joint, jointPose, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -443,12 +507,16 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function Convert_joints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Perception.People.HandJointKind_Ptr);
       function Convert_jointPoses is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Perception.People.JointPose_Ptr);
    begin
       Hr := this.m_IHandPose.all.TryGetJoints (coordinateSystem.m_ISpatialCoordinateSystem.all, WinRt.UInt32(joints'Length), Convert_joints (joints (joints'First)'Address), WinRt.UInt32(jointPoses'Length), Convert_jointPoses (jointPoses (jointPoses'First)'Address), m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -460,10 +528,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Perception.People.JointPose is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.People.JointPose;
    begin
       Hr := this.m_IHandPose.all.GetRelativeJoint (joint, referenceJoint, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -475,12 +547,16 @@ package body WinRt.Windows.Perception.People is
       jointPoses : Windows.Perception.People.JointPose_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_joints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Perception.People.HandJointKind_Ptr);
       function Convert_referenceJoints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Perception.People.HandJointKind_Ptr);
       function Convert_jointPoses is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Perception.People.JointPose_Ptr);
    begin
       Hr := this.m_IHandPose.all.GetRelativeJoints (WinRt.UInt32(joints'Length), Convert_joints (joints (joints'First)'Address), WinRt.UInt32(referenceJoints'Length), Convert_referenceJoints (referenceJoints (referenceJoints'First)'Address), WinRt.UInt32(jointPoses'Length), Convert_jointPoses (jointPoses (jointPoses'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -492,12 +568,12 @@ package body WinRt.Windows.Perception.People is
    end;
 
    procedure Finalize (this : in out HeadPose) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHeadPose, IHeadPose_Ptr);
    begin
       if this.m_IHeadPose /= null then
          if this.m_IHeadPose.all /= null then
-            RefCount := this.m_IHeadPose.all.Release;
+            temp := this.m_IHeadPose.all.Release;
             Free (this.m_IHeadPose);
          end if;
       end if;
@@ -512,10 +588,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IHeadPose.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -525,10 +605,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IHeadPose.all.get_ForwardDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -538,10 +622,14 @@ package body WinRt.Windows.Perception.People is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IHeadPose.all.get_UpDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

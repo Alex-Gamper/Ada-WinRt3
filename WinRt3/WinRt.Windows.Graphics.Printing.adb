@@ -48,12 +48,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintManager, IPrintManager_Ptr);
    begin
       if this.m_IPrintManager /= null then
          if this.m_IPrintManager.all /= null then
-            RefCount := this.m_IPrintManager.all.Release;
+            temp := this.m_IPrintManager.all.Release;
             Free (this.m_IPrintManager);
          end if;
       end if;
@@ -65,35 +65,39 @@ package body WinRt.Windows.Graphics.Printing is
    function GetForCurrentView
    return WinRt.Windows.Graphics.Printing.PrintManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintManager");
       m_Factory        : access WinRt.Windows.Graphics.Printing.IPrintManagerStatic_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintManager;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintManager do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintManagerStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPrintManager := new Windows.Graphics.Printing.IPrintManager;
             Retval.m_IPrintManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function ShowPrintUIAsync
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintManager");
       m_Factory        : access WinRt.Windows.Graphics.Printing.IPrintManagerStatic_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -111,7 +115,7 @@ package body WinRt.Windows.Graphics.Printing is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -124,10 +128,10 @@ package body WinRt.Windows.Graphics.Printing is
       Hr := RoGetActivationFactory (m_hString, IID_IPrintManagerStatic'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ShowPrintUIAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -137,32 +141,36 @@ package body WinRt.Windows.Graphics.Printing is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintManager");
       m_Factory        : access WinRt.Windows.Graphics.Printing.IPrintManagerStatic2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPrintManagerStatic2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -176,10 +184,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintManager.all.add_PrintTaskRequested (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -189,9 +201,13 @@ package body WinRt.Windows.Graphics.Printing is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintManager.all.remove_PrintTaskRequested (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -203,12 +219,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintPageInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintPageInfo, IPrintPageInfo_Ptr);
    begin
       if this.m_IPrintPageInfo /= null then
          if this.m_IPrintPageInfo.all /= null then
-            RefCount := this.m_IPrintPageInfo.all.Release;
+            temp := this.m_IPrintPageInfo.all.Release;
             Free (this.m_IPrintPageInfo);
          end if;
       end if;
@@ -219,7 +235,8 @@ package body WinRt.Windows.Graphics.Printing is
 
    function Constructor return PrintPageInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageInfo");
       m_ComRetVal  : aliased Windows.Graphics.Printing.IPrintPageInfo;
    begin
       return RetVal : PrintPageInfo do
@@ -228,7 +245,7 @@ package body WinRt.Windows.Graphics.Printing is
             Retval.m_IPrintPageInfo := new Windows.Graphics.Printing.IPrintPageInfo;
             Retval.m_IPrintPageInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -241,9 +258,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintMediaSize
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageInfo.all.put_MediaSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MediaSize
@@ -252,10 +273,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintMediaSize is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintMediaSize;
    begin
       Hr := this.m_IPrintPageInfo.all.get_MediaSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -265,9 +290,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageInfo.all.put_PageSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PageSize
@@ -276,10 +305,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IPrintPageInfo.all.get_PageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -289,9 +322,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageInfo.all.put_DpiX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DpiX
@@ -300,10 +337,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPrintPageInfo.all.get_DpiX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -313,9 +354,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageInfo.all.put_DpiY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DpiY
@@ -324,10 +369,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPrintPageInfo.all.get_DpiY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -337,9 +386,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintOrientation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageInfo.all.put_Orientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Orientation
@@ -348,10 +401,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintOrientation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintOrientation;
    begin
       Hr := this.m_IPrintPageInfo.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -364,12 +421,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintPageRange) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintPageRange, IPrintPageRange_Ptr);
    begin
       if this.m_IPrintPageRange /= null then
          if this.m_IPrintPageRange.all /= null then
-            RefCount := this.m_IPrintPageRange.all.Release;
+            temp := this.m_IPrintPageRange.all.Release;
             Free (this.m_IPrintPageRange);
          end if;
       end if;
@@ -385,9 +442,10 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return PrintPageRange is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
       m_Factory    : access IPrintPageRangeFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Graphics.Printing.IPrintPageRange;
    begin
       return RetVal : PrintPageRange do
@@ -396,9 +454,9 @@ package body WinRt.Windows.Graphics.Printing is
             Hr := m_Factory.Create (firstPage, lastPage, m_ComRetVal'Access);
             Retval.m_IPrintPageRange := new Windows.Graphics.Printing.IPrintPageRange;
             Retval.m_IPrintPageRange.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -408,9 +466,10 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return PrintPageRange is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
       m_Factory    : access IPrintPageRangeFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Graphics.Printing.IPrintPageRange;
    begin
       return RetVal : PrintPageRange do
@@ -419,9 +478,9 @@ package body WinRt.Windows.Graphics.Printing is
             Hr := m_Factory.CreateWithSinglePage (page, m_ComRetVal'Access);
             Retval.m_IPrintPageRange := new Windows.Graphics.Printing.IPrintPageRange;
             Retval.m_IPrintPageRange.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -434,10 +493,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPrintPageRange.all.get_FirstPageNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -447,10 +510,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPrintPageRange.all.get_LastPageNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -463,12 +530,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintPageRangeOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintPageRangeOptions, IPrintPageRangeOptions_Ptr);
    begin
       if this.m_IPrintPageRangeOptions /= null then
          if this.m_IPrintPageRangeOptions.all /= null then
-            RefCount := this.m_IPrintPageRangeOptions.all.Release;
+            temp := this.m_IPrintPageRangeOptions.all.Release;
             Free (this.m_IPrintPageRangeOptions);
          end if;
       end if;
@@ -483,9 +550,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageRangeOptions.all.put_AllowAllPages (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowAllPages
@@ -494,10 +565,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintPageRangeOptions.all.get_AllowAllPages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -507,9 +582,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageRangeOptions.all.put_AllowCurrentPage (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowCurrentPage
@@ -518,10 +597,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintPageRangeOptions.all.get_AllowCurrentPage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -531,9 +614,13 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintPageRangeOptions.all.put_AllowCustomSetOfPages (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowCustomSetOfPages
@@ -542,10 +629,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintPageRangeOptions.all.get_AllowCustomSetOfPages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -558,12 +649,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTask) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTask, IPrintTask_Ptr);
    begin
       if this.m_IPrintTask /= null then
          if this.m_IPrintTask.all /= null then
-            RefCount := this.m_IPrintTask.all.Release;
+            temp := this.m_IPrintTask.all.Release;
             Free (this.m_IPrintTask);
          end if;
       end if;
@@ -578,11 +669,15 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.DataPackagePropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackagePropertySet do
          Hr := this.m_IPrintTask.all.get_Properties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataPackagePropertySet := new Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet;
          Retval.m_IDataPackagePropertySet.all := m_ComRetVal;
       end return;
@@ -594,10 +689,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.IPrintDocumentSource is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintDocumentSource;
    begin
       Hr := this.m_IPrintTask.all.get_Source (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -607,11 +706,15 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintTaskOptions'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTaskOptionsCore;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTaskOptions do
          Hr := this.m_IPrintTask.all.get_Options (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintTaskOptionsCore := new Windows.Graphics.Printing.IPrintTaskOptionsCore;
          Retval.m_IPrintTaskOptionsCore.all := m_ComRetVal;
       end return;
@@ -624,10 +727,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTask.all.add_Previewing (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -637,9 +744,13 @@ package body WinRt.Windows.Graphics.Printing is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTask.all.remove_Previewing (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Submitting
@@ -649,10 +760,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTask.all.add_Submitting (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -662,9 +777,13 @@ package body WinRt.Windows.Graphics.Printing is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTask.all.remove_Submitting (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Progressing
@@ -674,10 +793,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTask.all.add_Progressing (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -687,9 +810,13 @@ package body WinRt.Windows.Graphics.Printing is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTask.all.remove_Progressing (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Completed
@@ -699,10 +826,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTask.all.add_Completed (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -712,9 +843,13 @@ package body WinRt.Windows.Graphics.Printing is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTask.all.remove_Completed (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_IsPrinterTargetEnabled
@@ -723,13 +858,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTask_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport, WinRt.Windows.Graphics.Printing.IID_IPrintTaskTargetDeviceSupport'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTask.all);
       Hr := m_Interface.put_IsPrinterTargetEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsPrinterTargetEnabled
@@ -738,14 +877,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTask_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport, WinRt.Windows.Graphics.Printing.IID_IPrintTaskTargetDeviceSupport'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTask.all);
       Hr := m_Interface.get_IsPrinterTargetEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -755,13 +898,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTask_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport, WinRt.Windows.Graphics.Printing.IID_IPrintTaskTargetDeviceSupport'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTask.all);
       Hr := m_Interface.put_Is3DManufacturingTargetEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Is3DManufacturingTargetEnabled
@@ -770,14 +917,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTask_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskTargetDeviceSupport, WinRt.Windows.Graphics.Printing.IID_IPrintTaskTargetDeviceSupport'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTask.all);
       Hr := m_Interface.get_Is3DManufacturingTargetEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -787,13 +938,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTask2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTask_Interface, WinRt.Windows.Graphics.Printing.IPrintTask2, WinRt.Windows.Graphics.Printing.IID_IPrintTask2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTask.all);
       Hr := m_Interface.put_IsPreviewEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsPreviewEnabled
@@ -802,14 +957,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTask2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTask_Interface, WinRt.Windows.Graphics.Printing.IPrintTask2, WinRt.Windows.Graphics.Printing.IID_IPrintTask2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTask.all);
       Hr := m_Interface.get_IsPreviewEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -822,12 +981,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskCompletedEventArgs, IPrintTaskCompletedEventArgs_Ptr);
    begin
       if this.m_IPrintTaskCompletedEventArgs /= null then
          if this.m_IPrintTaskCompletedEventArgs.all /= null then
-            RefCount := this.m_IPrintTaskCompletedEventArgs.all.Release;
+            temp := this.m_IPrintTaskCompletedEventArgs.all.Release;
             Free (this.m_IPrintTaskCompletedEventArgs);
          end if;
       end if;
@@ -842,10 +1001,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintTaskCompletion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTaskCompletion;
    begin
       Hr := this.m_IPrintTaskCompletedEventArgs.all.get_Completion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -858,12 +1021,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskOptionsCore, IPrintTaskOptionsCore_Ptr);
    begin
       if this.m_IPrintTaskOptionsCore /= null then
          if this.m_IPrintTaskOptionsCore.all /= null then
-            RefCount := this.m_IPrintTaskOptionsCore.all.Release;
+            temp := this.m_IPrintTaskOptionsCore.all.Release;
             Free (this.m_IPrintTaskOptionsCore);
          end if;
       end if;
@@ -879,10 +1042,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintPageDescription is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintPageDescription;
    begin
       Hr := this.m_IPrintTaskOptionsCore.all.GetPageDescription (jobPageNumber, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -892,13 +1059,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintMediaSize
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_MediaSize (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MediaSize
@@ -907,14 +1078,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintMediaSize is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintMediaSize;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_MediaSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -924,13 +1099,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintMediaType
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_MediaType (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MediaType
@@ -939,14 +1118,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintMediaType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintMediaType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_MediaType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -956,13 +1139,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintOrientation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_Orientation (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Orientation
@@ -971,14 +1158,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintOrientation is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintOrientation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_Orientation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -988,13 +1179,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_PrintQuality (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PrintQuality
@@ -1003,14 +1198,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintQuality is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintQuality;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_PrintQuality (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1020,13 +1219,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintColorMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_ColorMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ColorMode
@@ -1035,14 +1238,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintColorMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintColorMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_ColorMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1052,13 +1259,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintDuplex
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_Duplex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duplex
@@ -1067,14 +1278,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintDuplex is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintDuplex;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_Duplex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1084,13 +1299,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintCollation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_Collation (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Collation
@@ -1099,14 +1318,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintCollation is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintCollation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_Collation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1116,13 +1339,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintStaple
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_Staple (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Staple
@@ -1131,14 +1358,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintStaple is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintStaple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_Staple (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1148,13 +1379,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintHolePunch
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_HolePunch (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HolePunch
@@ -1163,14 +1398,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintHolePunch is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintHolePunch;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_HolePunch (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1180,13 +1419,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintBinding
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_Binding (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Binding
@@ -1195,14 +1438,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintBinding is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintBinding;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_Binding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1212,14 +1459,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_MinCopies (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1229,14 +1480,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_MaxCopies (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1246,13 +1501,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_NumberOfCopies (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NumberOfCopies
@@ -1261,14 +1520,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreProperties, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_NumberOfCopies (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1278,17 +1541,21 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreUIConfiguration := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreUIConfiguration, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreUIConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_DisplayedOptions (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1298,13 +1565,17 @@ package body WinRt.Windows.Graphics.Printing is
       value : Windows.Graphics.Printing.PrintBordering
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptions := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptions, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptions'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.put_Bordering (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bordering
@@ -1313,14 +1584,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintBordering is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptions := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintBordering;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptions, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptions'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_Bordering (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1331,14 +1606,18 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptions := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptions, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptions'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.GetPagePrintTicket (printPageInfo_p.m_IPrintPageInfo.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1348,15 +1627,19 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintPageRangeOptions'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintPageRangeOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptions2, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptions2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintPageRangeOptions do
          m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
          Hr := m_Interface.get_PageRangeOptions (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintPageRangeOptions := new Windows.Graphics.Printing.IPrintPageRangeOptions;
          Retval.m_IPrintPageRangeOptions.all := m_ComRetVal;
       end return;
@@ -1368,17 +1651,21 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return IVector_IPrintPageRange.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IPrintPageRange.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptions2, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionsCore.all);
       Hr := m_Interface.get_CustomPageRanges (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IPrintPageRange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1391,12 +1678,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskProgressingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskProgressingEventArgs, IPrintTaskProgressingEventArgs_Ptr);
    begin
       if this.m_IPrintTaskProgressingEventArgs /= null then
          if this.m_IPrintTaskProgressingEventArgs.all /= null then
-            RefCount := this.m_IPrintTaskProgressingEventArgs.all.Release;
+            temp := this.m_IPrintTaskProgressingEventArgs.all.Release;
             Free (this.m_IPrintTaskProgressingEventArgs);
          end if;
       end if;
@@ -1411,10 +1698,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPrintTaskProgressingEventArgs.all.get_DocumentPageCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1427,12 +1718,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskRequest, IPrintTaskRequest_Ptr);
    begin
       if this.m_IPrintTaskRequest /= null then
          if this.m_IPrintTaskRequest.all /= null then
-            RefCount := this.m_IPrintTaskRequest.all.Release;
+            temp := this.m_IPrintTaskRequest.all.Release;
             Free (this.m_IPrintTaskRequest);
          end if;
       end if;
@@ -1447,10 +1738,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPrintTaskRequest.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1462,15 +1757,19 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintTask'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTask;
-      HStr_title : WinRt.HString := To_HString (title);
+      HStr_title : constant WinRt.HString := To_HString (title);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTask do
          Hr := this.m_IPrintTaskRequest.all.CreatePrintTask (HStr_title, handler, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintTask := new Windows.Graphics.Printing.IPrintTask;
          Retval.m_IPrintTask.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (HStr_title);
       end return;
    end;
 
@@ -1480,11 +1779,15 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintTaskRequestedDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTaskRequestedDeferral;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTaskRequestedDeferral do
          Hr := this.m_IPrintTaskRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintTaskRequestedDeferral := new Windows.Graphics.Printing.IPrintTaskRequestedDeferral;
          Retval.m_IPrintTaskRequestedDeferral.all := m_ComRetVal;
       end return;
@@ -1499,12 +1802,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskRequestedDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskRequestedDeferral, IPrintTaskRequestedDeferral_Ptr);
    begin
       if this.m_IPrintTaskRequestedDeferral /= null then
          if this.m_IPrintTaskRequestedDeferral.all /= null then
-            RefCount := this.m_IPrintTaskRequestedDeferral.all.Release;
+            temp := this.m_IPrintTaskRequestedDeferral.all.Release;
             Free (this.m_IPrintTaskRequestedDeferral);
          end if;
       end if;
@@ -1518,9 +1821,13 @@ package body WinRt.Windows.Graphics.Printing is
       this : in out PrintTaskRequestedDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTaskRequestedDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1532,12 +1839,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskRequestedEventArgs, IPrintTaskRequestedEventArgs_Ptr);
    begin
       if this.m_IPrintTaskRequestedEventArgs /= null then
          if this.m_IPrintTaskRequestedEventArgs.all /= null then
-            RefCount := this.m_IPrintTaskRequestedEventArgs.all.Release;
+            temp := this.m_IPrintTaskRequestedEventArgs.all.Release;
             Free (this.m_IPrintTaskRequestedEventArgs);
          end if;
       end if;
@@ -1552,11 +1859,15 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintTaskRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTaskRequest;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTaskRequest do
          Hr := this.m_IPrintTaskRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintTaskRequest := new Windows.Graphics.Printing.IPrintTaskRequest;
          Retval.m_IPrintTaskRequest.all := m_ComRetVal;
       end return;
@@ -1571,12 +1882,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskSourceRequestedArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskSourceRequestedArgs, IPrintTaskSourceRequestedArgs_Ptr);
    begin
       if this.m_IPrintTaskSourceRequestedArgs /= null then
          if this.m_IPrintTaskSourceRequestedArgs.all /= null then
-            RefCount := this.m_IPrintTaskSourceRequestedArgs.all.Release;
+            temp := this.m_IPrintTaskSourceRequestedArgs.all.Release;
             Free (this.m_IPrintTaskSourceRequestedArgs);
          end if;
       end if;
@@ -1591,10 +1902,14 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPrintTaskSourceRequestedArgs.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1604,9 +1919,13 @@ package body WinRt.Windows.Graphics.Printing is
       source : Windows.Graphics.Printing.IPrintDocumentSource
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTaskSourceRequestedArgs.all.SetSource (source);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -1615,11 +1934,15 @@ package body WinRt.Windows.Graphics.Printing is
    )
    return WinRt.Windows.Graphics.Printing.PrintTaskSourceRequestedDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTaskSourceRequestedDeferral;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTaskSourceRequestedDeferral do
          Hr := this.m_IPrintTaskSourceRequestedArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintTaskSourceRequestedDeferral := new Windows.Graphics.Printing.IPrintTaskSourceRequestedDeferral;
          Retval.m_IPrintTaskSourceRequestedDeferral.all := m_ComRetVal;
       end return;
@@ -1634,12 +1957,12 @@ package body WinRt.Windows.Graphics.Printing is
    end;
 
    procedure Finalize (this : in out PrintTaskSourceRequestedDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskSourceRequestedDeferral, IPrintTaskSourceRequestedDeferral_Ptr);
    begin
       if this.m_IPrintTaskSourceRequestedDeferral /= null then
          if this.m_IPrintTaskSourceRequestedDeferral.all /= null then
-            RefCount := this.m_IPrintTaskSourceRequestedDeferral.all.Release;
+            temp := this.m_IPrintTaskSourceRequestedDeferral.all.Release;
             Free (this.m_IPrintTaskSourceRequestedDeferral);
          end if;
       end if;
@@ -1653,9 +1976,13 @@ package body WinRt.Windows.Graphics.Printing is
       this : in out PrintTaskSourceRequestedDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTaskSourceRequestedDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1667,7 +1994,7 @@ package body WinRt.Windows.Graphics.Printing is
       args : Windows.Graphics.Printing.IPrintTaskSourceRequestedArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (args);
       return Hr;
@@ -1680,300 +2007,360 @@ package body WinRt.Windows.Graphics.Printing is
       function get_CustomPageRanges
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CustomPageRanges (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_MediaSize
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MediaSize (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_MediaType
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MediaType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Orientation
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Orientation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PrintQuality
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PrintQuality (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ColorMode
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ColorMode (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Duplex
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Duplex (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Collation
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Collation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Staple
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Staple (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HolePunch
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HolePunch (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Binding
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Binding (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Copies
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Copies (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NUp
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NUp (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_InputBin
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InputBin (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Bordering
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.StandardPrintTaskOptions");
          m_Factory        : access WinRt.Windows.Graphics.Printing.IStandardPrintTaskOptionsStatic2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardPrintTaskOptionsStatic2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Bordering (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 

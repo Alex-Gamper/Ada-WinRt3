@@ -46,24 +46,28 @@ package body WinRt.Windows.Management.Policies is
       )
       return WinRt.Windows.Management.Policies.NamedPolicyData is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Management.Policies.NamedPolicy");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Policies.NamedPolicy");
          m_Factory        : access WinRt.Windows.Management.Policies.INamedPolicyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Management.Policies.INamedPolicyData;
-         HStr_area : WinRt.HString := To_HString (area);
-         HStr_name : WinRt.HString := To_HString (name);
+         HStr_area : constant WinRt.HString := To_HString (area);
+         HStr_name : constant WinRt.HString := To_HString (name);
       begin
          return RetVal : WinRt.Windows.Management.Policies.NamedPolicyData do
             Hr := RoGetActivationFactory (m_hString, IID_INamedPolicyStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetPolicyFromPath (HStr_area, HStr_name, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_INamedPolicyData := new Windows.Management.Policies.INamedPolicyData;
                Retval.m_INamedPolicyData.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_area);
-            Hr := WindowsDeleteString (HStr_name);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_area);
+            tmp := WindowsDeleteString (HStr_name);
          end return;
       end;
 
@@ -75,24 +79,28 @@ package body WinRt.Windows.Management.Policies is
       )
       return WinRt.Windows.Management.Policies.NamedPolicyData is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Management.Policies.NamedPolicy");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Policies.NamedPolicy");
          m_Factory        : access WinRt.Windows.Management.Policies.INamedPolicyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Management.Policies.INamedPolicyData;
-         HStr_area : WinRt.HString := To_HString (area);
-         HStr_name : WinRt.HString := To_HString (name);
+         HStr_area : constant WinRt.HString := To_HString (area);
+         HStr_name : constant WinRt.HString := To_HString (name);
       begin
          return RetVal : WinRt.Windows.Management.Policies.NamedPolicyData do
             Hr := RoGetActivationFactory (m_hString, IID_INamedPolicyStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetPolicyFromPathForUser (user.m_IUser.all, HStr_area, HStr_name, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_INamedPolicyData := new Windows.Management.Policies.INamedPolicyData;
                Retval.m_INamedPolicyData.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_area);
-            Hr := WindowsDeleteString (HStr_name);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_area);
+            tmp := WindowsDeleteString (HStr_name);
          end return;
       end;
 
@@ -107,12 +115,12 @@ package body WinRt.Windows.Management.Policies is
    end;
 
    procedure Finalize (this : in out NamedPolicyData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INamedPolicyData, INamedPolicyData_Ptr);
    begin
       if this.m_INamedPolicyData /= null then
          if this.m_INamedPolicyData.all /= null then
-            RefCount := this.m_INamedPolicyData.all.Release;
+            temp := this.m_INamedPolicyData.all.Release;
             Free (this.m_INamedPolicyData);
          end if;
       end if;
@@ -127,13 +135,17 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INamedPolicyData.all.get_Area (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -143,13 +155,17 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INamedPolicyData.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -159,10 +175,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Windows.Management.Policies.NamedPolicyKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Management.Policies.NamedPolicyKind;
    begin
       Hr := this.m_INamedPolicyData.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -172,10 +192,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INamedPolicyData.all.get_IsManaged (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -185,10 +209,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INamedPolicyData.all.get_IsUserPolicy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -198,11 +226,15 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_INamedPolicyData.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -214,10 +246,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INamedPolicyData.all.GetBoolean (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -227,10 +263,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_INamedPolicyData.all.GetBinary (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -240,10 +280,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_INamedPolicyData.all.GetInt32 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -253,10 +297,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_INamedPolicyData.all.GetInt64 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -266,13 +314,17 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INamedPolicyData.all.GetString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -283,10 +335,14 @@ package body WinRt.Windows.Management.Policies is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INamedPolicyData.all.add_Changed (changedHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -296,9 +352,13 @@ package body WinRt.Windows.Management.Policies is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INamedPolicyData.all.remove_Changed (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Management.Policies;

@@ -49,420 +49,504 @@ package body WinRt.Windows.Security.Cryptography.Core is
       function get_EcdsaSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EcdsaSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EcdsaSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EcdsaSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EcdsaSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EcdsaSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaPkcs1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaPkcs1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaOaepSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaOaepSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaOaepSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaOaepSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaOaepSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaOaepSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaOaepSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaOaepSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EcdsaP256Sha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EcdsaP256Sha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EcdsaP384Sha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EcdsaP384Sha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EcdsaP521Sha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EcdsaP521Sha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DsaSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DsaSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DsaSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DsaSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPkcs1Sha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPkcs1Sha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPkcs1Sha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPkcs1Sha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPkcs1Sha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPkcs1Sha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPkcs1Sha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPkcs1Sha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPssSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPssSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPssSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPssSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPssSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPssSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RsaSignPssSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RsaSignPssSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -477,12 +561,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out AsymmetricKeyAlgorithmProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAsymmetricKeyAlgorithmProvider, IAsymmetricKeyAlgorithmProvider_Ptr);
    begin
       if this.m_IAsymmetricKeyAlgorithmProvider /= null then
          if this.m_IAsymmetricKeyAlgorithmProvider.all /= null then
-            RefCount := this.m_IAsymmetricKeyAlgorithmProvider.all.Release;
+            temp := this.m_IAsymmetricKeyAlgorithmProvider.all.Release;
             Free (this.m_IAsymmetricKeyAlgorithmProvider);
          end if;
       end if;
@@ -497,22 +581,26 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider;
-      HStr_algorithm : WinRt.HString := To_HString (algorithm);
+      HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IAsymmetricKeyAlgorithmProviderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.OpenAlgorithm (HStr_algorithm, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAsymmetricKeyAlgorithmProvider := new Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider;
             Retval.m_IAsymmetricKeyAlgorithmProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_algorithm);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_algorithm);
       end return;
    end;
 
@@ -525,13 +613,17 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.get_AlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -542,11 +634,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.CreateKeyPair (keySize, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -559,11 +655,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportKeyPair (keyBlob, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -577,11 +677,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportKeyPair (keyBlob, BlobType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -594,11 +698,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportPublicKey (keyBlob, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -612,11 +720,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportPublicKey (keyBlob, BlobType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -629,19 +741,23 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
-      HStr_curveName : WinRt.HString := To_HString (curveName);
+      HStr_curveName : constant WinRt.HString := To_HString (curveName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider_Interface, WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2, WinRt.Windows.Security.Cryptography.Core.IID_IAsymmetricKeyAlgorithmProvider2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          m_Interface := QInterface (this.m_IAsymmetricKeyAlgorithmProvider.all);
          Hr := m_Interface.CreateKeyPairWithCurveName (HStr_curveName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_curveName);
+         tmp := WindowsDeleteString (HStr_curveName);
       end return;
    end;
 
@@ -652,8 +768,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider_Interface, WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2, WinRt.Windows.Security.Cryptography.Core.IID_IAsymmetricKeyAlgorithmProvider2'Unchecked_Access);
       function Convert_parameters is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
@@ -661,7 +778,10 @@ package body WinRt.Windows.Security.Cryptography.Core is
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          m_Interface := QInterface (this.m_IAsymmetricKeyAlgorithmProvider.all);
          Hr := m_Interface.CreateKeyPairWithCurveParameters (WinRt.UInt32(parameters'Length), Convert_parameters (parameters (parameters'First)'Address), m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -678,17 +798,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SignHashedData (key.m_ICryptographicKey.all, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -700,17 +824,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.VerifySignatureWithHashInput (key.m_ICryptographicKey.all, data, signature, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -722,15 +850,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_IBuffer.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -748,7 +876,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -761,10 +889,10 @@ package body WinRt.Windows.Security.Cryptography.Core is
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DecryptAsync (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -774,15 +902,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -793,15 +921,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_IBuffer.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -819,7 +947,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -832,10 +960,10 @@ package body WinRt.Windows.Security.Cryptography.Core is
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SignAsync (key.m_ICryptographicKey.all, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -845,15 +973,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -864,15 +992,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_IBuffer.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -890,7 +1018,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -903,10 +1031,10 @@ package body WinRt.Windows.Security.Cryptography.Core is
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SignHashedDataAsync (key.m_ICryptographicKey.all, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -916,15 +1044,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -936,17 +1064,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Encrypt (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -958,17 +1090,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Decrypt (key.m_ICryptographicKey.all, data, iv, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -981,20 +1117,24 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData do
             Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.EncryptAndAuthenticate (key.m_ICryptographicKey.all, data, nonce, authenticatedData, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IEncryptedAndAuthenticatedData := new Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
                Retval.m_IEncryptedAndAuthenticatedData.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -1008,17 +1148,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DecryptAndAuthenticate (key.m_ICryptographicKey.all, data, nonce, authenticationTag, authenticatedData, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1029,17 +1173,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Sign (key.m_ICryptographicKey.all, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1051,17 +1199,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.VerifySignature (key.m_ICryptographicKey.all, data, signature, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1073,17 +1225,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DeriveKeyMaterial (key.m_ICryptographicKey.all, parameters.m_IKeyDerivationParameters.all, desiredKeySize, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1098,12 +1254,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out CryptographicHash) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHashComputation, IHashComputation_Ptr);
    begin
       if this.m_IHashComputation /= null then
          if this.m_IHashComputation.all /= null then
-            RefCount := this.m_IHashComputation.all.Release;
+            temp := this.m_IHashComputation.all.Release;
             Free (this.m_IHashComputation);
          end if;
       end if;
@@ -1118,9 +1274,13 @@ package body WinRt.Windows.Security.Cryptography.Core is
       data : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHashComputation.all.Append (data);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetValueAndReset
@@ -1129,10 +1289,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHashComputation.all.GetValueAndReset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1145,12 +1309,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out CryptographicKey) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICryptographicKey, ICryptographicKey_Ptr);
    begin
       if this.m_ICryptographicKey /= null then
          if this.m_ICryptographicKey.all /= null then
-            RefCount := this.m_ICryptographicKey.all.Release;
+            temp := this.m_ICryptographicKey.all.Release;
             Free (this.m_ICryptographicKey);
          end if;
       end if;
@@ -1165,10 +1329,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICryptographicKey.all.get_KeySize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1178,10 +1346,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.Export (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1192,10 +1364,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.Export (BlobType, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1205,10 +1381,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.ExportPublicKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1219,10 +1399,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.ExportPublicKey (BlobType, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1233,917 +1417,1101 @@ package body WinRt.Windows.Security.Cryptography.Core is
       function get_BrainpoolP160r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP160r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP160t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP160t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP192r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP192r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP192t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP192t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP224r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP224r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP224t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP224t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP256r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP256r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP256t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP256t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP320r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP320r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP320t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP320t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP384r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP384r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP384t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP384t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP512r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP512r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BrainpoolP512t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BrainpoolP512t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Curve25519
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Curve25519 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ec192wapi
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ec192wapi (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NistP192
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NistP192 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NistP224
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NistP224 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NistP256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NistP256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NistP384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NistP384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NistP521
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NistP521 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NumsP256t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NumsP256t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NumsP384t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NumsP384t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NumsP512t1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NumsP512t1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP160k1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP160k1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP160r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP160r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP160r2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP160r2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP192k1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP192k1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP192r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP192r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP224k1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP224k1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP224r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP224r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP256k1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP256k1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP256r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP256r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP384r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP384r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SecP521r1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecP521r1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Wtls7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Wtls7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Wtls9
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Wtls9 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Wtls12
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Wtls12 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P192v1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P192v1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P192v2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P192v2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P192v3
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P192v3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P239v1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P239v1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P239v2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P239v2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P239v3
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P239v3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_X962P256v1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X962P256v1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AllEccCurveNames
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllEccCurveNames (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2158,12 +2526,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out EncryptedAndAuthenticatedData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEncryptedAndAuthenticatedData, IEncryptedAndAuthenticatedData_Ptr);
    begin
       if this.m_IEncryptedAndAuthenticatedData /= null then
          if this.m_IEncryptedAndAuthenticatedData.all /= null then
-            RefCount := this.m_IEncryptedAndAuthenticatedData.all.Release;
+            temp := this.m_IEncryptedAndAuthenticatedData.all.Release;
             Free (this.m_IEncryptedAndAuthenticatedData);
          end if;
       end if;
@@ -2178,10 +2546,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IEncryptedAndAuthenticatedData.all.get_EncryptedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2191,10 +2563,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IEncryptedAndAuthenticatedData.all.get_AuthenticationTag (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2205,100 +2581,120 @@ package body WinRt.Windows.Security.Cryptography.Core is
       function get_Md5
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHashAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Md5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHashAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHashAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHashAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHashAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -2313,12 +2709,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out HashAlgorithmProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHashAlgorithmProvider, IHashAlgorithmProvider_Ptr);
    begin
       if this.m_IHashAlgorithmProvider /= null then
          if this.m_IHashAlgorithmProvider.all /= null then
-            RefCount := this.m_IHashAlgorithmProvider.all.Release;
+            temp := this.m_IHashAlgorithmProvider.all.Release;
             Free (this.m_IHashAlgorithmProvider);
          end if;
       end if;
@@ -2333,22 +2729,26 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.HashAlgorithmProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmProvider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IHashAlgorithmProvider;
-      HStr_algorithm : WinRt.HString := To_HString (algorithm);
+      HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.HashAlgorithmProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IHashAlgorithmProviderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.OpenAlgorithm (HStr_algorithm, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHashAlgorithmProvider := new Windows.Security.Cryptography.Core.IHashAlgorithmProvider;
             Retval.m_IHashAlgorithmProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_algorithm);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_algorithm);
       end return;
    end;
 
@@ -2361,13 +2761,17 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHashAlgorithmProvider.all.get_AlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2377,10 +2781,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IHashAlgorithmProvider.all.get_HashLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2391,10 +2799,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHashAlgorithmProvider.all.HashData (data, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2404,11 +2816,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicHash'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IHashComputation;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicHash do
          Hr := this.m_IHashAlgorithmProvider.all.CreateHash (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHashComputation := new Windows.Security.Cryptography.Core.IHashComputation;
          Retval.m_IHashComputation.all := m_ComRetVal;
       end return;
@@ -2421,400 +2837,480 @@ package body WinRt.Windows.Security.Cryptography.Core is
       function get_CapiKdfMd5
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapiKdfMd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CapiKdfSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapiKdfSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CapiKdfSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapiKdfSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CapiKdfSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapiKdfSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CapiKdfSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapiKdfSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Pbkdf2Md5
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pbkdf2Md5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Pbkdf2Sha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pbkdf2Sha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Pbkdf2Sha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pbkdf2Sha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Pbkdf2Sha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pbkdf2Sha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Pbkdf2Sha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pbkdf2Sha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp800108CtrHmacMd5
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp800108CtrHmacMd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp800108CtrHmacSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp800108CtrHmacSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp800108CtrHmacSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp800108CtrHmacSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp800108CtrHmacSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp800108CtrHmacSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp800108CtrHmacSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp800108CtrHmacSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp80056aConcatMd5
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp80056aConcatMd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp80056aConcatSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp80056aConcatSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp80056aConcatSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp80056aConcatSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp80056aConcatSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp80056aConcatSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sp80056aConcatSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sp80056aConcatSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -2829,12 +3325,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out KeyDerivationAlgorithmProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyDerivationAlgorithmProvider, IKeyDerivationAlgorithmProvider_Ptr);
    begin
       if this.m_IKeyDerivationAlgorithmProvider /= null then
          if this.m_IKeyDerivationAlgorithmProvider.all /= null then
-            RefCount := this.m_IKeyDerivationAlgorithmProvider.all.Release;
+            temp := this.m_IKeyDerivationAlgorithmProvider.all.Release;
             Free (this.m_IKeyDerivationAlgorithmProvider);
          end if;
       end if;
@@ -2849,22 +3345,26 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider;
-      HStr_algorithm : WinRt.HString := To_HString (algorithm);
+      HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationAlgorithmProviderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.OpenAlgorithm (HStr_algorithm, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IKeyDerivationAlgorithmProvider := new Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider;
             Retval.m_IKeyDerivationAlgorithmProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_algorithm);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_algorithm);
       end return;
    end;
 
@@ -2877,13 +3377,17 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IKeyDerivationAlgorithmProvider.all.get_AlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2894,11 +3398,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IKeyDerivationAlgorithmProvider.all.CreateKey (keyMaterial, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -2913,12 +3421,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out KeyDerivationParameters) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyDerivationParameters, IKeyDerivationParameters_Ptr);
    begin
       if this.m_IKeyDerivationParameters /= null then
          if this.m_IKeyDerivationParameters.all /= null then
-            RefCount := this.m_IKeyDerivationParameters.all.Release;
+            temp := this.m_IKeyDerivationParameters.all.Release;
             Free (this.m_IKeyDerivationParameters);
          end if;
       end if;
@@ -2933,20 +3441,24 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.BuildForCapi1Kdf (capi1KdfTargetAlgorithm, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2957,20 +3469,24 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.BuildForPbkdf2 (pbkdf2Salt, iterationCount, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2981,20 +3497,24 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.BuildForSP800108 (label, context, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3008,20 +3528,24 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.BuildForSP80056a (algorithmId, partyUInfo, partyVInfo, suppPubInfo, suppPrivInfo, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3034,10 +3558,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyDerivationParameters.all.get_KdfGenericBinary (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3047,9 +3575,13 @@ package body WinRt.Windows.Security.Cryptography.Core is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyDerivationParameters.all.put_KdfGenericBinary (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IterationCount
@@ -3058,10 +3590,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IKeyDerivationParameters.all.get_IterationCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3071,14 +3607,18 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters_Interface, WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters2, WinRt.Windows.Security.Cryptography.Core.IID_IKeyDerivationParameters2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyDerivationParameters.all);
       Hr := m_Interface.get_Capi1KdfTargetAlgorithm (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3088,13 +3628,17 @@ package body WinRt.Windows.Security.Cryptography.Core is
       value : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters_Interface, WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters2, WinRt.Windows.Security.Cryptography.Core.IID_IKeyDerivationParameters2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyDerivationParameters.all);
       Hr := m_Interface.put_Capi1KdfTargetAlgorithm (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3104,120 +3648,144 @@ package body WinRt.Windows.Security.Cryptography.Core is
       function get_HmacMd5
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HmacMd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HmacSha1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HmacSha1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HmacSha256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HmacSha256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HmacSha384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HmacSha384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HmacSha512
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HmacSha512 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesCmac
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesCmac (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -3232,12 +3800,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out MacAlgorithmProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMacAlgorithmProvider, IMacAlgorithmProvider_Ptr);
    begin
       if this.m_IMacAlgorithmProvider /= null then
          if this.m_IMacAlgorithmProvider.all /= null then
-            RefCount := this.m_IMacAlgorithmProvider.all.Release;
+            temp := this.m_IMacAlgorithmProvider.all.Release;
             Free (this.m_IMacAlgorithmProvider);
          end if;
       end if;
@@ -3252,22 +3820,26 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.MacAlgorithmProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmProvider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IMacAlgorithmProvider;
-      HStr_algorithm : WinRt.HString := To_HString (algorithm);
+      HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.MacAlgorithmProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IMacAlgorithmProviderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.OpenAlgorithm (HStr_algorithm, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMacAlgorithmProvider := new Windows.Security.Cryptography.Core.IMacAlgorithmProvider;
             Retval.m_IMacAlgorithmProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_algorithm);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_algorithm);
       end return;
    end;
 
@@ -3280,13 +3852,17 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMacAlgorithmProvider.all.get_AlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3296,10 +3872,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMacAlgorithmProvider.all.get_MacLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3310,11 +3890,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IMacAlgorithmProvider.all.CreateKey (keyMaterial, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
@@ -3327,15 +3911,19 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicHash'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IHashComputation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider_Interface, WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider2, WinRt.Windows.Security.Cryptography.Core.IID_IMacAlgorithmProvider2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicHash do
          m_Interface := QInterface (this.m_IMacAlgorithmProvider.all);
          Hr := m_Interface.CreateHash (keyMaterial, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHashComputation := new Windows.Security.Cryptography.Core.IHashComputation;
          Retval.m_IHashComputation.all := m_ComRetVal;
       end return;
@@ -3353,16 +3941,16 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Security.Cryptography.Core.CryptographicKey is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.PersistedKeyProvider");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.PersistedKeyProvider");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_hashAlgorithmName : WinRt.HString := To_HString (hashAlgorithmName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_hashAlgorithmName : constant WinRt.HString := To_HString (hashAlgorithmName);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_CryptographicKey.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3380,7 +3968,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CryptographicKey.Kind_Delegate, AsyncOperationCompletedHandler_CryptographicKey.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3394,10 +3982,10 @@ package body WinRt.Windows.Security.Cryptography.Core is
             Hr := RoGetActivationFactory (m_hString, IID_IPersistedKeyProviderStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.OpenKeyPairFromCertificateAsync (certificate.m_ICertificate.all, HStr_hashAlgorithmName, padding, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -3409,16 +3997,16 @@ package body WinRt.Windows.Security.Cryptography.Core is
                         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
                         Retval.m_ICryptographicKey.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_hashAlgorithmName);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_hashAlgorithmName);
          end return;
       end;
 
@@ -3430,22 +4018,26 @@ package body WinRt.Windows.Security.Cryptography.Core is
       )
       return WinRt.Windows.Security.Cryptography.Core.CryptographicKey is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.PersistedKeyProvider");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.PersistedKeyProvider");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
-         HStr_hashAlgorithmName : WinRt.HString := To_HString (hashAlgorithmName);
+         HStr_hashAlgorithmName : constant WinRt.HString := To_HString (hashAlgorithmName);
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
             Hr := RoGetActivationFactory (m_hString, IID_IPersistedKeyProviderStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.OpenPublicKeyFromCertificate (certificate.m_ICertificate.all, HStr_hashAlgorithmName, padding, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
                Retval.m_ICryptographicKey.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_hashAlgorithmName);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_hashAlgorithmName);
          end return;
       end;
 
@@ -3458,380 +4050,456 @@ package body WinRt.Windows.Security.Cryptography.Core is
       function get_DesCbc
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesCbc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DesEcb
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesEcb (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TripleDesCbc
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TripleDesCbc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TripleDesEcb
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TripleDesEcb (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Rc2Cbc
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Rc2Cbc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Rc2Ecb
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Rc2Ecb (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesCbc
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesCbc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesEcb
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesEcb (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesGcm
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesGcm (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesCcm
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesCcm (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesCbcPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesCbcPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AesEcbPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AesEcbPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DesCbcPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesCbcPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DesEcbPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesEcbPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TripleDesCbcPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TripleDesCbcPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TripleDesEcbPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TripleDesEcbPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Rc2CbcPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Rc2CbcPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Rc2EcbPkcs7
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Rc2EcbPkcs7 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Rc4
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Rc4 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -3846,12 +4514,12 @@ package body WinRt.Windows.Security.Cryptography.Core is
    end;
 
    procedure Finalize (this : in out SymmetricKeyAlgorithmProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISymmetricKeyAlgorithmProvider, ISymmetricKeyAlgorithmProvider_Ptr);
    begin
       if this.m_ISymmetricKeyAlgorithmProvider /= null then
          if this.m_ISymmetricKeyAlgorithmProvider.all /= null then
-            RefCount := this.m_ISymmetricKeyAlgorithmProvider.all.Release;
+            temp := this.m_ISymmetricKeyAlgorithmProvider.all.Release;
             Free (this.m_ISymmetricKeyAlgorithmProvider);
          end if;
       end if;
@@ -3866,22 +4534,26 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider;
-      HStr_algorithm : WinRt.HString := To_HString (algorithm);
+      HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider do
          Hr := RoGetActivationFactory (m_hString, IID_ISymmetricKeyAlgorithmProviderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.OpenAlgorithm (HStr_algorithm, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISymmetricKeyAlgorithmProvider := new Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider;
             Retval.m_ISymmetricKeyAlgorithmProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_algorithm);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_algorithm);
       end return;
    end;
 
@@ -3894,13 +4566,17 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISymmetricKeyAlgorithmProvider.all.get_AlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3910,10 +4586,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ISymmetricKeyAlgorithmProvider.all.get_BlockLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3924,11 +4604,15 @@ package body WinRt.Windows.Security.Cryptography.Core is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_ISymmetricKeyAlgorithmProvider.all.CreateSymmetricKey (keyMaterial, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;

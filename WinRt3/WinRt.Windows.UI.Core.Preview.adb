@@ -43,12 +43,12 @@ package body WinRt.Windows.UI.Core.Preview is
    end;
 
    procedure Finalize (this : in out CoreAppWindowPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreAppWindowPreview, ICoreAppWindowPreview_Ptr);
    begin
       if this.m_ICoreAppWindowPreview /= null then
          if this.m_ICoreAppWindowPreview.all /= null then
-            RefCount := this.m_ICoreAppWindowPreview.all.Release;
+            temp := this.m_ICoreAppWindowPreview.all.Release;
             Free (this.m_ICoreAppWindowPreview);
          end if;
       end if;
@@ -63,17 +63,21 @@ package body WinRt.Windows.UI.Core.Preview is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Core.Preview.CoreAppWindowPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.Preview.CoreAppWindowPreview");
       m_Factory        : access WinRt.Windows.UI.Core.Preview.ICoreAppWindowPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICoreAppWindowPreviewStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetIdFromWindow (window.m_IAppWindow.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -89,12 +93,12 @@ package body WinRt.Windows.UI.Core.Preview is
    end;
 
    procedure Finalize (this : in out SystemNavigationCloseRequestedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemNavigationCloseRequestedPreviewEventArgs, ISystemNavigationCloseRequestedPreviewEventArgs_Ptr);
    begin
       if this.m_ISystemNavigationCloseRequestedPreviewEventArgs /= null then
          if this.m_ISystemNavigationCloseRequestedPreviewEventArgs.all /= null then
-            RefCount := this.m_ISystemNavigationCloseRequestedPreviewEventArgs.all.Release;
+            temp := this.m_ISystemNavigationCloseRequestedPreviewEventArgs.all.Release;
             Free (this.m_ISystemNavigationCloseRequestedPreviewEventArgs);
          end if;
       end if;
@@ -109,10 +113,14 @@ package body WinRt.Windows.UI.Core.Preview is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISystemNavigationCloseRequestedPreviewEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -122,9 +130,13 @@ package body WinRt.Windows.UI.Core.Preview is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISystemNavigationCloseRequestedPreviewEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -133,11 +145,15 @@ package body WinRt.Windows.UI.Core.Preview is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ISystemNavigationCloseRequestedPreviewEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -152,12 +168,12 @@ package body WinRt.Windows.UI.Core.Preview is
    end;
 
    procedure Finalize (this : in out SystemNavigationManagerPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemNavigationManagerPreview, ISystemNavigationManagerPreview_Ptr);
    begin
       if this.m_ISystemNavigationManagerPreview /= null then
          if this.m_ISystemNavigationManagerPreview.all /= null then
-            RefCount := this.m_ISystemNavigationManagerPreview.all.Release;
+            temp := this.m_ISystemNavigationManagerPreview.all.Release;
             Free (this.m_ISystemNavigationManagerPreview);
          end if;
       end if;
@@ -169,20 +185,24 @@ package body WinRt.Windows.UI.Core.Preview is
    function GetForCurrentView
    return WinRt.Windows.UI.Core.Preview.SystemNavigationManagerPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Core.Preview.SystemNavigationManagerPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.Preview.SystemNavigationManagerPreview");
       m_Factory        : access WinRt.Windows.UI.Core.Preview.ISystemNavigationManagerPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.Preview.ISystemNavigationManagerPreview;
    begin
       return RetVal : WinRt.Windows.UI.Core.Preview.SystemNavigationManagerPreview do
          Hr := RoGetActivationFactory (m_hString, IID_ISystemNavigationManagerPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISystemNavigationManagerPreview := new Windows.UI.Core.Preview.ISystemNavigationManagerPreview;
             Retval.m_ISystemNavigationManagerPreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -196,10 +216,14 @@ package body WinRt.Windows.UI.Core.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISystemNavigationManagerPreview.all.add_CloseRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -209,9 +233,13 @@ package body WinRt.Windows.UI.Core.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISystemNavigationManagerPreview.all.remove_CloseRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Core.Preview;

@@ -50,12 +50,12 @@ package body WinRt.Windows.Media.Playlists is
    end;
 
    procedure Finalize (this : in out Playlist) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlaylist, IPlaylist_Ptr);
    begin
       if this.m_IPlaylist /= null then
          if this.m_IPlaylist.all /= null then
-            RefCount := this.m_IPlaylist.all.Release;
+            temp := this.m_IPlaylist.all.Release;
             Free (this.m_IPlaylist);
          end if;
       end if;
@@ -66,7 +66,8 @@ package body WinRt.Windows.Media.Playlists is
 
    function Constructor return Playlist is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Playlists.Playlist");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playlists.Playlist");
       m_ComRetVal  : aliased Windows.Media.Playlists.IPlaylist;
    begin
       return RetVal : Playlist do
@@ -75,7 +76,7 @@ package body WinRt.Windows.Media.Playlists is
             Retval.m_IPlaylist := new Windows.Media.Playlists.IPlaylist;
             Retval.m_IPlaylist.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -88,15 +89,15 @@ package body WinRt.Windows.Media.Playlists is
    )
    return WinRt.Windows.Media.Playlists.Playlist is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Playlists.Playlist");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Playlists.Playlist");
       m_Factory        : access WinRt.Windows.Media.Playlists.IPlaylistStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Playlist.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -114,7 +115,7 @@ package body WinRt.Windows.Media.Playlists is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Playlist.Kind_Delegate, AsyncOperationCompletedHandler_Playlist.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -128,10 +129,10 @@ package body WinRt.Windows.Media.Playlists is
          Hr := RoGetActivationFactory (m_hString, IID_IPlaylistStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadAsync (file, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -143,15 +144,15 @@ package body WinRt.Windows.Media.Playlists is
                      Retval.m_IPlaylist := new Windows.Media.Playlists.IPlaylist;
                      Retval.m_IPlaylist.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -164,10 +165,14 @@ package body WinRt.Windows.Media.Playlists is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IPlaylist.all.get_Files (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -176,7 +181,8 @@ package body WinRt.Windows.Media.Playlists is
       this : in out Playlist
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -184,7 +190,6 @@ package body WinRt.Windows.Media.Playlists is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -205,9 +210,9 @@ package body WinRt.Windows.Media.Playlists is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -222,14 +227,14 @@ package body WinRt.Windows.Media.Playlists is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -247,7 +252,7 @@ package body WinRt.Windows.Media.Playlists is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -261,7 +266,7 @@ package body WinRt.Windows.Media.Playlists is
          Hr := this.m_IPlaylist.all.SaveAsAsync (saveLocation, HStr_desiredName, option, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -273,14 +278,14 @@ package body WinRt.Windows.Media.Playlists is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredName);
+         tmp := WindowsDeleteString (HStr_desiredName);
       end return;
    end;
 
@@ -294,14 +299,14 @@ package body WinRt.Windows.Media.Playlists is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -319,7 +324,7 @@ package body WinRt.Windows.Media.Playlists is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -333,7 +338,7 @@ package body WinRt.Windows.Media.Playlists is
          Hr := this.m_IPlaylist.all.SaveAsAsync (saveLocation, HStr_desiredName, option, playlistFormat, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -345,14 +350,14 @@ package body WinRt.Windows.Media.Playlists is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredName);
+         tmp := WindowsDeleteString (HStr_desiredName);
       end return;
    end;
 

@@ -55,12 +55,12 @@ package body WinRt.Windows.Devices.Lights is
    end;
 
    procedure Finalize (this : in out Lamp) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILamp, ILamp_Ptr);
    begin
       if this.m_ILamp /= null then
          if this.m_ILamp.all /= null then
-            RefCount := this.m_ILamp.all.Release;
+            temp := this.m_ILamp.all.Release;
             Free (this.m_ILamp);
          end if;
       end if;
@@ -72,20 +72,24 @@ package body WinRt.Windows.Devices.Lights is
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.Lamp");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Lamp");
       m_Factory        : access WinRt.Windows.Devices.Lights.ILampStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILampStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -95,16 +99,16 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Devices.Lights.Lamp is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.Lamp");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Lamp");
       m_Factory        : access WinRt.Windows.Devices.Lights.ILampStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Lamp.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -122,7 +126,7 @@ package body WinRt.Windows.Devices.Lights is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Lamp.Kind_Delegate, AsyncOperationCompletedHandler_Lamp.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -136,10 +140,10 @@ package body WinRt.Windows.Devices.Lights is
          Hr := RoGetActivationFactory (m_hString, IID_ILampStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -151,31 +155,31 @@ package body WinRt.Windows.Devices.Lights is
                      Retval.m_ILamp := new Windows.Devices.Lights.ILamp;
                      Retval.m_ILamp.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDefaultAsync
    return WinRt.Windows.Devices.Lights.Lamp is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.Lamp");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Lamp");
       m_Factory        : access WinRt.Windows.Devices.Lights.ILampStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Lamp.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -193,7 +197,7 @@ package body WinRt.Windows.Devices.Lights is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Lamp.Kind_Delegate, AsyncOperationCompletedHandler_Lamp.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -207,10 +211,10 @@ package body WinRt.Windows.Devices.Lights is
          Hr := RoGetActivationFactory (m_hString, IID_ILampStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -222,15 +226,15 @@ package body WinRt.Windows.Devices.Lights is
                      Retval.m_ILamp := new Windows.Devices.Lights.ILamp;
                      Retval.m_ILamp.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -243,13 +247,17 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILamp.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -259,10 +267,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILamp.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -272,9 +284,13 @@ package body WinRt.Windows.Devices.Lights is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILamp.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BrightnessLevel
@@ -283,10 +299,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ILamp.all.get_BrightnessLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -296,9 +316,13 @@ package body WinRt.Windows.Devices.Lights is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILamp.all.put_BrightnessLevel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsColorSettable
@@ -307,10 +331,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILamp.all.get_IsColorSettable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -320,10 +348,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ILamp.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -333,9 +365,13 @@ package body WinRt.Windows.Devices.Lights is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILamp.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AvailabilityChanged
@@ -345,10 +381,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILamp.all.add_AvailabilityChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -358,9 +398,13 @@ package body WinRt.Windows.Devices.Lights is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILamp.all.remove_AvailabilityChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -368,13 +412,17 @@ package body WinRt.Windows.Devices.Lights is
       this : in out Lamp
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.ILamp_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILamp.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -386,12 +434,12 @@ package body WinRt.Windows.Devices.Lights is
    end;
 
    procedure Finalize (this : in out LampArray) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArray, ILampArray_Ptr);
    begin
       if this.m_ILampArray /= null then
          if this.m_ILampArray.all /= null then
-            RefCount := this.m_ILampArray.all.Release;
+            temp := this.m_ILampArray.all.Release;
             Free (this.m_ILampArray);
          end if;
       end if;
@@ -403,20 +451,24 @@ package body WinRt.Windows.Devices.Lights is
    function GetDeviceSelector_LampArray
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.LampArray");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.LampArray");
       m_Factory        : access WinRt.Windows.Devices.Lights.ILampArrayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILampArrayStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -426,16 +478,16 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Devices.Lights.LampArray is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.LampArray");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.LampArray");
       m_Factory        : access WinRt.Windows.Devices.Lights.ILampArrayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LampArray.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -453,7 +505,7 @@ package body WinRt.Windows.Devices.Lights is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LampArray.Kind_Delegate, AsyncOperationCompletedHandler_LampArray.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -467,10 +519,10 @@ package body WinRt.Windows.Devices.Lights is
          Hr := RoGetActivationFactory (m_hString, IID_ILampArrayStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -482,16 +534,16 @@ package body WinRt.Windows.Devices.Lights is
                      Retval.m_ILampArray := new Windows.Devices.Lights.ILampArray;
                      Retval.m_ILampArray.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -504,13 +556,17 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILampArray.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -520,10 +576,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_ILampArray.all.get_HardwareVendorId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -533,10 +593,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_ILampArray.all.get_HardwareProductId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -546,10 +610,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_ILampArray.all.get_HardwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -559,10 +627,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Devices.Lights.LampArrayKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.LampArrayKind;
    begin
       Hr := this.m_ILampArray.all.get_LampArrayKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -572,10 +644,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampArray.all.get_LampCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -585,10 +661,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArray.all.get_MinUpdateInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -598,10 +678,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ILampArray.all.get_BoundingBox (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -611,10 +695,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILampArray.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -624,9 +712,13 @@ package body WinRt.Windows.Devices.Lights is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BrightnessLevel
@@ -635,10 +727,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ILampArray.all.get_BrightnessLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -648,9 +744,13 @@ package body WinRt.Windows.Devices.Lights is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.put_BrightnessLevel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsConnected
@@ -659,10 +759,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILampArray.all.get_IsConnected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -672,10 +776,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILampArray.all.get_SupportsVirtualKeys (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -686,11 +794,15 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Devices.Lights.LampInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.ILampInfo;
    begin
       return RetVal : WinRt.Windows.Devices.Lights.LampInfo do
          Hr := this.m_ILampArray.all.GetLampInfo (lampIndex, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILampInfo := new Windows.Devices.Lights.ILampInfo;
          Retval.m_ILampInfo.all := m_ComRetVal;
       end return;
@@ -703,11 +815,15 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.GetIndicesForKey (key, m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Int32_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Int32 is new To_Ada_Type (WinRt.Int32, WinRt.Int32_Ptr); 
@@ -726,11 +842,15 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.GetIndicesForPurposes (purposes, m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Int32_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Int32 is new To_Ada_Type (WinRt.Int32, WinRt.Int32_Ptr); 
@@ -748,9 +868,13 @@ package body WinRt.Windows.Devices.Lights is
       desiredColor : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.SetColor (desiredColor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorForIndex
@@ -760,9 +884,13 @@ package body WinRt.Windows.Devices.Lights is
       desiredColor : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.SetColorForIndex (lampIndex, desiredColor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetSingleColorForIndices
@@ -772,10 +900,14 @@ package body WinRt.Windows.Devices.Lights is
       lampIndexes : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILampArray.all.SetSingleColorForIndices (desiredColor, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorsForIndices
@@ -785,11 +917,15 @@ package body WinRt.Windows.Devices.Lights is
       lampIndexes : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_desiredColors is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.Color_Ptr);
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILampArray.all.SetColorsForIndices (WinRt.UInt32(desiredColors'Length), Convert_desiredColors (desiredColors (desiredColors'First)'Address), WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorsForKey
@@ -799,9 +935,13 @@ package body WinRt.Windows.Devices.Lights is
       key : Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.SetColorsForKey (desiredColor, key);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorsForKeys
@@ -811,11 +951,15 @@ package body WinRt.Windows.Devices.Lights is
       keys : Windows.System.VirtualKey_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_desiredColors is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.Color_Ptr);
       function Convert_keys is new Ada.Unchecked_Conversion (Address, WinRt.Windows.System.VirtualKey_Ptr);
    begin
       Hr := this.m_ILampArray.all.SetColorsForKeys (WinRt.UInt32(desiredColors'Length), Convert_desiredColors (desiredColors (desiredColors'First)'Address), WinRt.UInt32(keys'Length), Convert_keys (keys (keys'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorsForPurposes
@@ -825,9 +969,13 @@ package body WinRt.Windows.Devices.Lights is
       purposes : Windows.Devices.Lights.LampPurposes
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArray.all.SetColorsForPurposes (desiredColor, purposes);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendMessageAsync
@@ -837,7 +985,8 @@ package body WinRt.Windows.Devices.Lights is
       message : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -845,7 +994,6 @@ package body WinRt.Windows.Devices.Lights is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -866,9 +1014,9 @@ package body WinRt.Windows.Devices.Lights is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -881,13 +1029,13 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -905,7 +1053,7 @@ package body WinRt.Windows.Devices.Lights is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -918,7 +1066,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr := this.m_ILampArray.all.RequestMessageAsync (messageId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -928,9 +1076,9 @@ package body WinRt.Windows.Devices.Lights is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -947,12 +1095,12 @@ package body WinRt.Windows.Devices.Lights is
    end;
 
    procedure Finalize (this : in out LampAvailabilityChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampAvailabilityChangedEventArgs, ILampAvailabilityChangedEventArgs_Ptr);
    begin
       if this.m_ILampAvailabilityChangedEventArgs /= null then
          if this.m_ILampAvailabilityChangedEventArgs.all /= null then
-            RefCount := this.m_ILampAvailabilityChangedEventArgs.all.Release;
+            temp := this.m_ILampAvailabilityChangedEventArgs.all.Release;
             Free (this.m_ILampAvailabilityChangedEventArgs);
          end if;
       end if;
@@ -967,10 +1115,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILampAvailabilityChangedEventArgs.all.get_IsAvailable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -983,12 +1135,12 @@ package body WinRt.Windows.Devices.Lights is
    end;
 
    procedure Finalize (this : in out LampInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampInfo, ILampInfo_Ptr);
    begin
       if this.m_ILampInfo /= null then
          if this.m_ILampInfo.all /= null then
-            RefCount := this.m_ILampInfo.all.Release;
+            temp := this.m_ILampInfo.all.Release;
             Free (this.m_ILampInfo);
          end if;
       end if;
@@ -1003,10 +1155,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampInfo.all.get_Index (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1016,10 +1172,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Devices.Lights.LampPurposes is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.LampPurposes;
    begin
       Hr := this.m_ILampInfo.all.get_Purposes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1029,10 +1189,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ILampInfo.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1042,10 +1206,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampInfo.all.get_RedLevelCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1055,10 +1223,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampInfo.all.get_GreenLevelCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1068,10 +1240,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampInfo.all.get_BlueLevelCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1081,10 +1257,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampInfo.all.get_GainLevelCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1094,10 +1274,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ILampInfo.all.get_FixedColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1108,10 +1292,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ILampInfo.all.GetNearestSupportedColor (desiredColor, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1121,10 +1309,14 @@ package body WinRt.Windows.Devices.Lights is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampInfo.all.get_UpdateLatency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

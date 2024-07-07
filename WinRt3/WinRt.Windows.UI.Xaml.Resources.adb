@@ -41,12 +41,12 @@ package body WinRt.Windows.UI.Xaml.Resources is
    end;
 
    procedure Finalize (this : in out CustomXamlResourceLoader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICustomXamlResourceLoader, ICustomXamlResourceLoader_Ptr);
    begin
       if this.m_ICustomXamlResourceLoader /= null then
          if this.m_ICustomXamlResourceLoader.all /= null then
-            RefCount := this.m_ICustomXamlResourceLoader.all.Release;
+            temp := this.m_ICustomXamlResourceLoader.all.Release;
             Free (this.m_ICustomXamlResourceLoader);
          end if;
       end if;
@@ -62,9 +62,10 @@ package body WinRt.Windows.UI.Xaml.Resources is
    )
    return CustomXamlResourceLoader is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
       m_Factory    : access ICustomXamlResourceLoaderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
    begin
       return RetVal : CustomXamlResourceLoader do
@@ -73,9 +74,9 @@ package body WinRt.Windows.UI.Xaml.Resources is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICustomXamlResourceLoader := new Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
             Retval.m_ICustomXamlResourceLoader.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -85,20 +86,24 @@ package body WinRt.Windows.UI.Xaml.Resources is
    function get_Current
    return WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
       m_Factory        : access WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_ICustomXamlResourceLoaderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICustomXamlResourceLoader := new Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
             Retval.m_ICustomXamlResourceLoader.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -107,16 +112,20 @@ package body WinRt.Windows.UI.Xaml.Resources is
       value : Windows.UI.Xaml.Resources.CustomXamlResourceLoader'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
       m_Factory        : access WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICustomXamlResourceLoaderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_Current (value.m_ICustomXamlResourceLoader.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -132,22 +141,26 @@ package body WinRt.Windows.UI.Xaml.Resources is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoaderOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_resourceId : WinRt.HString := To_HString (resourceId);
-      HStr_objectType : WinRt.HString := To_HString (objectType);
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
-      HStr_propertyType : WinRt.HString := To_HString (propertyType);
+      HStr_resourceId : constant WinRt.HString := To_HString (resourceId);
+      HStr_objectType : constant WinRt.HString := To_HString (objectType);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
+      HStr_propertyType : constant WinRt.HString := To_HString (propertyType);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader_Interface, WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoaderOverrides, WinRt.Windows.UI.Xaml.Resources.IID_ICustomXamlResourceLoaderOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICustomXamlResourceLoader.all);
       Hr := m_Interface.GetResource (HStr_resourceId, HStr_objectType, HStr_propertyName, HStr_propertyType, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_resourceId);
-      Hr := WindowsDeleteString (HStr_objectType);
-      Hr := WindowsDeleteString (HStr_propertyName);
-      Hr := WindowsDeleteString (HStr_propertyType);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_resourceId);
+      tmp := WindowsDeleteString (HStr_objectType);
+      tmp := WindowsDeleteString (HStr_propertyName);
+      tmp := WindowsDeleteString (HStr_propertyType);
       return m_ComRetVal;
    end;
 

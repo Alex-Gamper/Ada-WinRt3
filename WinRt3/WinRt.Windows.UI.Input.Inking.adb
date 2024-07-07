@@ -52,12 +52,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkDrawingAttributes) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkDrawingAttributes, IInkDrawingAttributes_Ptr);
    begin
       if this.m_IInkDrawingAttributes /= null then
          if this.m_IInkDrawingAttributes.all /= null then
-            RefCount := this.m_IInkDrawingAttributes.all.Release;
+            temp := this.m_IInkDrawingAttributes.all.Release;
             Free (this.m_IInkDrawingAttributes);
          end if;
       end if;
@@ -68,7 +68,8 @@ package body WinRt.Windows.UI.Input.Inking is
 
    function Constructor return InkDrawingAttributes is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkDrawingAttributes");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkDrawingAttributes");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkDrawingAttributes;
    begin
       return RetVal : InkDrawingAttributes do
@@ -77,7 +78,7 @@ package body WinRt.Windows.UI.Input.Inking is
             Retval.m_IInkDrawingAttributes := new Windows.UI.Input.Inking.IInkDrawingAttributes;
             Retval.m_IInkDrawingAttributes.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -87,20 +88,24 @@ package body WinRt.Windows.UI.Input.Inking is
    function CreateForPencil
    return WinRt.Windows.UI.Input.Inking.InkDrawingAttributes is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkDrawingAttributes");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkDrawingAttributes");
       m_Factory        : access WinRt.Windows.UI.Input.Inking.IInkDrawingAttributesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkDrawingAttributes;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes do
          Hr := RoGetActivationFactory (m_hString, IID_IInkDrawingAttributesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateForPencil (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInkDrawingAttributes := new Windows.UI.Input.Inking.IInkDrawingAttributes;
             Retval.m_IInkDrawingAttributes.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -113,10 +118,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IInkDrawingAttributes.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -126,9 +135,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkDrawingAttributes.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PenTip
@@ -137,10 +150,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.PenTipShape is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.PenTipShape;
    begin
       Hr := this.m_IInkDrawingAttributes.all.get_PenTip (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -150,9 +167,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.PenTipShape
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkDrawingAttributes.all.put_PenTip (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Size
@@ -161,10 +182,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IInkDrawingAttributes.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -174,9 +199,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkDrawingAttributes.all.put_Size (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IgnorePressure
@@ -185,10 +214,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkDrawingAttributes.all.get_IgnorePressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -198,9 +231,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkDrawingAttributes.all.put_IgnorePressure (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FitToCurve
@@ -209,10 +246,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkDrawingAttributes.all.get_FitToCurve (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -222,9 +263,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkDrawingAttributes.all.put_FitToCurve (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PenTipTransform
@@ -233,14 +278,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.get_PenTipTransform (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -250,13 +299,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.put_PenTipTransform (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DrawAsHighlighter
@@ -265,14 +318,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.get_DrawAsHighlighter (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -282,13 +339,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes2, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.put_DrawAsHighlighter (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -297,14 +358,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkDrawingAttributesKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkDrawingAttributesKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes3, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -314,15 +379,19 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkDrawingAttributesPencilProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkDrawingAttributesPencilProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes3, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkDrawingAttributesPencilProperties do
          m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
          Hr := m_Interface.get_PencilProperties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkDrawingAttributesPencilProperties := new Windows.UI.Input.Inking.IInkDrawingAttributesPencilProperties;
          Retval.m_IInkDrawingAttributesPencilProperties.all := m_ComRetVal;
       end return;
@@ -334,14 +403,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes4, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.get_IgnoreTilt (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -351,13 +424,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes4, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
       Hr := m_Interface.put_IgnoreTilt (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ModelerAttributes
@@ -366,15 +443,19 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkModelerAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkModelerAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes5, WinRt.Windows.UI.Input.Inking.IID_IInkDrawingAttributes5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkModelerAttributes do
          m_Interface := QInterface (this.m_IInkDrawingAttributes.all);
          Hr := m_Interface.get_ModelerAttributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkModelerAttributes := new Windows.UI.Input.Inking.IInkModelerAttributes;
          Retval.m_IInkModelerAttributes.all := m_ComRetVal;
       end return;
@@ -389,12 +470,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkDrawingAttributesPencilProperties) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkDrawingAttributesPencilProperties, IInkDrawingAttributesPencilProperties_Ptr);
    begin
       if this.m_IInkDrawingAttributesPencilProperties /= null then
          if this.m_IInkDrawingAttributesPencilProperties.all /= null then
-            RefCount := this.m_IInkDrawingAttributesPencilProperties.all.Release;
+            temp := this.m_IInkDrawingAttributesPencilProperties.all.Release;
             Free (this.m_IInkDrawingAttributesPencilProperties);
          end if;
       end if;
@@ -409,10 +490,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInkDrawingAttributesPencilProperties.all.get_Opacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -422,9 +507,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkDrawingAttributesPencilProperties.all.put_Opacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -436,12 +525,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkInputConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkInputConfiguration, IInkInputConfiguration_Ptr);
    begin
       if this.m_IInkInputConfiguration /= null then
          if this.m_IInkInputConfiguration.all /= null then
-            RefCount := this.m_IInkInputConfiguration.all.Release;
+            temp := this.m_IInkInputConfiguration.all.Release;
             Free (this.m_IInkInputConfiguration);
          end if;
       end if;
@@ -456,10 +545,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkInputConfiguration.all.get_IsPrimaryBarrelButtonInputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -469,9 +562,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkInputConfiguration.all.put_IsPrimaryBarrelButtonInputEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsEraserInputEnabled
@@ -480,10 +577,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkInputConfiguration.all.get_IsEraserInputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -493,9 +594,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkInputConfiguration.all.put_IsEraserInputEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -507,12 +612,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkInputProcessingConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkInputProcessingConfiguration, IInkInputProcessingConfiguration_Ptr);
    begin
       if this.m_IInkInputProcessingConfiguration /= null then
          if this.m_IInkInputProcessingConfiguration.all /= null then
-            RefCount := this.m_IInkInputProcessingConfiguration.all.Release;
+            temp := this.m_IInkInputProcessingConfiguration.all.Release;
             Free (this.m_IInkInputProcessingConfiguration);
          end if;
       end if;
@@ -527,10 +632,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkInputProcessingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkInputProcessingMode;
    begin
       Hr := this.m_IInkInputProcessingConfiguration.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -540,9 +649,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkInputProcessingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkInputProcessingConfiguration.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightDragAction
@@ -551,10 +664,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkInputRightDragAction is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkInputRightDragAction;
    begin
       Hr := this.m_IInkInputProcessingConfiguration.all.get_RightDragAction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -564,9 +681,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkInputRightDragAction
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkInputProcessingConfiguration.all.put_RightDragAction (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -578,12 +699,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkManager, IInkManager_Ptr);
    begin
       if this.m_IInkManager /= null then
          if this.m_IInkManager.all /= null then
-            RefCount := this.m_IInkManager.all.Release;
+            temp := this.m_IInkManager.all.Release;
             Free (this.m_IInkManager);
          end if;
       end if;
@@ -594,7 +715,8 @@ package body WinRt.Windows.UI.Input.Inking is
 
    function Constructor return InkManager is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkManager");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkManager");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkManager;
    begin
       return RetVal : InkManager do
@@ -603,7 +725,7 @@ package body WinRt.Windows.UI.Input.Inking is
             Retval.m_IInkManager := new Windows.UI.Input.Inking.IInkManager;
             Retval.m_IInkManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -616,10 +738,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkManipulationMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkManipulationMode;
    begin
       Hr := this.m_IInkManager.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -629,9 +755,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkManipulationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkManager.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ProcessPointerDown
@@ -640,9 +770,13 @@ package body WinRt.Windows.UI.Input.Inking is
       pointerPoint : Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkManager.all.ProcessPointerDown (pointerPoint.m_IPointerPoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ProcessPointerUpdate
@@ -652,10 +786,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IInkManager.all.ProcessPointerUpdate (pointerPoint.m_IPointerPoint.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -666,10 +804,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkManager.all.ProcessPointerUp (pointerPoint.m_IPointerPoint.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -679,9 +821,13 @@ package body WinRt.Windows.UI.Input.Inking is
       drawingAttributes : Windows.UI.Input.Inking.InkDrawingAttributes'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkManager.all.SetDefaultDrawingAttributes (drawingAttributes.m_IInkDrawingAttributes.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function RecognizeAsync
@@ -691,13 +837,13 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -715,7 +861,7 @@ package body WinRt.Windows.UI.Input.Inking is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -728,7 +874,7 @@ package body WinRt.Windows.UI.Input.Inking is
       Hr := this.m_IInkManager.all.RecognizeAsync (recognitionTarget, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -738,9 +884,9 @@ package body WinRt.Windows.UI.Input.Inking is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -754,13 +900,17 @@ package body WinRt.Windows.UI.Input.Inking is
       recognizer : Windows.UI.Input.Inking.InkRecognizer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkRecognizerContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkRecognizerContainer, WinRt.Windows.UI.Input.Inking.IID_IInkRecognizerContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.SetDefaultRecognizer (recognizer.m_IInkRecognizer.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function RecognizeAsync
@@ -771,14 +921,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkRecognizerContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -796,7 +946,7 @@ package body WinRt.Windows.UI.Input.Inking is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -809,10 +959,10 @@ package body WinRt.Windows.UI.Input.Inking is
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.RecognizeAsync (strokeCollection.m_IInkStrokeContainer.all, recognitionTarget, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -822,9 +972,9 @@ package body WinRt.Windows.UI.Input.Inking is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -838,17 +988,21 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkRecognizer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkRecognizerContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkRecognizer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkRecognizerContainer, WinRt.Windows.UI.Input.Inking.IID_IInkRecognizerContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.GetRecognizers (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkRecognizer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -858,14 +1012,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -875,13 +1033,17 @@ package body WinRt.Windows.UI.Input.Inking is
       stroke : Windows.UI.Input.Inking.InkStroke'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.AddStroke (stroke.m_IInkStroke.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function DeleteSelected
@@ -890,14 +1052,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.DeleteSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -908,14 +1074,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.MoveSelected (translation, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -926,14 +1096,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.SelectWithPolyLine (polyline, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -945,14 +1119,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.SelectWithLine (from, to, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -961,13 +1139,17 @@ package body WinRt.Windows.UI.Input.Inking is
       this : in out InkManager
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.CopySelectedToClipboard;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function PasteFromClipboard
@@ -977,14 +1159,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.PasteFromClipboard (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -994,14 +1180,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.CanPasteFromClipboard (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1011,8 +1201,9 @@ package body WinRt.Windows.UI.Input.Inking is
       inputStream : Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1020,7 +1211,6 @@ package body WinRt.Windows.UI.Input.Inking is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1036,7 +1226,7 @@ package body WinRt.Windows.UI.Input.Inking is
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.LoadAsync (inputStream, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1044,9 +1234,9 @@ package body WinRt.Windows.UI.Input.Inking is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1059,14 +1249,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1084,7 +1274,7 @@ package body WinRt.Windows.UI.Input.Inking is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1097,10 +1287,10 @@ package body WinRt.Windows.UI.Input.Inking is
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.SaveAsync (outputStream, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1110,9 +1300,9 @@ package body WinRt.Windows.UI.Input.Inking is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1126,13 +1316,17 @@ package body WinRt.Windows.UI.Input.Inking is
       recognitionResults : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.UpdateRecognitionResults (recognitionResults);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetStrokes
@@ -1141,17 +1335,21 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStroke.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStroke.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.GetStrokes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStroke (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1161,17 +1359,21 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkRecognitionResult.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkRecognitionResult.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkManager_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkManager.all);
       Hr := m_Interface.GetRecognitionResults (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkRecognitionResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1184,12 +1386,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkModelerAttributes) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkModelerAttributes, IInkModelerAttributes_Ptr);
    begin
       if this.m_IInkModelerAttributes /= null then
          if this.m_IInkModelerAttributes.all /= null then
-            RefCount := this.m_IInkModelerAttributes.all.Release;
+            temp := this.m_IInkModelerAttributes.all.Release;
             Free (this.m_IInkModelerAttributes);
          end if;
       end if;
@@ -1204,10 +1406,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IInkModelerAttributes.all.get_PredictionTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1217,9 +1423,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkModelerAttributes.all.put_PredictionTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScalingFactor
@@ -1228,10 +1438,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInkModelerAttributes.all.get_ScalingFactor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1241,9 +1455,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkModelerAttributes.all.put_ScalingFactor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UseVelocityBasedPressure
@@ -1252,14 +1470,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkModelerAttributes2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkModelerAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkModelerAttributes2, WinRt.Windows.UI.Input.Inking.IID_IInkModelerAttributes2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkModelerAttributes.all);
       Hr := m_Interface.get_UseVelocityBasedPressure (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1269,13 +1491,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkModelerAttributes2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkModelerAttributes_Interface, WinRt.Windows.UI.Input.Inking.IInkModelerAttributes2, WinRt.Windows.UI.Input.Inking.IID_IInkModelerAttributes2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkModelerAttributes.all);
       Hr := m_Interface.put_UseVelocityBasedPressure (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1287,12 +1513,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkPoint) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkPoint, IInkPoint_Ptr);
    begin
       if this.m_IInkPoint /= null then
          if this.m_IInkPoint.all /= null then
-            RefCount := this.m_IInkPoint.all.Release;
+            temp := this.m_IInkPoint.all.Release;
             Free (this.m_IInkPoint);
          end if;
       end if;
@@ -1311,9 +1537,10 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return InkPoint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
       m_Factory    : access IInkPointFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkPoint;
    begin
       return RetVal : InkPoint do
@@ -1322,9 +1549,9 @@ package body WinRt.Windows.UI.Input.Inking is
             Hr := m_Factory.CreateInkPointWithTiltAndTimestamp (position, pressure, tiltX, tiltY, timestamp, m_ComRetVal'Access);
             Retval.m_IInkPoint := new Windows.UI.Input.Inking.IInkPoint;
             Retval.m_IInkPoint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1335,9 +1562,10 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return InkPoint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
       m_Factory    : access IInkPointFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkPoint;
    begin
       return RetVal : InkPoint do
@@ -1346,9 +1574,9 @@ package body WinRt.Windows.UI.Input.Inking is
             Hr := m_Factory.CreateInkPoint (position, pressure, m_ComRetVal'Access);
             Retval.m_IInkPoint := new Windows.UI.Input.Inking.IInkPoint;
             Retval.m_IInkPoint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1361,10 +1589,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IInkPoint.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1374,10 +1606,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInkPoint.all.get_Pressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1387,14 +1623,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPoint2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPoint_Interface, WinRt.Windows.UI.Input.Inking.IInkPoint2, WinRt.Windows.UI.Input.Inking.IID_IInkPoint2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPoint.all);
       Hr := m_Interface.get_TiltX (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1404,14 +1644,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPoint2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPoint_Interface, WinRt.Windows.UI.Input.Inking.IInkPoint2, WinRt.Windows.UI.Input.Inking.IID_IInkPoint2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPoint.all);
       Hr := m_Interface.get_TiltY (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1421,14 +1665,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPoint2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPoint_Interface, WinRt.Windows.UI.Input.Inking.IInkPoint2, WinRt.Windows.UI.Input.Inking.IID_IInkPoint2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPoint.all);
       Hr := m_Interface.get_Timestamp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1441,12 +1689,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkPresenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkPresenter, IInkPresenter_Ptr);
    begin
       if this.m_IInkPresenter /= null then
          if this.m_IInkPresenter.all /= null then
-            RefCount := this.m_IInkPresenter.all.Release;
+            temp := this.m_IInkPresenter.all.Release;
             Free (this.m_IInkPresenter);
          end if;
       end if;
@@ -1461,10 +1709,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkPresenter.all.get_IsInputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1474,9 +1726,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.put_IsInputEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputDeviceTypes
@@ -1485,10 +1741,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Core.CoreInputDeviceTypes is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreInputDeviceTypes;
    begin
       Hr := this.m_IInkPresenter.all.get_InputDeviceTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1498,9 +1758,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Core.CoreInputDeviceTypes
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.put_InputDeviceTypes (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UnprocessedInput
@@ -1509,11 +1773,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkUnprocessedInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkUnprocessedInput;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkUnprocessedInput do
          Hr := this.m_IInkPresenter.all.get_UnprocessedInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkUnprocessedInput := new Windows.UI.Input.Inking.IInkUnprocessedInput;
          Retval.m_IInkUnprocessedInput.all := m_ComRetVal;
       end return;
@@ -1525,11 +1793,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStrokeInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStrokeInput;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStrokeInput do
          Hr := this.m_IInkPresenter.all.get_StrokeInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStrokeInput := new Windows.UI.Input.Inking.IInkStrokeInput;
          Retval.m_IInkStrokeInput.all := m_ComRetVal;
       end return;
@@ -1541,11 +1813,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkInputProcessingConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkInputProcessingConfiguration;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkInputProcessingConfiguration do
          Hr := this.m_IInkPresenter.all.get_InputProcessingConfiguration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkInputProcessingConfiguration := new Windows.UI.Input.Inking.IInkInputProcessingConfiguration;
          Retval.m_IInkInputProcessingConfiguration.all := m_ComRetVal;
       end return;
@@ -1557,11 +1833,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStrokeContainer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStrokeContainer;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStrokeContainer do
          Hr := this.m_IInkPresenter.all.get_StrokeContainer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStrokeContainer := new Windows.UI.Input.Inking.IInkStrokeContainer;
          Retval.m_IInkStrokeContainer.all := m_ComRetVal;
       end return;
@@ -1573,9 +1853,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkStrokeContainer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.put_StrokeContainer (value.m_IInkStrokeContainer.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CopyDefaultDrawingAttributes
@@ -1584,11 +1868,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkDrawingAttributes;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes do
          Hr := this.m_IInkPresenter.all.CopyDefaultDrawingAttributes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkDrawingAttributes := new Windows.UI.Input.Inking.IInkDrawingAttributes;
          Retval.m_IInkDrawingAttributes.all := m_ComRetVal;
       end return;
@@ -1600,9 +1888,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkDrawingAttributes'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.UpdateDefaultDrawingAttributes (value.m_IInkDrawingAttributes.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ActivateCustomDrying
@@ -1611,11 +1903,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkSynchronizer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkSynchronizer;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkSynchronizer do
          Hr := this.m_IInkPresenter.all.ActivateCustomDrying (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkSynchronizer := new Windows.UI.Input.Inking.IInkSynchronizer;
          Retval.m_IInkSynchronizer.all := m_ComRetVal;
       end return;
@@ -1627,9 +1923,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkPresenterPredefinedConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.SetPredefinedConfiguration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StrokesCollected
@@ -1639,10 +1939,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkPresenter.all.add_StrokesCollected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1652,9 +1956,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.remove_StrokesCollected (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StrokesErased
@@ -1664,10 +1972,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkPresenter.all.add_StrokesErased (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1677,9 +1989,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenter.all.remove_StrokesErased (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HighContrastAdjustment
@@ -1688,14 +2004,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkHighContrastAdjustment is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkHighContrastAdjustment;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenter_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenter2, WinRt.Windows.UI.Input.Inking.IID_IInkPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenter.all);
       Hr := m_Interface.get_HighContrastAdjustment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1705,13 +2025,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkHighContrastAdjustment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenter_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenter2, WinRt.Windows.UI.Input.Inking.IID_IInkPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenter.all);
       Hr := m_Interface.put_HighContrastAdjustment (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputConfiguration
@@ -1720,15 +2044,19 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkInputConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkInputConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenter_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenter3, WinRt.Windows.UI.Input.Inking.IID_IInkPresenter3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkInputConfiguration do
          m_Interface := QInterface (this.m_IInkPresenter.all);
          Hr := m_Interface.get_InputConfiguration (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkInputConfiguration := new Windows.UI.Input.Inking.IInkInputConfiguration;
          Retval.m_IInkInputConfiguration.all := m_ComRetVal;
       end return;
@@ -1743,12 +2071,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkPresenterProtractor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkPresenterProtractor, IInkPresenterProtractor_Ptr);
    begin
       if this.m_IInkPresenterProtractor /= null then
          if this.m_IInkPresenterProtractor.all /= null then
-            RefCount := this.m_IInkPresenterProtractor.all.Release;
+            temp := this.m_IInkPresenterProtractor.all.Release;
             Free (this.m_IInkPresenterProtractor);
          end if;
       end if;
@@ -1763,9 +2091,10 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return InkPresenterProtractor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPresenterProtractor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPresenterProtractor");
       m_Factory    : access IInkPresenterProtractorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkPresenterProtractor;
    begin
       return RetVal : InkPresenterProtractor do
@@ -1774,9 +2103,9 @@ package body WinRt.Windows.UI.Input.Inking is
             Hr := m_Factory.Create (inkPresenter_p.m_IInkPresenter.all, m_ComRetVal'Access);
             Retval.m_IInkPresenterProtractor := new Windows.UI.Input.Inking.IInkPresenterProtractor;
             Retval.m_IInkPresenterProtractor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1789,10 +2118,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_AreTickMarksVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1802,9 +2135,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_AreTickMarksVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AreRaysVisible
@@ -1813,10 +2150,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_AreRaysVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1826,9 +2167,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_AreRaysVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCenterMarkerVisible
@@ -1837,10 +2182,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_IsCenterMarkerVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1850,9 +2199,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_IsCenterMarkerVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsAngleReadoutVisible
@@ -1861,10 +2214,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_IsAngleReadoutVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1874,9 +2231,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_IsAngleReadoutVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsResizable
@@ -1885,10 +2246,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_IsResizable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1898,9 +2263,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_IsResizable (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Radius
@@ -1909,10 +2278,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_Radius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1922,9 +2295,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_Radius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AccentColor
@@ -1933,10 +2310,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IInkPresenterProtractor.all.get_AccentColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1946,9 +2327,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterProtractor.all.put_AccentColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -1957,14 +2342,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenterStencilKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkPresenterStencilKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1974,14 +2363,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.get_IsVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1991,13 +2384,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.put_IsVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -2006,14 +2403,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.get_BackgroundColor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2023,13 +2424,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.put_BackgroundColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundColor
@@ -2038,14 +2443,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.get_ForegroundColor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2055,13 +2464,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.put_ForegroundColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Transform
@@ -2070,14 +2483,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.get_Transform (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2087,13 +2504,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterProtractor.all);
       Hr := m_Interface.put_Transform (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2105,12 +2526,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkPresenterRuler) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkPresenterRuler, IInkPresenterRuler_Ptr);
    begin
       if this.m_IInkPresenterRuler /= null then
          if this.m_IInkPresenterRuler.all /= null then
-            RefCount := this.m_IInkPresenterRuler.all.Release;
+            temp := this.m_IInkPresenterRuler.all.Release;
             Free (this.m_IInkPresenterRuler);
          end if;
       end if;
@@ -2125,9 +2546,10 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return InkPresenterRuler is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPresenterRuler");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPresenterRuler");
       m_Factory    : access IInkPresenterRulerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkPresenterRuler;
    begin
       return RetVal : InkPresenterRuler do
@@ -2136,9 +2558,9 @@ package body WinRt.Windows.UI.Input.Inking is
             Hr := m_Factory.Create (inkPresenter_p.m_IInkPresenter.all, m_ComRetVal'Access);
             Retval.m_IInkPresenterRuler := new Windows.UI.Input.Inking.IInkPresenterRuler;
             Retval.m_IInkPresenterRuler.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2151,10 +2573,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInkPresenterRuler.all.get_Length (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2164,9 +2590,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterRuler.all.put_Length (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Width
@@ -2175,10 +2605,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInkPresenterRuler.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2188,9 +2622,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkPresenterRuler.all.put_Width (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -2199,14 +2637,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenterStencilKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.InkPresenterStencilKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2216,14 +2658,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_IsVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2233,13 +2679,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.put_IsVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -2248,14 +2698,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_BackgroundColor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2265,13 +2719,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.put_BackgroundColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundColor
@@ -2280,14 +2738,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_ForegroundColor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2297,13 +2759,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.put_ForegroundColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Transform
@@ -2312,14 +2778,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_Transform (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2329,13 +2799,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterStencil := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterStencil, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterStencil'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.put_Transform (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AreTickMarksVisible
@@ -2344,14 +2818,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterRuler2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_AreTickMarksVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2361,13 +2839,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterRuler2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.put_AreTickMarksVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCompassVisible
@@ -2376,14 +2858,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterRuler2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.get_IsCompassVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2393,13 +2879,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkPresenterRuler_Interface, WinRt.Windows.UI.Input.Inking.IInkPresenterRuler2, WinRt.Windows.UI.Input.Inking.IID_IInkPresenterRuler2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkPresenterRuler.all);
       Hr := m_Interface.put_IsCompassVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2411,12 +2901,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkRecognitionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkRecognitionResult, IInkRecognitionResult_Ptr);
    begin
       if this.m_IInkRecognitionResult /= null then
          if this.m_IInkRecognitionResult.all /= null then
-            RefCount := this.m_IInkRecognitionResult.all.Release;
+            temp := this.m_IInkRecognitionResult.all.Release;
             Free (this.m_IInkRecognitionResult);
          end if;
       end if;
@@ -2431,10 +2921,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkRecognitionResult.all.get_BoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2444,13 +2938,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IInkRecognitionResult.all.GetTextCandidates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2460,13 +2958,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStroke.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStroke.Kind;
    begin
       Hr := this.m_IInkRecognitionResult.all.GetStrokes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStroke (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2479,12 +2981,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkRecognizer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkRecognizer, IInkRecognizer_Ptr);
    begin
       if this.m_IInkRecognizer /= null then
          if this.m_IInkRecognizer.all /= null then
-            RefCount := this.m_IInkRecognizer.all.Release;
+            temp := this.m_IInkRecognizer.all.Release;
             Free (this.m_IInkRecognizer);
          end if;
       end if;
@@ -2499,13 +3001,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkRecognizer.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2518,12 +3024,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkRecognizerContainer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkRecognizerContainer, IInkRecognizerContainer_Ptr);
    begin
       if this.m_IInkRecognizerContainer /= null then
          if this.m_IInkRecognizerContainer.all /= null then
-            RefCount := this.m_IInkRecognizerContainer.all.Release;
+            temp := this.m_IInkRecognizerContainer.all.Release;
             Free (this.m_IInkRecognizerContainer);
          end if;
       end if;
@@ -2534,7 +3040,8 @@ package body WinRt.Windows.UI.Input.Inking is
 
    function Constructor return InkRecognizerContainer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkRecognizerContainer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkRecognizerContainer");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkRecognizerContainer;
    begin
       return RetVal : InkRecognizerContainer do
@@ -2543,7 +3050,7 @@ package body WinRt.Windows.UI.Input.Inking is
             Retval.m_IInkRecognizerContainer := new Windows.UI.Input.Inking.IInkRecognizerContainer;
             Retval.m_IInkRecognizerContainer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2556,9 +3063,13 @@ package body WinRt.Windows.UI.Input.Inking is
       recognizer : Windows.UI.Input.Inking.InkRecognizer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkRecognizerContainer.all.SetDefaultRecognizer (recognizer.m_IInkRecognizer.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function RecognizeAsync
@@ -2569,13 +3080,13 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2593,7 +3104,7 @@ package body WinRt.Windows.UI.Input.Inking is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2606,7 +3117,7 @@ package body WinRt.Windows.UI.Input.Inking is
       Hr := this.m_IInkRecognizerContainer.all.RecognizeAsync (strokeCollection.m_IInkStrokeContainer.all, recognitionTarget, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2616,9 +3127,9 @@ package body WinRt.Windows.UI.Input.Inking is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2632,13 +3143,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkRecognizer.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkRecognizer.Kind;
    begin
       Hr := this.m_IInkRecognizerContainer.all.GetRecognizers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkRecognizer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2651,12 +3166,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStroke) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStroke, IInkStroke_Ptr);
    begin
       if this.m_IInkStroke /= null then
          if this.m_IInkStroke.all /= null then
-            RefCount := this.m_IInkStroke.all.Release;
+            temp := this.m_IInkStroke.all.Release;
             Free (this.m_IInkStroke);
          end if;
       end if;
@@ -2671,11 +3186,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkDrawingAttributes;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes do
          Hr := this.m_IInkStroke.all.get_DrawingAttributes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkDrawingAttributes := new Windows.UI.Input.Inking.IInkDrawingAttributes;
          Retval.m_IInkDrawingAttributes.all := m_ComRetVal;
       end return;
@@ -2687,9 +3206,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.UI.Input.Inking.InkDrawingAttributes'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStroke.all.put_DrawingAttributes (value.m_IInkDrawingAttributes.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BoundingRect
@@ -2698,10 +3221,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStroke.all.get_BoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2711,10 +3238,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkStroke.all.get_Selected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2724,9 +3255,13 @@ package body WinRt.Windows.UI.Input.Inking is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStroke.all.put_Selected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Recognized
@@ -2735,10 +3270,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkStroke.all.get_Recognized (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2748,13 +3287,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStrokeRenderingSegment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStrokeRenderingSegment.Kind;
    begin
       Hr := this.m_IInkStroke.all.GetRenderingSegments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStrokeRenderingSegment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2764,11 +3307,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          Hr := this.m_IInkStroke.all.Clone (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -2780,14 +3327,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke2, WinRt.Windows.UI.Input.Inking.IID_IInkStroke2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.get_PointTransform (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2797,13 +3348,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke2, WinRt.Windows.UI.Input.Inking.IID_IInkStroke2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.put_PointTransform (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetInkPoints
@@ -2812,17 +3367,21 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkPoint.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkPoint.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke2, WinRt.Windows.UI.Input.Inking.IID_IInkStroke2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.GetInkPoints (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkPoint (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2832,14 +3391,18 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke3, WinRt.Windows.UI.Input.Inking.IID_IInkStroke3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2849,17 +3412,21 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke3, WinRt.Windows.UI.Input.Inking.IID_IInkStroke3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.get_StrokeStartedTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2869,13 +3436,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke3, WinRt.Windows.UI.Input.Inking.IID_IInkStroke3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.put_StrokeStartedTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDuration
@@ -2884,17 +3455,21 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke3, WinRt.Windows.UI.Input.Inking.IID_IInkStroke3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.get_StrokeDuration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2904,13 +3479,17 @@ package body WinRt.Windows.UI.Input.Inking is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStroke3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStroke_Interface, WinRt.Windows.UI.Input.Inking.IInkStroke3, WinRt.Windows.UI.Input.Inking.IID_IInkStroke3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStroke.all);
       Hr := m_Interface.put_StrokeDuration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2922,12 +3501,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStrokeBuilder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStrokeBuilder, IInkStrokeBuilder_Ptr);
    begin
       if this.m_IInkStrokeBuilder /= null then
          if this.m_IInkStrokeBuilder.all /= null then
-            RefCount := this.m_IInkStrokeBuilder.all.Release;
+            temp := this.m_IInkStrokeBuilder.all.Release;
             Free (this.m_IInkStrokeBuilder);
          end if;
       end if;
@@ -2938,7 +3517,8 @@ package body WinRt.Windows.UI.Input.Inking is
 
    function Constructor return InkStrokeBuilder is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkStrokeBuilder");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkStrokeBuilder");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkStrokeBuilder;
    begin
       return RetVal : InkStrokeBuilder do
@@ -2947,7 +3527,7 @@ package body WinRt.Windows.UI.Input.Inking is
             Retval.m_IInkStrokeBuilder := new Windows.UI.Input.Inking.IInkStrokeBuilder;
             Retval.m_IInkStrokeBuilder.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2960,9 +3540,13 @@ package body WinRt.Windows.UI.Input.Inking is
       pointerPoint : Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeBuilder.all.BeginStroke (pointerPoint.m_IPointerPoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function AppendToStroke
@@ -2972,11 +3556,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.PointerPoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.IPointerPoint;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerPoint do
          Hr := this.m_IInkStrokeBuilder.all.AppendToStroke (pointerPoint.m_IPointerPoint.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPointerPoint := new Windows.UI.Input.IPointerPoint;
          Retval.m_IPointerPoint.all := m_ComRetVal;
       end return;
@@ -2989,11 +3577,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          Hr := this.m_IInkStrokeBuilder.all.EndStroke (pointerPoint.m_IPointerPoint.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -3006,11 +3598,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          Hr := this.m_IInkStrokeBuilder.all.CreateStroke (points, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -3022,9 +3618,13 @@ package body WinRt.Windows.UI.Input.Inking is
       drawingAttributes : Windows.UI.Input.Inking.InkDrawingAttributes'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeBuilder.all.SetDefaultDrawingAttributes (drawingAttributes.m_IInkDrawingAttributes.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateStrokeFromInkPoints
@@ -3035,15 +3635,19 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder2, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeBuilder2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          m_Interface := QInterface (this.m_IInkStrokeBuilder.all);
          Hr := m_Interface.CreateStrokeFromInkPoints (inkPoints, transform, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -3059,15 +3663,19 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder3, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeBuilder3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          m_Interface := QInterface (this.m_IInkStrokeBuilder.all);
          Hr := m_Interface.CreateStrokeFromInkPoints (inkPoints, transform, strokeStartedTime, strokeDuration, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -3082,12 +3690,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStrokeContainer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStrokeContainer, IInkStrokeContainer_Ptr);
    begin
       if this.m_IInkStrokeContainer /= null then
          if this.m_IInkStrokeContainer.all /= null then
-            RefCount := this.m_IInkStrokeContainer.all.Release;
+            temp := this.m_IInkStrokeContainer.all.Release;
             Free (this.m_IInkStrokeContainer);
          end if;
       end if;
@@ -3098,7 +3706,8 @@ package body WinRt.Windows.UI.Input.Inking is
 
    function Constructor return InkStrokeContainer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkStrokeContainer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkStrokeContainer");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.IInkStrokeContainer;
    begin
       return RetVal : InkStrokeContainer do
@@ -3107,7 +3716,7 @@ package body WinRt.Windows.UI.Input.Inking is
             Retval.m_IInkStrokeContainer := new Windows.UI.Input.Inking.IInkStrokeContainer;
             Retval.m_IInkStrokeContainer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3120,10 +3729,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStrokeContainer.all.get_BoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3133,9 +3746,13 @@ package body WinRt.Windows.UI.Input.Inking is
       stroke : Windows.UI.Input.Inking.InkStroke'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeContainer.all.AddStroke (stroke.m_IInkStroke.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function DeleteSelected
@@ -3144,10 +3761,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStrokeContainer.all.DeleteSelected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3158,10 +3779,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStrokeContainer.all.MoveSelected (translation, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3172,10 +3797,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStrokeContainer.all.SelectWithPolyLine (polyline, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3187,10 +3816,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStrokeContainer.all.SelectWithLine (from, to, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3199,9 +3832,13 @@ package body WinRt.Windows.UI.Input.Inking is
       this : in out InkStrokeContainer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeContainer.all.CopySelectedToClipboard;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function PasteFromClipboard
@@ -3211,10 +3848,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkStrokeContainer.all.PasteFromClipboard (position, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3224,10 +3865,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkStrokeContainer.all.CanPasteFromClipboard (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3237,7 +3882,8 @@ package body WinRt.Windows.UI.Input.Inking is
       inputStream : Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3245,7 +3891,6 @@ package body WinRt.Windows.UI.Input.Inking is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3266,9 +3911,9 @@ package body WinRt.Windows.UI.Input.Inking is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3281,13 +3926,13 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3305,7 +3950,7 @@ package body WinRt.Windows.UI.Input.Inking is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3318,7 +3963,7 @@ package body WinRt.Windows.UI.Input.Inking is
       Hr := this.m_IInkStrokeContainer.all.SaveAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3328,9 +3973,9 @@ package body WinRt.Windows.UI.Input.Inking is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3344,9 +3989,13 @@ package body WinRt.Windows.UI.Input.Inking is
       recognitionResults : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeContainer.all.UpdateRecognitionResults (recognitionResults);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetStrokes
@@ -3355,13 +4004,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStroke.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStroke.Kind;
    begin
       Hr := this.m_IInkStrokeContainer.all.GetStrokes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStroke (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3371,13 +4024,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkRecognitionResult.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkRecognitionResult.Kind;
    begin
       Hr := this.m_IInkStrokeContainer.all.GetRecognitionResults (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkRecognitionResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3387,13 +4044,17 @@ package body WinRt.Windows.UI.Input.Inking is
       strokes : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStrokeContainer_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer2, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStrokeContainer.all);
       Hr := m_Interface.AddStrokes (strokes);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -3401,13 +4062,17 @@ package body WinRt.Windows.UI.Input.Inking is
       this : in out InkStrokeContainer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStrokeContainer_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer2, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkStrokeContainer.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function SaveAsync
@@ -3418,14 +4083,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3443,7 +4108,7 @@ package body WinRt.Windows.UI.Input.Inking is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3456,10 +4121,10 @@ package body WinRt.Windows.UI.Input.Inking is
    begin
       m_Interface := QInterface (this.m_IInkStrokeContainer.all);
       Hr := m_Interface.SaveAsync (outputStream, inkPersistenceFormat, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3469,9 +4134,9 @@ package body WinRt.Windows.UI.Input.Inking is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3486,15 +4151,19 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.IInkStrokeContainer_Interface, WinRt.Windows.UI.Input.Inking.IInkStrokeContainer3, WinRt.Windows.UI.Input.Inking.IID_IInkStrokeContainer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          m_Interface := QInterface (this.m_IInkStrokeContainer.all);
          Hr := m_Interface.GetStrokeById (id, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -3509,12 +4178,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStrokeInput) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStrokeInput, IInkStrokeInput_Ptr);
    begin
       if this.m_IInkStrokeInput /= null then
          if this.m_IInkStrokeInput.all /= null then
-            RefCount := this.m_IInkStrokeInput.all.Release;
+            temp := this.m_IInkStrokeInput.all.Release;
             Free (this.m_IInkStrokeInput);
          end if;
       end if;
@@ -3530,10 +4199,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkStrokeInput.all.add_StrokeStarted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3543,9 +4216,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeInput.all.remove_StrokeStarted (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StrokeContinued
@@ -3555,10 +4232,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkStrokeInput.all.add_StrokeContinued (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3568,9 +4249,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeInput.all.remove_StrokeContinued (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StrokeEnded
@@ -3580,10 +4265,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkStrokeInput.all.add_StrokeEnded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3593,9 +4282,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeInput.all.remove_StrokeEnded (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StrokeCanceled
@@ -3605,10 +4298,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkStrokeInput.all.add_StrokeCanceled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3618,9 +4315,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkStrokeInput.all.remove_StrokeCanceled (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InkPresenter
@@ -3629,11 +4330,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkPresenter;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkPresenter do
          Hr := this.m_IInkStrokeInput.all.get_InkPresenter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkPresenter := new Windows.UI.Input.Inking.IInkPresenter;
          Retval.m_IInkPresenter.all := m_ComRetVal;
       end return;
@@ -3648,12 +4353,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStrokeRenderingSegment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStrokeRenderingSegment, IInkStrokeRenderingSegment_Ptr);
    begin
       if this.m_IInkStrokeRenderingSegment /= null then
          if this.m_IInkStrokeRenderingSegment.all /= null then
-            RefCount := this.m_IInkStrokeRenderingSegment.all.Release;
+            temp := this.m_IInkStrokeRenderingSegment.all.Release;
             Free (this.m_IInkStrokeRenderingSegment);
          end if;
       end if;
@@ -3668,10 +4373,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3681,10 +4390,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_BezierControlPoint1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3694,10 +4407,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_BezierControlPoint2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3707,10 +4424,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_Pressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3720,10 +4441,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_TiltX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3733,10 +4458,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_TiltY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3746,10 +4475,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IInkStrokeRenderingSegment.all.get_Twist (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3762,12 +4495,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStrokesCollectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStrokesCollectedEventArgs, IInkStrokesCollectedEventArgs_Ptr);
    begin
       if this.m_IInkStrokesCollectedEventArgs /= null then
          if this.m_IInkStrokesCollectedEventArgs.all /= null then
-            RefCount := this.m_IInkStrokesCollectedEventArgs.all.Release;
+            temp := this.m_IInkStrokesCollectedEventArgs.all.Release;
             Free (this.m_IInkStrokesCollectedEventArgs);
          end if;
       end if;
@@ -3782,13 +4515,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStroke.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStroke.Kind;
    begin
       Hr := this.m_IInkStrokesCollectedEventArgs.all.get_Strokes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStroke (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3801,12 +4538,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkStrokesErasedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkStrokesErasedEventArgs, IInkStrokesErasedEventArgs_Ptr);
    begin
       if this.m_IInkStrokesErasedEventArgs /= null then
          if this.m_IInkStrokesErasedEventArgs.all /= null then
-            RefCount := this.m_IInkStrokesErasedEventArgs.all.Release;
+            temp := this.m_IInkStrokesErasedEventArgs.all.Release;
             Free (this.m_IInkStrokesErasedEventArgs);
          end if;
       end if;
@@ -3821,13 +4558,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStroke.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStroke.Kind;
    begin
       Hr := this.m_IInkStrokesErasedEventArgs.all.get_Strokes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStroke (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3840,12 +4581,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkSynchronizer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkSynchronizer, IInkSynchronizer_Ptr);
    begin
       if this.m_IInkSynchronizer /= null then
          if this.m_IInkSynchronizer.all /= null then
-            RefCount := this.m_IInkSynchronizer.all.Release;
+            temp := this.m_IInkSynchronizer.all.Release;
             Free (this.m_IInkSynchronizer);
          end if;
       end if;
@@ -3860,13 +4601,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return IVectorView_IInkStroke.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkStroke.Kind;
    begin
       Hr := this.m_IInkSynchronizer.all.BeginDry (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkStroke (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3875,9 +4620,13 @@ package body WinRt.Windows.UI.Input.Inking is
       this : in out InkSynchronizer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkSynchronizer.all.EndDry;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3889,12 +4638,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out InkUnprocessedInput) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkUnprocessedInput, IInkUnprocessedInput_Ptr);
    begin
       if this.m_IInkUnprocessedInput /= null then
          if this.m_IInkUnprocessedInput.all /= null then
-            RefCount := this.m_IInkUnprocessedInput.all.Release;
+            temp := this.m_IInkUnprocessedInput.all.Release;
             Free (this.m_IInkUnprocessedInput);
          end if;
       end if;
@@ -3910,10 +4659,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerEntered (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3923,9 +4676,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerEntered (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerHovered
@@ -3935,10 +4692,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerHovered (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3948,9 +4709,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerHovered (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerExited
@@ -3960,10 +4725,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3973,9 +4742,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerExited (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerPressed
@@ -3985,10 +4758,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerPressed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3998,9 +4775,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerPressed (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerMoved
@@ -4010,10 +4791,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerMoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4023,9 +4808,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerMoved (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerReleased
@@ -4035,10 +4824,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerReleased (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4048,9 +4841,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerReleased (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerLost
@@ -4060,10 +4857,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInkUnprocessedInput.all.add_PointerLost (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4073,9 +4874,13 @@ package body WinRt.Windows.UI.Input.Inking is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkUnprocessedInput.all.remove_PointerLost (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InkPresenter
@@ -4084,11 +4889,15 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkPresenter;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkPresenter do
          Hr := this.m_IInkUnprocessedInput.all.get_InkPresenter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkPresenter := new Windows.UI.Input.Inking.IInkPresenter;
          Retval.m_IInkPresenter.all := m_ComRetVal;
       end return;
@@ -4103,12 +4912,12 @@ package body WinRt.Windows.UI.Input.Inking is
    end;
 
    procedure Finalize (this : in out PenAndInkSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPenAndInkSettings, IPenAndInkSettings_Ptr);
    begin
       if this.m_IPenAndInkSettings /= null then
          if this.m_IPenAndInkSettings.all /= null then
-            RefCount := this.m_IPenAndInkSettings.all.Release;
+            temp := this.m_IPenAndInkSettings.all.Release;
             Free (this.m_IPenAndInkSettings);
          end if;
       end if;
@@ -4120,20 +4929,24 @@ package body WinRt.Windows.UI.Input.Inking is
    function GetDefault
    return WinRt.Windows.UI.Input.Inking.PenAndInkSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Inking.PenAndInkSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.PenAndInkSettings");
       m_Factory        : access WinRt.Windows.UI.Input.Inking.IPenAndInkSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IPenAndInkSettings;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.PenAndInkSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IPenAndInkSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPenAndInkSettings := new Windows.UI.Input.Inking.IPenAndInkSettings;
             Retval.m_IPenAndInkSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4146,10 +4959,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPenAndInkSettings.all.get_IsHandwritingDirectlyIntoTextFieldEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4159,10 +4976,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.PenHandedness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.PenHandedness;
    begin
       Hr := this.m_IPenAndInkSettings.all.get_PenHandedness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4172,10 +4993,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Windows.UI.Input.Inking.HandwritingLineHeight is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.HandwritingLineHeight;
    begin
       Hr := this.m_IPenAndInkSettings.all.get_HandwritingLineHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4185,13 +5010,17 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPenAndInkSettings.all.get_FontFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4201,10 +5030,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPenAndInkSettings.all.get_UserConsentsToHandwritingTelemetryCollection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4214,10 +5047,14 @@ package body WinRt.Windows.UI.Input.Inking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPenAndInkSettings.all.get_IsTouchHandwritingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

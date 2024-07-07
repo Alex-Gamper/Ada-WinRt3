@@ -46,7 +46,7 @@ package body WinRt.Windows.Foundation.Collections is
          event : GenericObject
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (sender, event);
          return Hr;
@@ -63,12 +63,12 @@ package body WinRt.Windows.Foundation.Collections is
    end;
 
    procedure Finalize (this : in out PropertySet) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPropertySet, IPropertySet_Ptr);
    begin
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
-            RefCount := this.m_IPropertySet.all.Release;
+            temp := this.m_IPropertySet.all.Release;
             Free (this.m_IPropertySet);
          end if;
       end if;
@@ -79,7 +79,8 @@ package body WinRt.Windows.Foundation.Collections is
 
    function Constructor return PropertySet is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Collections.PropertySet");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.PropertySet");
       m_ComRetVal  : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : PropertySet do
@@ -88,7 +89,7 @@ package body WinRt.Windows.Foundation.Collections is
             Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
             Retval.m_IPropertySet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -103,15 +104,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.add_MapChanged (vhnd, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -121,14 +126,18 @@ package body WinRt.Windows.Foundation.Collections is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.remove_MapChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -139,17 +148,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -159,15 +172,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -178,17 +195,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -198,15 +219,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -218,17 +243,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Insert (HStr_key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -238,16 +267,20 @@ package body WinRt.Windows.Foundation.Collections is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -255,14 +288,18 @@ package body WinRt.Windows.Foundation.Collections is
       this : in out PropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -283,7 +320,8 @@ package body WinRt.Windows.Foundation.Collections is
 
    function Constructor return StringMap is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Collections.StringMap");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.StringMap");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : StringMap do
@@ -292,7 +330,7 @@ package body WinRt.Windows.Foundation.Collections is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -307,20 +345,24 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased HString;
       AdaRetval        : WString;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -330,15 +372,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -349,17 +395,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -369,15 +419,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -389,19 +443,23 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
-      HStr_value : WinRt.HString := To_HString (value);
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_value : constant WinRt.HString := To_HString (value);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Insert (HStr_key, HStr_value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_value);
       return m_ComRetVal;
    end;
 
@@ -411,16 +469,20 @@ package body WinRt.Windows.Foundation.Collections is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -428,14 +490,18 @@ package body WinRt.Windows.Foundation.Collections is
       this : in out StringMap
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IObservableMap`2<System.String,System.String>
@@ -446,15 +512,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (503538294, 12128, 22006, (183, 243, 248, 96, 121, 230, 144, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IObservableMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.add_MapChanged (vhnd, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -464,14 +534,18 @@ package body WinRt.Windows.Foundation.Collections is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (503538294, 12128, 22006, (183, 243, 248, 96, 121, 230, 144, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IObservableMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.remove_MapChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -483,12 +557,12 @@ package body WinRt.Windows.Foundation.Collections is
    end;
 
    procedure Finalize (this : in out ValueSet) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPropertySet, IPropertySet_Ptr);
    begin
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
-            RefCount := this.m_IPropertySet.all.Release;
+            temp := this.m_IPropertySet.all.Release;
             Free (this.m_IPropertySet);
          end if;
       end if;
@@ -499,7 +573,8 @@ package body WinRt.Windows.Foundation.Collections is
 
    function Constructor return ValueSet is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Collections.ValueSet");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.ValueSet");
       m_ComRetVal  : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : ValueSet do
@@ -508,7 +583,7 @@ package body WinRt.Windows.Foundation.Collections is
             Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
             Retval.m_IPropertySet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -523,15 +598,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.add_MapChanged (vhnd, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -541,14 +620,18 @@ package body WinRt.Windows.Foundation.Collections is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.remove_MapChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -559,17 +642,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -579,15 +666,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -598,17 +689,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -618,15 +713,19 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -638,17 +737,21 @@ package body WinRt.Windows.Foundation.Collections is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Insert (HStr_key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -658,16 +761,20 @@ package body WinRt.Windows.Foundation.Collections is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -675,14 +782,18 @@ package body WinRt.Windows.Foundation.Collections is
       this : in out ValueSet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    --------------------------------------------------------------------------------
@@ -695,7 +806,7 @@ package body WinRt.Windows.Foundation.Collections is
          event : Windows.Foundation.Collections.IVectorChangedEventArgs
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (sender, event);
          return Hr;

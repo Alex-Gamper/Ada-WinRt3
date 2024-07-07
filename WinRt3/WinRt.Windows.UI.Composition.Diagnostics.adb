@@ -41,12 +41,12 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
    end;
 
    procedure Finalize (this : in out CompositionDebugHeatMaps) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionDebugHeatMaps, ICompositionDebugHeatMaps_Ptr);
    begin
       if this.m_ICompositionDebugHeatMaps /= null then
          if this.m_ICompositionDebugHeatMaps.all /= null then
-            RefCount := this.m_ICompositionDebugHeatMaps.all.Release;
+            temp := this.m_ICompositionDebugHeatMaps.all.Release;
             Free (this.m_ICompositionDebugHeatMaps);
          end if;
       end if;
@@ -61,9 +61,13 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
       subtree : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionDebugHeatMaps.all.Hide (subtree.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowMemoryUsage
@@ -72,9 +76,13 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
       subtree : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionDebugHeatMaps.all.ShowMemoryUsage (subtree.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowOverdraw
@@ -84,9 +92,13 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
       contentKinds : Windows.UI.Composition.Diagnostics.CompositionDebugOverdrawContentKinds
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionDebugHeatMaps.all.ShowOverdraw (subtree.m_IVisual.all, contentKinds);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowRedraw
@@ -95,9 +107,13 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
       subtree : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositionDebugHeatMaps.all.ShowRedraw (subtree.m_IVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -109,12 +125,12 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
    end;
 
    procedure Finalize (this : in out CompositionDebugSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositionDebugSettings, ICompositionDebugSettings_Ptr);
    begin
       if this.m_ICompositionDebugSettings /= null then
          if this.m_ICompositionDebugSettings.all /= null then
-            RefCount := this.m_ICompositionDebugSettings.all.Release;
+            temp := this.m_ICompositionDebugSettings.all.Release;
             Free (this.m_ICompositionDebugSettings);
          end if;
       end if;
@@ -129,20 +145,24 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
    )
    return WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Diagnostics.CompositionDebugSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Diagnostics.CompositionDebugSettings");
       m_Factory        : access WinRt.Windows.UI.Composition.Diagnostics.ICompositionDebugSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Diagnostics.ICompositionDebugSettings;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugSettings do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionDebugSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryGetSettings (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICompositionDebugSettings := new Windows.UI.Composition.Diagnostics.ICompositionDebugSettings;
             Retval.m_ICompositionDebugSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -155,11 +175,15 @@ package body WinRt.Windows.UI.Composition.Diagnostics is
    )
    return WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugHeatMaps'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Diagnostics.ICompositionDebugHeatMaps;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugHeatMaps do
          Hr := this.m_ICompositionDebugSettings.all.get_HeatMaps (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionDebugHeatMaps := new Windows.UI.Composition.Diagnostics.ICompositionDebugHeatMaps;
          Retval.m_ICompositionDebugHeatMaps.all := m_ComRetVal;
       end return;

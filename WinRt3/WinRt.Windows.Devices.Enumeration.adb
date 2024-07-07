@@ -74,12 +74,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceAccessChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceAccessChangedEventArgs, IDeviceAccessChangedEventArgs_Ptr);
    begin
       if this.m_IDeviceAccessChangedEventArgs /= null then
          if this.m_IDeviceAccessChangedEventArgs.all /= null then
-            RefCount := this.m_IDeviceAccessChangedEventArgs.all.Release;
+            temp := this.m_IDeviceAccessChangedEventArgs.all.Release;
             Free (this.m_IDeviceAccessChangedEventArgs);
          end if;
       end if;
@@ -94,10 +94,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceAccessStatus;
    begin
       Hr := this.m_IDeviceAccessChangedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -107,17 +111,21 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceAccessChangedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceAccessChangedEventArgs_Interface, WinRt.Windows.Devices.Enumeration.IDeviceAccessChangedEventArgs2, WinRt.Windows.Devices.Enumeration.IID_IDeviceAccessChangedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccessChangedEventArgs.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -130,12 +138,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceAccessInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceAccessInformation, IDeviceAccessInformation_Ptr);
    begin
       if this.m_IDeviceAccessInformation /= null then
          if this.m_IDeviceAccessInformation.all /= null then
-            RefCount := this.m_IDeviceAccessInformation.all.Release;
+            temp := this.m_IDeviceAccessInformation.all.Release;
             Free (this.m_IDeviceAccessInformation);
          end if;
       end if;
@@ -150,22 +158,26 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceAccessInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceAccessInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceAccessInformation;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceAccessInformation do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceAccessInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromId (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceAccessInformation := new Windows.Devices.Enumeration.IDeviceAccessInformation;
             Retval.m_IDeviceAccessInformation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -175,20 +187,24 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceAccessInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceAccessInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceAccessInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceAccessInformation do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceAccessInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromDeviceClassId (deviceClassId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceAccessInformation := new Windows.Devices.Enumeration.IDeviceAccessInformation;
             Retval.m_IDeviceAccessInformation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -198,20 +214,24 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceAccessInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceAccessInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceAccessInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceAccessInformation do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceAccessInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromDeviceClass (deviceClass, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceAccessInformation := new Windows.Devices.Enumeration.IDeviceAccessInformation;
             Retval.m_IDeviceAccessInformation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -225,10 +245,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceAccessInformation.all.add_AccessChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -238,9 +262,13 @@ package body WinRt.Windows.Devices.Enumeration is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceAccessInformation.all.remove_AccessChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentStatus
@@ -249,10 +277,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceAccessStatus;
    begin
       Hr := this.m_IDeviceAccessInformation.all.get_CurrentStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -265,12 +297,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceConnectionChangeTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceConnectionChangeTriggerDetails, IDeviceConnectionChangeTriggerDetails_Ptr);
    begin
       if this.m_IDeviceConnectionChangeTriggerDetails /= null then
          if this.m_IDeviceConnectionChangeTriggerDetails.all /= null then
-            RefCount := this.m_IDeviceConnectionChangeTriggerDetails.all.Release;
+            temp := this.m_IDeviceConnectionChangeTriggerDetails.all.Release;
             Free (this.m_IDeviceConnectionChangeTriggerDetails);
          end if;
       end if;
@@ -285,13 +317,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceConnectionChangeTriggerDetails.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -304,12 +340,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceDisconnectButtonClickedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceDisconnectButtonClickedEventArgs, IDeviceDisconnectButtonClickedEventArgs_Ptr);
    begin
       if this.m_IDeviceDisconnectButtonClickedEventArgs /= null then
          if this.m_IDeviceDisconnectButtonClickedEventArgs.all /= null then
-            RefCount := this.m_IDeviceDisconnectButtonClickedEventArgs.all.Release;
+            temp := this.m_IDeviceDisconnectButtonClickedEventArgs.all.Release;
             Free (this.m_IDeviceDisconnectButtonClickedEventArgs);
          end if;
       end if;
@@ -324,11 +360,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IDeviceDisconnectButtonClickedEventArgs.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -343,12 +383,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceInformation, IDeviceInformation_Ptr);
    begin
       if this.m_IDeviceInformation /= null then
          if this.m_IDeviceInformation.all /= null then
-            RefCount := this.m_IDeviceInformation.all.Release;
+            temp := this.m_IDeviceInformation.all.Release;
             Free (this.m_IDeviceInformation);
          end if;
       end if;
@@ -363,16 +403,16 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -390,7 +430,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformation.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -404,10 +444,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -419,16 +459,16 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
                      Retval.m_IDeviceInformation.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -439,16 +479,16 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -466,7 +506,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformation.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -480,10 +520,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIdAsync (HStr_deviceId, additionalProperties, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -495,31 +535,31 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
                      Retval.m_IDeviceInformation.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function FindAllAsync
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformationCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -537,7 +577,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformationCollection.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformationCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -551,10 +591,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -566,15 +606,15 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -584,15 +624,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformationCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -610,7 +650,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformationCollection.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformationCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -624,10 +664,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (deviceClass, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -639,15 +679,15 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -657,16 +697,16 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      temp             : WinRt.UInt32 := 0;
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformationCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -684,7 +724,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformationCollection.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformationCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -698,10 +738,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (HStr_aqsFilter, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -713,16 +753,16 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -733,16 +773,16 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      temp             : WinRt.UInt32 := 0;
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformationCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -760,7 +800,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformationCollection.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformationCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -774,10 +814,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (HStr_aqsFilter, additionalProperties, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -789,36 +829,40 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
    function CreateWatcher
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceWatcher := new Windows.Devices.Enumeration.IDeviceWatcher;
             Retval.m_IDeviceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -828,20 +872,24 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (deviceClass, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceWatcher := new Windows.Devices.Enumeration.IDeviceWatcher;
             Retval.m_IDeviceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -851,22 +899,26 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceWatcher;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (HStr_aqsFilter, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceWatcher := new Windows.Devices.Enumeration.IDeviceWatcher;
             Retval.m_IDeviceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -877,22 +929,26 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceWatcher;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (HStr_aqsFilter, additionalProperties, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceWatcher := new Windows.Devices.Enumeration.IDeviceWatcher;
             Retval.m_IDeviceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -902,20 +958,24 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetAqsFilterFromDeviceClass (deviceClass, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -927,16 +987,16 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -954,7 +1014,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformation.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -968,10 +1028,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIdAsync (HStr_deviceId, additionalProperties, kind, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -983,16 +1043,16 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
                      Retval.m_IDeviceInformation.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -1004,16 +1064,16 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      temp             : WinRt.UInt32 := 0;
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformationCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1031,7 +1091,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformationCollection.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformationCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1045,10 +1105,10 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (HStr_aqsFilter, additionalProperties, kind, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1060,16 +1120,16 @@ package body WinRt.Windows.Devices.Enumeration is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -1081,22 +1141,26 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformation");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceWatcher;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (HStr_aqsFilter, additionalProperties, kind, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeviceWatcher := new Windows.Devices.Enumeration.IDeviceWatcher;
             Retval.m_IDeviceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -1109,13 +1173,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceInformation.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1125,13 +1193,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceInformation.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1141,10 +1213,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceInformation.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1154,10 +1230,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceInformation.all.get_IsDefault (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1167,11 +1247,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.EnclosureLocation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IEnclosureLocation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.EnclosureLocation do
          Hr := this.m_IDeviceInformation.all.get_EnclosureLocation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEnclosureLocation := new Windows.Devices.Enumeration.IEnclosureLocation;
          Retval.m_IEnclosureLocation.all := m_ComRetVal;
       end return;
@@ -1183,13 +1267,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IDeviceInformation.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1199,9 +1287,13 @@ package body WinRt.Windows.Devices.Enumeration is
       updateInfo : Windows.Devices.Enumeration.DeviceInformationUpdate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceInformation.all.Update (updateInfo.m_IDeviceInformationUpdate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetThumbnailAsync
@@ -1210,13 +1302,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1234,7 +1326,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_DeviceThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1248,7 +1340,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformation.all.GetThumbnailAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1260,9 +1352,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1276,13 +1368,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1300,7 +1392,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_DeviceThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1314,7 +1406,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformation.all.GetGlyphThumbnailAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1326,9 +1418,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1342,14 +1434,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceInformationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceInformation_Interface, WinRt.Windows.Devices.Enumeration.IDeviceInformation2, WinRt.Windows.Devices.Enumeration.IID_IDeviceInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceInformation.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1359,15 +1455,19 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationPairing'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformationPairing;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceInformation_Interface, WinRt.Windows.Devices.Enumeration.IDeviceInformation2, WinRt.Windows.Devices.Enumeration.IID_IDeviceInformation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformationPairing do
          m_Interface := QInterface (this.m_IDeviceInformation.all);
          Hr := m_Interface.get_Pairing (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformationPairing := new Windows.Devices.Enumeration.IDeviceInformationPairing;
          Retval.m_IDeviceInformationPairing.all := m_ComRetVal;
       end return;
@@ -1397,8 +1497,9 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDeviceInformation.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
       m_GenericIID     : aliased WinRt.IID := (3782240399, 13461, 23542, (170, 181, 156, 172, 23, 224, 241, 15 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDeviceInformation.Kind, m_GenericIID'Unchecked_Access);
@@ -1406,7 +1507,10 @@ package body WinRt.Windows.Devices.Enumeration is
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -1418,15 +1522,19 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDeviceInformation.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3782240399, 13461, 23542, (170, 181, 156, 172, 23, 224, 241, 15 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDeviceInformation.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1438,15 +1546,19 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDeviceInformation.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3782240399, 13461, 23542, (170, 181, 156, 172, 23, 224, 241, 15 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDeviceInformation.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IDeviceInformation.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1458,8 +1570,9 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDeviceInformation.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3782240399, 13461, 23542, (170, 181, 156, 172, 23, 224, 241, 15 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDeviceInformation.Kind, m_GenericIID'Unchecked_Access);
@@ -1467,7 +1580,10 @@ package body WinRt.Windows.Devices.Enumeration is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1478,15 +1594,19 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDeviceInformation.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3718220381, 60568, 24395, (163, 234, 156, 139, 90, 213, 60, 75 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDeviceInformation.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1499,12 +1619,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceInformationCustomPairing) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceInformationCustomPairing, IDeviceInformationCustomPairing_Ptr);
    begin
       if this.m_IDeviceInformationCustomPairing /= null then
          if this.m_IDeviceInformationCustomPairing.all /= null then
-            RefCount := this.m_IDeviceInformationCustomPairing.all.Release;
+            temp := this.m_IDeviceInformationCustomPairing.all.Release;
             Free (this.m_IDeviceInformationCustomPairing);
          end if;
       end if;
@@ -1520,13 +1640,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DevicePairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1544,7 +1664,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DevicePairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DevicePairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1558,7 +1678,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformationCustomPairing.all.PairAsync (pairingKindsSupported, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1570,9 +1690,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDevicePairingResult := new Windows.Devices.Enumeration.IDevicePairingResult;
                   Retval.m_IDevicePairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1588,13 +1708,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DevicePairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1612,7 +1732,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DevicePairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DevicePairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1626,7 +1746,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformationCustomPairing.all.PairAsync (pairingKindsSupported, minProtectionLevel, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1638,9 +1758,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDevicePairingResult := new Windows.Devices.Enumeration.IDevicePairingResult;
                   Retval.m_IDevicePairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1657,13 +1777,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DevicePairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1681,7 +1801,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DevicePairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DevicePairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1695,7 +1815,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformationCustomPairing.all.PairAsync (pairingKindsSupported, minProtectionLevel, devicePairingSettings, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1707,9 +1827,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDevicePairingResult := new Windows.Devices.Enumeration.IDevicePairingResult;
                   Retval.m_IDevicePairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1724,10 +1844,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceInformationCustomPairing.all.add_PairingRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1737,9 +1861,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceInformationCustomPairing.all.remove_PairingRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1751,12 +1879,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceInformationPairing) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceInformationPairing, IDeviceInformationPairing_Ptr);
    begin
       if this.m_IDeviceInformationPairing /= null then
          if this.m_IDeviceInformationPairing.all /= null then
-            RefCount := this.m_IDeviceInformationPairing.all.Release;
+            temp := this.m_IDeviceInformationPairing.all.Release;
             Free (this.m_IDeviceInformationPairing);
          end if;
       end if;
@@ -1771,17 +1899,21 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformationPairing");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformationPairing");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationPairingStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationPairingStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryRegisterForAllInboundPairingRequests (pairingKindsSupported, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1792,17 +1924,21 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformationPairing");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DeviceInformationPairing");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.IDeviceInformationPairingStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDeviceInformationPairingStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryRegisterForAllInboundPairingRequestsWithProtectionLevel (pairingKindsSupported, minProtectionLevel, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1815,10 +1951,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceInformationPairing.all.get_IsPaired (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1828,10 +1968,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceInformationPairing.all.get_CanPair (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1841,13 +1985,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DevicePairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1865,7 +2009,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DevicePairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DevicePairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1879,7 +2023,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformationPairing.all.PairAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1891,9 +2035,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDevicePairingResult := new Windows.Devices.Enumeration.IDevicePairingResult;
                   Retval.m_IDevicePairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1908,13 +2052,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DevicePairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1932,7 +2076,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DevicePairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DevicePairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1946,7 +2090,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDeviceInformationPairing.all.PairAsync (minProtectionLevel, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1958,9 +2102,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDevicePairingResult := new Windows.Devices.Enumeration.IDevicePairingResult;
                   Retval.m_IDevicePairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1974,14 +2118,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DevicePairingProtectionLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing_Interface, WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing2, WinRt.Windows.Devices.Enumeration.IID_IDeviceInformationPairing2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceInformationPairing.all);
       Hr := m_Interface.get_ProtectionLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1991,15 +2139,19 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCustomPairing'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformationCustomPairing;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing_Interface, WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing2, WinRt.Windows.Devices.Enumeration.IID_IDeviceInformationPairing2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformationCustomPairing do
          m_Interface := QInterface (this.m_IDeviceInformationPairing.all);
          Hr := m_Interface.get_Custom (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformationCustomPairing := new Windows.Devices.Enumeration.IDeviceInformationCustomPairing;
          Retval.m_IDeviceInformationCustomPairing.all := m_ComRetVal;
       end return;
@@ -2013,14 +2165,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DevicePairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2038,7 +2190,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DevicePairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DevicePairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2052,10 +2204,10 @@ package body WinRt.Windows.Devices.Enumeration is
       return RetVal : WinRt.Windows.Devices.Enumeration.DevicePairingResult do
          m_Interface := QInterface (this.m_IDeviceInformationPairing.all);
          Hr := m_Interface.PairAsync (minProtectionLevel, devicePairingSettings, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2067,9 +2219,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDevicePairingResult := new Windows.Devices.Enumeration.IDevicePairingResult;
                   Retval.m_IDevicePairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2083,14 +2235,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceUnpairingResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceUnpairingResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2108,7 +2260,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceUnpairingResult.Kind_Delegate, AsyncOperationCompletedHandler_DeviceUnpairingResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2122,10 +2274,10 @@ package body WinRt.Windows.Devices.Enumeration is
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceUnpairingResult do
          m_Interface := QInterface (this.m_IDeviceInformationPairing.all);
          Hr := m_Interface.UnpairAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2137,9 +2289,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDeviceUnpairingResult := new Windows.Devices.Enumeration.IDeviceUnpairingResult;
                   Retval.m_IDeviceUnpairingResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2156,12 +2308,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceInformationUpdate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceInformationUpdate, IDeviceInformationUpdate_Ptr);
    begin
       if this.m_IDeviceInformationUpdate /= null then
          if this.m_IDeviceInformationUpdate.all /= null then
-            RefCount := this.m_IDeviceInformationUpdate.all.Release;
+            temp := this.m_IDeviceInformationUpdate.all.Release;
             Free (this.m_IDeviceInformationUpdate);
          end if;
       end if;
@@ -2176,13 +2328,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceInformationUpdate.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2192,13 +2348,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IDeviceInformationUpdate.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2208,14 +2368,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceInformationUpdate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceInformationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceInformationUpdate_Interface, WinRt.Windows.Devices.Enumeration.IDeviceInformationUpdate2, WinRt.Windows.Devices.Enumeration.IID_IDeviceInformationUpdate2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceInformationUpdate.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2228,12 +2392,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DevicePairingRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePairingRequestedEventArgs, IDevicePairingRequestedEventArgs_Ptr);
    begin
       if this.m_IDevicePairingRequestedEventArgs /= null then
          if this.m_IDevicePairingRequestedEventArgs.all /= null then
-            RefCount := this.m_IDevicePairingRequestedEventArgs.all.Release;
+            temp := this.m_IDevicePairingRequestedEventArgs.all.Release;
             Free (this.m_IDevicePairingRequestedEventArgs);
          end if;
       end if;
@@ -2248,11 +2412,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IDevicePairingRequestedEventArgs.all.get_DeviceInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -2264,10 +2432,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingKinds is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DevicePairingKinds;
    begin
       Hr := this.m_IDevicePairingRequestedEventArgs.all.get_PairingKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2277,13 +2449,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDevicePairingRequestedEventArgs.all.get_Pin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2292,9 +2468,13 @@ package body WinRt.Windows.Devices.Enumeration is
       this : in out DevicePairingRequestedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePairingRequestedEventArgs.all.Accept_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Accept_x
@@ -2303,11 +2483,15 @@ package body WinRt.Windows.Devices.Enumeration is
       pin : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_pin : WinRt.HString := To_HString (pin);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_pin : constant WinRt.HString := To_HString (pin);
    begin
       Hr := this.m_IDevicePairingRequestedEventArgs.all.Accept_x (HStr_pin);
-      Hr := WindowsDeleteString (HStr_pin);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_pin);
    end;
 
    function GetDeferral
@@ -2316,11 +2500,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IDevicePairingRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -2332,13 +2520,17 @@ package body WinRt.Windows.Devices.Enumeration is
       passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDevicePairingRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDevicePairingRequestedEventArgs_Interface, WinRt.Windows.Devices.Enumeration.IDevicePairingRequestedEventArgs2, WinRt.Windows.Devices.Enumeration.IID_IDevicePairingRequestedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePairingRequestedEventArgs.all);
       Hr := m_Interface.AcceptWithPasswordCredential (passwordCredential.m_IPasswordCredential.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2350,12 +2542,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DevicePairingResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePairingResult, IDevicePairingResult_Ptr);
    begin
       if this.m_IDevicePairingResult /= null then
          if this.m_IDevicePairingResult.all /= null then
-            RefCount := this.m_IDevicePairingResult.all.Release;
+            temp := this.m_IDevicePairingResult.all.Release;
             Free (this.m_IDevicePairingResult);
          end if;
       end if;
@@ -2370,10 +2562,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResultStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DevicePairingResultStatus;
    begin
       Hr := this.m_IDevicePairingResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2383,10 +2579,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DevicePairingProtectionLevel;
    begin
       Hr := this.m_IDevicePairingResult.all.get_ProtectionLevelUsed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2399,12 +2599,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DevicePicker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePicker, IDevicePicker_Ptr);
    begin
       if this.m_IDevicePicker /= null then
          if this.m_IDevicePicker.all /= null then
-            RefCount := this.m_IDevicePicker.all.Release;
+            temp := this.m_IDevicePicker.all.Release;
             Free (this.m_IDevicePicker);
          end if;
       end if;
@@ -2415,7 +2615,8 @@ package body WinRt.Windows.Devices.Enumeration is
 
    function Constructor return DevicePicker is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Enumeration.DevicePicker");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DevicePicker");
       m_ComRetVal  : aliased Windows.Devices.Enumeration.IDevicePicker;
    begin
       return RetVal : DevicePicker do
@@ -2424,7 +2625,7 @@ package body WinRt.Windows.Devices.Enumeration is
             Retval.m_IDevicePicker := new Windows.Devices.Enumeration.IDevicePicker;
             Retval.m_IDevicePicker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2437,11 +2638,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePickerFilter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDevicePickerFilter;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DevicePickerFilter do
          Hr := this.m_IDevicePicker.all.get_Filter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDevicePickerFilter := new Windows.Devices.Enumeration.IDevicePickerFilter;
          Retval.m_IDevicePickerFilter.all := m_ComRetVal;
       end return;
@@ -2453,11 +2658,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePickerAppearance'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDevicePickerAppearance;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DevicePickerAppearance do
          Hr := this.m_IDevicePicker.all.get_Appearance (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDevicePickerAppearance := new Windows.Devices.Enumeration.IDevicePickerAppearance;
          Retval.m_IDevicePickerAppearance.all := m_ComRetVal;
       end return;
@@ -2469,13 +2678,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IDevicePicker.all.get_RequestedProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2486,10 +2699,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDevicePicker.all.add_DeviceSelected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2499,9 +2716,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePicker.all.remove_DeviceSelected (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DisconnectButtonClicked
@@ -2511,10 +2732,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDevicePicker.all.add_DisconnectButtonClicked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2524,9 +2749,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePicker.all.remove_DisconnectButtonClicked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DevicePickerDismissed
@@ -2536,10 +2765,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDevicePicker.all.add_DevicePickerDismissed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2549,9 +2782,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePicker.all.remove_DevicePickerDismissed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Show
@@ -2560,9 +2797,13 @@ package body WinRt.Windows.Devices.Enumeration is
       selection : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePicker.all.Show (selection);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Show
@@ -2572,9 +2813,13 @@ package body WinRt.Windows.Devices.Enumeration is
       placement : Windows.UI.Popups.Placement
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePicker.all.Show (selection, placement);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function PickSingleDeviceAsync
@@ -2584,13 +2829,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2608,7 +2853,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformation.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2622,7 +2867,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDevicePicker.all.PickSingleDeviceAsync (selection, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2634,9 +2879,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
                   Retval.m_IDeviceInformation.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2652,13 +2897,13 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceInformation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2676,7 +2921,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceInformation.Kind_Delegate, AsyncOperationCompletedHandler_DeviceInformation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2690,7 +2935,7 @@ package body WinRt.Windows.Devices.Enumeration is
          Hr := this.m_IDevicePicker.all.PickSingleDeviceAsync (selection, placement, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2702,9 +2947,9 @@ package body WinRt.Windows.Devices.Enumeration is
                   Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
                   Retval.m_IDeviceInformation.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2717,9 +2962,13 @@ package body WinRt.Windows.Devices.Enumeration is
       this : in out DevicePicker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePicker.all.Hide;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetDisplayStatus
@@ -2730,11 +2979,15 @@ package body WinRt.Windows.Devices.Enumeration is
       options : Windows.Devices.Enumeration.DevicePickerDisplayStatusOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_status : WinRt.HString := To_HString (status);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_status : constant WinRt.HString := To_HString (status);
    begin
       Hr := this.m_IDevicePicker.all.SetDisplayStatus (device.m_IDeviceInformation.all, HStr_status, options);
-      Hr := WindowsDeleteString (HStr_status);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_status);
    end;
 
    -----------------------------------------------------------------------------
@@ -2746,12 +2999,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DevicePickerAppearance) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePickerAppearance, IDevicePickerAppearance_Ptr);
    begin
       if this.m_IDevicePickerAppearance /= null then
          if this.m_IDevicePickerAppearance.all /= null then
-            RefCount := this.m_IDevicePickerAppearance.all.Release;
+            temp := this.m_IDevicePickerAppearance.all.Release;
             Free (this.m_IDevicePickerAppearance);
          end if;
       end if;
@@ -2766,13 +3019,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2782,11 +3039,15 @@ package body WinRt.Windows.Devices.Enumeration is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ForegroundColor
@@ -2795,10 +3056,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_ForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2808,9 +3073,13 @@ package body WinRt.Windows.Devices.Enumeration is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_ForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -2819,10 +3088,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2832,9 +3105,13 @@ package body WinRt.Windows.Devices.Enumeration is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AccentColor
@@ -2843,10 +3120,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_AccentColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2856,9 +3137,13 @@ package body WinRt.Windows.Devices.Enumeration is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_AccentColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedForegroundColor
@@ -2867,10 +3152,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_SelectedForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2880,9 +3169,13 @@ package body WinRt.Windows.Devices.Enumeration is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_SelectedForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedBackgroundColor
@@ -2891,10 +3184,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_SelectedBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2904,9 +3201,13 @@ package body WinRt.Windows.Devices.Enumeration is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_SelectedBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedAccentColor
@@ -2915,10 +3216,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IDevicePickerAppearance.all.get_SelectedAccentColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2928,9 +3233,13 @@ package body WinRt.Windows.Devices.Enumeration is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePickerAppearance.all.put_SelectedAccentColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2942,12 +3251,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DevicePickerFilter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePickerFilter, IDevicePickerFilter_Ptr);
    begin
       if this.m_IDevicePickerFilter /= null then
          if this.m_IDevicePickerFilter.all /= null then
-            RefCount := this.m_IDevicePickerFilter.all.Release;
+            temp := this.m_IDevicePickerFilter.all.Release;
             Free (this.m_IDevicePickerFilter);
          end if;
       end if;
@@ -2962,13 +3271,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return IVector_DeviceClass.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_DeviceClass.Kind;
    begin
       Hr := this.m_IDevicePickerFilter.all.get_SupportedDeviceClasses (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_DeviceClass (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2978,13 +3291,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IDevicePickerFilter.all.get_SupportedDeviceSelectors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2997,12 +3314,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceSelectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceSelectedEventArgs, IDeviceSelectedEventArgs_Ptr);
    begin
       if this.m_IDeviceSelectedEventArgs /= null then
          if this.m_IDeviceSelectedEventArgs.all /= null then
-            RefCount := this.m_IDeviceSelectedEventArgs.all.Release;
+            temp := this.m_IDeviceSelectedEventArgs.all.Release;
             Free (this.m_IDeviceSelectedEventArgs);
          end if;
       end if;
@@ -3017,11 +3334,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IDeviceSelectedEventArgs.all.get_SelectedDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -3036,13 +3357,13 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceThumbnail) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType, WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr);
    begin
       if this.m_IRandomAccessStreamWithContentType /= null then
          if this.m_IRandomAccessStreamWithContentType.all /= null then
-            RefCount := this.m_IRandomAccessStreamWithContentType.all.Release;
+            temp := this.m_IRandomAccessStreamWithContentType.all.Release;
             Free (this.m_IRandomAccessStreamWithContentType);
          end if;
       end if;
@@ -3057,17 +3378,21 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IContentTypeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IContentTypeProvider, WinRt.Windows.Storage.Streams.IID_IContentTypeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_ContentType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3077,14 +3402,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3094,13 +3423,17 @@ package body WinRt.Windows.Devices.Enumeration is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.put_Size (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetInputStreamAt
@@ -3110,14 +3443,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.GetInputStreamAt (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3128,14 +3465,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.GetOutputStreamAt (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3145,14 +3486,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_Position (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3162,13 +3507,17 @@ package body WinRt.Windows.Devices.Enumeration is
       position : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.Seek (position);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CloneStream
@@ -3177,14 +3526,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.CloneStream (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3194,14 +3547,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_CanRead (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3211,14 +3568,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_CanWrite (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3229,14 +3590,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IOutputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3254,7 +3615,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3267,10 +3628,10 @@ package body WinRt.Windows.Devices.Enumeration is
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.WriteAsync (buffer, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3280,9 +3641,9 @@ package body WinRt.Windows.Devices.Enumeration is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3296,14 +3657,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IOutputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3321,7 +3682,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3334,10 +3695,10 @@ package body WinRt.Windows.Devices.Enumeration is
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.FlushAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3347,9 +3708,9 @@ package body WinRt.Windows.Devices.Enumeration is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3362,13 +3723,17 @@ package body WinRt.Windows.Devices.Enumeration is
       this : in out DeviceThumbnail
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ReadAsync
@@ -3380,14 +3745,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IInputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3405,7 +3770,7 @@ package body WinRt.Windows.Devices.Enumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3418,10 +3783,10 @@ package body WinRt.Windows.Devices.Enumeration is
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.ReadAsync (buffer, count, options, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3431,9 +3796,9 @@ package body WinRt.Windows.Devices.Enumeration is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3450,12 +3815,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceUnpairingResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceUnpairingResult, IDeviceUnpairingResult_Ptr);
    begin
       if this.m_IDeviceUnpairingResult /= null then
          if this.m_IDeviceUnpairingResult.all /= null then
-            RefCount := this.m_IDeviceUnpairingResult.all.Release;
+            temp := this.m_IDeviceUnpairingResult.all.Release;
             Free (this.m_IDeviceUnpairingResult);
          end if;
       end if;
@@ -3470,10 +3835,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceUnpairingResultStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceUnpairingResultStatus;
    begin
       Hr := this.m_IDeviceUnpairingResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3486,12 +3855,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceWatcher, IDeviceWatcher_Ptr);
    begin
       if this.m_IDeviceWatcher /= null then
          if this.m_IDeviceWatcher.all /= null then
-            RefCount := this.m_IDeviceWatcher.all.Release;
+            temp := this.m_IDeviceWatcher.all.Release;
             Free (this.m_IDeviceWatcher);
          end if;
       end if;
@@ -3507,10 +3876,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceWatcher.all.add_Added (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3520,9 +3893,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.remove_Added (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Updated
@@ -3532,10 +3909,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceWatcher.all.add_Updated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3545,9 +3926,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.remove_Updated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Removed
@@ -3557,10 +3942,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceWatcher.all.add_Removed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3570,9 +3959,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.remove_Removed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -3582,10 +3975,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3595,9 +3992,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -3607,10 +4008,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDeviceWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3620,9 +4025,13 @@ package body WinRt.Windows.Devices.Enumeration is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -3631,10 +4040,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceWatcherStatus;
    begin
       Hr := this.m_IDeviceWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3643,9 +4056,13 @@ package body WinRt.Windows.Devices.Enumeration is
       this : in out DeviceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -3653,9 +4070,13 @@ package body WinRt.Windows.Devices.Enumeration is
       this : in out DeviceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetBackgroundTrigger
@@ -3665,15 +4086,19 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceWatcherTrigger'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IDeviceWatcher2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IDeviceWatcherTrigger;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IDeviceWatcher_Interface, WinRt.Windows.Devices.Enumeration.IDeviceWatcher2, WinRt.Windows.Devices.Enumeration.IID_IDeviceWatcher2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.DeviceWatcherTrigger do
          m_Interface := QInterface (this.m_IDeviceWatcher.all);
          Hr := m_Interface.GetBackgroundTrigger (requestedEventKinds, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceWatcherTrigger := new Windows.ApplicationModel.Background.IDeviceWatcherTrigger;
          Retval.m_IDeviceWatcherTrigger.all := m_ComRetVal;
       end return;
@@ -3688,12 +4113,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceWatcherEvent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceWatcherEvent, IDeviceWatcherEvent_Ptr);
    begin
       if this.m_IDeviceWatcherEvent /= null then
          if this.m_IDeviceWatcherEvent.all /= null then
-            RefCount := this.m_IDeviceWatcherEvent.all.Release;
+            temp := this.m_IDeviceWatcherEvent.all.Release;
             Free (this.m_IDeviceWatcherEvent);
          end if;
       end if;
@@ -3708,10 +4133,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcherEventKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceWatcherEventKind;
    begin
       Hr := this.m_IDeviceWatcherEvent.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3721,11 +4150,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IDeviceWatcherEvent.all.get_DeviceInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -3737,11 +4170,15 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationUpdate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformationUpdate;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformationUpdate do
          Hr := this.m_IDeviceWatcherEvent.all.get_DeviceInformationUpdate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformationUpdate := new Windows.Devices.Enumeration.IDeviceInformationUpdate;
          Retval.m_IDeviceInformationUpdate.all := m_ComRetVal;
       end return;
@@ -3756,12 +4193,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out DeviceWatcherTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceWatcherTriggerDetails, IDeviceWatcherTriggerDetails_Ptr);
    begin
       if this.m_IDeviceWatcherTriggerDetails /= null then
          if this.m_IDeviceWatcherTriggerDetails.all /= null then
-            RefCount := this.m_IDeviceWatcherTriggerDetails.all.Release;
+            temp := this.m_IDeviceWatcherTriggerDetails.all.Release;
             Free (this.m_IDeviceWatcherTriggerDetails);
          end if;
       end if;
@@ -3776,13 +4213,17 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return IVectorView_IDeviceWatcherEvent.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IDeviceWatcherEvent.Kind;
    begin
       Hr := this.m_IDeviceWatcherTriggerDetails.all.get_DeviceWatcherEvents (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IDeviceWatcherEvent (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3795,12 +4236,12 @@ package body WinRt.Windows.Devices.Enumeration is
    end;
 
    procedure Finalize (this : in out EnclosureLocation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEnclosureLocation, IEnclosureLocation_Ptr);
    begin
       if this.m_IEnclosureLocation /= null then
          if this.m_IEnclosureLocation.all /= null then
-            RefCount := this.m_IEnclosureLocation.all.Release;
+            temp := this.m_IEnclosureLocation.all.Release;
             Free (this.m_IEnclosureLocation);
          end if;
       end if;
@@ -3815,10 +4256,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEnclosureLocation.all.get_InDock (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3828,10 +4273,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEnclosureLocation.all.get_InLid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3841,10 +4290,14 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.Windows.Devices.Enumeration.Panel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.Panel;
    begin
       Hr := this.m_IEnclosureLocation.all.get_Panel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3854,14 +4307,18 @@ package body WinRt.Windows.Devices.Enumeration is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Enumeration.IEnclosureLocation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Enumeration.IEnclosureLocation_Interface, WinRt.Windows.Devices.Enumeration.IEnclosureLocation2, WinRt.Windows.Devices.Enumeration.IID_IEnclosureLocation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEnclosureLocation.all);
       Hr := m_Interface.get_RotationAngleInDegreesClockwise (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

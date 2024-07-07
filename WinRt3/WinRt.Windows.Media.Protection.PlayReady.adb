@@ -60,12 +60,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDClient) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDClient, INDClient_Ptr);
    begin
       if this.m_INDClient /= null then
          if this.m_INDClient.all /= null then
-            RefCount := this.m_INDClient.all.Release;
+            temp := this.m_INDClient.all.Release;
             Free (this.m_INDClient);
          end if;
       end if;
@@ -82,9 +82,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return NDClient is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDClient");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDClient");
       m_Factory    : access INDClientFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDClient;
    begin
       return RetVal : NDClient do
@@ -93,9 +94,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (downloadEngine, streamParser, pMessenger, m_ComRetVal'Access);
             Retval.m_INDClient := new Windows.Media.Protection.PlayReady.INDClient;
             Retval.m_INDClient.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -109,10 +110,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INDClient.all.add_RegistrationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -122,9 +127,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDClient.all.remove_RegistrationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ProximityDetectionCompleted
@@ -134,10 +143,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INDClient.all.add_ProximityDetectionCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -147,9 +160,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDClient.all.remove_ProximityDetectionCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LicenseFetchCompleted
@@ -159,10 +176,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INDClient.all.add_LicenseFetchCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -172,9 +193,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDClient.all.remove_LicenseFetchCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ReRegistrationNeeded
@@ -184,10 +209,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INDClient.all.add_ReRegistrationNeeded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -197,9 +226,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDClient.all.remove_ReRegistrationNeeded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ClosedCaptionDataReceived
@@ -209,10 +242,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INDClient.all.add_ClosedCaptionDataReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -222,9 +259,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDClient.all.remove_ClosedCaptionDataReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function StartAsync
@@ -237,13 +278,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDStartResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_INDStartResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -261,7 +302,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_INDStartResult.Kind_Delegate, AsyncOperationCompletedHandler_INDStartResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -274,7 +315,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       Hr := this.m_INDClient.all.StartAsync (contentUrl.m_IUriRuntimeClass.all, startAsyncOptions, registrationCustomData, licenseFetchDescriptor, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -284,9 +325,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -301,13 +342,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_INDLicenseFetchResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -325,7 +366,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_INDLicenseFetchResult.Kind_Delegate, AsyncOperationCompletedHandler_INDLicenseFetchResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -338,7 +379,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       Hr := this.m_INDClient.all.LicenseFetchAsync (licenseFetchDescriptor, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -348,9 +389,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -364,7 +405,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       registrationCustomData : Windows.Media.Protection.PlayReady.INDCustomData
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -372,7 +414,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -393,9 +434,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -406,9 +447,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out NDClient
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDClient.all.Close;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -420,12 +465,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDCustomData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDCustomData, INDCustomData_Ptr);
    begin
       if this.m_INDCustomData /= null then
          if this.m_INDCustomData.all /= null then
-            RefCount := this.m_INDCustomData.all.Release;
+            temp := this.m_INDCustomData.all.Release;
             Free (this.m_INDCustomData);
          end if;
       end if;
@@ -441,9 +486,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return NDCustomData is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDCustomData");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDCustomData");
       m_Factory    : access INDCustomDataFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDCustomData;
       function Convert_customDataTypeIDBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       function Convert_customDataBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
@@ -454,9 +500,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (WinRt.UInt32(customDataTypeIDBytes'Length), Convert_customDataTypeIDBytes (customDataTypeIDBytes (customDataTypeIDBytes'First)'Address), WinRt.UInt32(customDataBytes'Length), Convert_customDataBytes (customDataBytes (customDataBytes'First)'Address), m_ComRetVal'Access);
             Retval.m_INDCustomData := new Windows.Media.Protection.PlayReady.INDCustomData;
             Retval.m_INDCustomData.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -469,11 +515,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDCustomData.all.get_CustomDataTypeID (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -491,11 +541,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDCustomData.all.get_CustomData (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -516,12 +570,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDDownloadEngineNotifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDDownloadEngineNotifier, INDDownloadEngineNotifier_Ptr);
    begin
       if this.m_INDDownloadEngineNotifier /= null then
          if this.m_INDDownloadEngineNotifier.all /= null then
-            RefCount := this.m_INDDownloadEngineNotifier.all.Release;
+            temp := this.m_INDDownloadEngineNotifier.all.Release;
             Free (this.m_INDDownloadEngineNotifier);
          end if;
       end if;
@@ -532,7 +586,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return NDDownloadEngineNotifier is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDDownloadEngineNotifier");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDDownloadEngineNotifier");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDDownloadEngineNotifier;
    begin
       return RetVal : NDDownloadEngineNotifier do
@@ -541,7 +596,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_INDDownloadEngineNotifier := new Windows.Media.Protection.PlayReady.INDDownloadEngineNotifier;
             Retval.m_INDDownloadEngineNotifier.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -553,9 +608,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out NDDownloadEngineNotifier
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDDownloadEngineNotifier.all.OnStreamOpened;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnPlayReadyObjectReceived
@@ -564,10 +623,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       dataBytes : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_dataBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_INDDownloadEngineNotifier.all.OnPlayReadyObjectReceived (WinRt.UInt32(dataBytes'Length), Convert_dataBytes (dataBytes (dataBytes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnContentIDReceived
@@ -576,9 +639,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDDownloadEngineNotifier.all.OnContentIDReceived (licenseFetchDescriptor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnDataReceived
@@ -588,10 +655,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       bytesReceived : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_dataBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_INDDownloadEngineNotifier.all.OnDataReceived (WinRt.UInt32(dataBytes'Length), Convert_dataBytes (dataBytes (dataBytes'First)'Address), bytesReceived);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnEndOfStream
@@ -599,9 +670,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out NDDownloadEngineNotifier
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDDownloadEngineNotifier.all.OnEndOfStream;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnNetworkError
@@ -609,9 +684,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out NDDownloadEngineNotifier
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDDownloadEngineNotifier.all.OnNetworkError;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -623,12 +702,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDLicenseFetchDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDLicenseFetchDescriptor, INDLicenseFetchDescriptor_Ptr);
    begin
       if this.m_INDLicenseFetchDescriptor /= null then
          if this.m_INDLicenseFetchDescriptor.all /= null then
-            RefCount := this.m_INDLicenseFetchDescriptor.all.Release;
+            temp := this.m_INDLicenseFetchDescriptor.all.Release;
             Free (this.m_INDLicenseFetchDescriptor);
          end if;
       end if;
@@ -645,9 +724,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return NDLicenseFetchDescriptor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDLicenseFetchDescriptor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDLicenseFetchDescriptor");
       m_Factory    : access INDLicenseFetchDescriptorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
       function Convert_contentIDBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -657,9 +737,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (contentIDType, WinRt.UInt32(contentIDBytes'Length), Convert_contentIDBytes (contentIDBytes (contentIDBytes'First)'Address), licenseFetchChallengeCustomData, m_ComRetVal'Access);
             Retval.m_INDLicenseFetchDescriptor := new Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
             Retval.m_INDLicenseFetchDescriptor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -672,10 +752,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.NDContentIDType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.NDContentIDType;
    begin
       Hr := this.m_INDLicenseFetchDescriptor.all.get_ContentIDType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -685,11 +769,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDLicenseFetchDescriptor.all.get_ContentID (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -707,10 +795,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDCustomData is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.INDCustomData;
    begin
       Hr := this.m_INDLicenseFetchDescriptor.all.get_LicenseFetchChallengeCustomData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -720,9 +812,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       licenseFetchChallengeCustomData : Windows.Media.Protection.PlayReady.INDCustomData
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDLicenseFetchDescriptor.all.put_LicenseFetchChallengeCustomData (licenseFetchChallengeCustomData);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -734,12 +830,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDStorageFileHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDStorageFileHelper, INDStorageFileHelper_Ptr);
    begin
       if this.m_INDStorageFileHelper /= null then
          if this.m_INDStorageFileHelper.all /= null then
-            RefCount := this.m_INDStorageFileHelper.all.Release;
+            temp := this.m_INDStorageFileHelper.all.Release;
             Free (this.m_INDStorageFileHelper);
          end if;
       end if;
@@ -750,7 +846,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return NDStorageFileHelper is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDStorageFileHelper");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDStorageFileHelper");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDStorageFileHelper;
    begin
       return RetVal : NDStorageFileHelper do
@@ -759,7 +856,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_INDStorageFileHelper := new Windows.Media.Protection.PlayReady.INDStorageFileHelper;
             Retval.m_INDStorageFileHelper.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -773,13 +870,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_INDStorageFileHelper.all.GetFileURLs (file, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -792,12 +893,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDStreamParserNotifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDStreamParserNotifier, INDStreamParserNotifier_Ptr);
    begin
       if this.m_INDStreamParserNotifier /= null then
          if this.m_INDStreamParserNotifier.all /= null then
-            RefCount := this.m_INDStreamParserNotifier.all.Release;
+            temp := this.m_INDStreamParserNotifier.all.Release;
             Free (this.m_INDStreamParserNotifier);
          end if;
       end if;
@@ -808,7 +909,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return NDStreamParserNotifier is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDStreamParserNotifier");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDStreamParserNotifier");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDStreamParserNotifier;
    begin
       return RetVal : NDStreamParserNotifier do
@@ -817,7 +919,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_INDStreamParserNotifier := new Windows.Media.Protection.PlayReady.INDStreamParserNotifier;
             Retval.m_INDStreamParserNotifier.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -830,9 +932,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDStreamParserNotifier.all.OnContentIDReceived (licenseFetchDescriptor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnMediaStreamDescriptorCreated
@@ -842,9 +948,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       videoStreamDescriptors : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INDStreamParserNotifier.all.OnMediaStreamDescriptorCreated (audioStreamDescriptors, videoStreamDescriptors);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnSampleParsed
@@ -858,10 +968,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       ccDataBytes : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_ccDataBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_INDStreamParserNotifier.all.OnSampleParsed (streamID, streamType, streamSample.m_IMediaStreamSample.all, pts, ccFormat, WinRt.UInt32(ccDataBytes'Length), Convert_ccDataBytes (ccDataBytes (ccDataBytes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnBeginSetupDecryptor
@@ -872,10 +986,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       proBytes : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_proBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_INDStreamParserNotifier.all.OnBeginSetupDecryptor (descriptor, keyID, WinRt.UInt32(proBytes'Length), Convert_proBytes (proBytes (proBytes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -887,12 +1005,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out NDTCPMessenger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INDMessenger, INDMessenger_Ptr);
    begin
       if this.m_INDMessenger /= null then
          if this.m_INDMessenger.all /= null then
-            RefCount := this.m_INDMessenger.all.Release;
+            temp := this.m_INDMessenger.all.Release;
             Free (this.m_INDMessenger);
          end if;
       end if;
@@ -908,11 +1026,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return NDTCPMessenger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDTCPMessenger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.NDTCPMessenger");
       m_Factory    : access INDTCPMessengerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.INDMessenger;
-      HStr_remoteHostName : WinRt.HString := To_HString (remoteHostName);
+      HStr_remoteHostName : constant WinRt.HString := To_HString (remoteHostName);
    begin
       return RetVal : NDTCPMessenger do
          Hr := RoGetActivationFactory (m_hString, IID_INDTCPMessengerFactory'Access , m_Factory'Address);
@@ -920,10 +1039,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (HStr_remoteHostName, remoteHostPort, m_ComRetVal'Access);
             Retval.m_INDMessenger := new Windows.Media.Protection.PlayReady.INDMessenger;
             Retval.m_INDMessenger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_remoteHostName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_remoteHostName);
       end return;
    end;
 
@@ -938,13 +1057,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDSendResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_INDSendResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -962,7 +1081,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_INDSendResult.Kind_Delegate, AsyncOperationCompletedHandler_INDSendResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -977,7 +1096,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       Hr := this.m_INDMessenger.all.SendRegistrationRequestAsync (WinRt.UInt32(sessionIDBytes'Length), Convert_sessionIDBytes (sessionIDBytes (sessionIDBytes'First)'Address), WinRt.UInt32(challengeDataBytes'Length), Convert_challengeDataBytes (challengeDataBytes (challengeDataBytes'First)'Address), m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -987,9 +1106,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1007,13 +1126,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDSendResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_INDSendResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1031,7 +1150,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_INDSendResult.Kind_Delegate, AsyncOperationCompletedHandler_INDSendResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1047,7 +1166,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       Hr := this.m_INDMessenger.all.SendProximityDetectionStartAsync (pdType, WinRt.UInt32(transmitterChannelBytes'Length), Convert_transmitterChannelBytes (transmitterChannelBytes (transmitterChannelBytes'First)'Address), WinRt.UInt32(sessionIDBytes'Length), Convert_sessionIDBytes (sessionIDBytes (sessionIDBytes'First)'Address), WinRt.UInt32(challengeDataBytes'Length), Convert_challengeDataBytes (challengeDataBytes (challengeDataBytes'First)'Address), m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1057,9 +1176,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1077,13 +1196,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDSendResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_INDSendResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1101,7 +1220,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_INDSendResult.Kind_Delegate, AsyncOperationCompletedHandler_INDSendResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1117,7 +1236,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       Hr := this.m_INDMessenger.all.SendProximityDetectionResponseAsync (pdType, WinRt.UInt32(transmitterChannelBytes'Length), Convert_transmitterChannelBytes (transmitterChannelBytes (transmitterChannelBytes'First)'Address), WinRt.UInt32(sessionIDBytes'Length), Convert_sessionIDBytes (sessionIDBytes (sessionIDBytes'First)'Address), WinRt.UInt32(responseDataBytes'Length), Convert_responseDataBytes (responseDataBytes (responseDataBytes'First)'Address), m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1127,9 +1246,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1145,13 +1264,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDSendResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_INDSendResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1169,7 +1288,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_INDSendResult.Kind_Delegate, AsyncOperationCompletedHandler_INDSendResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1184,7 +1303,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       Hr := this.m_INDMessenger.all.SendLicenseFetchRequestAsync (WinRt.UInt32(sessionIDBytes'Length), Convert_sessionIDBytes (sessionIDBytes (sessionIDBytes'First)'Address), WinRt.UInt32(challengeDataBytes'Length), Convert_challengeDataBytes (challengeDataBytes (challengeDataBytes'First)'Address), m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1194,9 +1313,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1213,12 +1332,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyContentHeader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyContentHeader, IPlayReadyContentHeader_Ptr);
    begin
       if this.m_IPlayReadyContentHeader /= null then
          if this.m_IPlayReadyContentHeader.all /= null then
-            RefCount := this.m_IPlayReadyContentHeader.all.Release;
+            temp := this.m_IPlayReadyContentHeader.all.Release;
             Free (this.m_IPlayReadyContentHeader);
          end if;
       end if;
@@ -1240,11 +1359,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyContentHeader is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-      HStr_customAttributes : WinRt.HString := To_HString (customAttributes);
+      HStr_customAttributes : constant WinRt.HString := To_HString (customAttributes);
       function Convert_contentKeyIds is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
       function Convert_contentKeyIdStrings is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
    begin
@@ -1254,10 +1374,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstanceFromComponents2 (dwFlags, WinRt.UInt32(contentKeyIds'Length), Convert_contentKeyIds (contentKeyIds (contentKeyIds'First)'Address), WinRt.UInt32(contentKeyIdStrings'Length), Convert_contentKeyIdStrings (contentKeyIdStrings (contentKeyIdStrings'First)'Address), contentEncryptionAlgorithm, licenseAcquisitionUrl.m_IUriRuntimeClass.all, licenseAcquisitionUserInterfaceUrl.m_IUriRuntimeClass.all, HStr_customAttributes, domainServiceId, m_ComRetVal'Access);
             Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
             Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_customAttributes);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_customAttributes);
       end return;
    end;
 
@@ -1271,11 +1391,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyContentHeader is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-      HStr_customAttributes : WinRt.HString := To_HString (customAttributes);
+      HStr_customAttributes : constant WinRt.HString := To_HString (customAttributes);
       function Convert_headerBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       return RetVal : PlayReadyContentHeader do
@@ -1284,10 +1405,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstanceFromWindowsMediaDrmHeader (WinRt.UInt32(headerBytes'Length), Convert_headerBytes (headerBytes (headerBytes'First)'Address), licenseAcquisitionUrl.m_IUriRuntimeClass.all, licenseAcquisitionUserInterfaceUrl.m_IUriRuntimeClass.all, HStr_customAttributes, domainServiceId, m_ComRetVal'Access);
             Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
             Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_customAttributes);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_customAttributes);
       end return;
    end;
 
@@ -1303,12 +1424,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyContentHeader is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-      HStr_contentKeyIdString : WinRt.HString := To_HString (contentKeyIdString);
-      HStr_customAttributes : WinRt.HString := To_HString (customAttributes);
+      HStr_contentKeyIdString : constant WinRt.HString := To_HString (contentKeyIdString);
+      HStr_customAttributes : constant WinRt.HString := To_HString (customAttributes);
    begin
       return RetVal : PlayReadyContentHeader do
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyContentHeaderFactory'Access , m_Factory'Address);
@@ -1316,11 +1438,11 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstanceFromComponents (contentKeyId, HStr_contentKeyIdString, contentEncryptionAlgorithm, licenseAcquisitionUrl.m_IUriRuntimeClass.all, licenseAcquisitionUserInterfaceUrl.m_IUriRuntimeClass.all, HStr_customAttributes, domainServiceId, m_ComRetVal'Access);
             Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
             Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_contentKeyIdString);
-         Hr := WindowsDeleteString (HStr_customAttributes);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_contentKeyIdString);
+         tmp := WindowsDeleteString (HStr_customAttributes);
       end return;
    end;
 
@@ -1330,9 +1452,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyContentHeader is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
       function Convert_headerBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -1342,9 +1465,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstanceFromPlayReadyHeader (WinRt.UInt32(headerBytes'Length), Convert_headerBytes (headerBytes (headerBytes'First)'Address), m_ComRetVal'Access);
             Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
             Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1357,10 +1480,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.get_KeyId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1370,13 +1497,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.get_KeyIdString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1386,11 +1517,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IPlayReadyContentHeader.all.get_LicenseAcquisitionUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1402,11 +1537,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IPlayReadyContentHeader.all.get_LicenseAcquisitionUserInterfaceUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1418,10 +1557,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.get_DomainServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1431,10 +1574,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.get_EncryptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1444,13 +1591,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.get_CustomAttributes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1460,10 +1611,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyDecryptorSetup is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.PlayReadyDecryptorSetup;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.get_DecryptorSetup (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1473,11 +1628,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyContentHeader.all.GetSerializedHeader (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -1495,11 +1654,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader do
          Hr := this.m_IPlayReadyContentHeader.all.get_HeaderWithEmbeddedUpdates (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
          Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
       end return;
@@ -1511,15 +1674,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid_Array is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyContentHeader2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyContentHeader.all);
       Hr := m_Interface.get_KeyIds (m_ComRetValSize'Access, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Guid_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Guid is new To_Ada_Type (WinRt.Guid, WinRt.Guid_Ptr); 
@@ -1537,8 +1704,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString_Array is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
       AdaRetval        : WString;
@@ -1546,7 +1714,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyContentHeader.all);
       Hr := m_Interface.get_KeyIdStrings (m_ComRetValSize'Access, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.WString_Array (1..Integer(m_ComRetValSize));
          function To_Ada_HString is new To_Ada_Type (WinRt.HString, WinRt.HString_Ptr); 
@@ -1554,7 +1725,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          for i in ArrayRetVal'Range loop
             ArrayRetval (i) := To_Ada (To_Ada_HString (m_ComRetVal, i));
          end loop;
-         Hr := WindowsDeleteString (m_ComRetVal.all);
+         tmp := WindowsDeleteString (m_ComRetVal.all);
          return ArrayRetVal;
       end;
    end;
@@ -1569,17 +1740,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       )
       return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentResolver");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentResolver");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentResolver_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyContentResolver'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ServiceRequest (contentHeader.m_IPlayReadyContentHeader.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1594,12 +1769,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyDomain) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyDomain, IPlayReadyDomain_Ptr);
    begin
       if this.m_IPlayReadyDomain /= null then
          if this.m_IPlayReadyDomain.all /= null then
-            RefCount := this.m_IPlayReadyDomain.all.Release;
+            temp := this.m_IPlayReadyDomain.all.Release;
             Free (this.m_IPlayReadyDomain);
          end if;
       end if;
@@ -1614,10 +1789,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyDomain.all.get_AccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1627,10 +1806,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyDomain.all.get_ServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1640,10 +1823,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPlayReadyDomain.all.get_Revision (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1653,13 +1840,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPlayReadyDomain.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1669,11 +1860,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IPlayReadyDomain.all.get_DomainJoinUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1701,9 +1896,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyDomainIterable is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainIterable");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainIterable");
       m_Factory    : access IPlayReadyDomainIterableFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : PlayReadyDomainIterable do
@@ -1712,9 +1908,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (domainAccountId, m_ComRetVal'Access);
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1728,15 +1924,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlayReadyDomain.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2229899142, 19438, 24385, (147, 161, 37, 88, 135, 18, 45, 159 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPlayReadyDomain.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1763,15 +1963,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomain is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyDomain.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyDomain;
       m_GenericIID     : aliased WinRt.IID := (1547036837, 19159, 24176, (190, 223, 145, 245, 213, 136, 141, 53 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyDomain.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Current (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1781,15 +1985,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyDomain.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1547036837, 19159, 24176, (190, 223, 145, 245, 213, 136, 141, 53 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyDomain.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_HasCurrent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1799,15 +2007,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyDomain.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1547036837, 19159, 24176, (190, 223, 145, 245, 213, 136, 141, 53 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyDomain.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.MoveNext (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1818,8 +2030,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyDomain.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1547036837, 19159, 24176, (190, 223, 145, 245, 213, 136, 141, 53 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyDomain.Kind, m_GenericIID'Unchecked_Access);
@@ -1827,7 +2040,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1840,12 +2056,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyDomainJoinServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyDomainJoinServiceRequest, IPlayReadyDomainJoinServiceRequest_Ptr);
    begin
       if this.m_IPlayReadyDomainJoinServiceRequest /= null then
          if this.m_IPlayReadyDomainJoinServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadyDomainJoinServiceRequest.all.Release;
+            temp := this.m_IPlayReadyDomainJoinServiceRequest.all.Release;
             Free (this.m_IPlayReadyDomainJoinServiceRequest);
          end if;
       end if;
@@ -1856,7 +2072,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyDomainJoinServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainJoinServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainJoinServiceRequest");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest;
    begin
       return RetVal : PlayReadyDomainJoinServiceRequest do
@@ -1865,7 +2082,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyDomainJoinServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest;
             Retval.m_IPlayReadyDomainJoinServiceRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1878,10 +2095,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyDomainJoinServiceRequest.all.get_DomainAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1891,9 +2112,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyDomainJoinServiceRequest.all.put_DomainAccountId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DomainFriendlyName
@@ -1902,13 +2127,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPlayReadyDomainJoinServiceRequest.all.get_DomainFriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1918,11 +2147,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPlayReadyDomainJoinServiceRequest.all.put_DomainFriendlyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DomainServiceId
@@ -1931,10 +2164,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyDomainJoinServiceRequest.all.get_DomainServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1944,9 +2181,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyDomainJoinServiceRequest.all.put_DomainServiceId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Uri
@@ -1955,15 +2196,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1975,13 +2220,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -1990,17 +2239,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2010,17 +2263,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2030,15 +2287,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -2046,8 +2307,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyDomainJoinServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2055,7 +2317,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2071,7 +2332,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2079,9 +2340,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2093,14 +2354,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2110,15 +2375,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -2131,15 +2400,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2149,14 +2422,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2166,14 +2443,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainJoinServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2186,12 +2467,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyDomainLeaveServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyDomainLeaveServiceRequest, IPlayReadyDomainLeaveServiceRequest_Ptr);
    begin
       if this.m_IPlayReadyDomainLeaveServiceRequest /= null then
          if this.m_IPlayReadyDomainLeaveServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadyDomainLeaveServiceRequest.all.Release;
+            temp := this.m_IPlayReadyDomainLeaveServiceRequest.all.Release;
             Free (this.m_IPlayReadyDomainLeaveServiceRequest);
          end if;
       end if;
@@ -2202,7 +2483,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyDomainLeaveServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainLeaveServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainLeaveServiceRequest");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest;
    begin
       return RetVal : PlayReadyDomainLeaveServiceRequest do
@@ -2211,7 +2493,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyDomainLeaveServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest;
             Retval.m_IPlayReadyDomainLeaveServiceRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2224,10 +2506,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyDomainLeaveServiceRequest.all.get_DomainAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2237,9 +2523,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyDomainLeaveServiceRequest.all.put_DomainAccountId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DomainServiceId
@@ -2248,10 +2538,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyDomainLeaveServiceRequest.all.get_DomainServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2261,9 +2555,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyDomainLeaveServiceRequest.all.put_DomainServiceId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Uri
@@ -2272,15 +2570,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2292,13 +2594,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -2307,17 +2613,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2327,17 +2637,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2347,15 +2661,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -2363,8 +2681,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyDomainLeaveServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2372,7 +2691,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2388,7 +2706,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2396,9 +2714,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2410,14 +2728,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2427,15 +2749,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -2448,15 +2774,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2466,14 +2796,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2483,14 +2817,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyDomainLeaveServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2503,12 +2841,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyITADataGenerator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyITADataGenerator, IPlayReadyITADataGenerator_Ptr);
    begin
       if this.m_IPlayReadyITADataGenerator /= null then
          if this.m_IPlayReadyITADataGenerator.all /= null then
-            RefCount := this.m_IPlayReadyITADataGenerator.all.Release;
+            temp := this.m_IPlayReadyITADataGenerator.all.Release;
             Free (this.m_IPlayReadyITADataGenerator);
          end if;
       end if;
@@ -2519,7 +2857,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyITADataGenerator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyITADataGenerator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyITADataGenerator");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyITADataGenerator;
    begin
       return RetVal : PlayReadyITADataGenerator do
@@ -2528,7 +2867,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyITADataGenerator := new Windows.Media.Protection.PlayReady.IPlayReadyITADataGenerator;
             Retval.m_IPlayReadyITADataGenerator.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2545,11 +2884,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyITADataGenerator.all.GenerateData (guidCPSystemId, countOfStreams, configuration, format, m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -2570,12 +2913,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyIndividualizationServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyIndividualizationServiceRequest, IPlayReadyIndividualizationServiceRequest_Ptr);
    begin
       if this.m_IPlayReadyIndividualizationServiceRequest /= null then
          if this.m_IPlayReadyIndividualizationServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadyIndividualizationServiceRequest.all.Release;
+            temp := this.m_IPlayReadyIndividualizationServiceRequest.all.Release;
             Free (this.m_IPlayReadyIndividualizationServiceRequest);
          end if;
       end if;
@@ -2586,7 +2929,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyIndividualizationServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyIndividualizationServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyIndividualizationServiceRequest");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest;
    begin
       return RetVal : PlayReadyIndividualizationServiceRequest do
@@ -2595,7 +2939,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyIndividualizationServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest;
             Retval.m_IPlayReadyIndividualizationServiceRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2608,15 +2952,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2628,13 +2976,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -2643,17 +2995,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2663,17 +3019,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2683,15 +3043,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -2699,8 +3063,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyIndividualizationServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2708,7 +3073,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2724,7 +3088,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2732,9 +3096,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2746,14 +3110,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2763,15 +3131,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -2784,15 +3156,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2802,14 +3178,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2819,14 +3199,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyIndividualizationServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2839,12 +3223,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyLicense) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyLicense, IPlayReadyLicense_Ptr);
    begin
       if this.m_IPlayReadyLicense /= null then
          if this.m_IPlayReadyLicense.all /= null then
-            RefCount := this.m_IPlayReadyLicense.all.Release;
+            temp := this.m_IPlayReadyLicense.all.Release;
             Free (this.m_IPlayReadyLicense);
          end if;
       end if;
@@ -2859,10 +3243,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPlayReadyLicense.all.get_FullyEvaluated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2872,10 +3260,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPlayReadyLicense.all.get_UsableForPlay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2885,13 +3277,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IPlayReadyLicense.all.get_ExpirationDate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2901,10 +3297,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPlayReadyLicense.all.get_ExpireAfterFirstPlay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2914,10 +3314,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyLicense.all.get_DomainAccountID (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2927,10 +3331,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPlayReadyLicense.all.get_ChainDepth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2941,10 +3349,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyLicense.all.GetKIDAtChainDepth (chainDepth, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2954,14 +3366,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicense2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicense.all);
       Hr := m_Interface.get_SecureStopId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2971,14 +3387,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicense2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicense.all);
       Hr := m_Interface.get_SecurityLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2988,14 +3408,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicense2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicense.all);
       Hr := m_Interface.get_InMemoryOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3005,14 +3429,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicense2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicense.all);
       Hr := m_Interface.get_ExpiresInRealTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3025,12 +3453,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyLicenseAcquisitionServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyLicenseAcquisitionServiceRequest, IPlayReadyLicenseAcquisitionServiceRequest_Ptr);
    begin
       if this.m_IPlayReadyLicenseAcquisitionServiceRequest /= null then
          if this.m_IPlayReadyLicenseAcquisitionServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.Release;
+            temp := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.Release;
             Free (this.m_IPlayReadyLicenseAcquisitionServiceRequest);
          end if;
       end if;
@@ -3041,7 +3469,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyLicenseAcquisitionServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseAcquisitionServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseAcquisitionServiceRequest");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest;
    begin
       return RetVal : PlayReadyLicenseAcquisitionServiceRequest do
@@ -3050,7 +3479,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyLicenseAcquisitionServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest;
             Retval.m_IPlayReadyLicenseAcquisitionServiceRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3063,11 +3492,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader do
          Hr := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.get_ContentHeader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadyContentHeader := new Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
          Retval.m_IPlayReadyContentHeader.all := m_ComRetVal;
       end return;
@@ -3079,9 +3512,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.put_ContentHeader (value.m_IPlayReadyContentHeader.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DomainServiceId
@@ -3090,10 +3527,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.get_DomainServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3103,9 +3544,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.put_DomainServiceId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Uri
@@ -3114,15 +3559,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -3134,13 +3583,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -3149,17 +3602,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3169,17 +3626,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3189,15 +3650,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -3205,8 +3670,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyLicenseAcquisitionServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3214,7 +3680,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3230,7 +3695,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3238,9 +3703,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3252,14 +3717,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3269,15 +3738,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -3290,15 +3763,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3308,14 +3785,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3325,14 +3806,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3342,14 +3827,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicenseAcquisitionServiceRequest2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
       Hr := m_Interface.get_SessionId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3361,15 +3850,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest3, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicenseAcquisitionServiceRequest3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable do
          m_Interface := QInterface (this.m_IPlayReadyLicenseAcquisitionServiceRequest.all);
          Hr := m_Interface.CreateLicenseIterable (contentHeader.m_IPlayReadyContentHeader.all, fullyEvaluated, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -3393,7 +3886,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyLicenseIterable is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : PlayReadyLicenseIterable do
@@ -3402,7 +3896,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3413,9 +3907,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyLicenseIterable is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
       m_Factory    : access IPlayReadyLicenseIterableFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : PlayReadyLicenseIterable do
@@ -3424,9 +3919,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (contentHeader.m_IPlayReadyContentHeader.all, fullyEvaluated, m_ComRetVal'Access);
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3440,15 +3935,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlayReadyLicense.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2670261943, 46570, 20595, (186, 61, 140, 178, 240, 114, 145, 161 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPlayReadyLicense.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3475,15 +3974,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyLicense.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyLicense;
       m_GenericIID     : aliased WinRt.IID := (1785528330, 52774, 21531, (161, 88, 132, 87, 64, 155, 38, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyLicense.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Current (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3493,15 +3996,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyLicense.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1785528330, 52774, 21531, (161, 88, 132, 87, 64, 155, 38, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyLicense.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_HasCurrent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3511,15 +4018,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyLicense.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1785528330, 52774, 21531, (161, 88, 132, 87, 64, 155, 38, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyLicense.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.MoveNext (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3530,8 +4041,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadyLicense.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1785528330, 52774, 21531, (161, 88, 132, 87, 64, 155, 38, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadyLicense.Kind, m_GenericIID'Unchecked_Access);
@@ -3539,7 +4051,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3552,9 +4067,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseManagement");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseManagement");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseManagement_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -3562,7 +4078,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -3578,7 +4093,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyLicenseManagement'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DeleteLicenses (contentHeader.m_IPlayReadyContentHeader.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3586,14 +4101,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end PlayReadyLicenseManagement;
@@ -3607,12 +4122,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyLicenseSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyLicenseSession, IPlayReadyLicenseSession_Ptr);
    begin
       if this.m_IPlayReadyLicenseSession /= null then
          if this.m_IPlayReadyLicenseSession.all /= null then
-            RefCount := this.m_IPlayReadyLicenseSession.all.Release;
+            temp := this.m_IPlayReadyLicenseSession.all.Release;
             Free (this.m_IPlayReadyLicenseSession);
          end if;
       end if;
@@ -3627,9 +4142,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadyLicenseSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseSession");
       m_Factory    : access IPlayReadyLicenseSessionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession;
    begin
       return RetVal : PlayReadyLicenseSession do
@@ -3638,9 +4154,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (configuration, m_ComRetVal'Access);
             Retval.m_IPlayReadyLicenseSession := new Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession;
             Retval.m_IPlayReadyLicenseSession.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3653,10 +4169,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest;
    begin
       Hr := this.m_IPlayReadyLicenseSession.all.CreateLAServiceRequest (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3666,9 +4186,13 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       mpm : Windows.Media.Protection.MediaProtectionManager'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyLicenseSession.all.ConfigureMediaProtectionManager (mpm.m_IMediaProtectionManager.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateLicenseIterable
@@ -3679,15 +4203,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession2, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyLicenseSession2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable do
          m_Interface := QInterface (this.m_IPlayReadyLicenseSession.all);
          Hr := m_Interface.CreateLicenseIterable (contentHeader.m_IPlayReadyContentHeader.all, fullyEvaluated, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -3702,12 +4230,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyMeteringReportServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyMeteringReportServiceRequest, IPlayReadyMeteringReportServiceRequest_Ptr);
    begin
       if this.m_IPlayReadyMeteringReportServiceRequest /= null then
          if this.m_IPlayReadyMeteringReportServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadyMeteringReportServiceRequest.all.Release;
+            temp := this.m_IPlayReadyMeteringReportServiceRequest.all.Release;
             Free (this.m_IPlayReadyMeteringReportServiceRequest);
          end if;
       end if;
@@ -3718,7 +4246,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyMeteringReportServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyMeteringReportServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyMeteringReportServiceRequest");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest;
    begin
       return RetVal : PlayReadyMeteringReportServiceRequest do
@@ -3727,7 +4256,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyMeteringReportServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest;
             Retval.m_IPlayReadyMeteringReportServiceRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3740,11 +4269,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadyMeteringReportServiceRequest.all.get_MeteringCertificate (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -3762,10 +4295,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       meteringCertBytes : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_meteringCertBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IPlayReadyMeteringReportServiceRequest.all.put_MeteringCertificate (WinRt.UInt32(meteringCertBytes'Length), Convert_meteringCertBytes (meteringCertBytes (meteringCertBytes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Uri
@@ -3774,15 +4311,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -3794,13 +4335,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -3809,17 +4354,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3829,17 +4378,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3849,15 +4402,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -3865,8 +4422,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyMeteringReportServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3874,7 +4432,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3890,7 +4447,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3898,9 +4455,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3912,14 +4469,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3929,15 +4490,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -3950,15 +4515,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3968,14 +4537,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3985,14 +4558,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyMeteringReportServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4005,12 +4582,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadyRevocationServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadyRevocationServiceRequest, IPlayReadyRevocationServiceRequest_Ptr);
    begin
       if this.m_IPlayReadyRevocationServiceRequest /= null then
          if this.m_IPlayReadyRevocationServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadyRevocationServiceRequest.all.Release;
+            temp := this.m_IPlayReadyRevocationServiceRequest.all.Release;
             Free (this.m_IPlayReadyRevocationServiceRequest);
          end if;
       end if;
@@ -4021,7 +4598,8 @@ package body WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor return PlayReadyRevocationServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyRevocationServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyRevocationServiceRequest");
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest;
    begin
       return RetVal : PlayReadyRevocationServiceRequest do
@@ -4030,7 +4608,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Retval.m_IPlayReadyRevocationServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest;
             Retval.m_IPlayReadyRevocationServiceRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4043,15 +4621,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -4063,13 +4645,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -4078,17 +4664,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4098,17 +4688,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4118,15 +4712,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -4134,8 +4732,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyRevocationServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4143,7 +4742,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4159,7 +4757,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4167,9 +4765,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4181,14 +4779,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4198,15 +4800,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -4219,15 +4825,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4237,14 +4847,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4254,14 +4868,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadyRevocationServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4287,9 +4905,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadySecureStopIterable is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopIterable");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopIterable");
       m_Factory    : access IPlayReadySecureStopIterableFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased GenericObject;
       function Convert_publisherCertBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -4299,9 +4918,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (WinRt.UInt32(publisherCertBytes'Length), Convert_publisherCertBytes (publisherCertBytes (publisherCertBytes'First)'Address), m_ComRetVal'Access);
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4315,15 +4934,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlayReadySecureStopServiceRequest.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2374681209, 45181, 21256, (156, 120, 28, 92, 153, 108, 160, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPlayReadySecureStopServiceRequest.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4350,15 +4973,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadySecureStopServiceRequest.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
       m_GenericIID     : aliased WinRt.IID := (2008039835, 16203, 24313, (174, 11, 136, 17, 67, 177, 114, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadySecureStopServiceRequest.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Current (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4368,15 +4995,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadySecureStopServiceRequest.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2008039835, 16203, 24313, (174, 11, 136, 17, 67, 177, 114, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadySecureStopServiceRequest.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_HasCurrent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4386,15 +5017,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadySecureStopServiceRequest.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2008039835, 16203, 24313, (174, 11, 136, 17, 67, 177, 114, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadySecureStopServiceRequest.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.MoveNext (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4405,8 +5040,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterator_IPlayReadySecureStopServiceRequest.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2008039835, 16203, 24313, (174, 11, 136, 17, 67, 177, 114, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterator_IPlayReadySecureStopServiceRequest.Kind, m_GenericIID'Unchecked_Access);
@@ -4414,7 +5050,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4427,12 +5066,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadySecureStopServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadySecureStopServiceRequest, IPlayReadySecureStopServiceRequest_Ptr);
    begin
       if this.m_IPlayReadySecureStopServiceRequest /= null then
          if this.m_IPlayReadySecureStopServiceRequest.all /= null then
-            RefCount := this.m_IPlayReadySecureStopServiceRequest.all.Release;
+            temp := this.m_IPlayReadySecureStopServiceRequest.all.Release;
             Free (this.m_IPlayReadySecureStopServiceRequest);
          end if;
       end if;
@@ -4447,9 +5086,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadySecureStopServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest");
       m_Factory    : access IPlayReadySecureStopServiceRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
       function Convert_publisherCertBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -4459,9 +5099,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstance (WinRt.UInt32(publisherCertBytes'Length), Convert_publisherCertBytes (publisherCertBytes (publisherCertBytes'First)'Address), m_ComRetVal'Access);
             Retval.m_IPlayReadySecureStopServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
             Retval.m_IPlayReadySecureStopServiceRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4472,9 +5112,10 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return PlayReadySecureStopServiceRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest");
       m_Factory    : access IPlayReadySecureStopServiceRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
       function Convert_publisherCertBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -4484,9 +5125,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             Hr := m_Factory.CreateInstanceFromSessionID (sessionID, WinRt.UInt32(publisherCertBytes'Length), Convert_publisherCertBytes (publisherCertBytes (publisherCertBytes'First)'Address), m_ComRetVal'Access);
             Retval.m_IPlayReadySecureStopServiceRequest := new Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
             Retval.m_IPlayReadySecureStopServiceRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4499,10 +5140,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPlayReadySecureStopServiceRequest.all.get_SessionID (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4512,10 +5157,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPlayReadySecureStopServiceRequest.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4525,10 +5174,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPlayReadySecureStopServiceRequest.all.get_UpdateTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4538,10 +5191,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPlayReadySecureStopServiceRequest.all.get_Stopped (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4551,11 +5208,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadySecureStopServiceRequest.all.get_PublisherCertificate (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -4573,15 +5234,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -4593,13 +5258,17 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.put_Uri (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseCustomData
@@ -4608,17 +5277,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.get_ResponseCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4628,17 +5301,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.get_ChallengeCustomData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4648,15 +5325,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.put_ChallengeCustomData (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure BeginServiceRequest
@@ -4664,8 +5345,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadySecureStopServiceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4673,7 +5355,6 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4689,7 +5370,7 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.BeginServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4697,9 +5378,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4711,14 +5392,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.NextServiceRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4728,15 +5413,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.PlayReady.PlayReadySoapMessage do
          m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
          Hr := m_Interface.GenerateManualEnablingChallenge (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPlayReadySoapMessage := new Windows.Media.Protection.PlayReady.IPlayReadySoapMessage;
          Retval.m_IPlayReadySoapMessage.all := m_ComRetVal;
       end return;
@@ -4749,15 +5438,19 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest, WinRt.Windows.Media.Protection.PlayReady.IID_IPlayReadyServiceRequest'Unchecked_Access);
       function Convert_responseBytes is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.ProcessManualEnablingResponse (WinRt.UInt32(responseBytes'Length), Convert_responseBytes (responseBytes (responseBytes'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4767,14 +5460,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.get_ProtectionSystem (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4784,14 +5481,18 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Interface, WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest, WinRt.Windows.Media.Protection.IID_IMediaProtectionServiceRequest'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPlayReadySecureStopServiceRequest.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4804,12 +5505,12 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    end;
 
    procedure Finalize (this : in out PlayReadySoapMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlayReadySoapMessage, IPlayReadySoapMessage_Ptr);
    begin
       if this.m_IPlayReadySoapMessage /= null then
          if this.m_IPlayReadySoapMessage.all /= null then
-            RefCount := this.m_IPlayReadySoapMessage.all.Release;
+            temp := this.m_IPlayReadySoapMessage.all.Release;
             Free (this.m_IPlayReadySoapMessage);
          end if;
       end if;
@@ -4824,11 +5525,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlayReadySoapMessage.all.GetMessageBody (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -4846,10 +5551,14 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IPlayReadySoapMessage.all.get_MessageHeaders (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4859,11 +5568,15 @@ package body WinRt.Windows.Media.Protection.PlayReady is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IPlayReadySoapMessage.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -4876,17 +5589,21 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       function get_SecureStopServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SecureStopServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -4896,262 +5613,322 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CheckSupportedHardware (hwdrmFeature, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_DomainJoinServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DomainJoinServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_DomainLeaveServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DomainLeaveServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_IndividualizationServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IndividualizationServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_LicenseAcquirerServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LicenseAcquirerServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MeteringReportServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MeteringReportServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_RevocationServiceRequestType
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RevocationServiceRequestType (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MediaProtectionSystemId
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MediaProtectionSystemId (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_PlayReadySecurityVersion
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlayReadySecurityVersion (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_PlayReadyCertificateSecurityLevel
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlayReadyCertificateSecurityLevel (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InputTrustAuthorityToCreate
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InputTrustAuthorityToCreate (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ProtectionSystemId
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ProtectionSystemId (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_HardwareDRMDisabledAtTime
       return IReference_DateTime.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IReference_DateTime.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HardwareDRMDisabledAtTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_HardwareDRMDisabledUntilTime
       return IReference_DateTime.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IReference_DateTime.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HardwareDRMDisabledUntilTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       procedure ResetHardwareDRMDisabled is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyStatics");
          m_Factory        : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlayReadyStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ResetHardwareDRMDisabled;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end PlayReadyStatics;

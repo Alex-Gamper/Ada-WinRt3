@@ -43,12 +43,12 @@ package body WinRt.Windows.Media.AppBroadcasting is
    end;
 
    procedure Finalize (this : in out AppBroadcastingMonitor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBroadcastingMonitor, IAppBroadcastingMonitor_Ptr);
    begin
       if this.m_IAppBroadcastingMonitor /= null then
          if this.m_IAppBroadcastingMonitor.all /= null then
-            RefCount := this.m_IAppBroadcastingMonitor.all.Release;
+            temp := this.m_IAppBroadcastingMonitor.all.Release;
             Free (this.m_IAppBroadcastingMonitor);
          end if;
       end if;
@@ -59,7 +59,8 @@ package body WinRt.Windows.Media.AppBroadcasting is
 
    function Constructor return AppBroadcastingMonitor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingMonitor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingMonitor");
       m_ComRetVal  : aliased Windows.Media.AppBroadcasting.IAppBroadcastingMonitor;
    begin
       return RetVal : AppBroadcastingMonitor do
@@ -68,7 +69,7 @@ package body WinRt.Windows.Media.AppBroadcasting is
             Retval.m_IAppBroadcastingMonitor := new Windows.Media.AppBroadcasting.IAppBroadcastingMonitor;
             Retval.m_IAppBroadcastingMonitor.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -81,10 +82,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingMonitor.all.get_IsCurrentAppBroadcasting (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -95,10 +100,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastingMonitor.all.add_IsCurrentAppBroadcastingChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -108,9 +117,13 @@ package body WinRt.Windows.Media.AppBroadcasting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastingMonitor.all.remove_IsCurrentAppBroadcastingChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -122,12 +135,12 @@ package body WinRt.Windows.Media.AppBroadcasting is
    end;
 
    procedure Finalize (this : in out AppBroadcastingStatus) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBroadcastingStatus, IAppBroadcastingStatus_Ptr);
    begin
       if this.m_IAppBroadcastingStatus /= null then
          if this.m_IAppBroadcastingStatus.all /= null then
-            RefCount := this.m_IAppBroadcastingStatus.all.Release;
+            temp := this.m_IAppBroadcastingStatus.all.Release;
             Free (this.m_IAppBroadcastingStatus);
          end if;
       end if;
@@ -142,10 +155,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatus.all.get_CanStartBroadcast (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -155,11 +172,15 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Windows.Media.AppBroadcasting.AppBroadcastingStatusDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.AppBroadcasting.IAppBroadcastingStatusDetails;
    begin
       return RetVal : WinRt.Windows.Media.AppBroadcasting.AppBroadcastingStatusDetails do
          Hr := this.m_IAppBroadcastingStatus.all.get_Details (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppBroadcastingStatusDetails := new Windows.Media.AppBroadcasting.IAppBroadcastingStatusDetails;
          Retval.m_IAppBroadcastingStatusDetails.all := m_ComRetVal;
       end return;
@@ -174,12 +195,12 @@ package body WinRt.Windows.Media.AppBroadcasting is
    end;
 
    procedure Finalize (this : in out AppBroadcastingStatusDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBroadcastingStatusDetails, IAppBroadcastingStatusDetails_Ptr);
    begin
       if this.m_IAppBroadcastingStatusDetails /= null then
          if this.m_IAppBroadcastingStatusDetails.all /= null then
-            RefCount := this.m_IAppBroadcastingStatusDetails.all.Release;
+            temp := this.m_IAppBroadcastingStatusDetails.all.Release;
             Free (this.m_IAppBroadcastingStatusDetails);
          end if;
       end if;
@@ -194,10 +215,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsAnyAppBroadcasting (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -207,10 +232,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsCaptureResourceUnavailable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -220,10 +249,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsGameStreamInProgress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -233,10 +266,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsGpuConstrained (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -246,10 +283,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsAppInactive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -259,10 +300,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsBlockedForApp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -272,10 +317,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsDisabledByUser (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -285,10 +334,14 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppBroadcastingStatusDetails.all.get_IsDisabledBySystem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -301,12 +354,12 @@ package body WinRt.Windows.Media.AppBroadcasting is
    end;
 
    procedure Finalize (this : in out AppBroadcastingUI) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBroadcastingUI, IAppBroadcastingUI_Ptr);
    begin
       if this.m_IAppBroadcastingUI /= null then
          if this.m_IAppBroadcastingUI.all /= null then
-            RefCount := this.m_IAppBroadcastingUI.all.Release;
+            temp := this.m_IAppBroadcastingUI.all.Release;
             Free (this.m_IAppBroadcastingUI);
          end if;
       end if;
@@ -318,20 +371,24 @@ package body WinRt.Windows.Media.AppBroadcasting is
    function GetDefault
    return WinRt.Windows.Media.AppBroadcasting.AppBroadcastingUI is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingUI");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingUI");
       m_Factory        : access WinRt.Windows.Media.AppBroadcasting.IAppBroadcastingUIStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.AppBroadcasting.IAppBroadcastingUI;
    begin
       return RetVal : WinRt.Windows.Media.AppBroadcasting.AppBroadcastingUI do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastingUIStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAppBroadcastingUI := new Windows.Media.AppBroadcasting.IAppBroadcastingUI;
             Retval.m_IAppBroadcastingUI.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -341,20 +398,24 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Windows.Media.AppBroadcasting.AppBroadcastingUI is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingUI");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingUI");
       m_Factory        : access WinRt.Windows.Media.AppBroadcasting.IAppBroadcastingUIStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.AppBroadcasting.IAppBroadcastingUI;
    begin
       return RetVal : WinRt.Windows.Media.AppBroadcasting.AppBroadcastingUI do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastingUIStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAppBroadcastingUI := new Windows.Media.AppBroadcasting.IAppBroadcastingUI;
             Retval.m_IAppBroadcastingUI.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -367,11 +428,15 @@ package body WinRt.Windows.Media.AppBroadcasting is
    )
    return WinRt.Windows.Media.AppBroadcasting.AppBroadcastingStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.AppBroadcasting.IAppBroadcastingStatus;
    begin
       return RetVal : WinRt.Windows.Media.AppBroadcasting.AppBroadcastingStatus do
          Hr := this.m_IAppBroadcastingUI.all.GetStatus (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppBroadcastingStatus := new Windows.Media.AppBroadcasting.IAppBroadcastingStatus;
          Retval.m_IAppBroadcastingStatus.all := m_ComRetVal;
       end return;
@@ -382,9 +447,13 @@ package body WinRt.Windows.Media.AppBroadcasting is
       this : in out AppBroadcastingUI
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastingUI.all.ShowBroadcastUI;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Media.AppBroadcasting;

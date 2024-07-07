@@ -42,22 +42,26 @@ package body WinRt.Windows.Management.Deployment.Preview is
       )
       return WinRt.Windows.Management.Deployment.Preview.InstalledClassicAppInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Management.Deployment.Preview.ClassicAppManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Deployment.Preview.ClassicAppManager");
          m_Factory        : access WinRt.Windows.Management.Deployment.Preview.IClassicAppManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Management.Deployment.Preview.IInstalledClassicAppInfo;
-         HStr_appUninstallKey : WinRt.HString := To_HString (appUninstallKey);
+         HStr_appUninstallKey : constant WinRt.HString := To_HString (appUninstallKey);
       begin
          return RetVal : WinRt.Windows.Management.Deployment.Preview.InstalledClassicAppInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IClassicAppManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.FindInstalledApp (HStr_appUninstallKey, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IInstalledClassicAppInfo := new Windows.Management.Deployment.Preview.IInstalledClassicAppInfo;
                Retval.m_IInstalledClassicAppInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_appUninstallKey);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_appUninstallKey);
          end return;
       end;
 
@@ -72,12 +76,12 @@ package body WinRt.Windows.Management.Deployment.Preview is
    end;
 
    procedure Finalize (this : in out InstalledClassicAppInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInstalledClassicAppInfo, IInstalledClassicAppInfo_Ptr);
    begin
       if this.m_IInstalledClassicAppInfo /= null then
          if this.m_IInstalledClassicAppInfo.all /= null then
-            RefCount := this.m_IInstalledClassicAppInfo.all.Release;
+            temp := this.m_IInstalledClassicAppInfo.all.Release;
             Free (this.m_IInstalledClassicAppInfo);
          end if;
       end if;
@@ -92,13 +96,17 @@ package body WinRt.Windows.Management.Deployment.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInstalledClassicAppInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -108,13 +116,17 @@ package body WinRt.Windows.Management.Deployment.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInstalledClassicAppInfo.all.get_DisplayVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

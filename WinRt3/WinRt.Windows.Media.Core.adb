@@ -71,12 +71,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out AudioStreamDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioStreamDescriptor, IAudioStreamDescriptor_Ptr);
    begin
       if this.m_IAudioStreamDescriptor /= null then
          if this.m_IAudioStreamDescriptor.all /= null then
-            RefCount := this.m_IAudioStreamDescriptor.all.Release;
+            temp := this.m_IAudioStreamDescriptor.all.Release;
             Free (this.m_IAudioStreamDescriptor);
          end if;
       end if;
@@ -91,9 +91,10 @@ package body WinRt.Windows.Media.Core is
    )
    return AudioStreamDescriptor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.AudioStreamDescriptor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.AudioStreamDescriptor");
       m_Factory    : access IAudioStreamDescriptorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.IAudioStreamDescriptor;
    begin
       return RetVal : AudioStreamDescriptor do
@@ -102,9 +103,9 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.Create (encodingProperties.m_IAudioEncodingProperties.all, m_ComRetVal'Access);
             Retval.m_IAudioStreamDescriptor := new Windows.Media.Core.IAudioStreamDescriptor;
             Retval.m_IAudioStreamDescriptor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -117,11 +118,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IAudioStreamDescriptor.all.get_EncodingProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
@@ -133,14 +138,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.get_IsSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -150,15 +159,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.put_Name (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Name
@@ -167,17 +180,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -187,15 +204,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.put_Language (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Language
@@ -204,17 +225,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.get_Language (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -224,13 +249,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IAudioStreamDescriptor2, WinRt.Windows.Media.Core.IID_IAudioStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.put_LeadingEncoderPadding (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeadingEncoderPadding
@@ -239,17 +268,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IAudioStreamDescriptor2, WinRt.Windows.Media.Core.IID_IAudioStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.get_LeadingEncoderPadding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -259,13 +292,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IAudioStreamDescriptor2, WinRt.Windows.Media.Core.IID_IAudioStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.put_TrailingEncoderPadding (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TrailingEncoderPadding
@@ -274,17 +311,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IAudioStreamDescriptor2, WinRt.Windows.Media.Core.IID_IAudioStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.get_TrailingEncoderPadding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -294,15 +335,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor2, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.put_Label (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Label
@@ -311,17 +356,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor2, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
       Hr := m_Interface.get_Label (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -331,15 +380,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.AudioStreamDescriptor'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioStreamDescriptor3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IAudioStreamDescriptor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IAudioStreamDescriptor_Interface, WinRt.Windows.Media.Core.IAudioStreamDescriptor3, WinRt.Windows.Media.Core.IID_IAudioStreamDescriptor3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.AudioStreamDescriptor do
          m_Interface := QInterface (this.m_IAudioStreamDescriptor.all);
          Hr := m_Interface.Copy (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioStreamDescriptor := new Windows.Media.Core.IAudioStreamDescriptor;
          Retval.m_IAudioStreamDescriptor.all := m_ComRetVal;
       end return;
@@ -354,12 +407,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out AudioTrack) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaTrack, IMediaTrack_Ptr);
    begin
       if this.m_IMediaTrack /= null then
          if this.m_IMediaTrack.all /= null then
-            RefCount := this.m_IMediaTrack.all.Release;
+            temp := this.m_IMediaTrack.all.Release;
             Free (this.m_IMediaTrack);
          end if;
       end if;
@@ -374,13 +427,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaTrack.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -390,13 +447,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaTrack.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -406,10 +467,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaTrackKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaTrackKind;
    begin
       Hr := this.m_IMediaTrack.all.get_TrackKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -419,11 +484,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMediaTrack.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Label
@@ -432,13 +501,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaTrack.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -449,14 +522,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IAudioTrack, WinRt.Windows.Media.Core.IID_IAudioTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTrack.all);
       Hr := m_Interface.add_OpenFailed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -466,13 +543,17 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IAudioTrack, WinRt.Windows.Media.Core.IID_IAudioTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTrack.all);
       Hr := m_Interface.remove_OpenFailed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetEncodingProperties
@@ -481,15 +562,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IAudioTrack, WinRt.Windows.Media.Core.IID_IAudioTrack'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          m_Interface := QInterface (this.m_IMediaTrack.all);
          Hr := m_Interface.GetEncodingProperties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
@@ -501,15 +586,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Playback.MediaPlaybackItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IAudioTrack, WinRt.Windows.Media.Core.IID_IAudioTrack'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          m_Interface := QInterface (this.m_IMediaTrack.all);
          Hr := m_Interface.get_PlaybackItem (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
@@ -521,17 +610,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IAudioTrack, WinRt.Windows.Media.Core.IID_IAudioTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTrack.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -541,15 +634,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.AudioTrackSupportInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IAudioTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IAudioTrackSupportInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IAudioTrack, WinRt.Windows.Media.Core.IID_IAudioTrack'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.AudioTrackSupportInfo do
          m_Interface := QInterface (this.m_IMediaTrack.all);
          Hr := m_Interface.get_SupportInfo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioTrackSupportInfo := new Windows.Media.Core.IAudioTrackSupportInfo;
          Retval.m_IAudioTrackSupportInfo.all := m_ComRetVal;
       end return;
@@ -564,12 +661,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out AudioTrackOpenFailedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioTrackOpenFailedEventArgs, IAudioTrackOpenFailedEventArgs_Ptr);
    begin
       if this.m_IAudioTrackOpenFailedEventArgs /= null then
          if this.m_IAudioTrackOpenFailedEventArgs.all /= null then
-            RefCount := this.m_IAudioTrackOpenFailedEventArgs.all.Release;
+            temp := this.m_IAudioTrackOpenFailedEventArgs.all.Release;
             Free (this.m_IAudioTrackOpenFailedEventArgs);
          end if;
       end if;
@@ -584,10 +681,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IAudioTrackOpenFailedEventArgs.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -600,12 +701,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out AudioTrackSupportInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioTrackSupportInfo, IAudioTrackSupportInfo_Ptr);
    begin
       if this.m_IAudioTrackSupportInfo /= null then
          if this.m_IAudioTrackSupportInfo.all /= null then
-            RefCount := this.m_IAudioTrackSupportInfo.all.Release;
+            temp := this.m_IAudioTrackSupportInfo.all.Release;
             Free (this.m_IAudioTrackSupportInfo);
          end if;
       end if;
@@ -620,10 +721,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaDecoderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaDecoderStatus;
    begin
       Hr := this.m_IAudioTrackSupportInfo.all.get_DecoderStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -633,10 +738,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.AudioDecoderDegradation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.AudioDecoderDegradation;
    begin
       Hr := this.m_IAudioTrackSupportInfo.all.get_Degradation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -646,10 +755,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.AudioDecoderDegradationReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.AudioDecoderDegradationReason;
    begin
       Hr := this.m_IAudioTrackSupportInfo.all.get_DegradationReason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -659,10 +772,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaSourceStatus;
    begin
       Hr := this.m_IAudioTrackSupportInfo.all.get_MediaSourceStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -675,12 +792,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out ChapterCue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IChapterCue, IChapterCue_Ptr);
    begin
       if this.m_IChapterCue /= null then
          if this.m_IChapterCue.all /= null then
-            RefCount := this.m_IChapterCue.all.Release;
+            temp := this.m_IChapterCue.all.Release;
             Free (this.m_IChapterCue);
          end if;
       end if;
@@ -691,7 +808,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return ChapterCue is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.ChapterCue");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.ChapterCue");
       m_ComRetVal  : aliased Windows.Media.Core.IChapterCue;
    begin
       return RetVal : ChapterCue do
@@ -700,7 +818,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IChapterCue := new Windows.Media.Core.IChapterCue;
             Retval.m_IChapterCue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -713,11 +831,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IChapterCue.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Title
@@ -726,13 +848,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IChapterCue.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -742,13 +868,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IChapterCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChapterCue.all);
       Hr := m_Interface.put_StartTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -757,14 +887,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IChapterCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChapterCue.all);
       Hr := m_Interface.get_StartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -774,13 +908,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IChapterCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChapterCue.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -789,14 +927,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IChapterCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChapterCue.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -806,15 +948,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IChapterCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChapterCue.all);
       Hr := m_Interface.put_Id (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Id
@@ -823,17 +969,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IChapterCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChapterCue.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -846,12 +996,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out CodecInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICodecInfo, ICodecInfo_Ptr);
    begin
       if this.m_ICodecInfo /= null then
          if this.m_ICodecInfo.all /= null then
-            RefCount := this.m_ICodecInfo.all.Release;
+            temp := this.m_ICodecInfo.all.Release;
             Free (this.m_ICodecInfo);
          end if;
       end if;
@@ -866,10 +1016,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.CodecKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.CodecKind;
    begin
       Hr := this.m_ICodecInfo.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -879,10 +1033,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.CodecCategory is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.CodecCategory;
    begin
       Hr := this.m_ICodecInfo.all.get_Category (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -892,13 +1050,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ICodecInfo.all.get_Subtypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -908,13 +1070,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICodecInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -924,10 +1090,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICodecInfo.all.get_IsTrusted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -940,12 +1110,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out CodecQuery) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICodecQuery, ICodecQuery_Ptr);
    begin
       if this.m_ICodecQuery /= null then
          if this.m_ICodecQuery.all /= null then
-            RefCount := this.m_ICodecQuery.all.Release;
+            temp := this.m_ICodecQuery.all.Release;
             Free (this.m_ICodecQuery);
          end if;
       end if;
@@ -956,7 +1126,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return CodecQuery is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.CodecQuery");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecQuery");
       m_ComRetVal  : aliased Windows.Media.Core.ICodecQuery;
    begin
       return RetVal : CodecQuery do
@@ -965,7 +1136,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ICodecQuery := new Windows.Media.Core.ICodecQuery;
             Retval.m_ICodecQuery.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -981,14 +1152,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subType_x : WinRt.HString := To_HString (subType_x);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_subType_x : constant WinRt.HString := To_HString (subType_x);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1006,7 +1177,7 @@ package body WinRt.Windows.Media.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1019,7 +1190,7 @@ package body WinRt.Windows.Media.Core is
       Hr := this.m_ICodecQuery.all.FindAllAsync (kind, category, HStr_subType_x, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1029,14 +1200,14 @@ package body WinRt.Windows.Media.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subType_x);
+      tmp := WindowsDeleteString (HStr_subType_x);
       return m_RetVal;
    end;
 
@@ -1047,1020 +1218,1224 @@ package body WinRt.Windows.Media.Core is
       function get_VideoFormatDV25
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDV25 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatDV50
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDV50 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatDvc
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDvc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatDvh1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDvh1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatDvhD
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDvhD (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatDvsd
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDvsd (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatDvsl
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatDvsl (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatH263
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatH263 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatH264
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatH264 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatH265
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatH265 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatH264ES
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatH264ES (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatHevc
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatHevc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatHevcES
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatHevcES (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatM4S2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatM4S2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMjpg
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMjpg (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMP43
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMP43 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMP4S
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMP4S (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMP4V
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMP4V (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMpeg2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMpeg2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatVP80
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatVP80 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatVP90
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatVP90 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMpg1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMpg1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMss1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMss1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatMss2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatMss2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatWmv1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatWmv1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatWmv2
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatWmv2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatWmv3
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatWmv3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormatWvc1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormatWvc1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VideoFormat420O
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoFormat420O (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatAac
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatAac (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatAdts
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatAdts (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatAlac
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatAlac (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatAmrNB
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatAmrNB (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatAmrWB
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatAmrWB (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatAmrWP
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatAmrWP (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatDolbyAC3
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatDolbyAC3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatDolbyAC3Spdif
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatDolbyAC3Spdif (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatDolbyDDPlus
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatDolbyDDPlus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatDrm
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatDrm (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatDts
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatDts (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatFlac
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatFlac (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatFloat
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatFloat (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatMP3
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatMP3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatMPeg
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatMPeg (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatMsp1
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatMsp1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatOpus
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatOpus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatPcm
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatPcm (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatWmaSpdif
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatWmaSpdif (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatWMAudioLossless
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatWMAudioLossless (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatWMAudioV8
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatWMAudioV8 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AudioFormatWMAudioV9
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.CodecSubtypes");
          m_Factory        : access WinRt.Windows.Media.Core.ICodecSubtypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICodecSubtypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AudioFormatWMAudioV9 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -2075,12 +2450,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out DataCue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDataCue, IDataCue_Ptr);
    begin
       if this.m_IDataCue /= null then
          if this.m_IDataCue.all /= null then
-            RefCount := this.m_IDataCue.all.Release;
+            temp := this.m_IDataCue.all.Release;
             Free (this.m_IDataCue);
          end if;
       end if;
@@ -2091,7 +2466,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return DataCue is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.DataCue");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.DataCue");
       m_ComRetVal  : aliased Windows.Media.Core.IDataCue;
    begin
       return RetVal : DataCue do
@@ -2100,7 +2476,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IDataCue := new Windows.Media.Core.IDataCue;
             Retval.m_IDataCue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2113,9 +2489,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDataCue.all.put_Data (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Data
@@ -2124,10 +2504,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IDataCue.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2137,13 +2521,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataCue.all);
       Hr := m_Interface.put_StartTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -2152,14 +2540,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataCue.all);
       Hr := m_Interface.get_StartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2169,13 +2561,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataCue.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -2184,14 +2580,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataCue.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2201,15 +2601,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataCue.all);
       Hr := m_Interface.put_Id (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Id
@@ -2218,17 +2622,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataCue.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2238,15 +2646,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.PropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IDataCue2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IDataCue_Interface, WinRt.Windows.Media.Core.IDataCue2, WinRt.Windows.Media.Core.IID_IDataCue2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.PropertySet do
          m_Interface := QInterface (this.m_IDataCue.all);
          Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -2261,12 +2673,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out FaceDetectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFaceDetectedEventArgs, IFaceDetectedEventArgs_Ptr);
    begin
       if this.m_IFaceDetectedEventArgs /= null then
          if this.m_IFaceDetectedEventArgs.all /= null then
-            RefCount := this.m_IFaceDetectedEventArgs.all.Release;
+            temp := this.m_IFaceDetectedEventArgs.all.Release;
             Free (this.m_IFaceDetectedEventArgs);
          end if;
       end if;
@@ -2281,11 +2693,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.FaceDetectionEffectFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IFaceDetectionEffectFrame;
    begin
       return RetVal : WinRt.Windows.Media.Core.FaceDetectionEffectFrame do
          Hr := this.m_IFaceDetectedEventArgs.all.get_ResultFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFaceDetectionEffectFrame := new Windows.Media.Core.IFaceDetectionEffectFrame;
          Retval.m_IFaceDetectionEffectFrame.all := m_ComRetVal;
       end return;
@@ -2300,12 +2716,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out FaceDetectionEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFaceDetectionEffect, IFaceDetectionEffect_Ptr);
    begin
       if this.m_IFaceDetectionEffect /= null then
          if this.m_IFaceDetectionEffect.all /= null then
-            RefCount := this.m_IFaceDetectionEffect.all.Release;
+            temp := this.m_IFaceDetectionEffect.all.Release;
             Free (this.m_IFaceDetectionEffect);
          end if;
       end if;
@@ -2320,9 +2736,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFaceDetectionEffect.all.put_Enabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Enabled
@@ -2331,10 +2751,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFaceDetectionEffect.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2344,9 +2768,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFaceDetectionEffect.all.put_DesiredDetectionInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DesiredDetectionInterval
@@ -2355,10 +2783,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IFaceDetectionEffect.all.get_DesiredDetectionInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2369,10 +2801,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFaceDetectionEffect.all.add_FaceDetected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2382,9 +2818,13 @@ package body WinRt.Windows.Media.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFaceDetectionEffect.all.remove_FaceDetected (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetProperties
@@ -2393,13 +2833,17 @@ package body WinRt.Windows.Media.Core is
       configuration : Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaExtension := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffect_Interface, WinRt.Windows.Media.IMediaExtension, WinRt.Windows.Media.IID_IMediaExtension'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffect.all);
       Hr := m_Interface.SetProperties (configuration);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2411,13 +2855,13 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out FaceDetectionEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Media.Effects.IVideoEffectDefinition;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IVideoEffectDefinition_Ptr);
    begin
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
-            RefCount := this.m_IVideoEffectDefinition.all.Release;
+            temp := this.m_IVideoEffectDefinition.all.Release;
             Free (this.m_IVideoEffectDefinition);
          end if;
       end if;
@@ -2428,7 +2872,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return FaceDetectionEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.FaceDetectionEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.FaceDetectionEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : FaceDetectionEffectDefinition do
@@ -2437,7 +2882,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2450,13 +2895,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2466,10 +2915,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2479,13 +2932,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.FaceDetectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition, WinRt.Windows.Media.Core.IID_IFaceDetectionEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_DetectionMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DetectionMode
@@ -2494,14 +2951,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.FaceDetectionMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.FaceDetectionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition, WinRt.Windows.Media.Core.IID_IFaceDetectionEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_DetectionMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2511,13 +2972,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition, WinRt.Windows.Media.Core.IID_IFaceDetectionEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_SynchronousDetectionEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SynchronousDetectionEnabled
@@ -2526,14 +2991,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Core.IFaceDetectionEffectDefinition, WinRt.Windows.Media.Core.IID_IFaceDetectionEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_SynchronousDetectionEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2546,12 +3015,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out FaceDetectionEffectFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFaceDetectionEffectFrame, IFaceDetectionEffectFrame_Ptr);
    begin
       if this.m_IFaceDetectionEffectFrame /= null then
          if this.m_IFaceDetectionEffectFrame.all /= null then
-            RefCount := this.m_IFaceDetectionEffectFrame.all.Release;
+            temp := this.m_IFaceDetectionEffectFrame.all.Release;
             Free (this.m_IFaceDetectionEffectFrame);
          end if;
       end if;
@@ -2566,10 +3035,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IFaceDetectionEffectFrame.all.get_DetectedFaces (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2579,17 +3052,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2599,14 +3076,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_IsReadOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2616,13 +3097,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.put_RelativeTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelativeTime
@@ -2631,17 +3116,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_RelativeTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2651,13 +3140,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.put_SystemRelativeTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SystemRelativeTime
@@ -2666,17 +3159,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_SystemRelativeTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2686,13 +3183,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -2701,17 +3202,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2721,13 +3226,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.put_IsDiscontinuous (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDiscontinuous
@@ -2736,14 +3245,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_IsDiscontinuous (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2753,14 +3266,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.get_ExtendedProperties (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2769,13 +3286,17 @@ package body WinRt.Windows.Media.Core is
       this : in out FaceDetectionEffectFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IFaceDetectionEffectFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFaceDetectionEffectFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2787,12 +3308,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out HighDynamicRangeControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHighDynamicRangeControl, IHighDynamicRangeControl_Ptr);
    begin
       if this.m_IHighDynamicRangeControl /= null then
          if this.m_IHighDynamicRangeControl.all /= null then
-            RefCount := this.m_IHighDynamicRangeControl.all.Release;
+            temp := this.m_IHighDynamicRangeControl.all.Release;
             Free (this.m_IHighDynamicRangeControl);
          end if;
       end if;
@@ -2807,9 +3328,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHighDynamicRangeControl.all.put_Enabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Enabled
@@ -2818,10 +3343,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHighDynamicRangeControl.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2834,12 +3363,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out HighDynamicRangeOutput) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHighDynamicRangeOutput, IHighDynamicRangeOutput_Ptr);
    begin
       if this.m_IHighDynamicRangeOutput /= null then
          if this.m_IHighDynamicRangeOutput.all /= null then
-            RefCount := this.m_IHighDynamicRangeOutput.all.Release;
+            temp := this.m_IHighDynamicRangeOutput.all.Release;
             Free (this.m_IHighDynamicRangeOutput);
          end if;
       end if;
@@ -2854,10 +3383,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IHighDynamicRangeOutput.all.get_Certainty (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2867,10 +3400,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IHighDynamicRangeOutput.all.get_FrameControllers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2883,12 +3420,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out ImageCue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IImageCue, IImageCue_Ptr);
    begin
       if this.m_IImageCue /= null then
          if this.m_IImageCue.all /= null then
-            RefCount := this.m_IImageCue.all.Release;
+            temp := this.m_IImageCue.all.Release;
             Free (this.m_IImageCue);
          end if;
       end if;
@@ -2899,7 +3436,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return ImageCue is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.ImageCue");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.ImageCue");
       m_ComRetVal  : aliased Windows.Media.Core.IImageCue;
    begin
       return RetVal : ImageCue do
@@ -2908,7 +3446,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IImageCue := new Windows.Media.Core.IImageCue;
             Retval.m_IImageCue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2921,10 +3459,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextPoint is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextPoint;
    begin
       Hr := this.m_IImageCue.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2934,9 +3476,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextPoint
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IImageCue.all.put_Position (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Extent
@@ -2945,10 +3491,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSize is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextSize;
    begin
       Hr := this.m_IImageCue.all.get_Extent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2958,9 +3508,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextSize
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IImageCue.all.put_Extent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_SoftwareBitmap
@@ -2969,9 +3523,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IImageCue.all.put_SoftwareBitmap (value.m_ISoftwareBitmap.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SoftwareBitmap
@@ -2980,11 +3538,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := this.m_IImageCue.all.get_SoftwareBitmap (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
          Retval.m_ISoftwareBitmap.all := m_ComRetVal;
       end return;
@@ -2996,13 +3558,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IImageCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageCue.all);
       Hr := m_Interface.put_StartTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -3011,14 +3577,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IImageCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageCue.all);
       Hr := m_Interface.get_StartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3028,13 +3598,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IImageCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageCue.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -3043,14 +3617,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IImageCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageCue.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3060,15 +3638,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IImageCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageCue.all);
       Hr := m_Interface.put_Id (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Id
@@ -3077,17 +3659,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IImageCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageCue.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3100,12 +3686,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out InitializeMediaStreamSourceRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInitializeMediaStreamSourceRequestedEventArgs, IInitializeMediaStreamSourceRequestedEventArgs_Ptr);
    begin
       if this.m_IInitializeMediaStreamSourceRequestedEventArgs /= null then
          if this.m_IInitializeMediaStreamSourceRequestedEventArgs.all /= null then
-            RefCount := this.m_IInitializeMediaStreamSourceRequestedEventArgs.all.Release;
+            temp := this.m_IInitializeMediaStreamSourceRequestedEventArgs.all.Release;
             Free (this.m_IInitializeMediaStreamSourceRequestedEventArgs);
          end if;
       end if;
@@ -3120,11 +3706,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSource do
          Hr := this.m_IInitializeMediaStreamSourceRequestedEventArgs.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
          Retval.m_IMediaStreamSource.all := m_ComRetVal;
       end return;
@@ -3136,10 +3726,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IInitializeMediaStreamSourceRequestedEventArgs.all.get_RandomAccessStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3149,11 +3743,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IInitializeMediaStreamSourceRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -3166,34 +3764,42 @@ package body WinRt.Windows.Media.Core is
       function get_SupportedBitmapPixelFormats
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.LowLightFusion");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.LowLightFusion");
          m_Factory        : access WinRt.Windows.Media.Core.ILowLightFusionStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILowLightFusionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SupportedBitmapPixelFormats (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MaxSupportedFrameCount
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.LowLightFusion");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.LowLightFusion");
          m_Factory        : access WinRt.Windows.Media.Core.ILowLightFusionStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILowLightFusionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MaxSupportedFrameCount (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -3203,15 +3809,15 @@ package body WinRt.Windows.Media.Core is
       )
       return WinRt.Windows.Media.Core.LowLightFusionResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.LowLightFusion");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.LowLightFusion");
          m_Factory        : access WinRt.Windows.Media.Core.ILowLightFusionStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_LowLightFusionResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3229,7 +3835,7 @@ package body WinRt.Windows.Media.Core is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LowLightFusionResult.Kind_Delegate, AsyncOperationCompletedHandler_LowLightFusionResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3243,10 +3849,10 @@ package body WinRt.Windows.Media.Core is
             Hr := RoGetActivationFactory (m_hString, IID_ILowLightFusionStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.FuseAsync (frameSet, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -3258,15 +3864,15 @@ package body WinRt.Windows.Media.Core is
                         Retval.m_ILowLightFusionResult := new Windows.Media.Core.ILowLightFusionResult;
                         Retval.m_ILowLightFusionResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -3281,12 +3887,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out LowLightFusionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILowLightFusionResult, ILowLightFusionResult_Ptr);
    begin
       if this.m_ILowLightFusionResult /= null then
          if this.m_ILowLightFusionResult.all /= null then
-            RefCount := this.m_ILowLightFusionResult.all.Release;
+            temp := this.m_ILowLightFusionResult.all.Release;
             Free (this.m_ILowLightFusionResult);
          end if;
       end if;
@@ -3301,11 +3907,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := this.m_ILowLightFusionResult.all.get_Frame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
          Retval.m_ISoftwareBitmap.all := m_ComRetVal;
       end return;
@@ -3316,13 +3926,17 @@ package body WinRt.Windows.Media.Core is
       this : in out LowLightFusionResult
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ILowLightFusionResult_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILowLightFusionResult.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3334,12 +3948,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaBinder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaBinder, IMediaBinder_Ptr);
    begin
       if this.m_IMediaBinder /= null then
          if this.m_IMediaBinder.all /= null then
-            RefCount := this.m_IMediaBinder.all.Release;
+            temp := this.m_IMediaBinder.all.Release;
             Free (this.m_IMediaBinder);
          end if;
       end if;
@@ -3350,7 +3964,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return MediaBinder is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.MediaBinder");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaBinder");
       m_ComRetVal  : aliased Windows.Media.Core.IMediaBinder;
    begin
       return RetVal : MediaBinder do
@@ -3359,7 +3974,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IMediaBinder := new Windows.Media.Core.IMediaBinder;
             Retval.m_IMediaBinder.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3373,10 +3988,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBinder.all.add_Binding (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3386,9 +4005,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaBinder.all.remove_Binding (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Token
@@ -3397,13 +4020,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaBinder.all.get_Token (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3413,11 +4040,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMediaBinder.all.put_Token (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Source
@@ -3426,11 +4057,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := this.m_IMediaBinder.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
          Retval.m_IMediaSource2.all := m_ComRetVal;
       end return;
@@ -3445,12 +4080,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaBindingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaBindingEventArgs, IMediaBindingEventArgs_Ptr);
    begin
       if this.m_IMediaBindingEventArgs /= null then
          if this.m_IMediaBindingEventArgs.all /= null then
-            RefCount := this.m_IMediaBindingEventArgs.all.Release;
+            temp := this.m_IMediaBindingEventArgs.all.Release;
             Free (this.m_IMediaBindingEventArgs);
          end if;
       end if;
@@ -3466,10 +4101,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBindingEventArgs.all.add_Canceled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3479,9 +4118,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaBindingEventArgs.all.remove_Canceled (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MediaBinder
@@ -3490,11 +4133,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaBinder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaBinder;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaBinder do
          Hr := this.m_IMediaBindingEventArgs.all.get_MediaBinder (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaBinder := new Windows.Media.Core.IMediaBinder;
          Retval.m_IMediaBinder.all := m_ComRetVal;
       end return;
@@ -3506,11 +4153,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaBindingEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -3522,9 +4173,13 @@ package body WinRt.Windows.Media.Core is
       uri : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaBindingEventArgs.all.SetUri (uri.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetStream
@@ -3534,11 +4189,15 @@ package body WinRt.Windows.Media.Core is
       contentType : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_contentType : WinRt.HString := To_HString (contentType);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_contentType : constant WinRt.HString := To_HString (contentType);
    begin
       Hr := this.m_IMediaBindingEventArgs.all.SetStream (stream, HStr_contentType);
-      Hr := WindowsDeleteString (HStr_contentType);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_contentType);
    end;
 
    procedure SetStreamReference
@@ -3548,11 +4207,15 @@ package body WinRt.Windows.Media.Core is
       contentType : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_contentType : WinRt.HString := To_HString (contentType);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_contentType : constant WinRt.HString := To_HString (contentType);
    begin
       Hr := this.m_IMediaBindingEventArgs.all.SetStreamReference (stream, HStr_contentType);
-      Hr := WindowsDeleteString (HStr_contentType);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_contentType);
    end;
 
    procedure SetAdaptiveMediaSource
@@ -3561,13 +4224,17 @@ package body WinRt.Windows.Media.Core is
       mediaSource_p : Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaBindingEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaBindingEventArgs_Interface, WinRt.Windows.Media.Core.IMediaBindingEventArgs2, WinRt.Windows.Media.Core.IID_IMediaBindingEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaBindingEventArgs.all);
       Hr := m_Interface.SetAdaptiveMediaSource (mediaSource_p.m_IAdaptiveMediaSource.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetStorageFile
@@ -3576,13 +4243,17 @@ package body WinRt.Windows.Media.Core is
       file : Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaBindingEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaBindingEventArgs_Interface, WinRt.Windows.Media.Core.IMediaBindingEventArgs2, WinRt.Windows.Media.Core.IID_IMediaBindingEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaBindingEventArgs.all);
       Hr := m_Interface.SetStorageFile (file);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetDownloadOperation
@@ -3591,13 +4262,17 @@ package body WinRt.Windows.Media.Core is
       downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaBindingEventArgs3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaBindingEventArgs_Interface, WinRt.Windows.Media.Core.IMediaBindingEventArgs3, WinRt.Windows.Media.Core.IID_IMediaBindingEventArgs3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaBindingEventArgs.all);
       Hr := m_Interface.SetDownloadOperation (downloadOperation.m_IDownloadOperation.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3609,12 +4284,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaCueEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaCueEventArgs, IMediaCueEventArgs_Ptr);
    begin
       if this.m_IMediaCueEventArgs /= null then
          if this.m_IMediaCueEventArgs.all /= null then
-            RefCount := this.m_IMediaCueEventArgs.all.Release;
+            temp := this.m_IMediaCueEventArgs.all.Release;
             Free (this.m_IMediaCueEventArgs);
          end if;
       end if;
@@ -3629,10 +4304,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.IMediaCue is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaCue;
    begin
       Hr := this.m_IMediaCueEventArgs.all.get_Cue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3645,12 +4324,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaSource2, IMediaSource2_Ptr);
    begin
       if this.m_IMediaSource2 /= null then
          if this.m_IMediaSource2.all /= null then
-            RefCount := this.m_IMediaSource2.all.Release;
+            temp := this.m_IMediaSource2.all.Release;
             Free (this.m_IMediaSource2);
          end if;
       end if;
@@ -3665,20 +4344,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromDownloadOperation (downloadOperation.m_IDownloadOperation.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3688,20 +4371,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMediaBinder (binder.m_IMediaBinder.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3711,20 +4398,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMediaFrameSource (frameSource.m_IMediaFrameSource.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3734,20 +4425,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromAdaptiveMediaSource (mediaSource_p.m_IAdaptiveMediaSource.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3757,20 +4452,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMediaStreamSource (mediaSource_p.m_IMediaStreamSource.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3780,20 +4479,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMseStreamSource (mediaSource_p.m_IMseStreamSource.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3803,20 +4506,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIMediaSource (mediaSource_p, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3826,20 +4533,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStorageFile (file, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3850,22 +4561,26 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
-      HStr_contentType : WinRt.HString := To_HString (contentType);
+      HStr_contentType : constant WinRt.HString := To_HString (contentType);
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStream (stream, HStr_contentType, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_contentType);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_contentType);
       end return;
    end;
 
@@ -3876,22 +4591,26 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
-      HStr_contentType : WinRt.HString := To_HString (contentType);
+      HStr_contentType : constant WinRt.HString := To_HString (contentType);
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStreamReference (stream, HStr_contentType, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_contentType);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_contentType);
       end return;
    end;
 
@@ -3901,20 +4620,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromUri (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
             Retval.m_IMediaSource2.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3928,10 +4651,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaSource2.all.add_OpenOperationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3941,9 +4668,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaSource2.all.remove_OpenOperationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CustomProperties
@@ -3952,11 +4683,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IMediaSource2.all.get_CustomProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -3968,13 +4703,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMediaSource2.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3984,10 +4723,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMediaSource2.all.get_IsOpen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3997,13 +4740,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IObservableVector_ITimedTextSource.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IObservableVector_ITimedTextSource.Kind;
    begin
       Hr := this.m_IMediaSource2.all.get_ExternalTimedTextSources (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IObservableVector_ITimedTextSource (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4013,13 +4760,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IObservableVector_ITimedMetadataTrack.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IObservableVector_ITimedMetadataTrack.Kind;
    begin
       Hr := this.m_IMediaSource2.all.get_ExternalTimedMetadataTracks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IObservableVector_ITimedMetadataTrack (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4028,13 +4779,17 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaSource2.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StateChanged
@@ -4044,14 +4799,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource3, WinRt.Windows.Media.Core.IID_IMediaSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaSource2.all);
       Hr := m_Interface.add_StateChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4061,13 +4820,17 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource3, WinRt.Windows.Media.Core.IID_IMediaSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaSource2.all);
       Hr := m_Interface.remove_StateChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -4076,14 +4839,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaSourceState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource3, WinRt.Windows.Media.Core.IID_IMediaSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaSource2.all);
       Hr := m_Interface.get_State (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4092,13 +4859,17 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource3, WinRt.Windows.Media.Core.IID_IMediaSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaSource2.all);
       Hr := m_Interface.Reset;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AdaptiveMediaSource
@@ -4107,15 +4878,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource4, WinRt.Windows.Media.Core.IID_IMediaSource4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSource do
          m_Interface := QInterface (this.m_IMediaSource2.all);
          Hr := m_Interface.get_AdaptiveMediaSource (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAdaptiveMediaSource := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
          Retval.m_IAdaptiveMediaSource.all := m_ComRetVal;
       end return;
@@ -4127,15 +4902,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSource'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource4, WinRt.Windows.Media.Core.IID_IMediaSource4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSource do
          m_Interface := QInterface (this.m_IMediaSource2.all);
          Hr := m_Interface.get_MediaStreamSource (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
          Retval.m_IMediaStreamSource.all := m_ComRetVal;
       end return;
@@ -4147,15 +4926,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MseStreamSource'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMseStreamSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource4, WinRt.Windows.Media.Core.IID_IMediaSource4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.MseStreamSource do
          m_Interface := QInterface (this.m_IMediaSource2.all);
          Hr := m_Interface.get_MseStreamSource (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMseStreamSource := new Windows.Media.Core.IMseStreamSource;
          Retval.m_IMseStreamSource.all := m_ComRetVal;
       end return;
@@ -4167,15 +4950,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource4, WinRt.Windows.Media.Core.IID_IMediaSource4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IMediaSource2.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -4186,8 +4973,9 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4195,7 +4983,6 @@ package body WinRt.Windows.Media.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4211,7 +4998,7 @@ package body WinRt.Windows.Media.Core is
    begin
       m_Interface := QInterface (this.m_IMediaSource2.all);
       Hr := m_Interface.OpenAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4219,9 +5006,9 @@ package body WinRt.Windows.Media.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4233,15 +5020,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaSource5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IDownloadOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaSource2_Interface, WinRt.Windows.Media.Core.IMediaSource5, WinRt.Windows.Media.Core.IID_IMediaSource5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation do
          m_Interface := QInterface (this.m_IMediaSource2.all);
          Hr := m_Interface.get_DownloadOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDownloadOperation := new Windows.Networking.BackgroundTransfer.IDownloadOperation;
          Retval.m_IDownloadOperation.all := m_ComRetVal;
       end return;
@@ -4256,12 +5047,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaSourceAppServiceConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaSourceAppServiceConnection, IMediaSourceAppServiceConnection_Ptr);
    begin
       if this.m_IMediaSourceAppServiceConnection /= null then
          if this.m_IMediaSourceAppServiceConnection.all /= null then
-            RefCount := this.m_IMediaSourceAppServiceConnection.all.Release;
+            temp := this.m_IMediaSourceAppServiceConnection.all.Release;
             Free (this.m_IMediaSourceAppServiceConnection);
          end if;
       end if;
@@ -4276,9 +5067,10 @@ package body WinRt.Windows.Media.Core is
    )
    return MediaSourceAppServiceConnection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.MediaSourceAppServiceConnection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaSourceAppServiceConnection");
       m_Factory    : access IMediaSourceAppServiceConnectionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.IMediaSourceAppServiceConnection;
    begin
       return RetVal : MediaSourceAppServiceConnection do
@@ -4287,9 +5079,9 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.Create (appServiceConnection.m_IAppServiceConnection.all, m_ComRetVal'Access);
             Retval.m_IMediaSourceAppServiceConnection := new Windows.Media.Core.IMediaSourceAppServiceConnection;
             Retval.m_IMediaSourceAppServiceConnection.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4303,10 +5095,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaSourceAppServiceConnection.all.add_InitializeMediaStreamSourceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4316,9 +5112,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaSourceAppServiceConnection.all.remove_InitializeMediaStreamSourceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -4326,9 +5126,13 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaSourceAppServiceConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaSourceAppServiceConnection.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4340,12 +5144,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaSourceError) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaSourceError, IMediaSourceError_Ptr);
    begin
       if this.m_IMediaSourceError /= null then
          if this.m_IMediaSourceError.all /= null then
-            RefCount := this.m_IMediaSourceError.all.Release;
+            temp := this.m_IMediaSourceError.all.Release;
             Free (this.m_IMediaSourceError);
          end if;
       end if;
@@ -4360,10 +5164,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IMediaSourceError.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4376,12 +5184,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaSourceOpenOperationCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaSourceOpenOperationCompletedEventArgs, IMediaSourceOpenOperationCompletedEventArgs_Ptr);
    begin
       if this.m_IMediaSourceOpenOperationCompletedEventArgs /= null then
          if this.m_IMediaSourceOpenOperationCompletedEventArgs.all /= null then
-            RefCount := this.m_IMediaSourceOpenOperationCompletedEventArgs.all.Release;
+            temp := this.m_IMediaSourceOpenOperationCompletedEventArgs.all.Release;
             Free (this.m_IMediaSourceOpenOperationCompletedEventArgs);
          end if;
       end if;
@@ -4396,11 +5204,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceError'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSourceError;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSourceError do
          Hr := this.m_IMediaSourceOpenOperationCompletedEventArgs.all.get_Error (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaSourceError := new Windows.Media.Core.IMediaSourceError;
          Retval.m_IMediaSourceError.all := m_ComRetVal;
       end return;
@@ -4415,12 +5227,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaSourceStateChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaSourceStateChangedEventArgs, IMediaSourceStateChangedEventArgs_Ptr);
    begin
       if this.m_IMediaSourceStateChangedEventArgs /= null then
          if this.m_IMediaSourceStateChangedEventArgs.all /= null then
-            RefCount := this.m_IMediaSourceStateChangedEventArgs.all.Release;
+            temp := this.m_IMediaSourceStateChangedEventArgs.all.Release;
             Free (this.m_IMediaSourceStateChangedEventArgs);
          end if;
       end if;
@@ -4435,10 +5247,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaSourceState;
    begin
       Hr := this.m_IMediaSourceStateChangedEventArgs.all.get_OldState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4448,10 +5264,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaSourceState;
    begin
       Hr := this.m_IMediaSourceStateChangedEventArgs.all.get_NewState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4464,12 +5284,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSample) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSample, IMediaStreamSample_Ptr);
    begin
       if this.m_IMediaStreamSample /= null then
          if this.m_IMediaStreamSample.all /= null then
-            RefCount := this.m_IMediaStreamSample.all.Release;
+            temp := this.m_IMediaStreamSample.all.Release;
             Free (this.m_IMediaStreamSample);
          end if;
       end if;
@@ -4485,20 +5305,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSample is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaStreamSampleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSample;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSample do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaStreamSampleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (buffer, timestamp, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaStreamSample := new Windows.Media.Core.IMediaStreamSample;
             Retval.m_IMediaStreamSample.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4510,15 +5334,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSample is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaStreamSampleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MediaStreamSample.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4536,7 +5360,7 @@ package body WinRt.Windows.Media.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MediaStreamSample.Kind_Delegate, AsyncOperationCompletedHandler_MediaStreamSample.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4550,10 +5374,10 @@ package body WinRt.Windows.Media.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IMediaStreamSampleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStreamAsync (stream, count, timestamp, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -4565,15 +5389,15 @@ package body WinRt.Windows.Media.Core is
                      Retval.m_IMediaStreamSample := new Windows.Media.Core.IMediaStreamSample;
                      Retval.m_IMediaStreamSample.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4584,20 +5408,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSample is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSample");
       m_Factory        : access WinRt.Windows.Media.Core.IMediaStreamSampleStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSample;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSample do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaStreamSampleStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromDirect3D11Surface (surface, timestamp, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMediaStreamSample := new Windows.Media.Core.IMediaStreamSample;
             Retval.m_IMediaStreamSample.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4611,10 +5439,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaStreamSample.all.add_Processed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4624,9 +5456,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSample.all.remove_Processed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Buffer
@@ -4635,11 +5471,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Storage.Streams.Buffer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.Buffer do
          Hr := this.m_IMediaStreamSample.all.get_Buffer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBuffer := new Windows.Storage.Streams.IBuffer;
          Retval.m_IBuffer.all := m_ComRetVal;
       end return;
@@ -4651,10 +5491,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaStreamSample.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4664,11 +5508,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSamplePropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSamplePropertySet do
          Hr := this.m_IMediaStreamSample.all.get_ExtendedProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -4680,11 +5528,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSampleProtectionProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSampleProtectionProperties;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSampleProtectionProperties do
          Hr := this.m_IMediaStreamSample.all.get_Protection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSampleProtectionProperties := new Windows.Media.Core.IMediaStreamSampleProtectionProperties;
          Retval.m_IMediaStreamSampleProtectionProperties.all := m_ComRetVal;
       end return;
@@ -4696,9 +5548,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSample.all.put_DecodeTimestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DecodeTimestamp
@@ -4707,10 +5563,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaStreamSample.all.get_DecodeTimestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4720,9 +5580,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSample.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -4731,10 +5595,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaStreamSample.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4744,9 +5612,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSample.all.put_KeyFrame (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyFrame
@@ -4755,10 +5627,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMediaStreamSample.all.get_KeyFrame (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4768,9 +5644,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSample.all.put_Discontinuous (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Discontinuous
@@ -4779,10 +5659,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMediaStreamSample.all.get_Discontinuous (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4792,14 +5676,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSample2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSample_Interface, WinRt.Windows.Media.Core.IMediaStreamSample2, WinRt.Windows.Media.Core.IID_IMediaStreamSample2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSample.all);
       Hr := m_Interface.get_Direct3D11Surface (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4827,15 +5715,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Lookup (key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4845,15 +5737,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4864,15 +5760,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4882,15 +5782,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4902,15 +5806,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Insert (key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4920,14 +5828,18 @@ package body WinRt.Windows.Media.Core is
       key : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Remove (key);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -4935,14 +5847,18 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaStreamSamplePropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4954,12 +5870,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSampleProtectionProperties) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSampleProtectionProperties, IMediaStreamSampleProtectionProperties_Ptr);
    begin
       if this.m_IMediaStreamSampleProtectionProperties /= null then
          if this.m_IMediaStreamSampleProtectionProperties.all /= null then
-            RefCount := this.m_IMediaStreamSampleProtectionProperties.all.Release;
+            temp := this.m_IMediaStreamSampleProtectionProperties.all.Release;
             Free (this.m_IMediaStreamSampleProtectionProperties);
          end if;
       end if;
@@ -4974,10 +5890,14 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSampleProtectionProperties.all.SetKeyIdentifier (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GetKeyIdentifier
@@ -4986,10 +5906,14 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSampleProtectionProperties.all.GetKeyIdentifier (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetInitializationVector
@@ -4998,10 +5922,14 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSampleProtectionProperties.all.SetInitializationVector (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GetInitializationVector
@@ -5010,10 +5938,14 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSampleProtectionProperties.all.GetInitializationVector (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetSubSampleMapping
@@ -5022,10 +5954,14 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSampleProtectionProperties.all.SetSubSampleMapping (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GetSubSampleMapping
@@ -5034,10 +5970,14 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSampleProtectionProperties.all.GetSubSampleMapping (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5049,12 +5989,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSource, IMediaStreamSource_Ptr);
    begin
       if this.m_IMediaStreamSource /= null then
          if this.m_IMediaStreamSource.all /= null then
-            RefCount := this.m_IMediaStreamSource.all.Release;
+            temp := this.m_IMediaStreamSource.all.Release;
             Free (this.m_IMediaStreamSource);
          end if;
       end if;
@@ -5069,9 +6009,10 @@ package body WinRt.Windows.Media.Core is
    )
    return MediaStreamSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSource");
       m_Factory    : access IMediaStreamSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.IMediaStreamSource;
    begin
       return RetVal : MediaStreamSource do
@@ -5080,9 +6021,9 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.CreateFromDescriptor (descriptor, m_ComRetVal'Access);
             Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
             Retval.m_IMediaStreamSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5093,9 +6034,10 @@ package body WinRt.Windows.Media.Core is
    )
    return MediaStreamSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.MediaStreamSource");
       m_Factory    : access IMediaStreamSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.IMediaStreamSource;
    begin
       return RetVal : MediaStreamSource do
@@ -5104,9 +6046,9 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.CreateFromDescriptors (descriptor, descriptor2, m_ComRetVal'Access);
             Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
             Retval.m_IMediaStreamSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5120,10 +6062,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaStreamSource.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5133,9 +6079,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Starting
@@ -5145,10 +6095,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaStreamSource.all.add_Starting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5158,9 +6112,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.remove_Starting (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Paused
@@ -5170,10 +6128,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaStreamSource.all.add_Paused (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5183,9 +6145,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.remove_Paused (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SampleRequested
@@ -5195,10 +6161,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaStreamSource.all.add_SampleRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5208,9 +6178,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.remove_SampleRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SwitchStreamsRequested
@@ -5220,10 +6194,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaStreamSource.all.add_SwitchStreamsRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5233,9 +6211,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.remove_SwitchStreamsRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure NotifyError
@@ -5244,9 +6226,13 @@ package body WinRt.Windows.Media.Core is
       errorStatus : Windows.Media.Core.MediaStreamSourceErrorStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.NotifyError (errorStatus);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddStreamDescriptor
@@ -5255,9 +6241,13 @@ package body WinRt.Windows.Media.Core is
       descriptor : Windows.Media.Core.IMediaStreamDescriptor
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.AddStreamDescriptor (descriptor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_MediaProtectionManager
@@ -5266,9 +6256,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Protection.MediaProtectionManager'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.put_MediaProtectionManager (value.m_IMediaProtectionManager.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MediaProtectionManager
@@ -5277,11 +6271,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Protection.MediaProtectionManager'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Protection.IMediaProtectionManager;
    begin
       return RetVal : WinRt.Windows.Media.Protection.MediaProtectionManager do
          Hr := this.m_IMediaStreamSource.all.get_MediaProtectionManager (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaProtectionManager := new Windows.Media.Protection.IMediaProtectionManager;
          Retval.m_IMediaProtectionManager.all := m_ComRetVal;
       end return;
@@ -5293,9 +6291,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -5304,10 +6306,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaStreamSource.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5317,9 +6323,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.put_CanSeek (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanSeek
@@ -5328,10 +6338,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMediaStreamSource.all.get_CanSeek (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5341,9 +6355,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.put_BufferTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BufferTime
@@ -5352,10 +6370,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaStreamSource.all.get_BufferTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5366,9 +6388,13 @@ package body WinRt.Windows.Media.Core is
       endOffset : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.SetBufferedRange (startOffset, endOffset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MusicProperties
@@ -5377,11 +6403,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Storage.FileProperties.MusicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IMusicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.MusicProperties do
          Hr := this.m_IMediaStreamSource.all.get_MusicProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMusicProperties := new Windows.Storage.FileProperties.IMusicProperties;
          Retval.m_IMusicProperties.all := m_ComRetVal;
       end return;
@@ -5393,11 +6423,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Storage.FileProperties.VideoProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IVideoProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.VideoProperties do
          Hr := this.m_IMediaStreamSource.all.get_VideoProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoProperties := new Windows.Storage.FileProperties.IVideoProperties;
          Retval.m_IVideoProperties.all := m_ComRetVal;
       end return;
@@ -5409,9 +6443,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSource.all.put_Thumbnail (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Thumbnail
@@ -5420,10 +6458,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IMediaStreamSource.all.get_Thumbnail (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5435,11 +6477,15 @@ package body WinRt.Windows.Media.Core is
       licenseData : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_keyIdentifier is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       function Convert_licenseData is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IMediaStreamSource.all.AddProtectionKey (streamDescriptor, WinRt.UInt32(keyIdentifier'Length), Convert_keyIdentifier (keyIdentifier (keyIdentifier'First)'Address), WinRt.UInt32(licenseData'Length), Convert_licenseData (licenseData (licenseData'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SampleRendered
@@ -5449,14 +6495,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSource_Interface, WinRt.Windows.Media.Core.IMediaStreamSource2, WinRt.Windows.Media.Core.IID_IMediaStreamSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSource.all);
       Hr := m_Interface.add_SampleRendered (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5466,13 +6516,17 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSource_Interface, WinRt.Windows.Media.Core.IMediaStreamSource2, WinRt.Windows.Media.Core.IID_IMediaStreamSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSource.all);
       Hr := m_Interface.remove_SampleRendered (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_MaxSupportedPlaybackRate
@@ -5481,13 +6535,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSource_Interface, WinRt.Windows.Media.Core.IMediaStreamSource3, WinRt.Windows.Media.Core.IID_IMediaStreamSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSource.all);
       Hr := m_Interface.put_MaxSupportedPlaybackRate (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxSupportedPlaybackRate
@@ -5496,17 +6554,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSource3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSource_Interface, WinRt.Windows.Media.Core.IMediaStreamSource3, WinRt.Windows.Media.Core.IID_IMediaStreamSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSource.all);
       Hr := m_Interface.get_MaxSupportedPlaybackRate (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5516,13 +6578,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSource_Interface, WinRt.Windows.Media.Core.IMediaStreamSource4, WinRt.Windows.Media.Core.IID_IMediaStreamSource4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSource.all);
       Hr := m_Interface.put_IsLive (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsLive
@@ -5531,14 +6597,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamSource4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamSource_Interface, WinRt.Windows.Media.Core.IMediaStreamSource4, WinRt.Windows.Media.Core.IID_IMediaStreamSource4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamSource.all);
       Hr := m_Interface.get_IsLive (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5551,12 +6621,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceClosedEventArgs, IMediaStreamSourceClosedEventArgs_Ptr);
    begin
       if this.m_IMediaStreamSourceClosedEventArgs /= null then
          if this.m_IMediaStreamSourceClosedEventArgs.all /= null then
-            RefCount := this.m_IMediaStreamSourceClosedEventArgs.all.Release;
+            temp := this.m_IMediaStreamSourceClosedEventArgs.all.Release;
             Free (this.m_IMediaStreamSourceClosedEventArgs);
          end if;
       end if;
@@ -5571,11 +6641,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceClosedRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceClosedRequest;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceClosedRequest do
          Hr := this.m_IMediaStreamSourceClosedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceClosedRequest := new Windows.Media.Core.IMediaStreamSourceClosedRequest;
          Retval.m_IMediaStreamSourceClosedRequest.all := m_ComRetVal;
       end return;
@@ -5590,12 +6664,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceClosedRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceClosedRequest, IMediaStreamSourceClosedRequest_Ptr);
    begin
       if this.m_IMediaStreamSourceClosedRequest /= null then
          if this.m_IMediaStreamSourceClosedRequest.all /= null then
-            RefCount := this.m_IMediaStreamSourceClosedRequest.all.Release;
+            temp := this.m_IMediaStreamSourceClosedRequest.all.Release;
             Free (this.m_IMediaStreamSourceClosedRequest);
          end if;
       end if;
@@ -5610,10 +6684,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceClosedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaStreamSourceClosedReason;
    begin
       Hr := this.m_IMediaStreamSourceClosedRequest.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5626,12 +6704,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSampleRenderedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSampleRenderedEventArgs, IMediaStreamSourceSampleRenderedEventArgs_Ptr);
    begin
       if this.m_IMediaStreamSourceSampleRenderedEventArgs /= null then
          if this.m_IMediaStreamSourceSampleRenderedEventArgs.all /= null then
-            RefCount := this.m_IMediaStreamSourceSampleRenderedEventArgs.all.Release;
+            temp := this.m_IMediaStreamSourceSampleRenderedEventArgs.all.Release;
             Free (this.m_IMediaStreamSourceSampleRenderedEventArgs);
          end if;
       end if;
@@ -5646,10 +6724,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaStreamSourceSampleRenderedEventArgs.all.get_SampleLag (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5662,12 +6744,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSampleRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSampleRequest, IMediaStreamSourceSampleRequest_Ptr);
    begin
       if this.m_IMediaStreamSourceSampleRequest /= null then
          if this.m_IMediaStreamSourceSampleRequest.all /= null then
-            RefCount := this.m_IMediaStreamSourceSampleRequest.all.Release;
+            temp := this.m_IMediaStreamSourceSampleRequest.all.Release;
             Free (this.m_IMediaStreamSourceSampleRequest);
          end if;
       end if;
@@ -5682,10 +6764,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.IMediaStreamDescriptor is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamDescriptor;
    begin
       Hr := this.m_IMediaStreamSourceSampleRequest.all.get_StreamDescriptor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5695,11 +6781,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceSampleRequestDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceSampleRequestDeferral;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceSampleRequestDeferral do
          Hr := this.m_IMediaStreamSourceSampleRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceSampleRequestDeferral := new Windows.Media.Core.IMediaStreamSourceSampleRequestDeferral;
          Retval.m_IMediaStreamSourceSampleRequestDeferral.all := m_ComRetVal;
       end return;
@@ -5711,9 +6801,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.MediaStreamSample'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSourceSampleRequest.all.put_Sample (value.m_IMediaStreamSample.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Sample
@@ -5722,11 +6816,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSample'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSample;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSample do
          Hr := this.m_IMediaStreamSourceSampleRequest.all.get_Sample (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSample := new Windows.Media.Core.IMediaStreamSample;
          Retval.m_IMediaStreamSample.all := m_ComRetVal;
       end return;
@@ -5738,9 +6836,13 @@ package body WinRt.Windows.Media.Core is
       progress : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSourceSampleRequest.all.ReportSampleProgress (progress);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5752,12 +6854,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSampleRequestDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSampleRequestDeferral, IMediaStreamSourceSampleRequestDeferral_Ptr);
    begin
       if this.m_IMediaStreamSourceSampleRequestDeferral /= null then
          if this.m_IMediaStreamSourceSampleRequestDeferral.all /= null then
-            RefCount := this.m_IMediaStreamSourceSampleRequestDeferral.all.Release;
+            temp := this.m_IMediaStreamSourceSampleRequestDeferral.all.Release;
             Free (this.m_IMediaStreamSourceSampleRequestDeferral);
          end if;
       end if;
@@ -5771,9 +6873,13 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaStreamSourceSampleRequestDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSourceSampleRequestDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5785,12 +6891,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSampleRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSampleRequestedEventArgs, IMediaStreamSourceSampleRequestedEventArgs_Ptr);
    begin
       if this.m_IMediaStreamSourceSampleRequestedEventArgs /= null then
          if this.m_IMediaStreamSourceSampleRequestedEventArgs.all /= null then
-            RefCount := this.m_IMediaStreamSourceSampleRequestedEventArgs.all.Release;
+            temp := this.m_IMediaStreamSourceSampleRequestedEventArgs.all.Release;
             Free (this.m_IMediaStreamSourceSampleRequestedEventArgs);
          end if;
       end if;
@@ -5805,11 +6911,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceSampleRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceSampleRequest;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceSampleRequest do
          Hr := this.m_IMediaStreamSourceSampleRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceSampleRequest := new Windows.Media.Core.IMediaStreamSourceSampleRequest;
          Retval.m_IMediaStreamSourceSampleRequest.all := m_ComRetVal;
       end return;
@@ -5824,12 +6934,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceStartingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceStartingEventArgs, IMediaStreamSourceStartingEventArgs_Ptr);
    begin
       if this.m_IMediaStreamSourceStartingEventArgs /= null then
          if this.m_IMediaStreamSourceStartingEventArgs.all /= null then
-            RefCount := this.m_IMediaStreamSourceStartingEventArgs.all.Release;
+            temp := this.m_IMediaStreamSourceStartingEventArgs.all.Release;
             Free (this.m_IMediaStreamSourceStartingEventArgs);
          end if;
       end if;
@@ -5844,11 +6954,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceStartingRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceStartingRequest;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceStartingRequest do
          Hr := this.m_IMediaStreamSourceStartingEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceStartingRequest := new Windows.Media.Core.IMediaStreamSourceStartingRequest;
          Retval.m_IMediaStreamSourceStartingRequest.all := m_ComRetVal;
       end return;
@@ -5863,12 +6977,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceStartingRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceStartingRequest, IMediaStreamSourceStartingRequest_Ptr);
    begin
       if this.m_IMediaStreamSourceStartingRequest /= null then
          if this.m_IMediaStreamSourceStartingRequest.all /= null then
-            RefCount := this.m_IMediaStreamSourceStartingRequest.all.Release;
+            temp := this.m_IMediaStreamSourceStartingRequest.all.Release;
             Free (this.m_IMediaStreamSourceStartingRequest);
          end if;
       end if;
@@ -5883,13 +6997,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMediaStreamSourceStartingRequest.all.get_StartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5899,11 +7017,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceStartingRequestDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceStartingRequestDeferral;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceStartingRequestDeferral do
          Hr := this.m_IMediaStreamSourceStartingRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceStartingRequestDeferral := new Windows.Media.Core.IMediaStreamSourceStartingRequestDeferral;
          Retval.m_IMediaStreamSourceStartingRequestDeferral.all := m_ComRetVal;
       end return;
@@ -5915,9 +7037,13 @@ package body WinRt.Windows.Media.Core is
       position : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSourceStartingRequest.all.SetActualStartPosition (position);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5929,12 +7055,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceStartingRequestDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceStartingRequestDeferral, IMediaStreamSourceStartingRequestDeferral_Ptr);
    begin
       if this.m_IMediaStreamSourceStartingRequestDeferral /= null then
          if this.m_IMediaStreamSourceStartingRequestDeferral.all /= null then
-            RefCount := this.m_IMediaStreamSourceStartingRequestDeferral.all.Release;
+            temp := this.m_IMediaStreamSourceStartingRequestDeferral.all.Release;
             Free (this.m_IMediaStreamSourceStartingRequestDeferral);
          end if;
       end if;
@@ -5948,9 +7074,13 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaStreamSourceStartingRequestDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSourceStartingRequestDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5962,12 +7092,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSwitchStreamsRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSwitchStreamsRequest, IMediaStreamSourceSwitchStreamsRequest_Ptr);
    begin
       if this.m_IMediaStreamSourceSwitchStreamsRequest /= null then
          if this.m_IMediaStreamSourceSwitchStreamsRequest.all /= null then
-            RefCount := this.m_IMediaStreamSourceSwitchStreamsRequest.all.Release;
+            temp := this.m_IMediaStreamSourceSwitchStreamsRequest.all.Release;
             Free (this.m_IMediaStreamSourceSwitchStreamsRequest);
          end if;
       end if;
@@ -5982,10 +7112,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.IMediaStreamDescriptor is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamDescriptor;
    begin
       Hr := this.m_IMediaStreamSourceSwitchStreamsRequest.all.get_OldStreamDescriptor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5995,10 +7129,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.IMediaStreamDescriptor is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamDescriptor;
    begin
       Hr := this.m_IMediaStreamSourceSwitchStreamsRequest.all.get_NewStreamDescriptor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6008,11 +7146,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceSwitchStreamsRequestDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequestDeferral;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceSwitchStreamsRequestDeferral do
          Hr := this.m_IMediaStreamSourceSwitchStreamsRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceSwitchStreamsRequestDeferral := new Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequestDeferral;
          Retval.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all := m_ComRetVal;
       end return;
@@ -6027,12 +7169,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSwitchStreamsRequestDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSwitchStreamsRequestDeferral, IMediaStreamSourceSwitchStreamsRequestDeferral_Ptr);
    begin
       if this.m_IMediaStreamSourceSwitchStreamsRequestDeferral /= null then
          if this.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all /= null then
-            RefCount := this.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all.Release;
+            temp := this.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all.Release;
             Free (this.m_IMediaStreamSourceSwitchStreamsRequestDeferral);
          end if;
       end if;
@@ -6046,9 +7188,13 @@ package body WinRt.Windows.Media.Core is
       this : in out MediaStreamSourceSwitchStreamsRequestDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6060,12 +7206,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MediaStreamSourceSwitchStreamsRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamSourceSwitchStreamsRequestedEventArgs, IMediaStreamSourceSwitchStreamsRequestedEventArgs_Ptr);
    begin
       if this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs /= null then
          if this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs.all /= null then
-            RefCount := this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs.all.Release;
+            temp := this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs.all.Release;
             Free (this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs);
          end if;
       end if;
@@ -6080,11 +7226,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaStreamSourceSwitchStreamsRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequest;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSourceSwitchStreamsRequest do
          Hr := this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamSourceSwitchStreamsRequest := new Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequest;
          Retval.m_IMediaStreamSourceSwitchStreamsRequest.all := m_ComRetVal;
       end return;
@@ -6099,12 +7249,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MseSourceBuffer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMseSourceBuffer, IMseSourceBuffer_Ptr);
    begin
       if this.m_IMseSourceBuffer /= null then
          if this.m_IMseSourceBuffer.all /= null then
-            RefCount := this.m_IMseSourceBuffer.all.Release;
+            temp := this.m_IMseSourceBuffer.all.Release;
             Free (this.m_IMseSourceBuffer);
          end if;
       end if;
@@ -6120,10 +7270,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBuffer.all.add_UpdateStarting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6133,9 +7287,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.remove_UpdateStarting (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Updated
@@ -6145,10 +7303,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBuffer.all.add_Updated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6158,9 +7320,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.remove_Updated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UpdateEnded
@@ -6170,10 +7336,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBuffer.all.add_UpdateEnded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6183,9 +7353,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.remove_UpdateEnded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ErrorOccurred
@@ -6195,10 +7369,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBuffer.all.add_ErrorOccurred (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6208,9 +7386,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.remove_ErrorOccurred (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Aborted
@@ -6220,10 +7402,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBuffer.all.add_Aborted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6233,9 +7419,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.remove_Aborted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Mode
@@ -6244,10 +7434,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MseAppendMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MseAppendMode;
    begin
       Hr := this.m_IMseSourceBuffer.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6257,9 +7451,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.MseAppendMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsUpdating
@@ -6268,10 +7466,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMseSourceBuffer.all.get_IsUpdating (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6281,13 +7483,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVectorView_MseTimeRange.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_MseTimeRange.Kind;
    begin
       Hr := this.m_IMseSourceBuffer.all.get_Buffered (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_MseTimeRange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6297,10 +7503,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMseSourceBuffer.all.get_TimestampOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6310,9 +7520,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.put_TimestampOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppendWindowStart
@@ -6321,10 +7535,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMseSourceBuffer.all.get_AppendWindowStart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6334,9 +7552,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.put_AppendWindowStart (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppendWindowEnd
@@ -6345,13 +7567,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMseSourceBuffer.all.get_AppendWindowEnd (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6361,9 +7587,13 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.put_AppendWindowEnd (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AppendBuffer
@@ -6372,9 +7602,13 @@ package body WinRt.Windows.Media.Core is
       buffer : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.AppendBuffer (buffer);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AppendStream
@@ -6383,9 +7617,13 @@ package body WinRt.Windows.Media.Core is
       stream : Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.AppendStream (stream);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AppendStream
@@ -6395,9 +7633,13 @@ package body WinRt.Windows.Media.Core is
       maxSize : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.AppendStream (stream, maxSize);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Abort_x
@@ -6405,9 +7647,13 @@ package body WinRt.Windows.Media.Core is
       this : in out MseSourceBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.Abort_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -6417,9 +7663,13 @@ package body WinRt.Windows.Media.Core is
       end_x : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBuffer.all.Remove (start, end_x);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6431,12 +7681,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MseSourceBufferList) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMseSourceBufferList, IMseSourceBufferList_Ptr);
    begin
       if this.m_IMseSourceBufferList /= null then
          if this.m_IMseSourceBufferList.all /= null then
-            RefCount := this.m_IMseSourceBufferList.all.Release;
+            temp := this.m_IMseSourceBufferList.all.Release;
             Free (this.m_IMseSourceBufferList);
          end if;
       end if;
@@ -6452,10 +7702,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBufferList.all.add_SourceBufferAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6465,9 +7719,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBufferList.all.remove_SourceBufferAdded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SourceBufferRemoved
@@ -6477,10 +7735,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseSourceBufferList.all.add_SourceBufferRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6490,9 +7752,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseSourceBufferList.all.remove_SourceBufferRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Buffers
@@ -6501,13 +7767,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVectorView_IMseSourceBuffer.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMseSourceBuffer.Kind;
    begin
       Hr := this.m_IMseSourceBufferList.all.get_Buffers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMseSourceBuffer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6520,12 +7790,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out MseStreamSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMseStreamSource, IMseStreamSource_Ptr);
    begin
       if this.m_IMseStreamSource /= null then
          if this.m_IMseStreamSource.all /= null then
-            RefCount := this.m_IMseStreamSource.all.Release;
+            temp := this.m_IMseStreamSource.all.Release;
             Free (this.m_IMseStreamSource);
          end if;
       end if;
@@ -6536,7 +7806,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return MseStreamSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.MseStreamSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.MseStreamSource");
       m_ComRetVal  : aliased Windows.Media.Core.IMseStreamSource;
    begin
       return RetVal : MseStreamSource do
@@ -6545,7 +7816,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IMseStreamSource := new Windows.Media.Core.IMseStreamSource;
             Retval.m_IMseStreamSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6558,19 +7829,23 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.MseStreamSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.MseStreamSource");
       m_Factory        : access WinRt.Windows.Media.Core.IMseStreamSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_contentType : WinRt.HString := To_HString (contentType);
+      HStr_contentType : constant WinRt.HString := To_HString (contentType);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMseStreamSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsContentTypeSupported (HStr_contentType, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_contentType);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_contentType);
       return m_ComRetVal;
    end;
 
@@ -6584,10 +7859,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseStreamSource.all.add_Opened (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6597,9 +7876,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseStreamSource.all.remove_Opened (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Ended
@@ -6609,10 +7892,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseStreamSource.all.add_Ended (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6622,9 +7909,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseStreamSource.all.remove_Ended (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -6634,10 +7925,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMseStreamSource.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6647,9 +7942,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseStreamSource.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SourceBuffers
@@ -6658,11 +7957,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MseSourceBufferList'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMseSourceBufferList;
    begin
       return RetVal : WinRt.Windows.Media.Core.MseSourceBufferList do
          Hr := this.m_IMseStreamSource.all.get_SourceBuffers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMseSourceBufferList := new Windows.Media.Core.IMseSourceBufferList;
          Retval.m_IMseSourceBufferList.all := m_ComRetVal;
       end return;
@@ -6674,11 +7977,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MseSourceBufferList'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMseSourceBufferList;
    begin
       return RetVal : WinRt.Windows.Media.Core.MseSourceBufferList do
          Hr := this.m_IMseStreamSource.all.get_ActiveSourceBuffers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMseSourceBufferList := new Windows.Media.Core.IMseSourceBufferList;
          Retval.m_IMseSourceBufferList.all := m_ComRetVal;
       end return;
@@ -6690,10 +7997,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MseReadyState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MseReadyState;
    begin
       Hr := this.m_IMseStreamSource.all.get_ReadyState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6703,13 +8014,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMseStreamSource.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6719,9 +8034,13 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseStreamSource.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function AddSourceBuffer
@@ -6731,15 +8050,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MseSourceBuffer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMseSourceBuffer;
-      HStr_mimeType : WinRt.HString := To_HString (mimeType);
+      HStr_mimeType : constant WinRt.HString := To_HString (mimeType);
    begin
       return RetVal : WinRt.Windows.Media.Core.MseSourceBuffer do
          Hr := this.m_IMseStreamSource.all.AddSourceBuffer (HStr_mimeType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMseSourceBuffer := new Windows.Media.Core.IMseSourceBuffer;
          Retval.m_IMseSourceBuffer.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_mimeType);
+         tmp := WindowsDeleteString (HStr_mimeType);
       end return;
    end;
 
@@ -6749,9 +8072,13 @@ package body WinRt.Windows.Media.Core is
       buffer : Windows.Media.Core.MseSourceBuffer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseStreamSource.all.RemoveSourceBuffer (buffer.m_IMseSourceBuffer.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EndOfStream
@@ -6760,9 +8087,13 @@ package body WinRt.Windows.Media.Core is
       status : Windows.Media.Core.MseEndOfStreamStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMseStreamSource.all.EndOfStream (status);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LiveSeekableRange
@@ -6771,17 +8102,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_MseTimeRange.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMseStreamSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_MseTimeRange.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMseStreamSource_Interface, WinRt.Windows.Media.Core.IMseStreamSource2, WinRt.Windows.Media.Core.IID_IMseStreamSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMseStreamSource.all);
       Hr := m_Interface.get_LiveSeekableRange (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_MseTimeRange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6791,13 +8126,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMseStreamSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMseStreamSource_Interface, WinRt.Windows.Media.Core.IMseStreamSource2, WinRt.Windows.Media.Core.IID_IMseStreamSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMseStreamSource.all);
       Hr := m_Interface.put_LiveSeekableRange (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6809,12 +8148,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out SceneAnalysisEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneAnalysisEffect, ISceneAnalysisEffect_Ptr);
    begin
       if this.m_ISceneAnalysisEffect /= null then
          if this.m_ISceneAnalysisEffect.all /= null then
-            RefCount := this.m_ISceneAnalysisEffect.all.Release;
+            temp := this.m_ISceneAnalysisEffect.all.Release;
             Free (this.m_ISceneAnalysisEffect);
          end if;
       end if;
@@ -6829,11 +8168,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.HighDynamicRangeControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IHighDynamicRangeControl;
    begin
       return RetVal : WinRt.Windows.Media.Core.HighDynamicRangeControl do
          Hr := this.m_ISceneAnalysisEffect.all.get_HighDynamicRangeAnalyzer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHighDynamicRangeControl := new Windows.Media.Core.IHighDynamicRangeControl;
          Retval.m_IHighDynamicRangeControl.all := m_ComRetVal;
       end return;
@@ -6845,9 +8188,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneAnalysisEffect.all.put_DesiredAnalysisInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DesiredAnalysisInterval
@@ -6856,10 +8203,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISceneAnalysisEffect.all.get_DesiredAnalysisInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6870,10 +8221,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISceneAnalysisEffect.all.add_SceneAnalyzed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6883,9 +8238,13 @@ package body WinRt.Windows.Media.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneAnalysisEffect.all.remove_SceneAnalyzed (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetProperties
@@ -6894,13 +8253,17 @@ package body WinRt.Windows.Media.Core is
       configuration : Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaExtension := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffect_Interface, WinRt.Windows.Media.IMediaExtension, WinRt.Windows.Media.IID_IMediaExtension'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffect.all);
       Hr := m_Interface.SetProperties (configuration);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6912,13 +8275,13 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out SceneAnalysisEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Media.Effects.IVideoEffectDefinition;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IVideoEffectDefinition_Ptr);
    begin
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
-            RefCount := this.m_IVideoEffectDefinition.all.Release;
+            temp := this.m_IVideoEffectDefinition.all.Release;
             Free (this.m_IVideoEffectDefinition);
          end if;
       end if;
@@ -6929,7 +8292,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return SceneAnalysisEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.SceneAnalysisEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.SceneAnalysisEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : SceneAnalysisEffectDefinition do
@@ -6938,7 +8302,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6951,13 +8315,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6967,10 +8335,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6983,12 +8355,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out SceneAnalysisEffectFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneAnalysisEffectFrame, ISceneAnalysisEffectFrame_Ptr);
    begin
       if this.m_ISceneAnalysisEffectFrame /= null then
          if this.m_ISceneAnalysisEffectFrame.all /= null then
-            RefCount := this.m_ISceneAnalysisEffectFrame.all.Release;
+            temp := this.m_ISceneAnalysisEffectFrame.all.Release;
             Free (this.m_ISceneAnalysisEffectFrame);
          end if;
       end if;
@@ -7003,11 +8375,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Capture.CapturedFrameControlValues'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrameControlValues;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrameControlValues do
          Hr := this.m_ISceneAnalysisEffectFrame.all.get_FrameControlValues (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICapturedFrameControlValues := new Windows.Media.Capture.ICapturedFrameControlValues;
          Retval.m_ICapturedFrameControlValues.all := m_ComRetVal;
       end return;
@@ -7019,11 +8395,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.HighDynamicRangeOutput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IHighDynamicRangeOutput;
    begin
       return RetVal : WinRt.Windows.Media.Core.HighDynamicRangeOutput do
          Hr := this.m_ISceneAnalysisEffectFrame.all.get_HighDynamicRange (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHighDynamicRangeOutput := new Windows.Media.Core.IHighDynamicRangeOutput;
          Retval.m_IHighDynamicRangeOutput.all := m_ComRetVal;
       end return;
@@ -7035,17 +8415,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7055,14 +8439,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_IsReadOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7072,13 +8460,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.put_RelativeTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelativeTime
@@ -7087,17 +8479,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_RelativeTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7107,13 +8503,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.put_SystemRelativeTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SystemRelativeTime
@@ -7122,17 +8522,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_SystemRelativeTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7142,13 +8546,17 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -7157,17 +8565,21 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7177,13 +8589,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.put_IsDiscontinuous (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDiscontinuous
@@ -7192,14 +8608,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_IsDiscontinuous (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7209,14 +8629,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.IMediaFrame, WinRt.Windows.Media.IID_IMediaFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_ExtendedProperties (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7225,13 +8649,17 @@ package body WinRt.Windows.Media.Core is
       this : in out SceneAnalysisEffectFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AnalysisRecommendation
@@ -7240,14 +8668,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.SceneAnalysisRecommendation is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.SceneAnalysisRecommendation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame_Interface, WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame2, WinRt.Windows.Media.Core.IID_ISceneAnalysisEffectFrame2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneAnalysisEffectFrame.all);
       Hr := m_Interface.get_AnalysisRecommendation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7260,12 +8692,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out SceneAnalyzedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneAnalyzedEventArgs, ISceneAnalyzedEventArgs_Ptr);
    begin
       if this.m_ISceneAnalyzedEventArgs /= null then
          if this.m_ISceneAnalyzedEventArgs.all /= null then
-            RefCount := this.m_ISceneAnalyzedEventArgs.all.Release;
+            temp := this.m_ISceneAnalyzedEventArgs.all.Release;
             Free (this.m_ISceneAnalyzedEventArgs);
          end if;
       end if;
@@ -7280,11 +8712,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.SceneAnalysisEffectFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ISceneAnalysisEffectFrame;
    begin
       return RetVal : WinRt.Windows.Media.Core.SceneAnalysisEffectFrame do
          Hr := this.m_ISceneAnalyzedEventArgs.all.get_ResultFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneAnalysisEffectFrame := new Windows.Media.Core.ISceneAnalysisEffectFrame;
          Retval.m_ISceneAnalysisEffectFrame.all := m_ComRetVal;
       end return;
@@ -7299,12 +8735,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out SpeechCue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechCue, ISpeechCue_Ptr);
    begin
       if this.m_ISpeechCue /= null then
          if this.m_ISpeechCue.all /= null then
-            RefCount := this.m_ISpeechCue.all.Release;
+            temp := this.m_ISpeechCue.all.Release;
             Free (this.m_ISpeechCue);
          end if;
       end if;
@@ -7315,7 +8751,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return SpeechCue is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.SpeechCue");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.SpeechCue");
       m_ComRetVal  : aliased Windows.Media.Core.ISpeechCue;
    begin
       return RetVal : SpeechCue do
@@ -7324,7 +8761,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ISpeechCue := new Windows.Media.Core.ISpeechCue;
             Retval.m_ISpeechCue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7337,13 +8774,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeechCue.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7353,11 +8794,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISpeechCue.all.put_Text (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_StartPositionInInput
@@ -7366,13 +8811,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_ISpeechCue.all.get_StartPositionInInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7382,9 +8831,13 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechCue.all.put_StartPositionInInput (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EndPositionInInput
@@ -7393,13 +8846,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_ISpeechCue.all.get_EndPositionInInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7409,9 +8866,13 @@ package body WinRt.Windows.Media.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechCue.all.put_EndPositionInInput (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_StartTime
@@ -7420,13 +8881,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISpeechCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechCue.all);
       Hr := m_Interface.put_StartTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -7435,14 +8900,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISpeechCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechCue.all);
       Hr := m_Interface.get_StartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7452,13 +8921,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISpeechCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechCue.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -7467,14 +8940,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISpeechCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechCue.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7484,15 +8961,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISpeechCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechCue.all);
       Hr := m_Interface.put_Id (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Id
@@ -7501,17 +8982,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ISpeechCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechCue.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7524,12 +9009,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedMetadataStreamDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaStreamDescriptor, IMediaStreamDescriptor_Ptr);
    begin
       if this.m_IMediaStreamDescriptor /= null then
          if this.m_IMediaStreamDescriptor.all /= null then
-            RefCount := this.m_IMediaStreamDescriptor.all.Release;
+            temp := this.m_IMediaStreamDescriptor.all.Release;
             Free (this.m_IMediaStreamDescriptor);
          end if;
       end if;
@@ -7544,9 +9029,10 @@ package body WinRt.Windows.Media.Core is
    )
    return TimedMetadataStreamDescriptor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedMetadataStreamDescriptor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedMetadataStreamDescriptor");
       m_Factory    : access ITimedMetadataStreamDescriptorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.IMediaStreamDescriptor;
    begin
       return RetVal : TimedMetadataStreamDescriptor do
@@ -7555,9 +9041,9 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.Create (encodingProperties.m_IMediaEncodingProperties.all, m_ComRetVal'Access);
             Retval.m_IMediaStreamDescriptor := new Windows.Media.Core.IMediaStreamDescriptor;
             Retval.m_IMediaStreamDescriptor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7570,15 +9056,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedMetadataStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamDescriptor_Interface, WinRt.Windows.Media.Core.ITimedMetadataStreamDescriptor, WinRt.Windows.Media.Core.IID_ITimedMetadataStreamDescriptor'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties do
          m_Interface := QInterface (this.m_IMediaStreamDescriptor.all);
          Hr := m_Interface.get_EncodingProperties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
          Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
       end return;
@@ -7590,15 +9080,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedMetadataStreamDescriptor'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedMetadataStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamDescriptor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamDescriptor_Interface, WinRt.Windows.Media.Core.ITimedMetadataStreamDescriptor, WinRt.Windows.Media.Core.IID_ITimedMetadataStreamDescriptor'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedMetadataStreamDescriptor do
          m_Interface := QInterface (this.m_IMediaStreamDescriptor.all);
          Hr := m_Interface.Copy (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaStreamDescriptor := new Windows.Media.Core.IMediaStreamDescriptor;
          Retval.m_IMediaStreamDescriptor.all := m_ComRetVal;
       end return;
@@ -7610,15 +9104,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor2, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamDescriptor.all);
       Hr := m_Interface.put_Label (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Label
@@ -7627,17 +9125,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor2, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaStreamDescriptor.all);
       Hr := m_Interface.get_Label (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7647,10 +9149,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMediaStreamDescriptor.all.get_IsSelected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7660,11 +9166,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMediaStreamDescriptor.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Name
@@ -7673,13 +9183,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaStreamDescriptor.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7689,11 +9203,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMediaStreamDescriptor.all.put_Language (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Language
@@ -7702,13 +9220,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaStreamDescriptor.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7721,12 +9243,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedMetadataTrack) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedMetadataTrack, ITimedMetadataTrack_Ptr);
    begin
       if this.m_ITimedMetadataTrack /= null then
          if this.m_ITimedMetadataTrack.all /= null then
-            RefCount := this.m_ITimedMetadataTrack.all.Release;
+            temp := this.m_ITimedMetadataTrack.all.Release;
             Free (this.m_ITimedMetadataTrack);
          end if;
       end if;
@@ -7743,12 +9265,13 @@ package body WinRt.Windows.Media.Core is
    )
    return TimedMetadataTrack is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedMetadataTrack");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedMetadataTrack");
       m_Factory    : access ITimedMetadataTrackFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.ITimedMetadataTrack;
-      HStr_id : WinRt.HString := To_HString (id);
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_id : constant WinRt.HString := To_HString (id);
+      HStr_language : constant WinRt.HString := To_HString (language);
    begin
       return RetVal : TimedMetadataTrack do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedMetadataTrackFactory'Access , m_Factory'Address);
@@ -7756,11 +9279,11 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.Create (HStr_id, HStr_language, kind, m_ComRetVal'Access);
             Retval.m_ITimedMetadataTrack := new Windows.Media.Core.ITimedMetadataTrack;
             Retval.m_ITimedMetadataTrack.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
-         Hr := WindowsDeleteString (HStr_language);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_language);
       end return;
    end;
 
@@ -7774,10 +9297,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITimedMetadataTrack.all.add_CueEntered (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7787,9 +9314,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedMetadataTrack.all.remove_CueEntered (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CueExited
@@ -7799,10 +9330,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITimedMetadataTrack.all.add_CueExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7812,9 +9347,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedMetadataTrack.all.remove_CueExited (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TrackFailed
@@ -7824,10 +9363,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITimedMetadataTrack.all.add_TrackFailed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7837,9 +9380,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedMetadataTrack.all.remove_TrackFailed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Cues
@@ -7848,13 +9395,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVectorView_IMediaCue.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCue.Kind;
    begin
       Hr := this.m_ITimedMetadataTrack.all.get_Cues (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMediaCue (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7864,13 +9415,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVectorView_IMediaCue.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCue.Kind;
    begin
       Hr := this.m_ITimedMetadataTrack.all.get_ActiveCues (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMediaCue (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7880,10 +9435,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedMetadataKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedMetadataKind;
    begin
       Hr := this.m_ITimedMetadataTrack.all.get_TimedMetadataKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7893,13 +9452,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITimedMetadataTrack.all.get_DispatchType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7909,9 +9472,13 @@ package body WinRt.Windows.Media.Core is
       cue : Windows.Media.Core.IMediaCue
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedMetadataTrack.all.AddCue (cue);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveCue
@@ -7920,9 +9487,13 @@ package body WinRt.Windows.Media.Core is
       cue : Windows.Media.Core.IMediaCue
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedMetadataTrack.all.RemoveCue (cue);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -7931,17 +9502,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.IMediaTrack, WinRt.Windows.Media.Core.IID_IMediaTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7951,17 +9526,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.IMediaTrack, WinRt.Windows.Media.Core.IID_IMediaTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
       Hr := m_Interface.get_Language (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7971,14 +9550,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaTrackKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaTrackKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.IMediaTrack, WinRt.Windows.Media.Core.IID_IMediaTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
       Hr := m_Interface.get_TrackKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7988,15 +9571,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.IMediaTrack, WinRt.Windows.Media.Core.IID_IMediaTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
       Hr := m_Interface.put_Label (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Label
@@ -8005,17 +9592,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.IMediaTrack, WinRt.Windows.Media.Core.IID_IMediaTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
       Hr := m_Interface.get_Label (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8025,15 +9616,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Playback.MediaPlaybackItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedMetadataTrack2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.ITimedMetadataTrack2, WinRt.Windows.Media.Core.IID_ITimedMetadataTrack2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
          Hr := m_Interface.get_PlaybackItem (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
@@ -8045,17 +9640,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedMetadataTrack2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedMetadataTrack_Interface, WinRt.Windows.Media.Core.ITimedMetadataTrack2, WinRt.Windows.Media.Core.IID_ITimedMetadataTrack2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedMetadataTrack.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8068,12 +9667,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedMetadataTrackError) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedMetadataTrackError, ITimedMetadataTrackError_Ptr);
    begin
       if this.m_ITimedMetadataTrackError /= null then
          if this.m_ITimedMetadataTrackError.all /= null then
-            RefCount := this.m_ITimedMetadataTrackError.all.Release;
+            temp := this.m_ITimedMetadataTrackError.all.Release;
             Free (this.m_ITimedMetadataTrackError);
          end if;
       end if;
@@ -8088,10 +9687,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedMetadataTrackErrorCode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedMetadataTrackErrorCode;
    begin
       Hr := this.m_ITimedMetadataTrackError.all.get_ErrorCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8101,10 +9704,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_ITimedMetadataTrackError.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8117,12 +9724,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedMetadataTrackFailedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedMetadataTrackFailedEventArgs, ITimedMetadataTrackFailedEventArgs_Ptr);
    begin
       if this.m_ITimedMetadataTrackFailedEventArgs /= null then
          if this.m_ITimedMetadataTrackFailedEventArgs.all /= null then
-            RefCount := this.m_ITimedMetadataTrackFailedEventArgs.all.Release;
+            temp := this.m_ITimedMetadataTrackFailedEventArgs.all.Release;
             Free (this.m_ITimedMetadataTrackFailedEventArgs);
          end if;
       end if;
@@ -8137,11 +9744,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedMetadataTrackError'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedMetadataTrackError;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedMetadataTrackError do
          Hr := this.m_ITimedMetadataTrackFailedEventArgs.all.get_Error (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITimedMetadataTrackError := new Windows.Media.Core.ITimedMetadataTrackError;
          Retval.m_ITimedMetadataTrackError.all := m_ComRetVal;
       end return;
@@ -8156,12 +9767,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextCue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextCue, ITimedTextCue_Ptr);
    begin
       if this.m_ITimedTextCue /= null then
          if this.m_ITimedTextCue.all /= null then
-            RefCount := this.m_ITimedTextCue.all.Release;
+            temp := this.m_ITimedTextCue.all.Release;
             Free (this.m_ITimedTextCue);
          end if;
       end if;
@@ -8172,7 +9783,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return TimedTextCue is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextCue");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextCue");
       m_ComRetVal  : aliased Windows.Media.Core.ITimedTextCue;
    begin
       return RetVal : TimedTextCue do
@@ -8181,7 +9793,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ITimedTextCue := new Windows.Media.Core.ITimedTextCue;
             Retval.m_ITimedTextCue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8194,11 +9806,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextRegion'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextRegion;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextRegion do
          Hr := this.m_ITimedTextCue.all.get_CueRegion (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITimedTextRegion := new Windows.Media.Core.ITimedTextRegion;
          Retval.m_ITimedTextRegion.all := m_ComRetVal;
       end return;
@@ -8210,9 +9826,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextRegion'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextCue.all.put_CueRegion (value.m_ITimedTextRegion.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CueStyle
@@ -8221,11 +9841,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextStyle'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextStyle;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextStyle do
          Hr := this.m_ITimedTextCue.all.get_CueStyle (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITimedTextStyle := new Windows.Media.Core.ITimedTextStyle;
          Retval.m_ITimedTextStyle.all := m_ComRetVal;
       end return;
@@ -8237,9 +9861,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextStyle'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextCue.all.put_CueStyle (value.m_ITimedTextStyle.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Lines
@@ -8248,13 +9876,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVector_ITimedTextLine.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ITimedTextLine.Kind;
    begin
       Hr := this.m_ITimedTextCue.all.get_Lines (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ITimedTextLine (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8264,13 +9896,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextCue.all);
       Hr := m_Interface.put_StartTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -8279,14 +9915,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextCue.all);
       Hr := m_Interface.get_StartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8296,13 +9936,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextCue.all);
       Hr := m_Interface.put_Duration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -8311,14 +9955,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextCue.all);
       Hr := m_Interface.get_Duration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8328,15 +9976,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextCue.all);
       Hr := m_Interface.put_Id (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Id
@@ -8345,17 +9997,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaCue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextCue_Interface, WinRt.Windows.Media.Core.IMediaCue, WinRt.Windows.Media.Core.IID_IMediaCue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextCue.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8368,12 +10024,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextLine) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextLine, ITimedTextLine_Ptr);
    begin
       if this.m_ITimedTextLine /= null then
          if this.m_ITimedTextLine.all /= null then
-            RefCount := this.m_ITimedTextLine.all.Release;
+            temp := this.m_ITimedTextLine.all.Release;
             Free (this.m_ITimedTextLine);
          end if;
       end if;
@@ -8384,7 +10040,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return TimedTextLine is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextLine");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextLine");
       m_ComRetVal  : aliased Windows.Media.Core.ITimedTextLine;
    begin
       return RetVal : TimedTextLine do
@@ -8393,7 +10050,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ITimedTextLine := new Windows.Media.Core.ITimedTextLine;
             Retval.m_ITimedTextLine.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8406,13 +10063,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITimedTextLine.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8422,11 +10083,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ITimedTextLine.all.put_Text (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Subformats
@@ -8435,13 +10100,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVector_ITimedTextSubformat.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ITimedTextSubformat.Kind;
    begin
       Hr := this.m_ITimedTextLine.all.get_Subformats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ITimedTextSubformat (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8454,12 +10123,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextRegion) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextRegion, ITimedTextRegion_Ptr);
    begin
       if this.m_ITimedTextRegion /= null then
          if this.m_ITimedTextRegion.all /= null then
-            RefCount := this.m_ITimedTextRegion.all.Release;
+            temp := this.m_ITimedTextRegion.all.Release;
             Free (this.m_ITimedTextRegion);
          end if;
       end if;
@@ -8470,7 +10139,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return TimedTextRegion is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextRegion");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextRegion");
       m_ComRetVal  : aliased Windows.Media.Core.ITimedTextRegion;
    begin
       return RetVal : TimedTextRegion do
@@ -8479,7 +10149,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ITimedTextRegion := new Windows.Media.Core.ITimedTextRegion;
             Retval.m_ITimedTextRegion.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8492,13 +10162,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITimedTextRegion.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8508,11 +10182,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ITimedTextRegion.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Position
@@ -8521,10 +10199,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextPoint is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextPoint;
    begin
       Hr := this.m_ITimedTextRegion.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8534,9 +10216,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextPoint
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_Position (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Extent
@@ -8545,10 +10231,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSize is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextSize;
    begin
       Hr := this.m_ITimedTextRegion.all.get_Extent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8558,9 +10248,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextSize
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_Extent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Background
@@ -8569,10 +10263,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ITimedTextRegion.all.get_Background (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8582,9 +10280,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_Background (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_WritingMode
@@ -8593,10 +10295,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextWritingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextWritingMode;
    begin
       Hr := this.m_ITimedTextRegion.all.get_WritingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8606,9 +10312,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextWritingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_WritingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DisplayAlignment
@@ -8617,10 +10327,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextDisplayAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextDisplayAlignment;
    begin
       Hr := this.m_ITimedTextRegion.all.get_DisplayAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8630,9 +10344,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextDisplayAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_DisplayAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineHeight
@@ -8641,10 +10359,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextDouble;
    begin
       Hr := this.m_ITimedTextRegion.all.get_LineHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8654,9 +10376,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextDouble
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_LineHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOverflowClipped
@@ -8665,10 +10391,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITimedTextRegion.all.get_IsOverflowClipped (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8678,9 +10408,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_IsOverflowClipped (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Padding
@@ -8689,10 +10423,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextPadding is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextPadding;
    begin
       Hr := this.m_ITimedTextRegion.all.get_Padding (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8702,9 +10440,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextPadding
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_Padding (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TextWrapping
@@ -8713,10 +10455,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextWrapping is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextWrapping;
    begin
       Hr := this.m_ITimedTextRegion.all.get_TextWrapping (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8726,9 +10472,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextWrapping
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_TextWrapping (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -8737,10 +10487,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ITimedTextRegion.all.get_ZIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8750,9 +10504,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_ZIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScrollMode
@@ -8761,10 +10519,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextScrollMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextScrollMode;
    begin
       Hr := this.m_ITimedTextRegion.all.get_ScrollMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8774,9 +10536,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextScrollMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextRegion.all.put_ScrollMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8788,12 +10554,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextSource, ITimedTextSource_Ptr);
    begin
       if this.m_ITimedTextSource /= null then
          if this.m_ITimedTextSource.all /= null then
-            RefCount := this.m_ITimedTextSource.all.Release;
+            temp := this.m_ITimedTextSource.all.Release;
             Free (this.m_ITimedTextSource);
          end if;
       end if;
@@ -8809,20 +10575,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStreamWithIndex (stream, indexStream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8833,20 +10603,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromUriWithIndex (uri.m_IUriRuntimeClass.all, indexUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8858,22 +10632,26 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
-      HStr_defaultLanguage : WinRt.HString := To_HString (defaultLanguage);
+      HStr_defaultLanguage : constant WinRt.HString := To_HString (defaultLanguage);
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStreamWithIndex (stream, indexStream, HStr_defaultLanguage, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_defaultLanguage);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_defaultLanguage);
       end return;
    end;
 
@@ -8885,22 +10663,26 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
-      HStr_defaultLanguage : WinRt.HString := To_HString (defaultLanguage);
+      HStr_defaultLanguage : constant WinRt.HString := To_HString (defaultLanguage);
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromUriWithIndex (uri.m_IUriRuntimeClass.all, indexUri.m_IUriRuntimeClass.all, HStr_defaultLanguage, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_defaultLanguage);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_defaultLanguage);
       end return;
    end;
 
@@ -8910,20 +10692,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStream (stream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8933,20 +10719,24 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromUri (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8957,22 +10747,26 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
-      HStr_defaultLanguage : WinRt.HString := To_HString (defaultLanguage);
+      HStr_defaultLanguage : constant WinRt.HString := To_HString (defaultLanguage);
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromStream (stream, HStr_defaultLanguage, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_defaultLanguage);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_defaultLanguage);
       end return;
    end;
 
@@ -8983,22 +10777,26 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSource");
       m_Factory        : access WinRt.Windows.Media.Core.ITimedTextSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextSource;
-      HStr_defaultLanguage : WinRt.HString := To_HString (defaultLanguage);
+      HStr_defaultLanguage : constant WinRt.HString := To_HString (defaultLanguage);
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextSource do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedTextSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromUri (uri.m_IUriRuntimeClass.all, HStr_defaultLanguage, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITimedTextSource := new Windows.Media.Core.ITimedTextSource;
             Retval.m_ITimedTextSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_defaultLanguage);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_defaultLanguage);
       end return;
    end;
 
@@ -9012,10 +10810,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITimedTextSource.all.add_Resolved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9025,9 +10827,13 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextSource.all.remove_Resolved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9039,12 +10845,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextSourceResolveResultEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextSourceResolveResultEventArgs, ITimedTextSourceResolveResultEventArgs_Ptr);
    begin
       if this.m_ITimedTextSourceResolveResultEventArgs /= null then
          if this.m_ITimedTextSourceResolveResultEventArgs.all /= null then
-            RefCount := this.m_ITimedTextSourceResolveResultEventArgs.all.Release;
+            temp := this.m_ITimedTextSourceResolveResultEventArgs.all.Release;
             Free (this.m_ITimedTextSourceResolveResultEventArgs);
          end if;
       end if;
@@ -9059,11 +10865,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedMetadataTrackError'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedMetadataTrackError;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedMetadataTrackError do
          Hr := this.m_ITimedTextSourceResolveResultEventArgs.all.get_Error (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITimedMetadataTrackError := new Windows.Media.Core.ITimedMetadataTrackError;
          Retval.m_ITimedMetadataTrackError.all := m_ComRetVal;
       end return;
@@ -9075,13 +10885,17 @@ package body WinRt.Windows.Media.Core is
    )
    return IVectorView_ITimedMetadataTrack.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ITimedMetadataTrack.Kind;
    begin
       Hr := this.m_ITimedTextSourceResolveResultEventArgs.all.get_Tracks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ITimedMetadataTrack (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -9094,12 +10908,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextStyle) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextStyle, ITimedTextStyle_Ptr);
    begin
       if this.m_ITimedTextStyle /= null then
          if this.m_ITimedTextStyle.all /= null then
-            RefCount := this.m_ITimedTextStyle.all.Release;
+            temp := this.m_ITimedTextStyle.all.Release;
             Free (this.m_ITimedTextStyle);
          end if;
       end if;
@@ -9110,7 +10924,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return TimedTextStyle is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextStyle");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextStyle");
       m_ComRetVal  : aliased Windows.Media.Core.ITimedTextStyle;
    begin
       return RetVal : TimedTextStyle do
@@ -9119,7 +10934,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ITimedTextStyle := new Windows.Media.Core.ITimedTextStyle;
             Retval.m_ITimedTextStyle.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9132,13 +10947,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITimedTextStyle.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9148,11 +10967,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ITimedTextStyle.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FontFamily
@@ -9161,13 +10984,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITimedTextStyle.all.get_FontFamily (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9177,11 +11004,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ITimedTextStyle.all.put_FontFamily (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FontSize
@@ -9190,10 +11021,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextDouble;
    begin
       Hr := this.m_ITimedTextStyle.all.get_FontSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9203,9 +11038,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextDouble
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_FontSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontWeight
@@ -9214,10 +11053,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextWeight is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextWeight;
    begin
       Hr := this.m_ITimedTextStyle.all.get_FontWeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9227,9 +11070,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextWeight
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_FontWeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Foreground
@@ -9238,10 +11085,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ITimedTextStyle.all.get_Foreground (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9251,9 +11102,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_Foreground (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Background
@@ -9262,10 +11117,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ITimedTextStyle.all.get_Background (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9275,9 +11134,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_Background (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsBackgroundAlwaysShown
@@ -9286,10 +11149,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITimedTextStyle.all.get_IsBackgroundAlwaysShown (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9299,9 +11166,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_IsBackgroundAlwaysShown (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FlowDirection
@@ -9310,10 +11181,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextFlowDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextFlowDirection;
    begin
       Hr := this.m_ITimedTextStyle.all.get_FlowDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9323,9 +11198,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextFlowDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_FlowDirection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineAlignment
@@ -9334,10 +11213,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextLineAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextLineAlignment;
    begin
       Hr := this.m_ITimedTextStyle.all.get_LineAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9347,9 +11230,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextLineAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_LineAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutlineColor
@@ -9358,10 +11245,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ITimedTextStyle.all.get_OutlineColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9371,9 +11262,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_OutlineColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutlineThickness
@@ -9382,10 +11277,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextDouble;
    begin
       Hr := this.m_ITimedTextStyle.all.get_OutlineThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9395,9 +11294,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextDouble
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_OutlineThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutlineRadius
@@ -9406,10 +11309,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextDouble;
    begin
       Hr := this.m_ITimedTextStyle.all.get_OutlineRadius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9419,9 +11326,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextDouble
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextStyle.all.put_OutlineRadius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontStyle
@@ -9430,14 +11341,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextFontStyle is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.TimedTextFontStyle;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.get_FontStyle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9447,13 +11362,17 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextFontStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.put_FontStyle (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsUnderlineEnabled
@@ -9462,14 +11381,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.get_IsUnderlineEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9479,13 +11402,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.put_IsUnderlineEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsLineThroughEnabled
@@ -9494,14 +11421,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.get_IsLineThroughEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9511,13 +11442,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.put_IsLineThroughEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOverlineEnabled
@@ -9526,14 +11461,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.get_IsOverlineEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9543,13 +11482,17 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ITimedTextStyle2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.ITimedTextStyle_Interface, WinRt.Windows.Media.Core.ITimedTextStyle2, WinRt.Windows.Media.Core.IID_ITimedTextStyle2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITimedTextStyle.all);
       Hr := m_Interface.put_IsOverlineEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9561,12 +11504,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out TimedTextSubformat) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimedTextSubformat, ITimedTextSubformat_Ptr);
    begin
       if this.m_ITimedTextSubformat /= null then
          if this.m_ITimedTextSubformat.all /= null then
-            RefCount := this.m_ITimedTextSubformat.all.Release;
+            temp := this.m_ITimedTextSubformat.all.Release;
             Free (this.m_ITimedTextSubformat);
          end if;
       end if;
@@ -9577,7 +11520,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return TimedTextSubformat is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSubformat");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.TimedTextSubformat");
       m_ComRetVal  : aliased Windows.Media.Core.ITimedTextSubformat;
    begin
       return RetVal : TimedTextSubformat do
@@ -9586,7 +11530,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_ITimedTextSubformat := new Windows.Media.Core.ITimedTextSubformat;
             Retval.m_ITimedTextSubformat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9599,10 +11543,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ITimedTextSubformat.all.get_StartIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9612,9 +11560,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextSubformat.all.put_StartIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Length
@@ -9623,10 +11575,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ITimedTextSubformat.all.get_Length (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9636,9 +11592,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextSubformat.all.put_Length (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SubformatStyle
@@ -9647,11 +11607,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.TimedTextStyle'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.ITimedTextStyle;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedTextStyle do
          Hr := this.m_ITimedTextSubformat.all.get_SubformatStyle (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITimedTextStyle := new Windows.Media.Core.ITimedTextStyle;
          Retval.m_ITimedTextStyle.all := m_ComRetVal;
       end return;
@@ -9663,9 +11627,13 @@ package body WinRt.Windows.Media.Core is
       value : Windows.Media.Core.TimedTextStyle'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimedTextSubformat.all.put_SubformatStyle (value.m_ITimedTextStyle.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9677,12 +11645,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoStabilizationEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoStabilizationEffect, IVideoStabilizationEffect_Ptr);
    begin
       if this.m_IVideoStabilizationEffect /= null then
          if this.m_IVideoStabilizationEffect.all /= null then
-            RefCount := this.m_IVideoStabilizationEffect.all.Release;
+            temp := this.m_IVideoStabilizationEffect.all.Release;
             Free (this.m_IVideoStabilizationEffect);
          end if;
       end if;
@@ -9697,9 +11665,13 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoStabilizationEffect.all.put_Enabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Enabled
@@ -9708,10 +11680,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVideoStabilizationEffect.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9722,10 +11698,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVideoStabilizationEffect.all.add_EnabledChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9735,9 +11715,13 @@ package body WinRt.Windows.Media.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoStabilizationEffect.all.remove_EnabledChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetRecommendedStreamConfiguration
@@ -9748,11 +11732,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Capture.VideoStreamConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Capture.IVideoStreamConfiguration;
    begin
       return RetVal : WinRt.Windows.Media.Capture.VideoStreamConfiguration do
          Hr := this.m_IVideoStabilizationEffect.all.GetRecommendedStreamConfiguration (controller.m_IVideoDeviceController.all, desiredProperties.m_IVideoEncodingProperties.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoStreamConfiguration := new Windows.Media.Capture.IVideoStreamConfiguration;
          Retval.m_IVideoStreamConfiguration.all := m_ComRetVal;
       end return;
@@ -9764,13 +11752,17 @@ package body WinRt.Windows.Media.Core is
       configuration : Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.IMediaExtension := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStabilizationEffect_Interface, WinRt.Windows.Media.IMediaExtension, WinRt.Windows.Media.IID_IMediaExtension'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStabilizationEffect.all);
       Hr := m_Interface.SetProperties (configuration);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9782,13 +11774,13 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoStabilizationEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Media.Effects.IVideoEffectDefinition;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IVideoEffectDefinition_Ptr);
    begin
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
-            RefCount := this.m_IVideoEffectDefinition.all.Release;
+            temp := this.m_IVideoEffectDefinition.all.Release;
             Free (this.m_IVideoEffectDefinition);
          end if;
       end if;
@@ -9799,7 +11791,8 @@ package body WinRt.Windows.Media.Core is
 
    function Constructor return VideoStabilizationEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.VideoStabilizationEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.VideoStabilizationEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : VideoStabilizationEffectDefinition do
@@ -9808,7 +11801,7 @@ package body WinRt.Windows.Media.Core is
             Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9821,13 +11814,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9837,10 +11834,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9853,12 +11854,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoStabilizationEffectEnabledChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoStabilizationEffectEnabledChangedEventArgs, IVideoStabilizationEffectEnabledChangedEventArgs_Ptr);
    begin
       if this.m_IVideoStabilizationEffectEnabledChangedEventArgs /= null then
          if this.m_IVideoStabilizationEffectEnabledChangedEventArgs.all /= null then
-            RefCount := this.m_IVideoStabilizationEffectEnabledChangedEventArgs.all.Release;
+            temp := this.m_IVideoStabilizationEffectEnabledChangedEventArgs.all.Release;
             Free (this.m_IVideoStabilizationEffectEnabledChangedEventArgs);
          end if;
       end if;
@@ -9873,10 +11874,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.VideoStabilizationEffectEnabledChangedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.VideoStabilizationEffectEnabledChangedReason;
    begin
       Hr := this.m_IVideoStabilizationEffectEnabledChangedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9889,12 +11894,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoStreamDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoStreamDescriptor, IVideoStreamDescriptor_Ptr);
    begin
       if this.m_IVideoStreamDescriptor /= null then
          if this.m_IVideoStreamDescriptor.all /= null then
-            RefCount := this.m_IVideoStreamDescriptor.all.Release;
+            temp := this.m_IVideoStreamDescriptor.all.Release;
             Free (this.m_IVideoStreamDescriptor);
          end if;
       end if;
@@ -9909,9 +11914,10 @@ package body WinRt.Windows.Media.Core is
    )
    return VideoStreamDescriptor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Core.VideoStreamDescriptor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Core.VideoStreamDescriptor");
       m_Factory    : access IVideoStreamDescriptorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Core.IVideoStreamDescriptor;
    begin
       return RetVal : VideoStreamDescriptor do
@@ -9920,9 +11926,9 @@ package body WinRt.Windows.Media.Core is
             Hr := m_Factory.Create (encodingProperties.m_IVideoEncodingProperties.all, m_ComRetVal'Access);
             Retval.m_IVideoStreamDescriptor := new Windows.Media.Core.IVideoStreamDescriptor;
             Retval.m_IVideoStreamDescriptor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9935,11 +11941,15 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := this.m_IVideoStreamDescriptor.all.get_EncodingProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
@@ -9951,14 +11961,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.get_IsSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9968,15 +11982,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.put_Name (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Name
@@ -9985,17 +12003,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10005,15 +12027,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.put_Language (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Language
@@ -10022,17 +12048,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.get_Language (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10042,15 +12072,19 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor2, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.put_Label (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Label
@@ -10059,17 +12093,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IMediaStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IMediaStreamDescriptor2, WinRt.Windows.Media.Core.IID_IMediaStreamDescriptor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
       Hr := m_Interface.get_Label (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10079,15 +12117,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.VideoStreamDescriptor'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoStreamDescriptor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IVideoStreamDescriptor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IVideoStreamDescriptor_Interface, WinRt.Windows.Media.Core.IVideoStreamDescriptor2, WinRt.Windows.Media.Core.IID_IVideoStreamDescriptor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.VideoStreamDescriptor do
          m_Interface := QInterface (this.m_IVideoStreamDescriptor.all);
          Hr := m_Interface.Copy (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoStreamDescriptor := new Windows.Media.Core.IVideoStreamDescriptor;
          Retval.m_IVideoStreamDescriptor.all := m_ComRetVal;
       end return;
@@ -10102,12 +12144,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoTrack) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaTrack, IMediaTrack_Ptr);
    begin
       if this.m_IMediaTrack /= null then
          if this.m_IMediaTrack.all /= null then
-            RefCount := this.m_IMediaTrack.all.Release;
+            temp := this.m_IMediaTrack.all.Release;
             Free (this.m_IMediaTrack);
          end if;
       end if;
@@ -10122,13 +12164,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaTrack.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10138,13 +12184,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaTrack.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10154,10 +12204,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaTrackKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaTrackKind;
    begin
       Hr := this.m_IMediaTrack.all.get_TrackKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10167,11 +12221,15 @@ package body WinRt.Windows.Media.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMediaTrack.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Label
@@ -10180,13 +12238,17 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaTrack.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10197,14 +12259,18 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IVideoTrack, WinRt.Windows.Media.Core.IID_IVideoTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTrack.all);
       Hr := m_Interface.add_OpenFailed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10214,13 +12280,17 @@ package body WinRt.Windows.Media.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IVideoTrack, WinRt.Windows.Media.Core.IID_IVideoTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTrack.all);
       Hr := m_Interface.remove_OpenFailed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetEncodingProperties
@@ -10229,15 +12299,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IVideoTrack, WinRt.Windows.Media.Core.IID_IVideoTrack'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          m_Interface := QInterface (this.m_IMediaTrack.all);
          Hr := m_Interface.GetEncodingProperties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
@@ -10249,15 +12323,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Playback.MediaPlaybackItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IVideoTrack, WinRt.Windows.Media.Core.IID_IVideoTrack'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          m_Interface := QInterface (this.m_IMediaTrack.all);
          Hr := m_Interface.get_PlaybackItem (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
@@ -10269,17 +12347,21 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IVideoTrack, WinRt.Windows.Media.Core.IID_IVideoTrack'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTrack.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10289,15 +12371,19 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.VideoTrackSupportInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.IVideoTrack := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IVideoTrackSupportInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Core.IMediaTrack_Interface, WinRt.Windows.Media.Core.IVideoTrack, WinRt.Windows.Media.Core.IID_IVideoTrack'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Core.VideoTrackSupportInfo do
          m_Interface := QInterface (this.m_IMediaTrack.all);
          Hr := m_Interface.get_SupportInfo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoTrackSupportInfo := new Windows.Media.Core.IVideoTrackSupportInfo;
          Retval.m_IVideoTrackSupportInfo.all := m_ComRetVal;
       end return;
@@ -10312,12 +12398,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoTrackOpenFailedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoTrackOpenFailedEventArgs, IVideoTrackOpenFailedEventArgs_Ptr);
    begin
       if this.m_IVideoTrackOpenFailedEventArgs /= null then
          if this.m_IVideoTrackOpenFailedEventArgs.all /= null then
-            RefCount := this.m_IVideoTrackOpenFailedEventArgs.all.Release;
+            temp := this.m_IVideoTrackOpenFailedEventArgs.all.Release;
             Free (this.m_IVideoTrackOpenFailedEventArgs);
          end if;
       end if;
@@ -10332,10 +12418,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IVideoTrackOpenFailedEventArgs.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10348,12 +12438,12 @@ package body WinRt.Windows.Media.Core is
    end;
 
    procedure Finalize (this : in out VideoTrackSupportInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoTrackSupportInfo, IVideoTrackSupportInfo_Ptr);
    begin
       if this.m_IVideoTrackSupportInfo /= null then
          if this.m_IVideoTrackSupportInfo.all /= null then
-            RefCount := this.m_IVideoTrackSupportInfo.all.Release;
+            temp := this.m_IVideoTrackSupportInfo.all.Release;
             Free (this.m_IVideoTrackSupportInfo);
          end if;
       end if;
@@ -10368,10 +12458,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaDecoderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaDecoderStatus;
    begin
       Hr := this.m_IVideoTrackSupportInfo.all.get_DecoderStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10381,10 +12475,14 @@ package body WinRt.Windows.Media.Core is
    )
    return WinRt.Windows.Media.Core.MediaSourceStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.MediaSourceStatus;
    begin
       Hr := this.m_IVideoTrackSupportInfo.all.get_MediaSourceStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

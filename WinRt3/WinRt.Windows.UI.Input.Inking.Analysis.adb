@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisInkBullet) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisInkBullet, IInkAnalysisInkBullet_Ptr);
    begin
       if this.m_IInkAnalysisInkBullet /= null then
          if this.m_IInkAnalysisInkBullet.all /= null then
-            RefCount := this.m_IInkAnalysisInkBullet.all.Release;
+            temp := this.m_IInkAnalysisInkBullet.all.Release;
             Free (this.m_IInkAnalysisInkBullet);
          end if;
       end if;
@@ -66,13 +66,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisInkBullet.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -82,14 +86,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -99,14 +107,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -116,14 +128,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -133,17 +149,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -153,17 +173,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -173,14 +197,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -190,17 +218,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkBullet_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkBullet.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -213,12 +245,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisInkDrawing) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisInkDrawing, IInkAnalysisInkDrawing_Ptr);
    begin
       if this.m_IInkAnalysisInkDrawing /= null then
          if this.m_IInkAnalysisInkDrawing.all /= null then
-            RefCount := this.m_IInkAnalysisInkDrawing.all.Release;
+            temp := this.m_IInkAnalysisInkDrawing.all.Release;
             Free (this.m_IInkAnalysisInkDrawing);
          end if;
       end if;
@@ -233,10 +265,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisDrawingKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisDrawingKind;
    begin
       Hr := this.m_IInkAnalysisInkDrawing.all.get_DrawingKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -246,10 +282,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IInkAnalysisInkDrawing.all.get_Center (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -259,13 +299,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
    begin
       Hr := this.m_IInkAnalysisInkDrawing.all.get_Points (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -275,14 +319,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -292,14 +340,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -309,14 +361,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -326,17 +382,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -346,17 +406,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -366,14 +430,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -383,17 +451,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkDrawing_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkDrawing.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -406,12 +478,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisInkWord) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisInkWord, IInkAnalysisInkWord_Ptr);
    begin
       if this.m_IInkAnalysisInkWord /= null then
          if this.m_IInkAnalysisInkWord.all /= null then
-            RefCount := this.m_IInkAnalysisInkWord.all.Release;
+            temp := this.m_IInkAnalysisInkWord.all.Release;
             Free (this.m_IInkAnalysisInkWord);
          end if;
       end if;
@@ -426,13 +498,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisInkWord.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -442,13 +518,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IInkAnalysisInkWord.all.get_TextAlternates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -458,14 +538,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -475,14 +559,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -492,14 +580,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -509,17 +601,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -529,17 +625,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -549,14 +649,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -566,17 +670,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisInkWord_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisInkWord.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -589,12 +697,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisLine) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisLine, IInkAnalysisLine_Ptr);
    begin
       if this.m_IInkAnalysisLine /= null then
          if this.m_IInkAnalysisLine.all /= null then
-            RefCount := this.m_IInkAnalysisLine.all.Release;
+            temp := this.m_IInkAnalysisLine.all.Release;
             Free (this.m_IInkAnalysisLine);
          end if;
       end if;
@@ -609,13 +717,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisLine.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -625,10 +737,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInkAnalysisLine.all.get_IndentLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -638,14 +754,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -655,14 +775,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -672,14 +796,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -689,17 +817,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -709,17 +841,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -729,14 +865,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -746,17 +886,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisLine_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisLine.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -769,12 +913,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisListItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisListItem, IInkAnalysisListItem_Ptr);
    begin
       if this.m_IInkAnalysisListItem /= null then
          if this.m_IInkAnalysisListItem.all /= null then
-            RefCount := this.m_IInkAnalysisListItem.all.Release;
+            temp := this.m_IInkAnalysisListItem.all.Release;
             Free (this.m_IInkAnalysisListItem);
          end if;
       end if;
@@ -789,13 +933,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisListItem.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -805,14 +953,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -822,14 +974,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -839,14 +995,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -856,17 +1016,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -876,17 +1040,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -896,14 +1064,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -913,17 +1085,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisListItem_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisListItem.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -936,12 +1112,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisNode) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisNode, IInkAnalysisNode_Ptr);
    begin
       if this.m_IInkAnalysisNode /= null then
          if this.m_IInkAnalysisNode.all /= null then
-            RefCount := this.m_IInkAnalysisNode.all.Release;
+            temp := this.m_IInkAnalysisNode.all.Release;
             Free (this.m_IInkAnalysisNode);
          end if;
       end if;
@@ -956,10 +1132,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IInkAnalysisNode.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -969,10 +1149,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
    begin
       Hr := this.m_IInkAnalysisNode.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -982,10 +1166,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInkAnalysisNode.all.get_BoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -995,13 +1183,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
    begin
       Hr := this.m_IInkAnalysisNode.all.get_RotatedBoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1011,13 +1203,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
    begin
       Hr := this.m_IInkAnalysisNode.all.get_Children (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1027,10 +1223,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
    begin
       Hr := this.m_IInkAnalysisNode.all.get_Parent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1040,13 +1240,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IInkAnalysisNode.all.GetStrokeIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1059,12 +1263,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisParagraph) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisParagraph, IInkAnalysisParagraph_Ptr);
    begin
       if this.m_IInkAnalysisParagraph /= null then
          if this.m_IInkAnalysisParagraph.all /= null then
-            RefCount := this.m_IInkAnalysisParagraph.all.Release;
+            temp := this.m_IInkAnalysisParagraph.all.Release;
             Free (this.m_IInkAnalysisParagraph);
          end if;
       end if;
@@ -1079,13 +1283,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisParagraph.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1095,14 +1303,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1112,14 +1324,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1129,14 +1345,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1146,17 +1366,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1166,17 +1390,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1186,14 +1414,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1203,17 +1435,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisParagraph_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisParagraph.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1226,12 +1462,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisResult, IInkAnalysisResult_Ptr);
    begin
       if this.m_IInkAnalysisResult /= null then
          if this.m_IInkAnalysisResult.all /= null then
-            RefCount := this.m_IInkAnalysisResult.all.Release;
+            temp := this.m_IInkAnalysisResult.all.Release;
             Free (this.m_IInkAnalysisResult);
          end if;
       end if;
@@ -1246,10 +1482,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisStatus;
    begin
       Hr := this.m_IInkAnalysisResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1262,12 +1502,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisRoot) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisRoot, IInkAnalysisRoot_Ptr);
    begin
       if this.m_IInkAnalysisRoot /= null then
          if this.m_IInkAnalysisRoot.all /= null then
-            RefCount := this.m_IInkAnalysisRoot.all.Release;
+            temp := this.m_IInkAnalysisRoot.all.Release;
             Free (this.m_IInkAnalysisRoot);
          end if;
       end if;
@@ -1282,13 +1522,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisRoot.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1299,13 +1543,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
    begin
       Hr := this.m_IInkAnalysisRoot.all.FindNodes (nodeKind, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1315,14 +1563,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1332,14 +1584,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1349,14 +1605,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1366,17 +1626,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1386,17 +1650,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1406,14 +1674,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1423,17 +1695,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisRoot.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1446,12 +1722,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalysisWritingRegion) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalysisWritingRegion, IInkAnalysisWritingRegion_Ptr);
    begin
       if this.m_IInkAnalysisWritingRegion /= null then
          if this.m_IInkAnalysisWritingRegion.all /= null then
-            RefCount := this.m_IInkAnalysisWritingRegion.all.Release;
+            temp := this.m_IInkAnalysisWritingRegion.all.Release;
             Free (this.m_IInkAnalysisWritingRegion);
          end if;
       end if;
@@ -1466,13 +1742,17 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IInkAnalysisWritingRegion.all.get_RecognizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1482,14 +1762,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1499,14 +1783,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1516,14 +1804,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.get_BoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1533,17 +1825,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Point.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.get_RotatedBoundingRect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1553,17 +1849,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_IInkAnalysisNode.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInkAnalysisNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInkAnalysisNode (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1573,14 +1873,18 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.get_Parent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1590,17 +1894,21 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisWritingRegion_Interface, WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode, WinRt.Windows.UI.Input.Inking.Analysis.IID_IInkAnalysisNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInkAnalysisWritingRegion.all);
       Hr := m_Interface.GetStrokeIds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1613,12 +1921,12 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    end;
 
    procedure Finalize (this : in out InkAnalyzer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkAnalyzer, IInkAnalyzer_Ptr);
    begin
       if this.m_IInkAnalyzer /= null then
          if this.m_IInkAnalyzer.all /= null then
-            RefCount := this.m_IInkAnalyzer.all.Release;
+            temp := this.m_IInkAnalyzer.all.Release;
             Free (this.m_IInkAnalyzer);
          end if;
       end if;
@@ -1629,7 +1937,8 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
 
    function Constructor return InkAnalyzer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Analysis.InkAnalyzer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Analysis.InkAnalyzer");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.Analysis.IInkAnalyzer;
    begin
       return RetVal : InkAnalyzer do
@@ -1638,7 +1947,7 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
             Retval.m_IInkAnalyzer := new Windows.UI.Input.Inking.Analysis.IInkAnalyzer;
             Retval.m_IInkAnalyzer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1651,11 +1960,15 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisRoot'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisRoot do
          Hr := this.m_IInkAnalyzer.all.get_AnalysisRoot (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkAnalysisRoot := new Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot;
          Retval.m_IInkAnalysisRoot.all := m_ComRetVal;
       end return;
@@ -1667,10 +1980,14 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInkAnalyzer.all.get_IsAnalyzing (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1680,9 +1997,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       stroke : Windows.UI.Input.Inking.InkStroke'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.AddDataForStroke (stroke.m_IInkStroke.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddDataForStrokes
@@ -1691,9 +2012,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       strokes : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.AddDataForStrokes (strokes);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ClearDataForAllStrokes
@@ -1701,9 +2026,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       this : in out InkAnalyzer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.ClearDataForAllStrokes;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveDataForStroke
@@ -1712,9 +2041,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       strokeId : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.RemoveDataForStroke (strokeId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveDataForStrokes
@@ -1723,9 +2056,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       strokeIds : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.RemoveDataForStrokes (strokeIds);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReplaceDataForStroke
@@ -1734,9 +2071,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       stroke : Windows.UI.Input.Inking.InkStroke'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.ReplaceDataForStroke (stroke.m_IInkStroke.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetStrokeDataKind
@@ -1746,9 +2087,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       strokeKind : Windows.UI.Input.Inking.Analysis.InkAnalysisStrokeKind
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInkAnalyzer.all.SetStrokeDataKind (strokeId, strokeKind);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function AnalyzeAsync
@@ -1757,13 +2102,13 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    )
    return WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_InkAnalysisResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1781,7 +2126,7 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_InkAnalysisResult.Kind_Delegate, AsyncOperationCompletedHandler_InkAnalysisResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1795,7 +2140,7 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
          Hr := this.m_IInkAnalyzer.all.AnalyzeAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1807,9 +2152,9 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
                   Retval.m_IInkAnalysisResult := new Windows.UI.Input.Inking.Analysis.IInkAnalysisResult;
                   Retval.m_IInkAnalysisResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;

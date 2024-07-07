@@ -64,12 +64,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialAnchor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialAnchor, ISpatialAnchor_Ptr);
    begin
       if this.m_ISpatialAnchor /= null then
          if this.m_ISpatialAnchor.all /= null then
-            RefCount := this.m_ISpatialAnchor.all.Release;
+            temp := this.m_ISpatialAnchor.all.Release;
             Free (this.m_ISpatialAnchor);
          end if;
       end if;
@@ -84,20 +84,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchor");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchor");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialAnchor;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialAnchor do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateRelativeTo (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialAnchor := new Windows.Perception.Spatial.ISpatialAnchor;
             Retval.m_ISpatialAnchor.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -108,20 +112,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchor");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchor");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialAnchor;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialAnchor do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateRelativeTo (coordinateSystem.m_ISpatialCoordinateSystem.all, position, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialAnchor := new Windows.Perception.Spatial.ISpatialAnchor;
             Retval.m_ISpatialAnchor.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -133,20 +141,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchor");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchor");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialAnchor;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialAnchor do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateRelativeTo (coordinateSystem.m_ISpatialCoordinateSystem.all, position, orientation, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialAnchor := new Windows.Perception.Spatial.ISpatialAnchor;
             Retval.m_ISpatialAnchor.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -159,11 +171,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialAnchor.all.get_CoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -175,11 +191,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialAnchor.all.get_RawCoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -192,10 +212,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialAnchor.all.add_RawCoordinateSystemAdjusted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -205,9 +229,13 @@ package body WinRt.Windows.Perception.Spatial is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialAnchor.all.remove_RawCoordinateSystemAdjusted (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RemovedByUser
@@ -216,14 +244,18 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Perception.Spatial.ISpatialAnchor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Perception.Spatial.ISpatialAnchor_Interface, WinRt.Windows.Perception.Spatial.ISpatialAnchor2, WinRt.Windows.Perception.Spatial.IID_ISpatialAnchor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialAnchor.all);
       Hr := m_Interface.get_RemovedByUser (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -236,12 +268,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialAnchorExportSufficiency) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialAnchorExportSufficiency, ISpatialAnchorExportSufficiency_Ptr);
    begin
       if this.m_ISpatialAnchorExportSufficiency /= null then
          if this.m_ISpatialAnchorExportSufficiency.all /= null then
-            RefCount := this.m_ISpatialAnchorExportSufficiency.all.Release;
+            temp := this.m_ISpatialAnchorExportSufficiency.all.Release;
             Free (this.m_ISpatialAnchorExportSufficiency);
          end if;
       end if;
@@ -256,10 +288,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpatialAnchorExportSufficiency.all.get_IsMinimallySufficient (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -269,10 +305,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISpatialAnchorExportSufficiency.all.get_SufficiencyLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -282,10 +322,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISpatialAnchorExportSufficiency.all.get_RecommendedSufficiencyLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -298,12 +342,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialAnchorExporter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialAnchorExporter, ISpatialAnchorExporter_Ptr);
    begin
       if this.m_ISpatialAnchorExporter /= null then
          if this.m_ISpatialAnchorExporter.all /= null then
-            RefCount := this.m_ISpatialAnchorExporter.all.Release;
+            temp := this.m_ISpatialAnchorExporter.all.Release;
             Free (this.m_ISpatialAnchorExporter);
          end if;
       end if;
@@ -315,35 +359,39 @@ package body WinRt.Windows.Perception.Spatial is
    function GetDefault
    return WinRt.Windows.Perception.Spatial.SpatialAnchorExporter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorExporter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorExporter");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorExporterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialAnchorExporter;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialAnchorExporter do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorExporterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialAnchorExporter := new Windows.Perception.Spatial.ISpatialAnchorExporter;
             Retval.m_ISpatialAnchorExporter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function RequestAccessAsync
    return WinRt.Windows.Perception.Spatial.SpatialPerceptionAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorExporter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorExporter");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorExporterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpatialPerceptionAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -361,7 +409,7 @@ package body WinRt.Windows.Perception.Spatial is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialPerceptionAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_SpatialPerceptionAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -374,10 +422,10 @@ package body WinRt.Windows.Perception.Spatial is
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorExporterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -387,15 +435,15 @@ package body WinRt.Windows.Perception.Spatial is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -410,13 +458,13 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchorExportSufficiency'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpatialAnchorExportSufficiency.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -434,7 +482,7 @@ package body WinRt.Windows.Perception.Spatial is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialAnchorExportSufficiency.Kind_Delegate, AsyncOperationCompletedHandler_SpatialAnchorExportSufficiency.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -448,7 +496,7 @@ package body WinRt.Windows.Perception.Spatial is
          Hr := this.m_ISpatialAnchorExporter.all.GetAnchorExportSufficiencyAsync (anchor.m_ISpatialAnchor.all, purpose, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -460,9 +508,9 @@ package body WinRt.Windows.Perception.Spatial is
                   Retval.m_ISpatialAnchorExportSufficiency := new Windows.Perception.Spatial.ISpatialAnchorExportSufficiency;
                   Retval.m_ISpatialAnchorExportSufficiency.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -479,13 +527,13 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -503,7 +551,7 @@ package body WinRt.Windows.Perception.Spatial is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -516,7 +564,7 @@ package body WinRt.Windows.Perception.Spatial is
       Hr := this.m_ISpatialAnchorExporter.all.TryExportAnchorAsync (anchor.m_ISpatialAnchor.all, purpose, stream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -526,9 +574,9 @@ package body WinRt.Windows.Perception.Spatial is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -543,15 +591,15 @@ package body WinRt.Windows.Perception.Spatial is
       function RequestStoreAsync
       return WinRt.Windows.Perception.Spatial.SpatialAnchorStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorManager");
          m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SpatialAnchorStore.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -569,7 +617,7 @@ package body WinRt.Windows.Perception.Spatial is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialAnchorStore.Kind_Delegate, AsyncOperationCompletedHandler_SpatialAnchorStore.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -583,10 +631,10 @@ package body WinRt.Windows.Perception.Spatial is
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestStoreAsync (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -598,15 +646,15 @@ package body WinRt.Windows.Perception.Spatial is
                         Retval.m_ISpatialAnchorStore := new Windows.Perception.Spatial.ISpatialAnchorStore;
                         Retval.m_ISpatialAnchorStore.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -621,12 +669,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialAnchorRawCoordinateSystemAdjustedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialAnchorRawCoordinateSystemAdjustedEventArgs, ISpatialAnchorRawCoordinateSystemAdjustedEventArgs_Ptr);
    begin
       if this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs /= null then
          if this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs.all /= null then
-            RefCount := this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs.all.Release;
+            temp := this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs.all.Release;
             Free (this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs);
          end if;
       end if;
@@ -641,10 +689,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix4x4 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix4x4;
    begin
       Hr := this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs.all.get_OldRawCoordinateSystemToNewRawCoordinateSystemTransform (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -657,12 +709,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialAnchorStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialAnchorStore, ISpatialAnchorStore_Ptr);
    begin
       if this.m_ISpatialAnchorStore /= null then
          if this.m_ISpatialAnchorStore.all /= null then
-            RefCount := this.m_ISpatialAnchorStore.all.Release;
+            temp := this.m_ISpatialAnchorStore.all.Release;
             Free (this.m_ISpatialAnchorStore);
          end if;
       end if;
@@ -677,13 +729,17 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return IMapView_HString_ISpatialAnchor.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_ISpatialAnchor.Kind;
    begin
       Hr := this.m_ISpatialAnchorStore.all.GetAllSavedAnchors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_ISpatialAnchor (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -695,12 +751,16 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_id : WinRt.HString := To_HString (id);
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_ISpatialAnchorStore.all.TrySave (HStr_id, anchor.m_ISpatialAnchor.all, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_id);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_id);
       return m_ComRetVal;
    end;
 
@@ -710,11 +770,15 @@ package body WinRt.Windows.Perception.Spatial is
       id : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_ISpatialAnchorStore.all.Remove (HStr_id);
-      Hr := WindowsDeleteString (HStr_id);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_id);
    end;
 
    procedure Clear
@@ -722,9 +786,13 @@ package body WinRt.Windows.Perception.Spatial is
       this : in out SpatialAnchorStore
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialAnchorStore.all.Clear;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -737,15 +805,15 @@ package body WinRt.Windows.Perception.Spatial is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorTransferManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorTransferManager");
          m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorTransferManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -763,7 +831,7 @@ package body WinRt.Windows.Perception.Spatial is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -776,10 +844,10 @@ package body WinRt.Windows.Perception.Spatial is
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorTransferManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryImportAnchorsAsync (stream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -789,15 +857,15 @@ package body WinRt.Windows.Perception.Spatial is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -808,15 +876,15 @@ package body WinRt.Windows.Perception.Spatial is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorTransferManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorTransferManager");
          m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorTransferManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -834,7 +902,7 @@ package body WinRt.Windows.Perception.Spatial is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -847,10 +915,10 @@ package body WinRt.Windows.Perception.Spatial is
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorTransferManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryExportAnchorsAsync (anchors, stream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -860,30 +928,30 @@ package body WinRt.Windows.Perception.Spatial is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function RequestAccessAsync_SpatialAnchorTransferManager
       return WinRt.Windows.Perception.Spatial.SpatialPerceptionAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorTransferManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialAnchorTransferManager");
          m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialAnchorTransferManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SpatialPerceptionAccessStatus.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -901,7 +969,7 @@ package body WinRt.Windows.Perception.Spatial is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialPerceptionAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_SpatialPerceptionAccessStatus.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -914,10 +982,10 @@ package body WinRt.Windows.Perception.Spatial is
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAnchorTransferManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -927,15 +995,15 @@ package body WinRt.Windows.Perception.Spatial is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -950,12 +1018,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialBoundingVolume) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialBoundingVolume, ISpatialBoundingVolume_Ptr);
    begin
       if this.m_ISpatialBoundingVolume /= null then
          if this.m_ISpatialBoundingVolume.all /= null then
-            RefCount := this.m_ISpatialBoundingVolume.all.Release;
+            temp := this.m_ISpatialBoundingVolume.all.Release;
             Free (this.m_ISpatialBoundingVolume);
          end if;
       end if;
@@ -971,20 +1039,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolumeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialBoundingVolume;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialBoundingVolume do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialBoundingVolumeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromBox (coordinateSystem.m_ISpatialCoordinateSystem.all, box, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialBoundingVolume := new Windows.Perception.Spatial.ISpatialBoundingVolume;
             Retval.m_ISpatialBoundingVolume.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -995,20 +1067,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolumeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialBoundingVolume;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialBoundingVolume do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialBoundingVolumeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromOrientedBox (coordinateSystem.m_ISpatialCoordinateSystem.all, box, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialBoundingVolume := new Windows.Perception.Spatial.ISpatialBoundingVolume;
             Retval.m_ISpatialBoundingVolume.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1019,20 +1095,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolumeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialBoundingVolume;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialBoundingVolume do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialBoundingVolumeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromSphere (coordinateSystem.m_ISpatialCoordinateSystem.all, sphere, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialBoundingVolume := new Windows.Perception.Spatial.ISpatialBoundingVolume;
             Retval.m_ISpatialBoundingVolume.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1043,20 +1123,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialBoundingVolume");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolumeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialBoundingVolume;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialBoundingVolume do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialBoundingVolumeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromFrustum (coordinateSystem.m_ISpatialCoordinateSystem.all, frustum, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialBoundingVolume := new Windows.Perception.Spatial.ISpatialBoundingVolume;
             Retval.m_ISpatialBoundingVolume.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1072,12 +1156,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialCoordinateSystem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialCoordinateSystem, ISpatialCoordinateSystem_Ptr);
    begin
       if this.m_ISpatialCoordinateSystem /= null then
          if this.m_ISpatialCoordinateSystem.all /= null then
-            RefCount := this.m_ISpatialCoordinateSystem.all.Release;
+            temp := this.m_ISpatialCoordinateSystem.all.Release;
             Free (this.m_ISpatialCoordinateSystem);
          end if;
       end if;
@@ -1093,13 +1177,17 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return IReference_Matrix4x4.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Matrix4x4.Kind;
    begin
       Hr := this.m_ISpatialCoordinateSystem.all.TryGetTransformTo (target.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Matrix4x4 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1112,12 +1200,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialEntity) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialEntity, ISpatialEntity_Ptr);
    begin
       if this.m_ISpatialEntity /= null then
          if this.m_ISpatialEntity.all /= null then
-            RefCount := this.m_ISpatialEntity.all.Release;
+            temp := this.m_ISpatialEntity.all.Release;
             Free (this.m_ISpatialEntity);
          end if;
       end if;
@@ -1132,9 +1220,10 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return SpatialEntity is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
       m_Factory    : access ISpatialEntityFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Perception.Spatial.ISpatialEntity;
    begin
       return RetVal : SpatialEntity do
@@ -1143,9 +1232,9 @@ package body WinRt.Windows.Perception.Spatial is
             Hr := m_Factory.CreateWithSpatialAnchor (spatialAnchor_p.m_ISpatialAnchor.all, m_ComRetVal'Access);
             Retval.m_ISpatialEntity := new Windows.Perception.Spatial.ISpatialEntity;
             Retval.m_ISpatialEntity.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1156,9 +1245,10 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return SpatialEntity is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
       m_Factory    : access ISpatialEntityFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Perception.Spatial.ISpatialEntity;
    begin
       return RetVal : SpatialEntity do
@@ -1167,9 +1257,9 @@ package body WinRt.Windows.Perception.Spatial is
             Hr := m_Factory.CreateWithSpatialAnchorAndProperties (spatialAnchor_p.m_ISpatialAnchor.all, propertySet.m_IPropertySet.all, m_ComRetVal'Access);
             Retval.m_ISpatialEntity := new Windows.Perception.Spatial.ISpatialEntity;
             Retval.m_ISpatialEntity.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1182,13 +1272,17 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpatialEntity.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1198,11 +1292,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialAnchor;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialAnchor do
          Hr := this.m_ISpatialEntity.all.get_Anchor (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialAnchor := new Windows.Perception.Spatial.ISpatialAnchor;
          Retval.m_ISpatialAnchor.all := m_ComRetVal;
       end return;
@@ -1214,11 +1312,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_ISpatialEntity.all.get_Properties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -1233,12 +1335,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialEntityAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialEntityAddedEventArgs, ISpatialEntityAddedEventArgs_Ptr);
    begin
       if this.m_ISpatialEntityAddedEventArgs /= null then
          if this.m_ISpatialEntityAddedEventArgs.all /= null then
-            RefCount := this.m_ISpatialEntityAddedEventArgs.all.Release;
+            temp := this.m_ISpatialEntityAddedEventArgs.all.Release;
             Free (this.m_ISpatialEntityAddedEventArgs);
          end if;
       end if;
@@ -1253,11 +1355,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntity'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialEntity;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialEntity do
          Hr := this.m_ISpatialEntityAddedEventArgs.all.get_Entity (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialEntity := new Windows.Perception.Spatial.ISpatialEntity;
          Retval.m_ISpatialEntity.all := m_ComRetVal;
       end return;
@@ -1272,12 +1378,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialEntityRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialEntityRemovedEventArgs, ISpatialEntityRemovedEventArgs_Ptr);
    begin
       if this.m_ISpatialEntityRemovedEventArgs /= null then
          if this.m_ISpatialEntityRemovedEventArgs.all /= null then
-            RefCount := this.m_ISpatialEntityRemovedEventArgs.all.Release;
+            temp := this.m_ISpatialEntityRemovedEventArgs.all.Release;
             Free (this.m_ISpatialEntityRemovedEventArgs);
          end if;
       end if;
@@ -1292,11 +1398,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntity'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialEntity;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialEntity do
          Hr := this.m_ISpatialEntityRemovedEventArgs.all.get_Entity (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialEntity := new Windows.Perception.Spatial.ISpatialEntity;
          Retval.m_ISpatialEntity.all := m_ComRetVal;
       end return;
@@ -1311,12 +1421,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialEntityStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialEntityStore, ISpatialEntityStore_Ptr);
    begin
       if this.m_ISpatialEntityStore /= null then
          if this.m_ISpatialEntityStore.all /= null then
-            RefCount := this.m_ISpatialEntityStore.all.Release;
+            temp := this.m_ISpatialEntityStore.all.Release;
             Free (this.m_ISpatialEntityStore);
          end if;
       end if;
@@ -1328,17 +1438,21 @@ package body WinRt.Windows.Perception.Spatial is
    function get_IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntityStore");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntityStore");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialEntityStoreStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialEntityStoreStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1348,20 +1462,24 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntityStore is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntityStore");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntityStore");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialEntityStoreStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialEntityStore;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialEntityStore do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialEntityStoreStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryGet (session.m_IRemoteSystemSession.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialEntityStore := new Windows.Perception.Spatial.ISpatialEntityStore;
             Retval.m_ISpatialEntityStore.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1374,7 +1492,8 @@ package body WinRt.Windows.Perception.Spatial is
       entity : Windows.Perception.Spatial.SpatialEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1382,7 +1501,6 @@ package body WinRt.Windows.Perception.Spatial is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1403,9 +1521,9 @@ package body WinRt.Windows.Perception.Spatial is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1417,7 +1535,8 @@ package body WinRt.Windows.Perception.Spatial is
       entity : Windows.Perception.Spatial.SpatialEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1425,7 +1544,6 @@ package body WinRt.Windows.Perception.Spatial is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1446,9 +1564,9 @@ package body WinRt.Windows.Perception.Spatial is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1460,11 +1578,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntityWatcher'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialEntityWatcher;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialEntityWatcher do
          Hr := this.m_ISpatialEntityStore.all.CreateEntityWatcher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialEntityWatcher := new Windows.Perception.Spatial.ISpatialEntityWatcher;
          Retval.m_ISpatialEntityWatcher.all := m_ComRetVal;
       end return;
@@ -1479,12 +1601,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialEntityUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialEntityUpdatedEventArgs, ISpatialEntityUpdatedEventArgs_Ptr);
    begin
       if this.m_ISpatialEntityUpdatedEventArgs /= null then
          if this.m_ISpatialEntityUpdatedEventArgs.all /= null then
-            RefCount := this.m_ISpatialEntityUpdatedEventArgs.all.Release;
+            temp := this.m_ISpatialEntityUpdatedEventArgs.all.Release;
             Free (this.m_ISpatialEntityUpdatedEventArgs);
          end if;
       end if;
@@ -1499,11 +1621,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntity'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialEntity;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialEntity do
          Hr := this.m_ISpatialEntityUpdatedEventArgs.all.get_Entity (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialEntity := new Windows.Perception.Spatial.ISpatialEntity;
          Retval.m_ISpatialEntity.all := m_ComRetVal;
       end return;
@@ -1518,12 +1644,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialEntityWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialEntityWatcher, ISpatialEntityWatcher_Ptr);
    begin
       if this.m_ISpatialEntityWatcher /= null then
          if this.m_ISpatialEntityWatcher.all /= null then
-            RefCount := this.m_ISpatialEntityWatcher.all.Release;
+            temp := this.m_ISpatialEntityWatcher.all.Release;
             Free (this.m_ISpatialEntityWatcher);
          end if;
       end if;
@@ -1538,10 +1664,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntityWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.SpatialEntityWatcherStatus;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1552,10 +1682,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.add_Added (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1565,9 +1699,13 @@ package body WinRt.Windows.Perception.Spatial is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.remove_Added (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Updated
@@ -1577,10 +1715,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.add_Updated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1590,9 +1732,13 @@ package body WinRt.Windows.Perception.Spatial is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.remove_Updated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Removed
@@ -1602,10 +1748,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.add_Removed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1615,9 +1765,13 @@ package body WinRt.Windows.Perception.Spatial is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.remove_Removed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -1627,10 +1781,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1640,9 +1798,13 @@ package body WinRt.Windows.Perception.Spatial is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -1650,9 +1812,13 @@ package body WinRt.Windows.Perception.Spatial is
       this : in out SpatialEntityWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -1660,9 +1826,13 @@ package body WinRt.Windows.Perception.Spatial is
       this : in out SpatialEntityWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialEntityWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1674,12 +1844,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialLocation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialLocation, ISpatialLocation_Ptr);
    begin
       if this.m_ISpatialLocation /= null then
          if this.m_ISpatialLocation.all /= null then
-            RefCount := this.m_ISpatialLocation.all.Release;
+            temp := this.m_ISpatialLocation.all.Release;
             Free (this.m_ISpatialLocation);
          end if;
       end if;
@@ -1694,10 +1864,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialLocation.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1707,10 +1881,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_ISpatialLocation.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1720,10 +1898,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialLocation.all.get_AbsoluteLinearVelocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1733,10 +1915,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialLocation.all.get_AbsoluteLinearAcceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1746,10 +1932,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_ISpatialLocation.all.get_AbsoluteAngularVelocity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1759,10 +1949,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_ISpatialLocation.all.get_AbsoluteAngularAcceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1772,14 +1966,18 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Perception.Spatial.ISpatialLocation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Perception.Spatial.ISpatialLocation_Interface, WinRt.Windows.Perception.Spatial.ISpatialLocation2, WinRt.Windows.Perception.Spatial.IID_ISpatialLocation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialLocation.all);
       Hr := m_Interface.get_AbsoluteAngularVelocityAxisAngle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1789,14 +1987,18 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Perception.Spatial.ISpatialLocation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Perception.Spatial.ISpatialLocation_Interface, WinRt.Windows.Perception.Spatial.ISpatialLocation2, WinRt.Windows.Perception.Spatial.IID_ISpatialLocation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialLocation.all);
       Hr := m_Interface.get_AbsoluteAngularAccelerationAxisAngle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1809,12 +2011,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialLocator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialLocator, ISpatialLocator_Ptr);
    begin
       if this.m_ISpatialLocator /= null then
          if this.m_ISpatialLocator.all /= null then
-            RefCount := this.m_ISpatialLocator.all.Release;
+            temp := this.m_ISpatialLocator.all.Release;
             Free (this.m_ISpatialLocator);
          end if;
       end if;
@@ -1826,20 +2028,24 @@ package body WinRt.Windows.Perception.Spatial is
    function GetDefault
    return WinRt.Windows.Perception.Spatial.SpatialLocator is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialLocator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialLocator");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialLocatorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocator;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocator do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialLocatorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialLocator := new Windows.Perception.Spatial.ISpatialLocator;
             Retval.m_ISpatialLocator.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1852,10 +2058,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatability is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.SpatialLocatability;
    begin
       Hr := this.m_ISpatialLocator.all.get_Locatability (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1866,10 +2076,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialLocator.all.add_LocatabilityChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1879,9 +2093,13 @@ package body WinRt.Windows.Perception.Spatial is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialLocator.all.remove_LocatabilityChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PositionalTrackingDeactivating
@@ -1891,10 +2109,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialLocator.all.add_PositionalTrackingDeactivating (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1904,9 +2126,13 @@ package body WinRt.Windows.Perception.Spatial is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialLocator.all.remove_PositionalTrackingDeactivating (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryLocateAtTimestamp
@@ -1917,11 +2143,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocation;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocation do
          Hr := this.m_ISpatialLocator.all.TryLocateAtTimestamp (timestamp.m_IPerceptionTimestamp.all, coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialLocation := new Windows.Perception.Spatial.ISpatialLocation;
          Retval.m_ISpatialLocation.all := m_ComRetVal;
       end return;
@@ -1933,11 +2163,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateAttachedFrameOfReferenceAtCurrentHeading (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialLocatorAttachedFrameOfReference := new Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
          Retval.m_ISpatialLocatorAttachedFrameOfReference.all := m_ComRetVal;
       end return;
@@ -1950,11 +2184,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateAttachedFrameOfReferenceAtCurrentHeading (relativePosition, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialLocatorAttachedFrameOfReference := new Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
          Retval.m_ISpatialLocatorAttachedFrameOfReference.all := m_ComRetVal;
       end return;
@@ -1968,11 +2206,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateAttachedFrameOfReferenceAtCurrentHeading (relativePosition, relativeOrientation, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialLocatorAttachedFrameOfReference := new Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
          Retval.m_ISpatialLocatorAttachedFrameOfReference.all := m_ComRetVal;
       end return;
@@ -1987,11 +2229,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateAttachedFrameOfReferenceAtCurrentHeading (relativePosition, relativeOrientation, relativeHeadingInRadians, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialLocatorAttachedFrameOfReference := new Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference;
          Retval.m_ISpatialLocatorAttachedFrameOfReference.all := m_ComRetVal;
       end return;
@@ -2003,11 +2249,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateStationaryFrameOfReferenceAtCurrentLocation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialStationaryFrameOfReference := new Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
          Retval.m_ISpatialStationaryFrameOfReference.all := m_ComRetVal;
       end return;
@@ -2020,11 +2270,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateStationaryFrameOfReferenceAtCurrentLocation (relativePosition, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialStationaryFrameOfReference := new Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
          Retval.m_ISpatialStationaryFrameOfReference.all := m_ComRetVal;
       end return;
@@ -2038,11 +2292,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateStationaryFrameOfReferenceAtCurrentLocation (relativePosition, relativeOrientation, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialStationaryFrameOfReference := new Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
          Retval.m_ISpatialStationaryFrameOfReference.all := m_ComRetVal;
       end return;
@@ -2057,11 +2315,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference do
          Hr := this.m_ISpatialLocator.all.CreateStationaryFrameOfReferenceAtCurrentLocation (relativePosition, relativeOrientation, relativeHeadingInRadians, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialStationaryFrameOfReference := new Windows.Perception.Spatial.ISpatialStationaryFrameOfReference;
          Retval.m_ISpatialStationaryFrameOfReference.all := m_ComRetVal;
       end return;
@@ -2076,12 +2338,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialLocatorAttachedFrameOfReference) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialLocatorAttachedFrameOfReference, ISpatialLocatorAttachedFrameOfReference_Ptr);
    begin
       if this.m_ISpatialLocatorAttachedFrameOfReference /= null then
          if this.m_ISpatialLocatorAttachedFrameOfReference.all /= null then
-            RefCount := this.m_ISpatialLocatorAttachedFrameOfReference.all.Release;
+            temp := this.m_ISpatialLocatorAttachedFrameOfReference.all.Release;
             Free (this.m_ISpatialLocatorAttachedFrameOfReference);
          end if;
       end if;
@@ -2096,10 +2358,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.get_RelativePosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2109,9 +2375,13 @@ package body WinRt.Windows.Perception.Spatial is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.put_RelativePosition (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelativeOrientation
@@ -2120,10 +2390,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.get_RelativeOrientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2133,9 +2407,13 @@ package body WinRt.Windows.Perception.Spatial is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.put_RelativeOrientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AdjustHeading
@@ -2144,9 +2422,13 @@ package body WinRt.Windows.Perception.Spatial is
       headingOffsetInRadians : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.AdjustHeading (headingOffsetInRadians);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetStationaryCoordinateSystemAtTimestamp
@@ -2156,11 +2438,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.GetStationaryCoordinateSystemAtTimestamp (timestamp.m_IPerceptionTimestamp.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -2173,13 +2459,17 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_ISpatialLocatorAttachedFrameOfReference.all.TryGetRelativeHeadingAtTimestamp (timestamp.m_IPerceptionTimestamp.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2192,12 +2482,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialLocatorPositionalTrackingDeactivatingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialLocatorPositionalTrackingDeactivatingEventArgs, ISpatialLocatorPositionalTrackingDeactivatingEventArgs_Ptr);
    begin
       if this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs /= null then
          if this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all /= null then
-            RefCount := this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all.Release;
+            temp := this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all.Release;
             Free (this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs);
          end if;
       end if;
@@ -2212,10 +2502,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all.get_Canceled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2225,9 +2519,13 @@ package body WinRt.Windows.Perception.Spatial is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all.put_Canceled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2239,12 +2537,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialStageFrameOfReference) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialStageFrameOfReference, ISpatialStageFrameOfReference_Ptr);
    begin
       if this.m_ISpatialStageFrameOfReference /= null then
          if this.m_ISpatialStageFrameOfReference.all /= null then
-            RefCount := this.m_ISpatialStageFrameOfReference.all.Release;
+            temp := this.m_ISpatialStageFrameOfReference.all.Release;
             Free (this.m_ISpatialStageFrameOfReference);
          end if;
       end if;
@@ -2256,20 +2554,24 @@ package body WinRt.Windows.Perception.Spatial is
    function get_Current
    return WinRt.Windows.Perception.Spatial.SpatialStageFrameOfReference is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialStageFrameOfReferenceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialStageFrameOfReference;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialStageFrameOfReference do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialStageFrameOfReferenceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpatialStageFrameOfReference := new Windows.Perception.Spatial.ISpatialStageFrameOfReference;
             Retval.m_ISpatialStageFrameOfReference.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2279,17 +2581,21 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialStageFrameOfReferenceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialStageFrameOfReferenceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_CurrentChanged (handler, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2298,30 +2604,34 @@ package body WinRt.Windows.Perception.Spatial is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialStageFrameOfReferenceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialStageFrameOfReferenceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_CurrentChanged (cookie);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function RequestNewStageAsync
    return WinRt.Windows.Perception.Spatial.SpatialStageFrameOfReference is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialStageFrameOfReference");
       m_Factory        : access WinRt.Windows.Perception.Spatial.ISpatialStageFrameOfReferenceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpatialStageFrameOfReference.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2339,7 +2649,7 @@ package body WinRt.Windows.Perception.Spatial is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialStageFrameOfReference.Kind_Delegate, AsyncOperationCompletedHandler_SpatialStageFrameOfReference.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2353,10 +2663,10 @@ package body WinRt.Windows.Perception.Spatial is
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialStageFrameOfReferenceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestNewStageAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2368,15 +2678,15 @@ package body WinRt.Windows.Perception.Spatial is
                      Retval.m_ISpatialStageFrameOfReference := new Windows.Perception.Spatial.ISpatialStageFrameOfReference;
                      Retval.m_ISpatialStageFrameOfReference.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2389,11 +2699,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialStageFrameOfReference.all.get_CoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -2405,10 +2719,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialMovementRange is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.SpatialMovementRange;
    begin
       Hr := this.m_ISpatialStageFrameOfReference.all.get_MovementRange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2418,10 +2736,14 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialLookDirectionRange is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.SpatialLookDirectionRange;
    begin
       Hr := this.m_ISpatialStageFrameOfReference.all.get_LookDirectionRange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2432,11 +2754,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialStageFrameOfReference.all.GetCoordinateSystemAtCurrentLocation (locator.m_ISpatialLocator.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -2449,11 +2775,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialStageFrameOfReference.all.TryGetMovementBounds (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Windows.Foundation.Numerics.Vector3_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Vector3 is new To_Ada_Type (WinRt.Windows.Foundation.Numerics.Vector3, WinRt.Windows.Foundation.Numerics.Vector3_Ptr); 
@@ -2474,12 +2804,12 @@ package body WinRt.Windows.Perception.Spatial is
    end;
 
    procedure Finalize (this : in out SpatialStationaryFrameOfReference) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialStationaryFrameOfReference, ISpatialStationaryFrameOfReference_Ptr);
    begin
       if this.m_ISpatialStationaryFrameOfReference /= null then
          if this.m_ISpatialStationaryFrameOfReference.all /= null then
-            RefCount := this.m_ISpatialStationaryFrameOfReference.all.Release;
+            temp := this.m_ISpatialStationaryFrameOfReference.all.Release;
             Free (this.m_ISpatialStationaryFrameOfReference);
          end if;
       end if;
@@ -2494,11 +2824,15 @@ package body WinRt.Windows.Perception.Spatial is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialStationaryFrameOfReference.all.get_CoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;

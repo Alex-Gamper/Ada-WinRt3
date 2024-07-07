@@ -41,12 +41,12 @@ package body WinRt.Windows.System.Display is
    end;
 
    procedure Finalize (this : in out DisplayRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDisplayRequest, IDisplayRequest_Ptr);
    begin
       if this.m_IDisplayRequest /= null then
          if this.m_IDisplayRequest.all /= null then
-            RefCount := this.m_IDisplayRequest.all.Release;
+            temp := this.m_IDisplayRequest.all.Release;
             Free (this.m_IDisplayRequest);
          end if;
       end if;
@@ -57,7 +57,8 @@ package body WinRt.Windows.System.Display is
 
    function Constructor return DisplayRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.System.Display.DisplayRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Display.DisplayRequest");
       m_ComRetVal  : aliased Windows.System.Display.IDisplayRequest;
    begin
       return RetVal : DisplayRequest do
@@ -66,7 +67,7 @@ package body WinRt.Windows.System.Display is
             Retval.m_IDisplayRequest := new Windows.System.Display.IDisplayRequest;
             Retval.m_IDisplayRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -78,9 +79,13 @@ package body WinRt.Windows.System.Display is
       this : in out DisplayRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDisplayRequest.all.RequestActive;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RequestRelease
@@ -88,9 +93,13 @@ package body WinRt.Windows.System.Display is
       this : in out DisplayRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDisplayRequest.all.RequestRelease;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.System.Display;

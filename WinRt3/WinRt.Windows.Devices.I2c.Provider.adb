@@ -42,12 +42,12 @@ package body WinRt.Windows.Devices.I2c.Provider is
    end;
 
    procedure Finalize (this : in out ProviderI2cConnectionSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProviderI2cConnectionSettings, IProviderI2cConnectionSettings_Ptr);
    begin
       if this.m_IProviderI2cConnectionSettings /= null then
          if this.m_IProviderI2cConnectionSettings.all /= null then
-            RefCount := this.m_IProviderI2cConnectionSettings.all.Release;
+            temp := this.m_IProviderI2cConnectionSettings.all.Release;
             Free (this.m_IProviderI2cConnectionSettings);
          end if;
       end if;
@@ -62,10 +62,14 @@ package body WinRt.Windows.Devices.I2c.Provider is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.get_SlaveAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -75,9 +79,13 @@ package body WinRt.Windows.Devices.I2c.Provider is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.put_SlaveAddress (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BusSpeed
@@ -86,10 +94,14 @@ package body WinRt.Windows.Devices.I2c.Provider is
    )
    return WinRt.Windows.Devices.I2c.Provider.ProviderI2cBusSpeed is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.I2c.Provider.ProviderI2cBusSpeed;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.get_BusSpeed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -99,9 +111,13 @@ package body WinRt.Windows.Devices.I2c.Provider is
       value : Windows.Devices.I2c.Provider.ProviderI2cBusSpeed
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.put_BusSpeed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SharingMode
@@ -110,10 +126,14 @@ package body WinRt.Windows.Devices.I2c.Provider is
    )
    return WinRt.Windows.Devices.I2c.Provider.ProviderI2cSharingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.I2c.Provider.ProviderI2cSharingMode;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.get_SharingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -123,9 +143,13 @@ package body WinRt.Windows.Devices.I2c.Provider is
       value : Windows.Devices.I2c.Provider.ProviderI2cSharingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.put_SharingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.I2c.Provider;

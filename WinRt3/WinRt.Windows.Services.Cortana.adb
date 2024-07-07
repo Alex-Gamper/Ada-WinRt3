@@ -52,12 +52,12 @@ package body WinRt.Windows.Services.Cortana is
    end;
 
    procedure Finalize (this : in out CortanaActionableInsights) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICortanaActionableInsights, ICortanaActionableInsights_Ptr);
    begin
       if this.m_ICortanaActionableInsights /= null then
          if this.m_ICortanaActionableInsights.all /= null then
-            RefCount := this.m_ICortanaActionableInsights.all.Release;
+            temp := this.m_ICortanaActionableInsights.all.Release;
             Free (this.m_ICortanaActionableInsights);
          end if;
       end if;
@@ -69,20 +69,24 @@ package body WinRt.Windows.Services.Cortana is
    function GetDefault
    return WinRt.Windows.Services.Cortana.CortanaActionableInsights is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsights");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsights");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaActionableInsightsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaActionableInsights;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaActionableInsights do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaActionableInsightsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICortanaActionableInsights := new Windows.Services.Cortana.ICortanaActionableInsights;
             Retval.m_ICortanaActionableInsights.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -92,20 +96,24 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Windows.Services.Cortana.CortanaActionableInsights is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsights");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsights");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaActionableInsightsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaActionableInsights;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaActionableInsights do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaActionableInsightsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICortanaActionableInsights := new Windows.Services.Cortana.ICortanaActionableInsights;
             Retval.m_ICortanaActionableInsights.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -118,11 +126,15 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_ICortanaActionableInsights.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -134,13 +146,13 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -158,7 +170,7 @@ package body WinRt.Windows.Services.Cortana is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -171,7 +183,7 @@ package body WinRt.Windows.Services.Cortana is
       Hr := this.m_ICortanaActionableInsights.all.IsAvailableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -181,9 +193,9 @@ package body WinRt.Windows.Services.Cortana is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -197,7 +209,8 @@ package body WinRt.Windows.Services.Cortana is
       imageStream : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -205,7 +218,6 @@ package body WinRt.Windows.Services.Cortana is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -226,9 +238,9 @@ package body WinRt.Windows.Services.Cortana is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -241,7 +253,8 @@ package body WinRt.Windows.Services.Cortana is
       options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -249,7 +262,6 @@ package body WinRt.Windows.Services.Cortana is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -270,9 +282,9 @@ package body WinRt.Windows.Services.Cortana is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -284,8 +296,9 @@ package body WinRt.Windows.Services.Cortana is
       text : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -293,7 +306,6 @@ package body WinRt.Windows.Services.Cortana is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -314,13 +326,13 @@ package body WinRt.Windows.Services.Cortana is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_text);
+      tmp := WindowsDeleteString (HStr_text);
    end;
 
    procedure ShowInsightsForTextAsync
@@ -330,8 +342,9 @@ package body WinRt.Windows.Services.Cortana is
       options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -339,7 +352,6 @@ package body WinRt.Windows.Services.Cortana is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -360,13 +372,13 @@ package body WinRt.Windows.Services.Cortana is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_text);
+      tmp := WindowsDeleteString (HStr_text);
    end;
 
    procedure ShowInsightsAsync
@@ -375,7 +387,8 @@ package body WinRt.Windows.Services.Cortana is
       datapackage : Windows.ApplicationModel.DataTransfer.DataPackage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -383,7 +396,6 @@ package body WinRt.Windows.Services.Cortana is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -404,9 +416,9 @@ package body WinRt.Windows.Services.Cortana is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -419,7 +431,8 @@ package body WinRt.Windows.Services.Cortana is
       options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -427,7 +440,6 @@ package body WinRt.Windows.Services.Cortana is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -448,9 +460,9 @@ package body WinRt.Windows.Services.Cortana is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -465,12 +477,12 @@ package body WinRt.Windows.Services.Cortana is
    end;
 
    procedure Finalize (this : in out CortanaActionableInsightsOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICortanaActionableInsightsOptions, ICortanaActionableInsightsOptions_Ptr);
    begin
       if this.m_ICortanaActionableInsightsOptions /= null then
          if this.m_ICortanaActionableInsightsOptions.all /= null then
-            RefCount := this.m_ICortanaActionableInsightsOptions.all.Release;
+            temp := this.m_ICortanaActionableInsightsOptions.all.Release;
             Free (this.m_ICortanaActionableInsightsOptions);
          end if;
       end if;
@@ -481,7 +493,8 @@ package body WinRt.Windows.Services.Cortana is
 
    function Constructor return CortanaActionableInsightsOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsightsOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsightsOptions");
       m_ComRetVal  : aliased Windows.Services.Cortana.ICortanaActionableInsightsOptions;
    begin
       return RetVal : CortanaActionableInsightsOptions do
@@ -490,7 +503,7 @@ package body WinRt.Windows.Services.Cortana is
             Retval.m_ICortanaActionableInsightsOptions := new Windows.Services.Cortana.ICortanaActionableInsightsOptions;
             Retval.m_ICortanaActionableInsightsOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -503,11 +516,15 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ICortanaActionableInsightsOptions.all.get_ContentSourceWebLink (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -519,9 +536,13 @@ package body WinRt.Windows.Services.Cortana is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICortanaActionableInsightsOptions.all.put_ContentSourceWebLink (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SurroundingText
@@ -530,13 +551,17 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaActionableInsightsOptions.all.get_SurroundingText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -546,11 +571,15 @@ package body WinRt.Windows.Services.Cortana is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICortanaActionableInsightsOptions.all.put_SurroundingText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -562,12 +591,12 @@ package body WinRt.Windows.Services.Cortana is
    end;
 
    procedure Finalize (this : in out CortanaPermissionsManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICortanaPermissionsManager, ICortanaPermissionsManager_Ptr);
    begin
       if this.m_ICortanaPermissionsManager /= null then
          if this.m_ICortanaPermissionsManager.all /= null then
-            RefCount := this.m_ICortanaPermissionsManager.all.Release;
+            temp := this.m_ICortanaPermissionsManager.all.Release;
             Free (this.m_ICortanaPermissionsManager);
          end if;
       end if;
@@ -579,20 +608,24 @@ package body WinRt.Windows.Services.Cortana is
    function GetDefault
    return WinRt.Windows.Services.Cortana.CortanaPermissionsManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaPermissionsManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaPermissionsManager");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaPermissionsManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaPermissionsManager;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaPermissionsManager do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaPermissionsManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICortanaPermissionsManager := new Windows.Services.Cortana.ICortanaPermissionsManager;
             Retval.m_ICortanaPermissionsManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -605,10 +638,14 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICortanaPermissionsManager.all.IsSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -619,13 +656,13 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -643,7 +680,7 @@ package body WinRt.Windows.Services.Cortana is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -656,7 +693,7 @@ package body WinRt.Windows.Services.Cortana is
       Hr := this.m_ICortanaPermissionsManager.all.ArePermissionsGrantedAsync (permissions, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -666,9 +703,9 @@ package body WinRt.Windows.Services.Cortana is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -683,13 +720,13 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Windows.Services.Cortana.CortanaPermissionsChangeResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CortanaPermissionsChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -707,7 +744,7 @@ package body WinRt.Windows.Services.Cortana is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CortanaPermissionsChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_CortanaPermissionsChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -720,7 +757,7 @@ package body WinRt.Windows.Services.Cortana is
       Hr := this.m_ICortanaPermissionsManager.all.GrantPermissionsAsync (permissions, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -730,9 +767,9 @@ package body WinRt.Windows.Services.Cortana is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -747,13 +784,13 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Windows.Services.Cortana.CortanaPermissionsChangeResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CortanaPermissionsChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -771,7 +808,7 @@ package body WinRt.Windows.Services.Cortana is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CortanaPermissionsChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_CortanaPermissionsChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -784,7 +821,7 @@ package body WinRt.Windows.Services.Cortana is
       Hr := this.m_ICortanaPermissionsManager.all.RevokePermissionsAsync (permissions, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -794,9 +831,9 @@ package body WinRt.Windows.Services.Cortana is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -813,12 +850,12 @@ package body WinRt.Windows.Services.Cortana is
    end;
 
    procedure Finalize (this : in out CortanaSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICortanaSettings, ICortanaSettings_Ptr);
    begin
       if this.m_ICortanaSettings /= null then
          if this.m_ICortanaSettings.all /= null then
-            RefCount := this.m_ICortanaSettings.all.Release;
+            temp := this.m_ICortanaSettings.all.Release;
             Free (this.m_ICortanaSettings);
          end if;
       end if;
@@ -830,37 +867,45 @@ package body WinRt.Windows.Services.Cortana is
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaSettings");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICortanaSettingsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetDefault
    return WinRt.Windows.Services.Cortana.CortanaSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaSettings");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaSettings;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaSettings do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICortanaSettings := new Windows.Services.Cortana.ICortanaSettings;
             Retval.m_ICortanaSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -873,10 +918,14 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICortanaSettings.all.get_HasUserConsentToVoiceActivation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -886,10 +935,14 @@ package body WinRt.Windows.Services.Cortana is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICortanaSettings.all.get_IsVoiceActivationEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -899,9 +952,13 @@ package body WinRt.Windows.Services.Cortana is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICortanaSettings.all.put_IsVoiceActivationEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Services.Cortana;

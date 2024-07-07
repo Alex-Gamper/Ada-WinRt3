@@ -64,16 +64,16 @@ package body WinRt.Windows.ApplicationModel.AppService is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceCatalog");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceCatalog");
          m_Factory        : access WinRt.Windows.ApplicationModel.AppService.IAppServiceCatalogStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appServiceName : WinRt.HString := To_HString (appServiceName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appServiceName : constant WinRt.HString := To_HString (appServiceName);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -91,7 +91,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -104,10 +104,10 @@ package body WinRt.Windows.ApplicationModel.AppService is
          Hr := RoGetActivationFactory (m_hString, IID_IAppServiceCatalogStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAppServiceProvidersAsync (HStr_appServiceName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -117,16 +117,16 @@ package body WinRt.Windows.ApplicationModel.AppService is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appServiceName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appServiceName);
          return m_RetVal;
       end;
 
@@ -141,12 +141,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceClosedEventArgs, IAppServiceClosedEventArgs_Ptr);
    begin
       if this.m_IAppServiceClosedEventArgs /= null then
          if this.m_IAppServiceClosedEventArgs.all /= null then
-            RefCount := this.m_IAppServiceClosedEventArgs.all.Release;
+            temp := this.m_IAppServiceClosedEventArgs.all.Release;
             Free (this.m_IAppServiceClosedEventArgs);
          end if;
       end if;
@@ -161,10 +161,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceClosedStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppService.AppServiceClosedStatus;
    begin
       Hr := this.m_IAppServiceClosedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -177,12 +181,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceConnection, IAppServiceConnection_Ptr);
    begin
       if this.m_IAppServiceConnection /= null then
          if this.m_IAppServiceConnection.all /= null then
-            RefCount := this.m_IAppServiceConnection.all.Release;
+            temp := this.m_IAppServiceConnection.all.Release;
             Free (this.m_IAppServiceConnection);
          end if;
       end if;
@@ -193,7 +197,8 @@ package body WinRt.Windows.ApplicationModel.AppService is
 
    function Constructor return AppServiceConnection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
       m_ComRetVal  : aliased Windows.ApplicationModel.AppService.IAppServiceConnection;
    begin
       return RetVal : AppServiceConnection do
@@ -202,7 +207,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
             Retval.m_IAppServiceConnection := new Windows.ApplicationModel.AppService.IAppServiceConnection;
             Retval.m_IAppServiceConnection.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -217,15 +222,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
       m_Factory        : access WinRt.Windows.ApplicationModel.AppService.IAppServiceConnectionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StatelessAppServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -243,7 +248,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StatelessAppServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_StatelessAppServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -257,10 +262,10 @@ package body WinRt.Windows.ApplicationModel.AppService is
          Hr := RoGetActivationFactory (m_hString, IID_IAppServiceConnectionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SendStatelessMessageAsync (connection.m_IAppServiceConnection.all, connectionRequest.m_IRemoteSystemConnectionRequest.all, message.m_IPropertySet.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -272,15 +277,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
                      Retval.m_IStatelessAppServiceResponse := new Windows.ApplicationModel.AppService.IStatelessAppServiceResponse;
                      Retval.m_IStatelessAppServiceResponse.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -293,13 +298,17 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppServiceConnection.all.get_AppServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -309,11 +318,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppServiceConnection.all.put_AppServiceName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_PackageFamilyName
@@ -322,13 +335,17 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppServiceConnection.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -338,11 +355,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppServiceConnection.all.put_PackageFamilyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function OpenAsync
@@ -351,13 +372,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceConnectionStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppServiceConnectionStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -375,7 +396,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppServiceConnectionStatus.Kind_Delegate, AsyncOperationCompletedHandler_AppServiceConnectionStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -388,7 +409,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr := this.m_IAppServiceConnection.all.OpenAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -398,9 +419,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -415,13 +436,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponse'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -439,7 +460,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_AppServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -453,7 +474,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
          Hr := this.m_IAppServiceConnection.all.SendMessageAsync (message.m_IPropertySet.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -465,9 +486,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
                   Retval.m_IAppServiceResponse := new Windows.ApplicationModel.AppService.IAppServiceResponse;
                   Retval.m_IAppServiceResponse.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -482,10 +503,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppServiceConnection.all.add_RequestReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -495,9 +520,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppServiceConnection.all.remove_RequestReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ServiceClosed
@@ -507,10 +536,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppServiceConnection.all.add_ServiceClosed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -520,9 +553,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppServiceConnection.all.remove_ServiceClosed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function OpenRemoteAsync
@@ -532,14 +569,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceConnectionStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppServiceConnectionStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -557,7 +594,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppServiceConnectionStatus.Kind_Delegate, AsyncOperationCompletedHandler_AppServiceConnectionStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -570,10 +607,10 @@ package body WinRt.Windows.ApplicationModel.AppService is
    begin
       m_Interface := QInterface (this.m_IAppServiceConnection.all);
       Hr := m_Interface.OpenRemoteAsync (remoteSystemConnectionRequest.m_IRemoteSystemConnectionRequest.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -583,9 +620,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -599,15 +636,19 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection_Interface, WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2, WinRt.Windows.ApplicationModel.AppService.IID_IAppServiceConnection2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppServiceConnection.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -619,13 +660,17 @@ package body WinRt.Windows.ApplicationModel.AppService is
       value : Windows.System.User'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection_Interface, WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2, WinRt.Windows.ApplicationModel.AppService.IID_IAppServiceConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppServiceConnection.all);
       Hr := m_Interface.put_User (value.m_IUser.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -633,13 +678,17 @@ package body WinRt.Windows.ApplicationModel.AppService is
       this : in out AppServiceConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppServiceConnection.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -651,12 +700,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceDeferral, IAppServiceDeferral_Ptr);
    begin
       if this.m_IAppServiceDeferral /= null then
          if this.m_IAppServiceDeferral.all /= null then
-            RefCount := this.m_IAppServiceDeferral.all.Release;
+            temp := this.m_IAppServiceDeferral.all.Release;
             Free (this.m_IAppServiceDeferral);
          end if;
       end if;
@@ -670,9 +719,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
       this : in out AppServiceDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppServiceDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -684,12 +737,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceRequest, IAppServiceRequest_Ptr);
    begin
       if this.m_IAppServiceRequest /= null then
          if this.m_IAppServiceRequest.all /= null then
-            RefCount := this.m_IAppServiceRequest.all.Release;
+            temp := this.m_IAppServiceRequest.all.Release;
             Free (this.m_IAppServiceRequest);
          end if;
       end if;
@@ -704,11 +757,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IAppServiceRequest.all.get_Message (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -721,13 +778,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponseStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppServiceResponseStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -745,7 +802,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppServiceResponseStatus.Kind_Delegate, AsyncOperationCompletedHandler_AppServiceResponseStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -758,7 +815,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr := this.m_IAppServiceRequest.all.SendResponseAsync (message.m_IPropertySet.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -768,9 +825,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -787,12 +844,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceRequestReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceRequestReceivedEventArgs, IAppServiceRequestReceivedEventArgs_Ptr);
    begin
       if this.m_IAppServiceRequestReceivedEventArgs /= null then
          if this.m_IAppServiceRequestReceivedEventArgs.all /= null then
-            RefCount := this.m_IAppServiceRequestReceivedEventArgs.all.Release;
+            temp := this.m_IAppServiceRequestReceivedEventArgs.all.Release;
             Free (this.m_IAppServiceRequestReceivedEventArgs);
          end if;
       end if;
@@ -807,11 +864,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppService.IAppServiceRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppService.AppServiceRequest do
          Hr := this.m_IAppServiceRequestReceivedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppServiceRequest := new Windows.ApplicationModel.AppService.IAppServiceRequest;
          Retval.m_IAppServiceRequest.all := m_ComRetVal;
       end return;
@@ -823,11 +884,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppService.IAppServiceDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppService.AppServiceDeferral do
          Hr := this.m_IAppServiceRequestReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppServiceDeferral := new Windows.ApplicationModel.AppService.IAppServiceDeferral;
          Retval.m_IAppServiceDeferral.all := m_ComRetVal;
       end return;
@@ -842,12 +907,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceResponse) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceResponse, IAppServiceResponse_Ptr);
    begin
       if this.m_IAppServiceResponse /= null then
          if this.m_IAppServiceResponse.all /= null then
-            RefCount := this.m_IAppServiceResponse.all.Release;
+            temp := this.m_IAppServiceResponse.all.Release;
             Free (this.m_IAppServiceResponse);
          end if;
       end if;
@@ -862,11 +927,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IAppServiceResponse.all.get_Message (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -878,10 +947,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponseStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppService.AppServiceResponseStatus;
    begin
       Hr := this.m_IAppServiceResponse.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -894,12 +967,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out AppServiceTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppServiceTriggerDetails, IAppServiceTriggerDetails_Ptr);
    begin
       if this.m_IAppServiceTriggerDetails /= null then
          if this.m_IAppServiceTriggerDetails.all /= null then
-            RefCount := this.m_IAppServiceTriggerDetails.all.Release;
+            temp := this.m_IAppServiceTriggerDetails.all.Release;
             Free (this.m_IAppServiceTriggerDetails);
          end if;
       end if;
@@ -914,13 +987,17 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppServiceTriggerDetails.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -930,13 +1007,17 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppServiceTriggerDetails.all.get_CallerPackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -946,11 +1027,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppService.IAppServiceConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection do
          Hr := this.m_IAppServiceTriggerDetails.all.get_AppServiceConnection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppServiceConnection := new Windows.ApplicationModel.AppService.IAppServiceConnection;
          Retval.m_IAppServiceConnection.all := m_ComRetVal;
       end return;
@@ -962,14 +1047,18 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails_Interface, WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails2, WinRt.Windows.ApplicationModel.AppService.IID_IAppServiceTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppServiceTriggerDetails.all);
       Hr := m_Interface.get_IsRemoteSystemConnection (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -980,15 +1069,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_capabilityName : WinRt.HString := To_HString (capabilityName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_capabilityName : constant WinRt.HString := To_HString (capabilityName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1006,7 +1095,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1019,10 +1108,10 @@ package body WinRt.Windows.ApplicationModel.AppService is
    begin
       m_Interface := QInterface (this.m_IAppServiceTriggerDetails.all);
       Hr := m_Interface.CheckCallerForCapabilityAsync (HStr_capabilityName, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1032,14 +1121,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_capabilityName);
+      tmp := WindowsDeleteString (HStr_capabilityName);
       return m_RetVal;
    end;
 
@@ -1049,17 +1138,21 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails_Interface, WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails4, WinRt.Windows.ApplicationModel.AppService.IID_IAppServiceTriggerDetails4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppServiceTriggerDetails.all);
       Hr := m_Interface.get_CallerRemoteConnectionToken (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1072,12 +1165,12 @@ package body WinRt.Windows.ApplicationModel.AppService is
    end;
 
    procedure Finalize (this : in out StatelessAppServiceResponse) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStatelessAppServiceResponse, IStatelessAppServiceResponse_Ptr);
    begin
       if this.m_IStatelessAppServiceResponse /= null then
          if this.m_IStatelessAppServiceResponse.all /= null then
-            RefCount := this.m_IStatelessAppServiceResponse.all.Release;
+            temp := this.m_IStatelessAppServiceResponse.all.Release;
             Free (this.m_IStatelessAppServiceResponse);
          end if;
       end if;
@@ -1092,11 +1185,15 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IStatelessAppServiceResponse.all.get_Message (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -1108,10 +1205,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
    )
    return WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus;
    begin
       Hr := this.m_IStatelessAppServiceResponse.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

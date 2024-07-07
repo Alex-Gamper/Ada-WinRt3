@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out AutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAutomationPeer, IAutomationPeer_Ptr);
    begin
       if this.m_IAutomationPeer /= null then
          if this.m_IAutomationPeer.all /= null then
-            RefCount := this.m_IAutomationPeer.all.Release;
+            temp := this.m_IAutomationPeer.all.Release;
             Free (this.m_IAutomationPeer);
          end if;
       end if;
@@ -67,9 +67,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
       m_Factory    : access IAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : AutomationPeer do
@@ -78,9 +79,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
             Retval.m_IAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -93,34 +94,42 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ListenerExists (eventId, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GenerateRawElementProviderRuntimeId
    return WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GenerateRawElementProviderRuntimeId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -133,11 +142,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.get_EventsSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -149,9 +162,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       value : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeer.all.put_EventsSource (value.m_IAutomationPeer.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPattern
@@ -161,10 +178,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IAutomationPeer.all.GetPattern (patternInterface, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -174,9 +195,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeer.all.RaiseAutomationEvent (eventId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RaisePropertyChangedEvent
@@ -187,9 +212,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       newValue : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeer.all.RaisePropertyChangedEvent (automationProperty.m_IAutomationProperty.all, oldValue, newValue);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetAcceleratorKey
@@ -198,13 +227,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetAcceleratorKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -214,13 +247,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetAccessKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -230,10 +267,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationControlType;
    begin
       Hr := this.m_IAutomationPeer.all.GetAutomationControlType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -243,13 +284,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetAutomationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -259,10 +304,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IAutomationPeer.all.GetBoundingRectangle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -272,13 +321,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IVector_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeer.Kind;
    begin
       Hr := this.m_IAutomationPeer.all.GetChildren (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -288,13 +341,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetClassName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -304,10 +361,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IAutomationPeer.all.GetClickablePoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -317,13 +378,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetHelpText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -333,13 +398,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetItemStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -349,13 +418,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetItemType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -365,11 +438,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.GetLabeledBy (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -381,13 +458,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetLocalizedControlType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -397,13 +478,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAutomationPeer.all.GetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -413,10 +498,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationOrientation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationOrientation;
    begin
       Hr := this.m_IAutomationPeer.all.GetOrientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -426,10 +515,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.HasKeyboardFocus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -439,10 +532,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsContentElement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -452,10 +549,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsControlElement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -465,10 +566,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -478,10 +583,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsKeyboardFocusable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -491,10 +600,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsOffscreen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -504,10 +617,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsPassword (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -517,10 +634,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAutomationPeer.all.IsRequiredForForm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -529,9 +650,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeer.all.SetFocus;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetParent
@@ -540,11 +665,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.GetParent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -555,9 +684,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeer.all.InvalidatePeer;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPeerFromPoint
@@ -567,11 +700,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.GetPeerFromPoint (point, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -583,10 +720,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
    begin
       Hr := this.m_IAutomationPeer.all.GetLiveSetting (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -597,14 +738,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.Navigate (direction, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -615,14 +760,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetElementFromPoint (pointInWindowCoordinates, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -632,14 +781,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetFocusedElement (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -648,13 +801,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.ShowContextMenu;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetControlledPeers
@@ -663,17 +820,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IVectorView_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetControlledPeers (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -683,17 +844,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IVector_IAutomationPeerAnnotation.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeerAnnotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetAnnotations (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IAutomationPeerAnnotation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -703,13 +868,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.SetParent (peer.m_IAutomationPeer.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RaiseTextEditTextChangedEvent
@@ -719,13 +888,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       changedData : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.RaiseTextEditTextChangedEvent (automationTextEditChangeType, changedData);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPositionInSet
@@ -734,14 +907,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetPositionInSet (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -751,14 +928,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetSizeOfSet (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -768,14 +949,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -786,13 +971,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       child : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.RaiseStructureChangedEvent (structureChangeType, child.m_IAutomationPeer.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetLandmarkType
@@ -801,14 +990,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer4, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLandmarkType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -818,17 +1011,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer4, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLocalizedLandmarkType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -838,14 +1035,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsPeripheral (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -855,14 +1056,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsDataValidForForm (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -872,17 +1077,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetFullDescription (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -892,14 +1101,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer6, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetCulture (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -912,17 +1125,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       activityId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer7 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_displayString : WinRt.HString := To_HString (displayString);
-      HStr_activityId : WinRt.HString := To_HString (activityId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_displayString : constant WinRt.HString := To_HString (displayString);
+      HStr_activityId : constant WinRt.HString := To_HString (activityId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer7, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer7'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.RaiseNotificationEvent (notificationKind, notificationProcessing, HStr_displayString, HStr_activityId);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_displayString);
-      Hr := WindowsDeleteString (HStr_activityId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_displayString);
+      tmp := WindowsDeleteString (HStr_activityId);
    end;
 
    function GetHeadingLevel
@@ -931,14 +1148,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer8 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer8, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetHeadingLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -948,14 +1169,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer9 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer9, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer9'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsDialog (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -966,15 +1191,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerProtected'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          m_Interface := QInterface (this.m_IAutomationPeer.all);
          Hr := m_Interface.PeerFromProvider (provider.m_IIRawElementProviderSimple.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -987,15 +1216,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerProtected'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_IAutomationPeer.all);
          Hr := m_Interface.ProviderFromPeer (peer.m_IAutomationPeer.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -1008,14 +1241,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetPatternCore (patternInterface, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1025,17 +1262,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetAcceleratorKeyCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1045,17 +1286,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetAccessKeyCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1065,14 +1310,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationControlType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetAutomationControlTypeCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1082,17 +1331,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetAutomationIdCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1102,14 +1355,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetBoundingRectangleCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1119,17 +1376,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IVector_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetChildrenCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1139,17 +1400,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetClassNameCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1159,14 +1424,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetClickablePointCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1176,17 +1445,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetHelpTextCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1196,17 +1469,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetItemStatusCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1216,17 +1493,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetItemTypeCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1236,15 +1517,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          m_Interface := QInterface (this.m_IAutomationPeer.all);
          Hr := m_Interface.GetLabeledByCore (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -1256,17 +1541,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLocalizedControlTypeCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1276,17 +1565,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetNameCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1296,14 +1589,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationOrientation is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationOrientation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetOrientationCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1313,14 +1610,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.HasKeyboardFocusCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1330,14 +1631,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsContentElementCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1347,14 +1652,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsControlElementCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1364,14 +1673,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsEnabledCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1381,14 +1694,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsKeyboardFocusableCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1398,14 +1715,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsOffscreenCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1415,14 +1736,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsPasswordCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1432,14 +1757,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsRequiredForFormCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1448,13 +1777,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.SetFocusCore;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPeerFromPointCore
@@ -1464,15 +1797,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          m_Interface := QInterface (this.m_IAutomationPeer.all);
          Hr := m_Interface.GetPeerFromPointCore (point, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -1484,14 +1821,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLiveSettingCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1500,13 +1841,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.ShowContextMenuCore;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetControlledPeersCore
@@ -1515,17 +1860,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IVectorView_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetControlledPeersCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1536,14 +1885,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.NavigateCore (direction, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1554,14 +1907,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetElementFromPointCore (pointInWindowCoordinates, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1571,14 +1928,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetFocusedElementCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1588,17 +1949,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IVector_IAutomationPeerAnnotation.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeerAnnotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetAnnotationsCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IAutomationPeerAnnotation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1608,14 +1973,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetPositionInSetCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1625,14 +1994,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetSizeOfSetCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1642,14 +2015,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLevelCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1659,14 +2036,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides4, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLandmarkTypeCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1676,17 +2057,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides4, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetLocalizedLandmarkTypeCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1696,14 +2081,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsPeripheralCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1713,14 +2102,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsDataValidForFormCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1730,17 +2123,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetFullDescriptionCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1750,17 +2147,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IIterable_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetDescribedByCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1770,17 +2171,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IIterable_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetFlowsToCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1790,17 +2195,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return IIterable_IAutomationPeer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IIterable_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetFlowsFromCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IIterable_IAutomationPeer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1810,14 +2219,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides6, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetCultureCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1827,14 +2240,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides8 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides8, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.GetHeadingLevelCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1844,14 +2261,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides9 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides9, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides9'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
       Hr := m_Interface.IsDialogCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1864,12 +2285,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out FrameworkElementAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameworkElementAutomationPeer, IFrameworkElementAutomationPeer_Ptr);
    begin
       if this.m_IFrameworkElementAutomationPeer /= null then
          if this.m_IFrameworkElementAutomationPeer.all /= null then
-            RefCount := this.m_IFrameworkElementAutomationPeer.all.Release;
+            temp := this.m_IFrameworkElementAutomationPeer.all.Release;
             Free (this.m_IFrameworkElementAutomationPeer);
          end if;
       end if;
@@ -1886,9 +2307,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return FrameworkElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
       m_Factory    : access IFrameworkElementAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
    begin
       return RetVal : FrameworkElementAutomationPeer do
@@ -1897,9 +2319,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFrameworkElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFrameworkElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
             Retval.m_IFrameworkElementAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1912,20 +2334,24 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFrameworkElementAutomationPeerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromElement (element.m_IUIElement.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
             Retval.m_IAutomationPeer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1935,20 +2361,24 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFrameworkElementAutomationPeerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreatePeerForElement (element.m_IUIElement.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
             Retval.m_IAutomationPeer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1961,11 +2391,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IFrameworkElementAutomationPeer.all.get_Owner (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -1980,12 +2414,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out AppBarAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBarAutomationPeer, IAppBarAutomationPeer_Ptr);
    begin
       if this.m_IAppBarAutomationPeer /= null then
          if this.m_IAppBarAutomationPeer.all /= null then
-            RefCount := this.m_IAppBarAutomationPeer.all.Release;
+            temp := this.m_IAppBarAutomationPeer.all.Release;
             Free (this.m_IAppBarAutomationPeer);
          end if;
       end if;
@@ -2002,9 +2436,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AppBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarAutomationPeer");
       m_Factory    : access IAppBarAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
    begin
       return RetVal : AppBarAutomationPeer do
@@ -2013,9 +2448,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAppBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IAppBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
             Retval.m_IAppBarAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2028,14 +2463,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ToggleState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_ToggleState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2044,13 +2483,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AppBarAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.Toggle;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExpandCollapseState
@@ -2059,14 +2502,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_ExpandCollapseState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2075,13 +2522,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AppBarAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.Collapse;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Expand
@@ -2089,13 +2540,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AppBarAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.Expand;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsModal
@@ -2104,14 +2559,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_IsModal (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2121,14 +2580,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_IsTopmost (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2138,14 +2601,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_Maximizable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2155,14 +2622,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_Minimizable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2172,14 +2643,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.WindowInteractionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowInteractionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_InteractionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2189,14 +2664,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.WindowVisualState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowVisualState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.get_VisualState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2205,13 +2684,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AppBarAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetVisualState
@@ -2220,13 +2703,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       state : Windows.UI.Xaml.Automation.WindowVisualState
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.SetVisualState (state);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function WaitForInputIdle
@@ -2236,14 +2723,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
       Hr := m_Interface.WaitForInputIdle (milliseconds, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2256,12 +2747,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ButtonBaseAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IButtonBaseAutomationPeer, IButtonBaseAutomationPeer_Ptr);
    begin
       if this.m_IButtonBaseAutomationPeer /= null then
          if this.m_IButtonBaseAutomationPeer.all /= null then
-            RefCount := this.m_IButtonBaseAutomationPeer.all.Release;
+            temp := this.m_IButtonBaseAutomationPeer.all.Release;
             Free (this.m_IButtonBaseAutomationPeer);
          end if;
       end if;
@@ -2278,9 +2769,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ButtonBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonBaseAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonBaseAutomationPeer");
       m_Factory    : access IButtonBaseAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
    begin
       return RetVal : ButtonBaseAutomationPeer do
@@ -2289,9 +2781,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IButtonBase.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IButtonBaseAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
             Retval.m_IButtonBaseAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2307,12 +2799,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IButtonAutomationPeer, IButtonAutomationPeer_Ptr);
    begin
       if this.m_IButtonAutomationPeer /= null then
          if this.m_IButtonAutomationPeer.all /= null then
-            RefCount := this.m_IButtonAutomationPeer.all.Release;
+            temp := this.m_IButtonAutomationPeer.all.Release;
             Free (this.m_IButtonAutomationPeer);
          end if;
       end if;
@@ -2329,9 +2821,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonAutomationPeer");
       m_Factory    : access IButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
    begin
       return RetVal : ButtonAutomationPeer do
@@ -2340,9 +2833,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
             Retval.m_IButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2354,13 +2847,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IButtonAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2372,12 +2869,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out AppBarButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBarButtonAutomationPeer, IAppBarButtonAutomationPeer_Ptr);
    begin
       if this.m_IAppBarButtonAutomationPeer /= null then
          if this.m_IAppBarButtonAutomationPeer.all /= null then
-            RefCount := this.m_IAppBarButtonAutomationPeer.all.Release;
+            temp := this.m_IAppBarButtonAutomationPeer.all.Release;
             Free (this.m_IAppBarButtonAutomationPeer);
          end if;
       end if;
@@ -2394,9 +2891,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AppBarButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarButtonAutomationPeer");
       m_Factory    : access IAppBarButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
    begin
       return RetVal : AppBarButtonAutomationPeer do
@@ -2405,9 +2903,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAppBarButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IAppBarButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
             Retval.m_IAppBarButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2420,14 +2918,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarButtonAutomationPeer.all);
       Hr := m_Interface.get_ExpandCollapseState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2436,13 +2938,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AppBarButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarButtonAutomationPeer.all);
       Hr := m_Interface.Collapse;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Expand
@@ -2450,13 +2956,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AppBarButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarButtonAutomationPeer.all);
       Hr := m_Interface.Expand;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2468,12 +2978,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ToggleButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToggleButtonAutomationPeer, IToggleButtonAutomationPeer_Ptr);
    begin
       if this.m_IToggleButtonAutomationPeer /= null then
          if this.m_IToggleButtonAutomationPeer.all /= null then
-            RefCount := this.m_IToggleButtonAutomationPeer.all.Release;
+            temp := this.m_IToggleButtonAutomationPeer.all.Release;
             Free (this.m_IToggleButtonAutomationPeer);
          end if;
       end if;
@@ -2490,9 +3000,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ToggleButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleButtonAutomationPeer");
       m_Factory    : access IToggleButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
    begin
       return RetVal : ToggleButtonAutomationPeer do
@@ -2501,9 +3012,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IToggleButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IToggleButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
             Retval.m_IToggleButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2516,14 +3027,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ToggleState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleButtonAutomationPeer.all);
       Hr := m_Interface.get_ToggleState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2532,13 +3047,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ToggleButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleButtonAutomationPeer.all);
       Hr := m_Interface.Toggle;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2550,12 +3069,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out AppBarToggleButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBarToggleButtonAutomationPeer, IAppBarToggleButtonAutomationPeer_Ptr);
    begin
       if this.m_IAppBarToggleButtonAutomationPeer /= null then
          if this.m_IAppBarToggleButtonAutomationPeer.all /= null then
-            RefCount := this.m_IAppBarToggleButtonAutomationPeer.all.Release;
+            temp := this.m_IAppBarToggleButtonAutomationPeer.all.Release;
             Free (this.m_IAppBarToggleButtonAutomationPeer);
          end if;
       end if;
@@ -2572,9 +3091,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AppBarToggleButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarToggleButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarToggleButtonAutomationPeer");
       m_Factory    : access IAppBarToggleButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
    begin
       return RetVal : AppBarToggleButtonAutomationPeer do
@@ -2583,9 +3103,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAppBarToggleButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IAppBarToggleButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
             Retval.m_IAppBarToggleButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2601,12 +3121,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out AutoSuggestBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAutoSuggestBoxAutomationPeer, IAutoSuggestBoxAutomationPeer_Ptr);
    begin
       if this.m_IAutoSuggestBoxAutomationPeer /= null then
          if this.m_IAutoSuggestBoxAutomationPeer.all /= null then
-            RefCount := this.m_IAutoSuggestBoxAutomationPeer.all.Release;
+            temp := this.m_IAutoSuggestBoxAutomationPeer.all.Release;
             Free (this.m_IAutoSuggestBoxAutomationPeer);
          end if;
       end if;
@@ -2621,9 +3141,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AutoSuggestBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutoSuggestBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutoSuggestBoxAutomationPeer");
       m_Factory    : access IAutoSuggestBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
    begin
       return RetVal : AutoSuggestBoxAutomationPeer do
@@ -2632,9 +3153,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAutoSuggestBox.all, m_ComRetVal'Access);
             Retval.m_IAutoSuggestBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
             Retval.m_IAutoSuggestBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2646,13 +3167,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out AutoSuggestBoxAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutoSuggestBoxAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2664,12 +3189,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out AutomationPeerAnnotation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAutomationPeerAnnotation, IAutomationPeerAnnotation_Ptr);
    begin
       if this.m_IAutomationPeerAnnotation /= null then
          if this.m_IAutomationPeerAnnotation.all /= null then
-            RefCount := this.m_IAutomationPeerAnnotation.all.Release;
+            temp := this.m_IAutomationPeerAnnotation.all.Release;
             Free (this.m_IAutomationPeerAnnotation);
          end if;
       end if;
@@ -2684,9 +3209,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory    : access IAutomationPeerAnnotationFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
@@ -2695,9 +3221,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstance (type_x, m_ComRetVal'Access);
             Retval.m_IAutomationPeerAnnotation := new Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2708,9 +3234,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory    : access IAutomationPeerAnnotationFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
@@ -2719,15 +3246,16 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateWithPeerParameter (type_x, peer.m_IAutomationPeer.all, m_ComRetVal'Access);
             Retval.m_IAutomationPeerAnnotation := new Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
@@ -2736,7 +3264,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Retval.m_IAutomationPeerAnnotation := new Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2746,40 +3274,48 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function get_TypeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerAnnotationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TypeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PeerProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerAnnotationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PeerProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2792,10 +3328,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.AnnotationType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.AnnotationType;
    begin
       Hr := this.m_IAutomationPeerAnnotation.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2805,9 +3345,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       value : Windows.UI.Xaml.Automation.AnnotationType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeerAnnotation.all.put_Type (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Peer
@@ -2816,11 +3360,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeerAnnotation.all.get_Peer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
@@ -2832,9 +3380,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       value : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationPeerAnnotation.all.put_Peer (value.m_IAutomationPeer.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2846,12 +3398,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out CalendarDatePickerAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICalendarDatePickerAutomationPeer, ICalendarDatePickerAutomationPeer_Ptr);
    begin
       if this.m_ICalendarDatePickerAutomationPeer /= null then
          if this.m_ICalendarDatePickerAutomationPeer.all /= null then
-            RefCount := this.m_ICalendarDatePickerAutomationPeer.all.Release;
+            temp := this.m_ICalendarDatePickerAutomationPeer.all.Release;
             Free (this.m_ICalendarDatePickerAutomationPeer);
          end if;
       end if;
@@ -2868,9 +3420,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return CalendarDatePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CalendarDatePickerAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CalendarDatePickerAutomationPeer");
       m_Factory    : access ICalendarDatePickerAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
    begin
       return RetVal : CalendarDatePickerAutomationPeer do
@@ -2879,9 +3432,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ICalendarDatePicker.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICalendarDatePickerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
             Retval.m_ICalendarDatePickerAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2893,13 +3446,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out CalendarDatePickerAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarDatePickerAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsReadOnly
@@ -2908,14 +3465,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarDatePickerAutomationPeer.all);
       Hr := m_Interface.get_IsReadOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2925,17 +3486,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarDatePickerAutomationPeer.all);
       Hr := m_Interface.get_Value (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2945,15 +3510,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarDatePickerAutomationPeer.all);
       Hr := m_Interface.SetValue (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -2965,12 +3534,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out CaptureElementAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICaptureElementAutomationPeer, ICaptureElementAutomationPeer_Ptr);
    begin
       if this.m_ICaptureElementAutomationPeer /= null then
          if this.m_ICaptureElementAutomationPeer.all /= null then
-            RefCount := this.m_ICaptureElementAutomationPeer.all.Release;
+            temp := this.m_ICaptureElementAutomationPeer.all.Release;
             Free (this.m_ICaptureElementAutomationPeer);
          end if;
       end if;
@@ -2987,9 +3556,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return CaptureElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CaptureElementAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CaptureElementAutomationPeer");
       m_Factory    : access ICaptureElementAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
    begin
       return RetVal : CaptureElementAutomationPeer do
@@ -2998,9 +3568,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ICaptureElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICaptureElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
             Retval.m_ICaptureElementAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3016,12 +3586,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out CheckBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICheckBoxAutomationPeer, ICheckBoxAutomationPeer_Ptr);
    begin
       if this.m_ICheckBoxAutomationPeer /= null then
          if this.m_ICheckBoxAutomationPeer.all /= null then
-            RefCount := this.m_ICheckBoxAutomationPeer.all.Release;
+            temp := this.m_ICheckBoxAutomationPeer.all.Release;
             Free (this.m_ICheckBoxAutomationPeer);
          end if;
       end if;
@@ -3038,9 +3608,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return CheckBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CheckBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CheckBoxAutomationPeer");
       m_Factory    : access ICheckBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
    begin
       return RetVal : CheckBoxAutomationPeer do
@@ -3049,9 +3620,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ICheckBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICheckBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
             Retval.m_ICheckBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3067,12 +3638,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RangeBaseAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRangeBaseAutomationPeer, IRangeBaseAutomationPeer_Ptr);
    begin
       if this.m_IRangeBaseAutomationPeer /= null then
          if this.m_IRangeBaseAutomationPeer.all /= null then
-            RefCount := this.m_IRangeBaseAutomationPeer.all.Release;
+            temp := this.m_IRangeBaseAutomationPeer.all.Release;
             Free (this.m_IRangeBaseAutomationPeer);
          end if;
       end if;
@@ -3089,9 +3660,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RangeBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer");
       m_Factory    : access IRangeBaseAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
    begin
       return RetVal : RangeBaseAutomationPeer do
@@ -3100,9 +3672,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRangeBase.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRangeBaseAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
             Retval.m_IRangeBaseAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3115,14 +3687,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.get_IsReadOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3132,14 +3708,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.get_LargeChange (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3149,14 +3729,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.get_Maximum (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3166,14 +3750,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.get_Minimum (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3183,14 +3771,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.get_SmallChange (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3200,14 +3792,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.get_Value (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3217,13 +3813,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IRangeValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IRangeValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBaseAutomationPeer.all);
       Hr := m_Interface.SetValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3235,12 +3835,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out SliderAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISliderAutomationPeer, ISliderAutomationPeer_Ptr);
    begin
       if this.m_ISliderAutomationPeer /= null then
          if this.m_ISliderAutomationPeer.all /= null then
-            RefCount := this.m_ISliderAutomationPeer.all.Release;
+            temp := this.m_ISliderAutomationPeer.all.Release;
             Free (this.m_ISliderAutomationPeer);
          end if;
       end if;
@@ -3257,9 +3857,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return SliderAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SliderAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SliderAutomationPeer");
       m_Factory    : access ISliderAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
    begin
       return RetVal : SliderAutomationPeer do
@@ -3268,9 +3869,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISlider.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISliderAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
             Retval.m_ISliderAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3286,12 +3887,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ColorPickerSliderAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorPickerSliderAutomationPeer, IColorPickerSliderAutomationPeer_Ptr);
    begin
       if this.m_IColorPickerSliderAutomationPeer /= null then
          if this.m_IColorPickerSliderAutomationPeer.all /= null then
-            RefCount := this.m_IColorPickerSliderAutomationPeer.all.Release;
+            temp := this.m_IColorPickerSliderAutomationPeer.all.Release;
             Free (this.m_IColorPickerSliderAutomationPeer);
          end if;
       end if;
@@ -3308,9 +3909,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ColorPickerSliderAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorPickerSliderAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorPickerSliderAutomationPeer");
       m_Factory    : access IColorPickerSliderAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
    begin
       return RetVal : ColorPickerSliderAutomationPeer do
@@ -3319,9 +3921,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IColorPickerSlider.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IColorPickerSliderAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
             Retval.m_IColorPickerSliderAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3337,12 +3939,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ColorSpectrumAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorSpectrumAutomationPeer, IColorSpectrumAutomationPeer_Ptr);
    begin
       if this.m_IColorSpectrumAutomationPeer /= null then
          if this.m_IColorSpectrumAutomationPeer.all /= null then
-            RefCount := this.m_IColorSpectrumAutomationPeer.all.Release;
+            temp := this.m_IColorSpectrumAutomationPeer.all.Release;
             Free (this.m_IColorSpectrumAutomationPeer);
          end if;
       end if;
@@ -3359,9 +3961,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ColorSpectrumAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorSpectrumAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorSpectrumAutomationPeer");
       m_Factory    : access IColorSpectrumAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
    begin
       return RetVal : ColorSpectrumAutomationPeer do
@@ -3370,9 +3973,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IColorSpectrum.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IColorSpectrumAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
             Retval.m_IColorSpectrumAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3388,12 +3991,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ItemsControlAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IItemsControlAutomationPeer, IItemsControlAutomationPeer_Ptr);
    begin
       if this.m_IItemsControlAutomationPeer /= null then
          if this.m_IItemsControlAutomationPeer.all /= null then
-            RefCount := this.m_IItemsControlAutomationPeer.all.Release;
+            temp := this.m_IItemsControlAutomationPeer.all.Release;
             Free (this.m_IItemsControlAutomationPeer);
          end if;
       end if;
@@ -3410,9 +4013,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ItemsControlAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer");
       m_Factory    : access IItemsControlAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
    begin
       return RetVal : ItemsControlAutomationPeer do
@@ -3421,9 +4025,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IItemsControl.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IItemsControlAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
             Retval.m_IItemsControlAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3437,15 +4041,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IItemsControlAutomationPeer2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer do
          m_Interface := QInterface (this.m_IItemsControlAutomationPeer.all);
          Hr := m_Interface.CreateItemAutomationPeer (item, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
          Retval.m_IItemAutomationPeer.all := m_ComRetVal;
       end return;
@@ -3458,15 +4066,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeerOverrides2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeerOverrides2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IItemsControlAutomationPeerOverrides2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer do
          m_Interface := QInterface (this.m_IItemsControlAutomationPeer.all);
          Hr := m_Interface.OnCreateItemAutomationPeer (item, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
          Retval.m_IItemAutomationPeer.all := m_ComRetVal;
       end return;
@@ -3481,15 +4093,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IItemContainerProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_IItemsControlAutomationPeer.all);
          Hr := m_Interface.FindItemByProperty (startAfter.m_IIRawElementProviderSimple.all, automationProperty.m_IAutomationProperty.all, value, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -3504,12 +4120,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out SelectorAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISelectorAutomationPeer, ISelectorAutomationPeer_Ptr);
    begin
       if this.m_ISelectorAutomationPeer /= null then
          if this.m_ISelectorAutomationPeer.all /= null then
-            RefCount := this.m_ISelectorAutomationPeer.all.Release;
+            temp := this.m_ISelectorAutomationPeer.all.Release;
             Free (this.m_ISelectorAutomationPeer);
          end if;
       end if;
@@ -3526,9 +4142,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return SelectorAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer");
       m_Factory    : access ISelectorAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
    begin
       return RetVal : SelectorAutomationPeer do
@@ -3537,9 +4154,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISelector.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISelectorAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
             Retval.m_ISelectorAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3552,14 +4169,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISelectorAutomationPeer.all);
       Hr := m_Interface.get_CanSelectMultiple (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3569,14 +4190,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISelectorAutomationPeer.all);
       Hr := m_Interface.get_IsSelectionRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3594,12 +4219,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ComboBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IComboBoxAutomationPeer, IComboBoxAutomationPeer_Ptr);
    begin
       if this.m_IComboBoxAutomationPeer /= null then
          if this.m_IComboBoxAutomationPeer.all /= null then
-            RefCount := this.m_IComboBoxAutomationPeer.all.Release;
+            temp := this.m_IComboBoxAutomationPeer.all.Release;
             Free (this.m_IComboBoxAutomationPeer);
          end if;
       end if;
@@ -3616,9 +4241,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ComboBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer");
       m_Factory    : access IComboBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
    begin
       return RetVal : ComboBoxAutomationPeer do
@@ -3627,9 +4253,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IComboBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IComboBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
             Retval.m_IComboBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3642,14 +4268,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_IsReadOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3659,17 +4289,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_Value (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3679,15 +4313,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IValueProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IValueProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.SetValue (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ExpandCollapseState
@@ -3696,14 +4334,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_ExpandCollapseState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3712,13 +4354,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ComboBoxAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.Collapse;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Expand
@@ -3726,13 +4372,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ComboBoxAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.Expand;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsModal
@@ -3741,14 +4391,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_IsModal (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3758,14 +4412,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_IsTopmost (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3775,14 +4433,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_Maximizable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3792,14 +4454,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_Minimizable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3809,14 +4475,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.WindowInteractionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowInteractionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_InteractionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3826,14 +4496,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.WindowVisualState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowVisualState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.get_VisualState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3842,13 +4516,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ComboBoxAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetVisualState
@@ -3857,13 +4535,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       state : Windows.UI.Xaml.Automation.WindowVisualState
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.SetVisualState (state);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function WaitForInputIdle
@@ -3873,14 +4555,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
       Hr := m_Interface.WaitForInputIdle (milliseconds, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3893,12 +4579,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ComboBoxItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IComboBoxItemAutomationPeer, IComboBoxItemAutomationPeer_Ptr);
    begin
       if this.m_IComboBoxItemAutomationPeer /= null then
          if this.m_IComboBoxItemAutomationPeer.all /= null then
-            RefCount := this.m_IComboBoxItemAutomationPeer.all.Release;
+            temp := this.m_IComboBoxItemAutomationPeer.all.Release;
             Free (this.m_IComboBoxItemAutomationPeer);
          end if;
       end if;
@@ -3915,9 +4601,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ComboBoxItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemAutomationPeer");
       m_Factory    : access IComboBoxItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
    begin
       return RetVal : ComboBoxItemAutomationPeer do
@@ -3926,9 +4613,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IComboBoxItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IComboBoxItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
             Retval.m_IComboBoxItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3944,12 +4631,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IItemAutomationPeer, IItemAutomationPeer_Ptr);
    begin
       if this.m_IItemAutomationPeer /= null then
          if this.m_IItemAutomationPeer.all /= null then
-            RefCount := this.m_IItemAutomationPeer.all.Release;
+            temp := this.m_IItemAutomationPeer.all.Release;
             Free (this.m_IItemAutomationPeer);
          end if;
       end if;
@@ -3967,9 +4654,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer");
       m_Factory    : access IItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
    begin
       return RetVal : ItemAutomationPeer do
@@ -3978,9 +4666,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IItemsControlAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
             Retval.m_IItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3993,10 +4681,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IItemAutomationPeer.all.get_Item (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4006,11 +4698,15 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer do
          Hr := this.m_IItemAutomationPeer.all.get_ItemsControlAutomationPeer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IItemsControlAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
          Retval.m_IItemsControlAutomationPeer.all := m_ComRetVal;
       end return;
@@ -4021,13 +4717,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IVirtualizedItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IVirtualizedItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IVirtualizedItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IItemAutomationPeer.all);
       Hr := m_Interface.Realize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4039,12 +4739,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out SelectorItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISelectorItemAutomationPeer, ISelectorItemAutomationPeer_Ptr);
    begin
       if this.m_ISelectorItemAutomationPeer /= null then
          if this.m_ISelectorItemAutomationPeer.all /= null then
-            RefCount := this.m_ISelectorItemAutomationPeer.all.Release;
+            temp := this.m_ISelectorItemAutomationPeer.all.Release;
             Free (this.m_ISelectorItemAutomationPeer);
          end if;
       end if;
@@ -4062,9 +4762,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return SelectorItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorItemAutomationPeer");
       m_Factory    : access ISelectorItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
    begin
       return RetVal : SelectorItemAutomationPeer do
@@ -4073,9 +4774,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_ISelectorAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISelectorItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
             Retval.m_ISelectorItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4088,14 +4789,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISelectorItemAutomationPeer.all);
       Hr := m_Interface.get_IsSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4105,15 +4810,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_ISelectorItemAutomationPeer.all);
          Hr := m_Interface.get_SelectionContainer (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -4124,13 +4833,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out SelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISelectorItemAutomationPeer.all);
       Hr := m_Interface.AddToSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveFromSelection
@@ -4138,13 +4851,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out SelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISelectorItemAutomationPeer.all);
       Hr := m_Interface.RemoveFromSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Select_x
@@ -4152,13 +4869,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out SelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISelectorItemAutomationPeer.all);
       Hr := m_Interface.Select_x;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4170,12 +4891,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ComboBoxItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IComboBoxItemDataAutomationPeer, IComboBoxItemDataAutomationPeer_Ptr);
    begin
       if this.m_IComboBoxItemDataAutomationPeer /= null then
          if this.m_IComboBoxItemDataAutomationPeer.all /= null then
-            RefCount := this.m_IComboBoxItemDataAutomationPeer.all.Release;
+            temp := this.m_IComboBoxItemDataAutomationPeer.all.Release;
             Free (this.m_IComboBoxItemDataAutomationPeer);
          end if;
       end if;
@@ -4193,9 +4914,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ComboBoxItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemDataAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemDataAutomationPeer");
       m_Factory    : access IComboBoxItemDataAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
    begin
       return RetVal : ComboBoxItemDataAutomationPeer do
@@ -4204,9 +4926,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IComboBoxAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IComboBoxItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
             Retval.m_IComboBoxItemDataAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4218,13 +4940,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ComboBoxItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxItemDataAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4236,12 +4962,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out DatePickerAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDatePickerAutomationPeer, IDatePickerAutomationPeer_Ptr);
    begin
       if this.m_IDatePickerAutomationPeer /= null then
          if this.m_IDatePickerAutomationPeer.all /= null then
-            RefCount := this.m_IDatePickerAutomationPeer.all.Release;
+            temp := this.m_IDatePickerAutomationPeer.all.Release;
             Free (this.m_IDatePickerAutomationPeer);
          end if;
       end if;
@@ -4258,9 +4984,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return DatePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.DatePickerAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.DatePickerAutomationPeer");
       m_Factory    : access IDatePickerAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
    begin
       return RetVal : DatePickerAutomationPeer do
@@ -4269,9 +4996,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IDatePicker.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDatePickerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
             Retval.m_IDatePickerAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4287,12 +5014,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out DatePickerFlyoutPresenterAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDatePickerFlyoutPresenterAutomationPeer, IDatePickerFlyoutPresenterAutomationPeer_Ptr);
    begin
       if this.m_IDatePickerFlyoutPresenterAutomationPeer /= null then
          if this.m_IDatePickerFlyoutPresenterAutomationPeer.all /= null then
-            RefCount := this.m_IDatePickerFlyoutPresenterAutomationPeer.all.Release;
+            temp := this.m_IDatePickerFlyoutPresenterAutomationPeer.all.Release;
             Free (this.m_IDatePickerFlyoutPresenterAutomationPeer);
          end if;
       end if;
@@ -4310,12 +5037,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out FlipViewAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlipViewAutomationPeer, IFlipViewAutomationPeer_Ptr);
    begin
       if this.m_IFlipViewAutomationPeer /= null then
          if this.m_IFlipViewAutomationPeer.all /= null then
-            RefCount := this.m_IFlipViewAutomationPeer.all.Release;
+            temp := this.m_IFlipViewAutomationPeer.all.Release;
             Free (this.m_IFlipViewAutomationPeer);
          end if;
       end if;
@@ -4332,9 +5059,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return FlipViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer");
       m_Factory    : access IFlipViewAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
    begin
       return RetVal : FlipViewAutomationPeer do
@@ -4343,9 +5071,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFlipView.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFlipViewAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
             Retval.m_IFlipViewAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4361,12 +5089,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out FlipViewItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlipViewItemAutomationPeer, IFlipViewItemAutomationPeer_Ptr);
    begin
       if this.m_IFlipViewItemAutomationPeer /= null then
          if this.m_IFlipViewItemAutomationPeer.all /= null then
-            RefCount := this.m_IFlipViewItemAutomationPeer.all.Release;
+            temp := this.m_IFlipViewItemAutomationPeer.all.Release;
             Free (this.m_IFlipViewItemAutomationPeer);
          end if;
       end if;
@@ -4383,9 +5111,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return FlipViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemAutomationPeer");
       m_Factory    : access IFlipViewItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
    begin
       return RetVal : FlipViewItemAutomationPeer do
@@ -4394,9 +5123,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFlipViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFlipViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
             Retval.m_IFlipViewItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4412,12 +5141,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out FlipViewItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlipViewItemDataAutomationPeer, IFlipViewItemDataAutomationPeer_Ptr);
    begin
       if this.m_IFlipViewItemDataAutomationPeer /= null then
          if this.m_IFlipViewItemDataAutomationPeer.all /= null then
-            RefCount := this.m_IFlipViewItemDataAutomationPeer.all.Release;
+            temp := this.m_IFlipViewItemDataAutomationPeer.all.Release;
             Free (this.m_IFlipViewItemDataAutomationPeer);
          end if;
       end if;
@@ -4435,9 +5164,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return FlipViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemDataAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemDataAutomationPeer");
       m_Factory    : access IFlipViewItemDataAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
    begin
       return RetVal : FlipViewItemDataAutomationPeer do
@@ -4446,9 +5176,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IFlipViewAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFlipViewItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
             Retval.m_IFlipViewItemDataAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4460,13 +5190,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out FlipViewItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlipViewItemDataAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4478,12 +5212,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out FlyoutPresenterAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlyoutPresenterAutomationPeer, IFlyoutPresenterAutomationPeer_Ptr);
    begin
       if this.m_IFlyoutPresenterAutomationPeer /= null then
          if this.m_IFlyoutPresenterAutomationPeer.all /= null then
-            RefCount := this.m_IFlyoutPresenterAutomationPeer.all.Release;
+            temp := this.m_IFlyoutPresenterAutomationPeer.all.Release;
             Free (this.m_IFlyoutPresenterAutomationPeer);
          end if;
       end if;
@@ -4500,9 +5234,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return FlyoutPresenterAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlyoutPresenterAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlyoutPresenterAutomationPeer");
       m_Factory    : access IFlyoutPresenterAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
    begin
       return RetVal : FlyoutPresenterAutomationPeer do
@@ -4511,9 +5246,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFlyoutPresenter.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFlyoutPresenterAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
             Retval.m_IFlyoutPresenterAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4529,12 +5264,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListViewBaseAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewBaseAutomationPeer, IListViewBaseAutomationPeer_Ptr);
    begin
       if this.m_IListViewBaseAutomationPeer /= null then
          if this.m_IListViewBaseAutomationPeer.all /= null then
-            RefCount := this.m_IListViewBaseAutomationPeer.all.Release;
+            temp := this.m_IListViewBaseAutomationPeer.all.Release;
             Free (this.m_IListViewBaseAutomationPeer);
          end if;
       end if;
@@ -4551,9 +5286,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListViewBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer");
       m_Factory    : access IListViewBaseAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
    begin
       return RetVal : ListViewBaseAutomationPeer do
@@ -4562,9 +5298,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewBase.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewBaseAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
             Retval.m_IListViewBaseAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4577,17 +5313,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IDropTargetProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IDropTargetProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IDropTargetProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewBaseAutomationPeer.all);
       Hr := m_Interface.get_DropEffect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4597,8 +5337,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.WString_Array is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IDropTargetProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
       AdaRetval        : WString;
@@ -4606,7 +5347,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    begin
       m_Interface := QInterface (this.m_IListViewBaseAutomationPeer.all);
       Hr := m_Interface.get_DropEffects (m_ComRetValSize'Access, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.WString_Array (1..Integer(m_ComRetValSize));
          function To_Ada_HString is new To_Ada_Type (WinRt.HString, WinRt.HString_Ptr); 
@@ -4614,7 +5358,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          for i in ArrayRetVal'Range loop
             ArrayRetval (i) := To_Ada (To_Ada_HString (m_ComRetVal, i));
          end loop;
-         Hr := WindowsDeleteString (m_ComRetVal.all);
+         tmp := WindowsDeleteString (m_ComRetVal.all);
          return ArrayRetVal;
       end;
    end;
@@ -4628,12 +5372,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out GridViewAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGridViewAutomationPeer, IGridViewAutomationPeer_Ptr);
    begin
       if this.m_IGridViewAutomationPeer /= null then
          if this.m_IGridViewAutomationPeer.all /= null then
-            RefCount := this.m_IGridViewAutomationPeer.all.Release;
+            temp := this.m_IGridViewAutomationPeer.all.Release;
             Free (this.m_IGridViewAutomationPeer);
          end if;
       end if;
@@ -4650,9 +5394,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return GridViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer");
       m_Factory    : access IGridViewAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
    begin
       return RetVal : GridViewAutomationPeer do
@@ -4661,9 +5406,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGridView.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGridViewAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
             Retval.m_IGridViewAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4679,12 +5424,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListViewBaseHeaderItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewBaseHeaderItemAutomationPeer, IListViewBaseHeaderItemAutomationPeer_Ptr);
    begin
       if this.m_IListViewBaseHeaderItemAutomationPeer /= null then
          if this.m_IListViewBaseHeaderItemAutomationPeer.all /= null then
-            RefCount := this.m_IListViewBaseHeaderItemAutomationPeer.all.Release;
+            temp := this.m_IListViewBaseHeaderItemAutomationPeer.all.Release;
             Free (this.m_IListViewBaseHeaderItemAutomationPeer);
          end if;
       end if;
@@ -4701,9 +5446,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListViewBaseHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseHeaderItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseHeaderItemAutomationPeer");
       m_Factory    : access IListViewBaseHeaderItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
    begin
       return RetVal : ListViewBaseHeaderItemAutomationPeer do
@@ -4712,9 +5458,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewBaseHeaderItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewBaseHeaderItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
             Retval.m_IListViewBaseHeaderItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4730,12 +5476,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out GridViewHeaderItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGridViewHeaderItemAutomationPeer, IGridViewHeaderItemAutomationPeer_Ptr);
    begin
       if this.m_IGridViewHeaderItemAutomationPeer /= null then
          if this.m_IGridViewHeaderItemAutomationPeer.all /= null then
-            RefCount := this.m_IGridViewHeaderItemAutomationPeer.all.Release;
+            temp := this.m_IGridViewHeaderItemAutomationPeer.all.Release;
             Free (this.m_IGridViewHeaderItemAutomationPeer);
          end if;
       end if;
@@ -4752,9 +5498,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return GridViewHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewHeaderItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewHeaderItemAutomationPeer");
       m_Factory    : access IGridViewHeaderItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
    begin
       return RetVal : GridViewHeaderItemAutomationPeer do
@@ -4763,9 +5510,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGridViewHeaderItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGridViewHeaderItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
             Retval.m_IGridViewHeaderItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4781,12 +5528,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out GridViewItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGridViewItemAutomationPeer, IGridViewItemAutomationPeer_Ptr);
    begin
       if this.m_IGridViewItemAutomationPeer /= null then
          if this.m_IGridViewItemAutomationPeer.all /= null then
-            RefCount := this.m_IGridViewItemAutomationPeer.all.Release;
+            temp := this.m_IGridViewItemAutomationPeer.all.Release;
             Free (this.m_IGridViewItemAutomationPeer);
          end if;
       end if;
@@ -4803,9 +5550,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return GridViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemAutomationPeer");
       m_Factory    : access IGridViewItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
    begin
       return RetVal : GridViewItemAutomationPeer do
@@ -4814,9 +5562,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGridViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGridViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
             Retval.m_IGridViewItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4832,12 +5580,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out GridViewItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGridViewItemDataAutomationPeer, IGridViewItemDataAutomationPeer_Ptr);
    begin
       if this.m_IGridViewItemDataAutomationPeer /= null then
          if this.m_IGridViewItemDataAutomationPeer.all /= null then
-            RefCount := this.m_IGridViewItemDataAutomationPeer.all.Release;
+            temp := this.m_IGridViewItemDataAutomationPeer.all.Release;
             Free (this.m_IGridViewItemDataAutomationPeer);
          end if;
       end if;
@@ -4855,9 +5603,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return GridViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemDataAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemDataAutomationPeer");
       m_Factory    : access IGridViewItemDataAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
    begin
       return RetVal : GridViewItemDataAutomationPeer do
@@ -4866,9 +5615,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IGridViewAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGridViewItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
             Retval.m_IGridViewItemDataAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4880,13 +5629,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out GridViewItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGridViewItemDataAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4898,12 +5651,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out GroupItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGroupItemAutomationPeer, IGroupItemAutomationPeer_Ptr);
    begin
       if this.m_IGroupItemAutomationPeer /= null then
          if this.m_IGroupItemAutomationPeer.all /= null then
-            RefCount := this.m_IGroupItemAutomationPeer.all.Release;
+            temp := this.m_IGroupItemAutomationPeer.all.Release;
             Free (this.m_IGroupItemAutomationPeer);
          end if;
       end if;
@@ -4920,9 +5673,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return GroupItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GroupItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GroupItemAutomationPeer");
       m_Factory    : access IGroupItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
    begin
       return RetVal : GroupItemAutomationPeer do
@@ -4931,9 +5685,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGroupItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGroupItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
             Retval.m_IGroupItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4949,12 +5703,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out HubAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHubAutomationPeer, IHubAutomationPeer_Ptr);
    begin
       if this.m_IHubAutomationPeer /= null then
          if this.m_IHubAutomationPeer.all /= null then
-            RefCount := this.m_IHubAutomationPeer.all.Release;
+            temp := this.m_IHubAutomationPeer.all.Release;
             Free (this.m_IHubAutomationPeer);
          end if;
       end if;
@@ -4971,9 +5725,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return HubAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubAutomationPeer");
       m_Factory    : access IHubAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
    begin
       return RetVal : HubAutomationPeer do
@@ -4982,9 +5737,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IHub.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IHubAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
             Retval.m_IHubAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5000,12 +5755,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out HubSectionAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHubSectionAutomationPeer, IHubSectionAutomationPeer_Ptr);
    begin
       if this.m_IHubSectionAutomationPeer /= null then
          if this.m_IHubSectionAutomationPeer.all /= null then
-            RefCount := this.m_IHubSectionAutomationPeer.all.Release;
+            temp := this.m_IHubSectionAutomationPeer.all.Release;
             Free (this.m_IHubSectionAutomationPeer);
          end if;
       end if;
@@ -5022,9 +5777,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return HubSectionAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubSectionAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubSectionAutomationPeer");
       m_Factory    : access IHubSectionAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
    begin
       return RetVal : HubSectionAutomationPeer do
@@ -5033,9 +5789,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IHubSection.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IHubSectionAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
             Retval.m_IHubSectionAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5047,13 +5803,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out HubSectionAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHubSectionAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5065,12 +5825,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out HyperlinkButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHyperlinkButtonAutomationPeer, IHyperlinkButtonAutomationPeer_Ptr);
    begin
       if this.m_IHyperlinkButtonAutomationPeer /= null then
          if this.m_IHyperlinkButtonAutomationPeer.all /= null then
-            RefCount := this.m_IHyperlinkButtonAutomationPeer.all.Release;
+            temp := this.m_IHyperlinkButtonAutomationPeer.all.Release;
             Free (this.m_IHyperlinkButtonAutomationPeer);
          end if;
       end if;
@@ -5087,9 +5847,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return HyperlinkButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HyperlinkButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HyperlinkButtonAutomationPeer");
       m_Factory    : access IHyperlinkButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
    begin
       return RetVal : HyperlinkButtonAutomationPeer do
@@ -5098,9 +5859,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IHyperlinkButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IHyperlinkButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
             Retval.m_IHyperlinkButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5112,13 +5873,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out HyperlinkButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlinkButtonAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5130,12 +5895,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ImageAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IImageAutomationPeer, IImageAutomationPeer_Ptr);
    begin
       if this.m_IImageAutomationPeer /= null then
          if this.m_IImageAutomationPeer.all /= null then
-            RefCount := this.m_IImageAutomationPeer.all.Release;
+            temp := this.m_IImageAutomationPeer.all.Release;
             Free (this.m_IImageAutomationPeer);
          end if;
       end if;
@@ -5152,9 +5917,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ImageAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ImageAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ImageAutomationPeer");
       m_Factory    : access IImageAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
    begin
       return RetVal : ImageAutomationPeer do
@@ -5163,9 +5929,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IImage.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IImageAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
             Retval.m_IImageAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5181,12 +5947,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out InkToolbarAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkToolbarAutomationPeer, IInkToolbarAutomationPeer_Ptr);
    begin
       if this.m_IInkToolbarAutomationPeer /= null then
          if this.m_IInkToolbarAutomationPeer.all /= null then
-            RefCount := this.m_IInkToolbarAutomationPeer.all.Release;
+            temp := this.m_IInkToolbarAutomationPeer.all.Release;
             Free (this.m_IInkToolbarAutomationPeer);
          end if;
       end if;
@@ -5204,12 +5970,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListBoxAutomationPeer, IListBoxAutomationPeer_Ptr);
    begin
       if this.m_IListBoxAutomationPeer /= null then
          if this.m_IListBoxAutomationPeer.all /= null then
-            RefCount := this.m_IListBoxAutomationPeer.all.Release;
+            temp := this.m_IListBoxAutomationPeer.all.Release;
             Free (this.m_IListBoxAutomationPeer);
          end if;
       end if;
@@ -5226,9 +5992,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer");
       m_Factory    : access IListBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
    begin
       return RetVal : ListBoxAutomationPeer do
@@ -5237,9 +6004,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
             Retval.m_IListBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5255,12 +6022,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListBoxItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListBoxItemAutomationPeer, IListBoxItemAutomationPeer_Ptr);
    begin
       if this.m_IListBoxItemAutomationPeer /= null then
          if this.m_IListBoxItemAutomationPeer.all /= null then
-            RefCount := this.m_IListBoxItemAutomationPeer.all.Release;
+            temp := this.m_IListBoxItemAutomationPeer.all.Release;
             Free (this.m_IListBoxItemAutomationPeer);
          end if;
       end if;
@@ -5277,9 +6044,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListBoxItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemAutomationPeer");
       m_Factory    : access IListBoxItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
    begin
       return RetVal : ListBoxItemAutomationPeer do
@@ -5288,9 +6056,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListBoxItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListBoxItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
             Retval.m_IListBoxItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5306,12 +6074,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListBoxItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListBoxItemDataAutomationPeer, IListBoxItemDataAutomationPeer_Ptr);
    begin
       if this.m_IListBoxItemDataAutomationPeer /= null then
          if this.m_IListBoxItemDataAutomationPeer.all /= null then
-            RefCount := this.m_IListBoxItemDataAutomationPeer.all.Release;
+            temp := this.m_IListBoxItemDataAutomationPeer.all.Release;
             Free (this.m_IListBoxItemDataAutomationPeer);
          end if;
       end if;
@@ -5329,9 +6097,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListBoxItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemDataAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemDataAutomationPeer");
       m_Factory    : access IListBoxItemDataAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
    begin
       return RetVal : ListBoxItemDataAutomationPeer do
@@ -5340,9 +6109,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IListBoxAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListBoxItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
             Retval.m_IListBoxItemDataAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5354,13 +6123,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ListBoxItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListBoxItemDataAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5372,12 +6145,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListPickerFlyoutPresenterAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListPickerFlyoutPresenterAutomationPeer, IListPickerFlyoutPresenterAutomationPeer_Ptr);
    begin
       if this.m_IListPickerFlyoutPresenterAutomationPeer /= null then
          if this.m_IListPickerFlyoutPresenterAutomationPeer.all /= null then
-            RefCount := this.m_IListPickerFlyoutPresenterAutomationPeer.all.Release;
+            temp := this.m_IListPickerFlyoutPresenterAutomationPeer.all.Release;
             Free (this.m_IListPickerFlyoutPresenterAutomationPeer);
          end if;
       end if;
@@ -5395,12 +6168,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListViewAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewAutomationPeer, IListViewAutomationPeer_Ptr);
    begin
       if this.m_IListViewAutomationPeer /= null then
          if this.m_IListViewAutomationPeer.all /= null then
-            RefCount := this.m_IListViewAutomationPeer.all.Release;
+            temp := this.m_IListViewAutomationPeer.all.Release;
             Free (this.m_IListViewAutomationPeer);
          end if;
       end if;
@@ -5417,9 +6190,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewAutomationPeer");
       m_Factory    : access IListViewAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
    begin
       return RetVal : ListViewAutomationPeer do
@@ -5428,9 +6202,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListView.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
             Retval.m_IListViewAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5446,12 +6220,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListViewHeaderItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewHeaderItemAutomationPeer, IListViewHeaderItemAutomationPeer_Ptr);
    begin
       if this.m_IListViewHeaderItemAutomationPeer /= null then
          if this.m_IListViewHeaderItemAutomationPeer.all /= null then
-            RefCount := this.m_IListViewHeaderItemAutomationPeer.all.Release;
+            temp := this.m_IListViewHeaderItemAutomationPeer.all.Release;
             Free (this.m_IListViewHeaderItemAutomationPeer);
          end if;
       end if;
@@ -5468,9 +6242,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListViewHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewHeaderItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewHeaderItemAutomationPeer");
       m_Factory    : access IListViewHeaderItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
    begin
       return RetVal : ListViewHeaderItemAutomationPeer do
@@ -5479,9 +6254,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewHeaderItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewHeaderItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
             Retval.m_IListViewHeaderItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5497,12 +6272,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListViewItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewItemAutomationPeer, IListViewItemAutomationPeer_Ptr);
    begin
       if this.m_IListViewItemAutomationPeer /= null then
          if this.m_IListViewItemAutomationPeer.all /= null then
-            RefCount := this.m_IListViewItemAutomationPeer.all.Release;
+            temp := this.m_IListViewItemAutomationPeer.all.Release;
             Free (this.m_IListViewItemAutomationPeer);
          end if;
       end if;
@@ -5519,9 +6294,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemAutomationPeer");
       m_Factory    : access IListViewItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
    begin
       return RetVal : ListViewItemAutomationPeer do
@@ -5530,9 +6306,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
             Retval.m_IListViewItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5548,12 +6324,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ListViewItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewItemDataAutomationPeer, IListViewItemDataAutomationPeer_Ptr);
    begin
       if this.m_IListViewItemDataAutomationPeer /= null then
          if this.m_IListViewItemDataAutomationPeer.all /= null then
-            RefCount := this.m_IListViewItemDataAutomationPeer.all.Release;
+            temp := this.m_IListViewItemDataAutomationPeer.all.Release;
             Free (this.m_IListViewItemDataAutomationPeer);
          end if;
       end if;
@@ -5571,9 +6347,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ListViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemDataAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemDataAutomationPeer");
       m_Factory    : access IListViewItemDataAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
    begin
       return RetVal : ListViewItemDataAutomationPeer do
@@ -5582,9 +6359,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IListViewBaseAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
             Retval.m_IListViewItemDataAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5596,13 +6373,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ListViewItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemDataAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5614,12 +6395,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out LoopingSelectorAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoopingSelectorAutomationPeer, ILoopingSelectorAutomationPeer_Ptr);
    begin
       if this.m_ILoopingSelectorAutomationPeer /= null then
          if this.m_ILoopingSelectorAutomationPeer.all /= null then
-            RefCount := this.m_ILoopingSelectorAutomationPeer.all.Release;
+            temp := this.m_ILoopingSelectorAutomationPeer.all.Release;
             Free (this.m_ILoopingSelectorAutomationPeer);
          end if;
       end if;
@@ -5634,14 +6415,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_CanSelectMultiple (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5651,14 +6436,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_IsSelectionRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5676,15 +6465,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IItemContainerProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
          Hr := m_Interface.FindItemByProperty (startAfter.m_IIRawElementProviderSimple.all, automationProperty.m_IAutomationProperty.all, value, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -5696,14 +6489,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_ExpandCollapseState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5712,13 +6509,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.Collapse;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Expand
@@ -5726,13 +6527,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.Expand;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HorizontallyScrollable
@@ -5741,14 +6546,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_HorizontallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5758,14 +6567,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_HorizontalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5775,14 +6588,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_HorizontalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5792,14 +6609,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_VerticallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5809,14 +6630,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_VerticalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5826,14 +6651,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.get_VerticalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5844,13 +6673,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.Scroll (horizontalAmount, verticalAmount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetScrollPercent
@@ -5860,13 +6693,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalPercent : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
       Hr := m_Interface.SetScrollPercent (horizontalPercent, verticalPercent);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5878,12 +6715,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out LoopingSelectorItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoopingSelectorItemAutomationPeer, ILoopingSelectorItemAutomationPeer_Ptr);
    begin
       if this.m_ILoopingSelectorItemAutomationPeer /= null then
          if this.m_ILoopingSelectorItemAutomationPeer.all /= null then
-            RefCount := this.m_ILoopingSelectorItemAutomationPeer.all.Release;
+            temp := this.m_ILoopingSelectorItemAutomationPeer.all.Release;
             Free (this.m_ILoopingSelectorItemAutomationPeer);
          end if;
       end if;
@@ -5897,13 +6734,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorItemAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsSelected
@@ -5912,14 +6753,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorItemAutomationPeer.all);
       Hr := m_Interface.get_IsSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5929,15 +6774,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_ILoopingSelectorItemAutomationPeer.all);
          Hr := m_Interface.get_SelectionContainer (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -5948,13 +6797,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorItemAutomationPeer.all);
       Hr := m_Interface.AddToSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveFromSelection
@@ -5962,13 +6815,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorItemAutomationPeer.all);
       Hr := m_Interface.RemoveFromSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Select_x
@@ -5976,13 +6833,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorItemAutomationPeer.all);
       Hr := m_Interface.Select_x;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5994,12 +6855,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out LoopingSelectorItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoopingSelectorItemDataAutomationPeer, ILoopingSelectorItemDataAutomationPeer_Ptr);
    begin
       if this.m_ILoopingSelectorItemDataAutomationPeer /= null then
          if this.m_ILoopingSelectorItemDataAutomationPeer.all /= null then
-            RefCount := this.m_ILoopingSelectorItemDataAutomationPeer.all.Release;
+            temp := this.m_ILoopingSelectorItemDataAutomationPeer.all.Release;
             Free (this.m_ILoopingSelectorItemDataAutomationPeer);
          end if;
       end if;
@@ -6013,13 +6874,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out LoopingSelectorItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IVirtualizedItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IVirtualizedItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IVirtualizedItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorItemDataAutomationPeer.all);
       Hr := m_Interface.Realize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6031,12 +6896,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MapControlAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlAutomationPeer, IMapControlAutomationPeer_Ptr);
    begin
       if this.m_IMapControlAutomationPeer /= null then
          if this.m_IMapControlAutomationPeer.all /= null then
-            RefCount := this.m_IMapControlAutomationPeer.all.Release;
+            temp := this.m_IMapControlAutomationPeer.all.Release;
             Free (this.m_IMapControlAutomationPeer);
          end if;
       end if;
@@ -6051,14 +6916,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_HorizontallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6068,14 +6937,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_HorizontalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6085,14 +6958,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_HorizontalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6102,14 +6979,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_VerticallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6119,14 +7000,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_VerticalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6136,14 +7021,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_VerticalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6154,13 +7043,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.Scroll (horizontalAmount, verticalAmount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetScrollPercent
@@ -6170,13 +7063,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalPercent : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.SetScrollPercent (horizontalPercent, verticalPercent);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanZoom
@@ -6185,14 +7082,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_CanZoom (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6202,14 +7103,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_ZoomLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6219,14 +7124,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_MaxZoom (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6236,14 +7145,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_MinZoom (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6253,13 +7166,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       zoom : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.Zoom (zoom);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ZoomByUnit
@@ -6268,13 +7185,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       zoomUnit : Windows.UI.Xaml.Automation.ZoomUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider2, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.ZoomByUnit (zoomUnit);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanMove
@@ -6283,14 +7204,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_CanMove (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6300,14 +7225,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_CanResize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6317,14 +7246,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.get_CanRotate (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6335,13 +7268,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       y : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.Move (x, y);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Resize
@@ -6351,13 +7288,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       height : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.Resize (width, height);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Rotate
@@ -6366,13 +7307,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       degrees : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMapControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ITransformProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ITransformProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlAutomationPeer.all);
       Hr := m_Interface.Rotate (degrees);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6384,12 +7329,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MediaElementAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaElementAutomationPeer, IMediaElementAutomationPeer_Ptr);
    begin
       if this.m_IMediaElementAutomationPeer /= null then
          if this.m_IMediaElementAutomationPeer.all /= null then
-            RefCount := this.m_IMediaElementAutomationPeer.all.Release;
+            temp := this.m_IMediaElementAutomationPeer.all.Release;
             Free (this.m_IMediaElementAutomationPeer);
          end if;
       end if;
@@ -6406,9 +7351,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MediaElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaElementAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaElementAutomationPeer");
       m_Factory    : access IMediaElementAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
    begin
       return RetVal : MediaElementAutomationPeer do
@@ -6417,9 +7363,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMediaElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMediaElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
             Retval.m_IMediaElementAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6435,12 +7381,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MediaPlayerElementAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaPlayerElementAutomationPeer, IMediaPlayerElementAutomationPeer_Ptr);
    begin
       if this.m_IMediaPlayerElementAutomationPeer /= null then
          if this.m_IMediaPlayerElementAutomationPeer.all /= null then
-            RefCount := this.m_IMediaPlayerElementAutomationPeer.all.Release;
+            temp := this.m_IMediaPlayerElementAutomationPeer.all.Release;
             Free (this.m_IMediaPlayerElementAutomationPeer);
          end if;
       end if;
@@ -6457,9 +7403,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MediaPlayerElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaPlayerElementAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaPlayerElementAutomationPeer");
       m_Factory    : access IMediaPlayerElementAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
    begin
       return RetVal : MediaPlayerElementAutomationPeer do
@@ -6468,9 +7415,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMediaPlayerElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMediaPlayerElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
             Retval.m_IMediaPlayerElementAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6486,12 +7433,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MediaTransportControlsAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaTransportControlsAutomationPeer, IMediaTransportControlsAutomationPeer_Ptr);
    begin
       if this.m_IMediaTransportControlsAutomationPeer /= null then
          if this.m_IMediaTransportControlsAutomationPeer.all /= null then
-            RefCount := this.m_IMediaTransportControlsAutomationPeer.all.Release;
+            temp := this.m_IMediaTransportControlsAutomationPeer.all.Release;
             Free (this.m_IMediaTransportControlsAutomationPeer);
          end if;
       end if;
@@ -6508,9 +7455,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MediaTransportControlsAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaTransportControlsAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaTransportControlsAutomationPeer");
       m_Factory    : access IMediaTransportControlsAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
    begin
       return RetVal : MediaTransportControlsAutomationPeer do
@@ -6519,9 +7467,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMediaTransportControls.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMediaTransportControlsAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
             Retval.m_IMediaTransportControlsAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6537,12 +7485,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MenuBarAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMenuBarAutomationPeer, IMenuBarAutomationPeer_Ptr);
    begin
       if this.m_IMenuBarAutomationPeer /= null then
          if this.m_IMenuBarAutomationPeer.all /= null then
-            RefCount := this.m_IMenuBarAutomationPeer.all.Release;
+            temp := this.m_IMenuBarAutomationPeer.all.Release;
             Free (this.m_IMenuBarAutomationPeer);
          end if;
       end if;
@@ -6559,9 +7507,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MenuBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarAutomationPeer");
       m_Factory    : access IMenuBarAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
    begin
       return RetVal : MenuBarAutomationPeer do
@@ -6570,9 +7519,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstance (owner.m_IMenuBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMenuBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
             Retval.m_IMenuBarAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6588,12 +7537,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MenuBarItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMenuBarItemAutomationPeer, IMenuBarItemAutomationPeer_Ptr);
    begin
       if this.m_IMenuBarItemAutomationPeer /= null then
          if this.m_IMenuBarItemAutomationPeer.all /= null then
-            RefCount := this.m_IMenuBarItemAutomationPeer.all.Release;
+            temp := this.m_IMenuBarItemAutomationPeer.all.Release;
             Free (this.m_IMenuBarItemAutomationPeer);
          end if;
       end if;
@@ -6610,9 +7559,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MenuBarItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarItemAutomationPeer");
       m_Factory    : access IMenuBarItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
    begin
       return RetVal : MenuBarItemAutomationPeer do
@@ -6621,9 +7571,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstance (owner.m_IMenuBarItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMenuBarItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
             Retval.m_IMenuBarItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6636,14 +7586,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMenuBarItemAutomationPeer.all);
       Hr := m_Interface.get_ExpandCollapseState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6652,13 +7606,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out MenuBarItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMenuBarItemAutomationPeer.all);
       Hr := m_Interface.Collapse;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Expand
@@ -6666,13 +7624,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out MenuBarItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMenuBarItemAutomationPeer.all);
       Hr := m_Interface.Expand;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Invoke
@@ -6680,13 +7642,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out MenuBarItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMenuBarItemAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6698,12 +7664,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MenuFlyoutItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMenuFlyoutItemAutomationPeer, IMenuFlyoutItemAutomationPeer_Ptr);
    begin
       if this.m_IMenuFlyoutItemAutomationPeer /= null then
          if this.m_IMenuFlyoutItemAutomationPeer.all /= null then
-            RefCount := this.m_IMenuFlyoutItemAutomationPeer.all.Release;
+            temp := this.m_IMenuFlyoutItemAutomationPeer.all.Release;
             Free (this.m_IMenuFlyoutItemAutomationPeer);
          end if;
       end if;
@@ -6720,9 +7686,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MenuFlyoutItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer");
       m_Factory    : access IMenuFlyoutItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
    begin
       return RetVal : MenuFlyoutItemAutomationPeer do
@@ -6731,9 +7698,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMenuFlyoutItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMenuFlyoutItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
             Retval.m_IMenuFlyoutItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6745,13 +7712,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out MenuFlyoutItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMenuFlyoutItemAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6763,12 +7734,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out MenuFlyoutPresenterAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMenuFlyoutPresenterAutomationPeer, IMenuFlyoutPresenterAutomationPeer_Ptr);
    begin
       if this.m_IMenuFlyoutPresenterAutomationPeer /= null then
          if this.m_IMenuFlyoutPresenterAutomationPeer.all /= null then
-            RefCount := this.m_IMenuFlyoutPresenterAutomationPeer.all.Release;
+            temp := this.m_IMenuFlyoutPresenterAutomationPeer.all.Release;
             Free (this.m_IMenuFlyoutPresenterAutomationPeer);
          end if;
       end if;
@@ -6785,9 +7756,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return MenuFlyoutPresenterAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutPresenterAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutPresenterAutomationPeer");
       m_Factory    : access IMenuFlyoutPresenterAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
    begin
       return RetVal : MenuFlyoutPresenterAutomationPeer do
@@ -6796,9 +7768,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMenuFlyoutPresenter.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMenuFlyoutPresenterAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
             Retval.m_IMenuFlyoutPresenterAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6814,12 +7786,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out NavigationViewItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INavigationViewItemAutomationPeer, INavigationViewItemAutomationPeer_Ptr);
    begin
       if this.m_INavigationViewItemAutomationPeer /= null then
          if this.m_INavigationViewItemAutomationPeer.all /= null then
-            RefCount := this.m_INavigationViewItemAutomationPeer.all.Release;
+            temp := this.m_INavigationViewItemAutomationPeer.all.Release;
             Free (this.m_INavigationViewItemAutomationPeer);
          end if;
       end if;
@@ -6836,9 +7808,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return NavigationViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.NavigationViewItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.NavigationViewItemAutomationPeer");
       m_Factory    : access INavigationViewItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
    begin
       return RetVal : NavigationViewItemAutomationPeer do
@@ -6847,9 +7820,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_INavigationViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_INavigationViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
             Retval.m_INavigationViewItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6865,12 +7838,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out PasswordBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPasswordBoxAutomationPeer, IPasswordBoxAutomationPeer_Ptr);
    begin
       if this.m_IPasswordBoxAutomationPeer /= null then
          if this.m_IPasswordBoxAutomationPeer.all /= null then
-            RefCount := this.m_IPasswordBoxAutomationPeer.all.Release;
+            temp := this.m_IPasswordBoxAutomationPeer.all.Release;
             Free (this.m_IPasswordBoxAutomationPeer);
          end if;
       end if;
@@ -6887,9 +7860,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return PasswordBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PasswordBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PasswordBoxAutomationPeer");
       m_Factory    : access IPasswordBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
    begin
       return RetVal : PasswordBoxAutomationPeer do
@@ -6898,9 +7872,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPasswordBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IPasswordBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
             Retval.m_IPasswordBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6916,12 +7890,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out PersonPictureAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPersonPictureAutomationPeer, IPersonPictureAutomationPeer_Ptr);
    begin
       if this.m_IPersonPictureAutomationPeer /= null then
          if this.m_IPersonPictureAutomationPeer.all /= null then
-            RefCount := this.m_IPersonPictureAutomationPeer.all.Release;
+            temp := this.m_IPersonPictureAutomationPeer.all.Release;
             Free (this.m_IPersonPictureAutomationPeer);
          end if;
       end if;
@@ -6938,9 +7912,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return PersonPictureAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PersonPictureAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PersonPictureAutomationPeer");
       m_Factory    : access IPersonPictureAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
    begin
       return RetVal : PersonPictureAutomationPeer do
@@ -6949,9 +7924,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPersonPicture.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IPersonPictureAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
             Retval.m_IPersonPictureAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6967,12 +7942,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out PickerFlyoutPresenterAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPickerFlyoutPresenterAutomationPeer, IPickerFlyoutPresenterAutomationPeer_Ptr);
    begin
       if this.m_IPickerFlyoutPresenterAutomationPeer /= null then
          if this.m_IPickerFlyoutPresenterAutomationPeer.all /= null then
-            RefCount := this.m_IPickerFlyoutPresenterAutomationPeer.all.Release;
+            temp := this.m_IPickerFlyoutPresenterAutomationPeer.all.Release;
             Free (this.m_IPickerFlyoutPresenterAutomationPeer);
          end if;
       end if;
@@ -6990,12 +7965,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out PivotAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPivotAutomationPeer, IPivotAutomationPeer_Ptr);
    begin
       if this.m_IPivotAutomationPeer /= null then
          if this.m_IPivotAutomationPeer.all /= null then
-            RefCount := this.m_IPivotAutomationPeer.all.Release;
+            temp := this.m_IPivotAutomationPeer.all.Release;
             Free (this.m_IPivotAutomationPeer);
          end if;
       end if;
@@ -7010,9 +7985,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return PivotAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer");
       m_Factory    : access IPivotAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
    begin
       return RetVal : PivotAutomationPeer do
@@ -7021,9 +7997,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPivot.all, m_ComRetVal'Access);
             Retval.m_IPivotAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
             Retval.m_IPivotAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7036,14 +8012,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_CanSelectMultiple (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7053,14 +8033,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_IsSelectionRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7075,14 +8059,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_HorizontallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7092,14 +8080,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_HorizontalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7109,14 +8101,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_HorizontalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7126,14 +8122,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_VerticallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7143,14 +8143,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_VerticalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7160,14 +8164,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.get_VerticalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7178,13 +8186,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.Scroll (horizontalAmount, verticalAmount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetScrollPercent
@@ -7194,13 +8206,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalPercent : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
       Hr := m_Interface.SetScrollPercent (horizontalPercent, verticalPercent);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7212,12 +8228,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out PivotItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPivotItemAutomationPeer, IPivotItemAutomationPeer_Ptr);
    begin
       if this.m_IPivotItemAutomationPeer /= null then
          if this.m_IPivotItemAutomationPeer.all /= null then
-            RefCount := this.m_IPivotItemAutomationPeer.all.Release;
+            temp := this.m_IPivotItemAutomationPeer.all.Release;
             Free (this.m_IPivotItemAutomationPeer);
          end if;
       end if;
@@ -7232,9 +8248,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return PivotItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemAutomationPeer");
       m_Factory    : access IPivotItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
    begin
       return RetVal : PivotItemAutomationPeer do
@@ -7243,9 +8260,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPivotItem.all, m_ComRetVal'Access);
             Retval.m_IPivotItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
             Retval.m_IPivotItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7261,12 +8278,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out PivotItemDataAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPivotItemDataAutomationPeer, IPivotItemDataAutomationPeer_Ptr);
    begin
       if this.m_IPivotItemDataAutomationPeer /= null then
          if this.m_IPivotItemDataAutomationPeer.all /= null then
-            RefCount := this.m_IPivotItemDataAutomationPeer.all.Release;
+            temp := this.m_IPivotItemDataAutomationPeer.all.Release;
             Free (this.m_IPivotItemDataAutomationPeer);
          end if;
       end if;
@@ -7282,9 +8299,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return PivotItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemDataAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemDataAutomationPeer");
       m_Factory    : access IPivotItemDataAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
    begin
       return RetVal : PivotItemDataAutomationPeer do
@@ -7293,9 +8311,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IPivotAutomationPeer.all, m_ComRetVal'Access);
             Retval.m_IPivotItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
             Retval.m_IPivotItemDataAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7307,13 +8325,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out PivotItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
       Hr := m_Interface.ScrollIntoView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsSelected
@@ -7322,14 +8344,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
       Hr := m_Interface.get_IsSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7339,15 +8365,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
          Hr := m_Interface.get_SelectionContainer (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -7358,13 +8388,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out PivotItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
       Hr := m_Interface.AddToSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveFromSelection
@@ -7372,13 +8406,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out PivotItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
       Hr := m_Interface.RemoveFromSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Select_x
@@ -7386,13 +8424,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out PivotItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
       Hr := m_Interface.Select_x;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Realize
@@ -7400,13 +8442,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out PivotItemDataAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IVirtualizedItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IVirtualizedItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IVirtualizedItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotItemDataAutomationPeer.all);
       Hr := m_Interface.Realize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7418,12 +8464,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ProgressBarAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProgressBarAutomationPeer, IProgressBarAutomationPeer_Ptr);
    begin
       if this.m_IProgressBarAutomationPeer /= null then
          if this.m_IProgressBarAutomationPeer.all /= null then
-            RefCount := this.m_IProgressBarAutomationPeer.all.Release;
+            temp := this.m_IProgressBarAutomationPeer.all.Release;
             Free (this.m_IProgressBarAutomationPeer);
          end if;
       end if;
@@ -7440,9 +8486,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ProgressBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressBarAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressBarAutomationPeer");
       m_Factory    : access IProgressBarAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
    begin
       return RetVal : ProgressBarAutomationPeer do
@@ -7451,9 +8498,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IProgressBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IProgressBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
             Retval.m_IProgressBarAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7469,12 +8516,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ProgressRingAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProgressRingAutomationPeer, IProgressRingAutomationPeer_Ptr);
    begin
       if this.m_IProgressRingAutomationPeer /= null then
          if this.m_IProgressRingAutomationPeer.all /= null then
-            RefCount := this.m_IProgressRingAutomationPeer.all.Release;
+            temp := this.m_IProgressRingAutomationPeer.all.Release;
             Free (this.m_IProgressRingAutomationPeer);
          end if;
       end if;
@@ -7491,9 +8538,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ProgressRingAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressRingAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressRingAutomationPeer");
       m_Factory    : access IProgressRingAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
    begin
       return RetVal : ProgressRingAutomationPeer do
@@ -7502,9 +8550,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IProgressRing.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IProgressRingAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
             Retval.m_IProgressRingAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7520,12 +8568,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RadioButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRadioButtonAutomationPeer, IRadioButtonAutomationPeer_Ptr);
    begin
       if this.m_IRadioButtonAutomationPeer /= null then
          if this.m_IRadioButtonAutomationPeer.all /= null then
-            RefCount := this.m_IRadioButtonAutomationPeer.all.Release;
+            temp := this.m_IRadioButtonAutomationPeer.all.Release;
             Free (this.m_IRadioButtonAutomationPeer);
          end if;
       end if;
@@ -7542,9 +8590,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RadioButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RadioButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RadioButtonAutomationPeer");
       m_Factory    : access IRadioButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
    begin
       return RetVal : RadioButtonAutomationPeer do
@@ -7553,9 +8602,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRadioButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRadioButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
             Retval.m_IRadioButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7568,14 +8617,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadioButtonAutomationPeer.all);
       Hr := m_Interface.get_IsSelected (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7585,15 +8638,19 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
          m_Interface := QInterface (this.m_IRadioButtonAutomationPeer.all);
          Hr := m_Interface.get_SelectionContainer (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
@@ -7604,13 +8661,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out RadioButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadioButtonAutomationPeer.all);
       Hr := m_Interface.AddToSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveFromSelection
@@ -7618,13 +8679,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out RadioButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadioButtonAutomationPeer.all);
       Hr := m_Interface.RemoveFromSelection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Select_x
@@ -7632,13 +8697,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out RadioButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadioButtonAutomationPeer.all);
       Hr := m_Interface.Select_x;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7650,12 +8719,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RatingControlAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRatingControlAutomationPeer, IRatingControlAutomationPeer_Ptr);
    begin
       if this.m_IRatingControlAutomationPeer /= null then
          if this.m_IRatingControlAutomationPeer.all /= null then
-            RefCount := this.m_IRatingControlAutomationPeer.all.Release;
+            temp := this.m_IRatingControlAutomationPeer.all.Release;
             Free (this.m_IRatingControlAutomationPeer);
          end if;
       end if;
@@ -7672,9 +8741,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RatingControlAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RatingControlAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RatingControlAutomationPeer");
       m_Factory    : access IRatingControlAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
    begin
       return RetVal : RatingControlAutomationPeer do
@@ -7683,9 +8753,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRatingControl.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRatingControlAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
             Retval.m_IRatingControlAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7701,12 +8771,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RepeatButtonAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRepeatButtonAutomationPeer, IRepeatButtonAutomationPeer_Ptr);
    begin
       if this.m_IRepeatButtonAutomationPeer /= null then
          if this.m_IRepeatButtonAutomationPeer.all /= null then
-            RefCount := this.m_IRepeatButtonAutomationPeer.all.Release;
+            temp := this.m_IRepeatButtonAutomationPeer.all.Release;
             Free (this.m_IRepeatButtonAutomationPeer);
          end if;
       end if;
@@ -7723,9 +8793,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RepeatButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RepeatButtonAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RepeatButtonAutomationPeer");
       m_Factory    : access IRepeatButtonAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
    begin
       return RetVal : RepeatButtonAutomationPeer do
@@ -7734,9 +8805,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRepeatButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRepeatButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
             Retval.m_IRepeatButtonAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7748,13 +8819,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out RepeatButtonAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IInvokeProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IInvokeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRepeatButtonAutomationPeer.all);
       Hr := m_Interface.Invoke;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7766,12 +8841,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RichEditBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRichEditBoxAutomationPeer, IRichEditBoxAutomationPeer_Ptr);
    begin
       if this.m_IRichEditBoxAutomationPeer /= null then
          if this.m_IRichEditBoxAutomationPeer.all /= null then
-            RefCount := this.m_IRichEditBoxAutomationPeer.all.Release;
+            temp := this.m_IRichEditBoxAutomationPeer.all.Release;
             Free (this.m_IRichEditBoxAutomationPeer);
          end if;
       end if;
@@ -7788,9 +8863,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RichEditBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichEditBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichEditBoxAutomationPeer");
       m_Factory    : access IRichEditBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
    begin
       return RetVal : RichEditBoxAutomationPeer do
@@ -7799,9 +8875,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRichEditBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRichEditBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
             Retval.m_IRichEditBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7817,12 +8893,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RichTextBlockAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRichTextBlockAutomationPeer, IRichTextBlockAutomationPeer_Ptr);
    begin
       if this.m_IRichTextBlockAutomationPeer /= null then
          if this.m_IRichTextBlockAutomationPeer.all /= null then
-            RefCount := this.m_IRichTextBlockAutomationPeer.all.Release;
+            temp := this.m_IRichTextBlockAutomationPeer.all.Release;
             Free (this.m_IRichTextBlockAutomationPeer);
          end if;
       end if;
@@ -7839,9 +8915,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RichTextBlockAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockAutomationPeer");
       m_Factory    : access IRichTextBlockAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
    begin
       return RetVal : RichTextBlockAutomationPeer do
@@ -7850,9 +8927,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRichTextBlock.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRichTextBlockAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
             Retval.m_IRichTextBlockAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7868,12 +8945,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out RichTextBlockOverflowAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRichTextBlockOverflowAutomationPeer, IRichTextBlockOverflowAutomationPeer_Ptr);
    begin
       if this.m_IRichTextBlockOverflowAutomationPeer /= null then
          if this.m_IRichTextBlockOverflowAutomationPeer.all /= null then
-            RefCount := this.m_IRichTextBlockOverflowAutomationPeer.all.Release;
+            temp := this.m_IRichTextBlockOverflowAutomationPeer.all.Release;
             Free (this.m_IRichTextBlockOverflowAutomationPeer);
          end if;
       end if;
@@ -7890,9 +8967,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return RichTextBlockOverflowAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockOverflowAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockOverflowAutomationPeer");
       m_Factory    : access IRichTextBlockOverflowAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
    begin
       return RetVal : RichTextBlockOverflowAutomationPeer do
@@ -7901,9 +8979,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRichTextBlockOverflow.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRichTextBlockOverflowAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
             Retval.m_IRichTextBlockOverflowAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7919,12 +8997,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ScrollBarAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScrollBarAutomationPeer, IScrollBarAutomationPeer_Ptr);
    begin
       if this.m_IScrollBarAutomationPeer /= null then
          if this.m_IScrollBarAutomationPeer.all /= null then
-            RefCount := this.m_IScrollBarAutomationPeer.all.Release;
+            temp := this.m_IScrollBarAutomationPeer.all.Release;
             Free (this.m_IScrollBarAutomationPeer);
          end if;
       end if;
@@ -7941,9 +9019,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ScrollBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollBarAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollBarAutomationPeer");
       m_Factory    : access IScrollBarAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
    begin
       return RetVal : ScrollBarAutomationPeer do
@@ -7952,9 +9031,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IScrollBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IScrollBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
             Retval.m_IScrollBarAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7970,12 +9049,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ScrollViewerAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScrollViewerAutomationPeer, IScrollViewerAutomationPeer_Ptr);
    begin
       if this.m_IScrollViewerAutomationPeer /= null then
          if this.m_IScrollViewerAutomationPeer.all /= null then
-            RefCount := this.m_IScrollViewerAutomationPeer.all.Release;
+            temp := this.m_IScrollViewerAutomationPeer.all.Release;
             Free (this.m_IScrollViewerAutomationPeer);
          end if;
       end if;
@@ -7992,9 +9071,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ScrollViewerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollViewerAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollViewerAutomationPeer");
       m_Factory    : access IScrollViewerAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
    begin
       return RetVal : ScrollViewerAutomationPeer do
@@ -8003,9 +9083,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IScrollViewer.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IScrollViewerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
             Retval.m_IScrollViewerAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8018,14 +9098,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.get_HorizontallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8035,14 +9119,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.get_HorizontalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8052,14 +9140,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.get_HorizontalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8069,14 +9161,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.get_VerticallyScrollable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8086,14 +9182,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.get_VerticalScrollPercent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8103,14 +9203,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.get_VerticalViewSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8121,13 +9225,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.Scroll (horizontalAmount, verticalAmount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetScrollPercent
@@ -8137,13 +9245,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       verticalPercent : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IScrollProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IScrollProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScrollViewerAutomationPeer.all);
       Hr := m_Interface.SetScrollPercent (horizontalPercent, verticalPercent);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8155,12 +9267,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out SearchBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISearchBoxAutomationPeer, ISearchBoxAutomationPeer_Ptr);
    begin
       if this.m_ISearchBoxAutomationPeer /= null then
          if this.m_ISearchBoxAutomationPeer.all /= null then
-            RefCount := this.m_ISearchBoxAutomationPeer.all.Release;
+            temp := this.m_ISearchBoxAutomationPeer.all.Release;
             Free (this.m_ISearchBoxAutomationPeer);
          end if;
       end if;
@@ -8177,9 +9289,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return SearchBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SearchBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SearchBoxAutomationPeer");
       m_Factory    : access ISearchBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
    begin
       return RetVal : SearchBoxAutomationPeer do
@@ -8188,9 +9301,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISearchBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISearchBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
             Retval.m_ISearchBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8206,12 +9319,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out SemanticZoomAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISemanticZoomAutomationPeer, ISemanticZoomAutomationPeer_Ptr);
    begin
       if this.m_ISemanticZoomAutomationPeer /= null then
          if this.m_ISemanticZoomAutomationPeer.all /= null then
-            RefCount := this.m_ISemanticZoomAutomationPeer.all.Release;
+            temp := this.m_ISemanticZoomAutomationPeer.all.Release;
             Free (this.m_ISemanticZoomAutomationPeer);
          end if;
       end if;
@@ -8228,9 +9341,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return SemanticZoomAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SemanticZoomAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SemanticZoomAutomationPeer");
       m_Factory    : access ISemanticZoomAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
    begin
       return RetVal : SemanticZoomAutomationPeer do
@@ -8239,9 +9353,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISemanticZoom.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISemanticZoomAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
             Retval.m_ISemanticZoomAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8254,14 +9368,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ToggleState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISemanticZoomAutomationPeer.all);
       Hr := m_Interface.get_ToggleState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8270,13 +9388,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out SemanticZoomAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISemanticZoomAutomationPeer.all);
       Hr := m_Interface.Toggle;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8288,12 +9410,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out SettingsFlyoutAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISettingsFlyoutAutomationPeer, ISettingsFlyoutAutomationPeer_Ptr);
    begin
       if this.m_ISettingsFlyoutAutomationPeer /= null then
          if this.m_ISettingsFlyoutAutomationPeer.all /= null then
-            RefCount := this.m_ISettingsFlyoutAutomationPeer.all.Release;
+            temp := this.m_ISettingsFlyoutAutomationPeer.all.Release;
             Free (this.m_ISettingsFlyoutAutomationPeer);
          end if;
       end if;
@@ -8310,9 +9432,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return SettingsFlyoutAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SettingsFlyoutAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SettingsFlyoutAutomationPeer");
       m_Factory    : access ISettingsFlyoutAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
    begin
       return RetVal : SettingsFlyoutAutomationPeer do
@@ -8321,9 +9444,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISettingsFlyout.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISettingsFlyoutAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
             Retval.m_ISettingsFlyoutAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8339,12 +9462,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out TextBlockAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextBlockAutomationPeer, ITextBlockAutomationPeer_Ptr);
    begin
       if this.m_ITextBlockAutomationPeer /= null then
          if this.m_ITextBlockAutomationPeer.all /= null then
-            RefCount := this.m_ITextBlockAutomationPeer.all.Release;
+            temp := this.m_ITextBlockAutomationPeer.all.Release;
             Free (this.m_ITextBlockAutomationPeer);
          end if;
       end if;
@@ -8361,9 +9484,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return TextBlockAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBlockAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBlockAutomationPeer");
       m_Factory    : access ITextBlockAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
    begin
       return RetVal : TextBlockAutomationPeer do
@@ -8372,9 +9496,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITextBlock.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITextBlockAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
             Retval.m_ITextBlockAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8390,12 +9514,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out TextBoxAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextBoxAutomationPeer, ITextBoxAutomationPeer_Ptr);
    begin
       if this.m_ITextBoxAutomationPeer /= null then
          if this.m_ITextBoxAutomationPeer.all /= null then
-            RefCount := this.m_ITextBoxAutomationPeer.all.Release;
+            temp := this.m_ITextBoxAutomationPeer.all.Release;
             Free (this.m_ITextBoxAutomationPeer);
          end if;
       end if;
@@ -8412,9 +9536,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return TextBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBoxAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBoxAutomationPeer");
       m_Factory    : access ITextBoxAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
    begin
       return RetVal : TextBoxAutomationPeer do
@@ -8423,9 +9548,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITextBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITextBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
             Retval.m_ITextBoxAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8441,12 +9566,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ThumbAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IThumbAutomationPeer, IThumbAutomationPeer_Ptr);
    begin
       if this.m_IThumbAutomationPeer /= null then
          if this.m_IThumbAutomationPeer.all /= null then
-            RefCount := this.m_IThumbAutomationPeer.all.Release;
+            temp := this.m_IThumbAutomationPeer.all.Release;
             Free (this.m_IThumbAutomationPeer);
          end if;
       end if;
@@ -8463,9 +9588,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ThumbAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ThumbAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ThumbAutomationPeer");
       m_Factory    : access IThumbAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
    begin
       return RetVal : ThumbAutomationPeer do
@@ -8474,9 +9600,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IThumb.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IThumbAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
             Retval.m_IThumbAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8492,12 +9618,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out TimePickerAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimePickerAutomationPeer, ITimePickerAutomationPeer_Ptr);
    begin
       if this.m_ITimePickerAutomationPeer /= null then
          if this.m_ITimePickerAutomationPeer.all /= null then
-            RefCount := this.m_ITimePickerAutomationPeer.all.Release;
+            temp := this.m_ITimePickerAutomationPeer.all.Release;
             Free (this.m_ITimePickerAutomationPeer);
          end if;
       end if;
@@ -8514,9 +9640,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return TimePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TimePickerAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TimePickerAutomationPeer");
       m_Factory    : access ITimePickerAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
    begin
       return RetVal : TimePickerAutomationPeer do
@@ -8525,9 +9652,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITimePicker.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITimePickerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
             Retval.m_ITimePickerAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8543,12 +9670,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out TimePickerFlyoutPresenterAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimePickerFlyoutPresenterAutomationPeer, ITimePickerFlyoutPresenterAutomationPeer_Ptr);
    begin
       if this.m_ITimePickerFlyoutPresenterAutomationPeer /= null then
          if this.m_ITimePickerFlyoutPresenterAutomationPeer.all /= null then
-            RefCount := this.m_ITimePickerFlyoutPresenterAutomationPeer.all.Release;
+            temp := this.m_ITimePickerFlyoutPresenterAutomationPeer.all.Release;
             Free (this.m_ITimePickerFlyoutPresenterAutomationPeer);
          end if;
       end if;
@@ -8566,12 +9693,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ToggleMenuFlyoutItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToggleMenuFlyoutItemAutomationPeer, IToggleMenuFlyoutItemAutomationPeer_Ptr);
    begin
       if this.m_IToggleMenuFlyoutItemAutomationPeer /= null then
          if this.m_IToggleMenuFlyoutItemAutomationPeer.all /= null then
-            RefCount := this.m_IToggleMenuFlyoutItemAutomationPeer.all.Release;
+            temp := this.m_IToggleMenuFlyoutItemAutomationPeer.all.Release;
             Free (this.m_IToggleMenuFlyoutItemAutomationPeer);
          end if;
       end if;
@@ -8588,9 +9715,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ToggleMenuFlyoutItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleMenuFlyoutItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleMenuFlyoutItemAutomationPeer");
       m_Factory    : access IToggleMenuFlyoutItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
    begin
       return RetVal : ToggleMenuFlyoutItemAutomationPeer do
@@ -8599,9 +9727,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IToggleMenuFlyoutItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IToggleMenuFlyoutItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
             Retval.m_IToggleMenuFlyoutItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8614,14 +9742,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ToggleState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleMenuFlyoutItemAutomationPeer.all);
       Hr := m_Interface.get_ToggleState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8630,13 +9762,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ToggleMenuFlyoutItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleMenuFlyoutItemAutomationPeer.all);
       Hr := m_Interface.Toggle;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8648,12 +9784,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out ToggleSwitchAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToggleSwitchAutomationPeer, IToggleSwitchAutomationPeer_Ptr);
    begin
       if this.m_IToggleSwitchAutomationPeer /= null then
          if this.m_IToggleSwitchAutomationPeer.all /= null then
-            RefCount := this.m_IToggleSwitchAutomationPeer.all.Release;
+            temp := this.m_IToggleSwitchAutomationPeer.all.Release;
             Free (this.m_IToggleSwitchAutomationPeer);
          end if;
       end if;
@@ -8670,9 +9806,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return ToggleSwitchAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleSwitchAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleSwitchAutomationPeer");
       m_Factory    : access IToggleSwitchAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
    begin
       return RetVal : ToggleSwitchAutomationPeer do
@@ -8681,9 +9818,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IToggleSwitch.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IToggleSwitchAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
             Retval.m_IToggleSwitchAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8696,14 +9833,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ToggleState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleSwitchAutomationPeer.all);
       Hr := m_Interface.get_ToggleState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8712,13 +9853,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out ToggleSwitchAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleSwitchAutomationPeer.all);
       Hr := m_Interface.Toggle;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8730,12 +9875,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out TreeViewItemAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITreeViewItemAutomationPeer, ITreeViewItemAutomationPeer_Ptr);
    begin
       if this.m_ITreeViewItemAutomationPeer /= null then
          if this.m_ITreeViewItemAutomationPeer.all /= null then
-            RefCount := this.m_ITreeViewItemAutomationPeer.all.Release;
+            temp := this.m_ITreeViewItemAutomationPeer.all.Release;
             Free (this.m_ITreeViewItemAutomationPeer);
          end if;
       end if;
@@ -8752,9 +9897,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return TreeViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewItemAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewItemAutomationPeer");
       m_Factory    : access ITreeViewItemAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
    begin
       return RetVal : TreeViewItemAutomationPeer do
@@ -8763,9 +9909,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITreeViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITreeViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
             Retval.m_ITreeViewItemAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8778,14 +9924,18 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITreeViewItemAutomationPeer.all);
       Hr := m_Interface.get_ExpandCollapseState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8794,13 +9944,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out TreeViewItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITreeViewItemAutomationPeer.all);
       Hr := m_Interface.Collapse;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Expand
@@ -8808,13 +9962,17 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       this : in out TreeViewItemAutomationPeer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITreeViewItemAutomationPeer.all);
       Hr := m_Interface.Expand;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8826,12 +9984,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    end;
 
    procedure Finalize (this : in out TreeViewListAutomationPeer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITreeViewListAutomationPeer, ITreeViewListAutomationPeer_Ptr);
    begin
       if this.m_ITreeViewListAutomationPeer /= null then
          if this.m_ITreeViewListAutomationPeer.all /= null then
-            RefCount := this.m_ITreeViewListAutomationPeer.all.Release;
+            temp := this.m_ITreeViewListAutomationPeer.all.Release;
             Free (this.m_ITreeViewListAutomationPeer);
          end if;
       end if;
@@ -8848,9 +10006,10 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    )
    return TreeViewListAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewListAutomationPeer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewListAutomationPeer");
       m_Factory    : access ITreeViewListAutomationPeerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;
    begin
       return RetVal : TreeViewListAutomationPeer do
@@ -8859,9 +10018,9 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITreeViewList.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITreeViewListAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;
             Retval.m_ITreeViewListAutomationPeer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

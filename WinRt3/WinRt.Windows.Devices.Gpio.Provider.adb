@@ -43,12 +43,12 @@ package body WinRt.Windows.Devices.Gpio.Provider is
    end;
 
    procedure Finalize (this : in out GpioPinProviderValueChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGpioPinProviderValueChangedEventArgs, IGpioPinProviderValueChangedEventArgs_Ptr);
    begin
       if this.m_IGpioPinProviderValueChangedEventArgs /= null then
          if this.m_IGpioPinProviderValueChangedEventArgs.all /= null then
-            RefCount := this.m_IGpioPinProviderValueChangedEventArgs.all.Release;
+            temp := this.m_IGpioPinProviderValueChangedEventArgs.all.Release;
             Free (this.m_IGpioPinProviderValueChangedEventArgs);
          end if;
       end if;
@@ -63,9 +63,10 @@ package body WinRt.Windows.Devices.Gpio.Provider is
    )
    return GpioPinProviderValueChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Gpio.Provider.GpioPinProviderValueChangedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.Provider.GpioPinProviderValueChangedEventArgs");
       m_Factory    : access IGpioPinProviderValueChangedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
    begin
       return RetVal : GpioPinProviderValueChangedEventArgs do
@@ -74,9 +75,9 @@ package body WinRt.Windows.Devices.Gpio.Provider is
             Hr := m_Factory.Create (edge, m_ComRetVal'Access);
             Retval.m_IGpioPinProviderValueChangedEventArgs := new Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
             Retval.m_IGpioPinProviderValueChangedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -89,10 +90,14 @@ package body WinRt.Windows.Devices.Gpio.Provider is
    )
    return WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
    begin
       Hr := this.m_IGpioPinProviderValueChangedEventArgs.all.get_Edge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

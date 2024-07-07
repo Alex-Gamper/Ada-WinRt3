@@ -78,12 +78,12 @@ package body WinRt.Windows.Storage.BulkAccess is
    end;
 
    procedure Finalize (this : in out FileInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStorageItemInformation, IStorageItemInformation_Ptr);
    begin
       if this.m_IStorageItemInformation /= null then
          if this.m_IStorageItemInformation.all /= null then
-            RefCount := this.m_IStorageItemInformation.all.Release;
+            temp := this.m_IStorageItemInformation.all.Release;
             Free (this.m_IStorageItemInformation);
          end if;
       end if;
@@ -98,11 +98,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.MusicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IMusicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.MusicProperties do
          Hr := this.m_IStorageItemInformation.all.get_MusicProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMusicProperties := new Windows.Storage.FileProperties.IMusicProperties;
          Retval.m_IMusicProperties.all := m_ComRetVal;
       end return;
@@ -114,11 +118,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.VideoProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IVideoProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.VideoProperties do
          Hr := this.m_IStorageItemInformation.all.get_VideoProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoProperties := new Windows.Storage.FileProperties.IVideoProperties;
          Retval.m_IVideoProperties.all := m_ComRetVal;
       end return;
@@ -130,11 +138,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.ImageProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IImageProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.ImageProperties do
          Hr := this.m_IStorageItemInformation.all.get_ImageProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IImageProperties := new Windows.Storage.FileProperties.IImageProperties;
          Retval.m_IImageProperties.all := m_ComRetVal;
       end return;
@@ -146,11 +158,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.DocumentProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IDocumentProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.DocumentProperties do
          Hr := this.m_IStorageItemInformation.all.get_DocumentProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDocumentProperties := new Windows.Storage.FileProperties.IDocumentProperties;
          Retval.m_IDocumentProperties.all := m_ComRetVal;
       end return;
@@ -162,11 +178,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.BasicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IBasicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.BasicProperties do
          Hr := this.m_IStorageItemInformation.all.get_BasicProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
          Retval.m_IBasicProperties.all := m_ComRetVal;
       end return;
@@ -178,11 +198,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          Hr := this.m_IStorageItemInformation.all.get_Thumbnail (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
          Retval.m_IRandomAccessStreamWithContentType.all := m_ComRetVal;
       end return;
@@ -195,10 +219,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_ThumbnailUpdated (changedHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -208,9 +236,13 @@ package body WinRt.Windows.Storage.BulkAccess is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStorageItemInformation.all.remove_ThumbnailUpdated (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PropertiesUpdated
@@ -220,10 +252,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_PropertiesUpdated (changedHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -233,9 +269,13 @@ package body WinRt.Windows.Storage.BulkAccess is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStorageItemInformation.all.remove_PropertiesUpdated (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FileType
@@ -244,17 +284,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageFile, WinRt.Windows.Storage.IID_IStorageFile'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_FileType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -264,17 +308,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageFile, WinRt.Windows.Storage.IID_IStorageFile'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_ContentType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -285,14 +333,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IRandomAccessStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -310,7 +358,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IRandomAccessStream.Kind_Delegate, AsyncOperationCompletedHandler_IRandomAccessStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -323,10 +371,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.OpenAsync (accessMode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -336,9 +384,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -352,14 +400,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageStreamTransaction'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageStreamTransaction.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -377,7 +425,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageStreamTransaction.Kind_Delegate, AsyncOperationCompletedHandler_StorageStreamTransaction.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -391,10 +439,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageStreamTransaction do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.OpenTransactedWriteAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -406,9 +454,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
                   Retval.m_IStorageStreamTransaction.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -423,14 +471,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -448,7 +496,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -462,10 +510,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFile do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CopyAsync (destinationFolder, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -477,9 +525,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -495,15 +543,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredNewName : WinRt.HString := To_HString (desiredNewName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredNewName : constant WinRt.HString := To_HString (desiredNewName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -521,7 +569,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -535,10 +583,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFile do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CopyAsync (destinationFolder, HStr_desiredNewName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -550,14 +598,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredNewName);
+         tmp := WindowsDeleteString (HStr_desiredNewName);
       end return;
    end;
 
@@ -570,15 +618,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredNewName : WinRt.HString := To_HString (desiredNewName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredNewName : constant WinRt.HString := To_HString (desiredNewName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -596,7 +644,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -610,10 +658,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFile do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CopyAsync (destinationFolder, HStr_desiredNewName, option, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -625,14 +673,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredNewName);
+         tmp := WindowsDeleteString (HStr_desiredNewName);
       end return;
    end;
 
@@ -642,8 +690,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       fileToReplace : Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -651,7 +700,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -667,7 +715,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.CopyAndReplaceAsync (fileToReplace, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -675,9 +723,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -689,8 +737,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       destinationFolder : Windows.Storage.IStorageFolder
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -698,7 +747,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -714,7 +762,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.MoveAsync (destinationFolder, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -722,9 +770,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -737,9 +785,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       desiredNewName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredNewName : WinRt.HString := To_HString (desiredNewName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredNewName : constant WinRt.HString := To_HString (desiredNewName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -747,7 +796,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -763,7 +811,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.MoveAsync (destinationFolder, HStr_desiredNewName, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -771,13 +819,13 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_desiredNewName);
+      tmp := WindowsDeleteString (HStr_desiredNewName);
    end;
 
    procedure MoveAsync
@@ -788,9 +836,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       option : Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredNewName : WinRt.HString := To_HString (desiredNewName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredNewName : constant WinRt.HString := To_HString (desiredNewName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -798,7 +847,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -814,7 +862,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.MoveAsync (destinationFolder, HStr_desiredNewName, option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -822,13 +870,13 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_desiredNewName);
+      tmp := WindowsDeleteString (HStr_desiredNewName);
    end;
 
    procedure MoveAndReplaceAsync
@@ -837,8 +885,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       fileToReplace : Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -846,7 +895,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -862,7 +910,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.MoveAndReplaceAsync (fileToReplace, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -870,9 +918,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -884,14 +932,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IInputStreamReference := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -909,7 +957,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -922,10 +970,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.OpenSequentialReadAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -935,9 +983,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -951,14 +999,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IRandomAccessStreamWithContentType.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -976,7 +1024,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IRandomAccessStreamWithContentType.Kind_Delegate, AsyncOperationCompletedHandler_IRandomAccessStreamWithContentType.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -989,10 +1037,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.OpenReadAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1002,9 +1050,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1018,9 +1066,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       desiredName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1028,7 +1077,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1044,7 +1092,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.RenameAsync (HStr_desiredName, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1052,13 +1100,13 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_desiredName);
+      tmp := WindowsDeleteString (HStr_desiredName);
    end;
 
    procedure RenameAsync
@@ -1068,9 +1116,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       option : Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1078,7 +1127,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1094,7 +1142,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.RenameAsync (HStr_desiredName, option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1102,13 +1150,13 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_desiredName);
+      tmp := WindowsDeleteString (HStr_desiredName);
    end;
 
    procedure DeleteAsync
@@ -1116,8 +1164,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       this : in out FileInformation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1125,7 +1174,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1141,7 +1189,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.DeleteAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1149,9 +1197,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1163,8 +1211,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       option : Windows.Storage.StorageDeleteOption
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1172,7 +1221,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1188,7 +1236,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.DeleteAsync (option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1196,9 +1244,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1210,14 +1258,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.BasicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BasicProperties.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1235,7 +1283,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BasicProperties.Kind_Delegate, AsyncOperationCompletedHandler_BasicProperties.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1249,10 +1297,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.BasicProperties do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetBasicPropertiesAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1264,9 +1312,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
                   Retval.m_IBasicProperties.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1280,17 +1328,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1300,17 +1352,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_Path (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1320,14 +1376,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileAttributes is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1337,14 +1397,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_DateCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1355,14 +1419,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.IsOfType (type_x, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1373,14 +1441,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageItemThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1398,7 +1466,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageItemThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_StorageItemThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1412,10 +1480,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetThumbnailAsync (mode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1427,9 +1495,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1445,14 +1513,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageItemThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1470,7 +1538,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageItemThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_StorageItemThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1484,10 +1552,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetThumbnailAsync (mode, requestedSize, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1499,9 +1567,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1518,14 +1586,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageItemThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1543,7 +1611,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageItemThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_StorageItemThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1557,10 +1625,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetThumbnailAsync (mode, requestedSize, options, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1572,9 +1640,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1588,17 +1656,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1608,17 +1680,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_DisplayType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1628,17 +1704,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_FolderRelativeId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1648,15 +1728,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemContentProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IStorageItemContentProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemContentProperties do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageItemContentProperties := new Windows.Storage.FileProperties.IStorageItemContentProperties;
          Retval.m_IStorageItemContentProperties.all := m_ComRetVal;
       end return;
@@ -1668,14 +1752,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1693,7 +1777,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1707,10 +1791,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetParentAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1722,9 +1806,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1739,14 +1823,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem2, WinRt.Windows.Storage.IID_IStorageItem2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.IsEqual (item, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1756,15 +1844,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageProvider'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemPropertiesWithProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemPropertiesWithProvider, WinRt.Windows.Storage.IID_IStorageItemPropertiesWithProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageProvider do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.get_Provider (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageProvider := new Windows.Storage.IStorageProvider;
          Retval.m_IStorageProvider.all := m_ComRetVal;
       end return;
@@ -1776,14 +1868,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFilePropertiesWithAvailability := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageFilePropertiesWithAvailability, WinRt.Windows.Storage.IID_IStorageFilePropertiesWithAvailability'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_IsAvailable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1795,14 +1891,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IRandomAccessStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1820,7 +1916,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IRandomAccessStream.Kind_Delegate, AsyncOperationCompletedHandler_IRandomAccessStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1833,10 +1929,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.OpenAsync (accessMode, options, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1846,9 +1942,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1863,14 +1959,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageStreamTransaction'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageStreamTransaction.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1888,7 +1984,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageStreamTransaction.Kind_Delegate, AsyncOperationCompletedHandler_StorageStreamTransaction.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1902,10 +1998,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageStreamTransaction do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.OpenTransactedWriteAsync (options, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1917,9 +2013,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
                   Retval.m_IStorageStreamTransaction.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1936,12 +2032,12 @@ package body WinRt.Windows.Storage.BulkAccess is
    end;
 
    procedure Finalize (this : in out FileInformationFactory) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFileInformationFactory, IFileInformationFactory_Ptr);
    begin
       if this.m_IFileInformationFactory /= null then
          if this.m_IFileInformationFactory.all /= null then
-            RefCount := this.m_IFileInformationFactory.all.Release;
+            temp := this.m_IFileInformationFactory.all.Release;
             Free (this.m_IFileInformationFactory);
          end if;
       end if;
@@ -1957,9 +2053,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
@@ -1968,9 +2065,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             Hr := m_Factory.CreateWithMode (queryResult, mode, m_ComRetVal'Access);
             Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1982,9 +2079,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
@@ -1993,9 +2091,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             Hr := m_Factory.CreateWithModeAndSize (queryResult, mode, requestedThumbnailSize, m_ComRetVal'Access);
             Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2008,9 +2106,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
@@ -2019,9 +2118,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             Hr := m_Factory.CreateWithModeAndSizeAndOptions (queryResult, mode, requestedThumbnailSize, thumbnailOptions, m_ComRetVal'Access);
             Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2035,9 +2134,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
@@ -2046,9 +2146,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             Hr := m_Factory.CreateWithModeAndSizeAndOptionsAndFlags (queryResult, mode, requestedThumbnailSize, thumbnailOptions, delayLoad, m_ComRetVal'Access);
             Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2063,13 +2163,13 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2087,7 +2187,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2100,7 +2200,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr := this.m_IFileInformationFactory.all.GetItemsAsync (startIndex, maxItemsToRetrieve, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2110,9 +2210,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2126,13 +2226,13 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2150,7 +2250,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2163,7 +2263,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr := this.m_IFileInformationFactory.all.GetItemsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2173,9 +2273,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2191,13 +2291,13 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2215,7 +2315,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2228,7 +2328,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr := this.m_IFileInformationFactory.all.GetFilesAsync (startIndex, maxItemsToRetrieve, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2238,9 +2338,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2254,13 +2354,13 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2278,7 +2378,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2291,7 +2391,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr := this.m_IFileInformationFactory.all.GetFilesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2301,9 +2401,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2319,13 +2419,13 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2343,7 +2443,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2356,7 +2456,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr := this.m_IFileInformationFactory.all.GetFoldersAsync (startIndex, maxItemsToRetrieve, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2366,9 +2466,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2382,13 +2482,13 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2406,7 +2506,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2419,7 +2519,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr := this.m_IFileInformationFactory.all.GetFoldersAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2429,9 +2529,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2445,10 +2545,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IFileInformationFactory.all.GetVirtualizedItemsVector (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2458,10 +2562,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IFileInformationFactory.all.GetVirtualizedFilesVector (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2471,10 +2579,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IFileInformationFactory.all.GetVirtualizedFoldersVector (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2487,12 +2599,12 @@ package body WinRt.Windows.Storage.BulkAccess is
    end;
 
    procedure Finalize (this : in out FolderInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStorageItemInformation, IStorageItemInformation_Ptr);
    begin
       if this.m_IStorageItemInformation /= null then
          if this.m_IStorageItemInformation.all /= null then
-            RefCount := this.m_IStorageItemInformation.all.Release;
+            temp := this.m_IStorageItemInformation.all.Release;
             Free (this.m_IStorageItemInformation);
          end if;
       end if;
@@ -2507,11 +2619,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.MusicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IMusicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.MusicProperties do
          Hr := this.m_IStorageItemInformation.all.get_MusicProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMusicProperties := new Windows.Storage.FileProperties.IMusicProperties;
          Retval.m_IMusicProperties.all := m_ComRetVal;
       end return;
@@ -2523,11 +2639,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.VideoProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IVideoProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.VideoProperties do
          Hr := this.m_IStorageItemInformation.all.get_VideoProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoProperties := new Windows.Storage.FileProperties.IVideoProperties;
          Retval.m_IVideoProperties.all := m_ComRetVal;
       end return;
@@ -2539,11 +2659,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.ImageProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IImageProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.ImageProperties do
          Hr := this.m_IStorageItemInformation.all.get_ImageProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IImageProperties := new Windows.Storage.FileProperties.IImageProperties;
          Retval.m_IImageProperties.all := m_ComRetVal;
       end return;
@@ -2555,11 +2679,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.DocumentProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IDocumentProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.DocumentProperties do
          Hr := this.m_IStorageItemInformation.all.get_DocumentProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDocumentProperties := new Windows.Storage.FileProperties.IDocumentProperties;
          Retval.m_IDocumentProperties.all := m_ComRetVal;
       end return;
@@ -2571,11 +2699,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.BasicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IBasicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.BasicProperties do
          Hr := this.m_IStorageItemInformation.all.get_BasicProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
          Retval.m_IBasicProperties.all := m_ComRetVal;
       end return;
@@ -2587,11 +2719,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          Hr := this.m_IStorageItemInformation.all.get_Thumbnail (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
          Retval.m_IRandomAccessStreamWithContentType.all := m_ComRetVal;
       end return;
@@ -2604,10 +2740,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_ThumbnailUpdated (changedHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2617,9 +2757,13 @@ package body WinRt.Windows.Storage.BulkAccess is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStorageItemInformation.all.remove_ThumbnailUpdated (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PropertiesUpdated
@@ -2629,10 +2773,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_PropertiesUpdated (changedHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2642,9 +2790,13 @@ package body WinRt.Windows.Storage.BulkAccess is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStorageItemInformation.all.remove_PropertiesUpdated (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateFileAsync
@@ -2654,15 +2806,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2680,7 +2832,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2694,10 +2846,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFile do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFileAsync (HStr_desiredName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2709,14 +2861,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredName);
+         tmp := WindowsDeleteString (HStr_desiredName);
       end return;
    end;
 
@@ -2728,15 +2880,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2754,7 +2906,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2768,10 +2920,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFile do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFileAsync (HStr_desiredName, options, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2783,14 +2935,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredName);
+         tmp := WindowsDeleteString (HStr_desiredName);
       end return;
    end;
 
@@ -2801,15 +2953,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2827,7 +2979,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2841,10 +2993,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFolderAsync (HStr_desiredName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2856,14 +3008,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredName);
+         tmp := WindowsDeleteString (HStr_desiredName);
       end return;
    end;
 
@@ -2875,15 +3027,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2901,7 +3053,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2915,10 +3067,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFolderAsync (HStr_desiredName, options, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2930,14 +3082,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_desiredName);
+         tmp := WindowsDeleteString (HStr_desiredName);
       end return;
    end;
 
@@ -2948,15 +3100,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2974,7 +3126,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2988,10 +3140,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFile do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetFileAsync (HStr_name, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3003,14 +3155,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3021,15 +3173,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3047,7 +3199,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3061,10 +3213,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetFolderAsync (HStr_name, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3076,14 +3228,14 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3094,15 +3246,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.IStorageItem is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IStorageItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3120,7 +3272,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IStorageItem.Kind_Delegate, AsyncOperationCompletedHandler_IStorageItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3133,10 +3285,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetItemAsync (HStr_name, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3146,14 +3298,14 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_name);
       return m_RetVal;
    end;
 
@@ -3163,14 +3315,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3188,7 +3340,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3201,10 +3353,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetFilesAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3214,9 +3366,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3230,14 +3382,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3255,7 +3407,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3268,10 +3420,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetFoldersAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3281,9 +3433,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3297,14 +3449,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3322,7 +3474,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3335,10 +3487,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetItemsAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3348,9 +3500,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3364,9 +3516,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       desiredName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3374,7 +3527,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3390,7 +3542,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.RenameAsync (HStr_desiredName, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3398,13 +3550,13 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_desiredName);
+      tmp := WindowsDeleteString (HStr_desiredName);
    end;
 
    procedure RenameAsync
@@ -3414,9 +3566,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       option : Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_desiredName : WinRt.HString := To_HString (desiredName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_desiredName : constant WinRt.HString := To_HString (desiredName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3424,7 +3577,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3440,7 +3592,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.RenameAsync (HStr_desiredName, option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3448,13 +3600,13 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_desiredName);
+      tmp := WindowsDeleteString (HStr_desiredName);
    end;
 
    procedure DeleteAsync
@@ -3462,8 +3614,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       this : in out FolderInformation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3471,7 +3624,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3487,7 +3639,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.DeleteAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3495,9 +3647,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3509,8 +3661,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       option : Windows.Storage.StorageDeleteOption
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3518,7 +3671,6 @@ package body WinRt.Windows.Storage.BulkAccess is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3534,7 +3686,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.DeleteAsync (option, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3542,9 +3694,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3556,14 +3708,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.BasicProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BasicProperties.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3581,7 +3733,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BasicProperties.Kind_Delegate, AsyncOperationCompletedHandler_BasicProperties.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3595,10 +3747,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.BasicProperties do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetBasicPropertiesAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3610,9 +3762,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
                   Retval.m_IBasicProperties.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3626,17 +3778,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3646,17 +3802,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_Path (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3666,14 +3826,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileAttributes is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3683,14 +3847,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_DateCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3701,14 +3869,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.IsOfType (type_x, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3719,14 +3891,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageItemThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3744,7 +3916,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageItemThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_StorageItemThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3758,10 +3930,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetThumbnailAsync (mode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3773,9 +3945,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3791,14 +3963,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageItemThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3816,7 +3988,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageItemThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_StorageItemThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3830,10 +4002,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetThumbnailAsync (mode, requestedSize, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3845,9 +4017,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3864,14 +4036,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageItemThumbnail.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3889,7 +4061,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageItemThumbnail.Kind_Delegate, AsyncOperationCompletedHandler_StorageItemThumbnail.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3903,10 +4075,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetThumbnailAsync (mode, requestedSize, options, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3918,9 +4090,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3934,17 +4106,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3954,17 +4130,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_DisplayType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3974,17 +4154,21 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.get_FolderRelativeId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3994,15 +4178,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemContentProperties'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.FileProperties.IStorageItemContentProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemContentProperties do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageItemContentProperties := new Windows.Storage.FileProperties.IStorageItemContentProperties;
          Retval.m_IStorageItemContentProperties.all := m_ComRetVal;
       end return;
@@ -4014,14 +4202,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.IndexedState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IndexedState.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4039,7 +4227,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IndexedState.Kind_Delegate, AsyncOperationCompletedHandler_IndexedState.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4052,10 +4240,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetIndexedStateAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4065,9 +4253,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4081,15 +4269,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFileQuery (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
@@ -4102,15 +4294,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFileQuery (query, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
@@ -4123,15 +4319,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFileQueryWithOptions (queryOptions.m_IQueryOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
@@ -4143,15 +4343,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFolderQuery (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
@@ -4164,15 +4368,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFolderQuery (query, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
@@ -4185,15 +4393,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateFolderQueryWithOptions (queryOptions.m_IQueryOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
@@ -4205,15 +4417,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateItemQuery (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
@@ -4226,15 +4442,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.CreateItemQueryWithOptions (queryOptions.m_IQueryOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
@@ -4249,14 +4469,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4274,7 +4494,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4287,10 +4507,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetFilesAsync (query, startIndex, maxItemsToRetrieve, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4300,9 +4520,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4317,14 +4537,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4342,7 +4562,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4355,10 +4575,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetFilesAsync (query, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4368,9 +4588,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4387,14 +4607,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4412,7 +4632,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4425,10 +4645,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetFoldersAsync (query, startIndex, maxItemsToRetrieve, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4438,9 +4658,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4455,14 +4675,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4480,7 +4700,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4493,10 +4713,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetFoldersAsync (query, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4506,9 +4726,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4524,14 +4744,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4549,7 +4769,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4562,10 +4782,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.GetItemsAsync (startIndex, maxItemsToRetrieve, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4575,9 +4795,9 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4592,14 +4812,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.AreQueryOptionsSupported (queryOptions.m_IQueryOptions.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4610,14 +4834,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.IsCommonFolderQuerySupported (query, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4628,14 +4856,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.IsCommonFileQuerySupported (query, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4645,14 +4877,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4670,7 +4902,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4684,10 +4916,10 @@ package body WinRt.Windows.Storage.BulkAccess is
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.GetParentAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4699,9 +4931,9 @@ package body WinRt.Windows.Storage.BulkAccess is
                   Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -4716,14 +4948,18 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem2, WinRt.Windows.Storage.IID_IStorageItem2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.IsEqual (item, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4734,15 +4970,15 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.IStorageItem is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IStorageItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4760,7 +4996,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IStorageItem.Kind_Delegate, AsyncOperationCompletedHandler_IStorageItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4773,10 +5009,10 @@ package body WinRt.Windows.Storage.BulkAccess is
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
       Hr := m_Interface.TryGetItemAsync (HStr_name, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4786,14 +5022,14 @@ package body WinRt.Windows.Storage.BulkAccess is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_name);
       return m_RetVal;
    end;
 
@@ -4803,15 +5039,19 @@ package body WinRt.Windows.Storage.BulkAccess is
    )
    return WinRt.Windows.Storage.StorageProvider'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemPropertiesWithProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemPropertiesWithProvider, WinRt.Windows.Storage.IID_IStorageItemPropertiesWithProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageProvider do
          m_Interface := QInterface (this.m_IStorageItemInformation.all);
          Hr := m_Interface.get_Provider (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageProvider := new Windows.Storage.IStorageProvider;
          Retval.m_IStorageProvider.all := m_ComRetVal;
       end return;

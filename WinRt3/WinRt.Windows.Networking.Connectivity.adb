@@ -59,12 +59,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out AttributedNetworkUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAttributedNetworkUsage, IAttributedNetworkUsage_Ptr);
    begin
       if this.m_IAttributedNetworkUsage /= null then
          if this.m_IAttributedNetworkUsage.all /= null then
-            RefCount := this.m_IAttributedNetworkUsage.all.Release;
+            temp := this.m_IAttributedNetworkUsage.all.Release;
             Free (this.m_IAttributedNetworkUsage);
          end if;
       end if;
@@ -79,10 +79,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IAttributedNetworkUsage.all.get_BytesSent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -92,10 +96,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IAttributedNetworkUsage.all.get_BytesReceived (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -105,13 +113,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAttributedNetworkUsage.all.get_AttributionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -121,13 +133,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAttributedNetworkUsage.all.get_AttributionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -137,10 +153,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IAttributedNetworkUsage.all.get_AttributionThumbnail (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -153,12 +173,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out CellularApnContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICellularApnContext, ICellularApnContext_Ptr);
    begin
       if this.m_ICellularApnContext /= null then
          if this.m_ICellularApnContext.all /= null then
-            RefCount := this.m_ICellularApnContext.all.Release;
+            temp := this.m_ICellularApnContext.all.Release;
             Free (this.m_ICellularApnContext);
          end if;
       end if;
@@ -169,7 +189,8 @@ package body WinRt.Windows.Networking.Connectivity is
 
    function Constructor return CellularApnContext is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Connectivity.CellularApnContext");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.CellularApnContext");
       m_ComRetVal  : aliased Windows.Networking.Connectivity.ICellularApnContext;
    begin
       return RetVal : CellularApnContext do
@@ -178,7 +199,7 @@ package body WinRt.Windows.Networking.Connectivity is
             Retval.m_ICellularApnContext := new Windows.Networking.Connectivity.ICellularApnContext;
             Retval.m_ICellularApnContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -191,13 +212,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICellularApnContext.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -207,11 +232,15 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICellularApnContext.all.put_ProviderId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AccessPointName
@@ -220,13 +249,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICellularApnContext.all.get_AccessPointName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -236,11 +269,15 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICellularApnContext.all.put_AccessPointName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_UserName
@@ -249,13 +286,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICellularApnContext.all.get_UserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -265,11 +306,15 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICellularApnContext.all.put_UserName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Password
@@ -278,13 +323,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICellularApnContext.all.get_Password (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -294,11 +343,15 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICellularApnContext.all.put_Password (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsCompressionEnabled
@@ -307,10 +360,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICellularApnContext.all.get_IsCompressionEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -320,9 +377,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICellularApnContext.all.put_IsCompressionEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AuthenticationType
@@ -331,10 +392,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.CellularApnAuthenticationType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.CellularApnAuthenticationType;
    begin
       Hr := this.m_ICellularApnContext.all.get_AuthenticationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -344,9 +409,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : Windows.Networking.Connectivity.CellularApnAuthenticationType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICellularApnContext.all.put_AuthenticationType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProfileName
@@ -355,17 +424,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.ICellularApnContext2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.ICellularApnContext_Interface, WinRt.Windows.Networking.Connectivity.ICellularApnContext2, WinRt.Windows.Networking.Connectivity.IID_ICellularApnContext2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICellularApnContext.all);
       Hr := m_Interface.get_ProfileName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -375,15 +448,19 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.ICellularApnContext2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.ICellularApnContext_Interface, WinRt.Windows.Networking.Connectivity.ICellularApnContext2, WinRt.Windows.Networking.Connectivity.IID_ICellularApnContext2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICellularApnContext.all);
       Hr := m_Interface.put_ProfileName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -395,12 +472,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ConnectionCost) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectionCost, IConnectionCost_Ptr);
    begin
       if this.m_IConnectionCost /= null then
          if this.m_IConnectionCost.all /= null then
-            RefCount := this.m_IConnectionCost.all.Release;
+            temp := this.m_IConnectionCost.all.Release;
             Free (this.m_IConnectionCost);
          end if;
       end if;
@@ -415,10 +492,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkCostType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.NetworkCostType;
    begin
       Hr := this.m_IConnectionCost.all.get_NetworkCostType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -428,10 +509,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectionCost.all.get_Roaming (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -441,10 +526,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectionCost.all.get_OverDataLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -454,10 +543,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectionCost.all.get_ApproachingDataLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -467,14 +560,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionCost2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionCost_Interface, WinRt.Windows.Networking.Connectivity.IConnectionCost2, WinRt.Windows.Networking.Connectivity.IID_IConnectionCost2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionCost.all);
       Hr := m_Interface.get_BackgroundDataUsageRestricted (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -487,12 +584,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ConnectionProfile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectionProfile, IConnectionProfile_Ptr);
    begin
       if this.m_IConnectionProfile /= null then
          if this.m_IConnectionProfile.all /= null then
-            RefCount := this.m_IConnectionProfile.all.Release;
+            temp := this.m_IConnectionProfile.all.Release;
             Free (this.m_IConnectionProfile);
          end if;
       end if;
@@ -507,13 +604,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IConnectionProfile.all.get_ProfileName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -523,10 +624,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkConnectivityLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.NetworkConnectivityLevel;
    begin
       Hr := this.m_IConnectionProfile.all.GetNetworkConnectivityLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -536,13 +641,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IConnectionProfile.all.GetNetworkNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -552,11 +661,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.ConnectionCost'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IConnectionCost;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.ConnectionCost do
          Hr := this.m_IConnectionProfile.all.GetConnectionCost (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConnectionCost := new Windows.Networking.Connectivity.IConnectionCost;
          Retval.m_IConnectionCost.all := m_ComRetVal;
       end return;
@@ -568,11 +681,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.DataPlanStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IDataPlanStatus;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.DataPlanStatus do
          Hr := this.m_IConnectionProfile.all.GetDataPlanStatus (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataPlanStatus := new Windows.Networking.Connectivity.IDataPlanStatus;
          Retval.m_IDataPlanStatus.all := m_ComRetVal;
       end return;
@@ -584,11 +701,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IConnectionProfile.all.get_NetworkAdapter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
@@ -602,11 +723,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.DataUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IDataUsage;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.DataUsage do
          Hr := this.m_IConnectionProfile.all.GetLocalUsage (StartTime, EndTime, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataUsage := new Windows.Networking.Connectivity.IDataUsage;
          Retval.m_IDataUsage.all := m_ComRetVal;
       end return;
@@ -621,11 +746,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.DataUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IDataUsage;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.DataUsage do
          Hr := this.m_IConnectionProfile.all.GetLocalUsage (StartTime, EndTime, States, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataUsage := new Windows.Networking.Connectivity.IDataUsage;
          Retval.m_IDataUsage.all := m_ComRetVal;
       end return;
@@ -637,11 +766,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkSecuritySettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkSecuritySettings;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkSecuritySettings do
          Hr := this.m_IConnectionProfile.all.get_NetworkSecuritySettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkSecuritySettings := new Windows.Networking.Connectivity.INetworkSecuritySettings;
          Retval.m_INetworkSecuritySettings.all := m_ComRetVal;
       end return;
@@ -653,14 +786,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.get_IsWwanConnectionProfile (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -670,14 +807,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.get_IsWlanConnectionProfile (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -687,15 +828,19 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.WwanConnectionProfileDetails'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IWwanConnectionProfileDetails;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.WwanConnectionProfileDetails do
          m_Interface := QInterface (this.m_IConnectionProfile.all);
          Hr := m_Interface.get_WwanConnectionProfileDetails (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWwanConnectionProfileDetails := new Windows.Networking.Connectivity.IWwanConnectionProfileDetails;
          Retval.m_IWwanConnectionProfileDetails.all := m_ComRetVal;
       end return;
@@ -707,15 +852,19 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.WlanConnectionProfileDetails'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IWlanConnectionProfileDetails;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.WlanConnectionProfileDetails do
          m_Interface := QInterface (this.m_IConnectionProfile.all);
          Hr := m_Interface.get_WlanConnectionProfileDetails (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWlanConnectionProfileDetails := new Windows.Networking.Connectivity.IWlanConnectionProfileDetails;
          Retval.m_IWlanConnectionProfileDetails.all := m_ComRetVal;
       end return;
@@ -727,17 +876,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Guid.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Guid.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.get_ServiceProviderGuid (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Guid (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -747,17 +900,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Byte.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.GetSignalBars (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Byte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -767,14 +924,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.DomainConnectivityLevel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.DomainConnectivityLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.GetDomainConnectivityLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -788,14 +949,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -813,7 +974,7 @@ package body WinRt.Windows.Networking.Connectivity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -826,10 +987,10 @@ package body WinRt.Windows.Networking.Connectivity is
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.GetNetworkUsageAsync (startTime, endTime, granularity, states, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -839,9 +1000,9 @@ package body WinRt.Windows.Networking.Connectivity is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -858,14 +1019,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -883,7 +1044,7 @@ package body WinRt.Windows.Networking.Connectivity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -896,10 +1057,10 @@ package body WinRt.Windows.Networking.Connectivity is
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.GetConnectivityIntervalsAsync (startTime, endTime, states, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -909,9 +1070,9 @@ package body WinRt.Windows.Networking.Connectivity is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -928,14 +1089,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -953,7 +1114,7 @@ package body WinRt.Windows.Networking.Connectivity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -966,10 +1127,10 @@ package body WinRt.Windows.Networking.Connectivity is
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.GetAttributedNetworkUsageAsync (startTime, endTime, states, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -979,9 +1140,9 @@ package body WinRt.Windows.Networking.Connectivity is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -998,14 +1159,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1023,7 +1184,7 @@ package body WinRt.Windows.Networking.Connectivity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1036,10 +1197,10 @@ package body WinRt.Windows.Networking.Connectivity is
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.GetProviderNetworkUsageAsync (startTime, endTime, states, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1049,9 +1210,9 @@ package body WinRt.Windows.Networking.Connectivity is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1065,14 +1226,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfile_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfile5, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfile5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.get_CanDelete (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1082,14 +1247,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.ConnectionProfileDeleteStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfile5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ConnectionProfileDeleteStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1107,7 +1272,7 @@ package body WinRt.Windows.Networking.Connectivity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConnectionProfileDeleteStatus.Kind_Delegate, AsyncOperationCompletedHandler_ConnectionProfileDeleteStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1120,10 +1285,10 @@ package body WinRt.Windows.Networking.Connectivity is
    begin
       m_Interface := QInterface (this.m_IConnectionProfile.all);
       Hr := m_Interface.TryDeleteAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1133,9 +1298,9 @@ package body WinRt.Windows.Networking.Connectivity is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1152,12 +1317,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ConnectionProfileFilter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectionProfileFilter, IConnectionProfileFilter_Ptr);
    begin
       if this.m_IConnectionProfileFilter /= null then
          if this.m_IConnectionProfileFilter.all /= null then
-            RefCount := this.m_IConnectionProfileFilter.all.Release;
+            temp := this.m_IConnectionProfileFilter.all.Release;
             Free (this.m_IConnectionProfileFilter);
          end if;
       end if;
@@ -1168,7 +1333,8 @@ package body WinRt.Windows.Networking.Connectivity is
 
    function Constructor return ConnectionProfileFilter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectionProfileFilter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectionProfileFilter");
       m_ComRetVal  : aliased Windows.Networking.Connectivity.IConnectionProfileFilter;
    begin
       return RetVal : ConnectionProfileFilter do
@@ -1177,7 +1343,7 @@ package body WinRt.Windows.Networking.Connectivity is
             Retval.m_IConnectionProfileFilter := new Windows.Networking.Connectivity.IConnectionProfileFilter;
             Retval.m_IConnectionProfileFilter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1190,9 +1356,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectionProfileFilter.all.put_IsConnected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsConnected
@@ -1201,10 +1371,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectionProfileFilter.all.get_IsConnected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1214,9 +1388,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectionProfileFilter.all.put_IsWwanConnectionProfile (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsWwanConnectionProfile
@@ -1225,10 +1403,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectionProfileFilter.all.get_IsWwanConnectionProfile (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1238,9 +1420,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectionProfileFilter.all.put_IsWlanConnectionProfile (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsWlanConnectionProfile
@@ -1249,10 +1435,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectionProfileFilter.all.get_IsWlanConnectionProfile (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1262,9 +1452,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : Windows.Networking.Connectivity.NetworkCostType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectionProfileFilter.all.put_NetworkCostType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NetworkCostType
@@ -1273,10 +1467,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkCostType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.NetworkCostType;
    begin
       Hr := this.m_IConnectionProfileFilter.all.get_NetworkCostType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1286,9 +1484,13 @@ package body WinRt.Windows.Networking.Connectivity is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectionProfileFilter.all.put_ServiceProviderGuid (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ServiceProviderGuid
@@ -1297,13 +1499,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Guid.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Guid.Kind;
    begin
       Hr := this.m_IConnectionProfileFilter.all.get_ServiceProviderGuid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Guid (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1313,13 +1519,17 @@ package body WinRt.Windows.Networking.Connectivity is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.put_IsRoaming (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsRoaming
@@ -1328,17 +1538,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.get_IsRoaming (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1348,13 +1562,17 @@ package body WinRt.Windows.Networking.Connectivity is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.put_IsOverDataLimit (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOverDataLimit
@@ -1363,17 +1581,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.get_IsOverDataLimit (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1383,13 +1605,17 @@ package body WinRt.Windows.Networking.Connectivity is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.put_IsBackgroundDataUsageRestricted (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsBackgroundDataUsageRestricted
@@ -1398,17 +1624,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.get_IsBackgroundDataUsageRestricted (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1418,14 +1648,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter2, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.get_RawData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1435,13 +1669,17 @@ package body WinRt.Windows.Networking.Connectivity is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter3, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.put_PurposeGuid (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PurposeGuid
@@ -1450,17 +1688,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Guid.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Guid.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter_Interface, WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter3, WinRt.Windows.Networking.Connectivity.IID_IConnectionProfileFilter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionProfileFilter.all);
       Hr := m_Interface.get_PurposeGuid (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Guid (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1473,12 +1715,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ConnectionSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectionSession, IConnectionSession_Ptr);
    begin
       if this.m_IConnectionSession /= null then
          if this.m_IConnectionSession.all /= null then
-            RefCount := this.m_IConnectionSession.all.Release;
+            temp := this.m_IConnectionSession.all.Release;
             Free (this.m_IConnectionSession);
          end if;
       end if;
@@ -1493,11 +1735,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IConnectionProfile;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.ConnectionProfile do
          Hr := this.m_IConnectionSession.all.get_ConnectionProfile (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConnectionProfile := new Windows.Networking.Connectivity.IConnectionProfile;
          Retval.m_IConnectionProfile.all := m_ComRetVal;
       end return;
@@ -1508,13 +1754,17 @@ package body WinRt.Windows.Networking.Connectivity is
       this : in out ConnectionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IConnectionSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectionSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1526,12 +1776,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ConnectivityInterval) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectivityInterval, IConnectivityInterval_Ptr);
    begin
       if this.m_IConnectivityInterval /= null then
          if this.m_IConnectivityInterval.all /= null then
-            RefCount := this.m_IConnectivityInterval.all.Release;
+            temp := this.m_IConnectivityInterval.all.Release;
             Free (this.m_IConnectivityInterval);
          end if;
       end if;
@@ -1546,10 +1796,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IConnectivityInterval.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1559,10 +1813,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IConnectivityInterval.all.get_ConnectionDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1576,15 +1834,15 @@ package body WinRt.Windows.Networking.Connectivity is
       )
       return WinRt.Windows.Networking.Connectivity.ConnectionSession is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectivityManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectivityManager");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.IConnectivityManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_ConnectionSession.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1602,7 +1860,7 @@ package body WinRt.Windows.Networking.Connectivity is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConnectionSession.Kind_Delegate, AsyncOperationCompletedHandler_ConnectionSession.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1616,10 +1874,10 @@ package body WinRt.Windows.Networking.Connectivity is
             Hr := RoGetActivationFactory (m_hString, IID_IConnectivityManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.AcquireConnectionAsync (cellularApnContext_p.m_ICellularApnContext.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -1631,15 +1889,15 @@ package body WinRt.Windows.Networking.Connectivity is
                         Retval.m_IConnectionSession := new Windows.Networking.Connectivity.IConnectionSession;
                         Retval.m_IConnectionSession.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -1648,16 +1906,20 @@ package body WinRt.Windows.Networking.Connectivity is
          routePolicy_p : Windows.Networking.Connectivity.RoutePolicy'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectivityManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectivityManager");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.IConnectivityManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IConnectivityManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AddHttpRoutePolicy (routePolicy_p.m_IRoutePolicy.all);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure RemoveHttpRoutePolicy
@@ -1665,16 +1927,20 @@ package body WinRt.Windows.Networking.Connectivity is
          routePolicy_p : Windows.Networking.Connectivity.RoutePolicy'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectivityManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectivityManager");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.IConnectivityManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IConnectivityManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RemoveHttpRoutePolicy (routePolicy_p.m_IRoutePolicy.all);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end ConnectivityManager;
@@ -1688,12 +1954,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out DataPlanStatus) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDataPlanStatus, IDataPlanStatus_Ptr);
    begin
       if this.m_IDataPlanStatus /= null then
          if this.m_IDataPlanStatus.all /= null then
-            RefCount := this.m_IDataPlanStatus.all.Release;
+            temp := this.m_IDataPlanStatus.all.Release;
             Free (this.m_IDataPlanStatus);
          end if;
       end if;
@@ -1708,11 +1974,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.DataPlanUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IDataPlanUsage;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.DataPlanUsage do
          Hr := this.m_IDataPlanStatus.all.get_DataPlanUsage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataPlanUsage := new Windows.Networking.Connectivity.IDataPlanUsage;
          Retval.m_IDataPlanUsage.all := m_ComRetVal;
       end return;
@@ -1724,13 +1994,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IDataPlanStatus.all.get_DataLimitInMegabytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1740,13 +2014,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_UInt64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IDataPlanStatus.all.get_InboundBitsPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1756,13 +2034,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_UInt64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IDataPlanStatus.all.get_OutboundBitsPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1772,13 +2054,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IDataPlanStatus.all.get_NextBillingCycle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1788,13 +2074,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IDataPlanStatus.all.get_MaxTransferSizeInMegabytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1807,12 +2097,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out DataPlanUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDataPlanUsage, IDataPlanUsage_Ptr);
    begin
       if this.m_IDataPlanUsage /= null then
          if this.m_IDataPlanUsage.all /= null then
-            RefCount := this.m_IDataPlanUsage.all.Release;
+            temp := this.m_IDataPlanUsage.all.Release;
             Free (this.m_IDataPlanUsage);
          end if;
       end if;
@@ -1827,10 +2117,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IDataPlanUsage.all.get_MegabytesUsed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1840,10 +2134,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IDataPlanUsage.all.get_LastSyncTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1856,12 +2154,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out DataUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDataUsage, IDataUsage_Ptr);
    begin
       if this.m_IDataUsage /= null then
          if this.m_IDataUsage.all /= null then
-            RefCount := this.m_IDataUsage.all.Release;
+            temp := this.m_IDataUsage.all.Release;
             Free (this.m_IDataUsage);
          end if;
       end if;
@@ -1876,10 +2174,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IDataUsage.all.get_BytesSent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1889,10 +2191,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IDataUsage.all.get_BytesReceived (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1905,12 +2211,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out IPInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIPInformation, IIPInformation_Ptr);
    begin
       if this.m_IIPInformation /= null then
          if this.m_IIPInformation.all /= null then
-            RefCount := this.m_IIPInformation.all.Release;
+            temp := this.m_IIPInformation.all.Release;
             Free (this.m_IIPInformation);
          end if;
       end if;
@@ -1925,11 +2231,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IIPInformation.all.get_NetworkAdapter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
@@ -1941,13 +2251,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IReference_Byte.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IIPInformation.all.get_PrefixLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Byte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1960,12 +2274,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out LanIdentifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILanIdentifier, ILanIdentifier_Ptr);
    begin
       if this.m_ILanIdentifier /= null then
          if this.m_ILanIdentifier.all /= null then
-            RefCount := this.m_ILanIdentifier.all.Release;
+            temp := this.m_ILanIdentifier.all.Release;
             Free (this.m_ILanIdentifier);
          end if;
       end if;
@@ -1980,11 +2294,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.LanIdentifierData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.ILanIdentifierData;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.LanIdentifierData do
          Hr := this.m_ILanIdentifier.all.get_InfrastructureId (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILanIdentifierData := new Windows.Networking.Connectivity.ILanIdentifierData;
          Retval.m_ILanIdentifierData.all := m_ComRetVal;
       end return;
@@ -1996,11 +2314,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.LanIdentifierData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.ILanIdentifierData;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.LanIdentifierData do
          Hr := this.m_ILanIdentifier.all.get_PortId (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILanIdentifierData := new Windows.Networking.Connectivity.ILanIdentifierData;
          Retval.m_ILanIdentifierData.all := m_ComRetVal;
       end return;
@@ -2012,10 +2334,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ILanIdentifier.all.get_NetworkAdapterId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2028,12 +2354,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out LanIdentifierData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILanIdentifierData, ILanIdentifierData_Ptr);
    begin
       if this.m_ILanIdentifierData /= null then
          if this.m_ILanIdentifierData.all /= null then
-            RefCount := this.m_ILanIdentifierData.all.Release;
+            temp := this.m_ILanIdentifierData.all.Release;
             Free (this.m_ILanIdentifierData);
          end if;
       end if;
@@ -2048,10 +2374,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ILanIdentifierData.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2061,13 +2391,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IVectorView_Byte.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Byte.Kind;
    begin
       Hr := this.m_ILanIdentifierData.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Byte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2080,12 +2414,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out NetworkAdapter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkAdapter, INetworkAdapter_Ptr);
    begin
       if this.m_INetworkAdapter /= null then
          if this.m_INetworkAdapter.all /= null then
-            RefCount := this.m_INetworkAdapter.all.Release;
+            temp := this.m_INetworkAdapter.all.Release;
             Free (this.m_INetworkAdapter);
          end if;
       end if;
@@ -2100,10 +2434,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_INetworkAdapter.all.get_OutboundMaxBitsPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2113,10 +2451,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_INetworkAdapter.all.get_InboundMaxBitsPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2126,10 +2468,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_INetworkAdapter.all.get_IanaInterfaceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2139,11 +2485,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkItem;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkItem do
          Hr := this.m_INetworkAdapter.all.get_NetworkItem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkItem := new Windows.Networking.Connectivity.INetworkItem;
          Retval.m_INetworkItem.all := m_ComRetVal;
       end return;
@@ -2155,10 +2505,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_INetworkAdapter.all.get_NetworkAdapterId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2168,13 +2522,13 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ConnectionProfile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2192,7 +2546,7 @@ package body WinRt.Windows.Networking.Connectivity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConnectionProfile.Kind_Delegate, AsyncOperationCompletedHandler_ConnectionProfile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2206,7 +2560,7 @@ package body WinRt.Windows.Networking.Connectivity is
          Hr := this.m_INetworkAdapter.all.GetConnectedProfileAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2218,9 +2572,9 @@ package body WinRt.Windows.Networking.Connectivity is
                   Retval.m_IConnectionProfile := new Windows.Networking.Connectivity.IConnectionProfile;
                   Retval.m_IConnectionProfile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2235,71 +2589,87 @@ package body WinRt.Windows.Networking.Connectivity is
       function GetConnectionProfiles
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetConnectionProfiles (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function GetInternetConnectionProfile
       return WinRt.Windows.Networking.Connectivity.ConnectionProfile is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Networking.Connectivity.IConnectionProfile;
       begin
          return RetVal : WinRt.Windows.Networking.Connectivity.ConnectionProfile do
             Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetInternetConnectionProfile (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IConnectionProfile := new Windows.Networking.Connectivity.IConnectionProfile;
                Retval.m_IConnectionProfile.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function GetLanIdentifiers
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetLanIdentifiers (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function GetHostNames
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetHostNames (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2309,15 +2679,15 @@ package body WinRt.Windows.Networking.Connectivity is
       )
       return WinRt.Windows.Networking.Connectivity.ProxyConfiguration is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_ProxyConfiguration.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2335,7 +2705,7 @@ package body WinRt.Windows.Networking.Connectivity is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ProxyConfiguration.Kind_Delegate, AsyncOperationCompletedHandler_ProxyConfiguration.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -2349,10 +2719,10 @@ package body WinRt.Windows.Networking.Connectivity is
             Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetProxyConfigurationAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -2364,15 +2734,15 @@ package body WinRt.Windows.Networking.Connectivity is
                         Retval.m_IProxyConfiguration := new Windows.Networking.Connectivity.IProxyConfiguration;
                         Retval.m_IProxyConfiguration.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -2383,17 +2753,21 @@ package body WinRt.Windows.Networking.Connectivity is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetSortedEndpointPairs (destinationList, sortOptions, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2403,17 +2777,21 @@ package body WinRt.Windows.Networking.Connectivity is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_NetworkStatusChanged (networkStatusHandler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2422,16 +2800,20 @@ package body WinRt.Windows.Networking.Connectivity is
          eventCookie : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_NetworkStatusChanged (eventCookie);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function FindConnectionProfilesAsync
@@ -2440,15 +2822,15 @@ package body WinRt.Windows.Networking.Connectivity is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.NetworkInformation");
          m_Factory        : access WinRt.Windows.Networking.Connectivity.INetworkInformationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2466,7 +2848,7 @@ package body WinRt.Windows.Networking.Connectivity is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -2479,10 +2861,10 @@ package body WinRt.Windows.Networking.Connectivity is
          Hr := RoGetActivationFactory (m_hString, IID_INetworkInformationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindConnectionProfilesAsync (pProfileFilter.m_IConnectionProfileFilter.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2492,15 +2874,15 @@ package body WinRt.Windows.Networking.Connectivity is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -2515,12 +2897,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out NetworkItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkItem, INetworkItem_Ptr);
    begin
       if this.m_INetworkItem /= null then
          if this.m_INetworkItem.all /= null then
-            RefCount := this.m_INetworkItem.all.Release;
+            temp := this.m_INetworkItem.all.Release;
             Free (this.m_INetworkItem);
          end if;
       end if;
@@ -2535,10 +2917,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_INetworkItem.all.get_NetworkId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2548,10 +2934,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkTypes is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.NetworkTypes;
    begin
       Hr := this.m_INetworkItem.all.GetNetworkTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2564,12 +2954,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out NetworkSecuritySettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkSecuritySettings, INetworkSecuritySettings_Ptr);
    begin
       if this.m_INetworkSecuritySettings /= null then
          if this.m_INetworkSecuritySettings.all /= null then
-            RefCount := this.m_INetworkSecuritySettings.all.Release;
+            temp := this.m_INetworkSecuritySettings.all.Release;
             Free (this.m_INetworkSecuritySettings);
          end if;
       end if;
@@ -2584,10 +2974,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkAuthenticationType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.NetworkAuthenticationType;
    begin
       Hr := this.m_INetworkSecuritySettings.all.get_NetworkAuthenticationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2597,10 +2991,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkEncryptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.NetworkEncryptionType;
    begin
       Hr := this.m_INetworkSecuritySettings.all.get_NetworkEncryptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2613,12 +3011,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out NetworkStateChangeEventDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkStateChangeEventDetails, INetworkStateChangeEventDetails_Ptr);
    begin
       if this.m_INetworkStateChangeEventDetails /= null then
          if this.m_INetworkStateChangeEventDetails.all /= null then
-            RefCount := this.m_INetworkStateChangeEventDetails.all.Release;
+            temp := this.m_INetworkStateChangeEventDetails.all.Release;
             Free (this.m_INetworkStateChangeEventDetails);
          end if;
       end if;
@@ -2633,10 +3031,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INetworkStateChangeEventDetails.all.get_HasNewInternetConnectionProfile (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2646,10 +3048,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INetworkStateChangeEventDetails.all.get_HasNewConnectionCost (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2659,10 +3065,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INetworkStateChangeEventDetails.all.get_HasNewNetworkConnectivityLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2672,10 +3082,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INetworkStateChangeEventDetails.all.get_HasNewDomainConnectivityLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2685,10 +3099,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INetworkStateChangeEventDetails.all.get_HasNewHostNameList (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2698,10 +3116,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INetworkStateChangeEventDetails.all.get_HasNewWwanRegistrationState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2711,14 +3133,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.INetworkStateChangeEventDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.INetworkStateChangeEventDetails_Interface, WinRt.Windows.Networking.Connectivity.INetworkStateChangeEventDetails2, WinRt.Windows.Networking.Connectivity.IID_INetworkStateChangeEventDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkStateChangeEventDetails.all);
       Hr := m_Interface.get_HasNewTetheringOperationalState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2728,14 +3154,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.INetworkStateChangeEventDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.INetworkStateChangeEventDetails_Interface, WinRt.Windows.Networking.Connectivity.INetworkStateChangeEventDetails2, WinRt.Windows.Networking.Connectivity.IID_INetworkStateChangeEventDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkStateChangeEventDetails.all);
       Hr := m_Interface.get_HasNewTetheringClientCount (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2748,7 +3178,7 @@ package body WinRt.Windows.Networking.Connectivity is
       sender : WinRt.IInspectable
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender);
       return Hr;
@@ -2763,12 +3193,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out NetworkUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkUsage, INetworkUsage_Ptr);
    begin
       if this.m_INetworkUsage /= null then
          if this.m_INetworkUsage.all /= null then
-            RefCount := this.m_INetworkUsage.all.Release;
+            temp := this.m_INetworkUsage.all.Release;
             Free (this.m_INetworkUsage);
          end if;
       end if;
@@ -2783,10 +3213,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_INetworkUsage.all.get_BytesSent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2796,10 +3230,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_INetworkUsage.all.get_BytesReceived (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2809,10 +3247,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_INetworkUsage.all.get_ConnectionDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2825,12 +3267,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ProviderNetworkUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProviderNetworkUsage, IProviderNetworkUsage_Ptr);
    begin
       if this.m_IProviderNetworkUsage /= null then
          if this.m_IProviderNetworkUsage.all /= null then
-            RefCount := this.m_IProviderNetworkUsage.all.Release;
+            temp := this.m_IProviderNetworkUsage.all.Release;
             Free (this.m_IProviderNetworkUsage);
          end if;
       end if;
@@ -2845,10 +3287,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProviderNetworkUsage.all.get_BytesSent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2858,10 +3304,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProviderNetworkUsage.all.get_BytesReceived (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2871,13 +3321,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IProviderNetworkUsage.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2890,12 +3344,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out ProxyConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProxyConfiguration, IProxyConfiguration_Ptr);
    begin
       if this.m_IProxyConfiguration /= null then
          if this.m_IProxyConfiguration.all /= null then
-            RefCount := this.m_IProxyConfiguration.all.Release;
+            temp := this.m_IProxyConfiguration.all.Release;
             Free (this.m_IProxyConfiguration);
          end if;
       end if;
@@ -2910,13 +3364,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IVectorView_IUriRuntimeClass.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
    begin
       Hr := this.m_IProxyConfiguration.all.get_ProxyUris (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IUriRuntimeClass (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2926,10 +3384,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IProxyConfiguration.all.get_CanConnectDirectly (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2942,12 +3404,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out RoutePolicy) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRoutePolicy, IRoutePolicy_Ptr);
    begin
       if this.m_IRoutePolicy /= null then
          if this.m_IRoutePolicy.all /= null then
-            RefCount := this.m_IRoutePolicy.all.Release;
+            temp := this.m_IRoutePolicy.all.Release;
             Free (this.m_IRoutePolicy);
          end if;
       end if;
@@ -2964,9 +3426,10 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return RoutePolicy is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Connectivity.RoutePolicy");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.RoutePolicy");
       m_Factory    : access IRoutePolicyFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.Connectivity.IRoutePolicy;
    begin
       return RetVal : RoutePolicy do
@@ -2975,9 +3438,9 @@ package body WinRt.Windows.Networking.Connectivity is
             Hr := m_Factory.CreateRoutePolicy (connectionProfile_p.m_IConnectionProfile.all, hostName.m_IHostName.all, type_x, m_ComRetVal'Access);
             Retval.m_IRoutePolicy := new Windows.Networking.Connectivity.IRoutePolicy;
             Retval.m_IRoutePolicy.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2990,11 +3453,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IConnectionProfile;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.ConnectionProfile do
          Hr := this.m_IRoutePolicy.all.get_ConnectionProfile (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConnectionProfile := new Windows.Networking.Connectivity.IConnectionProfile;
          Retval.m_IConnectionProfile.all := m_ComRetVal;
       end return;
@@ -3006,11 +3473,15 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IRoutePolicy.all.get_HostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -3022,10 +3493,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.DomainNameType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.DomainNameType;
    begin
       Hr := this.m_IRoutePolicy.all.get_HostNameType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3038,12 +3513,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out WlanConnectionProfileDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWlanConnectionProfileDetails, IWlanConnectionProfileDetails_Ptr);
    begin
       if this.m_IWlanConnectionProfileDetails /= null then
          if this.m_IWlanConnectionProfileDetails.all /= null then
-            RefCount := this.m_IWlanConnectionProfileDetails.all.Release;
+            temp := this.m_IWlanConnectionProfileDetails.all.Release;
             Free (this.m_IWlanConnectionProfileDetails);
          end if;
       end if;
@@ -3058,13 +3533,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWlanConnectionProfileDetails.all.GetConnectedSsid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3077,12 +3556,12 @@ package body WinRt.Windows.Networking.Connectivity is
    end;
 
    procedure Finalize (this : in out WwanConnectionProfileDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWwanConnectionProfileDetails, IWwanConnectionProfileDetails_Ptr);
    begin
       if this.m_IWwanConnectionProfileDetails /= null then
          if this.m_IWwanConnectionProfileDetails.all /= null then
-            RefCount := this.m_IWwanConnectionProfileDetails.all.Release;
+            temp := this.m_IWwanConnectionProfileDetails.all.Release;
             Free (this.m_IWwanConnectionProfileDetails);
          end if;
       end if;
@@ -3097,13 +3576,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWwanConnectionProfileDetails.all.get_HomeProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3113,13 +3596,17 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWwanConnectionProfileDetails.all.get_AccessPointName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3129,10 +3616,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.WwanNetworkRegistrationState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.WwanNetworkRegistrationState;
    begin
       Hr := this.m_IWwanConnectionProfileDetails.all.GetNetworkRegistrationState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3142,10 +3633,14 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.WwanDataClass is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.WwanDataClass;
    begin
       Hr := this.m_IWwanConnectionProfileDetails.all.GetCurrentDataClass (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3155,14 +3650,18 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return WinRt.Windows.Networking.Connectivity.WwanNetworkIPKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.WwanNetworkIPKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails_Interface, WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails2, WinRt.Windows.Networking.Connectivity.IID_IWwanConnectionProfileDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWwanConnectionProfileDetails.all);
       Hr := m_Interface.get_IPKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3172,17 +3671,21 @@ package body WinRt.Windows.Networking.Connectivity is
    )
    return IVectorView_Guid.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Guid.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails_Interface, WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails2, WinRt.Windows.Networking.Connectivity.IID_IWwanConnectionProfileDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWwanConnectionProfileDetails.all);
       Hr := m_Interface.get_PurposeGuids (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Guid (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 

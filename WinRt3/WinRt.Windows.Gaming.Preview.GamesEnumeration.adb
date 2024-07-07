@@ -56,15 +56,15 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       )
       return WinRt.Windows.Gaming.Preview.GamesEnumeration.GameListEntry is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GameListEntry.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -82,7 +82,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GameListEntry.Kind_Delegate, AsyncOperationCompletedHandler_GameListEntry.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -96,10 +96,10 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.MergeEntriesAsync (left.m_IGameListEntry.all, right.m_IGameListEntry.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -111,15 +111,15 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
                         Retval.m_IGameListEntry := new Windows.Gaming.Preview.GamesEnumeration.IGameListEntry;
                         Retval.m_IGameListEntry.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -129,15 +129,15 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -155,7 +155,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -168,10 +168,10 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.UnmergeEntryAsync (mergedEntry.m_IGameListEntry.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -181,30 +181,30 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function FindAllAsync
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -222,7 +222,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -235,10 +235,10 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -248,15 +248,15 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -266,16 +266,16 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_packageFamilyName : WinRt.HString := To_HString (packageFamilyName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -293,7 +293,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -306,10 +306,10 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (HStr_packageFamilyName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -319,16 +319,16 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_packageFamilyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
          return m_RetVal;
       end;
 
@@ -338,17 +338,21 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_GameAdded (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -357,16 +361,20 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_GameAdded (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_GameRemoved
@@ -375,17 +383,21 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_GameRemoved (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -394,16 +406,20 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_GameRemoved (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_GameUpdated
@@ -412,17 +428,21 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_GameUpdated (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -431,16 +451,20 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameList");
          m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_GameUpdated (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end GameList;
@@ -454,7 +478,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       game : Windows.Gaming.Preview.GamesEnumeration.IGameListEntry
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (game);
       return Hr;
@@ -469,12 +493,12 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    end;
 
    procedure Finalize (this : in out GameListEntry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGameListEntry, IGameListEntry_Ptr);
    begin
       if this.m_IGameListEntry /= null then
          if this.m_IGameListEntry.all /= null then
-            RefCount := this.m_IGameListEntry.all.Release;
+            temp := this.m_IGameListEntry.all.Release;
             Free (this.m_IGameListEntry);
          end if;
       end if;
@@ -489,11 +513,15 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Windows.ApplicationModel.AppDisplayInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IAppDisplayInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppDisplayInfo do
          Hr := this.m_IGameListEntry.all.get_DisplayInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppDisplayInfo := new Windows.ApplicationModel.IAppDisplayInfo;
          Retval.m_IAppDisplayInfo.all := m_ComRetVal;
       end return;
@@ -505,13 +533,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -529,7 +557,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -542,7 +570,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       Hr := this.m_IGameListEntry.all.LaunchAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -552,9 +580,9 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -568,10 +596,14 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Windows.Gaming.Preview.GamesEnumeration.GameListCategory is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Preview.GamesEnumeration.GameListCategory;
    begin
       Hr := this.m_IGameListEntry.all.get_Category (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -581,13 +613,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IGameListEntry.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -597,7 +633,8 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : Windows.Gaming.Preview.GamesEnumeration.GameListCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -605,7 +642,6 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -626,9 +662,9 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -640,14 +676,18 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Windows.Gaming.Preview.GamesEnumeration.GameListEntryLaunchableState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Preview.GamesEnumeration.GameListEntryLaunchableState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry_Interface, WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2, WinRt.Windows.Gaming.Preview.GamesEnumeration.IID_IGameListEntry2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.get_LaunchableState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -657,14 +697,18 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Windows.Storage.IStorageFile is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageFile;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry_Interface, WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2, WinRt.Windows.Gaming.Preview.GamesEnumeration.IID_IGameListEntry2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.get_LauncherExecutable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -674,17 +718,21 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry_Interface, WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2, WinRt.Windows.Gaming.Preview.GamesEnumeration.IID_IGameListEntry2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.get_LaunchParameters (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -694,8 +742,9 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       executableFile : Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -703,7 +752,6 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -719,7 +767,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.SetLauncherExecutableFileAsync (executableFile, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -727,9 +775,9 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -742,9 +790,10 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       launchParams : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_launchParams : WinRt.HString := To_HString (launchParams);
+      temp             : WinRt.UInt32 := 0;
+      HStr_launchParams : constant WinRt.HString := To_HString (launchParams);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -752,7 +801,6 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -768,7 +816,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.SetLauncherExecutableFileAsync (executableFile, HStr_launchParams, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -776,13 +824,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_launchParams);
+      tmp := WindowsDeleteString (HStr_launchParams);
    end;
 
    function get_TitleId
@@ -791,17 +839,21 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry_Interface, WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2, WinRt.Windows.Gaming.Preview.GamesEnumeration.IID_IGameListEntry2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.get_TitleId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -811,9 +863,10 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       id : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -821,7 +874,6 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -837,7 +889,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    begin
       m_Interface := QInterface (this.m_IGameListEntry.all);
       Hr := m_Interface.SetTitleIdAsync (HStr_id, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -845,13 +897,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_id);
+      tmp := WindowsDeleteString (HStr_id);
    end;
 
    function get_GameModeConfiguration
@@ -860,15 +912,19 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Windows.Gaming.Preview.GamesEnumeration.GameModeConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Preview.GamesEnumeration.IGameModeConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry_Interface, WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameListEntry2, WinRt.Windows.Gaming.Preview.GamesEnumeration.IID_IGameListEntry2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Preview.GamesEnumeration.GameModeConfiguration do
          m_Interface := QInterface (this.m_IGameListEntry.all);
          Hr := m_Interface.get_GameModeConfiguration (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGameModeConfiguration := new Windows.Gaming.Preview.GamesEnumeration.IGameModeConfiguration;
          Retval.m_IGameModeConfiguration.all := m_ComRetVal;
       end return;
@@ -883,7 +939,7 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       identifier : WinRt.HString
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (identifier);
       return Hr;
@@ -898,12 +954,12 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    end;
 
    procedure Finalize (this : in out GameModeConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGameModeConfiguration, IGameModeConfiguration_Ptr);
    begin
       if this.m_IGameModeConfiguration /= null then
          if this.m_IGameModeConfiguration.all /= null then
-            RefCount := this.m_IGameModeConfiguration.all.Release;
+            temp := this.m_IGameModeConfiguration.all.Release;
             Free (this.m_IGameModeConfiguration);
          end if;
       end if;
@@ -918,10 +974,14 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -931,9 +991,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RelatedProcessNames
@@ -942,13 +1006,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_RelatedProcessNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -958,13 +1026,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_PercentGpuTimeAllocatedToGame (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -974,9 +1046,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_PercentGpuTimeAllocatedToGame (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PercentGpuMemoryAllocatedToGame
@@ -985,13 +1061,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_PercentGpuMemoryAllocatedToGame (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1001,9 +1081,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_PercentGpuMemoryAllocatedToGame (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PercentGpuMemoryAllocatedToSystemCompositor
@@ -1012,13 +1096,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_PercentGpuMemoryAllocatedToSystemCompositor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1028,9 +1116,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_PercentGpuMemoryAllocatedToSystemCompositor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxCpuCount
@@ -1039,13 +1131,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_MaxCpuCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1055,9 +1151,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_MaxCpuCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CpuExclusivityMaskLow
@@ -1066,13 +1166,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_CpuExclusivityMaskLow (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1082,9 +1186,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_CpuExclusivityMaskLow (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CpuExclusivityMaskHigh
@@ -1093,13 +1201,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_CpuExclusivityMaskHigh (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1109,9 +1221,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_CpuExclusivityMaskHigh (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AffinitizeToExclusiveCpus
@@ -1120,10 +1236,14 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGameModeConfiguration.all.get_AffinitizeToExclusiveCpus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1133,9 +1253,13 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGameModeConfiguration.all.put_AffinitizeToExclusiveCpus (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SaveAsync
@@ -1143,7 +1267,8 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       this : in out GameModeConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1151,7 +1276,6 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1172,9 +1296,9 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1189,12 +1313,12 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    end;
 
    procedure Finalize (this : in out GameModeUserConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGameModeUserConfiguration, IGameModeUserConfiguration_Ptr);
    begin
       if this.m_IGameModeUserConfiguration /= null then
          if this.m_IGameModeUserConfiguration.all /= null then
-            RefCount := this.m_IGameModeUserConfiguration.all.Release;
+            temp := this.m_IGameModeUserConfiguration.all.Release;
             Free (this.m_IGameModeUserConfiguration);
          end if;
       end if;
@@ -1206,20 +1330,24 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    function GetDefault
    return WinRt.Windows.Gaming.Preview.GamesEnumeration.GameModeUserConfiguration is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameModeUserConfiguration");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Preview.GamesEnumeration.GameModeUserConfiguration");
       m_Factory        : access WinRt.Windows.Gaming.Preview.GamesEnumeration.IGameModeUserConfigurationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Preview.GamesEnumeration.IGameModeUserConfiguration;
    begin
       return RetVal : WinRt.Windows.Gaming.Preview.GamesEnumeration.GameModeUserConfiguration do
          Hr := RoGetActivationFactory (m_hString, IID_IGameModeUserConfigurationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGameModeUserConfiguration := new Windows.Gaming.Preview.GamesEnumeration.IGameModeUserConfiguration;
             Retval.m_IGameModeUserConfiguration.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1232,13 +1360,17 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IGameModeUserConfiguration.all.get_GamingRelatedProcessNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1247,7 +1379,8 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       this : in out GameModeUserConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1255,7 +1388,6 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1276,9 +1408,9 @@ package body WinRt.Windows.Gaming.Preview.GamesEnumeration is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;

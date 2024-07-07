@@ -41,12 +41,12 @@ package body WinRt.Windows.UI.Composition.Desktop is
    end;
 
    procedure Finalize (this : in out DesktopWindowTarget) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesktopWindowTarget, IDesktopWindowTarget_Ptr);
    begin
       if this.m_IDesktopWindowTarget /= null then
          if this.m_IDesktopWindowTarget.all /= null then
-            RefCount := this.m_IDesktopWindowTarget.all.Release;
+            temp := this.m_IDesktopWindowTarget.all.Release;
             Free (this.m_IDesktopWindowTarget);
          end if;
       end if;
@@ -61,10 +61,14 @@ package body WinRt.Windows.UI.Composition.Desktop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDesktopWindowTarget.all.get_IsTopmost (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

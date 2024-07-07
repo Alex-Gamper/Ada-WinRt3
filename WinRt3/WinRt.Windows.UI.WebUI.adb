@@ -83,12 +83,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out ActivatedDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IActivatedDeferral, IActivatedDeferral_Ptr);
    begin
       if this.m_IActivatedDeferral /= null then
          if this.m_IActivatedDeferral.all /= null then
-            RefCount := this.m_IActivatedDeferral.all.Release;
+            temp := this.m_IActivatedDeferral.all.Release;
             Free (this.m_IActivatedDeferral);
          end if;
       end if;
@@ -102,9 +102,13 @@ package body WinRt.Windows.UI.WebUI is
       this : in out ActivatedDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IActivatedDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -117,7 +121,7 @@ package body WinRt.Windows.UI.WebUI is
       eventArgs : Windows.ApplicationModel.Activation.IActivatedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, eventArgs);
       return Hr;
@@ -132,12 +136,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out ActivatedOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IActivatedOperation, IActivatedOperation_Ptr);
    begin
       if this.m_IActivatedOperation /= null then
          if this.m_IActivatedOperation.all /= null then
-            RefCount := this.m_IActivatedOperation.all.Release;
+            temp := this.m_IActivatedOperation.all.Release;
             Free (this.m_IActivatedOperation);
          end if;
       end if;
@@ -152,11 +156,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedDeferral;
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedDeferral do
          Hr := this.m_IActivatedOperation.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedDeferral := new Windows.UI.WebUI.IActivatedDeferral;
          Retval.m_IActivatedDeferral.all := m_ComRetVal;
       end return;
@@ -171,13 +179,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out BackgroundActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs_Ptr);
    begin
       if this.m_IBackgroundActivatedEventArgs /= null then
          if this.m_IBackgroundActivatedEventArgs.all /= null then
-            RefCount := this.m_IBackgroundActivatedEventArgs.all.Release;
+            temp := this.m_IBackgroundActivatedEventArgs.all.Release;
             Free (this.m_IBackgroundActivatedEventArgs);
          end if;
       end if;
@@ -192,10 +200,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskInstance;
    begin
       Hr := this.m_IBackgroundActivatedEventArgs.all.get_TaskInstance (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -209,7 +221,7 @@ package body WinRt.Windows.UI.WebUI is
       eventArgs : Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, eventArgs);
       return Hr;
@@ -224,13 +236,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out EnteredBackgroundEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.IEnteredBackgroundEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.IEnteredBackgroundEventArgs, WinRt.Windows.ApplicationModel.IEnteredBackgroundEventArgs_Ptr);
    begin
       if this.m_IEnteredBackgroundEventArgs /= null then
          if this.m_IEnteredBackgroundEventArgs.all /= null then
-            RefCount := this.m_IEnteredBackgroundEventArgs.all.Release;
+            temp := this.m_IEnteredBackgroundEventArgs.all.Release;
             Free (this.m_IEnteredBackgroundEventArgs);
          end if;
       end if;
@@ -245,11 +257,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IEnteredBackgroundEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -265,7 +281,7 @@ package body WinRt.Windows.UI.WebUI is
       e : Windows.ApplicationModel.IEnteredBackgroundEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -280,12 +296,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out HtmlPrintDocumentSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHtmlPrintDocumentSource, IHtmlPrintDocumentSource_Ptr);
    begin
       if this.m_IHtmlPrintDocumentSource /= null then
          if this.m_IHtmlPrintDocumentSource.all /= null then
-            RefCount := this.m_IHtmlPrintDocumentSource.all.Release;
+            temp := this.m_IHtmlPrintDocumentSource.all.Release;
             Free (this.m_IHtmlPrintDocumentSource);
          end if;
       end if;
@@ -300,10 +316,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.PrintContent is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.PrintContent;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -313,9 +333,13 @@ package body WinRt.Windows.UI.WebUI is
       value : Windows.UI.WebUI.PrintContent
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_Content (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftMargin
@@ -324,10 +348,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_LeftMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -337,9 +365,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_LeftMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TopMargin
@@ -348,10 +380,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_TopMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -361,9 +397,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_TopMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightMargin
@@ -372,10 +412,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_RightMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -385,9 +429,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_RightMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BottomMargin
@@ -396,10 +444,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_BottomMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -409,9 +461,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_BottomMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EnableHeaderFooter
@@ -420,10 +476,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_EnableHeaderFooter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -433,9 +493,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_EnableHeaderFooter (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShrinkToFit
@@ -444,10 +508,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_ShrinkToFit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -457,9 +525,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_ShrinkToFit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PercentScale
@@ -468,10 +540,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_PercentScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -481,9 +557,13 @@ package body WinRt.Windows.UI.WebUI is
       scalePercent : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.put_PercentScale (scalePercent);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PageRange
@@ -492,13 +572,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.get_PageRange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -509,12 +593,16 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_strPageRange : WinRt.HString := To_HString (strPageRange);
+      HStr_strPageRange : constant WinRt.HString := To_HString (strPageRange);
    begin
       Hr := this.m_IHtmlPrintDocumentSource.all.TrySetPageRange (HStr_strPageRange, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_strPageRange);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_strPageRange);
       return m_ComRetVal;
    end;
 
@@ -523,13 +611,17 @@ package body WinRt.Windows.UI.WebUI is
       this : in out HtmlPrintDocumentSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IHtmlPrintDocumentSource_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHtmlPrintDocumentSource.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -541,13 +633,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out LeavingBackgroundEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.ILeavingBackgroundEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.ILeavingBackgroundEventArgs, WinRt.Windows.ApplicationModel.ILeavingBackgroundEventArgs_Ptr);
    begin
       if this.m_ILeavingBackgroundEventArgs /= null then
          if this.m_ILeavingBackgroundEventArgs.all /= null then
-            RefCount := this.m_ILeavingBackgroundEventArgs.all.Release;
+            temp := this.m_ILeavingBackgroundEventArgs.all.Release;
             Free (this.m_ILeavingBackgroundEventArgs);
          end if;
       end if;
@@ -562,11 +654,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ILeavingBackgroundEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -582,7 +678,7 @@ package body WinRt.Windows.UI.WebUI is
       e : Windows.ApplicationModel.ILeavingBackgroundEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -598,7 +694,7 @@ package body WinRt.Windows.UI.WebUI is
       e : Windows.UI.WebUI.IWebUINavigatedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -613,12 +709,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out NewWebUIViewCreatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INewWebUIViewCreatedEventArgs, INewWebUIViewCreatedEventArgs_Ptr);
    begin
       if this.m_INewWebUIViewCreatedEventArgs /= null then
          if this.m_INewWebUIViewCreatedEventArgs.all /= null then
-            RefCount := this.m_INewWebUIViewCreatedEventArgs.all.Release;
+            temp := this.m_INewWebUIViewCreatedEventArgs.all.Release;
             Free (this.m_INewWebUIViewCreatedEventArgs);
          end if;
       end if;
@@ -633,11 +729,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.WebUIView'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IWebUIView;
    begin
       return RetVal : WinRt.Windows.UI.WebUI.WebUIView do
          Hr := this.m_INewWebUIViewCreatedEventArgs.all.get_WebUIView (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebUIView := new Windows.UI.WebUI.IWebUIView;
          Retval.m_IWebUIView.all := m_ComRetVal;
       end return;
@@ -649,10 +749,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.IActivatedEventArgs;
    begin
       Hr := this.m_INewWebUIViewCreatedEventArgs.all.get_ActivatedEventArgs (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -662,10 +766,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INewWebUIViewCreatedEventArgs.all.get_HasPendingNavigate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -675,11 +783,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_INewWebUIViewCreatedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -694,7 +806,7 @@ package body WinRt.Windows.UI.WebUI is
       sender : WinRt.IInspectable
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender);
       return Hr;
@@ -709,13 +821,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out SuspendingDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.ISuspendingDeferral;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.ISuspendingDeferral, WinRt.Windows.ApplicationModel.ISuspendingDeferral_Ptr);
    begin
       if this.m_ISuspendingDeferral /= null then
          if this.m_ISuspendingDeferral.all /= null then
-            RefCount := this.m_ISuspendingDeferral.all.Release;
+            temp := this.m_ISuspendingDeferral.all.Release;
             Free (this.m_ISuspendingDeferral);
          end if;
       end if;
@@ -729,9 +841,13 @@ package body WinRt.Windows.UI.WebUI is
       this : in out SuspendingDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISuspendingDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -743,13 +859,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out SuspendingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.ISuspendingEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.ISuspendingEventArgs, WinRt.Windows.ApplicationModel.ISuspendingEventArgs_Ptr);
    begin
       if this.m_ISuspendingEventArgs /= null then
          if this.m_ISuspendingEventArgs.all /= null then
-            RefCount := this.m_ISuspendingEventArgs.all.Release;
+            temp := this.m_ISuspendingEventArgs.all.Release;
             Free (this.m_ISuspendingEventArgs);
          end if;
       end if;
@@ -764,11 +880,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.SuspendingOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ISuspendingOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SuspendingOperation do
          Hr := this.m_ISuspendingEventArgs.all.get_SuspendingOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISuspendingOperation := new Windows.ApplicationModel.ISuspendingOperation;
          Retval.m_ISuspendingOperation.all := m_ComRetVal;
       end return;
@@ -784,7 +904,7 @@ package body WinRt.Windows.UI.WebUI is
       e : Windows.ApplicationModel.ISuspendingEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -799,13 +919,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out SuspendingOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.ISuspendingOperation;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.ISuspendingOperation, WinRt.Windows.ApplicationModel.ISuspendingOperation_Ptr);
    begin
       if this.m_ISuspendingOperation /= null then
          if this.m_ISuspendingOperation.all /= null then
-            RefCount := this.m_ISuspendingOperation.all.Release;
+            temp := this.m_ISuspendingOperation.all.Release;
             Free (this.m_ISuspendingOperation);
          end if;
       end if;
@@ -820,11 +940,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.SuspendingDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ISuspendingDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SuspendingDeferral do
          Hr := this.m_ISuspendingOperation.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISuspendingDeferral := new Windows.ApplicationModel.ISuspendingDeferral;
          Retval.m_ISuspendingDeferral.all := m_ComRetVal;
       end return;
@@ -836,10 +960,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISuspendingOperation.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -853,17 +981,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_NewWebUIViewCreated (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -872,16 +1004,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_NewWebUIViewCreated (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_BackgroundActivated
@@ -890,17 +1026,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_BackgroundActivated (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -909,16 +1049,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_BackgroundActivated (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_LeavingBackground
@@ -927,17 +1071,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_LeavingBackground (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -946,16 +1094,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_LeavingBackground (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_EnteredBackground
@@ -964,17 +1116,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_EnteredBackground (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -983,16 +1139,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_EnteredBackground (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure EnablePrelaunch
@@ -1000,16 +1160,20 @@ package body WinRt.Windows.UI.WebUI is
          value : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.EnablePrelaunch (value);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RequestRestartAsync
@@ -1018,16 +1182,16 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_launchArguments : WinRt.HString := To_HString (launchArguments);
+         temp             : WinRt.UInt32 := 0;
+         HStr_launchArguments : constant WinRt.HString := To_HString (launchArguments);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_AppRestartFailureReason.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1045,7 +1209,7 @@ package body WinRt.Windows.UI.WebUI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppRestartFailureReason.Kind_Delegate, AsyncOperationCompletedHandler_AppRestartFailureReason.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1058,10 +1222,10 @@ package body WinRt.Windows.UI.WebUI is
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestRestartAsync (HStr_launchArguments, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1071,16 +1235,16 @@ package body WinRt.Windows.UI.WebUI is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_launchArguments);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_launchArguments);
          return m_RetVal;
       end;
 
@@ -1091,16 +1255,16 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_launchArguments : WinRt.HString := To_HString (launchArguments);
+         temp             : WinRt.UInt32 := 0;
+         HStr_launchArguments : constant WinRt.HString := To_HString (launchArguments);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_AppRestartFailureReason.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1118,7 +1282,7 @@ package body WinRt.Windows.UI.WebUI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppRestartFailureReason.Kind_Delegate, AsyncOperationCompletedHandler_AppRestartFailureReason.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1131,10 +1295,10 @@ package body WinRt.Windows.UI.WebUI is
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestRestartForUserAsync (user.m_IUser.all, HStr_launchArguments, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1144,16 +1308,16 @@ package body WinRt.Windows.UI.WebUI is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_launchArguments);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_launchArguments);
          return m_RetVal;
       end;
 
@@ -1163,17 +1327,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_Activated (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1182,16 +1350,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_Activated (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_Suspending
@@ -1200,17 +1372,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_Suspending (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1219,16 +1395,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_Suspending (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_Resuming
@@ -1237,17 +1417,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_Resuming (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1256,16 +1440,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_Resuming (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_Navigated
@@ -1274,17 +1462,21 @@ package body WinRt.Windows.UI.WebUI is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_Navigated (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1293,16 +1485,20 @@ package body WinRt.Windows.UI.WebUI is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIApplication");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIActivationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIActivationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_Navigated (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end WebUIApplication;
@@ -1316,13 +1512,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIAppointmentsProviderAddAppointmentActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Ptr);
    begin
       if this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all /= null then
-            RefCount := this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all.Release;
+            temp := this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all.Release;
             Free (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs);
          end if;
       end if;
@@ -1337,11 +1533,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.AddAppointmentOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.AddAppointmentOperation do
          Hr := this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all.get_AddAppointmentOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAddAppointmentOperation := new Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation;
          Retval.m_IAddAppointmentOperation.all := m_ComRetVal;
       end return;
@@ -1353,17 +1553,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IAppointmentsProviderActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1373,14 +1577,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1390,14 +1598,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1407,15 +1619,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -1427,15 +1643,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -1447,15 +1667,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1470,13 +1694,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIAppointmentsProviderRemoveAppointmentActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Ptr);
    begin
       if this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all /= null then
-            RefCount := this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all.Release;
+            temp := this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all.Release;
             Free (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs);
          end if;
       end if;
@@ -1491,11 +1715,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.RemoveAppointmentOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.RemoveAppointmentOperation do
          Hr := this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all.get_RemoveAppointmentOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRemoveAppointmentOperation := new Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation;
          Retval.m_IRemoveAppointmentOperation.all := m_ComRetVal;
       end return;
@@ -1507,17 +1735,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IAppointmentsProviderActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1527,14 +1759,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1544,14 +1780,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1561,15 +1801,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -1581,15 +1825,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -1601,15 +1849,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1624,13 +1876,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIAppointmentsProviderReplaceAppointmentActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Ptr);
    begin
       if this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all /= null then
-            RefCount := this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all.Release;
+            temp := this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all.Release;
             Free (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs);
          end if;
       end if;
@@ -1645,11 +1897,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.ReplaceAppointmentOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.ReplaceAppointmentOperation do
          Hr := this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all.get_ReplaceAppointmentOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IReplaceAppointmentOperation := new Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation;
          Retval.m_IReplaceAppointmentOperation.all := m_ComRetVal;
       end return;
@@ -1661,17 +1917,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IAppointmentsProviderActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1681,14 +1941,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1698,14 +1962,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1715,15 +1983,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -1735,15 +2007,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -1755,15 +2031,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1778,13 +2058,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIAppointmentsProviderShowAppointmentDetailsActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Ptr);
    begin
       if this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all /= null then
-            RefCount := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.Release;
+            temp := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.Release;
             Free (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs);
          end if;
       end if;
@@ -1799,13 +2079,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.get_InstanceStartDate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1815,13 +2099,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.get_LocalId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1831,13 +2119,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.get_RoamingId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1847,17 +2139,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IAppointmentsProviderActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1867,14 +2163,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1884,14 +2184,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1901,15 +2205,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -1921,15 +2229,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -1941,15 +2253,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1964,13 +2280,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIAppointmentsProviderShowTimeFrameActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Ptr);
    begin
       if this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all /= null then
-            RefCount := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.Release;
+            temp := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.Release;
             Free (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs);
          end if;
       end if;
@@ -1985,10 +2301,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.get_TimeToShow (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1998,10 +2318,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2011,17 +2335,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IAppointmentsProviderActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2031,14 +2359,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2048,14 +2380,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2065,15 +2401,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -2085,15 +2425,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -2105,15 +2449,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2126,17 +2474,21 @@ package body WinRt.Windows.UI.WebUI is
       function get_Current
       return WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIBackgroundTaskInstance");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIBackgroundTaskInstance");
          m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstanceStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.UI.WebUI.IWebUIBackgroundTaskInstance;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIBackgroundTaskInstanceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2151,12 +2503,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIBackgroundTaskInstanceRuntimeClass) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUIBackgroundTaskInstance, IWebUIBackgroundTaskInstance_Ptr);
    begin
       if this.m_IWebUIBackgroundTaskInstance /= null then
          if this.m_IWebUIBackgroundTaskInstance.all /= null then
-            RefCount := this.m_IWebUIBackgroundTaskInstance.all.Release;
+            temp := this.m_IWebUIBackgroundTaskInstance.all.Release;
             Free (this.m_IWebUIBackgroundTaskInstance);
          end if;
       end if;
@@ -2171,10 +2523,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUIBackgroundTaskInstance.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2184,9 +2540,13 @@ package body WinRt.Windows.UI.WebUI is
       succeeded : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUIBackgroundTaskInstance.all.put_Succeeded (succeeded);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstanceId
@@ -2195,14 +2555,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.get_InstanceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2212,15 +2576,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration do
          m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
          Hr := m_Interface.get_Task (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBackgroundTaskRegistration := new Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
          Retval.m_IBackgroundTaskRegistration.all := m_ComRetVal;
       end return;
@@ -2232,14 +2600,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.get_Progress (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2249,13 +2621,17 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.put_Progress (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TriggerDetails
@@ -2264,14 +2640,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.get_TriggerDetails (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2282,14 +2662,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.add_Canceled (cancelHandler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2299,13 +2683,17 @@ package body WinRt.Windows.UI.WebUI is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.remove_Canceled (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SuspendedCount
@@ -2314,14 +2702,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
       Hr := m_Interface.get_SuspendedCount (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2331,15 +2723,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskDeferral;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskInstance'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskDeferral do
          m_Interface := QInterface (this.m_IWebUIBackgroundTaskInstance.all);
          Hr := m_Interface.GetDeferral (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBackgroundTaskDeferral := new Windows.ApplicationModel.Background.IBackgroundTaskDeferral;
          Retval.m_IBackgroundTaskDeferral.all := m_ComRetVal;
       end return;
@@ -2354,13 +2750,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIBarcodeScannerPreviewActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerPreviewActivatedEventArgs /= null then
          if this.m_IBarcodeScannerPreviewActivatedEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerPreviewActivatedEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerPreviewActivatedEventArgs.all.Release;
             Free (this.m_IBarcodeScannerPreviewActivatedEventArgs);
          end if;
       end if;
@@ -2375,13 +2771,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScannerPreviewActivatedEventArgs.all.get_ConnectionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2391,14 +2791,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2408,14 +2812,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2425,15 +2833,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -2445,15 +2857,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2465,15 +2881,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -2488,13 +2908,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUICachedFileUpdaterActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Ptr);
    begin
       if this.m_ICachedFileUpdaterActivatedEventArgs /= null then
          if this.m_ICachedFileUpdaterActivatedEventArgs.all /= null then
-            RefCount := this.m_ICachedFileUpdaterActivatedEventArgs.all.Release;
+            temp := this.m_ICachedFileUpdaterActivatedEventArgs.all.Release;
             Free (this.m_ICachedFileUpdaterActivatedEventArgs);
          end if;
       end if;
@@ -2509,11 +2929,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Storage.Provider.CachedFileUpdaterUI'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Provider.ICachedFileUpdaterUI;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.CachedFileUpdaterUI do
          Hr := this.m_ICachedFileUpdaterActivatedEventArgs.all.get_CachedFileUpdaterUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICachedFileUpdaterUI := new Windows.Storage.Provider.ICachedFileUpdaterUI;
          Retval.m_ICachedFileUpdaterUI.all := m_ComRetVal;
       end return;
@@ -2525,14 +2949,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2542,14 +2970,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2559,15 +2991,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -2579,15 +3015,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -2599,15 +3039,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2622,13 +3066,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUICameraSettingsActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Ptr);
    begin
       if this.m_ICameraSettingsActivatedEventArgs /= null then
          if this.m_ICameraSettingsActivatedEventArgs.all /= null then
-            RefCount := this.m_ICameraSettingsActivatedEventArgs.all.Release;
+            temp := this.m_ICameraSettingsActivatedEventArgs.all.Release;
             Free (this.m_ICameraSettingsActivatedEventArgs);
          end if;
       end if;
@@ -2643,10 +3087,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ICameraSettingsActivatedEventArgs.all.get_VideoDeviceController (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2656,10 +3104,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ICameraSettingsActivatedEventArgs.all.get_VideoDeviceExtension (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2669,14 +3121,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraSettingsActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2686,14 +3142,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraSettingsActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2703,15 +3163,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ICameraSettingsActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -2723,15 +3187,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ICameraSettingsActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -2746,13 +3214,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUICommandLineActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Ptr);
    begin
       if this.m_ICommandLineActivatedEventArgs /= null then
          if this.m_ICommandLineActivatedEventArgs.all /= null then
-            RefCount := this.m_ICommandLineActivatedEventArgs.all.Release;
+            temp := this.m_ICommandLineActivatedEventArgs.all.Release;
             Free (this.m_ICommandLineActivatedEventArgs);
          end if;
       end if;
@@ -2767,11 +3235,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.CommandLineActivationOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ICommandLineActivationOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.CommandLineActivationOperation do
          Hr := this.m_ICommandLineActivatedEventArgs.all.get_Operation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICommandLineActivationOperation := new Windows.ApplicationModel.Activation.ICommandLineActivationOperation;
          Retval.m_ICommandLineActivationOperation.all := m_ComRetVal;
       end return;
@@ -2783,14 +3255,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2800,14 +3276,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2817,15 +3297,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -2837,15 +3321,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2857,15 +3345,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -2880,13 +3372,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactCallActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Ptr);
    begin
       if this.m_IContactCallActivatedEventArgs /= null then
          if this.m_IContactCallActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactCallActivatedEventArgs.all.Release;
+            temp := this.m_IContactCallActivatedEventArgs.all.Release;
             Free (this.m_IContactCallActivatedEventArgs);
          end if;
       end if;
@@ -2901,13 +3393,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactCallActivatedEventArgs.all.get_ServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2917,13 +3413,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactCallActivatedEventArgs.all.get_ServiceUserId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2933,11 +3433,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactCallActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -2949,17 +3453,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContactActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2969,14 +3477,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2986,14 +3498,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3003,15 +3519,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3023,15 +3543,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3046,13 +3570,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactMapActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Ptr);
    begin
       if this.m_IContactMapActivatedEventArgs /= null then
          if this.m_IContactMapActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactMapActivatedEventArgs.all.Release;
+            temp := this.m_IContactMapActivatedEventArgs.all.Release;
             Free (this.m_IContactMapActivatedEventArgs);
          end if;
       end if;
@@ -3067,11 +3591,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactAddress;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactAddress do
          Hr := this.m_IContactMapActivatedEventArgs.all.get_Address (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactAddress := new Windows.ApplicationModel.Contacts.IContactAddress;
          Retval.m_IContactAddress.all := m_ComRetVal;
       end return;
@@ -3083,11 +3611,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactMapActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -3099,17 +3631,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContactActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3119,14 +3655,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3136,14 +3676,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3153,15 +3697,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3173,15 +3721,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3196,13 +3748,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactMessageActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Ptr);
    begin
       if this.m_IContactMessageActivatedEventArgs /= null then
          if this.m_IContactMessageActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactMessageActivatedEventArgs.all.Release;
+            temp := this.m_IContactMessageActivatedEventArgs.all.Release;
             Free (this.m_IContactMessageActivatedEventArgs);
          end if;
       end if;
@@ -3217,13 +3769,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactMessageActivatedEventArgs.all.get_ServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3233,13 +3789,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactMessageActivatedEventArgs.all.get_ServiceUserId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3249,11 +3809,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactMessageActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -3265,17 +3829,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContactActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3285,14 +3853,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3302,14 +3874,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3319,15 +3895,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3339,15 +3919,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3362,13 +3946,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactPanelActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Ptr);
    begin
       if this.m_IContactPanelActivatedEventArgs /= null then
          if this.m_IContactPanelActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactPanelActivatedEventArgs.all.Release;
+            temp := this.m_IContactPanelActivatedEventArgs.all.Release;
             Free (this.m_IContactPanelActivatedEventArgs);
          end if;
       end if;
@@ -3383,11 +3967,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactPanel'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactPanel;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactPanel do
          Hr := this.m_IContactPanelActivatedEventArgs.all.get_ContactPanel (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactPanel := new Windows.ApplicationModel.Contacts.IContactPanel;
          Retval.m_IContactPanel.all := m_ComRetVal;
       end return;
@@ -3399,11 +3987,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactPanelActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -3415,14 +4007,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3432,14 +4028,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3449,15 +4049,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3469,15 +4073,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3489,15 +4097,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -3512,13 +4124,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactPickerActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Ptr);
    begin
       if this.m_IContactPickerActivatedEventArgs /= null then
          if this.m_IContactPickerActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactPickerActivatedEventArgs.all.Release;
+            temp := this.m_IContactPickerActivatedEventArgs.all.Release;
             Free (this.m_IContactPickerActivatedEventArgs);
          end if;
       end if;
@@ -3533,11 +4145,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.ContactPickerUI'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Provider.ContactPickerUI do
          Hr := this.m_IContactPickerActivatedEventArgs.all.get_ContactPickerUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactPickerUI := new Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
          Retval.m_IContactPickerUI.all := m_ComRetVal;
       end return;
@@ -3549,14 +4165,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3566,14 +4186,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3583,15 +4207,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactPickerActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3603,15 +4231,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactPickerActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3626,13 +4258,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactPostActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Ptr);
    begin
       if this.m_IContactPostActivatedEventArgs /= null then
          if this.m_IContactPostActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactPostActivatedEventArgs.all.Release;
+            temp := this.m_IContactPostActivatedEventArgs.all.Release;
             Free (this.m_IContactPostActivatedEventArgs);
          end if;
       end if;
@@ -3647,13 +4279,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactPostActivatedEventArgs.all.get_ServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3663,13 +4299,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactPostActivatedEventArgs.all.get_ServiceUserId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3679,11 +4319,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactPostActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -3695,17 +4339,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContactActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3715,14 +4363,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3732,14 +4384,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3749,15 +4405,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3769,15 +4429,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3792,13 +4456,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIContactVideoCallActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Ptr);
    begin
       if this.m_IContactVideoCallActivatedEventArgs /= null then
          if this.m_IContactVideoCallActivatedEventArgs.all /= null then
-            RefCount := this.m_IContactVideoCallActivatedEventArgs.all.Release;
+            temp := this.m_IContactVideoCallActivatedEventArgs.all.Release;
             Free (this.m_IContactVideoCallActivatedEventArgs);
          end if;
       end if;
@@ -3813,13 +4477,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactVideoCallActivatedEventArgs.all.get_ServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3829,13 +4497,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactVideoCallActivatedEventArgs.all.get_ServiceUserId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3845,11 +4517,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactVideoCallActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -3861,17 +4537,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContactActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContactActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
       Hr := m_Interface.get_Verb (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3881,14 +4561,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3898,14 +4582,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3915,15 +4603,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -3935,15 +4627,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -3958,13 +4654,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIDeviceActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Ptr);
    begin
       if this.m_IDeviceActivatedEventArgs /= null then
          if this.m_IDeviceActivatedEventArgs.all /= null then
-            RefCount := this.m_IDeviceActivatedEventArgs.all.Release;
+            temp := this.m_IDeviceActivatedEventArgs.all.Release;
             Free (this.m_IDeviceActivatedEventArgs);
          end if;
       end if;
@@ -3979,13 +4675,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceActivatedEventArgs.all.get_DeviceInformationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3995,13 +4695,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceActivatedEventArgs.all.get_Verb (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4011,14 +4715,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4028,14 +4736,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4045,15 +4757,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -4065,14 +4781,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4082,15 +4802,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -4102,15 +4826,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4125,13 +4853,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIDevicePairingActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Ptr);
    begin
       if this.m_IDevicePairingActivatedEventArgs /= null then
          if this.m_IDevicePairingActivatedEventArgs.all /= null then
-            RefCount := this.m_IDevicePairingActivatedEventArgs.all.Release;
+            temp := this.m_IDevicePairingActivatedEventArgs.all.Release;
             Free (this.m_IDevicePairingActivatedEventArgs);
          end if;
       end if;
@@ -4146,11 +4874,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IDevicePairingActivatedEventArgs.all.get_DeviceInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
@@ -4162,14 +4894,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4179,14 +4915,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4196,15 +4936,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -4216,15 +4960,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -4236,15 +4984,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4259,13 +5011,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIDialReceiverActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Ptr);
    begin
       if this.m_IDialReceiverActivatedEventArgs /= null then
          if this.m_IDialReceiverActivatedEventArgs.all /= null then
-            RefCount := this.m_IDialReceiverActivatedEventArgs.all.Release;
+            temp := this.m_IDialReceiverActivatedEventArgs.all.Release;
             Free (this.m_IDialReceiverActivatedEventArgs);
          end if;
       end if;
@@ -4280,13 +5032,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDialReceiverActivatedEventArgs.all.get_AppName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4296,17 +5052,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_ILaunchActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
       Hr := m_Interface.get_Arguments (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4316,17 +5076,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_ILaunchActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
       Hr := m_Interface.get_TileId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4336,14 +5100,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4353,14 +5121,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4370,15 +5142,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -4390,14 +5166,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4407,15 +5187,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -4427,15 +5211,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4450,13 +5238,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIFileActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Ptr);
    begin
       if this.m_IFileActivatedEventArgs /= null then
          if this.m_IFileActivatedEventArgs.all /= null then
-            RefCount := this.m_IFileActivatedEventArgs.all.Release;
+            temp := this.m_IFileActivatedEventArgs.all.Release;
             Free (this.m_IFileActivatedEventArgs);
          end if;
       end if;
@@ -4471,10 +5259,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IFileActivatedEventArgs.all.get_Files (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4484,13 +5276,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IFileActivatedEventArgs.all.get_Verb (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4500,14 +5296,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4517,14 +5317,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4534,15 +5338,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -4554,14 +5362,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4571,15 +5383,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -4591,15 +5407,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgsWithNeighboringFiles := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgsWithNeighboringFiles, WinRt.Windows.ApplicationModel.Activation.IID_IFileActivatedEventArgsWithNeighboringFiles'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
          m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
          Hr := m_Interface.get_NeighboringFilesQuery (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
@@ -4611,15 +5431,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4634,13 +5458,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIFileOpenPickerActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Ptr);
    begin
       if this.m_IFileOpenPickerActivatedEventArgs /= null then
          if this.m_IFileOpenPickerActivatedEventArgs.all /= null then
-            RefCount := this.m_IFileOpenPickerActivatedEventArgs.all.Release;
+            temp := this.m_IFileOpenPickerActivatedEventArgs.all.Release;
             Free (this.m_IFileOpenPickerActivatedEventArgs);
          end if;
       end if;
@@ -4655,11 +5479,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Storage.Pickers.Provider.FileOpenPickerUI'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.IFileOpenPickerUI;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.FileOpenPickerUI do
          Hr := this.m_IFileOpenPickerActivatedEventArgs.all.get_FileOpenPickerUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFileOpenPickerUI := new Windows.Storage.Pickers.Provider.IFileOpenPickerUI;
          Retval.m_IFileOpenPickerUI.all := m_ComRetVal;
       end return;
@@ -4671,14 +5499,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4688,14 +5520,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4705,15 +5541,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -4725,17 +5565,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs2, WinRt.Windows.ApplicationModel.Activation.IID_IFileOpenPickerActivatedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
       Hr := m_Interface.get_CallerPackageFamilyName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4745,15 +5589,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -4765,15 +5613,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4788,13 +5640,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIFileOpenPickerContinuationEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs, WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Ptr);
    begin
       if this.m_IFileOpenPickerContinuationEventArgs /= null then
          if this.m_IFileOpenPickerContinuationEventArgs.all /= null then
-            RefCount := this.m_IFileOpenPickerContinuationEventArgs.all.Release;
+            temp := this.m_IFileOpenPickerContinuationEventArgs.all.Release;
             Free (this.m_IFileOpenPickerContinuationEventArgs);
          end if;
       end if;
@@ -4809,10 +5661,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IFileOpenPickerContinuationEventArgs.all.get_Files (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4822,15 +5678,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
          Hr := m_Interface.get_ContinuationData (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -4842,14 +5702,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4859,14 +5723,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4876,15 +5744,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -4896,15 +5768,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -4916,15 +5792,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4939,13 +5819,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIFileSavePickerActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Ptr);
    begin
       if this.m_IFileSavePickerActivatedEventArgs /= null then
          if this.m_IFileSavePickerActivatedEventArgs.all /= null then
-            RefCount := this.m_IFileSavePickerActivatedEventArgs.all.Release;
+            temp := this.m_IFileSavePickerActivatedEventArgs.all.Release;
             Free (this.m_IFileSavePickerActivatedEventArgs);
          end if;
       end if;
@@ -4960,11 +5840,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Storage.Pickers.Provider.FileSavePickerUI'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.IFileSavePickerUI;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.FileSavePickerUI do
          Hr := this.m_IFileSavePickerActivatedEventArgs.all.get_FileSavePickerUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFileSavePickerUI := new Windows.Storage.Pickers.Provider.IFileSavePickerUI;
          Retval.m_IFileSavePickerUI.all := m_ComRetVal;
       end return;
@@ -4976,14 +5860,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4993,14 +5881,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5010,15 +5902,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -5030,17 +5926,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs2, WinRt.Windows.ApplicationModel.Activation.IID_IFileSavePickerActivatedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
       Hr := m_Interface.get_CallerPackageFamilyName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5050,17 +5950,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs2, WinRt.Windows.ApplicationModel.Activation.IID_IFileSavePickerActivatedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
       Hr := m_Interface.get_EnterpriseId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5070,15 +5974,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -5090,15 +5998,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -5113,13 +6025,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIFileSavePickerContinuationEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs, WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Ptr);
    begin
       if this.m_IFileSavePickerContinuationEventArgs /= null then
          if this.m_IFileSavePickerContinuationEventArgs.all /= null then
-            RefCount := this.m_IFileSavePickerContinuationEventArgs.all.Release;
+            temp := this.m_IFileSavePickerContinuationEventArgs.all.Release;
             Free (this.m_IFileSavePickerContinuationEventArgs);
          end if;
       end if;
@@ -5134,11 +6046,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IFileSavePickerContinuationEventArgs.all.get_File (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
@@ -5150,15 +6066,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
          Hr := m_Interface.get_ContinuationData (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -5170,14 +6090,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5187,14 +6111,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5204,15 +6132,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -5224,15 +6156,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -5244,15 +6180,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -5267,13 +6207,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIFolderPickerContinuationEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs, WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Ptr);
    begin
       if this.m_IFolderPickerContinuationEventArgs /= null then
          if this.m_IFolderPickerContinuationEventArgs.all /= null then
-            RefCount := this.m_IFolderPickerContinuationEventArgs.all.Release;
+            temp := this.m_IFolderPickerContinuationEventArgs.all.Release;
             Free (this.m_IFolderPickerContinuationEventArgs);
          end if;
       end if;
@@ -5288,11 +6228,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IFolderPickerContinuationEventArgs.all.get_Folder (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
@@ -5304,15 +6248,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
          Hr := m_Interface.get_ContinuationData (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -5324,14 +6272,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5341,14 +6293,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5358,15 +6314,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -5378,15 +6338,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -5398,15 +6362,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -5421,13 +6389,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUILaunchActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Ptr);
    begin
       if this.m_ILaunchActivatedEventArgs /= null then
          if this.m_ILaunchActivatedEventArgs.all /= null then
-            RefCount := this.m_ILaunchActivatedEventArgs.all.Release;
+            temp := this.m_ILaunchActivatedEventArgs.all.Release;
             Free (this.m_ILaunchActivatedEventArgs);
          end if;
       end if;
@@ -5442,13 +6410,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILaunchActivatedEventArgs.all.get_Arguments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5458,13 +6430,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILaunchActivatedEventArgs.all.get_TileId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5474,14 +6450,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5491,14 +6471,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5508,15 +6492,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -5528,14 +6516,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IPrelaunchActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IPrelaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IPrelaunchActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
       Hr := m_Interface.get_PrelaunchActivated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5545,14 +6537,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5562,15 +6558,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -5582,15 +6582,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -5602,15 +6606,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.TileActivatedInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ITileActivatedInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs2, WinRt.Windows.ApplicationModel.Activation.IID_ILaunchActivatedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.TileActivatedInfo do
          m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
          Hr := m_Interface.get_TileActivatedInfo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITileActivatedInfo := new Windows.ApplicationModel.Activation.ITileActivatedInfo;
          Retval.m_ITileActivatedInfo.all := m_ComRetVal;
       end return;
@@ -5625,13 +6633,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUILockScreenActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Ptr);
    begin
       if this.m_ILockScreenActivatedEventArgs /= null then
          if this.m_ILockScreenActivatedEventArgs.all /= null then
-            RefCount := this.m_ILockScreenActivatedEventArgs.all.Release;
+            temp := this.m_ILockScreenActivatedEventArgs.all.Release;
             Free (this.m_ILockScreenActivatedEventArgs);
          end if;
       end if;
@@ -5646,10 +6654,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ILockScreenActivatedEventArgs.all.get_Info (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5659,14 +6671,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5676,14 +6692,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5693,15 +6713,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -5713,14 +6737,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5730,15 +6758,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -5750,15 +6782,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -5773,13 +6809,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUILockScreenCallActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Ptr);
    begin
       if this.m_ILockScreenCallActivatedEventArgs /= null then
          if this.m_ILockScreenCallActivatedEventArgs.all /= null then
-            RefCount := this.m_ILockScreenCallActivatedEventArgs.all.Release;
+            temp := this.m_ILockScreenCallActivatedEventArgs.all.Release;
             Free (this.m_ILockScreenCallActivatedEventArgs);
          end if;
       end if;
@@ -5794,11 +6830,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Calls.LockScreenCallUI'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Calls.ILockScreenCallUI;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Calls.LockScreenCallUI do
          Hr := this.m_ILockScreenCallActivatedEventArgs.all.get_CallUI (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILockScreenCallUI := new Windows.ApplicationModel.Calls.ILockScreenCallUI;
          Retval.m_ILockScreenCallUI.all := m_ComRetVal;
       end return;
@@ -5810,17 +6850,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_ILaunchActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
       Hr := m_Interface.get_Arguments (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5830,17 +6874,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_ILaunchActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
       Hr := m_Interface.get_TileId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5850,14 +6898,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5867,14 +6919,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5884,15 +6940,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -5904,14 +6964,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5921,15 +6985,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -5944,13 +7012,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUILockScreenComponentActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs_Ptr);
    begin
       if this.m_IActivatedEventArgs /= null then
          if this.m_IActivatedEventArgs.all /= null then
-            RefCount := this.m_IActivatedEventArgs.all.Release;
+            temp := this.m_IActivatedEventArgs.all.Release;
             Free (this.m_IActivatedEventArgs);
          end if;
       end if;
@@ -5965,10 +7033,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
    begin
       Hr := this.m_IActivatedEventArgs.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5978,10 +7050,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
    begin
       Hr := this.m_IActivatedEventArgs.all.get_PreviousExecutionState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5991,11 +7067,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          Hr := this.m_IActivatedEventArgs.all.get_SplashScreen (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6007,15 +7087,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6030,12 +7114,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUINavigatedDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUINavigatedDeferral, IWebUINavigatedDeferral_Ptr);
    begin
       if this.m_IWebUINavigatedDeferral /= null then
          if this.m_IWebUINavigatedDeferral.all /= null then
-            RefCount := this.m_IWebUINavigatedDeferral.all.Release;
+            temp := this.m_IWebUINavigatedDeferral.all.Release;
             Free (this.m_IWebUINavigatedDeferral);
          end if;
       end if;
@@ -6049,9 +7133,13 @@ package body WinRt.Windows.UI.WebUI is
       this : in out WebUINavigatedDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUINavigatedDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6063,12 +7151,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUINavigatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUINavigatedEventArgs, IWebUINavigatedEventArgs_Ptr);
    begin
       if this.m_IWebUINavigatedEventArgs /= null then
          if this.m_IWebUINavigatedEventArgs.all /= null then
-            RefCount := this.m_IWebUINavigatedEventArgs.all.Release;
+            temp := this.m_IWebUINavigatedEventArgs.all.Release;
             Free (this.m_IWebUINavigatedEventArgs);
          end if;
       end if;
@@ -6083,11 +7171,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.WebUINavigatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IWebUINavigatedOperation;
    begin
       return RetVal : WinRt.Windows.UI.WebUI.WebUINavigatedOperation do
          Hr := this.m_IWebUINavigatedEventArgs.all.get_NavigatedOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebUINavigatedOperation := new Windows.UI.WebUI.IWebUINavigatedOperation;
          Retval.m_IWebUINavigatedOperation.all := m_ComRetVal;
       end return;
@@ -6102,12 +7194,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUINavigatedOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUINavigatedOperation, IWebUINavigatedOperation_Ptr);
    begin
       if this.m_IWebUINavigatedOperation /= null then
          if this.m_IWebUINavigatedOperation.all /= null then
-            RefCount := this.m_IWebUINavigatedOperation.all.Release;
+            temp := this.m_IWebUINavigatedOperation.all.Release;
             Free (this.m_IWebUINavigatedOperation);
          end if;
       end if;
@@ -6122,11 +7214,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.WebUINavigatedDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IWebUINavigatedDeferral;
    begin
       return RetVal : WinRt.Windows.UI.WebUI.WebUINavigatedDeferral do
          Hr := this.m_IWebUINavigatedOperation.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebUINavigatedDeferral := new Windows.UI.WebUI.IWebUINavigatedDeferral;
          Retval.m_IWebUINavigatedDeferral.all := m_ComRetVal;
       end return;
@@ -6141,13 +7237,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIPrint3DWorkflowActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Ptr);
    begin
       if this.m_IPrint3DWorkflowActivatedEventArgs /= null then
          if this.m_IPrint3DWorkflowActivatedEventArgs.all /= null then
-            RefCount := this.m_IPrint3DWorkflowActivatedEventArgs.all.Release;
+            temp := this.m_IPrint3DWorkflowActivatedEventArgs.all.Release;
             Free (this.m_IPrint3DWorkflowActivatedEventArgs);
          end if;
       end if;
@@ -6162,11 +7258,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflow'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.IPrint3DWorkflow;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflow do
          Hr := this.m_IPrint3DWorkflowActivatedEventArgs.all.get_Workflow (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrint3DWorkflow := new Windows.Devices.Printers.Extensions.IPrint3DWorkflow;
          Retval.m_IPrint3DWorkflow.all := m_ComRetVal;
       end return;
@@ -6178,14 +7278,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrint3DWorkflowActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6195,14 +7299,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrint3DWorkflowActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6212,15 +7320,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IPrint3DWorkflowActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6232,15 +7344,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IPrint3DWorkflowActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6255,13 +7371,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIPrintTaskSettingsActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Ptr);
    begin
       if this.m_IPrintTaskSettingsActivatedEventArgs /= null then
          if this.m_IPrintTaskSettingsActivatedEventArgs.all /= null then
-            RefCount := this.m_IPrintTaskSettingsActivatedEventArgs.all.Release;
+            temp := this.m_IPrintTaskSettingsActivatedEventArgs.all.Release;
             Free (this.m_IPrintTaskSettingsActivatedEventArgs);
          end if;
       end if;
@@ -6276,11 +7392,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Devices.Printers.Extensions.PrintTaskConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.IPrintTaskConfiguration;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.Extensions.PrintTaskConfiguration do
          Hr := this.m_IPrintTaskSettingsActivatedEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintTaskConfiguration := new Windows.Devices.Printers.Extensions.IPrintTaskConfiguration;
          Retval.m_IPrintTaskConfiguration.all := m_ComRetVal;
       end return;
@@ -6292,14 +7412,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskSettingsActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6309,14 +7433,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskSettingsActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6326,15 +7454,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IPrintTaskSettingsActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6346,15 +7478,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IPrintTaskSettingsActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6369,13 +7505,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIPrintWorkflowForegroundTaskActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs_Ptr);
    begin
       if this.m_IActivatedEventArgs /= null then
          if this.m_IActivatedEventArgs.all /= null then
-            RefCount := this.m_IActivatedEventArgs.all.Release;
+            temp := this.m_IActivatedEventArgs.all.Release;
             Free (this.m_IActivatedEventArgs);
          end if;
       end if;
@@ -6390,10 +7526,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
    begin
       Hr := this.m_IActivatedEventArgs.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6403,10 +7543,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
    begin
       Hr := this.m_IActivatedEventArgs.all.get_PreviousExecutionState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6416,11 +7560,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          Hr := this.m_IActivatedEventArgs.all.get_SplashScreen (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6432,15 +7580,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6455,13 +7607,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIProtocolActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Ptr);
    begin
       if this.m_IProtocolActivatedEventArgs /= null then
          if this.m_IProtocolActivatedEventArgs.all /= null then
-            RefCount := this.m_IProtocolActivatedEventArgs.all.Release;
+            temp := this.m_IProtocolActivatedEventArgs.all.Release;
             Free (this.m_IProtocolActivatedEventArgs);
          end if;
       end if;
@@ -6476,11 +7628,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IProtocolActivatedEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -6492,14 +7648,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6509,14 +7669,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6526,15 +7690,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6546,17 +7714,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
       Hr := m_Interface.get_CallerPackageFamilyName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6566,15 +7738,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
          Hr := m_Interface.get_Data (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -6586,14 +7762,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6603,15 +7783,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6623,15 +7807,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -6646,13 +7834,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIProtocolForResultsActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Ptr);
    begin
       if this.m_IProtocolForResultsActivatedEventArgs /= null then
          if this.m_IProtocolForResultsActivatedEventArgs.all /= null then
-            RefCount := this.m_IProtocolForResultsActivatedEventArgs.all.Release;
+            temp := this.m_IProtocolForResultsActivatedEventArgs.all.Release;
             Free (this.m_IProtocolForResultsActivatedEventArgs);
          end if;
       end if;
@@ -6667,11 +7855,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.ProtocolForResultsOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IProtocolForResultsOperation;
    begin
       return RetVal : WinRt.Windows.System.ProtocolForResultsOperation do
          Hr := this.m_IProtocolForResultsActivatedEventArgs.all.get_ProtocolForResultsOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProtocolForResultsOperation := new Windows.System.IProtocolForResultsOperation;
          Retval.m_IProtocolForResultsOperation.all := m_ComRetVal;
       end return;
@@ -6683,14 +7875,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6700,14 +7896,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6717,15 +7917,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6737,15 +7941,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
          Hr := m_Interface.get_Uri (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -6757,17 +7965,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
       Hr := m_Interface.get_CallerPackageFamilyName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6777,15 +7989,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
          Hr := m_Interface.get_Data (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -6797,14 +8013,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6814,15 +8034,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6834,15 +8058,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -6857,13 +8085,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIRestrictedLaunchActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Ptr);
    begin
       if this.m_IRestrictedLaunchActivatedEventArgs /= null then
          if this.m_IRestrictedLaunchActivatedEventArgs.all /= null then
-            RefCount := this.m_IRestrictedLaunchActivatedEventArgs.all.Release;
+            temp := this.m_IRestrictedLaunchActivatedEventArgs.all.Release;
             Free (this.m_IRestrictedLaunchActivatedEventArgs);
          end if;
       end if;
@@ -6878,10 +8106,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IRestrictedLaunchActivatedEventArgs.all.get_SharedContext (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6891,14 +8123,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6908,14 +8144,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6925,15 +8165,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -6945,15 +8189,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -6965,15 +8213,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -6988,13 +8240,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUISearchActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Ptr);
    begin
       if this.m_ISearchActivatedEventArgs /= null then
          if this.m_ISearchActivatedEventArgs.all /= null then
-            RefCount := this.m_ISearchActivatedEventArgs.all.Release;
+            temp := this.m_ISearchActivatedEventArgs.all.Release;
             Free (this.m_ISearchActivatedEventArgs);
          end if;
       end if;
@@ -7009,13 +8261,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISearchActivatedEventArgs.all.get_QueryText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7025,13 +8281,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISearchActivatedEventArgs.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7041,14 +8301,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7058,14 +8322,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7075,15 +8343,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -7095,15 +8367,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Search.SearchPaneQueryLinguisticDetails'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgsWithLinguisticDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgsWithLinguisticDetails, WinRt.Windows.ApplicationModel.Activation.IID_ISearchActivatedEventArgsWithLinguisticDetails'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Search.SearchPaneQueryLinguisticDetails do
          m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
          Hr := m_Interface.get_LinguisticDetails (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISearchPaneQueryLinguisticDetails := new Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails;
          Retval.m_ISearchPaneQueryLinguisticDetails.all := m_ComRetVal;
       end return;
@@ -7115,14 +8391,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IApplicationViewActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IApplicationViewActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
       Hr := m_Interface.get_CurrentlyShownApplicationViewId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7132,15 +8412,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -7155,13 +8439,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIShareTargetActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Ptr);
    begin
       if this.m_IShareTargetActivatedEventArgs /= null then
          if this.m_IShareTargetActivatedEventArgs.all /= null then
-            RefCount := this.m_IShareTargetActivatedEventArgs.all.Release;
+            temp := this.m_IShareTargetActivatedEventArgs.all.Release;
             Free (this.m_IShareTargetActivatedEventArgs);
          end if;
       end if;
@@ -7176,11 +8460,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation do
          Hr := this.m_IShareTargetActivatedEventArgs.all.get_ShareOperation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IShareOperation := new Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
          Retval.m_IShareOperation.all := m_ComRetVal;
       end return;
@@ -7192,14 +8480,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7209,14 +8501,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7226,15 +8522,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -7246,15 +8546,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -7266,15 +8570,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -7289,13 +8597,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIStartupTaskActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Ptr);
    begin
       if this.m_IStartupTaskActivatedEventArgs /= null then
          if this.m_IStartupTaskActivatedEventArgs.all /= null then
-            RefCount := this.m_IStartupTaskActivatedEventArgs.all.Release;
+            temp := this.m_IStartupTaskActivatedEventArgs.all.Release;
             Free (this.m_IStartupTaskActivatedEventArgs);
          end if;
       end if;
@@ -7310,13 +8618,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStartupTaskActivatedEventArgs.all.get_TaskId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7326,14 +8638,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7343,14 +8659,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7360,15 +8680,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -7380,15 +8704,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -7400,15 +8728,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -7423,13 +8755,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIToastNotificationActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Ptr);
    begin
       if this.m_IToastNotificationActivatedEventArgs /= null then
          if this.m_IToastNotificationActivatedEventArgs.all /= null then
-            RefCount := this.m_IToastNotificationActivatedEventArgs.all.Release;
+            temp := this.m_IToastNotificationActivatedEventArgs.all.Release;
             Free (this.m_IToastNotificationActivatedEventArgs);
          end if;
       end if;
@@ -7444,13 +8776,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IToastNotificationActivatedEventArgs.all.get_Argument (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7460,11 +8796,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IToastNotificationActivatedEventArgs.all.get_UserInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -7476,14 +8816,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7493,14 +8837,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7510,15 +8858,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -7530,15 +8882,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -7550,15 +8906,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -7573,13 +8933,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIUserDataAccountProviderActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Ptr);
    begin
       if this.m_IUserDataAccountProviderActivatedEventArgs /= null then
          if this.m_IUserDataAccountProviderActivatedEventArgs.all /= null then
-            RefCount := this.m_IUserDataAccountProviderActivatedEventArgs.all.Release;
+            temp := this.m_IUserDataAccountProviderActivatedEventArgs.all.Release;
             Free (this.m_IUserDataAccountProviderActivatedEventArgs);
          end if;
       end if;
@@ -7594,10 +8954,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation;
    begin
       Hr := this.m_IUserDataAccountProviderActivatedEventArgs.all.get_Operation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7607,14 +8971,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7624,14 +8992,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7641,15 +9013,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IUserDataAccountProviderActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -7661,15 +9037,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IUserDataAccountProviderActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -7684,12 +9064,12 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUIView, IWebUIView_Ptr);
    begin
       if this.m_IWebUIView /= null then
          if this.m_IWebUIView.all /= null then
-            RefCount := this.m_IWebUIView.all.Release;
+            temp := this.m_IWebUIView.all.Release;
             Free (this.m_IWebUIView);
          end if;
       end if;
@@ -7701,15 +9081,15 @@ package body WinRt.Windows.UI.WebUI is
    function CreateAsync
    return WinRt.Windows.UI.WebUI.WebUIView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIView");
       m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WebUIView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7727,7 +9107,7 @@ package body WinRt.Windows.UI.WebUI is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebUIView.Kind_Delegate, AsyncOperationCompletedHandler_WebUIView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7741,10 +9121,10 @@ package body WinRt.Windows.UI.WebUI is
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -7756,15 +9136,15 @@ package body WinRt.Windows.UI.WebUI is
                      Retval.m_IWebUIView := new Windows.UI.WebUI.IWebUIView;
                      Retval.m_IWebUIView.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7774,15 +9154,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.WebUIView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.WebUIView");
       m_Factory        : access WinRt.Windows.UI.WebUI.IWebUIViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WebUIView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7800,7 +9180,7 @@ package body WinRt.Windows.UI.WebUI is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebUIView.Kind_Delegate, AsyncOperationCompletedHandler_WebUIView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7814,10 +9194,10 @@ package body WinRt.Windows.UI.WebUI is
          Hr := RoGetActivationFactory (m_hString, IID_IWebUIViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -7829,15 +9209,15 @@ package body WinRt.Windows.UI.WebUI is
                      Retval.m_IWebUIView := new Windows.UI.WebUI.IWebUIView;
                      Retval.m_IWebUIView.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7850,10 +9230,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IWebUIView.all.get_ApplicationViewId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7864,10 +9248,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUIView.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7877,9 +9265,13 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUIView.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Activated
@@ -7889,10 +9281,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUIView.all.add_Activated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7902,9 +9298,13 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUIView.all.remove_Activated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IgnoreApplicationContentUriRulesNavigationRestrictions
@@ -7913,10 +9313,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUIView.all.get_IgnoreApplicationContentUriRulesNavigationRestrictions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7926,9 +9330,13 @@ package body WinRt.Windows.UI.WebUI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUIView.all.put_IgnoreApplicationContentUriRulesNavigationRestrictions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -7937,15 +9345,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IWebUIView.all);
          Hr := m_Interface.get_Source (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -7957,13 +9369,17 @@ package body WinRt.Windows.UI.WebUI is
       source : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.put_Source (source.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DocumentTitle
@@ -7972,17 +9388,21 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.get_DocumentTitle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7992,14 +9412,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.get_CanGoBack (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8009,14 +9433,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.get_CanGoForward (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8026,13 +9454,17 @@ package body WinRt.Windows.UI.WebUI is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.put_DefaultBackgroundColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DefaultBackgroundColor
@@ -8041,14 +9473,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.get_DefaultBackgroundColor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8058,14 +9494,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.get_ContainsFullScreenElement (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8075,15 +9515,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Web.UI.WebViewControlSettings'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.IWebViewControlSettings;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Web.UI.WebViewControlSettings do
          m_Interface := QInterface (this.m_IWebUIView.all);
          Hr := m_Interface.get_Settings (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebViewControlSettings := new Windows.Web.UI.IWebViewControlSettings;
          Retval.m_IWebViewControlSettings.all := m_ComRetVal;
       end return;
@@ -8095,14 +9539,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.get_DeferredPermissionRequests (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8111,13 +9559,17 @@ package body WinRt.Windows.UI.WebUI is
       this : in out WebUIView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.GoForward;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GoBack
@@ -8125,13 +9577,17 @@ package body WinRt.Windows.UI.WebUI is
       this : in out WebUIView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.GoBack;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Refresh
@@ -8139,13 +9595,17 @@ package body WinRt.Windows.UI.WebUI is
       this : in out WebUIView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.Refresh;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -8153,13 +9613,17 @@ package body WinRt.Windows.UI.WebUI is
       this : in out WebUIView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.Stop;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Navigate
@@ -8168,13 +9632,17 @@ package body WinRt.Windows.UI.WebUI is
       source : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.Navigate (source.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure NavigateToString
@@ -8183,15 +9651,19 @@ package body WinRt.Windows.UI.WebUI is
       text : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.NavigateToString (HStr_text);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_text);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
    end;
 
    procedure NavigateToLocalStreamUri
@@ -8201,13 +9673,17 @@ package body WinRt.Windows.UI.WebUI is
       streamResolver : Windows.Web.IUriToStreamResolver
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.NavigateToLocalStreamUri (source.m_IUriRuntimeClass.all, streamResolver);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure NavigateWithHttpRequestMessage
@@ -8216,13 +9692,17 @@ package body WinRt.Windows.UI.WebUI is
       requestMessage : Windows.Web.Http.HttpRequestMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.NavigateWithHttpRequestMessage (requestMessage.m_IHttpRequestMessage.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function InvokeScriptAsync
@@ -8233,15 +9713,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_scriptName : WinRt.HString := To_HString (scriptName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_scriptName : constant WinRt.HString := To_HString (scriptName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8260,7 +9740,7 @@ package body WinRt.Windows.UI.WebUI is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8273,10 +9753,10 @@ package body WinRt.Windows.UI.WebUI is
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.InvokeScriptAsync (HStr_scriptName, arguments, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8286,16 +9766,16 @@ package body WinRt.Windows.UI.WebUI is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_scriptName);
+      tmp := WindowsDeleteString (HStr_scriptName);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -8305,8 +9785,9 @@ package body WinRt.Windows.UI.WebUI is
       stream : Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -8314,7 +9795,6 @@ package body WinRt.Windows.UI.WebUI is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -8330,7 +9810,7 @@ package body WinRt.Windows.UI.WebUI is
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.CapturePreviewToStreamAsync (stream, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -8338,9 +9818,9 @@ package body WinRt.Windows.UI.WebUI is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -8352,14 +9832,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DataPackage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8377,7 +9857,7 @@ package body WinRt.Windows.UI.WebUI is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DataPackage.Kind_Delegate, AsyncOperationCompletedHandler_DataPackage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8391,10 +9871,10 @@ package body WinRt.Windows.UI.WebUI is
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage do
          m_Interface := QInterface (this.m_IWebUIView.all);
          Hr := m_Interface.CaptureSelectedContentToDataPackageAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8406,9 +9886,9 @@ package body WinRt.Windows.UI.WebUI is
                   Retval.m_IDataPackage := new Windows.ApplicationModel.DataTransfer.IDataPackage;
                   Retval.m_IDataPackage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -8424,21 +9904,25 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
-      HStr_contentIdentifier : WinRt.HString := To_HString (contentIdentifier);
-      HStr_relativePath : WinRt.HString := To_HString (relativePath);
+      HStr_contentIdentifier : constant WinRt.HString := To_HString (contentIdentifier);
+      HStr_relativePath : constant WinRt.HString := To_HString (relativePath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IWebUIView.all);
          Hr := m_Interface.BuildLocalStreamUri (HStr_contentIdentifier, HStr_relativePath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_contentIdentifier);
-         Hr := WindowsDeleteString (HStr_relativePath);
+         tmp := WindowsDeleteString (HStr_contentIdentifier);
+         tmp := WindowsDeleteString (HStr_relativePath);
       end return;
    end;
 
@@ -8449,13 +9933,17 @@ package body WinRt.Windows.UI.WebUI is
       result : access Windows.Web.UI.IWebViewControlDeferredPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.GetDeferredPermissionRequestById (id, result);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NavigationStarting
@@ -8465,14 +9953,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_NavigationStarting (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8482,13 +9974,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_NavigationStarting (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ContentLoading
@@ -8498,14 +9994,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_ContentLoading (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8515,13 +10015,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_ContentLoading (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DOMContentLoaded
@@ -8531,14 +10035,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_DOMContentLoaded (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8548,13 +10056,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_DOMContentLoaded (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NavigationCompleted
@@ -8564,14 +10076,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_NavigationCompleted (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8581,13 +10097,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_NavigationCompleted (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameNavigationStarting
@@ -8597,14 +10117,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_FrameNavigationStarting (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8614,13 +10138,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_FrameNavigationStarting (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameContentLoading
@@ -8630,14 +10158,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_FrameContentLoading (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8647,13 +10179,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_FrameContentLoading (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameDOMContentLoaded
@@ -8663,14 +10199,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_FrameDOMContentLoaded (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8680,13 +10220,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_FrameDOMContentLoaded (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameNavigationCompleted
@@ -8696,14 +10240,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_FrameNavigationCompleted (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8713,13 +10261,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_FrameNavigationCompleted (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ScriptNotify
@@ -8729,14 +10281,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_ScriptNotify (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8746,13 +10302,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_ScriptNotify (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LongRunningScriptDetected
@@ -8762,14 +10322,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_LongRunningScriptDetected (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8779,13 +10343,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_LongRunningScriptDetected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UnsafeContentWarningDisplaying
@@ -8795,14 +10363,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_UnsafeContentWarningDisplaying (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8812,13 +10384,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_UnsafeContentWarningDisplaying (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UnviewableContentIdentified
@@ -8828,14 +10404,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_UnviewableContentIdentified (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8845,13 +10425,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_UnviewableContentIdentified (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PermissionRequested
@@ -8861,14 +10445,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_PermissionRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8878,13 +10466,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_PermissionRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UnsupportedUriSchemeIdentified
@@ -8894,14 +10486,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_UnsupportedUriSchemeIdentified (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8911,13 +10507,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_UnsupportedUriSchemeIdentified (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NewWindowRequested
@@ -8927,14 +10527,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_NewWindowRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8944,13 +10548,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_NewWindowRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ContainsFullScreenElementChanged
@@ -8960,14 +10568,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_ContainsFullScreenElementChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8977,13 +10589,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_ContainsFullScreenElementChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_WebResourceRequested
@@ -8993,14 +10609,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.add_WebResourceRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9010,13 +10630,17 @@ package body WinRt.Windows.UI.WebUI is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IID_IWebViewControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.remove_WebResourceRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddInitializeScript
@@ -9025,15 +10649,19 @@ package body WinRt.Windows.UI.WebUI is
       script : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_script : WinRt.HString := To_HString (script);
+      temp             : WinRt.UInt32 := 0;
+      HStr_script : constant WinRt.HString := To_HString (script);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WebUI.IWebUIView_Interface, WinRt.Windows.Web.UI.IWebViewControl2, WinRt.Windows.Web.UI.IID_IWebViewControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebUIView.all);
       Hr := m_Interface.AddInitializeScript (HStr_script);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_script);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_script);
    end;
 
    -----------------------------------------------------------------------------
@@ -9045,13 +10673,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIVoiceCommandActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Ptr);
    begin
       if this.m_IVoiceCommandActivatedEventArgs /= null then
          if this.m_IVoiceCommandActivatedEventArgs.all /= null then
-            RefCount := this.m_IVoiceCommandActivatedEventArgs.all.Release;
+            temp := this.m_IVoiceCommandActivatedEventArgs.all.Release;
             Free (this.m_IVoiceCommandActivatedEventArgs);
          end if;
       end if;
@@ -9066,11 +10694,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult do
          Hr := this.m_IVoiceCommandActivatedEventArgs.all.get_Result (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognitionResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
          Retval.m_ISpeechRecognitionResult.all := m_ComRetVal;
       end return;
@@ -9082,14 +10714,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9099,14 +10735,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9116,15 +10756,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -9136,15 +10780,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -9156,15 +10804,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -9179,13 +10831,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIWalletActionActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Ptr);
    begin
       if this.m_IWalletActionActivatedEventArgs /= null then
          if this.m_IWalletActionActivatedEventArgs.all /= null then
-            RefCount := this.m_IWalletActionActivatedEventArgs.all.Release;
+            temp := this.m_IWalletActionActivatedEventArgs.all.Release;
             Free (this.m_IWalletActionActivatedEventArgs);
          end if;
       end if;
@@ -9200,13 +10852,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWalletActionActivatedEventArgs.all.get_ItemId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9216,10 +10872,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Wallet.WalletActionKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.WalletActionKind;
    begin
       Hr := this.m_IWalletActionActivatedEventArgs.all.get_ActionKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9229,13 +10889,17 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWalletActionActivatedEventArgs.all.get_ActionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9245,14 +10909,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWalletActionActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9262,14 +10930,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWalletActionActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9279,15 +10951,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IWalletActionActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -9299,15 +10975,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IWalletActionActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -9322,13 +11002,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIWebAccountProviderActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Ptr);
    begin
       if this.m_IWebAccountProviderActivatedEventArgs /= null then
          if this.m_IWebAccountProviderActivatedEventArgs.all /= null then
-            RefCount := this.m_IWebAccountProviderActivatedEventArgs.all.Release;
+            temp := this.m_IWebAccountProviderActivatedEventArgs.all.Release;
             Free (this.m_IWebAccountProviderActivatedEventArgs);
          end if;
       end if;
@@ -9343,10 +11023,14 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Security.Authentication.Web.Provider.IWebAccountProviderOperation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Web.Provider.IWebAccountProviderOperation;
    begin
       Hr := this.m_IWebAccountProviderActivatedEventArgs.all.get_Operation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9356,14 +11040,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9373,14 +11061,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9390,15 +11082,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -9410,15 +11106,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;
@@ -9430,15 +11130,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -9453,13 +11157,13 @@ package body WinRt.Windows.UI.WebUI is
    end;
 
    procedure Finalize (this : in out WebUIWebAuthenticationBrokerContinuationEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs, WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Ptr);
    begin
       if this.m_IWebAuthenticationBrokerContinuationEventArgs /= null then
          if this.m_IWebAuthenticationBrokerContinuationEventArgs.all /= null then
-            RefCount := this.m_IWebAuthenticationBrokerContinuationEventArgs.all.Release;
+            temp := this.m_IWebAuthenticationBrokerContinuationEventArgs.all.Release;
             Free (this.m_IWebAuthenticationBrokerContinuationEventArgs);
          end if;
       end if;
@@ -9474,11 +11178,15 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Web.IWebAuthenticationResult;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult do
          Hr := this.m_IWebAuthenticationBrokerContinuationEventArgs.all.get_WebAuthenticationResult (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
          Retval.m_IWebAuthenticationResult.all := m_ComRetVal;
       end return;
@@ -9490,15 +11198,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
          Hr := m_Interface.get_ContinuationData (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -9510,14 +11222,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9527,14 +11243,18 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9544,15 +11264,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -9564,15 +11288,19 @@ package body WinRt.Windows.UI.WebUI is
    )
    return WinRt.Windows.UI.WebUI.ActivatedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.IActivatedOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.UI.WebUI.IActivatedEventArgsDeferral, WinRt.Windows.UI.WebUI.IID_IActivatedEventArgsDeferral'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WebUI.ActivatedOperation do
          m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
          Hr := m_Interface.get_ActivatedOperation (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivatedOperation := new Windows.UI.WebUI.IActivatedOperation;
          Retval.m_IActivatedOperation.all := m_ComRetVal;
       end return;

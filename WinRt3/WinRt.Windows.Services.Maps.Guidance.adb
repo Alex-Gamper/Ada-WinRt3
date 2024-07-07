@@ -45,12 +45,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceAudioNotificationRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceAudioNotificationRequestedEventArgs, IGuidanceAudioNotificationRequestedEventArgs_Ptr);
    begin
       if this.m_IGuidanceAudioNotificationRequestedEventArgs /= null then
          if this.m_IGuidanceAudioNotificationRequestedEventArgs.all /= null then
-            RefCount := this.m_IGuidanceAudioNotificationRequestedEventArgs.all.Release;
+            temp := this.m_IGuidanceAudioNotificationRequestedEventArgs.all.Release;
             Free (this.m_IGuidanceAudioNotificationRequestedEventArgs);
          end if;
       end if;
@@ -65,10 +65,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceAudioNotificationKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.GuidanceAudioNotificationKind;
    begin
       Hr := this.m_IGuidanceAudioNotificationRequestedEventArgs.all.get_AudioNotification (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -78,13 +82,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGuidanceAudioNotificationRequestedEventArgs.all.get_AudioFilePaths (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -94,13 +102,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceAudioNotificationRequestedEventArgs.all.get_AudioText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -113,12 +125,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceLaneInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceLaneInfo, IGuidanceLaneInfo_Ptr);
    begin
       if this.m_IGuidanceLaneInfo /= null then
          if this.m_IGuidanceLaneInfo.all /= null then
-            RefCount := this.m_IGuidanceLaneInfo.all.Release;
+            temp := this.m_IGuidanceLaneInfo.all.Release;
             Free (this.m_IGuidanceLaneInfo);
          end if;
       end if;
@@ -133,10 +145,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceLaneMarkers is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.GuidanceLaneMarkers;
    begin
       Hr := this.m_IGuidanceLaneInfo.all.get_LaneMarkers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -146,10 +162,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceLaneInfo.all.get_IsOnRoute (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -162,12 +182,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceManeuver) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceManeuver, IGuidanceManeuver_Ptr);
    begin
       if this.m_IGuidanceManeuver /= null then
          if this.m_IGuidanceManeuver.all /= null then
-            RefCount := this.m_IGuidanceManeuver.all.Release;
+            temp := this.m_IGuidanceManeuver.all.Release;
             Free (this.m_IGuidanceManeuver);
          end if;
       end if;
@@ -182,11 +202,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IGuidanceManeuver.all.get_StartLocation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -198,10 +222,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_DistanceFromRouteStart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -211,10 +239,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_DistanceFromPreviousManeuver (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -224,13 +256,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_DepartureRoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -240,13 +276,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_NextRoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -256,13 +296,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_DepartureShortRoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -272,13 +316,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_NextShortRoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -288,10 +336,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceManeuverKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.GuidanceManeuverKind;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -301,10 +353,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_StartAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -314,10 +370,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_EndAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -327,11 +387,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceRoadSignpost'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceRoadSignpost;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceRoadSignpost do
          Hr := this.m_IGuidanceManeuver.all.get_RoadSignpost (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceRoadSignpost := new Windows.Services.Maps.Guidance.IGuidanceRoadSignpost;
          Retval.m_IGuidanceRoadSignpost.all := m_ComRetVal;
       end return;
@@ -343,13 +407,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceManeuver.all.get_InstructionText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -362,12 +430,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceMapMatchedCoordinate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceMapMatchedCoordinate, IGuidanceMapMatchedCoordinate_Ptr);
    begin
       if this.m_IGuidanceMapMatchedCoordinate /= null then
          if this.m_IGuidanceMapMatchedCoordinate.all /= null then
-            RefCount := this.m_IGuidanceMapMatchedCoordinate.all.Release;
+            temp := this.m_IGuidanceMapMatchedCoordinate.all.Release;
             Free (this.m_IGuidanceMapMatchedCoordinate);
          end if;
       end if;
@@ -382,11 +450,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IGuidanceMapMatchedCoordinate.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -398,10 +470,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGuidanceMapMatchedCoordinate.all.get_CurrentHeading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -411,10 +487,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGuidanceMapMatchedCoordinate.all.get_CurrentSpeed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -424,10 +504,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceMapMatchedCoordinate.all.get_IsOnStreet (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -437,11 +521,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceRoadSegment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceRoadSegment;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceRoadSegment do
          Hr := this.m_IGuidanceMapMatchedCoordinate.all.get_Road (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceRoadSegment := new Windows.Services.Maps.Guidance.IGuidanceRoadSegment;
          Retval.m_IGuidanceRoadSegment.all := m_ComRetVal;
       end return;
@@ -456,12 +544,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceNavigator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceNavigator, IGuidanceNavigator_Ptr);
    begin
       if this.m_IGuidanceNavigator /= null then
          if this.m_IGuidanceNavigator.all /= null then
-            RefCount := this.m_IGuidanceNavigator.all.Release;
+            temp := this.m_IGuidanceNavigator.all.Release;
             Free (this.m_IGuidanceNavigator);
          end if;
       end if;
@@ -473,37 +561,45 @@ package body WinRt.Windows.Services.Maps.Guidance is
    function GetCurrent
    return WinRt.Windows.Services.Maps.Guidance.GuidanceNavigator is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceNavigator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceNavigator");
       m_Factory        : access WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigatorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceNavigator;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceNavigator do
          Hr := RoGetActivationFactory (m_hString, IID_IGuidanceNavigatorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrent (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGuidanceNavigator := new Windows.Services.Maps.Guidance.IGuidanceNavigator;
             Retval.m_IGuidanceNavigator.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_UseAppProvidedVoice
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceNavigator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceNavigator");
       m_Factory        : access WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigatorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGuidanceNavigatorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_UseAppProvidedVoice (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -516,9 +612,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       route : Windows.Services.Maps.Guidance.GuidanceRoute'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.StartNavigating (route.m_IGuidanceRoute.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartSimulating
@@ -528,9 +628,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       speedInMetersPerSecond : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.StartSimulating (route.m_IGuidanceRoute.all, speedInMetersPerSecond);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartTracking
@@ -538,9 +642,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       this : in out GuidanceNavigator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.StartTracking;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Pause
@@ -548,9 +656,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       this : in out GuidanceNavigator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.Pause;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Resume
@@ -558,9 +670,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       this : in out GuidanceNavigator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.Resume;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -568,9 +684,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       this : in out GuidanceNavigator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RepeatLastAudioNotification
@@ -578,9 +698,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       this : in out GuidanceNavigator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.RepeatLastAudioNotification;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AudioMeasurementSystem
@@ -589,10 +713,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem;
    begin
       Hr := this.m_IGuidanceNavigator.all.get_AudioMeasurementSystem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -602,9 +730,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       value : Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.put_AudioMeasurementSystem (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AudioNotifications
@@ -613,10 +745,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceAudioNotifications is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.GuidanceAudioNotifications;
    begin
       Hr := this.m_IGuidanceNavigator.all.get_AudioNotifications (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -626,9 +762,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       value : Windows.Services.Maps.Guidance.GuidanceAudioNotifications
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.put_AudioNotifications (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GuidanceUpdated
@@ -638,10 +778,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_GuidanceUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -651,9 +795,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_GuidanceUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DestinationReached
@@ -663,10 +811,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_DestinationReached (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -676,9 +828,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_DestinationReached (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Rerouting
@@ -688,10 +844,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_Rerouting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -701,9 +861,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_Rerouting (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Rerouted
@@ -713,10 +877,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_Rerouted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -726,9 +894,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_Rerouted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_RerouteFailed
@@ -738,10 +910,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_RerouteFailed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -751,9 +927,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_RerouteFailed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserLocationLost
@@ -763,10 +943,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_UserLocationLost (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -776,9 +960,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_UserLocationLost (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserLocationRestored
@@ -788,10 +976,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGuidanceNavigator.all.add_UserLocationRestored (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -801,9 +993,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.remove_UserLocationRestored (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetGuidanceVoice
@@ -813,11 +1009,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
       voiceFolder : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_voiceFolder : WinRt.HString := To_HString (voiceFolder);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_voiceFolder : constant WinRt.HString := To_HString (voiceFolder);
    begin
       Hr := this.m_IGuidanceNavigator.all.SetGuidanceVoice (voiceId, HStr_voiceFolder);
-      Hr := WindowsDeleteString (HStr_voiceFolder);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_voiceFolder);
    end;
 
    procedure UpdateUserLocation
@@ -826,9 +1026,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       userLocation : Windows.Devices.Geolocation.Geocoordinate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.UpdateUserLocation (userLocation.m_IGeocoordinate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UpdateUserLocation
@@ -838,9 +1042,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       positionOverride : Windows.Devices.Geolocation.BasicGeoposition
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceNavigator.all.UpdateUserLocation (userLocation.m_IGeocoordinate.all, positionOverride);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AudioNotificationRequested
@@ -850,14 +1058,18 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator_Interface, WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2, WinRt.Windows.Services.Maps.Guidance.IID_IGuidanceNavigator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGuidanceNavigator.all);
       Hr := m_Interface.add_AudioNotificationRequested (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -867,13 +1079,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator_Interface, WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2, WinRt.Windows.Services.Maps.Guidance.IID_IGuidanceNavigator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGuidanceNavigator.all);
       Hr := m_Interface.remove_AudioNotificationRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsGuidanceAudioMuted
@@ -882,14 +1098,18 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator_Interface, WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2, WinRt.Windows.Services.Maps.Guidance.IID_IGuidanceNavigator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGuidanceNavigator.all);
       Hr := m_Interface.get_IsGuidanceAudioMuted (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -899,13 +1119,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator_Interface, WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator2, WinRt.Windows.Services.Maps.Guidance.IID_IGuidanceNavigator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGuidanceNavigator.all);
       Hr := m_Interface.put_IsGuidanceAudioMuted (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -917,12 +1141,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceReroutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceReroutedEventArgs, IGuidanceReroutedEventArgs_Ptr);
    begin
       if this.m_IGuidanceReroutedEventArgs /= null then
          if this.m_IGuidanceReroutedEventArgs.all /= null then
-            RefCount := this.m_IGuidanceReroutedEventArgs.all.Release;
+            temp := this.m_IGuidanceReroutedEventArgs.all.Release;
             Free (this.m_IGuidanceReroutedEventArgs);
          end if;
       end if;
@@ -937,11 +1161,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceRoute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceRoute;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceRoute do
          Hr := this.m_IGuidanceReroutedEventArgs.all.get_Route (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceRoute := new Windows.Services.Maps.Guidance.IGuidanceRoute;
          Retval.m_IGuidanceRoute.all := m_ComRetVal;
       end return;
@@ -956,12 +1184,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceRoadSegment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceRoadSegment, IGuidanceRoadSegment_Ptr);
    begin
       if this.m_IGuidanceRoadSegment /= null then
          if this.m_IGuidanceRoadSegment.all /= null then
-            RefCount := this.m_IGuidanceRoadSegment.all.Release;
+            temp := this.m_IGuidanceRoadSegment.all.Release;
             Free (this.m_IGuidanceRoadSegment);
          end if;
       end if;
@@ -976,13 +1204,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_RoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -992,13 +1224,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_ShortRoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1008,10 +1244,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_SpeedLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1021,10 +1261,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_TravelTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1034,11 +1278,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Devices.Geolocation.Geopath'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          Hr := this.m_IGuidanceRoadSegment.all.get_Path (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
@@ -1050,13 +1298,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1066,10 +1318,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_IsHighway (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1079,10 +1335,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_IsTunnel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1092,10 +1352,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceRoadSegment.all.get_IsTollRoad (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1105,14 +1369,18 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.Guidance.IGuidanceRoadSegment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.Guidance.IGuidanceRoadSegment_Interface, WinRt.Windows.Services.Maps.Guidance.IGuidanceRoadSegment2, WinRt.Windows.Services.Maps.Guidance.IID_IGuidanceRoadSegment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGuidanceRoadSegment.all);
       Hr := m_Interface.get_IsScenic (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1125,12 +1393,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceRoadSignpost) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceRoadSignpost, IGuidanceRoadSignpost_Ptr);
    begin
       if this.m_IGuidanceRoadSignpost /= null then
          if this.m_IGuidanceRoadSignpost.all /= null then
-            RefCount := this.m_IGuidanceRoadSignpost.all.Release;
+            temp := this.m_IGuidanceRoadSignpost.all.Release;
             Free (this.m_IGuidanceRoadSignpost);
          end if;
       end if;
@@ -1145,13 +1413,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceRoadSignpost.all.get_ExitNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1161,13 +1433,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceRoadSignpost.all.get_Exit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1177,10 +1453,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IGuidanceRoadSignpost.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1190,10 +1470,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IGuidanceRoadSignpost.all.get_ForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1203,13 +1487,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGuidanceRoadSignpost.all.get_ExitDirections (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1222,12 +1510,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceRoute) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceRoute, IGuidanceRoute_Ptr);
    begin
       if this.m_IGuidanceRoute /= null then
          if this.m_IGuidanceRoute.all /= null then
-            RefCount := this.m_IGuidanceRoute.all.Release;
+            temp := this.m_IGuidanceRoute.all.Release;
             Free (this.m_IGuidanceRoute);
          end if;
       end if;
@@ -1242,17 +1530,21 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceRoute");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceRoute");
       m_Factory        : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRouteStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGuidanceRouteStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.CanCreateFromMapRoute (mapRoute.m_IMapRoute.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1262,20 +1554,24 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceRoute is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceRoute");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceRoute");
       m_Factory        : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRouteStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceRoute;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceRoute do
          Hr := RoGetActivationFactory (m_hString, IID_IGuidanceRouteStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateFromMapRoute (mapRoute.m_IMapRoute.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGuidanceRoute := new Windows.Services.Maps.Guidance.IGuidanceRoute;
             Retval.m_IGuidanceRoute.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1288,10 +1584,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGuidanceRoute.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1301,10 +1601,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceRoute.all.get_Distance (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1314,13 +1618,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return IVectorView_IGuidanceManeuver.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IGuidanceManeuver.Kind;
    begin
       Hr := this.m_IGuidanceRoute.all.get_Maneuvers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IGuidanceManeuver (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1330,11 +1638,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := this.m_IGuidanceRoute.all.get_BoundingBox (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
          Retval.m_IGeoboundingBox.all := m_ComRetVal;
       end return;
@@ -1346,11 +1658,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Devices.Geolocation.Geopath'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          Hr := this.m_IGuidanceRoute.all.get_Path (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
@@ -1362,13 +1678,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return IVectorView_IGuidanceRoadSegment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IGuidanceRoadSegment.Kind;
    begin
       Hr := this.m_IGuidanceRoute.all.get_RoadSegments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IGuidanceRoadSegment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1378,11 +1698,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.MapRoute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.IMapRoute;
    begin
       return RetVal : WinRt.Windows.Services.Maps.MapRoute do
          Hr := this.m_IGuidanceRoute.all.ConvertToMapRoute (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapRoute := new Windows.Services.Maps.IMapRoute;
          Retval.m_IMapRoute.all := m_ComRetVal;
       end return;
@@ -1397,12 +1721,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceTelemetryCollector) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceTelemetryCollector, IGuidanceTelemetryCollector_Ptr);
    begin
       if this.m_IGuidanceTelemetryCollector /= null then
          if this.m_IGuidanceTelemetryCollector.all /= null then
-            RefCount := this.m_IGuidanceTelemetryCollector.all.Release;
+            temp := this.m_IGuidanceTelemetryCollector.all.Release;
             Free (this.m_IGuidanceTelemetryCollector);
          end if;
       end if;
@@ -1414,20 +1738,24 @@ package body WinRt.Windows.Services.Maps.Guidance is
    function GetCurrent
    return WinRt.Windows.Services.Maps.Guidance.GuidanceTelemetryCollector is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceTelemetryCollector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.Guidance.GuidanceTelemetryCollector");
       m_Factory        : access WinRt.Windows.Services.Maps.Guidance.IGuidanceTelemetryCollectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceTelemetryCollector;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceTelemetryCollector do
          Hr := RoGetActivationFactory (m_hString, IID_IGuidanceTelemetryCollectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrent (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGuidanceTelemetryCollector := new Windows.Services.Maps.Guidance.IGuidanceTelemetryCollector;
             Retval.m_IGuidanceTelemetryCollector.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1440,10 +1768,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1453,9 +1785,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.put_Enabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ClearLocalData
@@ -1463,9 +1799,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       this : in out GuidanceTelemetryCollector
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.ClearLocalData;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SpeedTrigger
@@ -1474,10 +1814,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.get_SpeedTrigger (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1487,9 +1831,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.put_SpeedTrigger (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UploadFrequency
@@ -1498,10 +1846,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.get_UploadFrequency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1511,9 +1863,13 @@ package body WinRt.Windows.Services.Maps.Guidance is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGuidanceTelemetryCollector.all.put_UploadFrequency (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1525,12 +1881,12 @@ package body WinRt.Windows.Services.Maps.Guidance is
    end;
 
    procedure Finalize (this : in out GuidanceUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGuidanceUpdatedEventArgs, IGuidanceUpdatedEventArgs_Ptr);
    begin
       if this.m_IGuidanceUpdatedEventArgs /= null then
          if this.m_IGuidanceUpdatedEventArgs.all /= null then
-            RefCount := this.m_IGuidanceUpdatedEventArgs.all.Release;
+            temp := this.m_IGuidanceUpdatedEventArgs.all.Release;
             Free (this.m_IGuidanceUpdatedEventArgs);
          end if;
       end if;
@@ -1545,10 +1901,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.GuidanceMode;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1558,11 +1918,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceManeuver'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceManeuver;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceManeuver do
          Hr := this.m_IGuidanceUpdatedEventArgs.all.get_NextManeuver (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceManeuver := new Windows.Services.Maps.Guidance.IGuidanceManeuver;
          Retval.m_IGuidanceManeuver.all := m_ComRetVal;
       end return;
@@ -1574,10 +1938,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_NextManeuverDistance (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1587,11 +1955,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceManeuver'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceManeuver;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceManeuver do
          Hr := this.m_IGuidanceUpdatedEventArgs.all.get_AfterNextManeuver (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceManeuver := new Windows.Services.Maps.Guidance.IGuidanceManeuver;
          Retval.m_IGuidanceManeuver.all := m_ComRetVal;
       end return;
@@ -1603,10 +1975,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_AfterNextManeuverDistance (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1616,10 +1992,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_DistanceToDestination (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1629,10 +2009,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_ElapsedDistance (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1642,10 +2026,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_ElapsedTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1655,10 +2043,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_TimeToDestination (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1668,13 +2060,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_RoadName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1684,11 +2080,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceRoute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceRoute;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceRoute do
          Hr := this.m_IGuidanceUpdatedEventArgs.all.get_Route (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceRoute := new Windows.Services.Maps.Guidance.IGuidanceRoute;
          Retval.m_IGuidanceRoute.all := m_ComRetVal;
       end return;
@@ -1700,11 +2100,15 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceMapMatchedCoordinate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.Guidance.IGuidanceMapMatchedCoordinate;
    begin
       return RetVal : WinRt.Windows.Services.Maps.Guidance.GuidanceMapMatchedCoordinate do
          Hr := this.m_IGuidanceUpdatedEventArgs.all.get_CurrentLocation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGuidanceMapMatchedCoordinate := new Windows.Services.Maps.Guidance.IGuidanceMapMatchedCoordinate;
          Retval.m_IGuidanceMapMatchedCoordinate.all := m_ComRetVal;
       end return;
@@ -1716,10 +2120,14 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_IsNewManeuver (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1729,13 +2137,17 @@ package body WinRt.Windows.Services.Maps.Guidance is
    )
    return IVectorView_IGuidanceLaneInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IGuidanceLaneInfo.Kind;
    begin
       Hr := this.m_IGuidanceUpdatedEventArgs.all.get_LaneInfo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IGuidanceLaneInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 

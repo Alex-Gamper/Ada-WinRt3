@@ -49,12 +49,12 @@ package body WinRt.Windows.System.Preview is
    end;
 
    procedure Finalize (this : in out TwoPanelHingedDevicePosturePreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITwoPanelHingedDevicePosturePreview, ITwoPanelHingedDevicePosturePreview_Ptr);
    begin
       if this.m_ITwoPanelHingedDevicePosturePreview /= null then
          if this.m_ITwoPanelHingedDevicePosturePreview.all /= null then
-            RefCount := this.m_ITwoPanelHingedDevicePosturePreview.all.Release;
+            temp := this.m_ITwoPanelHingedDevicePosturePreview.all.Release;
             Free (this.m_ITwoPanelHingedDevicePosturePreview);
          end if;
       end if;
@@ -66,15 +66,15 @@ package body WinRt.Windows.System.Preview is
    function GetDefaultAsync
    return WinRt.Windows.System.Preview.TwoPanelHingedDevicePosturePreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Preview.TwoPanelHingedDevicePosturePreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Preview.TwoPanelHingedDevicePosturePreview");
       m_Factory        : access WinRt.Windows.System.Preview.ITwoPanelHingedDevicePosturePreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_TwoPanelHingedDevicePosturePreview.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -92,7 +92,7 @@ package body WinRt.Windows.System.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_TwoPanelHingedDevicePosturePreview.Kind_Delegate, AsyncOperationCompletedHandler_TwoPanelHingedDevicePosturePreview.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -106,10 +106,10 @@ package body WinRt.Windows.System.Preview is
          Hr := RoGetActivationFactory (m_hString, IID_ITwoPanelHingedDevicePosturePreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -121,15 +121,15 @@ package body WinRt.Windows.System.Preview is
                      Retval.m_ITwoPanelHingedDevicePosturePreview := new Windows.System.Preview.ITwoPanelHingedDevicePosturePreview;
                      Retval.m_ITwoPanelHingedDevicePosturePreview.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -142,13 +142,13 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.System.Preview.TwoPanelHingedDevicePosturePreviewReading'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_TwoPanelHingedDevicePosturePreviewReading.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -166,7 +166,7 @@ package body WinRt.Windows.System.Preview is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_TwoPanelHingedDevicePosturePreviewReading.Kind_Delegate, AsyncOperationCompletedHandler_TwoPanelHingedDevicePosturePreviewReading.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -180,7 +180,7 @@ package body WinRt.Windows.System.Preview is
          Hr := this.m_ITwoPanelHingedDevicePosturePreview.all.GetCurrentPostureAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -192,9 +192,9 @@ package body WinRt.Windows.System.Preview is
                   Retval.m_ITwoPanelHingedDevicePosturePreviewReading := new Windows.System.Preview.ITwoPanelHingedDevicePosturePreviewReading;
                   Retval.m_ITwoPanelHingedDevicePosturePreviewReading.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -209,10 +209,14 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreview.all.add_PostureChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -222,9 +226,13 @@ package body WinRt.Windows.System.Preview is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreview.all.remove_PostureChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -236,12 +244,12 @@ package body WinRt.Windows.System.Preview is
    end;
 
    procedure Finalize (this : in out TwoPanelHingedDevicePosturePreviewReading) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITwoPanelHingedDevicePosturePreviewReading, ITwoPanelHingedDevicePosturePreviewReading_Ptr);
    begin
       if this.m_ITwoPanelHingedDevicePosturePreviewReading /= null then
          if this.m_ITwoPanelHingedDevicePosturePreviewReading.all /= null then
-            RefCount := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.Release;
+            temp := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.Release;
             Free (this.m_ITwoPanelHingedDevicePosturePreviewReading);
          end if;
       end if;
@@ -256,10 +264,14 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -269,10 +281,14 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.System.Preview.HingeState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Preview.HingeState;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.get_HingeState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -282,10 +298,14 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.Devices.Sensors.SimpleOrientation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Sensors.SimpleOrientation;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.get_Panel1Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -295,13 +315,17 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.get_Panel1Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -311,10 +335,14 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.Devices.Sensors.SimpleOrientation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Sensors.SimpleOrientation;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.get_Panel2Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -324,13 +352,17 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITwoPanelHingedDevicePosturePreviewReading.all.get_Panel2Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -343,12 +375,12 @@ package body WinRt.Windows.System.Preview is
    end;
 
    procedure Finalize (this : in out TwoPanelHingedDevicePosturePreviewReadingChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs, ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs_Ptr);
    begin
       if this.m_ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs /= null then
          if this.m_ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs.all /= null then
-            RefCount := this.m_ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs.all.Release;
+            temp := this.m_ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs.all.Release;
             Free (this.m_ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs);
          end if;
       end if;
@@ -363,11 +395,15 @@ package body WinRt.Windows.System.Preview is
    )
    return WinRt.Windows.System.Preview.TwoPanelHingedDevicePosturePreviewReading'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Preview.ITwoPanelHingedDevicePosturePreviewReading;
    begin
       return RetVal : WinRt.Windows.System.Preview.TwoPanelHingedDevicePosturePreviewReading do
          Hr := this.m_ITwoPanelHingedDevicePosturePreviewReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITwoPanelHingedDevicePosturePreviewReading := new Windows.System.Preview.ITwoPanelHingedDevicePosturePreviewReading;
          Retval.m_ITwoPanelHingedDevicePosturePreviewReading.all := m_ComRetVal;
       end return;

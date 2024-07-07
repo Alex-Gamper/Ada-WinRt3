@@ -58,13 +58,13 @@ package body WinRt.Windows.Web.UI.Interop is
    end;
 
    procedure Finalize (this : in out WebViewControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Web.UI.IWebViewControl;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Web.UI.IWebViewControl, WinRt.Windows.Web.UI.IWebViewControl_Ptr);
    begin
       if this.m_IWebViewControl /= null then
          if this.m_IWebViewControl.all /= null then
-            RefCount := this.m_IWebViewControl.all.Release;
+            temp := this.m_IWebViewControl.all.Release;
             Free (this.m_IWebViewControl);
          end if;
       end if;
@@ -79,11 +79,15 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControl.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -95,9 +99,13 @@ package body WinRt.Windows.Web.UI.Interop is
       source : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.put_Source (source.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DocumentTitle
@@ -106,13 +114,17 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebViewControl.all.get_DocumentTitle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -122,10 +134,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControl.all.get_CanGoBack (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -135,10 +151,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControl.all.get_CanGoForward (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -148,9 +168,13 @@ package body WinRt.Windows.Web.UI.Interop is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.put_DefaultBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DefaultBackgroundColor
@@ -159,10 +183,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IWebViewControl.all.get_DefaultBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -172,10 +200,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControl.all.get_ContainsFullScreenElement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -185,11 +217,15 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.WebViewControlSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.IWebViewControlSettings;
    begin
       return RetVal : WinRt.Windows.Web.UI.WebViewControlSettings do
          Hr := this.m_IWebViewControl.all.get_Settings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebViewControlSettings := new Windows.Web.UI.IWebViewControlSettings;
          Retval.m_IWebViewControlSettings.all := m_ComRetVal;
       end return;
@@ -201,13 +237,17 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return IVectorView_IWebViewControlDeferredPermissionRequest.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IWebViewControlDeferredPermissionRequest.Kind;
    begin
       Hr := this.m_IWebViewControl.all.get_DeferredPermissionRequests (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IWebViewControlDeferredPermissionRequest (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -216,9 +256,13 @@ package body WinRt.Windows.Web.UI.Interop is
       this : in out WebViewControl
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.GoForward;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GoBack
@@ -226,9 +270,13 @@ package body WinRt.Windows.Web.UI.Interop is
       this : in out WebViewControl
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.GoBack;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Refresh
@@ -236,9 +284,13 @@ package body WinRt.Windows.Web.UI.Interop is
       this : in out WebViewControl
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.Refresh;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -246,9 +298,13 @@ package body WinRt.Windows.Web.UI.Interop is
       this : in out WebViewControl
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Navigate
@@ -257,9 +313,13 @@ package body WinRt.Windows.Web.UI.Interop is
       source : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.Navigate (source.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure NavigateToString
@@ -268,11 +328,15 @@ package body WinRt.Windows.Web.UI.Interop is
       text : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       Hr := this.m_IWebViewControl.all.NavigateToString (HStr_text);
-      Hr := WindowsDeleteString (HStr_text);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
    end;
 
    procedure NavigateToLocalStreamUri
@@ -282,9 +346,13 @@ package body WinRt.Windows.Web.UI.Interop is
       streamResolver : Windows.Web.IUriToStreamResolver
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.NavigateToLocalStreamUri (source.m_IUriRuntimeClass.all, streamResolver);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure NavigateWithHttpRequestMessage
@@ -293,9 +361,13 @@ package body WinRt.Windows.Web.UI.Interop is
       requestMessage : Windows.Web.Http.HttpRequestMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.NavigateWithHttpRequestMessage (requestMessage.m_IHttpRequestMessage.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function InvokeScriptAsync
@@ -306,14 +378,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_scriptName : WinRt.HString := To_HString (scriptName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_scriptName : constant WinRt.HString := To_HString (scriptName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -332,7 +404,7 @@ package body WinRt.Windows.Web.UI.Interop is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -345,7 +417,7 @@ package body WinRt.Windows.Web.UI.Interop is
       Hr := this.m_IWebViewControl.all.InvokeScriptAsync (HStr_scriptName, arguments, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -355,16 +427,16 @@ package body WinRt.Windows.Web.UI.Interop is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_scriptName);
+      tmp := WindowsDeleteString (HStr_scriptName);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -374,7 +446,8 @@ package body WinRt.Windows.Web.UI.Interop is
       stream : Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -382,7 +455,6 @@ package body WinRt.Windows.Web.UI.Interop is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -403,9 +475,9 @@ package body WinRt.Windows.Web.UI.Interop is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -417,13 +489,13 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DataPackage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -441,7 +513,7 @@ package body WinRt.Windows.Web.UI.Interop is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DataPackage.Kind_Delegate, AsyncOperationCompletedHandler_DataPackage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -455,7 +527,7 @@ package body WinRt.Windows.Web.UI.Interop is
          Hr := this.m_IWebViewControl.all.CaptureSelectedContentToDataPackageAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -467,9 +539,9 @@ package body WinRt.Windows.Web.UI.Interop is
                   Retval.m_IDataPackage := new Windows.ApplicationModel.DataTransfer.IDataPackage;
                   Retval.m_IDataPackage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -485,17 +557,21 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
-      HStr_contentIdentifier : WinRt.HString := To_HString (contentIdentifier);
-      HStr_relativePath : WinRt.HString := To_HString (relativePath);
+      HStr_contentIdentifier : constant WinRt.HString := To_HString (contentIdentifier);
+      HStr_relativePath : constant WinRt.HString := To_HString (relativePath);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControl.all.BuildLocalStreamUri (HStr_contentIdentifier, HStr_relativePath, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_contentIdentifier);
-         Hr := WindowsDeleteString (HStr_relativePath);
+         tmp := WindowsDeleteString (HStr_contentIdentifier);
+         tmp := WindowsDeleteString (HStr_relativePath);
       end return;
    end;
 
@@ -506,9 +582,13 @@ package body WinRt.Windows.Web.UI.Interop is
       result : access Windows.Web.UI.IWebViewControlDeferredPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.GetDeferredPermissionRequestById (id, result);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NavigationStarting
@@ -518,10 +598,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_NavigationStarting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -531,9 +615,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_NavigationStarting (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ContentLoading
@@ -543,10 +631,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_ContentLoading (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -556,9 +648,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_ContentLoading (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DOMContentLoaded
@@ -568,10 +664,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_DOMContentLoaded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -581,9 +681,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_DOMContentLoaded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NavigationCompleted
@@ -593,10 +697,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_NavigationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -606,9 +714,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_NavigationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameNavigationStarting
@@ -618,10 +730,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_FrameNavigationStarting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -631,9 +747,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_FrameNavigationStarting (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameContentLoading
@@ -643,10 +763,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_FrameContentLoading (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -656,9 +780,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_FrameContentLoading (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameDOMContentLoaded
@@ -668,10 +796,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_FrameDOMContentLoaded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -681,9 +813,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_FrameDOMContentLoaded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_FrameNavigationCompleted
@@ -693,10 +829,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_FrameNavigationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -706,9 +846,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_FrameNavigationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ScriptNotify
@@ -718,10 +862,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_ScriptNotify (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -731,9 +879,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_ScriptNotify (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LongRunningScriptDetected
@@ -743,10 +895,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_LongRunningScriptDetected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -756,9 +912,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_LongRunningScriptDetected (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UnsafeContentWarningDisplaying
@@ -768,10 +928,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_UnsafeContentWarningDisplaying (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -781,9 +945,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_UnsafeContentWarningDisplaying (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UnviewableContentIdentified
@@ -793,10 +961,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_UnviewableContentIdentified (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -806,9 +978,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_UnviewableContentIdentified (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PermissionRequested
@@ -818,10 +994,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_PermissionRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -831,9 +1011,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_PermissionRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UnsupportedUriSchemeIdentified
@@ -843,10 +1027,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_UnsupportedUriSchemeIdentified (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -856,9 +1044,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_UnsupportedUriSchemeIdentified (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NewWindowRequested
@@ -868,10 +1060,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_NewWindowRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -881,9 +1077,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_NewWindowRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ContainsFullScreenElementChanged
@@ -893,10 +1093,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_ContainsFullScreenElementChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -906,9 +1110,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_ContainsFullScreenElementChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_WebResourceRequested
@@ -918,10 +1126,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControl.all.add_WebResourceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -931,9 +1143,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControl.all.remove_WebResourceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Process
@@ -942,15 +1158,19 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControlProcess'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.Interop.IWebViewControlProcess;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Web.UI.Interop.WebViewControlProcess do
          m_Interface := QInterface (this.m_IWebViewControl.all);
          Hr := m_Interface.get_Process (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebViewControlProcess := new Windows.Web.UI.Interop.IWebViewControlProcess;
          Retval.m_IWebViewControlProcess.all := m_ComRetVal;
       end return;
@@ -962,13 +1182,17 @@ package body WinRt.Windows.Web.UI.Interop is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.put_Scale (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -977,14 +1201,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.get_Scale (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -994,13 +1222,17 @@ package body WinRt.Windows.Web.UI.Interop is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.put_Bounds (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bounds
@@ -1009,14 +1241,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.get_Bounds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1026,13 +1262,17 @@ package body WinRt.Windows.Web.UI.Interop is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.put_IsVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsVisible
@@ -1041,14 +1281,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.get_IsVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1057,13 +1301,17 @@ package body WinRt.Windows.Web.UI.Interop is
       this : in out WebViewControl
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MoveFocus
@@ -1072,13 +1320,17 @@ package body WinRt.Windows.Web.UI.Interop is
       reason : Windows.Web.UI.Interop.WebViewControlMoveFocusReason
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.MoveFocus (reason);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MoveFocusRequested
@@ -1088,14 +1340,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.add_MoveFocusRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1105,13 +1361,17 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.remove_MoveFocusRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AcceleratorKeyPressed
@@ -1121,14 +1381,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.add_AcceleratorKeyPressed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1138,13 +1402,17 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.remove_AcceleratorKeyPressed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddInitializeScript
@@ -1153,15 +1421,19 @@ package body WinRt.Windows.Web.UI.Interop is
       script : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_script : WinRt.HString := To_HString (script);
+      temp             : WinRt.UInt32 := 0;
+      HStr_script : constant WinRt.HString := To_HString (script);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.IWebViewControl2, WinRt.Windows.Web.UI.IID_IWebViewControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.AddInitializeScript (HStr_script);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_script);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_script);
    end;
 
    function add_GotFocus
@@ -1171,14 +1443,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite2, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.add_GotFocus (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1188,13 +1464,17 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite2, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.remove_GotFocus (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LostFocus
@@ -1204,14 +1484,18 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite2, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.add_LostFocus (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1221,13 +1505,17 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.Interop.IWebViewControlSite2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControl_Interface, WinRt.Windows.Web.UI.Interop.IWebViewControlSite2, WinRt.Windows.Web.UI.Interop.IID_IWebViewControlSite2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControl.all);
       Hr := m_Interface.remove_LostFocus (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1239,12 +1527,12 @@ package body WinRt.Windows.Web.UI.Interop is
    end;
 
    procedure Finalize (this : in out WebViewControlAcceleratorKeyPressedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlAcceleratorKeyPressedEventArgs, IWebViewControlAcceleratorKeyPressedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlAcceleratorKeyPressedEventArgs /= null then
          if this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.Release;
+            temp := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.Release;
             Free (this.m_IWebViewControlAcceleratorKeyPressedEventArgs);
          end if;
       end if;
@@ -1259,10 +1547,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.UI.Core.CoreAcceleratorKeyEventType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreAcceleratorKeyEventType;
    begin
       Hr := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.get_EventType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1272,10 +1564,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
    begin
       Hr := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.get_VirtualKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1285,10 +1581,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.UI.Core.CorePhysicalKeyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CorePhysicalKeyStatus;
    begin
       Hr := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.get_KeyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1298,10 +1598,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControlAcceleratorKeyRoutingStage is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.Interop.WebViewControlAcceleratorKeyRoutingStage;
    begin
       Hr := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.get_RoutingStage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1311,10 +1615,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1324,9 +1632,13 @@ package body WinRt.Windows.Web.UI.Interop is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1338,12 +1650,12 @@ package body WinRt.Windows.Web.UI.Interop is
    end;
 
    procedure Finalize (this : in out WebViewControlMoveFocusRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlMoveFocusRequestedEventArgs, IWebViewControlMoveFocusRequestedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlMoveFocusRequestedEventArgs /= null then
          if this.m_IWebViewControlMoveFocusRequestedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlMoveFocusRequestedEventArgs.all.Release;
+            temp := this.m_IWebViewControlMoveFocusRequestedEventArgs.all.Release;
             Free (this.m_IWebViewControlMoveFocusRequestedEventArgs);
          end if;
       end if;
@@ -1358,10 +1670,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControlMoveFocusReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.Interop.WebViewControlMoveFocusReason;
    begin
       Hr := this.m_IWebViewControlMoveFocusRequestedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1374,12 +1690,12 @@ package body WinRt.Windows.Web.UI.Interop is
    end;
 
    procedure Finalize (this : in out WebViewControlProcess) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlProcess, IWebViewControlProcess_Ptr);
    begin
       if this.m_IWebViewControlProcess /= null then
          if this.m_IWebViewControlProcess.all /= null then
-            RefCount := this.m_IWebViewControlProcess.all.Release;
+            temp := this.m_IWebViewControlProcess.all.Release;
             Free (this.m_IWebViewControlProcess);
          end if;
       end if;
@@ -1394,9 +1710,10 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WebViewControlProcess is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
       m_Factory    : access IWebViewControlProcessFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.UI.Interop.IWebViewControlProcess;
    begin
       return RetVal : WebViewControlProcess do
@@ -1405,15 +1722,16 @@ package body WinRt.Windows.Web.UI.Interop is
             Hr := m_Factory.CreateWithOptions (processOptions.m_IWebViewControlProcessOptions.all, m_ComRetVal'Access);
             Retval.m_IWebViewControlProcess := new Windows.Web.UI.Interop.IWebViewControlProcess;
             Retval.m_IWebViewControlProcess.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return WebViewControlProcess is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
       m_ComRetVal  : aliased Windows.Web.UI.Interop.IWebViewControlProcess;
    begin
       return RetVal : WebViewControlProcess do
@@ -1422,7 +1740,7 @@ package body WinRt.Windows.Web.UI.Interop is
             Retval.m_IWebViewControlProcess := new Windows.Web.UI.Interop.IWebViewControlProcess;
             Retval.m_IWebViewControlProcess.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1435,10 +1753,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IWebViewControlProcess.all.get_ProcessId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1448,13 +1770,17 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebViewControlProcess.all.get_EnterpriseId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1464,10 +1790,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlProcess.all.get_IsPrivateNetworkClientServerCapabilityEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1479,13 +1809,13 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WebViewControl.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1503,7 +1833,7 @@ package body WinRt.Windows.Web.UI.Interop is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebViewControl.Kind_Delegate, AsyncOperationCompletedHandler_WebViewControl.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1517,7 +1847,7 @@ package body WinRt.Windows.Web.UI.Interop is
          Hr := this.m_IWebViewControlProcess.all.CreateWebViewControlAsync (hostWindowHandle, bounds, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1529,9 +1859,9 @@ package body WinRt.Windows.Web.UI.Interop is
                   Retval.m_IWebViewControl := new Windows.Web.UI.IWebViewControl;
                   Retval.m_IWebViewControl.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1545,10 +1875,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IWebViewControlProcess.all.GetWebViewControls (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1557,9 +1891,13 @@ package body WinRt.Windows.Web.UI.Interop is
       this : in out WebViewControlProcess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlProcess.all.Terminate_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ProcessExited
@@ -1569,10 +1907,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebViewControlProcess.all.add_ProcessExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1582,9 +1924,13 @@ package body WinRt.Windows.Web.UI.Interop is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlProcess.all.remove_ProcessExited (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1596,12 +1942,12 @@ package body WinRt.Windows.Web.UI.Interop is
    end;
 
    procedure Finalize (this : in out WebViewControlProcessOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlProcessOptions, IWebViewControlProcessOptions_Ptr);
    begin
       if this.m_IWebViewControlProcessOptions /= null then
          if this.m_IWebViewControlProcessOptions.all /= null then
-            RefCount := this.m_IWebViewControlProcessOptions.all.Release;
+            temp := this.m_IWebViewControlProcessOptions.all.Release;
             Free (this.m_IWebViewControlProcessOptions);
          end if;
       end if;
@@ -1612,7 +1958,8 @@ package body WinRt.Windows.Web.UI.Interop is
 
    function Constructor return WebViewControlProcessOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcessOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcessOptions");
       m_ComRetVal  : aliased Windows.Web.UI.Interop.IWebViewControlProcessOptions;
    begin
       return RetVal : WebViewControlProcessOptions do
@@ -1621,7 +1968,7 @@ package body WinRt.Windows.Web.UI.Interop is
             Retval.m_IWebViewControlProcessOptions := new Windows.Web.UI.Interop.IWebViewControlProcessOptions;
             Retval.m_IWebViewControlProcessOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1634,11 +1981,15 @@ package body WinRt.Windows.Web.UI.Interop is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IWebViewControlProcessOptions.all.put_EnterpriseId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_EnterpriseId
@@ -1647,13 +1998,17 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebViewControlProcessOptions.all.get_EnterpriseId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1663,9 +2018,13 @@ package body WinRt.Windows.Web.UI.Interop is
       value : Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlProcessOptions.all.put_PrivateNetworkClientServerCapability (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PrivateNetworkClientServerCapability
@@ -1674,10 +2033,14 @@ package body WinRt.Windows.Web.UI.Interop is
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControlProcessCapabilityState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.Interop.WebViewControlProcessCapabilityState;
    begin
       Hr := this.m_IWebViewControlProcessOptions.all.get_PrivateNetworkClientServerCapability (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

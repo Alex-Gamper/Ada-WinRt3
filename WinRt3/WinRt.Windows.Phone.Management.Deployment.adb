@@ -54,12 +54,12 @@ package body WinRt.Windows.Phone.Management.Deployment is
    end;
 
    procedure Finalize (this : in out Enterprise) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEnterprise, IEnterprise_Ptr);
    begin
       if this.m_IEnterprise /= null then
          if this.m_IEnterprise.all /= null then
-            RefCount := this.m_IEnterprise.all.Release;
+            temp := this.m_IEnterprise.all.Release;
             Free (this.m_IEnterprise);
          end if;
       end if;
@@ -74,10 +74,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IEnterprise.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -87,13 +91,17 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEnterprise.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -103,10 +111,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IEnterprise.all.get_WorkplaceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -116,10 +128,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEnterprise.all.get_EnrollmentValidFrom (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -129,10 +145,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEnterprise.all.get_EnrollmentValidTo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -142,10 +162,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Windows.Phone.Management.Deployment.EnterpriseStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Management.Deployment.EnterpriseStatus;
    begin
       Hr := this.m_IEnterprise.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -156,45 +180,54 @@ package body WinRt.Windows.Phone.Management.Deployment is
       function get_EnrolledEnterprises
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IEnterpriseEnrollmentManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseEnrollmentManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnrolledEnterprises (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_CurrentEnterprise
       return WinRt.Windows.Phone.Management.Deployment.Enterprise is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IEnterpriseEnrollmentManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Management.Deployment.IEnterprise;
       begin
          return RetVal : WinRt.Windows.Phone.Management.Deployment.Enterprise do
             Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseEnrollmentManager'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_CurrentEnterprise (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IEnterprise := new Windows.Phone.Management.Deployment.IEnterprise;
                Retval.m_IEnterprise.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       procedure ValidateEnterprisesAsync is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IEnterpriseEnrollmentManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -202,7 +235,6 @@ package body WinRt.Windows.Phone.Management.Deployment is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -218,7 +250,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseEnrollmentManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ValidateEnterprisesAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -226,14 +258,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RequestEnrollmentAsync
@@ -242,16 +274,16 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IEnterpriseEnrollmentManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_enrollmentToken : WinRt.HString := To_HString (enrollmentToken);
+         temp             : WinRt.UInt32 := 0;
+         HStr_enrollmentToken : constant WinRt.HString := To_HString (enrollmentToken);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_EnterpriseEnrollmentResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -269,7 +301,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EnterpriseEnrollmentResult.Kind_Delegate, AsyncOperationCompletedHandler_EnterpriseEnrollmentResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -283,10 +315,10 @@ package body WinRt.Windows.Phone.Management.Deployment is
             Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseEnrollmentManager'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestEnrollmentAsync (HStr_enrollmentToken, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -298,16 +330,16 @@ package body WinRt.Windows.Phone.Management.Deployment is
                         Retval.m_IEnterpriseEnrollmentResult := new Windows.Phone.Management.Deployment.IEnterpriseEnrollmentResult;
                         Retval.m_IEnterpriseEnrollmentResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_enrollmentToken);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_enrollmentToken);
          end return;
       end;
 
@@ -317,15 +349,15 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IEnterpriseEnrollmentManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -343,7 +375,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -356,10 +388,10 @@ package body WinRt.Windows.Phone.Management.Deployment is
          Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseEnrollmentManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestUnenrollmentAsync (enterprise_p.m_IEnterprise.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -369,15 +401,15 @@ package body WinRt.Windows.Phone.Management.Deployment is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -392,12 +424,12 @@ package body WinRt.Windows.Phone.Management.Deployment is
    end;
 
    procedure Finalize (this : in out EnterpriseEnrollmentResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEnterpriseEnrollmentResult, IEnterpriseEnrollmentResult_Ptr);
    begin
       if this.m_IEnterpriseEnrollmentResult /= null then
          if this.m_IEnterpriseEnrollmentResult.all /= null then
-            RefCount := this.m_IEnterpriseEnrollmentResult.all.Release;
+            temp := this.m_IEnterpriseEnrollmentResult.all.Release;
             Free (this.m_IEnterpriseEnrollmentResult);
          end if;
       end if;
@@ -412,11 +444,15 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Windows.Phone.Management.Deployment.Enterprise'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Management.Deployment.IEnterprise;
    begin
       return RetVal : WinRt.Windows.Phone.Management.Deployment.Enterprise do
          Hr := this.m_IEnterpriseEnrollmentResult.all.get_EnrolledEnterprise (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEnterprise := new Windows.Phone.Management.Deployment.IEnterprise;
          Retval.m_IEnterprise.all := m_ComRetVal;
       end return;
@@ -428,10 +464,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus;
    begin
       Hr := this.m_IEnterpriseEnrollmentResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -446,16 +486,16 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.Windows.Phone.Management.Deployment.PackageInstallResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_packageFullName : WinRt.HString := To_HString (packageFullName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_packageFullName : constant WinRt.HString := To_HString (packageFullName);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_PackageInstallResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -473,7 +513,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PackageInstallResult.Kind_Delegate, AsyncOperationCompletedHandler_PackageInstallResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -487,10 +527,10 @@ package body WinRt.Windows.Phone.Management.Deployment is
             Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RemovePackageAsync (HStr_packageFullName, removalOptions, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -502,16 +542,16 @@ package body WinRt.Windows.Phone.Management.Deployment is
                         Retval.m_IPackageInstallResult := new Windows.Phone.Management.Deployment.IPackageInstallResult;
                         Retval.m_IPackageInstallResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_packageFullName);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_packageFullName);
          end return;
       end;
 
@@ -523,15 +563,15 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.Windows.Phone.Management.Deployment.PackageInstallResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_PackageInstallResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -549,7 +589,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PackageInstallResult.Kind_Delegate, AsyncOperationCompletedHandler_PackageInstallResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -563,10 +603,10 @@ package body WinRt.Windows.Phone.Management.Deployment is
             Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RegisterPackageAsync (manifestUri.m_IUriRuntimeClass.all, dependencyPackageUris, deploymentOptions, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -578,15 +618,15 @@ package body WinRt.Windows.Phone.Management.Deployment is
                         Retval.m_IPackageInstallResult := new Windows.Phone.Management.Deployment.IPackageInstallResult;
                         Retval.m_IPackageInstallResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -597,21 +637,25 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
-         HStr_packageName : WinRt.HString := To_HString (packageName);
-         HStr_packagePublisher : WinRt.HString := To_HString (packagePublisher);
+         HStr_packageName : constant WinRt.HString := To_HString (packageName);
+         HStr_packagePublisher : constant WinRt.HString := To_HString (packagePublisher);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindPackages (HStr_packageName, HStr_packagePublisher, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_packageName);
-         Hr := WindowsDeleteString (HStr_packagePublisher);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_packageName);
+         tmp := WindowsDeleteString (HStr_packagePublisher);
          return m_ComRetVal;
       end;
 
@@ -622,16 +666,16 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.Windows.Phone.Management.Deployment.PackageInstallResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_title : WinRt.HString := To_HString (title);
+         temp             : WinRt.UInt32 := 0;
+         HStr_title : constant WinRt.HString := To_HString (title);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_PackageInstallResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -649,7 +693,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PackageInstallResult.Kind_Delegate, AsyncOperationCompletedHandler_PackageInstallResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -663,10 +707,10 @@ package body WinRt.Windows.Phone.Management.Deployment is
             Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.AddPackageAsync (HStr_title, sourceLocation.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -678,16 +722,16 @@ package body WinRt.Windows.Phone.Management.Deployment is
                         Retval.m_IPackageInstallResult := new Windows.Phone.Management.Deployment.IPackageInstallResult;
                         Retval.m_IPackageInstallResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_title);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_title);
          end return;
       end;
 
@@ -701,18 +745,18 @@ package body WinRt.Windows.Phone.Management.Deployment is
       )
       return WinRt.Windows.Phone.Management.Deployment.PackageInstallResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_title : WinRt.HString := To_HString (title);
-         HStr_instanceId : WinRt.HString := To_HString (instanceId);
-         HStr_offerId : WinRt.HString := To_HString (offerId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_title : constant WinRt.HString := To_HString (title);
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
+         HStr_offerId : constant WinRt.HString := To_HString (offerId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_PackageInstallResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -730,7 +774,7 @@ package body WinRt.Windows.Phone.Management.Deployment is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PackageInstallResult.Kind_Delegate, AsyncOperationCompletedHandler_PackageInstallResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -744,10 +788,10 @@ package body WinRt.Windows.Phone.Management.Deployment is
             Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.AddPackageAsync (HStr_title, sourceLocation.m_IUriRuntimeClass.all, HStr_instanceId, HStr_offerId, license.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -759,69 +803,81 @@ package body WinRt.Windows.Phone.Management.Deployment is
                         Retval.m_IPackageInstallResult := new Windows.Phone.Management.Deployment.IPackageInstallResult;
                         Retval.m_IPackageInstallResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_title);
-            Hr := WindowsDeleteString (HStr_instanceId);
-            Hr := WindowsDeleteString (HStr_offerId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_title);
+            tmp := WindowsDeleteString (HStr_instanceId);
+            tmp := WindowsDeleteString (HStr_offerId);
          end return;
       end;
 
       function GetPendingPackageInstalls
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetPendingPackageInstalls (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function FindPackagesForCurrentPublisher
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindPackagesForCurrentPublisher (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function FindPackages
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Management.Deployment.InstallationManager");
          m_Factory        : access WinRt.Windows.Phone.Management.Deployment.IInstallationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IInstallationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindPackages (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -836,12 +892,12 @@ package body WinRt.Windows.Phone.Management.Deployment is
    end;
 
    procedure Finalize (this : in out PackageInstallResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPackageInstallResult, IPackageInstallResult_Ptr);
    begin
       if this.m_IPackageInstallResult /= null then
          if this.m_IPackageInstallResult.all /= null then
-            RefCount := this.m_IPackageInstallResult.all.Release;
+            temp := this.m_IPackageInstallResult.all.Release;
             Free (this.m_IPackageInstallResult);
          end if;
       end if;
@@ -856,13 +912,17 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPackageInstallResult.all.get_ProductId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -872,10 +932,14 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.Windows.Management.Deployment.PackageInstallState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Management.Deployment.PackageInstallState;
    begin
       Hr := this.m_IPackageInstallResult.all.get_InstallState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -885,17 +949,21 @@ package body WinRt.Windows.Phone.Management.Deployment is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Management.Deployment.IPackageInstallResult2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Management.Deployment.IPackageInstallResult_Interface, WinRt.Windows.Phone.Management.Deployment.IPackageInstallResult2, WinRt.Windows.Phone.Management.Deployment.IID_IPackageInstallResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPackageInstallResult.all);
       Hr := m_Interface.get_ErrorText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

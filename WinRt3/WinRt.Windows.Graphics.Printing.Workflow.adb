@@ -49,12 +49,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowBackgroundSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowBackgroundSession, IPrintWorkflowBackgroundSession_Ptr);
    begin
       if this.m_IPrintWorkflowBackgroundSession /= null then
          if this.m_IPrintWorkflowBackgroundSession.all /= null then
-            RefCount := this.m_IPrintWorkflowBackgroundSession.all.Release;
+            temp := this.m_IPrintWorkflowBackgroundSession.all.Release;
             Free (this.m_IPrintWorkflowBackgroundSession);
          end if;
       end if;
@@ -70,10 +70,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSession.all.add_SetupRequested (setupEventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -83,9 +87,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSession.all.remove_SetupRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Submitted
@@ -95,10 +103,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSession.all.add_Submitted (submittedEventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -108,9 +120,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSession.all.remove_Submitted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -119,10 +135,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSession.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -131,9 +151,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowBackgroundSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSession.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -145,12 +169,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowBackgroundSetupRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowBackgroundSetupRequestedEventArgs, IPrintWorkflowBackgroundSetupRequestedEventArgs_Ptr);
    begin
       if this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs /= null then
          if this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all /= null then
-            RefCount := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.Release;
+            temp := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.Release;
             Free (this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs);
          end if;
       end if;
@@ -165,13 +189,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WorkflowPrintTicket.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -189,7 +213,7 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WorkflowPrintTicket.Kind_Delegate, AsyncOperationCompletedHandler_WorkflowPrintTicket.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -203,7 +227,7 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
          Hr := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.GetUserPrintTicketAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -215,9 +239,9 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
                   Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
                   Retval.m_IWorkflowPrintTicket.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -231,11 +255,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
          Hr := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
          Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
       end return;
@@ -246,9 +274,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowBackgroundSetupRequestedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.SetRequiresUI;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -257,11 +289,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -276,12 +312,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowConfiguration, IPrintWorkflowConfiguration_Ptr);
    begin
       if this.m_IPrintWorkflowConfiguration /= null then
          if this.m_IPrintWorkflowConfiguration.all /= null then
-            RefCount := this.m_IPrintWorkflowConfiguration.all.Release;
+            temp := this.m_IPrintWorkflowConfiguration.all.Release;
             Free (this.m_IPrintWorkflowConfiguration);
          end if;
       end if;
@@ -296,13 +332,17 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintWorkflowConfiguration.all.get_SourceAppDisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -312,13 +352,17 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintWorkflowConfiguration.all.get_JobTitle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -328,13 +372,17 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintWorkflowConfiguration.all.get_SessionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -347,12 +395,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowForegroundSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowForegroundSession, IPrintWorkflowForegroundSession_Ptr);
    begin
       if this.m_IPrintWorkflowForegroundSession /= null then
          if this.m_IPrintWorkflowForegroundSession.all /= null then
-            RefCount := this.m_IPrintWorkflowForegroundSession.all.Release;
+            temp := this.m_IPrintWorkflowForegroundSession.all.Release;
             Free (this.m_IPrintWorkflowForegroundSession);
          end if;
       end if;
@@ -368,10 +416,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintWorkflowForegroundSession.all.add_SetupRequested (setupEventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -381,9 +433,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowForegroundSession.all.remove_SetupRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_XpsDataAvailable
@@ -393,10 +449,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintWorkflowForegroundSession.all.add_XpsDataAvailable (xpsDataAvailableEventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -406,9 +466,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowForegroundSession.all.remove_XpsDataAvailable (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -417,10 +481,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus;
    begin
       Hr := this.m_IPrintWorkflowForegroundSession.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -429,9 +497,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       this : in out PrintWorkflowForegroundSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowForegroundSession.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -443,12 +515,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowForegroundSetupRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowForegroundSetupRequestedEventArgs, IPrintWorkflowForegroundSetupRequestedEventArgs_Ptr);
    begin
       if this.m_IPrintWorkflowForegroundSetupRequestedEventArgs /= null then
          if this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all /= null then
-            RefCount := this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all.Release;
+            temp := this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all.Release;
             Free (this.m_IPrintWorkflowForegroundSetupRequestedEventArgs);
          end if;
       end if;
@@ -463,13 +535,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WorkflowPrintTicket.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -487,7 +559,7 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WorkflowPrintTicket.Kind_Delegate, AsyncOperationCompletedHandler_WorkflowPrintTicket.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -501,7 +573,7 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
          Hr := this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all.GetUserPrintTicketAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -513,9 +585,9 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
                   Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
                   Retval.m_IWorkflowPrintTicket.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -529,11 +601,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
          Hr := this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
          Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
       end return;
@@ -545,11 +621,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -564,12 +644,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowObjectModelSourceFileContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowObjectModelSourceFileContent, IPrintWorkflowObjectModelSourceFileContent_Ptr);
    begin
       if this.m_IPrintWorkflowObjectModelSourceFileContent /= null then
          if this.m_IPrintWorkflowObjectModelSourceFileContent.all /= null then
-            RefCount := this.m_IPrintWorkflowObjectModelSourceFileContent.all.Release;
+            temp := this.m_IPrintWorkflowObjectModelSourceFileContent.all.Release;
             Free (this.m_IPrintWorkflowObjectModelSourceFileContent);
          end if;
       end if;
@@ -587,12 +667,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowObjectModelTargetPackage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowObjectModelTargetPackage, IPrintWorkflowObjectModelTargetPackage_Ptr);
    begin
       if this.m_IPrintWorkflowObjectModelTargetPackage /= null then
          if this.m_IPrintWorkflowObjectModelTargetPackage.all /= null then
-            RefCount := this.m_IPrintWorkflowObjectModelTargetPackage.all.Release;
+            temp := this.m_IPrintWorkflowObjectModelTargetPackage.all.Release;
             Free (this.m_IPrintWorkflowObjectModelTargetPackage);
          end if;
       end if;
@@ -610,12 +690,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowSourceContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowSourceContent, IPrintWorkflowSourceContent_Ptr);
    begin
       if this.m_IPrintWorkflowSourceContent /= null then
          if this.m_IPrintWorkflowSourceContent.all /= null then
-            RefCount := this.m_IPrintWorkflowSourceContent.all.Release;
+            temp := this.m_IPrintWorkflowSourceContent.all.Release;
             Free (this.m_IPrintWorkflowSourceContent);
          end if;
       end if;
@@ -630,13 +710,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WorkflowPrintTicket.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -654,7 +734,7 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WorkflowPrintTicket.Kind_Delegate, AsyncOperationCompletedHandler_WorkflowPrintTicket.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -668,7 +748,7 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
          Hr := this.m_IPrintWorkflowSourceContent.all.GetJobPrintTicketAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -680,9 +760,9 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
                   Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
                   Retval.m_IWorkflowPrintTicket.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -696,11 +776,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSpoolStreamContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowSpoolStreamContent;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSpoolStreamContent do
          Hr := this.m_IPrintWorkflowSourceContent.all.GetSourceSpoolDataAsStreamContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowSpoolStreamContent := new Windows.Graphics.Printing.Workflow.IPrintWorkflowSpoolStreamContent;
          Retval.m_IPrintWorkflowSpoolStreamContent.all := m_ComRetVal;
       end return;
@@ -712,11 +796,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowObjectModelSourceFileContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowObjectModelSourceFileContent do
          Hr := this.m_IPrintWorkflowSourceContent.all.GetSourceSpoolDataAsXpsObjectModel (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowObjectModelSourceFileContent := new Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent;
          Retval.m_IPrintWorkflowObjectModelSourceFileContent.all := m_ComRetVal;
       end return;
@@ -731,12 +819,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowSpoolStreamContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowSpoolStreamContent, IPrintWorkflowSpoolStreamContent_Ptr);
    begin
       if this.m_IPrintWorkflowSpoolStreamContent /= null then
          if this.m_IPrintWorkflowSpoolStreamContent.all /= null then
-            RefCount := this.m_IPrintWorkflowSpoolStreamContent.all.Release;
+            temp := this.m_IPrintWorkflowSpoolStreamContent.all.Release;
             Free (this.m_IPrintWorkflowSpoolStreamContent);
          end if;
       end if;
@@ -751,10 +839,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IPrintWorkflowSpoolStreamContent.all.GetInputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -767,12 +859,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowStreamTarget) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowStreamTarget, IPrintWorkflowStreamTarget_Ptr);
    begin
       if this.m_IPrintWorkflowStreamTarget /= null then
          if this.m_IPrintWorkflowStreamTarget.all /= null then
-            RefCount := this.m_IPrintWorkflowStreamTarget.all.Release;
+            temp := this.m_IPrintWorkflowStreamTarget.all.Release;
             Free (this.m_IPrintWorkflowStreamTarget);
          end if;
       end if;
@@ -787,10 +879,14 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IPrintWorkflowStreamTarget.all.GetOutputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -803,12 +899,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowSubmittedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowSubmittedEventArgs, IPrintWorkflowSubmittedEventArgs_Ptr);
    begin
       if this.m_IPrintWorkflowSubmittedEventArgs /= null then
          if this.m_IPrintWorkflowSubmittedEventArgs.all /= null then
-            RefCount := this.m_IPrintWorkflowSubmittedEventArgs.all.Release;
+            temp := this.m_IPrintWorkflowSubmittedEventArgs.all.Release;
             Free (this.m_IPrintWorkflowSubmittedEventArgs);
          end if;
       end if;
@@ -823,11 +919,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedOperation do
          Hr := this.m_IPrintWorkflowSubmittedEventArgs.all.get_Operation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowSubmittedOperation := new Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation;
          Retval.m_IPrintWorkflowSubmittedOperation.all := m_ComRetVal;
       end return;
@@ -840,11 +940,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowTarget'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowTarget;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowTarget do
          Hr := this.m_IPrintWorkflowSubmittedEventArgs.all.GetTarget (jobPrintTicket.m_IWorkflowPrintTicket.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowTarget := new Windows.Graphics.Printing.Workflow.IPrintWorkflowTarget;
          Retval.m_IPrintWorkflowTarget.all := m_ComRetVal;
       end return;
@@ -856,11 +960,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintWorkflowSubmittedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -875,12 +983,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowSubmittedOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowSubmittedOperation, IPrintWorkflowSubmittedOperation_Ptr);
    begin
       if this.m_IPrintWorkflowSubmittedOperation /= null then
          if this.m_IPrintWorkflowSubmittedOperation.all /= null then
-            RefCount := this.m_IPrintWorkflowSubmittedOperation.all.Release;
+            temp := this.m_IPrintWorkflowSubmittedOperation.all.Release;
             Free (this.m_IPrintWorkflowSubmittedOperation);
          end if;
       end if;
@@ -895,9 +1003,13 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
       status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintWorkflowSubmittedOperation.all.Complete (status);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Configuration
@@ -906,11 +1018,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowConfiguration do
          Hr := this.m_IPrintWorkflowSubmittedOperation.all.get_Configuration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowConfiguration := new Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration;
          Retval.m_IPrintWorkflowConfiguration.all := m_ComRetVal;
       end return;
@@ -922,11 +1038,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSourceContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowSourceContent;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSourceContent do
          Hr := this.m_IPrintWorkflowSubmittedOperation.all.get_XpsContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowSourceContent := new Windows.Graphics.Printing.Workflow.IPrintWorkflowSourceContent;
          Retval.m_IPrintWorkflowSourceContent.all := m_ComRetVal;
       end return;
@@ -941,12 +1061,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowTarget) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowTarget, IPrintWorkflowTarget_Ptr);
    begin
       if this.m_IPrintWorkflowTarget /= null then
          if this.m_IPrintWorkflowTarget.all /= null then
-            RefCount := this.m_IPrintWorkflowTarget.all.Release;
+            temp := this.m_IPrintWorkflowTarget.all.Release;
             Free (this.m_IPrintWorkflowTarget);
          end if;
       end if;
@@ -961,11 +1081,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowStreamTarget'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowStreamTarget;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowStreamTarget do
          Hr := this.m_IPrintWorkflowTarget.all.get_TargetAsStream (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowStreamTarget := new Windows.Graphics.Printing.Workflow.IPrintWorkflowStreamTarget;
          Retval.m_IPrintWorkflowStreamTarget.all := m_ComRetVal;
       end return;
@@ -977,11 +1101,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowObjectModelTargetPackage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelTargetPackage;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowObjectModelTargetPackage do
          Hr := this.m_IPrintWorkflowTarget.all.get_TargetAsXpsObjectModelPackage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowObjectModelTargetPackage := new Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelTargetPackage;
          Retval.m_IPrintWorkflowObjectModelTargetPackage.all := m_ComRetVal;
       end return;
@@ -996,12 +1124,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowTriggerDetails, IPrintWorkflowTriggerDetails_Ptr);
    begin
       if this.m_IPrintWorkflowTriggerDetails /= null then
          if this.m_IPrintWorkflowTriggerDetails.all /= null then
-            RefCount := this.m_IPrintWorkflowTriggerDetails.all.Release;
+            temp := this.m_IPrintWorkflowTriggerDetails.all.Release;
             Free (this.m_IPrintWorkflowTriggerDetails);
          end if;
       end if;
@@ -1016,11 +1144,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowBackgroundSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowBackgroundSession;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowBackgroundSession do
          Hr := this.m_IPrintWorkflowTriggerDetails.all.get_PrintWorkflowSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowBackgroundSession := new Windows.Graphics.Printing.Workflow.IPrintWorkflowBackgroundSession;
          Retval.m_IPrintWorkflowBackgroundSession.all := m_ComRetVal;
       end return;
@@ -1035,12 +1167,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowUIActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowUIActivatedEventArgs, IPrintWorkflowUIActivatedEventArgs_Ptr);
    begin
       if this.m_IPrintWorkflowUIActivatedEventArgs /= null then
          if this.m_IPrintWorkflowUIActivatedEventArgs.all /= null then
-            RefCount := this.m_IPrintWorkflowUIActivatedEventArgs.all.Release;
+            temp := this.m_IPrintWorkflowUIActivatedEventArgs.all.Release;
             Free (this.m_IPrintWorkflowUIActivatedEventArgs);
          end if;
       end if;
@@ -1055,11 +1187,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowForegroundSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowForegroundSession;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowForegroundSession do
          Hr := this.m_IPrintWorkflowUIActivatedEventArgs.all.get_PrintWorkflowSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowForegroundSession := new Windows.Graphics.Printing.Workflow.IPrintWorkflowForegroundSession;
          Retval.m_IPrintWorkflowForegroundSession.all := m_ComRetVal;
       end return;
@@ -1071,15 +1207,19 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUIActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IPrintWorkflowUIActivatedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1091,14 +1231,18 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.ApplicationModel.Activation.ActivationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUIActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintWorkflowUIActivatedEventArgs.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1108,14 +1252,18 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUIActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintWorkflowUIActivatedEventArgs.all);
       Hr := m_Interface.get_PreviousExecutionState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1125,15 +1273,19 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.ApplicationModel.Activation.SplashScreen'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUIActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          m_Interface := QInterface (this.m_IPrintWorkflowUIActivatedEventArgs.all);
          Hr := m_Interface.get_SplashScreen (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
@@ -1148,12 +1300,12 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    end;
 
    procedure Finalize (this : in out PrintWorkflowXpsDataAvailableEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintWorkflowXpsDataAvailableEventArgs, IPrintWorkflowXpsDataAvailableEventArgs_Ptr);
    begin
       if this.m_IPrintWorkflowXpsDataAvailableEventArgs /= null then
          if this.m_IPrintWorkflowXpsDataAvailableEventArgs.all /= null then
-            RefCount := this.m_IPrintWorkflowXpsDataAvailableEventArgs.all.Release;
+            temp := this.m_IPrintWorkflowXpsDataAvailableEventArgs.all.Release;
             Free (this.m_IPrintWorkflowXpsDataAvailableEventArgs);
          end if;
       end if;
@@ -1168,11 +1320,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedOperation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedOperation do
          Hr := this.m_IPrintWorkflowXpsDataAvailableEventArgs.all.get_Operation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintWorkflowSubmittedOperation := new Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation;
          Retval.m_IPrintWorkflowSubmittedOperation.all := m_ComRetVal;
       end return;
@@ -1184,11 +1340,15 @@ package body WinRt.Windows.Graphics.Printing.Workflow is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintWorkflowXpsDataAvailableEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;

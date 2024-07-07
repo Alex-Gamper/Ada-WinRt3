@@ -76,12 +76,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapBuffer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapBuffer, IBitmapBuffer_Ptr);
    begin
       if this.m_IBitmapBuffer /= null then
          if this.m_IBitmapBuffer.all /= null then
-            RefCount := this.m_IBitmapBuffer.all.Release;
+            temp := this.m_IBitmapBuffer.all.Release;
             Free (this.m_IBitmapBuffer);
          end if;
       end if;
@@ -96,10 +96,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IBitmapBuffer.all.GetPlaneCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -110,10 +114,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPlaneDescription is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPlaneDescription;
    begin
       Hr := this.m_IBitmapBuffer.all.GetPlaneDescription (index, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -123,14 +131,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapBuffer_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapBuffer.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -139,13 +151,17 @@ package body WinRt.Windows.Graphics.Imaging is
       this : in out BitmapBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapBuffer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapBuffer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -157,12 +173,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapCodecInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapCodecInformation, IBitmapCodecInformation_Ptr);
    begin
       if this.m_IBitmapCodecInformation /= null then
          if this.m_IBitmapCodecInformation.all /= null then
-            RefCount := this.m_IBitmapCodecInformation.all.Release;
+            temp := this.m_IBitmapCodecInformation.all.Release;
             Free (this.m_IBitmapCodecInformation);
          end if;
       end if;
@@ -177,10 +193,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IBitmapCodecInformation.all.get_CodecId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -190,13 +210,17 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IBitmapCodecInformation.all.get_FileExtensions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -206,13 +230,17 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBitmapCodecInformation.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -222,13 +250,17 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IBitmapCodecInformation.all.get_MimeTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -241,12 +273,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapDecoder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapDecoder, IBitmapDecoder_Ptr);
    begin
       if this.m_IBitmapDecoder /= null then
          if this.m_IBitmapDecoder.all /= null then
-            RefCount := this.m_IBitmapDecoder.all.Release;
+            temp := this.m_IBitmapDecoder.all.Release;
             Free (this.m_IBitmapDecoder);
          end if;
       end if;
@@ -258,136 +290,168 @@ package body WinRt.Windows.Graphics.Imaging is
    function get_BmpDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_BmpDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_JpegDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_JpegDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_PngDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_PngDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_TiffDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_TiffDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_GifDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_GifDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_JpegXRDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_JpegXRDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_IcoDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_IcoDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetDecoderInformationEnumerator
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDecoderInformationEnumerator (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -397,15 +461,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapDecoder is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapDecoder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -423,7 +487,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapDecoder.Kind_Delegate, AsyncOperationCompletedHandler_BitmapDecoder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -437,10 +501,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (stream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -452,15 +516,15 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_IBitmapDecoder := new Windows.Graphics.Imaging.IBitmapDecoder;
                      Retval.m_IBitmapDecoder.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -471,15 +535,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapDecoder is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapDecoder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -497,7 +561,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapDecoder.Kind_Delegate, AsyncOperationCompletedHandler_BitmapDecoder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -511,10 +575,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (decoderId, stream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -526,49 +590,57 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_IBitmapDecoder := new Windows.Graphics.Imaging.IBitmapDecoder;
                      Retval.m_IBitmapDecoder.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_HeifDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_HeifDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_WebpDecoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapDecoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapDecoderStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapDecoderStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_WebpDecoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -581,11 +653,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPropertiesView'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapPropertiesView;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapPropertiesView do
          Hr := this.m_IBitmapDecoder.all.get_BitmapContainerProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapPropertiesView := new Windows.Graphics.Imaging.IBitmapPropertiesView;
          Retval.m_IBitmapPropertiesView.all := m_ComRetVal;
       end return;
@@ -597,11 +673,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapCodecInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapCodecInformation;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapCodecInformation do
          Hr := this.m_IBitmapDecoder.all.get_DecoderInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapCodecInformation := new Windows.Graphics.Imaging.IBitmapCodecInformation;
          Retval.m_IBitmapCodecInformation.all := m_ComRetVal;
       end return;
@@ -613,10 +693,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapDecoder.all.get_FrameCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -626,13 +710,13 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.ImageStream'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ImageStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -650,7 +734,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ImageStream.Kind_Delegate, AsyncOperationCompletedHandler_ImageStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -664,7 +748,7 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := this.m_IBitmapDecoder.all.GetPreviewAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -676,9 +760,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -693,13 +777,13 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapFrame.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -717,7 +801,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapFrame.Kind_Delegate, AsyncOperationCompletedHandler_BitmapFrame.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -731,7 +815,7 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := this.m_IBitmapDecoder.all.GetFrameAsync (frameIndex, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -743,9 +827,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IBitmapFrame := new Windows.Graphics.Imaging.IBitmapFrame;
                   Retval.m_IBitmapFrame.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -759,14 +843,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.ImageStream'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ImageStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -784,7 +868,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ImageStream.Kind_Delegate, AsyncOperationCompletedHandler_ImageStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -798,10 +882,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.ImageStream do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.GetThumbnailAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -813,9 +897,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -829,15 +913,19 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPropertiesView'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapPropertiesView;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapPropertiesView do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.get_BitmapProperties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapPropertiesView := new Windows.Graphics.Imaging.IBitmapPropertiesView;
          Retval.m_IBitmapPropertiesView.all := m_ComRetVal;
       end return;
@@ -849,14 +937,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_BitmapPixelFormat (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -866,14 +958,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapAlphaMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapAlphaMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_BitmapAlphaMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -883,14 +979,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_DpiX (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -900,14 +1000,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_DpiY (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -917,14 +1021,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_PixelWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -934,14 +1042,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_PixelHeight (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -951,14 +1063,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_OrientedPixelWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -968,14 +1084,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapDecoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapFrame, WinRt.Windows.Graphics.Imaging.IID_IBitmapFrame'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapDecoder.all);
       Hr := m_Interface.get_OrientedPixelHeight (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -985,14 +1105,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.PixelDataProvider'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PixelDataProvider.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1010,7 +1130,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PixelDataProvider.Kind_Delegate, AsyncOperationCompletedHandler_PixelDataProvider.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1024,10 +1144,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.PixelDataProvider do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.GetPixelDataAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1039,9 +1159,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IPixelDataProvider := new Windows.Graphics.Imaging.IPixelDataProvider;
                   Retval.m_IPixelDataProvider.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1060,14 +1180,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.PixelDataProvider'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrame := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PixelDataProvider.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1085,7 +1205,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PixelDataProvider.Kind_Delegate, AsyncOperationCompletedHandler_PixelDataProvider.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1099,10 +1219,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.PixelDataProvider do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.GetPixelDataAsync (pixelFormat, alphaMode, transform.m_IBitmapTransform.all, exifOrientationMode, colorManagementMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1114,9 +1234,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IPixelDataProvider := new Windows.Graphics.Imaging.IPixelDataProvider;
                   Retval.m_IPixelDataProvider.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1130,14 +1250,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrameWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1155,7 +1275,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1169,10 +1289,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.GetSoftwareBitmapAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1184,9 +1304,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                   Retval.m_ISoftwareBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1202,14 +1322,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrameWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1227,7 +1347,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1241,10 +1361,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.GetSoftwareBitmapAsync (pixelFormat, alphaMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1256,9 +1376,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                   Retval.m_ISoftwareBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1277,14 +1397,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrameWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1302,7 +1422,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1316,10 +1436,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          m_Interface := QInterface (this.m_IBitmapDecoder.all);
          Hr := m_Interface.GetSoftwareBitmapAsync (pixelFormat, alphaMode, transform.m_IBitmapTransform.all, exifOrientationMode, colorManagementMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1331,9 +1451,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                   Retval.m_ISoftwareBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1350,12 +1470,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapEncoder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapEncoder, IBitmapEncoder_Ptr);
    begin
       if this.m_IBitmapEncoder /= null then
          if this.m_IBitmapEncoder.all /= null then
-            RefCount := this.m_IBitmapEncoder.all.Release;
+            temp := this.m_IBitmapEncoder.all.Release;
             Free (this.m_IBitmapEncoder);
          end if;
       end if;
@@ -1367,119 +1487,147 @@ package body WinRt.Windows.Graphics.Imaging is
    function get_BmpEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_BmpEncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_JpegEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_JpegEncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_PngEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_PngEncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_TiffEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_TiffEncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_GifEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_GifEncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_JpegXREncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_JpegXREncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetEncoderInformationEnumerator
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEncoderInformationEnumerator (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1490,15 +1638,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapEncoder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1516,7 +1664,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapEncoder.Kind_Delegate, AsyncOperationCompletedHandler_BitmapEncoder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1530,10 +1678,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (encoderId, stream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1545,15 +1693,15 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_IBitmapEncoder := new Windows.Graphics.Imaging.IBitmapEncoder;
                      Retval.m_IBitmapEncoder.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1565,15 +1713,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapEncoder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1591,7 +1739,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapEncoder.Kind_Delegate, AsyncOperationCompletedHandler_BitmapEncoder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1605,10 +1753,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (encoderId, stream, encodingOptions, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1620,15 +1768,15 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_IBitmapEncoder := new Windows.Graphics.Imaging.IBitmapEncoder;
                      Retval.m_IBitmapEncoder.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1639,15 +1787,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapEncoder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1665,7 +1813,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapEncoder.Kind_Delegate, AsyncOperationCompletedHandler_BitmapEncoder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1679,10 +1827,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateForTranscodingAsync (stream, bitmapDecoder_p.m_IBitmapDecoder.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1694,15 +1842,15 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_IBitmapEncoder := new Windows.Graphics.Imaging.IBitmapEncoder;
                      Retval.m_IBitmapEncoder.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1712,15 +1860,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapEncoder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1738,7 +1886,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapEncoder.Kind_Delegate, AsyncOperationCompletedHandler_BitmapEncoder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1752,10 +1900,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateForInPlacePropertyEncodingAsync (bitmapDecoder_p.m_IBitmapDecoder.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1767,32 +1915,36 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_IBitmapEncoder := new Windows.Graphics.Imaging.IBitmapEncoder;
                      Retval.m_IBitmapEncoder.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_HeifEncoderId
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapEncoder");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.IBitmapEncoderStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBitmapEncoderStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_HeifEncoderId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1805,11 +1957,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapCodecInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapCodecInformation;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapCodecInformation do
          Hr := this.m_IBitmapEncoder.all.get_EncoderInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapCodecInformation := new Windows.Graphics.Imaging.IBitmapCodecInformation;
          Retval.m_IBitmapCodecInformation.all := m_ComRetVal;
       end return;
@@ -1821,11 +1977,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapProperties;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapProperties do
          Hr := this.m_IBitmapEncoder.all.get_BitmapProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapProperties := new Windows.Graphics.Imaging.IBitmapProperties;
          Retval.m_IBitmapProperties.all := m_ComRetVal;
       end return;
@@ -1837,11 +1997,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapProperties;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapProperties do
          Hr := this.m_IBitmapEncoder.all.get_BitmapContainerProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapProperties := new Windows.Graphics.Imaging.IBitmapProperties;
          Retval.m_IBitmapProperties.all := m_ComRetVal;
       end return;
@@ -1853,10 +2017,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBitmapEncoder.all.get_IsThumbnailGenerated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1866,9 +2034,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapEncoder.all.put_IsThumbnailGenerated (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GeneratedThumbnailWidth
@@ -1877,10 +2049,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapEncoder.all.get_GeneratedThumbnailWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1890,9 +2066,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapEncoder.all.put_GeneratedThumbnailWidth (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GeneratedThumbnailHeight
@@ -1901,10 +2081,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapEncoder.all.get_GeneratedThumbnailHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1914,9 +2098,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapEncoder.all.put_GeneratedThumbnailHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BitmapTransform
@@ -1925,11 +2113,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapTransform'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapTransform;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapTransform do
          Hr := this.m_IBitmapEncoder.all.get_BitmapTransform (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapTransform := new Windows.Graphics.Imaging.IBitmapTransform;
          Retval.m_IBitmapTransform.all := m_ComRetVal;
       end return;
@@ -1947,10 +2139,14 @@ package body WinRt.Windows.Graphics.Imaging is
       pixels : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_pixels is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IBitmapEncoder.all.SetPixelData (pixelFormat, alphaMode, width, height, dpiX, dpiY, WinRt.UInt32(pixels'Length), Convert_pixels (pixels (pixels'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GoToNextFrameAsync
@@ -1958,7 +2154,8 @@ package body WinRt.Windows.Graphics.Imaging is
       this : in out BitmapEncoder
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1966,7 +2163,6 @@ package body WinRt.Windows.Graphics.Imaging is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1987,9 +2183,9 @@ package body WinRt.Windows.Graphics.Imaging is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2001,7 +2197,8 @@ package body WinRt.Windows.Graphics.Imaging is
       encodingOptions : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2009,7 +2206,6 @@ package body WinRt.Windows.Graphics.Imaging is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2030,9 +2226,9 @@ package body WinRt.Windows.Graphics.Imaging is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2043,7 +2239,8 @@ package body WinRt.Windows.Graphics.Imaging is
       this : in out BitmapEncoder
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2051,7 +2248,6 @@ package body WinRt.Windows.Graphics.Imaging is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2072,9 +2268,9 @@ package body WinRt.Windows.Graphics.Imaging is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2086,13 +2282,17 @@ package body WinRt.Windows.Graphics.Imaging is
       bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapEncoderWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.IBitmapEncoder_Interface, WinRt.Windows.Graphics.Imaging.IBitmapEncoderWithSoftwareBitmap, WinRt.Windows.Graphics.Imaging.IID_IBitmapEncoderWithSoftwareBitmap'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapEncoder.all);
       Hr := m_Interface.SetSoftwareBitmap (bitmap.m_ISoftwareBitmap.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2104,12 +2304,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapFrame, IBitmapFrame_Ptr);
    begin
       if this.m_IBitmapFrame /= null then
          if this.m_IBitmapFrame.all /= null then
-            RefCount := this.m_IBitmapFrame.all.Release;
+            temp := this.m_IBitmapFrame.all.Release;
             Free (this.m_IBitmapFrame);
          end if;
       end if;
@@ -2124,13 +2324,13 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.ImageStream'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ImageStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2148,7 +2348,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ImageStream.Kind_Delegate, AsyncOperationCompletedHandler_ImageStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2162,7 +2362,7 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := this.m_IBitmapFrame.all.GetThumbnailAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2174,9 +2374,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IRandomAccessStreamWithContentType := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
                   Retval.m_IRandomAccessStreamWithContentType.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2190,11 +2390,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPropertiesView'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapPropertiesView;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapPropertiesView do
          Hr := this.m_IBitmapFrame.all.get_BitmapProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapPropertiesView := new Windows.Graphics.Imaging.IBitmapPropertiesView;
          Retval.m_IBitmapPropertiesView.all := m_ComRetVal;
       end return;
@@ -2206,10 +2410,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_IBitmapFrame.all.get_BitmapPixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2219,10 +2427,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapAlphaMode;
    begin
       Hr := this.m_IBitmapFrame.all.get_BitmapAlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2232,10 +2444,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IBitmapFrame.all.get_DpiX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2245,10 +2461,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IBitmapFrame.all.get_DpiY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2258,10 +2478,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapFrame.all.get_PixelWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2271,10 +2495,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapFrame.all.get_PixelHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2284,10 +2512,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapFrame.all.get_OrientedPixelWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2297,10 +2529,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapFrame.all.get_OrientedPixelHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2310,13 +2546,13 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.PixelDataProvider'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PixelDataProvider.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2334,7 +2570,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PixelDataProvider.Kind_Delegate, AsyncOperationCompletedHandler_PixelDataProvider.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2348,7 +2584,7 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := this.m_IBitmapFrame.all.GetPixelDataAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2360,9 +2596,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IPixelDataProvider := new Windows.Graphics.Imaging.IPixelDataProvider;
                   Retval.m_IPixelDataProvider.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2381,13 +2617,13 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.PixelDataProvider'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PixelDataProvider.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2405,7 +2641,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PixelDataProvider.Kind_Delegate, AsyncOperationCompletedHandler_PixelDataProvider.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2419,7 +2655,7 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := this.m_IBitmapFrame.all.GetPixelDataAsync (pixelFormat, alphaMode, transform.m_IBitmapTransform.all, exifOrientationMode, colorManagementMode, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2431,9 +2667,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_IPixelDataProvider := new Windows.Graphics.Imaging.IPixelDataProvider;
                   Retval.m_IPixelDataProvider.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2447,14 +2683,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrameWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2472,7 +2708,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2486,10 +2722,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          m_Interface := QInterface (this.m_IBitmapFrame.all);
          Hr := m_Interface.GetSoftwareBitmapAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2501,9 +2737,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                   Retval.m_ISoftwareBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2519,14 +2755,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrameWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2544,7 +2780,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2558,10 +2794,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          m_Interface := QInterface (this.m_IBitmapFrame.all);
          Hr := m_Interface.GetSoftwareBitmapAsync (pixelFormat, alphaMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2573,9 +2809,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                   Retval.m_ISoftwareBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2594,14 +2830,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapFrameWithSoftwareBitmap := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2619,7 +2855,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2633,10 +2869,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          m_Interface := QInterface (this.m_IBitmapFrame.all);
          Hr := m_Interface.GetSoftwareBitmapAsync (pixelFormat, alphaMode, transform.m_IBitmapTransform.all, exifOrientationMode, colorManagementMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2648,9 +2884,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                   Retval.m_ISoftwareBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2667,12 +2903,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapProperties) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapProperties, IBitmapProperties_Ptr);
    begin
       if this.m_IBitmapProperties /= null then
          if this.m_IBitmapProperties.all /= null then
-            RefCount := this.m_IBitmapProperties.all.Release;
+            temp := this.m_IBitmapProperties.all.Release;
             Free (this.m_IBitmapProperties);
          end if;
       end if;
@@ -2687,7 +2923,8 @@ package body WinRt.Windows.Graphics.Imaging is
       propertiesToSet : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2695,7 +2932,6 @@ package body WinRt.Windows.Graphics.Imaging is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2716,9 +2952,9 @@ package body WinRt.Windows.Graphics.Imaging is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2731,14 +2967,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Imaging.IBitmapPropertiesView := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapPropertySet.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2756,7 +2992,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapPropertySet.Kind_Delegate, AsyncOperationCompletedHandler_BitmapPropertySet.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2770,10 +3006,10 @@ package body WinRt.Windows.Graphics.Imaging is
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapPropertySet do
          m_Interface := QInterface (this.m_IBitmapProperties.all);
          Hr := m_Interface.GetPropertiesAsync (propertiesToRetrieve, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2785,9 +3021,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_GenericObject := new GenericObject;
                   Retval.m_GenericObject.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2804,12 +3040,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapPropertiesView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapPropertiesView, IBitmapPropertiesView_Ptr);
    begin
       if this.m_IBitmapPropertiesView /= null then
          if this.m_IBitmapPropertiesView.all /= null then
-            RefCount := this.m_IBitmapPropertiesView.all.Release;
+            temp := this.m_IBitmapPropertiesView.all.Release;
             Free (this.m_IBitmapPropertiesView);
          end if;
       end if;
@@ -2825,13 +3061,13 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPropertySet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BitmapPropertySet.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2849,7 +3085,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BitmapPropertySet.Kind_Delegate, AsyncOperationCompletedHandler_BitmapPropertySet.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2863,7 +3099,7 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := this.m_IBitmapPropertiesView.all.GetPropertiesAsync (propertiesToRetrieve, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2875,9 +3111,9 @@ package body WinRt.Windows.Graphics.Imaging is
                   Retval.m_GenericObject := new GenericObject;
                   Retval.m_GenericObject.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2903,7 +3139,8 @@ package body WinRt.Windows.Graphics.Imaging is
 
    function Constructor return BitmapPropertySet is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapPropertySet");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapPropertySet");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : BitmapPropertySet do
@@ -2912,7 +3149,7 @@ package body WinRt.Windows.Graphics.Imaging is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2927,20 +3164,24 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapTypedValue'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapTypedValue;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapTypedValue do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapTypedValue := new Windows.Graphics.Imaging.IBitmapTypedValue;
          Retval.m_IBitmapTypedValue.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_key);
+         tmp := WindowsDeleteString (HStr_key);
       end return;
    end;
 
@@ -2950,15 +3191,19 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2969,17 +3214,21 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -2989,15 +3238,19 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3009,17 +3262,21 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Insert (HStr_key, value.m_IBitmapTypedValue.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -3029,16 +3286,20 @@ package body WinRt.Windows.Graphics.Imaging is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -3046,14 +3307,18 @@ package body WinRt.Windows.Graphics.Imaging is
       this : in out BitmapPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IBitmapTypedValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (745598861, 23884, 20869, (141, 183, 254, 216, 119, 40, 22, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_IBitmapTypedValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3065,12 +3330,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapTransform) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapTransform, IBitmapTransform_Ptr);
    begin
       if this.m_IBitmapTransform /= null then
          if this.m_IBitmapTransform.all /= null then
-            RefCount := this.m_IBitmapTransform.all.Release;
+            temp := this.m_IBitmapTransform.all.Release;
             Free (this.m_IBitmapTransform);
          end if;
       end if;
@@ -3081,7 +3346,8 @@ package body WinRt.Windows.Graphics.Imaging is
 
    function Constructor return BitmapTransform is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapTransform");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapTransform");
       m_ComRetVal  : aliased Windows.Graphics.Imaging.IBitmapTransform;
    begin
       return RetVal : BitmapTransform do
@@ -3090,7 +3356,7 @@ package body WinRt.Windows.Graphics.Imaging is
             Retval.m_IBitmapTransform := new Windows.Graphics.Imaging.IBitmapTransform;
             Retval.m_IBitmapTransform.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3103,10 +3369,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapTransform.all.get_ScaledWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3116,9 +3386,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapTransform.all.put_ScaledWidth (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScaledHeight
@@ -3127,10 +3401,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBitmapTransform.all.get_ScaledHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3140,9 +3418,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapTransform.all.put_ScaledHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InterpolationMode
@@ -3151,10 +3433,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapInterpolationMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapInterpolationMode;
    begin
       Hr := this.m_IBitmapTransform.all.get_InterpolationMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3164,9 +3450,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : Windows.Graphics.Imaging.BitmapInterpolationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapTransform.all.put_InterpolationMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Flip
@@ -3175,10 +3465,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapFlip is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapFlip;
    begin
       Hr := this.m_IBitmapTransform.all.get_Flip (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3188,9 +3482,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : Windows.Graphics.Imaging.BitmapFlip
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapTransform.all.put_Flip (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Rotation
@@ -3199,10 +3497,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapRotation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapRotation;
    begin
       Hr := this.m_IBitmapTransform.all.get_Rotation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3212,9 +3514,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : Windows.Graphics.Imaging.BitmapRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapTransform.all.put_Rotation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bounds
@@ -3223,10 +3529,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapBounds is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapBounds;
    begin
       Hr := this.m_IBitmapTransform.all.get_Bounds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3236,9 +3546,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : Windows.Graphics.Imaging.BitmapBounds
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBitmapTransform.all.put_Bounds (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3250,12 +3564,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out BitmapTypedValue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBitmapTypedValue, IBitmapTypedValue_Ptr);
    begin
       if this.m_IBitmapTypedValue /= null then
          if this.m_IBitmapTypedValue.all /= null then
-            RefCount := this.m_IBitmapTypedValue.all.Release;
+            temp := this.m_IBitmapTypedValue.all.Release;
             Free (this.m_IBitmapTypedValue);
          end if;
       end if;
@@ -3271,9 +3585,10 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return BitmapTypedValue is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapTypedValue");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.BitmapTypedValue");
       m_Factory    : access IBitmapTypedValueFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Graphics.Imaging.IBitmapTypedValue;
    begin
       return RetVal : BitmapTypedValue do
@@ -3282,9 +3597,9 @@ package body WinRt.Windows.Graphics.Imaging is
             Hr := m_Factory.Create (value, type_x, m_ComRetVal'Access);
             Retval.m_IBitmapTypedValue := new Windows.Graphics.Imaging.IBitmapTypedValue;
             Retval.m_IBitmapTypedValue.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3297,10 +3612,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IBitmapTypedValue.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3310,10 +3629,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Foundation.PropertyType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.PropertyType;
    begin
       Hr := this.m_IBitmapTypedValue.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3326,13 +3649,13 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out ImageStream) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType, WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr);
    begin
       if this.m_IRandomAccessStreamWithContentType /= null then
          if this.m_IRandomAccessStreamWithContentType.all /= null then
-            RefCount := this.m_IRandomAccessStreamWithContentType.all.Release;
+            temp := this.m_IRandomAccessStreamWithContentType.all.Release;
             Free (this.m_IRandomAccessStreamWithContentType);
          end if;
       end if;
@@ -3347,17 +3670,21 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IContentTypeProvider := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IContentTypeProvider, WinRt.Windows.Storage.Streams.IID_IContentTypeProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_ContentType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3367,14 +3694,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3384,13 +3715,17 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.put_Size (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetInputStreamAt
@@ -3400,14 +3735,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.GetInputStreamAt (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3418,14 +3757,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.GetOutputStreamAt (position, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3435,14 +3778,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_Position (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3452,13 +3799,17 @@ package body WinRt.Windows.Graphics.Imaging is
       position : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.Seek (position);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CloneStream
@@ -3467,14 +3818,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.CloneStream (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3484,14 +3839,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_CanRead (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3501,14 +3860,18 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.get_CanWrite (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3519,14 +3882,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IOutputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3544,7 +3907,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3557,10 +3920,10 @@ package body WinRt.Windows.Graphics.Imaging is
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.WriteAsync (buffer, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3570,9 +3933,9 @@ package body WinRt.Windows.Graphics.Imaging is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3586,14 +3949,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IOutputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3611,7 +3974,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3624,10 +3987,10 @@ package body WinRt.Windows.Graphics.Imaging is
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.FlushAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3637,9 +4000,9 @@ package body WinRt.Windows.Graphics.Imaging is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3652,13 +4015,17 @@ package body WinRt.Windows.Graphics.Imaging is
       this : in out ImageStream
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ReadAsync
@@ -3670,14 +4037,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IInputStream := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3695,7 +4062,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3708,10 +4075,10 @@ package body WinRt.Windows.Graphics.Imaging is
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
       Hr := m_Interface.ReadAsync (buffer, count, options, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3721,9 +4088,9 @@ package body WinRt.Windows.Graphics.Imaging is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3740,12 +4107,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out PixelDataProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPixelDataProvider, IPixelDataProvider_Ptr);
    begin
       if this.m_IPixelDataProvider /= null then
          if this.m_IPixelDataProvider.all /= null then
-            RefCount := this.m_IPixelDataProvider.all.Release;
+            temp := this.m_IPixelDataProvider.all.Release;
             Free (this.m_IPixelDataProvider);
          end if;
       end if;
@@ -3760,11 +4127,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPixelDataProvider.all.DetachPixelData (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -3785,12 +4156,12 @@ package body WinRt.Windows.Graphics.Imaging is
    end;
 
    procedure Finalize (this : in out SoftwareBitmap) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISoftwareBitmap, ISoftwareBitmap_Ptr);
    begin
       if this.m_ISoftwareBitmap /= null then
          if this.m_ISoftwareBitmap.all /= null then
-            RefCount := this.m_ISoftwareBitmap.all.Release;
+            temp := this.m_ISoftwareBitmap.all.Release;
             Free (this.m_ISoftwareBitmap);
          end if;
       end if;
@@ -3807,9 +4178,10 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return SoftwareBitmap is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory    : access ISoftwareBitmapFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : SoftwareBitmap do
@@ -3818,9 +4190,9 @@ package body WinRt.Windows.Graphics.Imaging is
             Hr := m_Factory.Create (format, width, height, m_ComRetVal'Access);
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3833,9 +4205,10 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return SoftwareBitmap is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory    : access ISoftwareBitmapFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : SoftwareBitmap do
@@ -3844,9 +4217,9 @@ package body WinRt.Windows.Graphics.Imaging is
             Hr := m_Factory.CreateWithAlpha (format, width, height, alpha, m_ComRetVal'Access);
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3859,20 +4232,24 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Copy (source.m_ISoftwareBitmap.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3883,20 +4260,24 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Convert (source.m_ISoftwareBitmap.all, format, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3908,20 +4289,24 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Convert (source.m_ISoftwareBitmap.all, format, alpha, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3934,20 +4319,24 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCopyFromBuffer (source, format, width, height, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3961,20 +4350,24 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCopyFromBuffer (source, format, width, height, alpha, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
             Retval.m_ISoftwareBitmap.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3984,15 +4377,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4010,7 +4403,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4024,10 +4417,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCopyFromSurfaceAsync (surface, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -4039,15 +4432,15 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                      Retval.m_ISoftwareBitmap.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4058,15 +4451,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory        : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmapStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SoftwareBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4084,7 +4477,7 @@ package body WinRt.Windows.Graphics.Imaging is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SoftwareBitmap.Kind_Delegate, AsyncOperationCompletedHandler_SoftwareBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4098,10 +4491,10 @@ package body WinRt.Windows.Graphics.Imaging is
          Hr := RoGetActivationFactory (m_hString, IID_ISoftwareBitmapStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCopyFromSurfaceAsync (surface, alpha, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -4113,15 +4506,15 @@ package body WinRt.Windows.Graphics.Imaging is
                      Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
                      Retval.m_ISoftwareBitmap.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4134,10 +4527,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_BitmapPixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4147,10 +4544,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapAlphaMode;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_BitmapAlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4160,10 +4561,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_PixelWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4173,10 +4578,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_PixelHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4186,10 +4595,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_IsReadOnly (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4199,9 +4612,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISoftwareBitmap.all.put_DpiX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DpiX
@@ -4210,10 +4627,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_DpiX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4223,9 +4644,13 @@ package body WinRt.Windows.Graphics.Imaging is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISoftwareBitmap.all.put_DpiY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DpiY
@@ -4234,10 +4659,14 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISoftwareBitmap.all.get_DpiY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4248,11 +4677,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapBuffer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.IBitmapBuffer;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapBuffer do
          Hr := this.m_ISoftwareBitmap.all.LockBuffer (mode, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBitmapBuffer := new Windows.Graphics.Imaging.IBitmapBuffer;
          Retval.m_IBitmapBuffer.all := m_ComRetVal;
       end return;
@@ -4264,9 +4697,13 @@ package body WinRt.Windows.Graphics.Imaging is
       bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISoftwareBitmap.all.CopyTo (bitmap.m_ISoftwareBitmap.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure CopyFromBuffer
@@ -4275,9 +4712,13 @@ package body WinRt.Windows.Graphics.Imaging is
       buffer : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISoftwareBitmap.all.CopyFromBuffer (buffer);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure CopyToBuffer
@@ -4286,9 +4727,13 @@ package body WinRt.Windows.Graphics.Imaging is
       buffer : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISoftwareBitmap.all.CopyToBuffer (buffer);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetReadOnlyView
@@ -4297,11 +4742,15 @@ package body WinRt.Windows.Graphics.Imaging is
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := this.m_ISoftwareBitmap.all.GetReadOnlyView (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
          Retval.m_ISoftwareBitmap.all := m_ComRetVal;
       end return;
@@ -4312,13 +4761,17 @@ package body WinRt.Windows.Graphics.Imaging is
       this : in out SoftwareBitmap
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Imaging.ISoftwareBitmap_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISoftwareBitmap.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Graphics.Imaging;

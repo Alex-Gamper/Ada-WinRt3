@@ -89,12 +89,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailAttachment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailAttachment, IEmailAttachment_Ptr);
    begin
       if this.m_IEmailAttachment /= null then
          if this.m_IEmailAttachment.all /= null then
-            RefCount := this.m_IEmailAttachment.all.Release;
+            temp := this.m_IEmailAttachment.all.Release;
             Free (this.m_IEmailAttachment);
          end if;
       end if;
@@ -105,7 +105,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailAttachment is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailAttachment;
    begin
       return RetVal : EmailAttachment do
@@ -114,7 +115,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailAttachment := new Windows.ApplicationModel.Email.IEmailAttachment;
             Retval.m_IEmailAttachment.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -126,12 +127,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailAttachment is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
       m_Factory    : access IEmailAttachmentFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailAttachment;
-      HStr_fileName : WinRt.HString := To_HString (fileName);
-      HStr_mimeType : WinRt.HString := To_HString (mimeType);
+      HStr_fileName : constant WinRt.HString := To_HString (fileName);
+      HStr_mimeType : constant WinRt.HString := To_HString (mimeType);
    begin
       return RetVal : EmailAttachment do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailAttachmentFactory2'Access , m_Factory'Address);
@@ -139,11 +141,11 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.Create (HStr_fileName, data, HStr_mimeType, m_ComRetVal'Access);
             Retval.m_IEmailAttachment := new Windows.ApplicationModel.Email.IEmailAttachment;
             Retval.m_IEmailAttachment.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_fileName);
-         Hr := WindowsDeleteString (HStr_mimeType);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_fileName);
+         tmp := WindowsDeleteString (HStr_mimeType);
       end return;
    end;
 
@@ -154,11 +156,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailAttachment is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
       m_Factory    : access IEmailAttachmentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailAttachment;
-      HStr_fileName : WinRt.HString := To_HString (fileName);
+      HStr_fileName : constant WinRt.HString := To_HString (fileName);
    begin
       return RetVal : EmailAttachment do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailAttachmentFactory'Access , m_Factory'Address);
@@ -166,10 +169,10 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.Create (HStr_fileName, data, m_ComRetVal'Access);
             Retval.m_IEmailAttachment := new Windows.ApplicationModel.Email.IEmailAttachment;
             Retval.m_IEmailAttachment.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_fileName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_fileName);
       end return;
    end;
 
@@ -182,13 +185,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailAttachment.all.get_FileName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -198,11 +205,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailAttachment.all.put_FileName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Data
@@ -211,10 +222,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IEmailAttachment.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -224,9 +239,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailAttachment.all.put_Data (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -235,17 +254,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -255,17 +278,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_ContentId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -275,15 +302,19 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.put_ContentId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContentLocation
@@ -292,17 +323,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_ContentLocation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -312,15 +347,19 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.put_ContentLocation (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DownloadState
@@ -329,14 +368,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailAttachmentDownloadState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailAttachmentDownloadState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_DownloadState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -346,13 +389,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailAttachmentDownloadState
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.put_DownloadState (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EstimatedDownloadSizeInBytes
@@ -361,14 +408,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_EstimatedDownloadSizeInBytes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -378,13 +429,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.put_EstimatedDownloadSizeInBytes (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsFromBaseMessage
@@ -393,14 +448,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_IsFromBaseMessage (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -410,14 +469,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_IsInline (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -427,13 +490,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.put_IsInline (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MimeType
@@ -442,17 +509,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.get_MimeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -462,15 +533,19 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailAttachment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailAttachment_Interface, WinRt.Windows.ApplicationModel.Email.IEmailAttachment2, WinRt.Windows.ApplicationModel.Email.IID_IEmailAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailAttachment.all);
       Hr := m_Interface.put_MimeType (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -482,12 +557,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailConversation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailConversation, IEmailConversation_Ptr);
    begin
       if this.m_IEmailConversation /= null then
          if this.m_IEmailConversation.all /= null then
-            RefCount := this.m_IEmailConversation.all.Release;
+            temp := this.m_IEmailConversation.all.Release;
             Free (this.m_IEmailConversation);
          end if;
       end if;
@@ -502,13 +577,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailConversation.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -518,13 +597,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailConversation.all.get_MailboxId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -534,10 +617,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFlagState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailFlagState;
    begin
       Hr := this.m_IEmailConversation.all.get_FlagState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -547,10 +634,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailConversation.all.get_HasAttachment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -560,10 +651,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailImportance is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailImportance;
    begin
       Hr := this.m_IEmailConversation.all.get_Importance (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -573,10 +668,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMessageResponseKind;
    begin
       Hr := this.m_IEmailConversation.all.get_LastEmailResponseKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -586,10 +685,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IEmailConversation.all.get_MessageCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -599,13 +702,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailConversation.all.get_MostRecentMessageId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -615,10 +722,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailConversation.all.get_MostRecentMessageTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -628,13 +739,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailConversation.all.get_Preview (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -644,11 +759,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailRecipient'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailRecipient;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailRecipient do
          Hr := this.m_IEmailConversation.all.get_LatestSender (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
          Retval.m_IEmailRecipient.all := m_ComRetVal;
       end return;
@@ -660,13 +779,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailConversation.all.get_Subject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -676,10 +799,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IEmailConversation.all.get_UnreadMessageCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -689,13 +816,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -713,7 +840,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -726,7 +853,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailConversation.all.FindMessagesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -736,9 +863,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -753,13 +880,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -777,7 +904,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -790,7 +917,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailConversation.all.FindMessagesAsync (count, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -800,9 +927,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -819,12 +946,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailConversationBatch) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailConversationBatch, IEmailConversationBatch_Ptr);
    begin
       if this.m_IEmailConversationBatch /= null then
          if this.m_IEmailConversationBatch.all /= null then
-            RefCount := this.m_IEmailConversationBatch.all.Release;
+            temp := this.m_IEmailConversationBatch.all.Release;
             Free (this.m_IEmailConversationBatch);
          end if;
       end if;
@@ -839,13 +966,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVectorView_IEmailConversation.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IEmailConversation.Kind;
    begin
       Hr := this.m_IEmailConversationBatch.all.get_Conversations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IEmailConversation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -855,10 +986,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailBatchStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailBatchStatus;
    begin
       Hr := this.m_IEmailConversationBatch.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -871,12 +1006,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailConversationReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailConversationReader, IEmailConversationReader_Ptr);
    begin
       if this.m_IEmailConversationReader /= null then
          if this.m_IEmailConversationReader.all /= null then
-            RefCount := this.m_IEmailConversationReader.all.Release;
+            temp := this.m_IEmailConversationReader.all.Release;
             Free (this.m_IEmailConversationReader);
          end if;
       end if;
@@ -891,13 +1026,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationBatch'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailConversationBatch.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -915,7 +1050,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailConversationBatch.Kind_Delegate, AsyncOperationCompletedHandler_EmailConversationBatch.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -929,7 +1064,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailConversationReader.all.ReadBatchAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -941,9 +1076,9 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailConversationBatch := new Windows.ApplicationModel.Email.IEmailConversationBatch;
                   Retval.m_IEmailConversationBatch.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -960,12 +1095,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailFolder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailFolder, IEmailFolder_Ptr);
    begin
       if this.m_IEmailFolder /= null then
          if this.m_IEmailFolder.all /= null then
-            RefCount := this.m_IEmailFolder.all.Release;
+            temp := this.m_IEmailFolder.all.Release;
             Free (this.m_IEmailFolder);
          end if;
       end if;
@@ -980,13 +1115,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailFolder.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -996,13 +1135,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailFolder.all.get_RemoteId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1012,11 +1155,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailFolder.all.put_RemoteId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_MailboxId
@@ -1025,13 +1172,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailFolder.all.get_MailboxId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1041,13 +1192,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailFolder.all.get_ParentFolderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1057,13 +1212,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailFolder.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1073,11 +1232,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailFolder.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsSyncEnabled
@@ -1086,10 +1249,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailFolder.all.get_IsSyncEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1099,9 +1266,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailFolder.all.put_IsSyncEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LastSuccessfulSyncTime
@@ -1110,10 +1281,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailFolder.all.get_LastSuccessfulSyncTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1123,9 +1298,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailFolder.all.put_LastSuccessfulSyncTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -1134,10 +1313,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailSpecialFolderKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailSpecialFolderKind;
    begin
       Hr := this.m_IEmailFolder.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1148,14 +1331,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1173,7 +1356,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailFolder.Kind_Delegate, AsyncOperationCompletedHandler_EmailFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1187,7 +1370,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailFolder.all.CreateFolderAsync (HStr_name, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1199,14 +1382,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailFolder := new Windows.ApplicationModel.Email.IEmailFolder;
                   Retval.m_IEmailFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1215,7 +1398,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailFolder
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1223,7 +1407,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1244,9 +1427,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1258,13 +1441,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1282,7 +1465,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1295,7 +1478,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailFolder.all.FindChildFoldersAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1305,9 +1488,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1321,11 +1504,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailConversationReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailConversationReader do
          Hr := this.m_IEmailFolder.all.GetConversationReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailConversationReader := new Windows.ApplicationModel.Email.IEmailConversationReader;
          Retval.m_IEmailConversationReader.all := m_ComRetVal;
       end return;
@@ -1338,11 +1525,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailConversationReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailConversationReader do
          Hr := this.m_IEmailFolder.all.GetConversationReader (options.m_IEmailQueryOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailConversationReader := new Windows.ApplicationModel.Email.IEmailConversationReader;
          Retval.m_IEmailConversationReader.all := m_ComRetVal;
       end return;
@@ -1355,14 +1546,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1380,7 +1571,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMessage.Kind_Delegate, AsyncOperationCompletedHandler_EmailMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1394,7 +1585,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailFolder.all.GetMessageAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1406,14 +1597,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
                   Retval.m_IEmailMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -1423,11 +1614,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessageReader do
          Hr := this.m_IEmailFolder.all.GetMessageReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessageReader := new Windows.ApplicationModel.Email.IEmailMessageReader;
          Retval.m_IEmailMessageReader.all := m_ComRetVal;
       end return;
@@ -1440,11 +1635,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessageReader do
          Hr := this.m_IEmailFolder.all.GetMessageReader (options.m_IEmailQueryOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessageReader := new Windows.ApplicationModel.Email.IEmailMessageReader;
          Retval.m_IEmailMessageReader.all := m_ComRetVal;
       end return;
@@ -1456,13 +1655,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailItemCounts'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailItemCounts.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1480,7 +1679,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailItemCounts.Kind_Delegate, AsyncOperationCompletedHandler_EmailItemCounts.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1494,7 +1693,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailFolder.all.GetMessageCountsAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1506,9 +1705,9 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailItemCounts := new Windows.ApplicationModel.Email.IEmailItemCounts;
                   Retval.m_IEmailItemCounts.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1523,13 +1722,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1547,7 +1746,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1560,7 +1759,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailFolder.all.TryMoveAsync (newParentFolder.m_IEmailFolder.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1570,9 +1769,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1588,14 +1787,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_newFolderName : WinRt.HString := To_HString (newFolderName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_newFolderName : constant WinRt.HString := To_HString (newFolderName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1613,7 +1812,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1626,7 +1825,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailFolder.all.TryMoveAsync (newParentFolder.m_IEmailFolder.all, HStr_newFolderName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1636,14 +1835,14 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_newFolderName);
+      tmp := WindowsDeleteString (HStr_newFolderName);
       return m_RetVal;
    end;
 
@@ -1653,13 +1852,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1677,7 +1876,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1690,7 +1889,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailFolder.all.TrySaveAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1700,9 +1899,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1716,7 +1915,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       message : Windows.ApplicationModel.Email.EmailMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1724,7 +1924,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1745,9 +1944,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1762,12 +1961,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailIrmInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailIrmInfo, IEmailIrmInfo_Ptr);
    begin
       if this.m_IEmailIrmInfo /= null then
          if this.m_IEmailIrmInfo.all /= null then
-            RefCount := this.m_IEmailIrmInfo.all.Release;
+            temp := this.m_IEmailIrmInfo.all.Release;
             Free (this.m_IEmailIrmInfo);
          end if;
       end if;
@@ -1783,9 +1982,10 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailIrmInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmInfo");
       m_Factory    : access IEmailIrmInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailIrmInfo;
    begin
       return RetVal : EmailIrmInfo do
@@ -1794,15 +1994,16 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.Create (expiration, irmTemplate.m_IEmailIrmTemplate.all, m_ComRetVal'Access);
             Retval.m_IEmailIrmInfo := new Windows.ApplicationModel.Email.IEmailIrmInfo;
             Retval.m_IEmailIrmInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return EmailIrmInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmInfo");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailIrmInfo;
    begin
       return RetVal : EmailIrmInfo do
@@ -1811,7 +2012,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailIrmInfo := new Windows.ApplicationModel.Email.IEmailIrmInfo;
             Retval.m_IEmailIrmInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1824,10 +2025,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanEdit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1837,9 +2042,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanEdit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanExtractData
@@ -1848,10 +2057,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanExtractData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1861,9 +2074,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanExtractData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanForward
@@ -1872,10 +2089,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanForward (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1885,9 +2106,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanForward (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanModifyRecipientsOnResponse
@@ -1896,10 +2121,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanModifyRecipientsOnResponse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1909,9 +2138,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanModifyRecipientsOnResponse (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanPrintData
@@ -1920,10 +2153,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanPrintData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1933,9 +2170,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanPrintData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanRemoveIrmOnResponse
@@ -1944,10 +2185,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanRemoveIrmOnResponse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1957,9 +2202,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanRemoveIrmOnResponse (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanReply
@@ -1968,10 +2217,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanReply (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1981,9 +2234,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanReply (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanReplyAll
@@ -1992,10 +2249,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_CanReplyAll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2005,9 +2266,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_CanReplyAll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExpirationDate
@@ -2016,10 +2281,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_ExpirationDate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2029,9 +2298,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_ExpirationDate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsIrmOriginator
@@ -2040,10 +2313,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_IsIrmOriginator (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2053,9 +2330,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_IsIrmOriginator (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsProgramaticAccessAllowed
@@ -2064,10 +2345,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailIrmInfo.all.get_IsProgramaticAccessAllowed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2077,9 +2362,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_IsProgramaticAccessAllowed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Template
@@ -2088,11 +2377,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailIrmTemplate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailIrmTemplate;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailIrmTemplate do
          Hr := this.m_IEmailIrmInfo.all.get_Template (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailIrmTemplate := new Windows.ApplicationModel.Email.IEmailIrmTemplate;
          Retval.m_IEmailIrmTemplate.all := m_ComRetVal;
       end return;
@@ -2104,9 +2397,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailIrmTemplate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailIrmInfo.all.put_Template (value.m_IEmailIrmTemplate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2118,12 +2415,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailIrmTemplate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailIrmTemplate, IEmailIrmTemplate_Ptr);
    begin
       if this.m_IEmailIrmTemplate /= null then
          if this.m_IEmailIrmTemplate.all /= null then
-            RefCount := this.m_IEmailIrmTemplate.all.Release;
+            temp := this.m_IEmailIrmTemplate.all.Release;
             Free (this.m_IEmailIrmTemplate);
          end if;
       end if;
@@ -2140,13 +2437,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailIrmTemplate is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
       m_Factory    : access IEmailIrmTemplateFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailIrmTemplate;
-      HStr_id : WinRt.HString := To_HString (id);
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_description : WinRt.HString := To_HString (description);
+      HStr_id : constant WinRt.HString := To_HString (id);
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_description : constant WinRt.HString := To_HString (description);
    begin
       return RetVal : EmailIrmTemplate do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailIrmTemplateFactory'Access , m_Factory'Address);
@@ -2154,18 +2452,19 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.Create (HStr_id, HStr_name, HStr_description, m_ComRetVal'Access);
             Retval.m_IEmailIrmTemplate := new Windows.ApplicationModel.Email.IEmailIrmTemplate;
             Retval.m_IEmailIrmTemplate.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
-         Hr := WindowsDeleteString (HStr_name);
-         Hr := WindowsDeleteString (HStr_description);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_description);
       end return;
    end;
 
    function Constructor return EmailIrmTemplate is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailIrmTemplate;
    begin
       return RetVal : EmailIrmTemplate do
@@ -2174,7 +2473,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailIrmTemplate := new Windows.ApplicationModel.Email.IEmailIrmTemplate;
             Retval.m_IEmailIrmTemplate.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2187,13 +2486,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailIrmTemplate.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2203,11 +2506,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailIrmTemplate.all.put_Id (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -2216,13 +2523,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailIrmTemplate.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2232,11 +2543,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailIrmTemplate.all.put_Description (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Name
@@ -2245,13 +2560,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailIrmTemplate.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2261,11 +2580,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailIrmTemplate.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -2277,12 +2600,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailItemCounts) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailItemCounts, IEmailItemCounts_Ptr);
    begin
       if this.m_IEmailItemCounts /= null then
          if this.m_IEmailItemCounts.all /= null then
-            RefCount := this.m_IEmailItemCounts.all.Release;
+            temp := this.m_IEmailItemCounts.all.Release;
             Free (this.m_IEmailItemCounts);
          end if;
       end if;
@@ -2297,10 +2620,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IEmailItemCounts.all.get_Flagged (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2310,10 +2637,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IEmailItemCounts.all.get_Important (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2323,10 +2654,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IEmailItemCounts.all.get_Total (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2336,10 +2671,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IEmailItemCounts.all.get_Unread (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2352,12 +2691,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailbox) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailbox, IEmailMailbox_Ptr);
    begin
       if this.m_IEmailMailbox /= null then
          if this.m_IEmailMailbox.all /= null then
-            RefCount := this.m_IEmailMailbox.all.Release;
+            temp := this.m_IEmailMailbox.all.Release;
             Free (this.m_IEmailMailbox);
          end if;
       end if;
@@ -2372,11 +2711,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxCapabilities;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxCapabilities do
          Hr := this.m_IEmailMailbox.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxCapabilities := new Windows.ApplicationModel.Email.IEmailMailboxCapabilities;
          Retval.m_IEmailMailboxCapabilities.all := m_ComRetVal;
       end return;
@@ -2388,11 +2731,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeTracker'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxChangeTracker;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeTracker do
          Hr := this.m_IEmailMailbox.all.get_ChangeTracker (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxChangeTracker := new Windows.ApplicationModel.Email.IEmailMailboxChangeTracker;
          Retval.m_IEmailMailboxChangeTracker.all := m_ComRetVal;
       end return;
@@ -2404,13 +2751,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMailbox.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2420,11 +2771,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMailbox.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Id
@@ -2433,13 +2788,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMailbox.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2449,10 +2808,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailbox.all.get_IsOwnedByCurrentApp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2462,10 +2825,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailbox.all.get_IsDataEncryptedUnderLock (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2475,13 +2842,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMailbox.all.get_MailAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2491,11 +2862,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMailbox.all.put_MailAddress (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_MailAddressAliases
@@ -2504,13 +2879,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IEmailMailbox.all.get_MailAddressAliases (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2520,10 +2899,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess;
    begin
       Hr := this.m_IEmailMailbox.all.get_OtherAppReadAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2533,9 +2916,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailbox.all.put_OtherAppReadAccess (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OtherAppWriteAccess
@@ -2544,10 +2931,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess;
    begin
       Hr := this.m_IEmailMailbox.all.get_OtherAppWriteAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2557,9 +2948,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailbox.all.put_OtherAppWriteAccess (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Policies
@@ -2568,11 +2963,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxPolicies'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxPolicies;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxPolicies do
          Hr := this.m_IEmailMailbox.all.get_Policies (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxPolicies := new Windows.ApplicationModel.Email.IEmailMailboxPolicies;
          Retval.m_IEmailMailboxPolicies.all := m_ComRetVal;
       end return;
@@ -2584,13 +2983,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMailbox.all.get_SourceDisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2600,11 +3003,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxSyncManager'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxSyncManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxSyncManager do
          Hr := this.m_IEmailMailbox.all.get_SyncManager (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxSyncManager := new Windows.ApplicationModel.Email.IEmailMailboxSyncManager;
          Retval.m_IEmailMailboxSyncManager.all := m_ComRetVal;
       end return;
@@ -2616,13 +3023,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMailbox.all.get_UserDataAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2632,11 +3043,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailConversationReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailConversationReader do
          Hr := this.m_IEmailMailbox.all.GetConversationReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailConversationReader := new Windows.ApplicationModel.Email.IEmailConversationReader;
          Retval.m_IEmailConversationReader.all := m_ComRetVal;
       end return;
@@ -2649,11 +3064,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailConversationReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailConversationReader do
          Hr := this.m_IEmailMailbox.all.GetConversationReader (options.m_IEmailQueryOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailConversationReader := new Windows.ApplicationModel.Email.IEmailConversationReader;
          Retval.m_IEmailConversationReader.all := m_ComRetVal;
       end return;
@@ -2665,11 +3084,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessageReader do
          Hr := this.m_IEmailMailbox.all.GetMessageReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessageReader := new Windows.ApplicationModel.Email.IEmailMessageReader;
          Retval.m_IEmailMessageReader.all := m_ComRetVal;
       end return;
@@ -2682,11 +3105,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessageReader do
          Hr := this.m_IEmailMailbox.all.GetMessageReader (options.m_IEmailQueryOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessageReader := new Windows.ApplicationModel.Email.IEmailMessageReader;
          Retval.m_IEmailMessageReader.all := m_ComRetVal;
       end return;
@@ -2697,7 +3124,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailbox
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2705,7 +3133,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2726,9 +3153,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2741,14 +3168,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailConversation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2766,7 +3193,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailConversation.Kind_Delegate, AsyncOperationCompletedHandler_EmailConversation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2780,7 +3207,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMailbox.all.GetConversationAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2792,14 +3219,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailConversation := new Windows.ApplicationModel.Email.IEmailConversation;
                   Retval.m_IEmailConversation.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -2810,14 +3237,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2835,7 +3262,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailFolder.Kind_Delegate, AsyncOperationCompletedHandler_EmailFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2849,7 +3276,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMailbox.all.GetFolderAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2861,14 +3288,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailFolder := new Windows.ApplicationModel.Email.IEmailFolder;
                   Retval.m_IEmailFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -2879,14 +3306,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2904,7 +3331,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMessage.Kind_Delegate, AsyncOperationCompletedHandler_EmailMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2918,7 +3345,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMailbox.all.GetMessageAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2930,14 +3357,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
                   Retval.m_IEmailMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -2948,13 +3375,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2972,7 +3399,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailFolder.Kind_Delegate, AsyncOperationCompletedHandler_EmailFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2986,7 +3413,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMailbox.all.GetSpecialFolderAsync (folderType, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2998,9 +3425,9 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailFolder := new Windows.ApplicationModel.Email.IEmailFolder;
                   Retval.m_IEmailFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3013,7 +3440,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailbox
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3021,7 +3449,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3042,9 +3469,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3056,8 +3483,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       messageId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3065,7 +3493,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3086,13 +3513,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_messageId);
+      tmp := WindowsDeleteString (HStr_messageId);
    end;
 
    procedure MarkFolderAsSeenAsync
@@ -3101,8 +3528,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       folderId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_folderId : WinRt.HString := To_HString (folderId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_folderId : constant WinRt.HString := To_HString (folderId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3110,7 +3538,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3131,13 +3558,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_folderId);
+      tmp := WindowsDeleteString (HStr_folderId);
    end;
 
    procedure MarkMessageReadAsync
@@ -3147,8 +3574,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       isRead : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3156,7 +3584,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3177,13 +3604,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_messageId);
+      tmp := WindowsDeleteString (HStr_messageId);
    end;
 
    procedure ChangeMessageFlagStateAsync
@@ -3193,8 +3620,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       flagState : Windows.ApplicationModel.Email.EmailFlagState
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3202,7 +3630,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3223,13 +3650,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_messageId);
+      tmp := WindowsDeleteString (HStr_messageId);
    end;
 
    function TryMoveMessageAsync
@@ -3240,15 +3667,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
-      HStr_newParentFolderId : WinRt.HString := To_HString (newParentFolderId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
+      HStr_newParentFolderId : constant WinRt.HString := To_HString (newParentFolderId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3266,7 +3693,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3279,7 +3706,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TryMoveMessageAsync (HStr_messageId, HStr_newParentFolderId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3289,15 +3716,15 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_messageId);
-      Hr := WindowsDeleteString (HStr_newParentFolderId);
+      tmp := WindowsDeleteString (HStr_messageId);
+      tmp := WindowsDeleteString (HStr_newParentFolderId);
       return m_RetVal;
    end;
 
@@ -3309,15 +3736,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_folderId : WinRt.HString := To_HString (folderId);
-      HStr_newParentFolderId : WinRt.HString := To_HString (newParentFolderId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_folderId : constant WinRt.HString := To_HString (folderId);
+      HStr_newParentFolderId : constant WinRt.HString := To_HString (newParentFolderId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3335,7 +3762,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3348,7 +3775,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TryMoveFolderAsync (HStr_folderId, HStr_newParentFolderId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3358,15 +3785,15 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_folderId);
-      Hr := WindowsDeleteString (HStr_newParentFolderId);
+      tmp := WindowsDeleteString (HStr_folderId);
+      tmp := WindowsDeleteString (HStr_newParentFolderId);
       return m_RetVal;
    end;
 
@@ -3379,16 +3806,16 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_folderId : WinRt.HString := To_HString (folderId);
-      HStr_newParentFolderId : WinRt.HString := To_HString (newParentFolderId);
-      HStr_newFolderName : WinRt.HString := To_HString (newFolderName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_folderId : constant WinRt.HString := To_HString (folderId);
+      HStr_newParentFolderId : constant WinRt.HString := To_HString (newParentFolderId);
+      HStr_newFolderName : constant WinRt.HString := To_HString (newFolderName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3406,7 +3833,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3419,7 +3846,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TryMoveFolderAsync (HStr_folderId, HStr_newParentFolderId, HStr_newFolderName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3429,16 +3856,16 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_folderId);
-      Hr := WindowsDeleteString (HStr_newParentFolderId);
-      Hr := WindowsDeleteString (HStr_newFolderName);
+      tmp := WindowsDeleteString (HStr_folderId);
+      tmp := WindowsDeleteString (HStr_newParentFolderId);
+      tmp := WindowsDeleteString (HStr_newFolderName);
       return m_RetVal;
    end;
 
@@ -3448,8 +3875,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       messageId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3457,7 +3885,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3478,13 +3905,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_messageId);
+      tmp := WindowsDeleteString (HStr_messageId);
    end;
 
    procedure MarkFolderSyncEnabledAsync
@@ -3494,8 +3921,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       isSyncEnabled : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_folderId : WinRt.HString := To_HString (folderId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_folderId : constant WinRt.HString := To_HString (folderId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3503,7 +3931,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3524,13 +3951,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_folderId);
+      tmp := WindowsDeleteString (HStr_folderId);
    end;
 
    procedure SendMessageAsync
@@ -3539,7 +3966,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       message : Windows.ApplicationModel.Email.EmailMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3547,7 +3975,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3568,9 +3995,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3582,7 +4009,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       message : Windows.ApplicationModel.Email.EmailMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3590,7 +4018,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3611,9 +4038,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3625,8 +4052,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       messageId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3634,7 +4062,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3655,13 +4082,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_messageId);
+      tmp := WindowsDeleteString (HStr_messageId);
    end;
 
    procedure DownloadAttachmentAsync
@@ -3670,8 +4097,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       attachmentId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_attachmentId : WinRt.HString := To_HString (attachmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_attachmentId : constant WinRt.HString := To_HString (attachmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3679,7 +4107,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3700,13 +4127,13 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_attachmentId);
+      tmp := WindowsDeleteString (HStr_attachmentId);
    end;
 
    function CreateResponseMessageAsync
@@ -3720,16 +4147,16 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_messageId : WinRt.HString := To_HString (messageId);
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_responseHeader : WinRt.HString := To_HString (responseHeader);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_messageId : constant WinRt.HString := To_HString (messageId);
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_responseHeader : constant WinRt.HString := To_HString (responseHeader);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3747,7 +4174,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMessage.Kind_Delegate, AsyncOperationCompletedHandler_EmailMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3761,7 +4188,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMailbox.all.CreateResponseMessageAsync (HStr_messageId, responseType, HStr_subject, responseHeaderType, HStr_responseHeader, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3773,16 +4200,16 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
                   Retval.m_IEmailMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_messageId);
-         Hr := WindowsDeleteString (HStr_subject);
-         Hr := WindowsDeleteString (HStr_responseHeader);
+         tmp := WindowsDeleteString (HStr_messageId);
+         tmp := WindowsDeleteString (HStr_subject);
+         tmp := WindowsDeleteString (HStr_responseHeader);
       end return;
    end;
 
@@ -3797,15 +4224,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3823,7 +4250,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3836,7 +4263,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TryUpdateMeetingResponseAsync (meeting.m_IEmailMessage.all, response, HStr_subject, HStr_comment, sendUpdate, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3846,15 +4273,15 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -3870,16 +4297,16 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_forwardHeader : WinRt.HString := To_HString (forwardHeader);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_forwardHeader : constant WinRt.HString := To_HString (forwardHeader);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3897,7 +4324,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3910,7 +4337,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TryForwardMeetingAsync (meeting.m_IEmailMessage.all, recipients, HStr_subject, forwardHeaderType, HStr_forwardHeader, HStr_comment, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3920,16 +4347,16 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_forwardHeader);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_forwardHeader);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -3944,15 +4371,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3970,7 +4397,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3983,7 +4410,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TryProposeNewTimeForMeetingAsync (meeting.m_IEmailMessage.all, newStartTime, newDuration, HStr_subject, HStr_comment, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3993,15 +4420,15 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -4012,10 +4439,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IEmailMailbox.all.add_MailboxChanged (pHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4025,9 +4456,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailbox.all.remove_MailboxChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SendMessageAsync
@@ -4037,7 +4472,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       smartSend : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4045,7 +4481,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4066,9 +4501,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4081,13 +4516,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4105,7 +4540,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4118,7 +4553,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailbox.all.TrySetAutoReplySettingsAsync (autoReplySettings.m_IEmailMailboxAutoReplySettings.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4128,9 +4563,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4145,13 +4580,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailboxAutoReplySettings.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4169,7 +4604,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailboxAutoReplySettings.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailboxAutoReplySettings.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4183,7 +4618,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMailbox.all.TryGetAutoReplySettingsAsync (requestedFormat, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4195,9 +4630,9 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMailboxAutoReplySettings := new Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
                   Retval.m_IEmailMailboxAutoReplySettings.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -4211,17 +4646,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailbox_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailbox2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailbox2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.get_LinkedMailboxId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4231,17 +4670,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailbox_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailbox2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailbox2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.get_NetworkAccountId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4251,17 +4694,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailbox_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailbox2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailbox2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.get_NetworkId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4272,14 +4719,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4297,7 +4744,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4310,10 +4757,10 @@ package body WinRt.Windows.ApplicationModel.Email is
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.ResolveRecipientsAsync (recipients, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4323,9 +4770,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4340,14 +4787,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4365,7 +4812,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4378,10 +4825,10 @@ package body WinRt.Windows.ApplicationModel.Email is
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.ValidateCertificatesAsync (certificates, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4391,9 +4838,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4408,15 +4855,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxEmptyFolderStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_folderId : WinRt.HString := To_HString (folderId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_folderId : constant WinRt.HString := To_HString (folderId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailboxEmptyFolderStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4434,7 +4881,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailboxEmptyFolderStatus.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailboxEmptyFolderStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4447,10 +4894,10 @@ package body WinRt.Windows.ApplicationModel.Email is
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.TryEmptyFolderAsync (HStr_folderId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4460,14 +4907,14 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_folderId);
+      tmp := WindowsDeleteString (HStr_folderId);
       return m_RetVal;
    end;
 
@@ -4479,16 +4926,16 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxCreateFolderResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_parentFolderId : WinRt.HString := To_HString (parentFolderId);
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_parentFolderId : constant WinRt.HString := To_HString (parentFolderId);
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailboxCreateFolderResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4506,7 +4953,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailboxCreateFolderResult.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailboxCreateFolderResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4520,10 +4967,10 @@ package body WinRt.Windows.ApplicationModel.Email is
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxCreateFolderResult do
          m_Interface := QInterface (this.m_IEmailMailbox.all);
          Hr := m_Interface.TryCreateFolderAsync (HStr_parentFolderId, HStr_name, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4535,15 +4982,15 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMailboxCreateFolderResult := new Windows.ApplicationModel.Email.IEmailMailboxCreateFolderResult;
                   Retval.m_IEmailMailboxCreateFolderResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_parentFolderId);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_parentFolderId);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -4554,15 +5001,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxDeleteFolderStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_folderId : WinRt.HString := To_HString (folderId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_folderId : constant WinRt.HString := To_HString (folderId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailboxDeleteFolderStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4580,7 +5027,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailboxDeleteFolderStatus.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailboxDeleteFolderStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4593,10 +5040,10 @@ package body WinRt.Windows.ApplicationModel.Email is
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.TryDeleteFolderAsync (HStr_folderId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4606,14 +5053,14 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_folderId);
+      tmp := WindowsDeleteString (HStr_folderId);
       return m_RetVal;
    end;
 
@@ -4622,8 +5069,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailbox
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4631,7 +5079,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4647,7 +5094,7 @@ package body WinRt.Windows.ApplicationModel.Email is
    begin
       m_Interface := QInterface (this.m_IEmailMailbox.all);
       Hr := m_Interface.RegisterSyncManagerAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4655,9 +5102,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4670,19 +5117,23 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeTracker'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailbox5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxChangeTracker;
-      HStr_identity : WinRt.HString := To_HString (identity);
+      HStr_identity : constant WinRt.HString := To_HString (identity);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailbox_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailbox5, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailbox5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeTracker do
          m_Interface := QInterface (this.m_IEmailMailbox.all);
          Hr := m_Interface.GetChangeTracker (HStr_identity, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxChangeTracker := new Windows.ApplicationModel.Email.IEmailMailboxChangeTracker;
          Retval.m_IEmailMailboxChangeTracker.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_identity);
+         tmp := WindowsDeleteString (HStr_identity);
       end return;
    end;
 
@@ -4695,12 +5146,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxAction) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxAction, IEmailMailboxAction_Ptr);
    begin
       if this.m_IEmailMailboxAction /= null then
          if this.m_IEmailMailboxAction.all /= null then
-            RefCount := this.m_IEmailMailboxAction.all.Release;
+            temp := this.m_IEmailMailboxAction.all.Release;
             Free (this.m_IEmailMailboxAction);
          end if;
       end if;
@@ -4715,10 +5166,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxActionKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxActionKind;
    begin
       Hr := this.m_IEmailMailboxAction.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4728,10 +5183,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IEmailMailboxAction.all.get_ChangeNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4744,12 +5203,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxAutoReply) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxAutoReply, IEmailMailboxAutoReply_Ptr);
    begin
       if this.m_IEmailMailboxAutoReply /= null then
          if this.m_IEmailMailboxAutoReply.all /= null then
-            RefCount := this.m_IEmailMailboxAutoReply.all.Release;
+            temp := this.m_IEmailMailboxAutoReply.all.Release;
             Free (this.m_IEmailMailboxAutoReply);
          end if;
       end if;
@@ -4764,10 +5223,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxAutoReply.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4777,9 +5240,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxAutoReply.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Response
@@ -4788,13 +5255,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMailboxAutoReply.all.get_Response (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4804,11 +5275,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMailboxAutoReply.all.put_Response (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -4820,12 +5295,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxAutoReplySettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxAutoReplySettings, IEmailMailboxAutoReplySettings_Ptr);
    begin
       if this.m_IEmailMailboxAutoReplySettings /= null then
          if this.m_IEmailMailboxAutoReplySettings.all /= null then
-            RefCount := this.m_IEmailMailboxAutoReplySettings.all.Release;
+            temp := this.m_IEmailMailboxAutoReplySettings.all.Release;
             Free (this.m_IEmailMailboxAutoReplySettings);
          end if;
       end if;
@@ -4836,7 +5311,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailMailboxAutoReplySettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
    begin
       return RetVal : EmailMailboxAutoReplySettings do
@@ -4845,7 +5321,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailMailboxAutoReplySettings := new Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
             Retval.m_IEmailMailboxAutoReplySettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4858,10 +5334,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4871,9 +5351,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseKind
@@ -4882,10 +5366,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.get_ResponseKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4895,9 +5383,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.put_ResponseKind (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -4906,13 +5398,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4922,9 +5418,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.put_StartTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EndTime
@@ -4933,13 +5433,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.get_EndTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4949,9 +5453,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxAutoReplySettings.all.put_EndTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InternalReply
@@ -4960,11 +5468,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReply'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxAutoReply;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReply do
          Hr := this.m_IEmailMailboxAutoReplySettings.all.get_InternalReply (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxAutoReply := new Windows.ApplicationModel.Email.IEmailMailboxAutoReply;
          Retval.m_IEmailMailboxAutoReply.all := m_ComRetVal;
       end return;
@@ -4976,11 +5488,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReply'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxAutoReply;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReply do
          Hr := this.m_IEmailMailboxAutoReplySettings.all.get_KnownExternalReply (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxAutoReply := new Windows.ApplicationModel.Email.IEmailMailboxAutoReply;
          Retval.m_IEmailMailboxAutoReply.all := m_ComRetVal;
       end return;
@@ -4992,11 +5508,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReply'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxAutoReply;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReply do
          Hr := this.m_IEmailMailboxAutoReplySettings.all.get_UnknownExternalReply (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxAutoReply := new Windows.ApplicationModel.Email.IEmailMailboxAutoReply;
          Retval.m_IEmailMailboxAutoReply.all := m_ComRetVal;
       end return;
@@ -5011,12 +5531,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxCapabilities, IEmailMailboxCapabilities_Ptr);
    begin
       if this.m_IEmailMailboxCapabilities /= null then
          if this.m_IEmailMailboxCapabilities.all /= null then
-            RefCount := this.m_IEmailMailboxCapabilities.all.Release;
+            temp := this.m_IEmailMailboxCapabilities.all.Release;
             Free (this.m_IEmailMailboxCapabilities);
          end if;
       end if;
@@ -5031,10 +5551,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanForwardMeetings (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5044,10 +5568,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanGetAndSetExternalAutoReplies (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5057,10 +5585,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanGetAndSetInternalAutoReplies (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5070,10 +5602,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanUpdateMeetingResponses (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5083,10 +5619,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanServerSearchFolders (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5096,10 +5636,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanServerSearchMailbox (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5109,10 +5653,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanProposeNewTimeForMeetings (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5122,10 +5670,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxCapabilities.all.get_CanSmartSend (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5135,14 +5687,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.get_CanResolveRecipients (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5152,14 +5708,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.get_CanValidateCertificates (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5169,14 +5729,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.get_CanEmptyFolder (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5186,14 +5750,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.get_CanCreateFolder (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5203,14 +5771,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.get_CanDeleteFolder (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5220,14 +5792,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.get_CanMoveFolder (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5237,13 +5813,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanForwardMeetings (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanGetAndSetExternalAutoReplies
@@ -5252,13 +5832,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanGetAndSetExternalAutoReplies (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanGetAndSetInternalAutoReplies
@@ -5267,13 +5851,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanGetAndSetInternalAutoReplies (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanUpdateMeetingResponses
@@ -5282,13 +5870,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanUpdateMeetingResponses (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanServerSearchFolders
@@ -5297,13 +5889,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanServerSearchFolders (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanServerSearchMailbox
@@ -5312,13 +5908,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanServerSearchMailbox (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanProposeNewTimeForMeetings
@@ -5327,13 +5927,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanProposeNewTimeForMeetings (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanSmartSend
@@ -5342,13 +5946,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanSmartSend (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanResolveRecipients
@@ -5357,13 +5965,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanResolveRecipients (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanValidateCertificates
@@ -5372,13 +5984,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanValidateCertificates (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanEmptyFolder
@@ -5387,13 +6003,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanEmptyFolder (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanCreateFolder
@@ -5402,13 +6022,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanCreateFolder (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanDeleteFolder
@@ -5417,13 +6041,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanDeleteFolder (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_CanMoveFolder
@@ -5432,13 +6060,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxCapabilities3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxCapabilities.all);
       Hr := m_Interface.put_CanMoveFolder (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5450,12 +6082,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxChange) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxChange, IEmailMailboxChange_Ptr);
    begin
       if this.m_IEmailMailboxChange /= null then
          if this.m_IEmailMailboxChange.all /= null then
-            RefCount := this.m_IEmailMailboxChange.all.Release;
+            temp := this.m_IEmailMailboxChange.all.Release;
             Free (this.m_IEmailMailboxChange);
          end if;
       end if;
@@ -5470,10 +6102,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxChangeType;
    begin
       Hr := this.m_IEmailMailboxChange.all.get_ChangeType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5483,13 +6119,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_IEmailMailboxAction.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IEmailMailboxAction.Kind;
    begin
       Hr := this.m_IEmailMailboxChange.all.get_MailboxActions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IEmailMailboxAction (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5499,11 +6139,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessage do
          Hr := this.m_IEmailMailboxChange.all.get_Message (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
          Retval.m_IEmailMessage.all := m_ComRetVal;
       end return;
@@ -5515,11 +6159,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailFolder;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailFolder do
          Hr := this.m_IEmailMailboxChange.all.get_Folder (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailFolder := new Windows.ApplicationModel.Email.IEmailFolder;
          Retval.m_IEmailFolder.all := m_ComRetVal;
       end return;
@@ -5534,12 +6182,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxChangeReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxChangeReader, IEmailMailboxChangeReader_Ptr);
    begin
       if this.m_IEmailMailboxChangeReader /= null then
          if this.m_IEmailMailboxChangeReader.all /= null then
-            RefCount := this.m_IEmailMailboxChangeReader.all.Release;
+            temp := this.m_IEmailMailboxChangeReader.all.Release;
             Free (this.m_IEmailMailboxChangeReader);
          end if;
       end if;
@@ -5553,9 +6201,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailboxChangeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxChangeReader.all.AcceptChanges;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AcceptChangesThrough
@@ -5564,9 +6216,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       lastChangeToAcknowledge : Windows.ApplicationModel.Email.EmailMailboxChange'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxChangeReader.all.AcceptChangesThrough (lastChangeToAcknowledge.m_IEmailMailboxChange.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ReadBatchAsync
@@ -5575,13 +6231,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5599,7 +6255,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5612,7 +6268,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailboxChangeReader.all.ReadBatchAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5622,9 +6278,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5641,12 +6297,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxChangeTracker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxChangeTracker, IEmailMailboxChangeTracker_Ptr);
    begin
       if this.m_IEmailMailboxChangeTracker /= null then
          if this.m_IEmailMailboxChangeTracker.all /= null then
-            RefCount := this.m_IEmailMailboxChangeTracker.all.Release;
+            temp := this.m_IEmailMailboxChangeTracker.all.Release;
             Free (this.m_IEmailMailboxChangeTracker);
          end if;
       end if;
@@ -5661,10 +6317,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxChangeTracker.all.get_IsTracking (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5673,9 +6333,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailboxChangeTracker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxChangeTracker.all.Enable;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetChangeReader
@@ -5684,11 +6348,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxChangeReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeReader do
          Hr := this.m_IEmailMailboxChangeTracker.all.GetChangeReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxChangeReader := new Windows.ApplicationModel.Email.IEmailMailboxChangeReader;
          Retval.m_IEmailMailboxChangeReader.all := m_ComRetVal;
       end return;
@@ -5699,9 +6367,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailboxChangeTracker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxChangeTracker.all.Reset;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5713,12 +6385,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxChangedDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxChangedDeferral, IEmailMailboxChangedDeferral_Ptr);
    begin
       if this.m_IEmailMailboxChangedDeferral /= null then
          if this.m_IEmailMailboxChangedDeferral.all /= null then
-            RefCount := this.m_IEmailMailboxChangedDeferral.all.Release;
+            temp := this.m_IEmailMailboxChangedDeferral.all.Release;
             Free (this.m_IEmailMailboxChangedDeferral);
          end if;
       end if;
@@ -5732,9 +6404,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       this : in out EmailMailboxChangedDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxChangedDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5746,12 +6422,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxChangedEventArgs, IEmailMailboxChangedEventArgs_Ptr);
    begin
       if this.m_IEmailMailboxChangedEventArgs /= null then
          if this.m_IEmailMailboxChangedEventArgs.all /= null then
-            RefCount := this.m_IEmailMailboxChangedEventArgs.all.Release;
+            temp := this.m_IEmailMailboxChangedEventArgs.all.Release;
             Free (this.m_IEmailMailboxChangedEventArgs);
          end if;
       end if;
@@ -5766,11 +6442,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxChangedDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMailboxChangedDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMailboxChangedDeferral do
          Hr := this.m_IEmailMailboxChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMailboxChangedDeferral := new Windows.ApplicationModel.Email.IEmailMailboxChangedDeferral;
          Retval.m_IEmailMailboxChangedDeferral.all := m_ComRetVal;
       end return;
@@ -5785,12 +6465,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxCreateFolderResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxCreateFolderResult, IEmailMailboxCreateFolderResult_Ptr);
    begin
       if this.m_IEmailMailboxCreateFolderResult /= null then
          if this.m_IEmailMailboxCreateFolderResult.all /= null then
-            RefCount := this.m_IEmailMailboxCreateFolderResult.all.Release;
+            temp := this.m_IEmailMailboxCreateFolderResult.all.Release;
             Free (this.m_IEmailMailboxCreateFolderResult);
          end if;
       end if;
@@ -5805,10 +6485,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus;
    begin
       Hr := this.m_IEmailMailboxCreateFolderResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5818,11 +6502,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailFolder;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailFolder do
          Hr := this.m_IEmailMailboxCreateFolderResult.all.get_Folder (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailFolder := new Windows.ApplicationModel.Email.IEmailFolder;
          Retval.m_IEmailFolder.all := m_ComRetVal;
       end return;
@@ -5837,12 +6525,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxPolicies) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxPolicies, IEmailMailboxPolicies_Ptr);
    begin
       if this.m_IEmailMailboxPolicies /= null then
          if this.m_IEmailMailboxPolicies.all /= null then
-            RefCount := this.m_IEmailMailboxPolicies.all.Release;
+            temp := this.m_IEmailMailboxPolicies.all.Release;
             Free (this.m_IEmailMailboxPolicies);
          end if;
       end if;
@@ -5857,10 +6545,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation;
    begin
       Hr := this.m_IEmailMailboxPolicies.all.get_AllowedSmimeEncryptionAlgorithmNegotiation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5870,10 +6562,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMailboxPolicies.all.get_AllowSmimeSoftCertificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5883,13 +6579,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_EmailMailboxSmimeEncryptionAlgorithm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_EmailMailboxSmimeEncryptionAlgorithm.Kind;
    begin
       Hr := this.m_IEmailMailboxPolicies.all.get_RequiredSmimeEncryptionAlgorithm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_EmailMailboxSmimeEncryptionAlgorithm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5899,13 +6599,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_EmailMailboxSmimeSigningAlgorithm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_EmailMailboxSmimeSigningAlgorithm.Kind;
    begin
       Hr := this.m_IEmailMailboxPolicies.all.get_RequiredSmimeSigningAlgorithm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_EmailMailboxSmimeSigningAlgorithm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5915,14 +6619,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.get_MustEncryptSmimeMessages (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5932,14 +6640,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.get_MustSignSmimeMessages (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5949,13 +6661,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.put_AllowedSmimeEncryptionAlgorithmNegotiation (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_AllowSmimeSoftCertificates
@@ -5964,13 +6680,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.put_AllowSmimeSoftCertificates (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_RequiredSmimeEncryptionAlgorithm
@@ -5979,13 +6699,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.put_RequiredSmimeEncryptionAlgorithm (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_RequiredSmimeSigningAlgorithm
@@ -5994,13 +6718,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.put_RequiredSmimeSigningAlgorithm (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_MustEncryptSmimeMessages
@@ -6009,13 +6737,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.put_MustEncryptSmimeMessages (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_MustSignSmimeMessages
@@ -6024,13 +6756,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxPolicies3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxPolicies.all);
       Hr := m_Interface.put_MustSignSmimeMessages (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6042,12 +6778,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMailboxSyncManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMailboxSyncManager, IEmailMailboxSyncManager_Ptr);
    begin
       if this.m_IEmailMailboxSyncManager /= null then
          if this.m_IEmailMailboxSyncManager.all /= null then
-            RefCount := this.m_IEmailMailboxSyncManager.all.Release;
+            temp := this.m_IEmailMailboxSyncManager.all.Release;
             Free (this.m_IEmailMailboxSyncManager);
          end if;
       end if;
@@ -6062,10 +6798,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxSyncStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMailboxSyncStatus;
    begin
       Hr := this.m_IEmailMailboxSyncManager.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6075,10 +6815,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailMailboxSyncManager.all.get_LastSuccessfulSyncTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6088,10 +6832,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailMailboxSyncManager.all.get_LastAttemptedSyncTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6101,13 +6849,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6125,7 +6873,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6138,7 +6886,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailMailboxSyncManager.all.SyncAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6148,9 +6896,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6165,10 +6913,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IEmailMailboxSyncManager.all.add_SyncStatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6178,9 +6930,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMailboxSyncManager.all.remove_SyncStatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Status
@@ -6189,13 +6945,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMailboxSyncStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxSyncManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxSyncManager.all);
       Hr := m_Interface.put_Status (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_LastSuccessfulSyncTime
@@ -6204,13 +6964,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxSyncManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxSyncManager.all);
       Hr := m_Interface.put_LastSuccessfulSyncTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_LastAttemptedSyncTime
@@ -6219,13 +6983,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMailboxSyncManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMailboxSyncManager.all);
       Hr := m_Interface.put_LastAttemptedSyncTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6237,9 +7005,10 @@ package body WinRt.Windows.ApplicationModel.Email is
          message : Windows.ApplicationModel.Email.EmailMessage'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Email.IEmailManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -6247,7 +7016,6 @@ package body WinRt.Windows.ApplicationModel.Email is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -6263,7 +7031,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := RoGetActivationFactory (m_hString, IID_IEmailManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowComposeNewEmailAsync (message.m_IEmailMessage.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -6271,14 +7039,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RequestStoreAsync
@@ -6287,15 +7055,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       )
       return WinRt.Windows.ApplicationModel.Email.EmailStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Email.IEmailManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_EmailStore.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6313,7 +7081,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailStore.Kind_Delegate, AsyncOperationCompletedHandler_EmailStore.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -6327,10 +7095,10 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := RoGetActivationFactory (m_hString, IID_IEmailManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestStoreAsync (accessType, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -6342,15 +7110,15 @@ package body WinRt.Windows.ApplicationModel.Email is
                         Retval.m_IEmailStore := new Windows.ApplicationModel.Email.IEmailStore;
                         Retval.m_IEmailStore.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -6360,20 +7128,24 @@ package body WinRt.Windows.ApplicationModel.Email is
       )
       return WinRt.Windows.ApplicationModel.Email.EmailManagerForUser is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Email.IEmailManagerStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailManagerForUser;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Email.EmailManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IEmailManagerStatics3'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IEmailManagerForUser := new Windows.ApplicationModel.Email.IEmailManagerForUser;
                Retval.m_IEmailManagerForUser.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -6388,12 +7160,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailManagerForUser) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailManagerForUser, IEmailManagerForUser_Ptr);
    begin
       if this.m_IEmailManagerForUser /= null then
          if this.m_IEmailManagerForUser.all /= null then
-            RefCount := this.m_IEmailManagerForUser.all.Release;
+            temp := this.m_IEmailManagerForUser.all.Release;
             Free (this.m_IEmailManagerForUser);
          end if;
       end if;
@@ -6408,7 +7180,8 @@ package body WinRt.Windows.ApplicationModel.Email is
       message : Windows.ApplicationModel.Email.EmailMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -6416,7 +7189,6 @@ package body WinRt.Windows.ApplicationModel.Email is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -6437,9 +7209,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -6452,13 +7224,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailStore'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailStore.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6476,7 +7248,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailStore.Kind_Delegate, AsyncOperationCompletedHandler_EmailStore.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6490,7 +7262,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailManagerForUser.all.RequestStoreAsync (accessType, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6502,9 +7274,9 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailStore := new Windows.ApplicationModel.Email.IEmailStore;
                   Retval.m_IEmailStore.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6518,11 +7290,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IEmailManagerForUser.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -6537,12 +7313,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMeetingInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMeetingInfo, IEmailMeetingInfo_Ptr);
    begin
       if this.m_IEmailMeetingInfo /= null then
          if this.m_IEmailMeetingInfo.all /= null then
-            RefCount := this.m_IEmailMeetingInfo.all.Release;
+            temp := this.m_IEmailMeetingInfo.all.Release;
             Free (this.m_IEmailMeetingInfo);
          end if;
       end if;
@@ -6553,7 +7329,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailMeetingInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailMeetingInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailMeetingInfo");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailMeetingInfo;
    begin
       return RetVal : EmailMeetingInfo do
@@ -6562,7 +7339,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailMeetingInfo := new Windows.ApplicationModel.Email.IEmailMeetingInfo;
             Retval.m_IEmailMeetingInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6575,10 +7352,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_AllowNewTimeProposal (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6588,9 +7369,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_AllowNewTimeProposal (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppointmentRoamingId
@@ -6599,13 +7384,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_AppointmentRoamingId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6615,11 +7404,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_AppointmentRoamingId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AppointmentOriginalStartTime
@@ -6628,13 +7421,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_AppointmentOriginalStartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6644,9 +7441,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_AppointmentOriginalStartTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -6655,10 +7456,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6668,9 +7473,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsAllDay
@@ -6679,10 +7488,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_IsAllDay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6692,9 +7505,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_IsAllDay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsResponseRequested
@@ -6703,10 +7520,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_IsResponseRequested (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6716,9 +7537,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_IsResponseRequested (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Location
@@ -6727,13 +7552,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_Location (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6743,11 +7572,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_Location (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ProposedStartTime
@@ -6756,13 +7589,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_ProposedStartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6772,9 +7609,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       proposedStartTime : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_ProposedStartTime (proposedStartTime);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProposedDuration
@@ -6783,13 +7624,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_ProposedDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6799,9 +7644,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       duration : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_ProposedDuration (duration);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RecurrenceStartTime
@@ -6810,13 +7659,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_RecurrenceStartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6826,9 +7679,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_RecurrenceStartTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Recurrence
@@ -6837,11 +7694,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence do
          Hr := this.m_IEmailMeetingInfo.all.get_Recurrence (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentRecurrence := new Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
          Retval.m_IAppointmentRecurrence.all := m_ComRetVal;
       end return;
@@ -6853,9 +7714,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_Recurrence (value.m_IAppointmentRecurrence.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RemoteChangeNumber
@@ -6864,10 +7729,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_RemoteChangeNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6877,9 +7746,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_RemoteChangeNumber (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartTime
@@ -6888,10 +7761,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailMeetingInfo.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6901,9 +7778,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailMeetingInfo.all.put_StartTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsReportedOutOfDateByServer
@@ -6912,14 +7793,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMeetingInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMeetingInfo_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMeetingInfo2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMeetingInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMeetingInfo.all);
       Hr := m_Interface.get_IsReportedOutOfDateByServer (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6932,12 +7817,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMessage, IEmailMessage_Ptr);
    begin
       if this.m_IEmailMessage /= null then
          if this.m_IEmailMessage.all /= null then
-            RefCount := this.m_IEmailMessage.all.Release;
+            temp := this.m_IEmailMessage.all.Release;
             Free (this.m_IEmailMessage);
          end if;
       end if;
@@ -6948,7 +7833,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailMessage");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailMessage;
    begin
       return RetVal : EmailMessage do
@@ -6957,7 +7843,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
             Retval.m_IEmailMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6970,13 +7856,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMessage.all.get_Subject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6986,11 +7876,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMessage.all.put_Subject (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Body
@@ -6999,13 +7893,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailMessage.all.get_Body (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7015,11 +7913,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailMessage.all.put_Body (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_To
@@ -7028,13 +7930,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_IEmailRecipient.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IEmailRecipient.Kind;
    begin
       Hr := this.m_IEmailMessage.all.get_To (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IEmailRecipient (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7044,13 +7950,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_IEmailRecipient.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IEmailRecipient.Kind;
    begin
       Hr := this.m_IEmailMessage.all.get_CC (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IEmailRecipient (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7060,13 +7970,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_IEmailRecipient.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IEmailRecipient.Kind;
    begin
       Hr := this.m_IEmailMessage.all.get_Bcc (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IEmailRecipient (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7076,13 +7990,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_IEmailAttachment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IEmailAttachment.Kind;
    begin
       Hr := this.m_IEmailMessage.all.get_Attachments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IEmailAttachment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7092,17 +8010,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7112,17 +8034,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_RemoteId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7132,15 +8058,19 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_RemoteId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_MailboxId
@@ -7149,17 +8079,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_MailboxId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7169,17 +8103,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_ConversationId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7189,17 +8127,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_FolderId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7209,14 +8151,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_AllowInternetImages (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7226,13 +8172,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_AllowInternetImages (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ChangeNumber
@@ -7241,14 +8191,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_ChangeNumber (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7258,14 +8212,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageDownloadState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMessageDownloadState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_DownloadState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7275,13 +8233,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMessageDownloadState
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_DownloadState (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EstimatedDownloadSizeInBytes
@@ -7290,14 +8252,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_EstimatedDownloadSizeInBytes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7307,13 +8273,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_EstimatedDownloadSizeInBytes (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FlagState
@@ -7322,14 +8292,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFlagState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailFlagState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_FlagState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7339,13 +8313,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailFlagState
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_FlagState (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HasPartialBodies
@@ -7354,14 +8332,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_HasPartialBodies (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7371,14 +8353,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailImportance is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailImportance;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_Importance (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7388,13 +8374,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailImportance
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_Importance (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InResponseToMessageId
@@ -7403,17 +8393,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_InResponseToMessageId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7423,15 +8417,19 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailIrmInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailIrmInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailIrmInfo do
          m_Interface := QInterface (this.m_IEmailMessage.all);
          Hr := m_Interface.get_IrmInfo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailIrmInfo := new Windows.ApplicationModel.Email.IEmailIrmInfo;
          Retval.m_IEmailIrmInfo.all := m_ComRetVal;
       end return;
@@ -7443,13 +8441,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailIrmInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_IrmInfo (value.m_IEmailIrmInfo.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDraftMessage
@@ -7458,14 +8460,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_IsDraftMessage (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7475,14 +8481,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_IsRead (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7492,13 +8502,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_IsRead (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsSeen
@@ -7507,14 +8521,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_IsSeen (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7524,13 +8542,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_IsSeen (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsServerSearchMessage
@@ -7539,14 +8561,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_IsServerSearchMessage (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7556,14 +8582,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_IsSmartSendable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7573,17 +8603,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_MessageClass (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7593,15 +8627,19 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_MessageClass (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_NormalizedSubject
@@ -7610,17 +8648,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_NormalizedSubject (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7630,14 +8672,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_OriginalCodePage (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7647,13 +8693,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_OriginalCodePage (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Preview
@@ -7662,17 +8712,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_Preview (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7682,15 +8736,19 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_Preview (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_LastResponseKind
@@ -7699,14 +8757,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMessageResponseKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_LastResponseKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7716,13 +8778,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMessageResponseKind
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_LastResponseKind (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Sender
@@ -7731,15 +8797,19 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailRecipient'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailRecipient;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailRecipient do
          m_Interface := QInterface (this.m_IEmailMessage.all);
          Hr := m_Interface.get_Sender (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
          Retval.m_IEmailRecipient.all := m_ComRetVal;
       end return;
@@ -7751,13 +8821,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailRecipient'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_Sender (value.m_IEmailRecipient.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SentTime
@@ -7766,17 +8840,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_SentTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7786,13 +8864,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_SentTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MeetingInfo
@@ -7801,15 +8883,19 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMeetingInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMeetingInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMeetingInfo do
          m_Interface := QInterface (this.m_IEmailMessage.all);
          Hr := m_Interface.get_MeetingInfo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMeetingInfo := new Windows.ApplicationModel.Email.IEmailMeetingInfo;
          Retval.m_IEmailMeetingInfo.all := m_ComRetVal;
       end return;
@@ -7821,13 +8907,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMeetingInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_MeetingInfo (value.m_IEmailMeetingInfo.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetBodyStream
@@ -7837,14 +8927,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.GetBodyStream (type_x, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7855,13 +8949,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       stream : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage2, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.SetBodyStream (type_x, stream);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SmimeData
@@ -7870,14 +8968,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_SmimeData (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7887,13 +8989,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_SmimeData (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SmimeKind
@@ -7902,14 +9008,18 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageSmimeKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailMessageSmimeKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_SmimeKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7919,13 +9029,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailMessageSmimeKind
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage3, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_SmimeKind (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReplyTo
@@ -7934,17 +9048,21 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_IEmailRecipient.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IEmailRecipient.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage4, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.get_ReplyTo (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IEmailRecipient (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7954,15 +9072,19 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailRecipient'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailRecipient;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage4, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailRecipient do
          m_Interface := QInterface (this.m_IEmailMessage.all);
          Hr := m_Interface.get_SentRepresenting (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
          Retval.m_IEmailRecipient.all := m_ComRetVal;
       end return;
@@ -7974,13 +9096,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailRecipient'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailMessage4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailMessage_Interface, WinRt.Windows.ApplicationModel.Email.IEmailMessage4, WinRt.Windows.ApplicationModel.Email.IID_IEmailMessage4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailMessage.all);
       Hr := m_Interface.put_SentRepresenting (value.m_IEmailRecipient.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7992,12 +9118,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMessageBatch) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMessageBatch, IEmailMessageBatch_Ptr);
    begin
       if this.m_IEmailMessageBatch /= null then
          if this.m_IEmailMessageBatch.all /= null then
-            RefCount := this.m_IEmailMessageBatch.all.Release;
+            temp := this.m_IEmailMessageBatch.all.Release;
             Free (this.m_IEmailMessageBatch);
          end if;
       end if;
@@ -8012,13 +9138,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVectorView_IEmailMessage.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IEmailMessage.Kind;
    begin
       Hr := this.m_IEmailMessageBatch.all.get_Messages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IEmailMessage (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8028,10 +9158,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailBatchStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailBatchStatus;
    begin
       Hr := this.m_IEmailMessageBatch.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8044,12 +9178,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailMessageReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailMessageReader, IEmailMessageReader_Ptr);
    begin
       if this.m_IEmailMessageReader /= null then
          if this.m_IEmailMessageReader.all /= null then
-            RefCount := this.m_IEmailMessageReader.all.Release;
+            temp := this.m_IEmailMessageReader.all.Release;
             Free (this.m_IEmailMessageReader);
          end if;
       end if;
@@ -8064,13 +9198,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageBatch'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMessageBatch.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8088,7 +9222,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMessageBatch.Kind_Delegate, AsyncOperationCompletedHandler_EmailMessageBatch.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8102,7 +9236,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailMessageReader.all.ReadBatchAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8114,9 +9248,9 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMessageBatch := new Windows.ApplicationModel.Email.IEmailMessageBatch;
                   Retval.m_IEmailMessageBatch.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -8133,12 +9267,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailQueryOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailQueryOptions, IEmailQueryOptions_Ptr);
    begin
       if this.m_IEmailQueryOptions /= null then
          if this.m_IEmailQueryOptions.all /= null then
-            RefCount := this.m_IEmailQueryOptions.all.Release;
+            temp := this.m_IEmailQueryOptions.all.Release;
             Free (this.m_IEmailQueryOptions);
          end if;
       end if;
@@ -8149,7 +9283,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailQueryOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailQueryOptions;
    begin
       return RetVal : EmailQueryOptions do
@@ -8158,7 +9293,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailQueryOptions := new Windows.ApplicationModel.Email.IEmailQueryOptions;
             Retval.m_IEmailQueryOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8168,11 +9303,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailQueryOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
       m_Factory    : access IEmailQueryOptionsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailQueryOptions;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : EmailQueryOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailQueryOptionsFactory'Access , m_Factory'Address);
@@ -8180,10 +9316,10 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.CreateWithText (HStr_text, m_ComRetVal'Access);
             Retval.m_IEmailQueryOptions := new Windows.ApplicationModel.Email.IEmailQueryOptions;
             Retval.m_IEmailQueryOptions.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_text);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_text);
       end return;
    end;
 
@@ -8194,11 +9330,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailQueryOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
       m_Factory    : access IEmailQueryOptionsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailQueryOptions;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : EmailQueryOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailQueryOptionsFactory'Access , m_Factory'Address);
@@ -8206,10 +9343,10 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.CreateWithTextAndFields (HStr_text, fields, m_ComRetVal'Access);
             Retval.m_IEmailQueryOptions := new Windows.ApplicationModel.Email.IEmailQueryOptions;
             Retval.m_IEmailQueryOptions.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_text);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_text);
       end return;
    end;
 
@@ -8222,11 +9359,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailQueryTextSearch'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailQueryTextSearch;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailQueryTextSearch do
          Hr := this.m_IEmailQueryOptions.all.get_TextSearch (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailQueryTextSearch := new Windows.ApplicationModel.Email.IEmailQueryTextSearch;
          Retval.m_IEmailQueryTextSearch.all := m_ComRetVal;
       end return;
@@ -8238,10 +9379,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailQuerySortDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailQuerySortDirection;
    begin
       Hr := this.m_IEmailQueryOptions.all.get_SortDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8251,9 +9396,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailQuerySortDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailQueryOptions.all.put_SortDirection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SortProperty
@@ -8262,10 +9411,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailQuerySortProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailQuerySortProperty;
    begin
       Hr := this.m_IEmailQueryOptions.all.get_SortProperty (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8275,9 +9428,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailQuerySortProperty
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailQueryOptions.all.put_SortProperty (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -8286,10 +9443,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailQueryKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailQueryKind;
    begin
       Hr := this.m_IEmailQueryOptions.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8299,9 +9460,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailQueryKind
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailQueryOptions.all.put_Kind (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FolderIds
@@ -8310,13 +9475,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IEmailQueryOptions.all.get_FolderIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8329,12 +9498,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailQueryTextSearch) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailQueryTextSearch, IEmailQueryTextSearch_Ptr);
    begin
       if this.m_IEmailQueryTextSearch /= null then
          if this.m_IEmailQueryTextSearch.all /= null then
-            RefCount := this.m_IEmailQueryTextSearch.all.Release;
+            temp := this.m_IEmailQueryTextSearch.all.Release;
             Free (this.m_IEmailQueryTextSearch);
          end if;
       end if;
@@ -8349,10 +9518,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailQuerySearchFields is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailQuerySearchFields;
    begin
       Hr := this.m_IEmailQueryTextSearch.all.get_Fields (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8362,9 +9535,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailQuerySearchFields
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailQueryTextSearch.all.put_Fields (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SearchScope
@@ -8373,10 +9550,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailQuerySearchScope is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailQuerySearchScope;
    begin
       Hr := this.m_IEmailQueryTextSearch.all.get_SearchScope (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8386,9 +9567,13 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailQuerySearchScope
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEmailQueryTextSearch.all.put_SearchScope (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Text
@@ -8397,13 +9582,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailQueryTextSearch.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8413,11 +9602,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailQueryTextSearch.all.put_Text (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -8429,12 +9622,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailRecipient) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailRecipient, IEmailRecipient_Ptr);
    begin
       if this.m_IEmailRecipient /= null then
          if this.m_IEmailRecipient.all /= null then
-            RefCount := this.m_IEmailRecipient.all.Release;
+            temp := this.m_IEmailRecipient.all.Release;
             Free (this.m_IEmailRecipient);
          end if;
       end if;
@@ -8445,7 +9638,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailRecipient is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailRecipient;
    begin
       return RetVal : EmailRecipient do
@@ -8454,7 +9648,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
             Retval.m_IEmailRecipient.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8464,11 +9658,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailRecipient is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
       m_Factory    : access IEmailRecipientFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailRecipient;
-      HStr_address_x : WinRt.HString := To_HString (address_x);
+      HStr_address_x : constant WinRt.HString := To_HString (address_x);
    begin
       return RetVal : EmailRecipient do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailRecipientFactory'Access , m_Factory'Address);
@@ -8476,10 +9671,10 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.Create (HStr_address_x, m_ComRetVal'Access);
             Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
             Retval.m_IEmailRecipient.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_address_x);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_address_x);
       end return;
    end;
 
@@ -8490,12 +9685,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return EmailRecipient is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
       m_Factory    : access IEmailRecipientFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailRecipient;
-      HStr_address_x : WinRt.HString := To_HString (address_x);
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_address_x : constant WinRt.HString := To_HString (address_x);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : EmailRecipient do
          Hr := RoGetActivationFactory (m_hString, IID_IEmailRecipientFactory'Access , m_Factory'Address);
@@ -8503,11 +9699,11 @@ package body WinRt.Windows.ApplicationModel.Email is
             Hr := m_Factory.CreateWithName (HStr_address_x, HStr_name, m_ComRetVal'Access);
             Retval.m_IEmailRecipient := new Windows.ApplicationModel.Email.IEmailRecipient;
             Retval.m_IEmailRecipient.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_address_x);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_address_x);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -8520,13 +9716,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailRecipient.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8536,11 +9736,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailRecipient.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Address
@@ -8549,13 +9753,17 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailRecipient.all.get_Address (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8565,11 +9773,15 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEmailRecipient.all.put_Address (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -8581,12 +9793,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailRecipientResolutionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailRecipientResolutionResult, IEmailRecipientResolutionResult_Ptr);
    begin
       if this.m_IEmailRecipientResolutionResult /= null then
          if this.m_IEmailRecipientResolutionResult.all /= null then
-            RefCount := this.m_IEmailRecipientResolutionResult.all.Release;
+            temp := this.m_IEmailRecipientResolutionResult.all.Release;
             Free (this.m_IEmailRecipientResolutionResult);
          end if;
       end if;
@@ -8597,7 +9809,8 @@ package body WinRt.Windows.ApplicationModel.Email is
 
    function Constructor return EmailRecipientResolutionResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipientResolutionResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipientResolutionResult");
       m_ComRetVal  : aliased Windows.ApplicationModel.Email.IEmailRecipientResolutionResult;
    begin
       return RetVal : EmailRecipientResolutionResult do
@@ -8606,7 +9819,7 @@ package body WinRt.Windows.ApplicationModel.Email is
             Retval.m_IEmailRecipientResolutionResult := new Windows.ApplicationModel.Email.IEmailRecipientResolutionResult;
             Retval.m_IEmailRecipientResolutionResult.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8619,10 +9832,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailRecipientResolutionStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.EmailRecipientResolutionStatus;
    begin
       Hr := this.m_IEmailRecipientResolutionResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8632,10 +9849,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IEmailRecipientResolutionResult.all.get_PublicKeys (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8645,13 +9866,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult_Interface, WinRt.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult2, WinRt.Windows.ApplicationModel.Email.IID_IEmailRecipientResolutionResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailRecipientResolutionResult.all);
       Hr := m_Interface.put_Status (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPublicKeys
@@ -8660,13 +9885,17 @@ package body WinRt.Windows.ApplicationModel.Email is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult_Interface, WinRt.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult2, WinRt.Windows.ApplicationModel.Email.IID_IEmailRecipientResolutionResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailRecipientResolutionResult.all);
       Hr := m_Interface.SetPublicKeys (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8678,12 +9907,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailStore, IEmailStore_Ptr);
    begin
       if this.m_IEmailStore /= null then
          if this.m_IEmailStore.all /= null then
-            RefCount := this.m_IEmailStore.all.Release;
+            temp := this.m_IEmailStore.all.Release;
             Free (this.m_IEmailStore);
          end if;
       end if;
@@ -8698,13 +9927,13 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8722,7 +9951,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8735,7 +9964,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       Hr := this.m_IEmailStore.all.FindMailboxesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8745,9 +9974,9 @@ package body WinRt.Windows.ApplicationModel.Email is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8761,11 +9990,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailConversationReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailConversationReader do
          Hr := this.m_IEmailStore.all.GetConversationReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailConversationReader := new Windows.ApplicationModel.Email.IEmailConversationReader;
          Retval.m_IEmailConversationReader.all := m_ComRetVal;
       end return;
@@ -8778,11 +10011,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailConversationReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailConversationReader do
          Hr := this.m_IEmailStore.all.GetConversationReader (options.m_IEmailQueryOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailConversationReader := new Windows.ApplicationModel.Email.IEmailConversationReader;
          Retval.m_IEmailConversationReader.all := m_ComRetVal;
       end return;
@@ -8794,11 +10031,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessageReader do
          Hr := this.m_IEmailStore.all.GetMessageReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessageReader := new Windows.ApplicationModel.Email.IEmailMessageReader;
          Retval.m_IEmailMessageReader.all := m_ComRetVal;
       end return;
@@ -8811,11 +10052,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessageReader do
          Hr := this.m_IEmailStore.all.GetMessageReader (options.m_IEmailQueryOptions.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessageReader := new Windows.ApplicationModel.Email.IEmailMessageReader;
          Retval.m_IEmailMessageReader.all := m_ComRetVal;
       end return;
@@ -8828,14 +10073,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailbox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailbox.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8853,7 +10098,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailbox.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailbox.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8867,7 +10112,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailStore.all.GetMailboxAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8879,14 +10124,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMailbox := new Windows.ApplicationModel.Email.IEmailMailbox;
                   Retval.m_IEmailMailbox.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -8897,14 +10142,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailConversation.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8922,7 +10167,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailConversation.Kind_Delegate, AsyncOperationCompletedHandler_EmailConversation.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8936,7 +10181,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailStore.all.GetConversationAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8948,14 +10193,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailConversation := new Windows.ApplicationModel.Email.IEmailConversation;
                   Retval.m_IEmailConversation.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -8966,14 +10211,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8991,7 +10236,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailFolder.Kind_Delegate, AsyncOperationCompletedHandler_EmailFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9005,7 +10250,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailStore.all.GetFolderAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9017,14 +10262,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailFolder := new Windows.ApplicationModel.Email.IEmailFolder;
                   Retval.m_IEmailFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -9035,14 +10280,14 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9060,7 +10305,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMessage.Kind_Delegate, AsyncOperationCompletedHandler_EmailMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9074,7 +10319,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailStore.all.GetMessageAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9086,14 +10331,14 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
                   Retval.m_IEmailMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -9105,15 +10350,15 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailbox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_accountName : WinRt.HString := To_HString (accountName);
-      HStr_accountAddress : WinRt.HString := To_HString (accountAddress);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_accountName : constant WinRt.HString := To_HString (accountName);
+      HStr_accountAddress : constant WinRt.HString := To_HString (accountAddress);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailbox.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9131,7 +10376,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailbox.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailbox.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9145,7 +10390,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailStore.all.CreateMailboxAsync (HStr_accountName, HStr_accountAddress, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9157,15 +10402,15 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMailbox := new Windows.ApplicationModel.Email.IEmailMailbox;
                   Retval.m_IEmailMailbox.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_accountName);
-         Hr := WindowsDeleteString (HStr_accountAddress);
+         tmp := WindowsDeleteString (HStr_accountName);
+         tmp := WindowsDeleteString (HStr_accountAddress);
       end return;
    end;
 
@@ -9178,16 +10423,16 @@ package body WinRt.Windows.ApplicationModel.Email is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailbox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_accountName : WinRt.HString := To_HString (accountName);
-      HStr_accountAddress : WinRt.HString := To_HString (accountAddress);
-      HStr_userDataAccountId : WinRt.HString := To_HString (userDataAccountId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_accountName : constant WinRt.HString := To_HString (accountName);
+      HStr_accountAddress : constant WinRt.HString := To_HString (accountAddress);
+      HStr_userDataAccountId : constant WinRt.HString := To_HString (userDataAccountId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_EmailMailbox.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9205,7 +10450,7 @@ package body WinRt.Windows.ApplicationModel.Email is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_EmailMailbox.Kind_Delegate, AsyncOperationCompletedHandler_EmailMailbox.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9219,7 +10464,7 @@ package body WinRt.Windows.ApplicationModel.Email is
          Hr := this.m_IEmailStore.all.CreateMailboxAsync (HStr_accountName, HStr_accountAddress, HStr_userDataAccountId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9231,16 +10476,16 @@ package body WinRt.Windows.ApplicationModel.Email is
                   Retval.m_IEmailMailbox := new Windows.ApplicationModel.Email.IEmailMailbox;
                   Retval.m_IEmailMailbox.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_accountName);
-         Hr := WindowsDeleteString (HStr_accountAddress);
-         Hr := WindowsDeleteString (HStr_userDataAccountId);
+         tmp := WindowsDeleteString (HStr_accountName);
+         tmp := WindowsDeleteString (HStr_accountAddress);
+         tmp := WindowsDeleteString (HStr_userDataAccountId);
       end return;
    end;
 
@@ -9253,12 +10498,12 @@ package body WinRt.Windows.ApplicationModel.Email is
    end;
 
    procedure Finalize (this : in out EmailStoreNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailStoreNotificationTriggerDetails, IEmailStoreNotificationTriggerDetails_Ptr);
    begin
       if this.m_IEmailStoreNotificationTriggerDetails /= null then
          if this.m_IEmailStoreNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IEmailStoreNotificationTriggerDetails.all.Release;
+            temp := this.m_IEmailStoreNotificationTriggerDetails.all.Release;
             Free (this.m_IEmailStoreNotificationTriggerDetails);
          end if;
       end if;

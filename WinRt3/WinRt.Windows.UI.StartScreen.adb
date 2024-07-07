@@ -56,12 +56,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out JumpList) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJumpList, IJumpList_Ptr);
    begin
       if this.m_IJumpList /= null then
          if this.m_IJumpList.all /= null then
-            RefCount := this.m_IJumpList.all.Release;
+            temp := this.m_IJumpList.all.Release;
             Free (this.m_IJumpList);
          end if;
       end if;
@@ -73,15 +73,15 @@ package body WinRt.Windows.UI.StartScreen is
    function LoadCurrentAsync
    return WinRt.Windows.UI.StartScreen.JumpList is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpList");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpList");
       m_Factory        : access WinRt.Windows.UI.StartScreen.IJumpListStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_JumpList.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -99,7 +99,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_JumpList.Kind_Delegate, AsyncOperationCompletedHandler_JumpList.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -113,10 +113,10 @@ package body WinRt.Windows.UI.StartScreen is
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadCurrentAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -128,32 +128,36 @@ package body WinRt.Windows.UI.StartScreen is
                      Retval.m_IJumpList := new Windows.UI.StartScreen.IJumpList;
                      Retval.m_IJumpList.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpList");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpList");
       m_Factory        : access WinRt.Windows.UI.StartScreen.IJumpListStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IJumpListStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -166,13 +170,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return IVector_IJumpListItem.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IJumpListItem.Kind;
    begin
       Hr := this.m_IJumpList.all.get_Items (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IJumpListItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -182,10 +190,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.JumpListSystemGroupKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.JumpListSystemGroupKind;
    begin
       Hr := this.m_IJumpList.all.get_SystemGroupKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -195,9 +207,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.StartScreen.JumpListSystemGroupKind
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IJumpList.all.put_SystemGroupKind (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SaveAsync
@@ -205,7 +221,8 @@ package body WinRt.Windows.UI.StartScreen is
       this : in out JumpList
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -213,7 +230,6 @@ package body WinRt.Windows.UI.StartScreen is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -234,9 +250,9 @@ package body WinRt.Windows.UI.StartScreen is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -251,12 +267,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out JumpListItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJumpListItem, IJumpListItem_Ptr);
    begin
       if this.m_IJumpListItem /= null then
          if this.m_IJumpListItem.all /= null then
-            RefCount := this.m_IJumpListItem.all.Release;
+            temp := this.m_IJumpListItem.all.Release;
             Free (this.m_IJumpListItem);
          end if;
       end if;
@@ -272,44 +288,52 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.JumpListItem is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpListItem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpListItem");
       m_Factory        : access WinRt.Windows.UI.StartScreen.IJumpListItemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.IJumpListItem;
-      HStr_arguments : WinRt.HString := To_HString (arguments);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.JumpListItem do
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListItemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithArguments (HStr_arguments, HStr_displayName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJumpListItem := new Windows.UI.StartScreen.IJumpListItem;
             Retval.m_IJumpListItem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_arguments);
-         Hr := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_arguments);
+         tmp := WindowsDeleteString (HStr_displayName);
       end return;
    end;
 
    function CreateSeparator
    return WinRt.Windows.UI.StartScreen.JumpListItem is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpListItem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.JumpListItem");
       m_Factory        : access WinRt.Windows.UI.StartScreen.IJumpListItemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.IJumpListItem;
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.JumpListItem do
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListItemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSeparator (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJumpListItem := new Windows.UI.StartScreen.IJumpListItem;
             Retval.m_IJumpListItem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -322,10 +346,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.JumpListItemKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.JumpListItemKind;
    begin
       Hr := this.m_IJumpListItem.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -335,13 +363,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJumpListItem.all.get_Arguments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -351,10 +383,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IJumpListItem.all.get_RemovedByUser (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -364,13 +400,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJumpListItem.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -380,11 +420,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IJumpListItem.all.put_Description (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayName
@@ -393,13 +437,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJumpListItem.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -409,11 +457,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IJumpListItem.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_GroupName
@@ -422,13 +474,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJumpListItem.all.get_GroupName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -438,11 +494,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IJumpListItem.all.put_GroupName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Logo
@@ -451,11 +511,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IJumpListItem.all.get_Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -467,9 +531,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IJumpListItem.all.put_Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -481,12 +549,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out SecondaryTile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISecondaryTile, ISecondaryTile_Ptr);
    begin
       if this.m_ISecondaryTile /= null then
          if this.m_ISecondaryTile.all /= null then
-            RefCount := this.m_ISecondaryTile.all.Release;
+            temp := this.m_ISecondaryTile.all.Release;
             Free (this.m_ISecondaryTile);
          end if;
       end if;
@@ -506,14 +574,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
-      HStr_shortName : WinRt.HString := To_HString (shortName);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
+      HStr_shortName : constant WinRt.HString := To_HString (shortName);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
    begin
       return RetVal : SecondaryTile do
          Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileFactory'Access , m_Factory'Address);
@@ -521,13 +590,13 @@ package body WinRt.Windows.UI.StartScreen is
             Hr := m_Factory.CreateTile (HStr_tileId, HStr_shortName, HStr_displayName, HStr_arguments, tileOptions, logoReference.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
             Retval.m_ISecondaryTile.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_tileId);
-         Hr := WindowsDeleteString (HStr_shortName);
-         Hr := WindowsDeleteString (HStr_displayName);
-         Hr := WindowsDeleteString (HStr_arguments);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tileId);
+         tmp := WindowsDeleteString (HStr_shortName);
+         tmp := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_arguments);
       end return;
    end;
 
@@ -543,14 +612,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
-      HStr_shortName : WinRt.HString := To_HString (shortName);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
+      HStr_shortName : constant WinRt.HString := To_HString (shortName);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
    begin
       return RetVal : SecondaryTile do
          Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileFactory'Access , m_Factory'Address);
@@ -558,13 +628,13 @@ package body WinRt.Windows.UI.StartScreen is
             Hr := m_Factory.CreateWideTile (HStr_tileId, HStr_shortName, HStr_displayName, HStr_arguments, tileOptions, logoReference.m_IUriRuntimeClass.all, wideLogoReference.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
             Retval.m_ISecondaryTile.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_tileId);
-         Hr := WindowsDeleteString (HStr_shortName);
-         Hr := WindowsDeleteString (HStr_displayName);
-         Hr := WindowsDeleteString (HStr_arguments);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tileId);
+         tmp := WindowsDeleteString (HStr_shortName);
+         tmp := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_arguments);
       end return;
    end;
 
@@ -574,11 +644,12 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
    begin
       return RetVal : SecondaryTile do
          Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileFactory'Access , m_Factory'Address);
@@ -586,10 +657,10 @@ package body WinRt.Windows.UI.StartScreen is
             Hr := m_Factory.CreateWithId (HStr_tileId, m_ComRetVal'Access);
             Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
             Retval.m_ISecondaryTile.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_tileId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tileId);
       end return;
    end;
 
@@ -603,13 +674,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
    begin
       return RetVal : SecondaryTile do
          Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileFactory2'Access , m_Factory'Address);
@@ -617,18 +689,19 @@ package body WinRt.Windows.UI.StartScreen is
             Hr := m_Factory.CreateMinimalTile (HStr_tileId, HStr_displayName, HStr_arguments, square150x150Logo.m_IUriRuntimeClass.all, desiredSize, m_ComRetVal'Access);
             Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
             Retval.m_ISecondaryTile.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_tileId);
-         Hr := WindowsDeleteString (HStr_displayName);
-         Hr := WindowsDeleteString (HStr_arguments);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tileId);
+         tmp := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_arguments);
       end return;
    end;
 
    function Constructor return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_ComRetVal  : aliased Windows.UI.StartScreen.ISecondaryTile;
    begin
       return RetVal : SecondaryTile do
@@ -637,7 +710,7 @@ package body WinRt.Windows.UI.StartScreen is
             Retval.m_ISecondaryTile := new Windows.UI.StartScreen.ISecondaryTile;
             Retval.m_ISecondaryTile.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -650,34 +723,38 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory        : access WinRt.Windows.UI.StartScreen.ISecondaryTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Exists (HStr_tileId, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_tileId);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_tileId);
       return m_ComRetVal;
    end;
 
    function FindAllAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory        : access WinRt.Windows.UI.StartScreen.ISecondaryTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -695,7 +772,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -708,10 +785,10 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -721,15 +798,15 @@ package body WinRt.Windows.UI.StartScreen is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -739,16 +816,16 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory        : access WinRt.Windows.UI.StartScreen.ISecondaryTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_applicationId : WinRt.HString := To_HString (applicationId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -766,7 +843,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -779,10 +856,10 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAsync (HStr_applicationId, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -792,31 +869,31 @@ package body WinRt.Windows.UI.StartScreen is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_applicationId);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_applicationId);
       return m_RetVal;
    end;
 
    function FindAllForPackageAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory        : access WinRt.Windows.UI.StartScreen.ISecondaryTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -834,7 +911,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -847,10 +924,10 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := RoGetActivationFactory (m_hString, IID_ISecondaryTileStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllForPackageAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -860,15 +937,15 @@ package body WinRt.Windows.UI.StartScreen is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -881,11 +958,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISecondaryTile.all.put_TileId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TileId
@@ -894,13 +975,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISecondaryTile.all.get_TileId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -910,11 +995,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISecondaryTile.all.put_Arguments (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Arguments
@@ -923,13 +1012,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISecondaryTile.all.get_Arguments (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -939,11 +1032,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISecondaryTile.all.put_ShortName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ShortName
@@ -952,13 +1049,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISecondaryTile.all.get_ShortName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -968,11 +1069,15 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISecondaryTile.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayName
@@ -981,13 +1086,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISecondaryTile.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -997,9 +1106,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Logo
@@ -1008,11 +1121,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTile.all.get_Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1024,9 +1141,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_SmallLogo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SmallLogo
@@ -1035,11 +1156,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTile.all.get_SmallLogo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1051,9 +1176,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_WideLogo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_WideLogo
@@ -1062,11 +1191,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTile.all.get_WideLogo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1078,9 +1211,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_LockScreenBadgeLogo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LockScreenBadgeLogo
@@ -1089,11 +1226,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTile.all.get_LockScreenBadgeLogo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1105,9 +1246,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_LockScreenDisplayBadgeAndTileText (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LockScreenDisplayBadgeAndTileText
@@ -1116,10 +1261,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISecondaryTile.all.get_LockScreenDisplayBadgeAndTileText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1129,9 +1278,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.StartScreen.TileOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_TileOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TileOptions
@@ -1140,10 +1293,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.TileOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.TileOptions;
    begin
       Hr := this.m_ISecondaryTile.all.get_TileOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1153,9 +1310,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.StartScreen.ForegroundText
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_ForegroundText (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundText
@@ -1164,10 +1325,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.ForegroundText is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.ForegroundText;
    begin
       Hr := this.m_ISecondaryTile.all.get_ForegroundText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1177,9 +1342,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTile.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -1188,10 +1357,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ISecondaryTile.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1201,13 +1374,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1225,7 +1398,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1238,7 +1411,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestCreateAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1248,9 +1421,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1265,13 +1438,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1289,7 +1462,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1302,7 +1475,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestCreateAsync (invocationPoint, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1312,9 +1485,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1329,13 +1502,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1353,7 +1526,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1366,7 +1539,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestCreateForSelectionAsync (selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1376,9 +1549,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1394,13 +1567,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1418,7 +1591,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1431,7 +1604,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestCreateForSelectionAsync (selection, preferredPlacement, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1441,9 +1614,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1457,13 +1630,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1481,7 +1654,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1494,7 +1667,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestDeleteAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1504,9 +1677,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1521,13 +1694,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1545,7 +1718,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1558,7 +1731,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestDeleteAsync (invocationPoint, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1568,9 +1741,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1585,13 +1758,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1609,7 +1782,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1622,7 +1795,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestDeleteForSelectionAsync (selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1632,9 +1805,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1650,13 +1823,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1674,7 +1847,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1687,7 +1860,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.RequestDeleteForSelectionAsync (selection, preferredPlacement, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1697,9 +1870,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1713,13 +1886,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1737,7 +1910,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1750,7 +1923,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_ISecondaryTile.all.UpdateAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1760,9 +1933,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1776,15 +1949,19 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTile.all);
       Hr := m_Interface.put_PhoneticName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_PhoneticName
@@ -1793,17 +1970,21 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTile.all);
       Hr := m_Interface.get_PhoneticName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1813,15 +1994,19 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.SecondaryTileVisualElements'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.ISecondaryTileVisualElements;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.SecondaryTileVisualElements do
          m_Interface := QInterface (this.m_ISecondaryTile.all);
          Hr := m_Interface.get_VisualElements (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISecondaryTileVisualElements := new Windows.UI.StartScreen.ISecondaryTileVisualElements;
          Retval.m_ISecondaryTileVisualElements.all := m_ComRetVal;
       end return;
@@ -1833,13 +2018,17 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTile.all);
       Hr := m_Interface.put_RoamingEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RoamingEnabled
@@ -1848,14 +2037,18 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTile.all);
       Hr := m_Interface.get_RoamingEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1866,14 +2059,18 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTile.all);
       Hr := m_Interface.add_VisualElementsRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1883,13 +2080,17 @@ package body WinRt.Windows.UI.StartScreen is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTile2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTile_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTile2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTile.all);
       Hr := m_Interface.remove_VisualElementsRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1901,12 +2102,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out SecondaryTileVisualElements) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISecondaryTileVisualElements, ISecondaryTileVisualElements_Ptr);
    begin
       if this.m_ISecondaryTileVisualElements /= null then
          if this.m_ISecondaryTileVisualElements.all /= null then
-            RefCount := this.m_ISecondaryTileVisualElements.all.Release;
+            temp := this.m_ISecondaryTileVisualElements.all.Release;
             Free (this.m_ISecondaryTileVisualElements);
          end if;
       end if;
@@ -1921,9 +2122,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_Square30x30Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Square30x30Logo
@@ -1932,11 +2137,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTileVisualElements.all.get_Square30x30Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1948,9 +2157,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_Square70x70Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Square70x70Logo
@@ -1959,11 +2172,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTileVisualElements.all.get_Square70x70Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1975,9 +2192,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_Square150x150Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Square150x150Logo
@@ -1986,11 +2207,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTileVisualElements.all.get_Square150x150Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2002,9 +2227,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_Wide310x150Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Wide310x150Logo
@@ -2013,11 +2242,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTileVisualElements.all.get_Wide310x150Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2029,9 +2262,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_Square310x310Logo (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Square310x310Logo
@@ -2040,11 +2277,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISecondaryTileVisualElements.all.get_Square310x310Logo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2056,9 +2297,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.StartScreen.ForegroundText
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_ForegroundText (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundText
@@ -2067,10 +2312,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.ForegroundText is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.ForegroundText;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.get_ForegroundText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2080,9 +2329,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -2091,10 +2344,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2104,9 +2361,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_ShowNameOnSquare150x150Logo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShowNameOnSquare150x150Logo
@@ -2115,10 +2376,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.get_ShowNameOnSquare150x150Logo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2128,9 +2393,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_ShowNameOnWide310x150Logo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShowNameOnWide310x150Logo
@@ -2139,10 +2408,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.get_ShowNameOnWide310x150Logo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2152,9 +2425,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.put_ShowNameOnSquare310x310Logo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShowNameOnSquare310x310Logo
@@ -2163,10 +2440,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISecondaryTileVisualElements.all.get_ShowNameOnSquare310x310Logo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2176,13 +2457,17 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTileVisualElements2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTileVisualElements.all);
       Hr := m_Interface.put_Square71x71Logo (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Square71x71Logo
@@ -2191,15 +2476,19 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements2, WinRt.Windows.UI.StartScreen.IID_ISecondaryTileVisualElements2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_ISecondaryTileVisualElements.all);
          Hr := m_Interface.get_Square71x71Logo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2211,13 +2500,17 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements3, WinRt.Windows.UI.StartScreen.IID_ISecondaryTileVisualElements3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryTileVisualElements.all);
       Hr := m_Interface.put_Square44x44Logo (value.m_IUriRuntimeClass.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Square44x44Logo
@@ -2226,15 +2519,19 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements3, WinRt.Windows.UI.StartScreen.IID_ISecondaryTileVisualElements3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_ISecondaryTileVisualElements.all);
          Hr := m_Interface.get_Square44x44Logo (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2246,15 +2543,19 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.TileMixedRealityModel'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.ITileMixedRealityModel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements_Interface, WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements4, WinRt.Windows.UI.StartScreen.IID_ISecondaryTileVisualElements4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.TileMixedRealityModel do
          m_Interface := QInterface (this.m_ISecondaryTileVisualElements.all);
          Hr := m_Interface.get_MixedRealityModel (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITileMixedRealityModel := new Windows.UI.StartScreen.ITileMixedRealityModel;
          Retval.m_ITileMixedRealityModel.all := m_ComRetVal;
       end return;
@@ -2269,12 +2570,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out StartScreenManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStartScreenManager, IStartScreenManager_Ptr);
    begin
       if this.m_IStartScreenManager /= null then
          if this.m_IStartScreenManager.all /= null then
-            RefCount := this.m_IStartScreenManager.all.Release;
+            temp := this.m_IStartScreenManager.all.Release;
             Free (this.m_IStartScreenManager);
          end if;
       end if;
@@ -2286,20 +2587,24 @@ package body WinRt.Windows.UI.StartScreen is
    function GetDefault
    return WinRt.Windows.UI.StartScreen.StartScreenManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.StartScreenManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.StartScreenManager");
       m_Factory        : access WinRt.Windows.UI.StartScreen.IStartScreenManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.IStartScreenManager;
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.StartScreenManager do
          Hr := RoGetActivationFactory (m_hString, IID_IStartScreenManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IStartScreenManager := new Windows.UI.StartScreen.IStartScreenManager;
             Retval.m_IStartScreenManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2309,20 +2614,24 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.StartScreenManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.StartScreen.StartScreenManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.StartScreenManager");
       m_Factory        : access WinRt.Windows.UI.StartScreen.IStartScreenManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.IStartScreenManager;
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.StartScreenManager do
          Hr := RoGetActivationFactory (m_hString, IID_IStartScreenManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IStartScreenManager := new Windows.UI.StartScreen.IStartScreenManager;
             Retval.m_IStartScreenManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2335,11 +2644,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IStartScreenManager.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2352,10 +2665,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStartScreenManager.all.SupportsAppListEntry (appListEntry.m_IAppListEntry.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2366,13 +2683,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2390,7 +2707,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2403,7 +2720,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_IStartScreenManager.all.ContainsAppListEntryAsync (appListEntry.m_IAppListEntry.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2413,9 +2730,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2430,13 +2747,13 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2454,7 +2771,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2467,7 +2784,7 @@ package body WinRt.Windows.UI.StartScreen is
       Hr := this.m_IStartScreenManager.all.RequestAddAppListEntryAsync (appListEntry.m_IAppListEntry.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2477,9 +2794,9 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2494,15 +2811,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.IStartScreenManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2520,7 +2837,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2533,10 +2850,10 @@ package body WinRt.Windows.UI.StartScreen is
    begin
       m_Interface := QInterface (this.m_IStartScreenManager.all);
       Hr := m_Interface.ContainsSecondaryTileAsync (HStr_tileId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2546,14 +2863,14 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_tileId);
+      tmp := WindowsDeleteString (HStr_tileId);
       return m_RetVal;
    end;
 
@@ -2564,15 +2881,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.IStartScreenManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_tileId : WinRt.HString := To_HString (tileId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_tileId : constant WinRt.HString := To_HString (tileId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2590,7 +2907,7 @@ package body WinRt.Windows.UI.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2603,10 +2920,10 @@ package body WinRt.Windows.UI.StartScreen is
    begin
       m_Interface := QInterface (this.m_IStartScreenManager.all);
       Hr := m_Interface.TryRemoveSecondaryTileAsync (HStr_tileId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2616,14 +2933,14 @@ package body WinRt.Windows.UI.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_tileId);
+      tmp := WindowsDeleteString (HStr_tileId);
       return m_RetVal;
    end;
 
@@ -2636,12 +2953,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out TileMixedRealityModel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITileMixedRealityModel, ITileMixedRealityModel_Ptr);
    begin
       if this.m_ITileMixedRealityModel /= null then
          if this.m_ITileMixedRealityModel.all /= null then
-            RefCount := this.m_ITileMixedRealityModel.all.Release;
+            temp := this.m_ITileMixedRealityModel.all.Release;
             Free (this.m_ITileMixedRealityModel);
          end if;
       end if;
@@ -2656,9 +2973,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITileMixedRealityModel.all.put_Uri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Uri
@@ -2667,11 +2988,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ITileMixedRealityModel.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2683,9 +3008,13 @@ package body WinRt.Windows.UI.StartScreen is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITileMixedRealityModel.all.put_BoundingBox (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BoundingBox
@@ -2694,10 +3023,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ITileMixedRealityModel.all.get_BoundingBox (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2707,13 +3040,17 @@ package body WinRt.Windows.UI.StartScreen is
       value : Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ITileMixedRealityModel2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ITileMixedRealityModel_Interface, WinRt.Windows.UI.StartScreen.ITileMixedRealityModel2, WinRt.Windows.UI.StartScreen.IID_ITileMixedRealityModel2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITileMixedRealityModel.all);
       Hr := m_Interface.put_ActivationBehavior (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActivationBehavior
@@ -2722,14 +3059,18 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.StartScreen.ITileMixedRealityModel2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.StartScreen.ITileMixedRealityModel_Interface, WinRt.Windows.UI.StartScreen.ITileMixedRealityModel2, WinRt.Windows.UI.StartScreen.IID_ITileMixedRealityModel2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITileMixedRealityModel.all);
       Hr := m_Interface.get_ActivationBehavior (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2742,12 +3083,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out VisualElementsRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisualElementsRequest, IVisualElementsRequest_Ptr);
    begin
       if this.m_IVisualElementsRequest /= null then
          if this.m_IVisualElementsRequest.all /= null then
-            RefCount := this.m_IVisualElementsRequest.all.Release;
+            temp := this.m_IVisualElementsRequest.all.Release;
             Free (this.m_IVisualElementsRequest);
          end if;
       end if;
@@ -2762,11 +3103,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.SecondaryTileVisualElements'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.ISecondaryTileVisualElements;
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.SecondaryTileVisualElements do
          Hr := this.m_IVisualElementsRequest.all.get_VisualElements (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISecondaryTileVisualElements := new Windows.UI.StartScreen.ISecondaryTileVisualElements;
          Retval.m_ISecondaryTileVisualElements.all := m_ComRetVal;
       end return;
@@ -2778,13 +3123,17 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return IVectorView_ISecondaryTileVisualElements.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISecondaryTileVisualElements.Kind;
    begin
       Hr := this.m_IVisualElementsRequest.all.get_AlternateVisualElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ISecondaryTileVisualElements (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2794,10 +3143,14 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IVisualElementsRequest.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2807,11 +3160,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.VisualElementsRequestDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.IVisualElementsRequestDeferral;
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.VisualElementsRequestDeferral do
          Hr := this.m_IVisualElementsRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisualElementsRequestDeferral := new Windows.UI.StartScreen.IVisualElementsRequestDeferral;
          Retval.m_IVisualElementsRequestDeferral.all := m_ComRetVal;
       end return;
@@ -2826,12 +3183,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out VisualElementsRequestDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisualElementsRequestDeferral, IVisualElementsRequestDeferral_Ptr);
    begin
       if this.m_IVisualElementsRequestDeferral /= null then
          if this.m_IVisualElementsRequestDeferral.all /= null then
-            RefCount := this.m_IVisualElementsRequestDeferral.all.Release;
+            temp := this.m_IVisualElementsRequestDeferral.all.Release;
             Free (this.m_IVisualElementsRequestDeferral);
          end if;
       end if;
@@ -2845,9 +3202,13 @@ package body WinRt.Windows.UI.StartScreen is
       this : in out VisualElementsRequestDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVisualElementsRequestDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2859,12 +3220,12 @@ package body WinRt.Windows.UI.StartScreen is
    end;
 
    procedure Finalize (this : in out VisualElementsRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisualElementsRequestedEventArgs, IVisualElementsRequestedEventArgs_Ptr);
    begin
       if this.m_IVisualElementsRequestedEventArgs /= null then
          if this.m_IVisualElementsRequestedEventArgs.all /= null then
-            RefCount := this.m_IVisualElementsRequestedEventArgs.all.Release;
+            temp := this.m_IVisualElementsRequestedEventArgs.all.Release;
             Free (this.m_IVisualElementsRequestedEventArgs);
          end if;
       end if;
@@ -2879,11 +3240,15 @@ package body WinRt.Windows.UI.StartScreen is
    )
    return WinRt.Windows.UI.StartScreen.VisualElementsRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.StartScreen.IVisualElementsRequest;
    begin
       return RetVal : WinRt.Windows.UI.StartScreen.VisualElementsRequest do
          Hr := this.m_IVisualElementsRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVisualElementsRequest := new Windows.UI.StartScreen.IVisualElementsRequest;
          Retval.m_IVisualElementsRequest.all := m_ComRetVal;
       end return;

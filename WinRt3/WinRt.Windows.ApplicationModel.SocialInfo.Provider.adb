@@ -52,12 +52,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    end;
 
    procedure Finalize (this : in out SocialDashboardItemUpdater) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialDashboardItemUpdater, ISocialDashboardItemUpdater_Ptr);
    begin
       if this.m_ISocialDashboardItemUpdater /= null then
          if this.m_ISocialDashboardItemUpdater.all /= null then
-            RefCount := this.m_ISocialDashboardItemUpdater.all.Release;
+            temp := this.m_ISocialDashboardItemUpdater.all.Release;
             Free (this.m_ISocialDashboardItemUpdater);
          end if;
       end if;
@@ -72,13 +72,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialDashboardItemUpdater.all.get_OwnerRemoteId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -88,11 +92,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialDashboardItemUpdater.all.get_Content (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
@@ -104,10 +112,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISocialDashboardItemUpdater.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -117,9 +129,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialDashboardItemUpdater.all.put_Timestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Thumbnail
@@ -128,9 +144,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       value : Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialDashboardItemUpdater.all.put_Thumbnail (value.m_ISocialItemThumbnail.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Thumbnail
@@ -139,11 +159,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail do
          Hr := this.m_ISocialDashboardItemUpdater.all.get_Thumbnail (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialItemThumbnail := new Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
          Retval.m_ISocialItemThumbnail.all := m_ComRetVal;
       end return;
@@ -154,7 +178,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       this : in out SocialDashboardItemUpdater
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -162,7 +187,6 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -183,9 +207,9 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -197,11 +221,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialDashboardItemUpdater.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -213,9 +241,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialDashboardItemUpdater.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -227,12 +259,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    end;
 
    procedure Finalize (this : in out SocialFeedUpdater) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialFeedUpdater, ISocialFeedUpdater_Ptr);
    begin
       if this.m_ISocialFeedUpdater /= null then
          if this.m_ISocialFeedUpdater.all /= null then
-            RefCount := this.m_ISocialFeedUpdater.all.Release;
+            temp := this.m_ISocialFeedUpdater.all.Release;
             Free (this.m_ISocialFeedUpdater);
          end if;
       end if;
@@ -247,13 +279,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialFeedUpdater.all.get_OwnerRemoteId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -263,10 +299,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.SocialFeedKind;
    begin
       Hr := this.m_ISocialFeedUpdater.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -276,13 +316,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    )
    return IVector_ISocialFeedItem.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ISocialFeedItem.Kind;
    begin
       Hr := this.m_ISocialFeedUpdater.all.get_Items (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ISocialFeedItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -291,7 +335,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       this : in out SocialFeedUpdater
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -299,7 +344,6 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -320,9 +364,9 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -340,16 +384,16 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       )
       return WinRt.Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialInfoProviderManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_ownerRemoteId : WinRt.HString := To_HString (ownerRemoteId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_ownerRemoteId : constant WinRt.HString := To_HString (ownerRemoteId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SocialFeedUpdater.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -367,7 +411,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SocialFeedUpdater.Kind_Delegate, AsyncOperationCompletedHandler_SocialFeedUpdater.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -381,10 +425,10 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
             Hr := RoGetActivationFactory (m_hString, IID_ISocialInfoProviderManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateSocialFeedUpdaterAsync (kind, mode, HStr_ownerRemoteId, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -396,16 +440,16 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
                         Retval.m_ISocialFeedUpdater := new Windows.ApplicationModel.SocialInfo.Provider.ISocialFeedUpdater;
                         Retval.m_ISocialFeedUpdater.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_ownerRemoteId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_ownerRemoteId);
          end return;
       end;
 
@@ -415,16 +459,16 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       )
       return WinRt.Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialInfoProviderManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_ownerRemoteId : WinRt.HString := To_HString (ownerRemoteId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_ownerRemoteId : constant WinRt.HString := To_HString (ownerRemoteId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SocialDashboardItemUpdater.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -442,7 +486,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SocialDashboardItemUpdater.Kind_Delegate, AsyncOperationCompletedHandler_SocialDashboardItemUpdater.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -456,10 +500,10 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
             Hr := RoGetActivationFactory (m_hString, IID_ISocialInfoProviderManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateDashboardItemUpdaterAsync (HStr_ownerRemoteId, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -471,16 +515,16 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
                         Retval.m_ISocialDashboardItemUpdater := new Windows.ApplicationModel.SocialInfo.Provider.ISocialDashboardItemUpdater;
                         Retval.m_ISocialDashboardItemUpdater.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_ownerRemoteId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_ownerRemoteId);
          end return;
       end;
 
@@ -490,18 +534,22 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          newCount : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialInfoProviderManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_itemRemoteId : WinRt.HString := To_HString (itemRemoteId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_itemRemoteId : constant WinRt.HString := To_HString (itemRemoteId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISocialInfoProviderManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.UpdateBadgeCountValue (HStr_itemRemoteId, newCount);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_itemRemoteId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_itemRemoteId);
       end;
 
       procedure ReportNewContentAvailable
@@ -510,32 +558,36 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialInfoProviderManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_contactRemoteId : WinRt.HString := To_HString (contactRemoteId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_contactRemoteId : constant WinRt.HString := To_HString (contactRemoteId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISocialInfoProviderManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ReportNewContentAvailable (HStr_contactRemoteId, kind);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_contactRemoteId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_contactRemoteId);
       end;
 
       function ProvisionAsync
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialInfoProviderManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -553,7 +605,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -566,10 +618,10 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          Hr := RoGetActivationFactory (m_hString, IID_ISocialInfoProviderManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ProvisionAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -579,23 +631,24 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       procedure DeprovisionAsync is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialInfoProviderManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -603,7 +656,6 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -619,7 +671,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
          Hr := RoGetActivationFactory (m_hString, IID_ISocialInfoProviderManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DeprovisionAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -627,14 +679,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end SocialInfoProviderManager;

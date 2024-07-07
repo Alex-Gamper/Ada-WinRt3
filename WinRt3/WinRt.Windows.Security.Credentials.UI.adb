@@ -53,15 +53,15 @@ package body WinRt.Windows.Security.Credentials.UI is
       )
       return WinRt.Windows.Security.Credentials.UI.CredentialPickerResults is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPicker");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPicker");
          m_Factory        : access WinRt.Windows.Security.Credentials.UI.ICredentialPickerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_CredentialPickerResults.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -79,7 +79,7 @@ package body WinRt.Windows.Security.Credentials.UI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CredentialPickerResults.Kind_Delegate, AsyncOperationCompletedHandler_CredentialPickerResults.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -93,10 +93,10 @@ package body WinRt.Windows.Security.Credentials.UI is
             Hr := RoGetActivationFactory (m_hString, IID_ICredentialPickerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.PickAsync (options.m_ICredentialPickerOptions.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -108,15 +108,15 @@ package body WinRt.Windows.Security.Credentials.UI is
                         Retval.m_ICredentialPickerResults := new Windows.Security.Credentials.UI.ICredentialPickerResults;
                         Retval.m_ICredentialPickerResults.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -127,17 +127,17 @@ package body WinRt.Windows.Security.Credentials.UI is
       )
       return WinRt.Windows.Security.Credentials.UI.CredentialPickerResults is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPicker");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPicker");
          m_Factory        : access WinRt.Windows.Security.Credentials.UI.ICredentialPickerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_targetName : WinRt.HString := To_HString (targetName);
-         HStr_message : WinRt.HString := To_HString (message);
+         temp             : WinRt.UInt32 := 0;
+         HStr_targetName : constant WinRt.HString := To_HString (targetName);
+         HStr_message : constant WinRt.HString := To_HString (message);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_CredentialPickerResults.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -155,7 +155,7 @@ package body WinRt.Windows.Security.Credentials.UI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CredentialPickerResults.Kind_Delegate, AsyncOperationCompletedHandler_CredentialPickerResults.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -169,10 +169,10 @@ package body WinRt.Windows.Security.Credentials.UI is
             Hr := RoGetActivationFactory (m_hString, IID_ICredentialPickerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.PickAsync (HStr_targetName, HStr_message, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -184,17 +184,17 @@ package body WinRt.Windows.Security.Credentials.UI is
                         Retval.m_ICredentialPickerResults := new Windows.Security.Credentials.UI.ICredentialPickerResults;
                         Retval.m_ICredentialPickerResults.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_targetName);
-            Hr := WindowsDeleteString (HStr_message);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_targetName);
+            tmp := WindowsDeleteString (HStr_message);
          end return;
       end;
 
@@ -206,18 +206,18 @@ package body WinRt.Windows.Security.Credentials.UI is
       )
       return WinRt.Windows.Security.Credentials.UI.CredentialPickerResults is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPicker");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPicker");
          m_Factory        : access WinRt.Windows.Security.Credentials.UI.ICredentialPickerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_targetName : WinRt.HString := To_HString (targetName);
-         HStr_message : WinRt.HString := To_HString (message);
-         HStr_caption : WinRt.HString := To_HString (caption);
+         temp             : WinRt.UInt32 := 0;
+         HStr_targetName : constant WinRt.HString := To_HString (targetName);
+         HStr_message : constant WinRt.HString := To_HString (message);
+         HStr_caption : constant WinRt.HString := To_HString (caption);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_CredentialPickerResults.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -235,7 +235,7 @@ package body WinRt.Windows.Security.Credentials.UI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CredentialPickerResults.Kind_Delegate, AsyncOperationCompletedHandler_CredentialPickerResults.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -249,10 +249,10 @@ package body WinRt.Windows.Security.Credentials.UI is
             Hr := RoGetActivationFactory (m_hString, IID_ICredentialPickerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.PickAsync (HStr_targetName, HStr_message, HStr_caption, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -264,18 +264,18 @@ package body WinRt.Windows.Security.Credentials.UI is
                         Retval.m_ICredentialPickerResults := new Windows.Security.Credentials.UI.ICredentialPickerResults;
                         Retval.m_ICredentialPickerResults.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_targetName);
-            Hr := WindowsDeleteString (HStr_message);
-            Hr := WindowsDeleteString (HStr_caption);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_targetName);
+            tmp := WindowsDeleteString (HStr_message);
+            tmp := WindowsDeleteString (HStr_caption);
          end return;
       end;
 
@@ -290,12 +290,12 @@ package body WinRt.Windows.Security.Credentials.UI is
    end;
 
    procedure Finalize (this : in out CredentialPickerOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICredentialPickerOptions, ICredentialPickerOptions_Ptr);
    begin
       if this.m_ICredentialPickerOptions /= null then
          if this.m_ICredentialPickerOptions.all /= null then
-            RefCount := this.m_ICredentialPickerOptions.all.Release;
+            temp := this.m_ICredentialPickerOptions.all.Release;
             Free (this.m_ICredentialPickerOptions);
          end if;
       end if;
@@ -306,7 +306,8 @@ package body WinRt.Windows.Security.Credentials.UI is
 
    function Constructor return CredentialPickerOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPickerOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPickerOptions");
       m_ComRetVal  : aliased Windows.Security.Credentials.UI.ICredentialPickerOptions;
    begin
       return RetVal : CredentialPickerOptions do
@@ -315,7 +316,7 @@ package body WinRt.Windows.Security.Credentials.UI is
             Retval.m_ICredentialPickerOptions := new Windows.Security.Credentials.UI.ICredentialPickerOptions;
             Retval.m_ICredentialPickerOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -328,11 +329,15 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_Caption (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Caption
@@ -341,13 +346,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_Caption (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -357,11 +366,15 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_Message (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Message
@@ -370,13 +383,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -386,9 +403,13 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_ErrorCode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ErrorCode
@@ -397,10 +418,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_ErrorCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -410,11 +435,15 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TargetName
@@ -423,13 +452,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -439,9 +472,13 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : Windows.Security.Credentials.UI.AuthenticationProtocol
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_AuthenticationProtocol (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AuthenticationProtocol
@@ -450,10 +487,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Windows.Security.Credentials.UI.AuthenticationProtocol is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.UI.AuthenticationProtocol;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_AuthenticationProtocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -463,11 +504,15 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_CustomAuthenticationProtocol (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CustomAuthenticationProtocol
@@ -476,13 +521,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_CustomAuthenticationProtocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -492,9 +541,13 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_PreviousCredential (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PreviousCredential
@@ -503,10 +556,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_PreviousCredential (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -516,9 +573,13 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_AlwaysDisplayDialog (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AlwaysDisplayDialog
@@ -527,10 +588,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_AlwaysDisplayDialog (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -540,9 +605,13 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_CallerSavesCredential (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CallerSavesCredential
@@ -551,10 +620,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_CallerSavesCredential (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -564,9 +637,13 @@ package body WinRt.Windows.Security.Credentials.UI is
       value : Windows.Security.Credentials.UI.CredentialSaveOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICredentialPickerOptions.all.put_CredentialSaveOption (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CredentialSaveOption
@@ -575,10 +652,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Windows.Security.Credentials.UI.CredentialSaveOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.UI.CredentialSaveOption;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_CredentialSaveOption (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -591,12 +672,12 @@ package body WinRt.Windows.Security.Credentials.UI is
    end;
 
    procedure Finalize (this : in out CredentialPickerResults) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICredentialPickerResults, ICredentialPickerResults_Ptr);
    begin
       if this.m_ICredentialPickerResults /= null then
          if this.m_ICredentialPickerResults.all /= null then
-            RefCount := this.m_ICredentialPickerResults.all.Release;
+            temp := this.m_ICredentialPickerResults.all.Release;
             Free (this.m_ICredentialPickerResults);
          end if;
       end if;
@@ -611,10 +692,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_ErrorCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -624,10 +709,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Windows.Security.Credentials.UI.CredentialSaveOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.UI.CredentialSaveOption;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_CredentialSaveOption (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -637,10 +726,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_CredentialSaved (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -650,10 +743,14 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_Credential (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -663,13 +760,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_CredentialDomainName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -679,13 +780,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_CredentialUserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -695,13 +800,17 @@ package body WinRt.Windows.Security.Credentials.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_CredentialPassword (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -712,15 +821,15 @@ package body WinRt.Windows.Security.Credentials.UI is
       function CheckAvailabilityAsync
       return WinRt.Windows.Security.Credentials.UI.UserConsentVerifierAvailability is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.UI.UserConsentVerifier");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.UserConsentVerifier");
          m_Factory        : access WinRt.Windows.Security.Credentials.UI.IUserConsentVerifierStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_UserConsentVerifierAvailability.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -738,7 +847,7 @@ package body WinRt.Windows.Security.Credentials.UI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserConsentVerifierAvailability.Kind_Delegate, AsyncOperationCompletedHandler_UserConsentVerifierAvailability.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -751,10 +860,10 @@ package body WinRt.Windows.Security.Credentials.UI is
          Hr := RoGetActivationFactory (m_hString, IID_IUserConsentVerifierStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CheckAvailabilityAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -764,15 +873,15 @@ package body WinRt.Windows.Security.Credentials.UI is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -782,16 +891,16 @@ package body WinRt.Windows.Security.Credentials.UI is
       )
       return WinRt.Windows.Security.Credentials.UI.UserConsentVerificationResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.UI.UserConsentVerifier");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.UserConsentVerifier");
          m_Factory        : access WinRt.Windows.Security.Credentials.UI.IUserConsentVerifierStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_message : WinRt.HString := To_HString (message);
+         temp             : WinRt.UInt32 := 0;
+         HStr_message : constant WinRt.HString := To_HString (message);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_UserConsentVerificationResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -809,7 +918,7 @@ package body WinRt.Windows.Security.Credentials.UI is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserConsentVerificationResult.Kind_Delegate, AsyncOperationCompletedHandler_UserConsentVerificationResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -822,10 +931,10 @@ package body WinRt.Windows.Security.Credentials.UI is
          Hr := RoGetActivationFactory (m_hString, IID_IUserConsentVerifierStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestVerificationAsync (HStr_message, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -835,16 +944,16 @@ package body WinRt.Windows.Security.Credentials.UI is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_message);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_message);
          return m_RetVal;
       end;
 

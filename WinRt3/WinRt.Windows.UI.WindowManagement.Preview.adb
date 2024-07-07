@@ -42,12 +42,12 @@ package body WinRt.Windows.UI.WindowManagement.Preview is
    end;
 
    procedure Finalize (this : in out WindowManagementPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWindowManagementPreview, IWindowManagementPreview_Ptr);
    begin
       if this.m_IWindowManagementPreview /= null then
          if this.m_IWindowManagementPreview.all /= null then
-            RefCount := this.m_IWindowManagementPreview.all.Release;
+            temp := this.m_IWindowManagementPreview.all.Release;
             Free (this.m_IWindowManagementPreview);
          end if;
       end if;
@@ -62,16 +62,20 @@ package body WinRt.Windows.UI.WindowManagement.Preview is
       preferredFrameMinSize : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.WindowManagement.Preview.WindowManagementPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.Preview.WindowManagementPreview");
       m_Factory        : access WinRt.Windows.UI.WindowManagement.Preview.IWindowManagementPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IWindowManagementPreviewStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetPreferredMinSize (window.m_IAppWindow.all, preferredFrameMinSize);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------

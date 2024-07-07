@@ -44,12 +44,12 @@ package body WinRt.Windows.Globalization.Collation is
    end;
 
    procedure Finalize (this : in out CharacterGrouping) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICharacterGrouping, ICharacterGrouping_Ptr);
    begin
       if this.m_ICharacterGrouping /= null then
          if this.m_ICharacterGrouping.all /= null then
-            RefCount := this.m_ICharacterGrouping.all.Release;
+            temp := this.m_ICharacterGrouping.all.Release;
             Free (this.m_ICharacterGrouping);
          end if;
       end if;
@@ -64,13 +64,17 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICharacterGrouping.all.get_First (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -80,13 +84,17 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICharacterGrouping.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -99,12 +107,12 @@ package body WinRt.Windows.Globalization.Collation is
    end;
 
    procedure Finalize (this : in out CharacterGroupings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICharacterGroupings, ICharacterGroupings_Ptr);
    begin
       if this.m_ICharacterGroupings /= null then
          if this.m_ICharacterGroupings.all /= null then
-            RefCount := this.m_ICharacterGroupings.all.Release;
+            temp := this.m_ICharacterGroupings.all.Release;
             Free (this.m_ICharacterGroupings);
          end if;
       end if;
@@ -115,7 +123,8 @@ package body WinRt.Windows.Globalization.Collation is
 
    function Constructor return CharacterGroupings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
       m_ComRetVal  : aliased Windows.Globalization.Collation.ICharacterGroupings;
    begin
       return RetVal : CharacterGroupings do
@@ -124,7 +133,7 @@ package body WinRt.Windows.Globalization.Collation is
             Retval.m_ICharacterGroupings := new Windows.Globalization.Collation.ICharacterGroupings;
             Retval.m_ICharacterGroupings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -134,11 +143,12 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return CharacterGroupings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
       m_Factory    : access ICharacterGroupingsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.Collation.ICharacterGroupings;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
    begin
       return RetVal : CharacterGroupings do
          Hr := RoGetActivationFactory (m_hString, IID_ICharacterGroupingsFactory'Access , m_Factory'Address);
@@ -146,10 +156,10 @@ package body WinRt.Windows.Globalization.Collation is
             Hr := m_Factory.Create (HStr_language, m_ComRetVal'Access);
             Retval.m_ICharacterGroupings := new Windows.Globalization.Collation.ICharacterGroupings;
             Retval.m_ICharacterGroupings.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_language);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_language);
       end return;
    end;
 
@@ -163,15 +173,19 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       Hr := this.m_ICharacterGroupings.all.Lookup (HStr_text, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_text);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -183,8 +197,9 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.Windows.Globalization.Collation.CharacterGrouping'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ICharacterGrouping.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.Collation.ICharacterGrouping;
       m_GenericIID     : aliased WinRt.IID := (4157561418, 11130, 23497, (160, 196, 157, 206, 7, 255, 97, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.Collation.ICharacterGroupings_Interface, IVectorView_ICharacterGrouping.Kind, m_GenericIID'Unchecked_Access);
@@ -192,7 +207,10 @@ package body WinRt.Windows.Globalization.Collation is
       return RetVal : WinRt.Windows.Globalization.Collation.CharacterGrouping do
          m_Interface := QInterface (this.m_ICharacterGroupings.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICharacterGrouping := new Windows.Globalization.Collation.ICharacterGrouping;
          Retval.m_ICharacterGrouping.all := m_ComRetVal;
       end return;
@@ -204,15 +222,19 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ICharacterGrouping.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4157561418, 11130, 23497, (160, 196, 157, 206, 7, 255, 97, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.Collation.ICharacterGroupings_Interface, IVectorView_ICharacterGrouping.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICharacterGroupings.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -224,15 +246,19 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ICharacterGrouping.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (4157561418, 11130, 23497, (160, 196, 157, 206, 7, 255, 97, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.Collation.ICharacterGroupings_Interface, IVectorView_ICharacterGrouping.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICharacterGroupings.all);
       Hr := m_Interface.IndexOf (value.m_ICharacterGrouping.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -244,8 +270,9 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ICharacterGrouping.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4157561418, 11130, 23497, (160, 196, 157, 206, 7, 255, 97, 201 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.Collation.ICharacterGroupings_Interface, IVectorView_ICharacterGrouping.Kind, m_GenericIID'Unchecked_Access);
@@ -253,7 +280,10 @@ package body WinRt.Windows.Globalization.Collation is
    begin
       m_Interface := QInterface (this.m_ICharacterGroupings.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -264,15 +294,19 @@ package body WinRt.Windows.Globalization.Collation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICharacterGrouping.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2195958768, 1763, 22025, (186, 57, 197, 30, 178, 245, 250, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.Collation.ICharacterGroupings_Interface, IIterable_ICharacterGrouping.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICharacterGroupings.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

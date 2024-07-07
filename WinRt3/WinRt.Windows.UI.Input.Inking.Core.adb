@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    end;
 
    procedure Finalize (this : in out CoreIncrementalInkStroke) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreIncrementalInkStroke, ICoreIncrementalInkStroke_Ptr);
    begin
       if this.m_ICoreIncrementalInkStroke /= null then
          if this.m_ICoreIncrementalInkStroke.all /= null then
-            RefCount := this.m_ICoreIncrementalInkStroke.all.Release;
+            temp := this.m_ICoreIncrementalInkStroke.all.Release;
             Free (this.m_ICoreIncrementalInkStroke);
          end if;
       end if;
@@ -67,9 +67,10 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return CoreIncrementalInkStroke is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreIncrementalInkStroke");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreIncrementalInkStroke");
       m_Factory    : access ICoreIncrementalInkStrokeFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Input.Inking.Core.ICoreIncrementalInkStroke;
    begin
       return RetVal : CoreIncrementalInkStroke do
@@ -78,9 +79,9 @@ package body WinRt.Windows.UI.Input.Inking.Core is
             Hr := m_Factory.Create (drawingAttributes.m_IInkDrawingAttributes.all, pointTransform, m_ComRetVal'Access);
             Retval.m_ICoreIncrementalInkStroke := new Windows.UI.Input.Inking.Core.ICoreIncrementalInkStroke;
             Retval.m_ICoreIncrementalInkStroke.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -94,10 +95,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreIncrementalInkStroke.all.AppendInkPoints (inkPoints, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -107,11 +112,15 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkStroke;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkStroke do
          Hr := this.m_ICoreIncrementalInkStroke.all.CreateInkStroke (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkStroke := new Windows.UI.Input.Inking.IInkStroke;
          Retval.m_IInkStroke.all := m_ComRetVal;
       end return;
@@ -123,11 +132,15 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkDrawingAttributes;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes do
          Hr := this.m_ICoreIncrementalInkStroke.all.get_DrawingAttributes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkDrawingAttributes := new Windows.UI.Input.Inking.IInkDrawingAttributes;
          Retval.m_IInkDrawingAttributes.all := m_ComRetVal;
       end return;
@@ -139,10 +152,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix3x2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
    begin
       Hr := this.m_ICoreIncrementalInkStroke.all.get_PointTransform (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -152,10 +169,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreIncrementalInkStroke.all.get_BoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -168,12 +189,12 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    end;
 
    procedure Finalize (this : in out CoreInkIndependentInputSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInkIndependentInputSource, ICoreInkIndependentInputSource_Ptr);
    begin
       if this.m_ICoreInkIndependentInputSource /= null then
          if this.m_ICoreInkIndependentInputSource.all /= null then
-            RefCount := this.m_ICoreInkIndependentInputSource.all.Release;
+            temp := this.m_ICoreInkIndependentInputSource.all.Release;
             Free (this.m_ICoreInkIndependentInputSource);
          end if;
       end if;
@@ -188,20 +209,24 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource");
       m_Factory        : access WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreInkIndependentInputSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (inkPresenter.m_IInkPresenter.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICoreInkIndependentInputSource := new Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource;
             Retval.m_ICoreInkIndependentInputSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -215,10 +240,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerEntering (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -228,9 +257,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerEntering (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerHovering
@@ -240,10 +273,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerHovering (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -253,9 +290,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerHovering (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerExiting
@@ -265,10 +306,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerExiting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -278,9 +323,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerExiting (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerPressing
@@ -290,10 +339,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerPressing (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -303,9 +356,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerPressing (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerMoving
@@ -315,10 +372,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerMoving (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -328,9 +389,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerMoving (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerReleasing
@@ -340,10 +405,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerReleasing (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -353,9 +422,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerReleasing (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerLost
@@ -365,10 +438,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.add_PointerLost (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -378,9 +455,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkIndependentInputSource.all.remove_PointerLost (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InkPresenter
@@ -389,11 +470,15 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkPresenter;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkPresenter do
          Hr := this.m_ICoreInkIndependentInputSource.all.get_InkPresenter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkPresenter := new Windows.UI.Input.Inking.IInkPresenter;
          Retval.m_IInkPresenter.all := m_ComRetVal;
       end return;
@@ -408,12 +493,12 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    end;
 
    procedure Finalize (this : in out CoreInkPresenterHost) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInkPresenterHost, ICoreInkPresenterHost_Ptr);
    begin
       if this.m_ICoreInkPresenterHost /= null then
          if this.m_ICoreInkPresenterHost.all /= null then
-            RefCount := this.m_ICoreInkPresenterHost.all.Release;
+            temp := this.m_ICoreInkPresenterHost.all.Release;
             Free (this.m_ICoreInkPresenterHost);
          end if;
       end if;
@@ -424,7 +509,8 @@ package body WinRt.Windows.UI.Input.Inking.Core is
 
    function Constructor return CoreInkPresenterHost is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreInkPresenterHost");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreInkPresenterHost");
       m_ComRetVal  : aliased Windows.UI.Input.Inking.Core.ICoreInkPresenterHost;
    begin
       return RetVal : CoreInkPresenterHost do
@@ -433,7 +519,7 @@ package body WinRt.Windows.UI.Input.Inking.Core is
             Retval.m_ICoreInkPresenterHost := new Windows.UI.Input.Inking.Core.ICoreInkPresenterHost;
             Retval.m_ICoreInkPresenterHost.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -446,11 +532,15 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkPresenter;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkPresenter do
          Hr := this.m_ICoreInkPresenterHost.all.get_InkPresenter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkPresenter := new Windows.UI.Input.Inking.IInkPresenter;
          Retval.m_IInkPresenter.all := m_ComRetVal;
       end return;
@@ -462,11 +552,15 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Composition.ContainerVisual'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IContainerVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ContainerVisual do
          Hr := this.m_ICoreInkPresenterHost.all.get_RootVisual (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContainerVisual := new Windows.UI.Composition.IContainerVisual;
          Retval.m_IContainerVisual.all := m_ComRetVal;
       end return;
@@ -478,9 +572,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       value : Windows.UI.Composition.ContainerVisual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInkPresenterHost.all.put_RootVisual (value.m_IContainerVisual.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -492,12 +590,12 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    end;
 
    procedure Finalize (this : in out CoreWetStrokeUpdateEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWetStrokeUpdateEventArgs, ICoreWetStrokeUpdateEventArgs_Ptr);
    begin
       if this.m_ICoreWetStrokeUpdateEventArgs /= null then
          if this.m_ICoreWetStrokeUpdateEventArgs.all /= null then
-            RefCount := this.m_ICoreWetStrokeUpdateEventArgs.all.Release;
+            temp := this.m_ICoreWetStrokeUpdateEventArgs.all.Release;
             Free (this.m_ICoreWetStrokeUpdateEventArgs);
          end if;
       end if;
@@ -512,13 +610,17 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return IVector_IInkPoint.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IInkPoint.Kind;
    begin
       Hr := this.m_ICoreWetStrokeUpdateEventArgs.all.get_NewInkPoints (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IInkPoint (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -528,10 +630,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICoreWetStrokeUpdateEventArgs.all.get_PointerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -541,10 +647,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition;
    begin
       Hr := this.m_ICoreWetStrokeUpdateEventArgs.all.get_Disposition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -554,9 +664,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       value : Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWetStrokeUpdateEventArgs.all.put_Disposition (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -568,12 +682,12 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    end;
 
    procedure Finalize (this : in out CoreWetStrokeUpdateSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWetStrokeUpdateSource, ICoreWetStrokeUpdateSource_Ptr);
    begin
       if this.m_ICoreWetStrokeUpdateSource /= null then
          if this.m_ICoreWetStrokeUpdateSource.all /= null then
-            RefCount := this.m_ICoreWetStrokeUpdateSource.all.Release;
+            temp := this.m_ICoreWetStrokeUpdateSource.all.Release;
             Free (this.m_ICoreWetStrokeUpdateSource);
          end if;
       end if;
@@ -588,20 +702,24 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeUpdateSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreWetStrokeUpdateSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreWetStrokeUpdateSource");
       m_Factory        : access WinRt.Windows.UI.Input.Inking.Core.ICoreWetStrokeUpdateSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.Core.ICoreWetStrokeUpdateSource;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeUpdateSource do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreWetStrokeUpdateSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (inkPresenter.m_IInkPresenter.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICoreWetStrokeUpdateSource := new Windows.UI.Input.Inking.Core.ICoreWetStrokeUpdateSource;
             Retval.m_ICoreWetStrokeUpdateSource.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -615,10 +733,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.add_WetStrokeStarting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -628,9 +750,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.remove_WetStrokeStarting (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_WetStrokeContinuing
@@ -640,10 +766,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.add_WetStrokeContinuing (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -653,9 +783,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.remove_WetStrokeContinuing (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_WetStrokeStopping
@@ -665,10 +799,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.add_WetStrokeStopping (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -678,9 +816,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.remove_WetStrokeStopping (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_WetStrokeCompleted
@@ -690,10 +832,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.add_WetStrokeCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -703,9 +849,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.remove_WetStrokeCompleted (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_WetStrokeCanceled
@@ -715,10 +865,14 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.add_WetStrokeCanceled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -728,9 +882,13 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWetStrokeUpdateSource.all.remove_WetStrokeCanceled (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InkPresenter
@@ -739,11 +897,15 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    )
    return WinRt.Windows.UI.Input.Inking.InkPresenter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Inking.IInkPresenter;
    begin
       return RetVal : WinRt.Windows.UI.Input.Inking.InkPresenter do
          Hr := this.m_ICoreWetStrokeUpdateSource.all.get_InkPresenter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInkPresenter := new Windows.UI.Input.Inking.IInkPresenter;
          Retval.m_IInkPresenter.all := m_ComRetVal;
       end return;

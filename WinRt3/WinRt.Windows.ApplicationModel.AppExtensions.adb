@@ -56,12 +56,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtension) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtension, IAppExtension_Ptr);
    begin
       if this.m_IAppExtension /= null then
          if this.m_IAppExtension.all /= null then
-            RefCount := this.m_IAppExtension.all.Release;
+            temp := this.m_IAppExtension.all.Release;
             Free (this.m_IAppExtension);
          end if;
       end if;
@@ -76,13 +76,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtension.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -92,13 +96,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtension.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -108,13 +116,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtension.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -124,11 +136,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IAppExtension.all.get_Package (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
@@ -140,11 +156,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.AppInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := this.m_IAppExtension.all.get_AppInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
          Retval.m_IAppInfo.all := m_ComRetVal;
       end return;
@@ -156,13 +176,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IPropertySet.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -180,7 +200,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IPropertySet.Kind_Delegate, AsyncOperationCompletedHandler_IPropertySet.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -193,7 +213,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       Hr := this.m_IAppExtension.all.GetExtensionPropertiesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -203,9 +223,9 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -219,13 +239,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFolder.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -243,7 +263,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFolder.Kind_Delegate, AsyncOperationCompletedHandler_StorageFolder.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -257,7 +277,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
          Hr := this.m_IAppExtension.all.GetPublicFolderAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -269,9 +289,9 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
                   Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -288,12 +308,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtensionCatalog) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtensionCatalog, IAppExtensionCatalog_Ptr);
    begin
       if this.m_IAppExtensionCatalog /= null then
          if this.m_IAppExtensionCatalog.all /= null then
-            RefCount := this.m_IAppExtensionCatalog.all.Release;
+            temp := this.m_IAppExtensionCatalog.all.Release;
             Free (this.m_IAppExtensionCatalog);
          end if;
       end if;
@@ -308,22 +328,26 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.AppExtensions.AppExtensionCatalog is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.AppExtensions.AppExtensionCatalog");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppExtensions.AppExtensionCatalog");
       m_Factory        : access WinRt.Windows.ApplicationModel.AppExtensions.IAppExtensionCatalogStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog;
-      HStr_appExtensionName : WinRt.HString := To_HString (appExtensionName);
+      HStr_appExtensionName : constant WinRt.HString := To_HString (appExtensionName);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppExtensions.AppExtensionCatalog do
          Hr := RoGetActivationFactory (m_hString, IID_IAppExtensionCatalogStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Open (HStr_appExtensionName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAppExtensionCatalog := new Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog;
             Retval.m_IAppExtensionCatalog.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appExtensionName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appExtensionName);
       end return;
    end;
 
@@ -336,13 +360,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -360,7 +384,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -373,7 +397,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       Hr := this.m_IAppExtensionCatalog.all.FindAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -383,9 +407,9 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -400,14 +424,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_packageFullName : WinRt.HString := To_HString (packageFullName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFullName : constant WinRt.HString := To_HString (packageFullName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -425,7 +449,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -438,7 +462,7 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       Hr := this.m_IAppExtensionCatalog.all.RequestRemovePackageAsync (HStr_packageFullName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -448,14 +472,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_packageFullName);
+      tmp := WindowsDeleteString (HStr_packageFullName);
       return m_RetVal;
    end;
 
@@ -466,10 +490,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppExtensionCatalog.all.add_PackageInstalled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -479,9 +507,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppExtensionCatalog.all.remove_PackageInstalled (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PackageUpdating
@@ -491,10 +523,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppExtensionCatalog.all.add_PackageUpdating (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -504,9 +540,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppExtensionCatalog.all.remove_PackageUpdating (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PackageUpdated
@@ -516,10 +556,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppExtensionCatalog.all.add_PackageUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -529,9 +573,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppExtensionCatalog.all.remove_PackageUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PackageUninstalling
@@ -541,10 +589,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppExtensionCatalog.all.add_PackageUninstalling (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -554,9 +606,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppExtensionCatalog.all.remove_PackageUninstalling (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PackageStatusChanged
@@ -566,10 +622,14 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppExtensionCatalog.all.add_PackageStatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -579,9 +639,13 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppExtensionCatalog.all.remove_PackageStatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -593,12 +657,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtensionPackageInstalledEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtensionPackageInstalledEventArgs, IAppExtensionPackageInstalledEventArgs_Ptr);
    begin
       if this.m_IAppExtensionPackageInstalledEventArgs /= null then
          if this.m_IAppExtensionPackageInstalledEventArgs.all /= null then
-            RefCount := this.m_IAppExtensionPackageInstalledEventArgs.all.Release;
+            temp := this.m_IAppExtensionPackageInstalledEventArgs.all.Release;
             Free (this.m_IAppExtensionPackageInstalledEventArgs);
          end if;
       end if;
@@ -613,13 +677,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtensionPackageInstalledEventArgs.all.get_AppExtensionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -629,11 +697,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IAppExtensionPackageInstalledEventArgs.all.get_Package (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
@@ -645,13 +717,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return IVectorView_IAppExtension.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppExtension.Kind;
    begin
       Hr := this.m_IAppExtensionPackageInstalledEventArgs.all.get_Extensions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAppExtension (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -664,12 +740,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtensionPackageStatusChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtensionPackageStatusChangedEventArgs, IAppExtensionPackageStatusChangedEventArgs_Ptr);
    begin
       if this.m_IAppExtensionPackageStatusChangedEventArgs /= null then
          if this.m_IAppExtensionPackageStatusChangedEventArgs.all /= null then
-            RefCount := this.m_IAppExtensionPackageStatusChangedEventArgs.all.Release;
+            temp := this.m_IAppExtensionPackageStatusChangedEventArgs.all.Release;
             Free (this.m_IAppExtensionPackageStatusChangedEventArgs);
          end if;
       end if;
@@ -684,13 +760,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtensionPackageStatusChangedEventArgs.all.get_AppExtensionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -700,11 +780,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IAppExtensionPackageStatusChangedEventArgs.all.get_Package (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
@@ -719,12 +803,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtensionPackageUninstallingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtensionPackageUninstallingEventArgs, IAppExtensionPackageUninstallingEventArgs_Ptr);
    begin
       if this.m_IAppExtensionPackageUninstallingEventArgs /= null then
          if this.m_IAppExtensionPackageUninstallingEventArgs.all /= null then
-            RefCount := this.m_IAppExtensionPackageUninstallingEventArgs.all.Release;
+            temp := this.m_IAppExtensionPackageUninstallingEventArgs.all.Release;
             Free (this.m_IAppExtensionPackageUninstallingEventArgs);
          end if;
       end if;
@@ -739,13 +823,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtensionPackageUninstallingEventArgs.all.get_AppExtensionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -755,11 +843,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IAppExtensionPackageUninstallingEventArgs.all.get_Package (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
@@ -774,12 +866,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtensionPackageUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtensionPackageUpdatedEventArgs, IAppExtensionPackageUpdatedEventArgs_Ptr);
    begin
       if this.m_IAppExtensionPackageUpdatedEventArgs /= null then
          if this.m_IAppExtensionPackageUpdatedEventArgs.all /= null then
-            RefCount := this.m_IAppExtensionPackageUpdatedEventArgs.all.Release;
+            temp := this.m_IAppExtensionPackageUpdatedEventArgs.all.Release;
             Free (this.m_IAppExtensionPackageUpdatedEventArgs);
          end if;
       end if;
@@ -794,13 +886,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtensionPackageUpdatedEventArgs.all.get_AppExtensionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -810,11 +906,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IAppExtensionPackageUpdatedEventArgs.all.get_Package (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
@@ -826,13 +926,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return IVectorView_IAppExtension.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppExtension.Kind;
    begin
       Hr := this.m_IAppExtensionPackageUpdatedEventArgs.all.get_Extensions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAppExtension (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -845,12 +949,12 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    end;
 
    procedure Finalize (this : in out AppExtensionPackageUpdatingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppExtensionPackageUpdatingEventArgs, IAppExtensionPackageUpdatingEventArgs_Ptr);
    begin
       if this.m_IAppExtensionPackageUpdatingEventArgs /= null then
          if this.m_IAppExtensionPackageUpdatingEventArgs.all /= null then
-            RefCount := this.m_IAppExtensionPackageUpdatingEventArgs.all.Release;
+            temp := this.m_IAppExtensionPackageUpdatingEventArgs.all.Release;
             Free (this.m_IAppExtensionPackageUpdatingEventArgs);
          end if;
       end if;
@@ -865,13 +969,17 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppExtensionPackageUpdatingEventArgs.all.get_AppExtensionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -881,11 +989,15 @@ package body WinRt.Windows.ApplicationModel.AppExtensions is
    )
    return WinRt.Windows.ApplicationModel.Package_x'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IAppExtensionPackageUpdatingEventArgs.all.get_Package (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;

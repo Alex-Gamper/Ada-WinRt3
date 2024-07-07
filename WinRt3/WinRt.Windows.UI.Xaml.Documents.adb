@@ -53,12 +53,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out TextElement) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextElement, ITextElement_Ptr);
    begin
       if this.m_ITextElement /= null then
          if this.m_ITextElement.all /= null then
-            RefCount := this.m_ITextElement.all.Release;
+            temp := this.m_ITextElement.all.Release;
             Free (this.m_ITextElement);
          end if;
       end if;
@@ -73,360 +73,432 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_IsTextScaleFactorEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsTextScaleFactorEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TextDecorationsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TextDecorationsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsAccessKeyScopeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsAccessKeyScopeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AccessKeyScopeOwnerProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AccessKeyScopeOwnerProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTipPlacementModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTipPlacementModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTipHorizontalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTipHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTipVerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTipVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AllowFocusOnInteractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllowFocusOnInteractionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AccessKeyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AccessKeyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ExitDisplayModeOnAccessKeyInvokedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitDisplayModeOnAccessKeyInvokedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontSizeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontFamilyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontFamilyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontWeightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontWeightProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontStyleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontStretchProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontStretchProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CharacterSpacingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CharacterSpacingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ForegroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LanguageProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LanguageProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -439,13 +511,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextElement.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -455,10 +531,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ITextElement.all.get_FontSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -468,9 +548,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_FontSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontFamily
@@ -479,11 +563,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.FontFamily'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IFontFamily;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.FontFamily do
          Hr := this.m_ITextElement.all.get_FontFamily (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFontFamily := new Windows.UI.Xaml.Media.IFontFamily;
          Retval.m_IFontFamily.all := m_ComRetVal;
       end return;
@@ -495,9 +583,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.FontFamily'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_FontFamily (value.m_IFontFamily.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontWeight
@@ -506,10 +598,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Text.FontWeight is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
    begin
       Hr := this.m_ITextElement.all.get_FontWeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -519,9 +615,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Text.FontWeight
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_FontWeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontStyle
@@ -530,10 +630,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Text.FontStyle is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.FontStyle;
    begin
       Hr := this.m_ITextElement.all.get_FontStyle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -543,9 +647,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Text.FontStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_FontStyle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontStretch
@@ -554,10 +662,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Text.FontStretch is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.FontStretch;
    begin
       Hr := this.m_ITextElement.all.get_FontStretch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -567,9 +679,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Text.FontStretch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_FontStretch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharacterSpacing
@@ -578,10 +694,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ITextElement.all.get_CharacterSpacing (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -591,9 +711,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_CharacterSpacing (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Foreground
@@ -602,11 +726,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ITextElement.all.get_Foreground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -618,9 +746,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextElement.all.put_Foreground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Language
@@ -629,13 +761,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextElement.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -645,11 +781,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ITextElement.all.put_Language (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContentStart
@@ -658,11 +798,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.TextPointer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.ITextPointer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.TextPointer do
          Hr := this.m_ITextElement.all.get_ContentStart (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITextPointer := new Windows.UI.Xaml.Documents.ITextPointer;
          Retval.m_ITextPointer.all := m_ComRetVal;
       end return;
@@ -674,11 +818,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.TextPointer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.ITextPointer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.TextPointer do
          Hr := this.m_ITextElement.all.get_ContentEnd (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITextPointer := new Windows.UI.Xaml.Documents.ITextPointer;
          Retval.m_ITextPointer.all := m_ComRetVal;
       end return;
@@ -690,11 +838,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.TextPointer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.ITextPointer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.TextPointer do
          Hr := this.m_ITextElement.all.get_ElementStart (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITextPointer := new Windows.UI.Xaml.Documents.ITextPointer;
          Retval.m_ITextPointer.all := m_ComRetVal;
       end return;
@@ -706,11 +858,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.TextPointer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.ITextPointer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.TextPointer do
          Hr := this.m_ITextElement.all.get_ElementEnd (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITextPointer := new Windows.UI.Xaml.Documents.ITextPointer;
          Retval.m_ITextPointer.all := m_ComRetVal;
       end return;
@@ -723,12 +879,16 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ITextElement.all.FindName (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -738,14 +898,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement2, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_IsTextScaleFactorEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -755,13 +919,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement2, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_IsTextScaleFactorEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowFocusOnInteraction
@@ -770,14 +938,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement3, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_AllowFocusOnInteraction (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -787,13 +959,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement3, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_AllowFocusOnInteraction (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AccessKey
@@ -802,17 +978,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement3, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_AccessKey (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -822,15 +1002,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement3, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_AccessKey (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ExitDisplayModeOnAccessKeyInvoked
@@ -839,14 +1023,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement3, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_ExitDisplayModeOnAccessKeyInvoked (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -856,13 +1044,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement3, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_ExitDisplayModeOnAccessKeyInvoked (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TextDecorations
@@ -871,14 +1063,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Text.TextDecorations is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.TextDecorations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_TextDecorations (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -888,13 +1084,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Text.TextDecorations
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_TextDecorations (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsAccessKeyScope
@@ -903,14 +1103,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_IsAccessKeyScope (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -920,13 +1124,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_IsAccessKeyScope (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AccessKeyScopeOwner
@@ -935,15 +1143,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          m_Interface := QInterface (this.m_ITextElement.all);
          Hr := m_Interface.get_AccessKeyScopeOwner (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -955,13 +1167,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_AccessKeyScopeOwner (value.m_IDependencyObject.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTipPlacementMode
@@ -970,14 +1186,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.KeyTipPlacementMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.KeyTipPlacementMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_KeyTipPlacementMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -987,13 +1207,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.KeyTipPlacementMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_KeyTipPlacementMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTipHorizontalOffset
@@ -1002,14 +1226,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_KeyTipHorizontalOffset (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1019,13 +1247,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_KeyTipHorizontalOffset (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTipVerticalOffset
@@ -1034,14 +1266,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.get_KeyTipVerticalOffset (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1051,13 +1287,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_KeyTipVerticalOffset (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AccessKeyDisplayRequested
@@ -1067,14 +1307,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.add_AccessKeyDisplayRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1084,13 +1328,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.remove_AccessKeyDisplayRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AccessKeyDisplayDismissed
@@ -1100,14 +1348,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.add_AccessKeyDisplayDismissed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1117,13 +1369,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.remove_AccessKeyDisplayDismissed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AccessKeyInvoked
@@ -1133,14 +1389,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.add_AccessKeyInvoked (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1150,13 +1410,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement4, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.remove_AccessKeyInvoked (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XamlRoot
@@ -1165,15 +1429,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.XamlRoot'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IXamlRoot;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement5, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.XamlRoot do
          m_Interface := QInterface (this.m_ITextElement.all);
          Hr := m_Interface.get_XamlRoot (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXamlRoot := new Windows.UI.Xaml.IXamlRoot;
          Retval.m_IXamlRoot.all := m_ComRetVal;
       end return;
@@ -1185,13 +1453,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.XamlRoot'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElement5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElement5, WinRt.Windows.UI.Xaml.Documents.IID_ITextElement5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.put_XamlRoot (value.m_IXamlRoot.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnDisconnectVisualChildren
@@ -1199,13 +1471,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out TextElement
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.ITextElementOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.ITextElement_Interface, WinRt.Windows.UI.Xaml.Documents.ITextElementOverrides, WinRt.Windows.UI.Xaml.Documents.IID_ITextElementOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextElement.all);
       Hr := m_Interface.OnDisconnectVisualChildren;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1217,12 +1493,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Block) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBlock, IBlock_Ptr);
    begin
       if this.m_IBlock /= null then
          if this.m_IBlock.all /= null then
-            RefCount := this.m_IBlock.all.Release;
+            temp := this.m_IBlock.all.Release;
             Free (this.m_IBlock);
          end if;
       end if;
@@ -1238,9 +1514,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return Block is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
       m_Factory    : access IBlockFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IBlock;
    begin
       return RetVal : Block do
@@ -1249,9 +1526,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IBlock := new Windows.UI.Xaml.Documents.IBlock;
             Retval.m_IBlock.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1261,100 +1538,120 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_HorizontalTextAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IBlockStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBlockStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HorizontalTextAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TextAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IBlockStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBlockStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TextAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LineHeightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IBlockStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBlockStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LineHeightProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LineStackingStrategyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IBlockStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBlockStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LineStackingStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MarginProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Block");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IBlockStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBlockStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MarginProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1367,10 +1664,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.TextAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.TextAlignment;
    begin
       Hr := this.m_IBlock.all.get_TextAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1380,9 +1681,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.TextAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBlock.all.put_TextAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineHeight
@@ -1391,10 +1696,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IBlock.all.get_LineHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1404,9 +1713,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBlock.all.put_LineHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineStackingStrategy
@@ -1415,10 +1728,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.LineStackingStrategy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.LineStackingStrategy;
    begin
       Hr := this.m_IBlock.all.get_LineStackingStrategy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1428,9 +1745,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.LineStackingStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBlock.all.put_LineStackingStrategy (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Margin
@@ -1439,10 +1760,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IBlock.all.get_Margin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1452,9 +1777,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBlock.all.put_Margin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HorizontalTextAlignment
@@ -1463,14 +1792,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.TextAlignment is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IBlock2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.TextAlignment;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IBlock_Interface, WinRt.Windows.UI.Xaml.Documents.IBlock2, WinRt.Windows.UI.Xaml.Documents.IID_IBlock2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBlock.all);
       Hr := m_Interface.get_HorizontalTextAlignment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1480,13 +1813,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.TextAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IBlock2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IBlock_Interface, WinRt.Windows.UI.Xaml.Documents.IBlock2, WinRt.Windows.UI.Xaml.Documents.IID_IBlock2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBlock.all);
       Hr := m_Interface.put_HorizontalTextAlignment (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1513,8 +1850,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.Block'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IBlock;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
@@ -1522,7 +1860,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
       return RetVal : WinRt.Windows.UI.Xaml.Documents.Block do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBlock := new Windows.UI.Xaml.Documents.IBlock;
          Retval.m_IBlock.all := m_ComRetVal;
       end return;
@@ -1534,15 +1875,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1552,15 +1897,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1572,15 +1921,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IBlock.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1591,14 +1944,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.Block'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_IBlock.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -1608,14 +1965,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.Block'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_IBlock.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -1624,14 +1985,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -1640,14 +2005,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.Block'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_IBlock.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -1655,14 +2024,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out BlockCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -1670,14 +2043,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out BlockCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -1688,8 +2065,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
@@ -1697,7 +2075,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1707,15 +2088,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
       items : Windows.UI.Xaml.Documents.IBlock_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1055361588, 5646, 20735, (181, 170, 9, 242, 99, 166, 105, 248 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBlock.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Documents.Block>
@@ -1725,15 +2110,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IBlock.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4144118682, 59089, 24109, (143, 65, 178, 140, 51, 50, 62, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IBlock.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1746,12 +2135,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Inline) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInline, IInline_Ptr);
    begin
       if this.m_IInline /= null then
          if this.m_IInline.all /= null then
-            RefCount := this.m_IInline.all.Release;
+            temp := this.m_IInline.all.Release;
             Free (this.m_IInline);
          end if;
       end if;
@@ -1767,9 +2156,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return Inline is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Inline");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Inline");
       m_Factory    : access IInlineFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IInline;
    begin
       return RetVal : Inline do
@@ -1778,9 +2168,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IInline := new Windows.UI.Xaml.Documents.IInline;
             Retval.m_IInline.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1796,12 +2186,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Span) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpan, ISpan_Ptr);
    begin
       if this.m_ISpan /= null then
          if this.m_ISpan.all /= null then
-            RefCount := this.m_ISpan.all.Release;
+            temp := this.m_ISpan.all.Release;
             Free (this.m_ISpan);
          end if;
       end if;
@@ -1817,9 +2207,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return Span is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Span");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Span");
       m_Factory    : access ISpanFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.ISpan;
    begin
       return RetVal : Span do
@@ -1828,9 +2219,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISpan := new Windows.UI.Xaml.Documents.ISpan;
             Retval.m_ISpan.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1843,11 +2234,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.InlineCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.InlineCollection do
          Hr := this.m_ISpan.all.get_Inlines (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1859,9 +2254,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.InlineCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpan.all.put_Inlines (value.m_GenericObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1873,12 +2272,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Bold) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBold, IBold_Ptr);
    begin
       if this.m_IBold /= null then
          if this.m_IBold.all /= null then
-            RefCount := this.m_IBold.all.Release;
+            temp := this.m_IBold.all.Release;
             Free (this.m_IBold);
          end if;
       end if;
@@ -1889,7 +2288,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Bold is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Bold");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Bold");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IBold;
    begin
       return RetVal : Bold do
@@ -1898,7 +2298,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IBold := new Windows.UI.Xaml.Documents.IBold;
             Retval.m_IBold.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1914,12 +2314,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out ContentLinkProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContentLinkProvider, IContentLinkProvider_Ptr);
    begin
       if this.m_IContentLinkProvider /= null then
          if this.m_IContentLinkProvider.all /= null then
-            RefCount := this.m_IContentLinkProvider.all.Release;
+            temp := this.m_IContentLinkProvider.all.Release;
             Free (this.m_IContentLinkProvider);
          end if;
       end if;
@@ -1935,9 +2335,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return ContentLinkProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLinkProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLinkProvider");
       m_Factory    : access IContentLinkProviderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IContentLinkProvider;
    begin
       return RetVal : ContentLinkProvider do
@@ -1946,9 +2347,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IContentLinkProvider := new Windows.UI.Xaml.Documents.IContentLinkProvider;
             Retval.m_IContentLinkProvider.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1964,12 +2365,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out ContactContentLinkProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactContentLinkProvider, IContactContentLinkProvider_Ptr);
    begin
       if this.m_IContactContentLinkProvider /= null then
          if this.m_IContactContentLinkProvider.all /= null then
-            RefCount := this.m_IContactContentLinkProvider.all.Release;
+            temp := this.m_IContactContentLinkProvider.all.Release;
             Free (this.m_IContactContentLinkProvider);
          end if;
       end if;
@@ -1980,7 +2381,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return ContactContentLinkProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContactContentLinkProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContactContentLinkProvider");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IContactContentLinkProvider;
    begin
       return RetVal : ContactContentLinkProvider do
@@ -1989,7 +2391,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IContactContentLinkProvider := new Windows.UI.Xaml.Documents.IContactContentLinkProvider;
             Retval.m_IContactContentLinkProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2005,12 +2407,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out ContentLink) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContentLink, IContentLink_Ptr);
    begin
       if this.m_IContentLink /= null then
          if this.m_IContentLink.all /= null then
-            RefCount := this.m_IContentLink.all.Release;
+            temp := this.m_IContentLink.all.Release;
             Free (this.m_IContentLink);
          end if;
       end if;
@@ -2021,7 +2423,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return ContentLink is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IContentLink;
    begin
       return RetVal : ContentLink do
@@ -2030,7 +2433,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IContentLink := new Windows.UI.Xaml.Documents.IContentLink;
             Retval.m_IContentLink.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2040,280 +2443,336 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_BackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CursorProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CursorProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusLeftProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusLeftProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusRightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusRightProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusUpProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusUpProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusDownProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusDownProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ElementSoundModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ElementSoundModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FocusStateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FocusStateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusUpNavigationStrategyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusUpNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusDownNavigationStrategyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusDownNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusLeftNavigationStrategyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusLeftNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusRightNavigationStrategyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusRightNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsTabStopProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsTabStopProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TabIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IContentLinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentLinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TabIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2326,11 +2785,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Text.ContentLinkInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.IContentLinkInfo;
    begin
       return RetVal : WinRt.Windows.UI.Text.ContentLinkInfo do
          Hr := this.m_IContentLink.all.get_Info (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContentLinkInfo := new Windows.UI.Text.IContentLinkInfo;
          Retval.m_IContentLinkInfo.all := m_ComRetVal;
       end return;
@@ -2342,9 +2805,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Text.ContentLinkInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_Info (value.m_IContentLinkInfo.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Background
@@ -2353,11 +2820,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IContentLink.all.get_Background (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -2369,9 +2840,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_Background (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Cursor
@@ -2380,10 +2855,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Core.CoreCursorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreCursorType;
    begin
       Hr := this.m_IContentLink.all.get_Cursor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2393,9 +2872,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Core.CoreCursorType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_Cursor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusLeft
@@ -2404,11 +2887,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IContentLink.all.get_XYFocusLeft (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2420,9 +2907,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusLeft (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusRight
@@ -2431,11 +2922,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IContentLink.all.get_XYFocusRight (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2447,9 +2942,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusRight (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusUp
@@ -2458,11 +2957,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IContentLink.all.get_XYFocusUp (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2474,9 +2977,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusUp (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusDown
@@ -2485,11 +2992,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IContentLink.all.get_XYFocusDown (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2501,9 +3012,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusDown (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ElementSoundMode
@@ -2512,10 +3027,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.ElementSoundMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.ElementSoundMode;
    begin
       Hr := this.m_IContentLink.all.get_ElementSoundMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2525,9 +3044,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.ElementSoundMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_ElementSoundMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusState
@@ -2536,10 +3059,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FocusState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FocusState;
    begin
       Hr := this.m_IContentLink.all.get_FocusState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2549,10 +3076,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
    begin
       Hr := this.m_IContentLink.all.get_XYFocusUpNavigationStrategy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2562,9 +3093,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusUpNavigationStrategy (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusDownNavigationStrategy
@@ -2573,10 +3108,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
    begin
       Hr := this.m_IContentLink.all.get_XYFocusDownNavigationStrategy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2586,9 +3125,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusDownNavigationStrategy (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusLeftNavigationStrategy
@@ -2597,10 +3140,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
    begin
       Hr := this.m_IContentLink.all.get_XYFocusLeftNavigationStrategy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2610,9 +3157,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusLeftNavigationStrategy (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusRightNavigationStrategy
@@ -2621,10 +3172,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
    begin
       Hr := this.m_IContentLink.all.get_XYFocusRightNavigationStrategy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2634,9 +3189,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_XYFocusRightNavigationStrategy (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsTabStop
@@ -2645,10 +3204,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IContentLink.all.get_IsTabStop (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2658,9 +3221,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_IsTabStop (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TabIndex
@@ -2669,10 +3236,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IContentLink.all.get_TabIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2682,9 +3253,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.put_TabIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Invoked
@@ -2694,10 +3269,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContentLink.all.add_Invoked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2707,9 +3286,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.remove_Invoked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GotFocus
@@ -2719,10 +3302,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContentLink.all.add_GotFocus (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2732,9 +3319,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.remove_GotFocus (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LostFocus
@@ -2744,10 +3335,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContentLink.all.add_LostFocus (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2757,9 +3352,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLink.all.remove_LostFocus (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Focus
@@ -2769,10 +3368,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IContentLink.all.Focus (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2785,12 +3388,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out ContentLinkInvokedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContentLinkInvokedEventArgs, IContentLinkInvokedEventArgs_Ptr);
    begin
       if this.m_IContentLinkInvokedEventArgs /= null then
          if this.m_IContentLinkInvokedEventArgs.all /= null then
-            RefCount := this.m_IContentLinkInvokedEventArgs.all.Release;
+            temp := this.m_IContentLinkInvokedEventArgs.all.Release;
             Free (this.m_IContentLinkInvokedEventArgs);
          end if;
       end if;
@@ -2805,11 +3408,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Text.ContentLinkInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.IContentLinkInfo;
    begin
       return RetVal : WinRt.Windows.UI.Text.ContentLinkInfo do
          Hr := this.m_IContentLinkInvokedEventArgs.all.get_ContentLinkInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContentLinkInfo := new Windows.UI.Text.IContentLinkInfo;
          Retval.m_IContentLinkInfo.all := m_ComRetVal;
       end return;
@@ -2821,10 +3428,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IContentLinkInvokedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2834,9 +3445,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentLinkInvokedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2848,12 +3463,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out ContentLinkProviderCollection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContentLinkProviderCollection, IContentLinkProviderCollection_Ptr);
    begin
       if this.m_IContentLinkProviderCollection /= null then
          if this.m_IContentLinkProviderCollection.all /= null then
-            RefCount := this.m_IContentLinkProviderCollection.all.Release;
+            temp := this.m_IContentLinkProviderCollection.all.Release;
             Free (this.m_IContentLinkProviderCollection);
          end if;
       end if;
@@ -2864,7 +3479,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return ContentLinkProviderCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLinkProviderCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.ContentLinkProviderCollection");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IContentLinkProviderCollection;
    begin
       return RetVal : ContentLinkProviderCollection do
@@ -2873,7 +3489,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IContentLinkProviderCollection := new Windows.UI.Xaml.Documents.IContentLinkProviderCollection;
             Retval.m_IContentLinkProviderCollection.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2888,8 +3504,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IContentLinkProvider;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
@@ -2897,7 +3514,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
       return RetVal : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider do
          m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContentLinkProvider := new Windows.UI.Xaml.Documents.IContentLinkProvider;
          Retval.m_IContentLinkProvider.all := m_ComRetVal;
       end return;
@@ -2909,15 +3529,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2927,15 +3551,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2947,15 +3575,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.IndexOf (value.m_IContentLinkProvider.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2966,14 +3598,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.SetAt (index, value.m_IContentLinkProvider.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -2983,14 +3619,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.InsertAt (index, value.m_IContentLinkProvider.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -2999,14 +3639,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -3015,14 +3659,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.Append (value.m_IContentLinkProvider.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -3030,14 +3678,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out ContentLinkProviderCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -3045,14 +3697,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out ContentLinkProviderCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -3063,8 +3719,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
@@ -3072,7 +3729,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3082,15 +3742,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
       items : Windows.UI.Xaml.Documents.IContentLinkProvider_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3869176246, 11953, 24220, (188, 65, 185, 77, 57, 98, 129, 228 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IVector_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Documents.ContentLinkProvider>
@@ -3100,15 +3764,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IContentLinkProvider.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (423264699, 55388, 23763, (161, 48, 161, 208, 142, 170, 244, 190 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IContentLinkProviderCollection_Interface, IIterable_IContentLinkProvider.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContentLinkProviderCollection.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3121,12 +3789,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Glyphs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGlyphs, IGlyphs_Ptr);
    begin
       if this.m_IGlyphs /= null then
          if this.m_IGlyphs.all /= null then
-            RefCount := this.m_IGlyphs.all.Release;
+            temp := this.m_IGlyphs.all.Release;
             Free (this.m_IGlyphs);
          end if;
       end if;
@@ -3137,7 +3805,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Glyphs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IGlyphs;
    begin
       return RetVal : Glyphs do
@@ -3146,7 +3815,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IGlyphs := new Windows.UI.Xaml.Documents.IGlyphs;
             Retval.m_IGlyphs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3156,200 +3825,240 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_IsColorFontEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsColorFontEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ColorFontPaletteIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ColorFontPaletteIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_UnicodeStringProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UnicodeStringProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IndicesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IndicesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontUriProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontUriProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StyleSimulationsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StyleSimulationsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FontRenderingEmSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FontRenderingEmSizeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OriginXProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OriginXProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OriginYProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OriginYProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FillProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Glyphs");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IGlyphsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGlyphsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FillProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3362,13 +4071,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGlyphs.all.get_UnicodeString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3378,11 +4091,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IGlyphs.all.put_UnicodeString (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Indices
@@ -3391,13 +4108,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGlyphs.all.get_Indices (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3407,11 +4128,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IGlyphs.all.put_Indices (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FontUri
@@ -3420,11 +4145,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IGlyphs.all.get_FontUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -3436,9 +4165,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGlyphs.all.put_FontUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StyleSimulations
@@ -3447,10 +4180,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.StyleSimulations is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.StyleSimulations;
    begin
       Hr := this.m_IGlyphs.all.get_StyleSimulations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3460,9 +4197,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.StyleSimulations
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGlyphs.all.put_StyleSimulations (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FontRenderingEmSize
@@ -3471,10 +4212,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGlyphs.all.get_FontRenderingEmSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3484,9 +4229,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGlyphs.all.put_FontRenderingEmSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OriginX
@@ -3495,10 +4244,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGlyphs.all.get_OriginX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3508,9 +4261,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGlyphs.all.put_OriginX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OriginY
@@ -3519,10 +4276,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGlyphs.all.get_OriginY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3532,9 +4293,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGlyphs.all.put_OriginY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Fill
@@ -3543,11 +4308,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGlyphs.all.get_Fill (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -3559,9 +4328,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGlyphs.all.put_Fill (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsColorFontEnabled
@@ -3570,14 +4343,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IGlyphs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IGlyphs_Interface, WinRt.Windows.UI.Xaml.Documents.IGlyphs2, WinRt.Windows.UI.Xaml.Documents.IID_IGlyphs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGlyphs.all);
       Hr := m_Interface.get_IsColorFontEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3587,13 +4364,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IGlyphs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IGlyphs_Interface, WinRt.Windows.UI.Xaml.Documents.IGlyphs2, WinRt.Windows.UI.Xaml.Documents.IID_IGlyphs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGlyphs.all);
       Hr := m_Interface.put_IsColorFontEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ColorFontPaletteIndex
@@ -3602,14 +4383,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IGlyphs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IGlyphs_Interface, WinRt.Windows.UI.Xaml.Documents.IGlyphs2, WinRt.Windows.UI.Xaml.Documents.IID_IGlyphs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGlyphs.all);
       Hr := m_Interface.get_ColorFontPaletteIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3619,13 +4404,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IGlyphs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IGlyphs_Interface, WinRt.Windows.UI.Xaml.Documents.IGlyphs2, WinRt.Windows.UI.Xaml.Documents.IID_IGlyphs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGlyphs.all);
       Hr := m_Interface.put_ColorFontPaletteIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3637,12 +4426,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Hyperlink) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHyperlink, IHyperlink_Ptr);
    begin
       if this.m_IHyperlink /= null then
          if this.m_IHyperlink.all /= null then
-            RefCount := this.m_IHyperlink.all.Release;
+            temp := this.m_IHyperlink.all.Release;
             Free (this.m_IHyperlink);
          end if;
       end if;
@@ -3653,7 +4442,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Hyperlink is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IHyperlink;
    begin
       return RetVal : Hyperlink do
@@ -3662,7 +4452,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IHyperlink := new Windows.UI.Xaml.Documents.IHyperlink;
             Retval.m_IHyperlink.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3672,280 +4462,336 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_FocusStateProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FocusStateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusUpNavigationStrategyProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusUpNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusDownNavigationStrategyProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusDownNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusLeftNavigationStrategyProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusLeftNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusRightNavigationStrategyProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusRightNavigationStrategyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusLeftProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusLeftProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusRightProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusRightProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusUpProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusUpProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_XYFocusDownProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_XYFocusDownProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ElementSoundModeProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ElementSoundModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_NavigateUriProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NavigateUriProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_UnderlineStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UnderlineStyleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsTabStopProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsTabStopProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TabIndexProperty_Hyperlink
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Hyperlink");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IHyperlinkStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TabIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3958,11 +4804,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHyperlink.all.get_NavigateUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -3974,9 +4824,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHyperlink.all.put_NavigateUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Click
@@ -3986,10 +4840,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHyperlink.all.add_Click (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3999,9 +4857,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHyperlink.all.remove_Click (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UnderlineStyle
@@ -4010,14 +4872,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.UnderlineStyle is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.UnderlineStyle;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink2, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_UnderlineStyle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4027,13 +4893,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.UnderlineStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink2, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_UnderlineStyle (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusLeft
@@ -4042,15 +4912,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          m_Interface := QInterface (this.m_IHyperlink.all);
          Hr := m_Interface.get_XYFocusLeft (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4062,13 +4936,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusLeft (value.m_IDependencyObject.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusRight
@@ -4077,15 +4955,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          m_Interface := QInterface (this.m_IHyperlink.all);
          Hr := m_Interface.get_XYFocusRight (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4097,13 +4979,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusRight (value.m_IDependencyObject.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusUp
@@ -4112,15 +4998,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          m_Interface := QInterface (this.m_IHyperlink.all);
          Hr := m_Interface.get_XYFocusUp (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4132,13 +5022,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusUp (value.m_IDependencyObject.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusDown
@@ -4147,15 +5041,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          m_Interface := QInterface (this.m_IHyperlink.all);
          Hr := m_Interface.get_XYFocusDown (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4167,13 +5065,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusDown (value.m_IDependencyObject.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ElementSoundMode
@@ -4182,14 +5084,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.ElementSoundMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.ElementSoundMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_ElementSoundMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4199,13 +5105,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.ElementSoundMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink3, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_ElementSoundMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusState
@@ -4214,14 +5124,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FocusState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FocusState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_FocusState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4231,14 +5145,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_XYFocusUpNavigationStrategy (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4248,13 +5166,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusUpNavigationStrategy (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusDownNavigationStrategy
@@ -4263,14 +5185,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_XYFocusDownNavigationStrategy (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4280,13 +5206,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusDownNavigationStrategy (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusLeftNavigationStrategy
@@ -4295,14 +5225,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_XYFocusLeftNavigationStrategy (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4312,13 +5246,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusLeftNavigationStrategy (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusRightNavigationStrategy
@@ -4327,14 +5265,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_XYFocusRightNavigationStrategy (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4344,13 +5286,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_XYFocusRightNavigationStrategy (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GotFocus
@@ -4360,14 +5306,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.add_GotFocus (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4377,13 +5327,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.remove_GotFocus (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LostFocus
@@ -4393,14 +5347,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.add_LostFocus (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4410,13 +5368,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.remove_LostFocus (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Focus
@@ -4426,14 +5388,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink4, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.Focus (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4443,14 +5409,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink5, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_IsTabStop (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4460,13 +5430,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink5, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_IsTabStop (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TabIndex
@@ -4475,14 +5449,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink5, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.get_TabIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4492,13 +5470,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Documents.IHyperlink5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Documents.IHyperlink_Interface, WinRt.Windows.UI.Xaml.Documents.IHyperlink5, WinRt.Windows.UI.Xaml.Documents.IID_IHyperlink5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHyperlink.all);
       Hr := m_Interface.put_TabIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4510,12 +5492,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out HyperlinkClickEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHyperlinkClickEventArgs, IHyperlinkClickEventArgs_Ptr);
    begin
       if this.m_IHyperlinkClickEventArgs /= null then
          if this.m_IHyperlinkClickEventArgs.all /= null then
-            RefCount := this.m_IHyperlinkClickEventArgs.all.Release;
+            temp := this.m_IHyperlinkClickEventArgs.all.Release;
             Free (this.m_IHyperlinkClickEventArgs);
          end if;
       end if;
@@ -4548,8 +5530,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.Inline'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.IInline;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
@@ -4557,7 +5540,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
       return RetVal : WinRt.Windows.UI.Xaml.Documents.Inline do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInline := new Windows.UI.Xaml.Documents.IInline;
          Retval.m_IInline.all := m_ComRetVal;
       end return;
@@ -4569,15 +5555,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4587,15 +5577,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4607,15 +5601,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IInline.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4626,14 +5624,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.Inline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_IInline.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -4643,14 +5645,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.Inline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_IInline.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -4659,14 +5665,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -4675,14 +5685,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Documents.Inline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_IInline.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -4690,14 +5704,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out InlineCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -4705,14 +5723,18 @@ package body WinRt.Windows.UI.Xaml.Documents is
       this : in out InlineCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -4723,8 +5745,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
@@ -4732,7 +5755,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4742,15 +5768,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
       items : Windows.UI.Xaml.Documents.IInline_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2464977490, 36579, 21974, (132, 180, 48, 182, 53, 7, 119, 120 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IInline.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Documents.Inline>
@@ -4760,15 +5790,19 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IInline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3788683536, 6338, 22790, (143, 138, 214, 42, 99, 249, 63, 24 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IInline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4781,12 +5815,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out InlineUIContainer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInlineUIContainer, IInlineUIContainer_Ptr);
    begin
       if this.m_IInlineUIContainer /= null then
          if this.m_IInlineUIContainer.all /= null then
-            RefCount := this.m_IInlineUIContainer.all.Release;
+            temp := this.m_IInlineUIContainer.all.Release;
             Free (this.m_IInlineUIContainer);
          end if;
       end if;
@@ -4797,7 +5831,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return InlineUIContainer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.InlineUIContainer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.InlineUIContainer");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IInlineUIContainer;
    begin
       return RetVal : InlineUIContainer do
@@ -4806,7 +5841,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IInlineUIContainer := new Windows.UI.Xaml.Documents.IInlineUIContainer;
             Retval.m_IInlineUIContainer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4819,11 +5854,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IInlineUIContainer.all.get_Child (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -4835,9 +5874,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInlineUIContainer.all.put_Child (value.m_IUIElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4849,12 +5892,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Italic) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IItalic, IItalic_Ptr);
    begin
       if this.m_IItalic /= null then
          if this.m_IItalic.all /= null then
-            RefCount := this.m_IItalic.all.Release;
+            temp := this.m_IItalic.all.Release;
             Free (this.m_IItalic);
          end if;
       end if;
@@ -4865,7 +5908,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Italic is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Italic");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Italic");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IItalic;
    begin
       return RetVal : Italic do
@@ -4874,7 +5918,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IItalic := new Windows.UI.Xaml.Documents.IItalic;
             Retval.m_IItalic.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4890,12 +5934,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out LineBreak) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineBreak, ILineBreak_Ptr);
    begin
       if this.m_ILineBreak /= null then
          if this.m_ILineBreak.all /= null then
-            RefCount := this.m_ILineBreak.all.Release;
+            temp := this.m_ILineBreak.all.Release;
             Free (this.m_ILineBreak);
          end if;
       end if;
@@ -4906,7 +5950,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return LineBreak is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.LineBreak");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.LineBreak");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.ILineBreak;
    begin
       return RetVal : LineBreak do
@@ -4915,7 +5960,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_ILineBreak := new Windows.UI.Xaml.Documents.ILineBreak;
             Retval.m_ILineBreak.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4931,12 +5976,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Paragraph) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IParagraph, IParagraph_Ptr);
    begin
       if this.m_IParagraph /= null then
          if this.m_IParagraph.all /= null then
-            RefCount := this.m_IParagraph.all.Release;
+            temp := this.m_IParagraph.all.Release;
             Free (this.m_IParagraph);
          end if;
       end if;
@@ -4947,7 +5992,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Paragraph is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Paragraph");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Paragraph");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IParagraph;
    begin
       return RetVal : Paragraph do
@@ -4956,7 +6002,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IParagraph := new Windows.UI.Xaml.Documents.IParagraph;
             Retval.m_IParagraph.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4966,20 +6012,24 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_TextIndentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Paragraph");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Paragraph");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IParagraphStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IParagraphStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TextIndentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4992,11 +6042,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.InlineCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.InlineCollection do
          Hr := this.m_IParagraph.all.get_Inlines (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -5008,10 +6062,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IParagraph.all.get_TextIndent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5021,9 +6079,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IParagraph.all.put_TextIndent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5035,12 +6097,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out PlaceContentLinkProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlaceContentLinkProvider, IPlaceContentLinkProvider_Ptr);
    begin
       if this.m_IPlaceContentLinkProvider /= null then
          if this.m_IPlaceContentLinkProvider.all /= null then
-            RefCount := this.m_IPlaceContentLinkProvider.all.Release;
+            temp := this.m_IPlaceContentLinkProvider.all.Release;
             Free (this.m_IPlaceContentLinkProvider);
          end if;
       end if;
@@ -5051,7 +6113,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return PlaceContentLinkProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.PlaceContentLinkProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.PlaceContentLinkProvider");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IPlaceContentLinkProvider;
    begin
       return RetVal : PlaceContentLinkProvider do
@@ -5060,7 +6123,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IPlaceContentLinkProvider := new Windows.UI.Xaml.Documents.IPlaceContentLinkProvider;
             Retval.m_IPlaceContentLinkProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5076,12 +6139,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Run) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRun, IRun_Ptr);
    begin
       if this.m_IRun /= null then
          if this.m_IRun.all /= null then
-            RefCount := this.m_IRun.all.Release;
+            temp := this.m_IRun.all.Release;
             Free (this.m_IRun);
          end if;
       end if;
@@ -5092,7 +6155,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Run is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Run");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Run");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IRun;
    begin
       return RetVal : Run do
@@ -5101,7 +6165,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IRun := new Windows.UI.Xaml.Documents.IRun;
             Retval.m_IRun.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5111,20 +6175,24 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_FlowDirectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Run");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Run");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.IRunStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRunStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FlowDirectionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5137,13 +6205,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IRun.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5153,11 +6225,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IRun.all.put_Text (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FlowDirection
@@ -5166,10 +6242,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FlowDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FlowDirection;
    begin
       Hr := this.m_IRun.all.get_FlowDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5179,9 +6259,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FlowDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRun.all.put_FlowDirection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5193,12 +6277,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out TextHighlighter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextHighlighter, ITextHighlighter_Ptr);
    begin
       if this.m_ITextHighlighter /= null then
          if this.m_ITextHighlighter.all /= null then
-            RefCount := this.m_ITextHighlighter.all.Release;
+            temp := this.m_ITextHighlighter.all.Release;
             Free (this.m_ITextHighlighter);
          end if;
       end if;
@@ -5214,9 +6298,10 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return TextHighlighter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextHighlighter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextHighlighter");
       m_Factory    : access ITextHighlighterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.ITextHighlighter;
    begin
       return RetVal : TextHighlighter do
@@ -5225,9 +6310,9 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITextHighlighter := new Windows.UI.Xaml.Documents.ITextHighlighter;
             Retval.m_ITextHighlighter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5237,40 +6322,48 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_ForegroundProperty_TextHighlighter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextHighlighter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextHighlighter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextHighlighterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextHighlighterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_BackgroundProperty_TextHighlighter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextHighlighter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.TextHighlighter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITextHighlighterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITextHighlighterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5283,13 +6376,17 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return IVector_TextRange.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_TextRange.Kind;
    begin
       Hr := this.m_ITextHighlighter.all.get_Ranges (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_TextRange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5299,11 +6396,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ITextHighlighter.all.get_Foreground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5315,9 +6416,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextHighlighter.all.put_Foreground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Background
@@ -5326,11 +6431,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ITextHighlighter.all.get_Background (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5342,9 +6451,13 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITextHighlighter.all.put_Background (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5356,12 +6469,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out TextHighlighterBase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextHighlighterBase, ITextHighlighterBase_Ptr);
    begin
       if this.m_ITextHighlighterBase /= null then
          if this.m_ITextHighlighterBase.all /= null then
-            RefCount := this.m_ITextHighlighterBase.all.Release;
+            temp := this.m_ITextHighlighterBase.all.Release;
             Free (this.m_ITextHighlighterBase);
          end if;
       end if;
@@ -5382,12 +6495,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out TextPointer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextPointer, ITextPointer_Ptr);
    begin
       if this.m_ITextPointer /= null then
          if this.m_ITextPointer.all /= null then
-            RefCount := this.m_ITextPointer.all.Release;
+            temp := this.m_ITextPointer.all.Release;
             Free (this.m_ITextPointer);
          end if;
       end if;
@@ -5402,11 +6515,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ITextPointer.all.get_Parent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -5418,11 +6535,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FrameworkElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IFrameworkElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.FrameworkElement do
          Hr := this.m_ITextPointer.all.get_VisualParent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameworkElement := new Windows.UI.Xaml.IFrameworkElement;
          Retval.m_IFrameworkElement.all := m_ComRetVal;
       end return;
@@ -5434,10 +6555,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.LogicalDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.LogicalDirection;
    begin
       Hr := this.m_ITextPointer.all.get_LogicalDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5447,10 +6572,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ITextPointer.all.get_Offset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5461,10 +6590,14 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ITextPointer.all.GetCharacterRect (direction, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5476,11 +6609,15 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.Documents.TextPointer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Documents.ITextPointer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Documents.TextPointer do
          Hr := this.m_ITextPointer.all.GetPositionAtOffset (offset, direction, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITextPointer := new Windows.UI.Xaml.Documents.ITextPointer;
          Retval.m_ITextPointer.all := m_ComRetVal;
       end return;
@@ -5495,12 +6632,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Typography) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITypography, ITypography_Ptr);
    begin
       if this.m_ITypography /= null then
          if this.m_ITypography.all /= null then
-            RefCount := this.m_ITypography.all.Release;
+            temp := this.m_ITypography.all.Release;
             Free (this.m_ITypography);
          end if;
       end if;
@@ -5512,20 +6649,24 @@ package body WinRt.Windows.UI.Xaml.Documents is
    function get_AnnotationAlternatesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AnnotationAlternatesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5535,17 +6676,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetAnnotationAlternates (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5555,35 +6700,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetAnnotationAlternates (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_EastAsianExpertFormsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EastAsianExpertFormsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5593,17 +6746,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEastAsianExpertForms (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5613,35 +6770,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetEastAsianExpertForms (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_EastAsianLanguageProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EastAsianLanguageProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5651,17 +6816,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontEastAsianLanguage is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontEastAsianLanguage;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEastAsianLanguage (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5671,35 +6840,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontEastAsianLanguage
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetEastAsianLanguage (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_EastAsianWidthsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EastAsianWidthsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5709,17 +6886,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontEastAsianWidths is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontEastAsianWidths;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEastAsianWidths (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5729,35 +6910,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontEastAsianWidths
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetEastAsianWidths (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StandardLigaturesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StandardLigaturesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5767,17 +6956,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStandardLigatures (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5787,35 +6980,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStandardLigatures (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_ContextualLigaturesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContextualLigaturesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5825,17 +7026,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetContextualLigatures (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5845,35 +7050,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetContextualLigatures (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_DiscretionaryLigaturesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DiscretionaryLigaturesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5883,17 +7096,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDiscretionaryLigatures (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5903,35 +7120,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetDiscretionaryLigatures (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_HistoricalLigaturesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HistoricalLigaturesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5941,17 +7166,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetHistoricalLigatures (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5961,35 +7190,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetHistoricalLigatures (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StandardSwashesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StandardSwashesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5999,17 +7236,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStandardSwashes (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6019,35 +7260,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStandardSwashes (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_ContextualSwashesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContextualSwashesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6057,17 +7306,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetContextualSwashes (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6077,35 +7330,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetContextualSwashes (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_ContextualAlternatesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContextualAlternatesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6115,17 +7376,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetContextualAlternates (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6135,35 +7400,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetContextualAlternates (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticAlternatesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticAlternatesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6173,17 +7446,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticAlternates (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6193,35 +7470,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticAlternates (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet1Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet1Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6231,17 +7516,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet1 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6251,35 +7540,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet1 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet2Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet2Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6289,17 +7586,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet2 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6309,35 +7610,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet2 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet3Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet3Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6347,17 +7656,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet3 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6367,35 +7680,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet3 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet4Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet4Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6405,17 +7726,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet4 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6425,35 +7750,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet4 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet5Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet5Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6463,17 +7796,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet5 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6483,35 +7820,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet5 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet6Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet6Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6521,17 +7866,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet6 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6541,35 +7890,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet6 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet7Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet7Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6579,17 +7936,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet7 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6599,35 +7960,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet7 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet8Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet8Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6637,17 +8006,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet8 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6657,35 +8030,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet8 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet9Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet9Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6695,17 +8076,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet9 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6715,35 +8100,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet9 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet10Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet10Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6753,17 +8146,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet10 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6773,35 +8170,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet10 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet11Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet11Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6811,17 +8216,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet11 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6831,35 +8240,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet11 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet12Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet12Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6869,17 +8286,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet12 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6889,35 +8310,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet12 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet13Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet13Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6927,17 +8356,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet13 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6947,35 +8380,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet13 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet14Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet14Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6985,17 +8426,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet14 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7005,35 +8450,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet14 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet15Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet15Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7043,17 +8496,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet15 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7063,35 +8520,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet15 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet16Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet16Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7101,17 +8566,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet16 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7121,35 +8590,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet16 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet17Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet17Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7159,17 +8636,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet17 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7179,35 +8660,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet17 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet18Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet18Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7217,17 +8706,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet18 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7237,35 +8730,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet18 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet19Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet19Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7275,17 +8776,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet19 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7295,35 +8800,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet19 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_StylisticSet20Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StylisticSet20Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7333,17 +8846,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetStylisticSet20 (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7353,35 +8870,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetStylisticSet20 (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_CapitalsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapitalsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7391,17 +8916,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontCapitals is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontCapitals;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetCapitals (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7411,35 +8940,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontCapitals
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetCapitals (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_CapitalSpacingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CapitalSpacingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7449,17 +8986,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetCapitalSpacing (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7469,35 +9010,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetCapitalSpacing (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_KerningProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KerningProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7507,17 +9056,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetKerning (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7527,35 +9080,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetKerning (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_CaseSensitiveFormsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CaseSensitiveFormsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7565,17 +9126,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetCaseSensitiveForms (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7585,35 +9150,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetCaseSensitiveForms (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_HistoricalFormsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HistoricalFormsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7623,17 +9196,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetHistoricalForms (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7643,35 +9220,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetHistoricalForms (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_FractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FractionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7681,17 +9266,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontFraction is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontFraction;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetFraction (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7701,35 +9290,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontFraction
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetFraction (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_NumeralStyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NumeralStyleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7739,17 +9336,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontNumeralStyle is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontNumeralStyle;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetNumeralStyle (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7759,35 +9360,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontNumeralStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetNumeralStyle (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_NumeralAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NumeralAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7797,17 +9406,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontNumeralAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontNumeralAlignment;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetNumeralAlignment (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7817,35 +9430,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontNumeralAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetNumeralAlignment (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_SlashedZeroProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SlashedZeroProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7855,17 +9476,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetSlashedZero (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7875,35 +9500,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetSlashedZero (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_MathematicalGreekProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MathematicalGreekProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7913,17 +9546,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetMathematicalGreek (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7933,35 +9570,43 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetMathematicalGreek (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_VariantsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VariantsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7971,17 +9616,21 @@ package body WinRt.Windows.UI.Xaml.Documents is
    )
    return WinRt.Windows.UI.Xaml.FontVariants is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FontVariants;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetVariants (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -7991,16 +9640,20 @@ package body WinRt.Windows.UI.Xaml.Documents is
       value : Windows.UI.Xaml.FontVariants
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Typography");
       m_Factory        : access WinRt.Windows.UI.Xaml.Documents.ITypographyStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITypographyStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetVariants (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -8015,12 +9668,12 @@ package body WinRt.Windows.UI.Xaml.Documents is
    end;
 
    procedure Finalize (this : in out Underline) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUnderline, IUnderline_Ptr);
    begin
       if this.m_IUnderline /= null then
          if this.m_IUnderline.all /= null then
-            RefCount := this.m_IUnderline.all.Release;
+            temp := this.m_IUnderline.all.Release;
             Free (this.m_IUnderline);
          end if;
       end if;
@@ -8031,7 +9684,8 @@ package body WinRt.Windows.UI.Xaml.Documents is
 
    function Constructor return Underline is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Underline");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Documents.Underline");
       m_ComRetVal  : aliased Windows.UI.Xaml.Documents.IUnderline;
    begin
       return RetVal : Underline do
@@ -8040,7 +9694,7 @@ package body WinRt.Windows.UI.Xaml.Documents is
             Retval.m_IUnderline := new Windows.UI.Xaml.Documents.IUnderline;
             Retval.m_IUnderline.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

@@ -44,12 +44,12 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    end;
 
    procedure Finalize (this : in out QuickLink) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IQuickLink, IQuickLink_Ptr);
    begin
       if this.m_IQuickLink /= null then
          if this.m_IQuickLink.all /= null then
-            RefCount := this.m_IQuickLink.all.Release;
+            temp := this.m_IQuickLink.all.Release;
             Free (this.m_IQuickLink);
          end if;
       end if;
@@ -60,7 +60,8 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
 
    function Constructor return QuickLink is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink");
       m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink;
    begin
       return RetVal : QuickLink do
@@ -69,7 +70,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
             Retval.m_IQuickLink := new Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink;
             Retval.m_IQuickLink.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -82,13 +83,17 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IQuickLink.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -98,11 +103,15 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IQuickLink.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Thumbnail
@@ -111,11 +120,15 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := this.m_IQuickLink.all.get_Thumbnail (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
@@ -127,9 +140,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       value : Windows.Storage.Streams.RandomAccessStreamReference'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IQuickLink.all.put_Thumbnail (value.m_IRandomAccessStreamReference.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -138,13 +155,17 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IQuickLink.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -154,11 +175,15 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IQuickLink.all.put_Id (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SupportedDataFormats
@@ -167,13 +192,17 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IQuickLink.all.get_SupportedDataFormats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -183,13 +212,17 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IQuickLink.all.get_SupportedFileTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -202,12 +235,12 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    end;
 
    procedure Finalize (this : in out ShareOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IShareOperation, IShareOperation_Ptr);
    begin
       if this.m_IShareOperation /= null then
          if this.m_IShareOperation.all /= null then
-            RefCount := this.m_IShareOperation.all.Release;
+            temp := this.m_IShareOperation.all.Release;
             Free (this.m_IShareOperation);
          end if;
       end if;
@@ -222,11 +255,15 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_IShareOperation.all.get_Data (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
@@ -238,13 +275,17 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IShareOperation.all.get_QuickLinkId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -253,9 +294,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       this : in out ShareOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShareOperation.all.RemoveThisQuickLink;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportStarted
@@ -263,9 +308,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       this : in out ShareOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShareOperation.all.ReportStarted;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportDataRetrieved
@@ -273,9 +322,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       this : in out ShareOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShareOperation.all.ReportDataRetrieved;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportSubmittedBackgroundTask
@@ -283,9 +336,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       this : in out ShareOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShareOperation.all.ReportSubmittedBackgroundTask;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportCompleted
@@ -294,9 +351,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       quicklink_p : Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShareOperation.all.ReportCompleted (quicklink_p.m_IQuickLink.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportCompleted
@@ -304,9 +365,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       this : in out ShareOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShareOperation.all.ReportCompleted;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportError
@@ -315,11 +380,15 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IShareOperation.all.ReportError (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure DismissUI
@@ -327,13 +396,17 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       this : in out ShareOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation_Interface, WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation2, WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IID_IShareOperation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IShareOperation.all);
       Hr := m_Interface.DismissUI;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Contacts
@@ -342,14 +415,18 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation_Interface, WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation3, WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IID_IShareOperation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IShareOperation.all);
       Hr := m_Interface.get_Contacts (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

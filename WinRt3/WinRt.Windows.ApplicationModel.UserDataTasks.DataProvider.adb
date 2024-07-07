@@ -42,12 +42,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskDataProviderConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskDataProviderConnection, IUserDataTaskDataProviderConnection_Ptr);
    begin
       if this.m_IUserDataTaskDataProviderConnection /= null then
          if this.m_IUserDataTaskDataProviderConnection.all /= null then
-            RefCount := this.m_IUserDataTaskDataProviderConnection.all.Release;
+            temp := this.m_IUserDataTaskDataProviderConnection.all.Release;
             Free (this.m_IUserDataTaskDataProviderConnection);
          end if;
       end if;
@@ -63,10 +63,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_CreateOrUpdateTaskRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -76,9 +80,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.remove_CreateOrUpdateTaskRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SyncRequested
@@ -88,10 +96,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_SyncRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -101,9 +113,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.remove_SyncRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SkipOccurrenceRequested
@@ -113,10 +129,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_SkipOccurrenceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -126,9 +146,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.remove_SkipOccurrenceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CompleteTaskRequested
@@ -138,10 +162,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_CompleteTaskRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -151,9 +179,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.remove_CompleteTaskRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DeleteTaskRequested
@@ -163,10 +195,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_DeleteTaskRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -176,9 +212,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.remove_DeleteTaskRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -186,9 +226,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskDataProviderConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -200,12 +244,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskDataProviderTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskDataProviderTriggerDetails, IUserDataTaskDataProviderTriggerDetails_Ptr);
    begin
       if this.m_IUserDataTaskDataProviderTriggerDetails /= null then
          if this.m_IUserDataTaskDataProviderTriggerDetails.all /= null then
-            RefCount := this.m_IUserDataTaskDataProviderTriggerDetails.all.Release;
+            temp := this.m_IUserDataTaskDataProviderTriggerDetails.all.Release;
             Free (this.m_IUserDataTaskDataProviderTriggerDetails);
          end if;
       end if;
@@ -220,11 +264,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskDataProviderConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskDataProviderConnection do
          Hr := this.m_IUserDataTaskDataProviderTriggerDetails.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTaskDataProviderConnection := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection;
          Retval.m_IUserDataTaskDataProviderConnection.all := m_ComRetVal;
       end return;
@@ -239,12 +287,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListCompleteTaskRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListCompleteTaskRequest, IUserDataTaskListCompleteTaskRequest_Ptr);
    begin
       if this.m_IUserDataTaskListCompleteTaskRequest /= null then
          if this.m_IUserDataTaskListCompleteTaskRequest.all /= null then
-            RefCount := this.m_IUserDataTaskListCompleteTaskRequest.all.Release;
+            temp := this.m_IUserDataTaskListCompleteTaskRequest.all.Release;
             Free (this.m_IUserDataTaskListCompleteTaskRequest);
          end if;
       end if;
@@ -259,13 +307,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListCompleteTaskRequest.all.get_TaskListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -275,13 +327,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListCompleteTaskRequest.all.get_TaskId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -291,8 +347,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       completedTaskId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_completedTaskId : WinRt.HString := To_HString (completedTaskId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_completedTaskId : constant WinRt.HString := To_HString (completedTaskId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -300,7 +357,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -321,13 +377,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_completedTaskId);
+      tmp := WindowsDeleteString (HStr_completedTaskId);
    end;
 
    procedure ReportFailedAsync
@@ -335,7 +391,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListCompleteTaskRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -343,7 +400,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -364,9 +420,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -381,12 +437,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListCompleteTaskRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListCompleteTaskRequestEventArgs, IUserDataTaskListCompleteTaskRequestEventArgs_Ptr);
    begin
       if this.m_IUserDataTaskListCompleteTaskRequestEventArgs /= null then
          if this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all /= null then
-            RefCount := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.Release;
+            temp := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.Release;
             Free (this.m_IUserDataTaskListCompleteTaskRequestEventArgs);
          end if;
       end if;
@@ -401,11 +457,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListCompleteTaskRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListCompleteTaskRequest do
          Hr := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTaskListCompleteTaskRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest;
          Retval.m_IUserDataTaskListCompleteTaskRequest.all := m_ComRetVal;
       end return;
@@ -417,11 +477,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -436,12 +500,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListCreateOrUpdateTaskRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListCreateOrUpdateTaskRequest, IUserDataTaskListCreateOrUpdateTaskRequest_Ptr);
    begin
       if this.m_IUserDataTaskListCreateOrUpdateTaskRequest /= null then
          if this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all /= null then
-            RefCount := this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all.Release;
+            temp := this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all.Release;
             Free (this.m_IUserDataTaskListCreateOrUpdateTaskRequest);
          end if;
       end if;
@@ -456,13 +520,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all.get_TaskListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -472,11 +540,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTask;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask do
          Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all.get_Task (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTask := new Windows.ApplicationModel.UserDataTasks.IUserDataTask;
          Retval.m_IUserDataTask.all := m_ComRetVal;
       end return;
@@ -488,7 +560,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       createdOrUpdatedUserDataTask : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -496,7 +569,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -517,9 +589,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -530,7 +602,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListCreateOrUpdateTaskRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -538,7 +611,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -559,9 +631,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -576,12 +648,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListCreateOrUpdateTaskRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListCreateOrUpdateTaskRequestEventArgs, IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Ptr);
    begin
       if this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs /= null then
          if this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all /= null then
-            RefCount := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.Release;
+            temp := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.Release;
             Free (this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs);
          end if;
       end if;
@@ -596,11 +668,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListCreateOrUpdateTaskRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListCreateOrUpdateTaskRequest do
          Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTaskListCreateOrUpdateTaskRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest;
          Retval.m_IUserDataTaskListCreateOrUpdateTaskRequest.all := m_ComRetVal;
       end return;
@@ -612,11 +688,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -631,12 +711,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListDeleteTaskRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListDeleteTaskRequest, IUserDataTaskListDeleteTaskRequest_Ptr);
    begin
       if this.m_IUserDataTaskListDeleteTaskRequest /= null then
          if this.m_IUserDataTaskListDeleteTaskRequest.all /= null then
-            RefCount := this.m_IUserDataTaskListDeleteTaskRequest.all.Release;
+            temp := this.m_IUserDataTaskListDeleteTaskRequest.all.Release;
             Free (this.m_IUserDataTaskListDeleteTaskRequest);
          end if;
       end if;
@@ -651,13 +731,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListDeleteTaskRequest.all.get_TaskListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -667,13 +751,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListDeleteTaskRequest.all.get_TaskId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -682,7 +770,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListDeleteTaskRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -690,7 +779,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -711,9 +799,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -724,7 +812,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListDeleteTaskRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -732,7 +821,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -753,9 +841,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -770,12 +858,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListDeleteTaskRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListDeleteTaskRequestEventArgs, IUserDataTaskListDeleteTaskRequestEventArgs_Ptr);
    begin
       if this.m_IUserDataTaskListDeleteTaskRequestEventArgs /= null then
          if this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all /= null then
-            RefCount := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.Release;
+            temp := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.Release;
             Free (this.m_IUserDataTaskListDeleteTaskRequestEventArgs);
          end if;
       end if;
@@ -790,11 +878,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListDeleteTaskRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListDeleteTaskRequest do
          Hr := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTaskListDeleteTaskRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest;
          Retval.m_IUserDataTaskListDeleteTaskRequest.all := m_ComRetVal;
       end return;
@@ -806,11 +898,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -825,12 +921,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListSkipOccurrenceRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListSkipOccurrenceRequest, IUserDataTaskListSkipOccurrenceRequest_Ptr);
    begin
       if this.m_IUserDataTaskListSkipOccurrenceRequest /= null then
          if this.m_IUserDataTaskListSkipOccurrenceRequest.all /= null then
-            RefCount := this.m_IUserDataTaskListSkipOccurrenceRequest.all.Release;
+            temp := this.m_IUserDataTaskListSkipOccurrenceRequest.all.Release;
             Free (this.m_IUserDataTaskListSkipOccurrenceRequest);
          end if;
       end if;
@@ -845,13 +941,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListSkipOccurrenceRequest.all.get_TaskListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -861,13 +961,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListSkipOccurrenceRequest.all.get_TaskId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -876,7 +980,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListSkipOccurrenceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -884,7 +989,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -905,9 +1009,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -918,7 +1022,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListSkipOccurrenceRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -926,7 +1031,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -947,9 +1051,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -964,12 +1068,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListSkipOccurrenceRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListSkipOccurrenceRequestEventArgs, IUserDataTaskListSkipOccurrenceRequestEventArgs_Ptr);
    begin
       if this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs /= null then
          if this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all /= null then
-            RefCount := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.Release;
+            temp := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.Release;
             Free (this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs);
          end if;
       end if;
@@ -984,11 +1088,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListSkipOccurrenceRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListSkipOccurrenceRequest do
          Hr := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTaskListSkipOccurrenceRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest;
          Retval.m_IUserDataTaskListSkipOccurrenceRequest.all := m_ComRetVal;
       end return;
@@ -1000,11 +1108,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -1019,12 +1131,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListSyncManagerSyncRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListSyncManagerSyncRequest, IUserDataTaskListSyncManagerSyncRequest_Ptr);
    begin
       if this.m_IUserDataTaskListSyncManagerSyncRequest /= null then
          if this.m_IUserDataTaskListSyncManagerSyncRequest.all /= null then
-            RefCount := this.m_IUserDataTaskListSyncManagerSyncRequest.all.Release;
+            temp := this.m_IUserDataTaskListSyncManagerSyncRequest.all.Release;
             Free (this.m_IUserDataTaskListSyncManagerSyncRequest);
          end if;
       end if;
@@ -1039,13 +1151,17 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataTaskListSyncManagerSyncRequest.all.get_TaskListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1054,7 +1170,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListSyncManagerSyncRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1062,7 +1179,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1083,9 +1199,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1096,7 +1212,8 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       this : in out UserDataTaskListSyncManagerSyncRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1104,7 +1221,6 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1125,9 +1241,9 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1142,12 +1258,12 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    end;
 
    procedure Finalize (this : in out UserDataTaskListSyncManagerSyncRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataTaskListSyncManagerSyncRequestEventArgs, IUserDataTaskListSyncManagerSyncRequestEventArgs_Ptr);
    begin
       if this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs /= null then
          if this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all /= null then
-            RefCount := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.Release;
+            temp := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.Release;
             Free (this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs);
          end if;
       end if;
@@ -1162,11 +1278,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListSyncManagerSyncRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListSyncManagerSyncRequest do
          Hr := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserDataTaskListSyncManagerSyncRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest;
          Retval.m_IUserDataTaskListSyncManagerSyncRequest.all := m_ComRetVal;
       end return;
@@ -1178,11 +1298,15 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;

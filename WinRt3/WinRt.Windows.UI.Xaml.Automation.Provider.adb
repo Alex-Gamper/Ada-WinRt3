@@ -44,12 +44,12 @@ package body WinRt.Windows.UI.Xaml.Automation.Provider is
    end;
 
    procedure Finalize (this : in out IRawElementProviderSimple) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIRawElementProviderSimple, IIRawElementProviderSimple_Ptr);
    begin
       if this.m_IIRawElementProviderSimple /= null then
          if this.m_IIRawElementProviderSimple.all /= null then
-            RefCount := this.m_IIRawElementProviderSimple.all.Release;
+            temp := this.m_IIRawElementProviderSimple.all.Release;
             Free (this.m_IIRawElementProviderSimple);
          end if;
       end if;

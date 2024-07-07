@@ -42,12 +42,12 @@ package body WinRt.Windows.Perception.Spatial.Preview is
    end;
 
    procedure Finalize (this : in out SpatialGraphInteropFrameOfReferencePreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialGraphInteropFrameOfReferencePreview, ISpatialGraphInteropFrameOfReferencePreview_Ptr);
    begin
       if this.m_ISpatialGraphInteropFrameOfReferencePreview /= null then
          if this.m_ISpatialGraphInteropFrameOfReferencePreview.all /= null then
-            RefCount := this.m_ISpatialGraphInteropFrameOfReferencePreview.all.Release;
+            temp := this.m_ISpatialGraphInteropFrameOfReferencePreview.all.Release;
             Free (this.m_ISpatialGraphInteropFrameOfReferencePreview);
          end if;
       end if;
@@ -62,11 +62,15 @@ package body WinRt.Windows.Perception.Spatial.Preview is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialGraphInteropFrameOfReferencePreview.all.get_CoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -78,10 +82,14 @@ package body WinRt.Windows.Perception.Spatial.Preview is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ISpatialGraphInteropFrameOfReferencePreview.all.get_NodeId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -91,10 +99,14 @@ package body WinRt.Windows.Perception.Spatial.Preview is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix4x4 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix4x4;
    begin
       Hr := this.m_ISpatialGraphInteropFrameOfReferencePreview.all.get_CoordinateSystemToNodeTransform (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -108,20 +120,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateCoordinateSystemForNode (nodeId, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
                Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -132,20 +148,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateCoordinateSystemForNode (nodeId, relativePosition, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
                Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -157,20 +177,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateCoordinateSystemForNode (nodeId, relativePosition, relativeOrientation, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
                Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -180,20 +204,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.SpatialLocator is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocator;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocator do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateLocatorForNode (nodeId, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialLocator := new Windows.Perception.Spatial.ISpatialLocator;
                Retval.m_ISpatialLocator.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -203,20 +231,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.Preview.SpatialGraphInteropFrameOfReferencePreview is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.Preview.ISpatialGraphInteropFrameOfReferencePreview;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.Preview.SpatialGraphInteropFrameOfReferencePreview do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.TryCreateFrameOfReference (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialGraphInteropFrameOfReferencePreview := new Windows.Perception.Spatial.Preview.ISpatialGraphInteropFrameOfReferencePreview;
                Retval.m_ISpatialGraphInteropFrameOfReferencePreview.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -227,20 +259,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.Preview.SpatialGraphInteropFrameOfReferencePreview is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.Preview.ISpatialGraphInteropFrameOfReferencePreview;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.Preview.SpatialGraphInteropFrameOfReferencePreview do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.TryCreateFrameOfReference (coordinateSystem.m_ISpatialCoordinateSystem.all, relativePosition, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialGraphInteropFrameOfReferencePreview := new Windows.Perception.Spatial.Preview.ISpatialGraphInteropFrameOfReferencePreview;
                Retval.m_ISpatialGraphInteropFrameOfReferencePreview.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -252,20 +288,24 @@ package body WinRt.Windows.Perception.Spatial.Preview is
       )
       return WinRt.Windows.Perception.Spatial.Preview.SpatialGraphInteropFrameOfReferencePreview is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Preview.SpatialGraphInteropPreview");
          m_Factory        : access WinRt.Windows.Perception.Spatial.Preview.ISpatialGraphInteropPreviewStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Perception.Spatial.Preview.ISpatialGraphInteropFrameOfReferencePreview;
       begin
          return RetVal : WinRt.Windows.Perception.Spatial.Preview.SpatialGraphInteropFrameOfReferencePreview do
             Hr := RoGetActivationFactory (m_hString, IID_ISpatialGraphInteropPreviewStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.TryCreateFrameOfReference (coordinateSystem.m_ISpatialCoordinateSystem.all, relativePosition, relativeOrientation, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISpatialGraphInteropFrameOfReferencePreview := new Windows.Perception.Spatial.Preview.ISpatialGraphInteropFrameOfReferencePreview;
                Retval.m_ISpatialGraphInteropFrameOfReferencePreview.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 

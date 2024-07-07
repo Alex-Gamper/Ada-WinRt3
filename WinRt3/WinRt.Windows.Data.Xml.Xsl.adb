@@ -42,12 +42,12 @@ package body WinRt.Windows.Data.Xml.Xsl is
    end;
 
    procedure Finalize (this : in out XsltProcessor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXsltProcessor, IXsltProcessor_Ptr);
    begin
       if this.m_IXsltProcessor /= null then
          if this.m_IXsltProcessor.all /= null then
-            RefCount := this.m_IXsltProcessor.all.Release;
+            temp := this.m_IXsltProcessor.all.Release;
             Free (this.m_IXsltProcessor);
          end if;
       end if;
@@ -62,9 +62,10 @@ package body WinRt.Windows.Data.Xml.Xsl is
    )
    return XsltProcessor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Xml.Xsl.XsltProcessor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Xsl.XsltProcessor");
       m_Factory    : access IXsltProcessorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Xml.Xsl.IXsltProcessor;
    begin
       return RetVal : XsltProcessor do
@@ -73,9 +74,9 @@ package body WinRt.Windows.Data.Xml.Xsl is
             Hr := m_Factory.CreateInstance (document.m_IXmlDocument.all, m_ComRetVal'Access);
             Retval.m_IXsltProcessor := new Windows.Data.Xml.Xsl.IXsltProcessor;
             Retval.m_IXsltProcessor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -89,13 +90,17 @@ package body WinRt.Windows.Data.Xml.Xsl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXsltProcessor.all.TransformToString (inputNode, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -106,15 +111,19 @@ package body WinRt.Windows.Data.Xml.Xsl is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Xsl.IXsltProcessor2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Xsl.IXsltProcessor_Interface, WinRt.Windows.Data.Xml.Xsl.IXsltProcessor2, WinRt.Windows.Data.Xml.Xsl.IID_IXsltProcessor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXsltProcessor.all);
          Hr := m_Interface.TransformToDocument (inputNode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;

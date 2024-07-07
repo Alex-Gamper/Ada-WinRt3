@@ -46,12 +46,12 @@ package body WinRt.Windows.Devices is
    end;
 
    procedure Finalize (this : in out LowLevelDevicesAggregateProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILowLevelDevicesAggregateProvider, ILowLevelDevicesAggregateProvider_Ptr);
    begin
       if this.m_ILowLevelDevicesAggregateProvider /= null then
          if this.m_ILowLevelDevicesAggregateProvider.all /= null then
-            RefCount := this.m_ILowLevelDevicesAggregateProvider.all.Release;
+            temp := this.m_ILowLevelDevicesAggregateProvider.all.Release;
             Free (this.m_ILowLevelDevicesAggregateProvider);
          end if;
       end if;
@@ -70,9 +70,10 @@ package body WinRt.Windows.Devices is
    )
    return LowLevelDevicesAggregateProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesAggregateProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesAggregateProvider");
       m_Factory    : access ILowLevelDevicesAggregateProviderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.ILowLevelDevicesAggregateProvider;
    begin
       return RetVal : LowLevelDevicesAggregateProvider do
@@ -81,9 +82,9 @@ package body WinRt.Windows.Devices is
             Hr := m_Factory.Create (adc, pwm, gpio, i2c, spi, m_ComRetVal'Access);
             Retval.m_ILowLevelDevicesAggregateProvider := new Windows.Devices.ILowLevelDevicesAggregateProvider;
             Retval.m_ILowLevelDevicesAggregateProvider.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -96,10 +97,14 @@ package body WinRt.Windows.Devices is
    )
    return WinRt.Windows.Devices.Adc.Provider.IAdcControllerProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Adc.Provider.IAdcControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_AdcControllerProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -109,10 +114,14 @@ package body WinRt.Windows.Devices is
    )
    return WinRt.Windows.Devices.Pwm.Provider.IPwmControllerProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Pwm.Provider.IPwmControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_PwmControllerProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -122,10 +131,14 @@ package body WinRt.Windows.Devices is
    )
    return WinRt.Windows.Devices.Gpio.Provider.IGpioControllerProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Gpio.Provider.IGpioControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_GpioControllerProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -135,10 +148,14 @@ package body WinRt.Windows.Devices is
    )
    return WinRt.Windows.Devices.I2c.Provider.II2cControllerProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.I2c.Provider.II2cControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_I2cControllerProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -148,10 +165,14 @@ package body WinRt.Windows.Devices is
    )
    return WinRt.Windows.Devices.Spi.Provider.ISpiControllerProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.Provider.ISpiControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_SpiControllerProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -164,12 +185,12 @@ package body WinRt.Windows.Devices is
    end;
 
    procedure Finalize (this : in out LowLevelDevicesController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILowLevelDevicesController, ILowLevelDevicesController_Ptr);
    begin
       if this.m_ILowLevelDevicesController /= null then
          if this.m_ILowLevelDevicesController.all /= null then
-            RefCount := this.m_ILowLevelDevicesController.all.Release;
+            temp := this.m_ILowLevelDevicesController.all.Release;
             Free (this.m_ILowLevelDevicesController);
          end if;
       end if;
@@ -181,17 +202,21 @@ package body WinRt.Windows.Devices is
    function get_DefaultProvider
    return WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesController");
       m_Factory        : access WinRt.Windows.Devices.ILowLevelDevicesControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.ILowLevelDevicesAggregateProvider;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILowLevelDevicesControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_DefaultProvider (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -200,16 +225,20 @@ package body WinRt.Windows.Devices is
       value : Windows.Devices.ILowLevelDevicesAggregateProvider
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesController");
       m_Factory        : access WinRt.Windows.Devices.ILowLevelDevicesControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILowLevelDevicesControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_DefaultProvider (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------

@@ -49,12 +49,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out DesignerAppExitedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesignerAppExitedEventArgs, IDesignerAppExitedEventArgs_Ptr);
    begin
       if this.m_IDesignerAppExitedEventArgs /= null then
          if this.m_IDesignerAppExitedEventArgs.all /= null then
-            RefCount := this.m_IDesignerAppExitedEventArgs.all.Release;
+            temp := this.m_IDesignerAppExitedEventArgs.all.Release;
             Free (this.m_IDesignerAppExitedEventArgs);
          end if;
       end if;
@@ -69,10 +69,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IDesignerAppExitedEventArgs.all.get_ExitCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -85,12 +89,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out DesignerAppManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesignerAppManager, IDesignerAppManager_Ptr);
    begin
       if this.m_IDesignerAppManager /= null then
          if this.m_IDesignerAppManager.all /= null then
-            RefCount := this.m_IDesignerAppManager.all.Release;
+            temp := this.m_IDesignerAppManager.all.Release;
             Free (this.m_IDesignerAppManager);
          end if;
       end if;
@@ -105,11 +109,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return DesignerAppManager is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.DesignerAppManager");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.DesignerAppManager");
       m_Factory    : access IDesignerAppManagerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Hosting.IDesignerAppManager;
-      HStr_appUserModelId : WinRt.HString := To_HString (appUserModelId);
+      HStr_appUserModelId : constant WinRt.HString := To_HString (appUserModelId);
    begin
       return RetVal : DesignerAppManager do
          Hr := RoGetActivationFactory (m_hString, IID_IDesignerAppManagerFactory'Access , m_Factory'Address);
@@ -117,10 +122,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             Hr := m_Factory.Create (HStr_appUserModelId, m_ComRetVal'Access);
             Retval.m_IDesignerAppManager := new Windows.UI.Xaml.Hosting.IDesignerAppManager;
             Retval.m_IDesignerAppManager.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appUserModelId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appUserModelId);
       end return;
    end;
 
@@ -133,13 +138,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDesignerAppManager.all.get_AppUserModelId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -150,10 +159,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDesignerAppManager.all.add_DesignerAppExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -163,9 +176,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDesignerAppManager.all.remove_DesignerAppExited (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateNewViewAsync
@@ -176,13 +193,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.Hosting.DesignerAppView'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DesignerAppView.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -200,7 +217,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DesignerAppView.Kind_Delegate, AsyncOperationCompletedHandler_DesignerAppView.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -214,7 +231,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
          Hr := this.m_IDesignerAppManager.all.CreateNewViewAsync (initialViewState, initialViewSize, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -226,9 +243,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
                   Retval.m_IDesignerAppView := new Windows.UI.Xaml.Hosting.IDesignerAppView;
                   Retval.m_IDesignerAppView.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -244,9 +261,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       initializationData : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_dllName : WinRt.HString := To_HString (dllName);
-      HStr_initializationData : WinRt.HString := To_HString (initializationData);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_dllName : constant WinRt.HString := To_HString (dllName);
+      HStr_initializationData : constant WinRt.HString := To_HString (initializationData);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -254,7 +272,6 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -275,14 +292,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_dllName);
-      Hr := WindowsDeleteString (HStr_initializationData);
+      tmp := WindowsDeleteString (HStr_dllName);
+      tmp := WindowsDeleteString (HStr_initializationData);
    end;
 
    procedure Close
@@ -290,13 +307,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       this : in out DesignerAppManager
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Hosting.IDesignerAppManager_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDesignerAppManager.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -308,12 +329,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out DesignerAppView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesignerAppView, IDesignerAppView_Ptr);
    begin
       if this.m_IDesignerAppView /= null then
          if this.m_IDesignerAppView.all /= null then
-            RefCount := this.m_IDesignerAppView.all.Release;
+            temp := this.m_IDesignerAppView.all.Release;
             Free (this.m_IDesignerAppView);
          end if;
       end if;
@@ -328,10 +349,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IDesignerAppView.all.get_ApplicationViewId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -341,13 +366,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDesignerAppView.all.get_AppUserModelId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -357,10 +386,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.Hosting.DesignerAppViewState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Hosting.DesignerAppViewState;
    begin
       Hr := this.m_IDesignerAppView.all.get_ViewState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -370,10 +403,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IDesignerAppView.all.get_ViewSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -384,7 +421,8 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       viewSize : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -392,7 +430,6 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -413,9 +450,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -426,13 +463,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       this : in out DesignerAppView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Hosting.IDesignerAppView_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDesignerAppView.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -444,12 +485,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out DesktopWindowXamlSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesktopWindowXamlSource, IDesktopWindowXamlSource_Ptr);
    begin
       if this.m_IDesktopWindowXamlSource /= null then
          if this.m_IDesktopWindowXamlSource.all /= null then
-            RefCount := this.m_IDesktopWindowXamlSource.all.Release;
+            temp := this.m_IDesktopWindowXamlSource.all.Release;
             Free (this.m_IDesktopWindowXamlSource);
          end if;
       end if;
@@ -465,9 +506,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return DesktopWindowXamlSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.DesktopWindowXamlSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.DesktopWindowXamlSource");
       m_Factory    : access IDesktopWindowXamlSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource;
    begin
       return RetVal : DesktopWindowXamlSource do
@@ -476,9 +518,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDesktopWindowXamlSource := new Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource;
             Retval.m_IDesktopWindowXamlSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -491,11 +533,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IDesktopWindowXamlSource.all.get_Content (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -507,9 +553,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       value : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDesktopWindowXamlSource.all.put_Content (value.m_IUIElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HasFocus
@@ -518,10 +568,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDesktopWindowXamlSource.all.get_HasFocus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -532,10 +586,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDesktopWindowXamlSource.all.add_TakeFocusRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -545,9 +603,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDesktopWindowXamlSource.all.remove_TakeFocusRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GotFocus
@@ -557,10 +619,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDesktopWindowXamlSource.all.add_GotFocus (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -570,9 +636,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDesktopWindowXamlSource.all.remove_GotFocus (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function NavigateFocus
@@ -582,11 +652,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult do
          Hr := this.m_IDesktopWindowXamlSource.all.NavigateFocus (request.m_IXamlSourceFocusNavigationRequest.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXamlSourceFocusNavigationResult := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult;
          Retval.m_IXamlSourceFocusNavigationResult.all := m_ComRetVal;
       end return;
@@ -597,13 +671,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       this : in out DesktopWindowXamlSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDesktopWindowXamlSource.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -615,12 +693,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out DesktopWindowXamlSourceGotFocusEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesktopWindowXamlSourceGotFocusEventArgs, IDesktopWindowXamlSourceGotFocusEventArgs_Ptr);
    begin
       if this.m_IDesktopWindowXamlSourceGotFocusEventArgs /= null then
          if this.m_IDesktopWindowXamlSourceGotFocusEventArgs.all /= null then
-            RefCount := this.m_IDesktopWindowXamlSourceGotFocusEventArgs.all.Release;
+            temp := this.m_IDesktopWindowXamlSourceGotFocusEventArgs.all.Release;
             Free (this.m_IDesktopWindowXamlSourceGotFocusEventArgs);
          end if;
       end if;
@@ -635,11 +713,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest do
          Hr := this.m_IDesktopWindowXamlSourceGotFocusEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXamlSourceFocusNavigationRequest := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
          Retval.m_IXamlSourceFocusNavigationRequest.all := m_ComRetVal;
       end return;
@@ -654,12 +736,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out DesktopWindowXamlSourceTakeFocusRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDesktopWindowXamlSourceTakeFocusRequestedEventArgs, IDesktopWindowXamlSourceTakeFocusRequestedEventArgs_Ptr);
    begin
       if this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs /= null then
          if this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.all /= null then
-            RefCount := this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.all.Release;
+            temp := this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.all.Release;
             Free (this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs);
          end if;
       end if;
@@ -674,11 +756,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest do
          Hr := this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXamlSourceFocusNavigationRequest := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
          Retval.m_IXamlSourceFocusNavigationRequest.all := m_ComRetVal;
       end return;
@@ -693,12 +779,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out ElementCompositionPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IElementCompositionPreview, IElementCompositionPreview_Ptr);
    begin
       if this.m_IElementCompositionPreview /= null then
          if this.m_IElementCompositionPreview.all /= null then
-            RefCount := this.m_IElementCompositionPreview.all.Release;
+            temp := this.m_IElementCompositionPreview.all.Release;
             Free (this.m_IElementCompositionPreview);
          end if;
       end if;
@@ -713,16 +799,20 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       xamlContent : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetAppWindowContent (appWindow.m_IAppWindow.all, xamlContent.m_IUIElement.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetAppWindowContent
@@ -731,20 +821,24 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.UIElement is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAppWindowContent (appWindow.m_IAppWindow.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
             Retval.m_IUIElement.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -754,16 +848,20 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       animation : Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetImplicitShowAnimation (element.m_IUIElement.all, animation);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetImplicitHideAnimation
@@ -772,16 +870,20 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       animation : Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetImplicitHideAnimation (element.m_IUIElement.all, animation);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetIsTranslationEnabled
@@ -790,16 +892,20 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetIsTranslationEnabled (element.m_IUIElement.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetPointerPositionPropertySet
@@ -808,20 +914,24 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPropertySet;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPropertySet do
          Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetPointerPositionPropertySet (targetElement.m_IUIElement.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICompositionPropertySet := new Windows.UI.Composition.ICompositionPropertySet;
             Retval.m_ICompositionPropertySet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -831,20 +941,24 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Composition.Visual is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetElementVisual (element.m_IUIElement.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVisual := new Windows.UI.Composition.IVisual;
             Retval.m_IVisual.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -854,20 +968,24 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Composition.Visual is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetElementChildVisual (element.m_IUIElement.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVisual := new Windows.UI.Composition.IVisual;
             Retval.m_IVisual.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -877,16 +995,20 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       visual : Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetElementChildVisual (element.m_IUIElement.all, visual.m_IVisual.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetScrollViewerManipulationPropertySet
@@ -895,20 +1017,24 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.ElementCompositionPreview");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPropertySet;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPropertySet do
          Hr := RoGetActivationFactory (m_hString, IID_IElementCompositionPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetScrollViewerManipulationPropertySet (scrollViewer.m_IScrollViewer.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICompositionPropertySet := new Windows.UI.Composition.ICompositionPropertySet;
             Retval.m_ICompositionPropertySet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -924,12 +1050,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out WindowsXamlManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWindowsXamlManager, IWindowsXamlManager_Ptr);
    begin
       if this.m_IWindowsXamlManager /= null then
          if this.m_IWindowsXamlManager.all /= null then
-            RefCount := this.m_IWindowsXamlManager.all.Release;
+            temp := this.m_IWindowsXamlManager.all.Release;
             Free (this.m_IWindowsXamlManager);
          end if;
       end if;
@@ -941,20 +1067,24 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    function InitializeForCurrentThread
    return WinRt.Windows.UI.Xaml.Hosting.WindowsXamlManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.WindowsXamlManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.WindowsXamlManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IWindowsXamlManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Hosting.IWindowsXamlManager;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Hosting.WindowsXamlManager do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowsXamlManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.InitializeForCurrentThread (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IWindowsXamlManager := new Windows.UI.Xaml.Hosting.IWindowsXamlManager;
             Retval.m_IWindowsXamlManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -966,13 +1096,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       this : in out WindowsXamlManager
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Hosting.IWindowsXamlManager_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWindowsXamlManager.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -984,12 +1118,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out XamlSourceFocusNavigationRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlSourceFocusNavigationRequest, IXamlSourceFocusNavigationRequest_Ptr);
    begin
       if this.m_IXamlSourceFocusNavigationRequest /= null then
          if this.m_IXamlSourceFocusNavigationRequest.all /= null then
-            RefCount := this.m_IXamlSourceFocusNavigationRequest.all.Release;
+            temp := this.m_IXamlSourceFocusNavigationRequest.all.Release;
             Free (this.m_IXamlSourceFocusNavigationRequest);
          end if;
       end if;
@@ -1004,9 +1138,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return XamlSourceFocusNavigationRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
    begin
       return RetVal : XamlSourceFocusNavigationRequest do
@@ -1015,9 +1150,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             Hr := m_Factory.CreateInstance (reason, m_ComRetVal'Access);
             Retval.m_IXamlSourceFocusNavigationRequest := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
             Retval.m_IXamlSourceFocusNavigationRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1028,9 +1163,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return XamlSourceFocusNavigationRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
    begin
       return RetVal : XamlSourceFocusNavigationRequest do
@@ -1039,9 +1175,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             Hr := m_Factory.CreateInstanceWithHintRect (reason, hintRect, m_ComRetVal'Access);
             Retval.m_IXamlSourceFocusNavigationRequest := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
             Retval.m_IXamlSourceFocusNavigationRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1053,9 +1189,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return XamlSourceFocusNavigationRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
    begin
       return RetVal : XamlSourceFocusNavigationRequest do
@@ -1064,9 +1201,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             Hr := m_Factory.CreateInstanceWithHintRectAndCorrelationId (reason, hintRect, correlationId, m_ComRetVal'Access);
             Retval.m_IXamlSourceFocusNavigationRequest := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
             Retval.m_IXamlSourceFocusNavigationRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1079,10 +1216,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
    begin
       Hr := this.m_IXamlSourceFocusNavigationRequest.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1092,10 +1233,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IXamlSourceFocusNavigationRequest.all.get_HintRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1105,10 +1250,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IXamlSourceFocusNavigationRequest.all.get_CorrelationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1121,12 +1270,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out XamlSourceFocusNavigationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlSourceFocusNavigationResult, IXamlSourceFocusNavigationResult_Ptr);
    begin
       if this.m_IXamlSourceFocusNavigationResult /= null then
          if this.m_IXamlSourceFocusNavigationResult.all /= null then
-            RefCount := this.m_IXamlSourceFocusNavigationResult.all.Release;
+            temp := this.m_IXamlSourceFocusNavigationResult.all.Release;
             Free (this.m_IXamlSourceFocusNavigationResult);
          end if;
       end if;
@@ -1141,9 +1290,10 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return XamlSourceFocusNavigationResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult");
       m_Factory    : access IXamlSourceFocusNavigationResultFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult;
    begin
       return RetVal : XamlSourceFocusNavigationResult do
@@ -1152,9 +1302,9 @@ package body WinRt.Windows.UI.Xaml.Hosting is
             Hr := m_Factory.CreateInstance (focusMoved, m_ComRetVal'Access);
             Retval.m_IXamlSourceFocusNavigationResult := new Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult;
             Retval.m_IXamlSourceFocusNavigationResult.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1167,10 +1317,14 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXamlSourceFocusNavigationResult.all.get_WasFocusMoved (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1183,12 +1337,12 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    end;
 
    procedure Finalize (this : in out XamlUIPresenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlUIPresenter, IXamlUIPresenter_Ptr);
    begin
       if this.m_IXamlUIPresenter /= null then
          if this.m_IXamlUIPresenter.all /= null then
-            RefCount := this.m_IXamlUIPresenter.all.Release;
+            temp := this.m_IXamlUIPresenter.all.Release;
             Free (this.m_IXamlUIPresenter);
          end if;
       end if;
@@ -1200,17 +1354,21 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    function get_CompleteTimelinesAutomatically
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlUIPresenterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_CompleteTimelinesAutomatically (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1219,16 +1377,20 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlUIPresenterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_CompleteTimelinesAutomatically (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure SetHost
@@ -1236,30 +1398,38 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlUIPresenterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetHost (host);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure NotifyWindowSizeChanged is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlUIPresenterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.NotifyWindowSizeChanged;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetFlyoutPlacementTargetInfo
@@ -1271,17 +1441,21 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlUIPresenterStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetFlyoutPlacementTargetInfo (placementTarget.m_IFrameworkElement.all, preferredPlacement, targetPreferredPlacement, allowFallbacks, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1297,17 +1471,21 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlUIPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlUIPresenterStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetFlyoutPlacement (placementTargetBounds, controlSize, minControlSize, containerRect, targetPreferredPlacement, allowFallbacks, chosenPlacement, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1320,11 +1498,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IXamlUIPresenter.all.get_RootElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -1336,9 +1518,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       value : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUIPresenter.all.put_RootElement (value.m_IUIElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ThemeKey
@@ -1347,13 +1533,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXamlUIPresenter.all.get_ThemeKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1363,11 +1553,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXamlUIPresenter.all.put_ThemeKey (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ThemeResourcesXaml
@@ -1376,13 +1570,17 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXamlUIPresenter.all.get_ThemeResourcesXaml (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1392,11 +1590,15 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXamlUIPresenter.all.put_ThemeResourcesXaml (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure SetSize
@@ -1406,9 +1608,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       height : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUIPresenter.all.SetSize (width, height);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Render
@@ -1416,9 +1622,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       this : in out XamlUIPresenter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUIPresenter.all.Render;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Present
@@ -1426,9 +1636,13 @@ package body WinRt.Windows.UI.Xaml.Hosting is
       this : in out XamlUIPresenter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUIPresenter.all.Present;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Xaml.Hosting;

@@ -46,12 +46,12 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    end;
 
    procedure Finalize (this : in out DataProtectionProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDataProtectionProvider, IDataProtectionProvider_Ptr);
    begin
       if this.m_IDataProtectionProvider /= null then
          if this.m_IDataProtectionProvider.all /= null then
-            RefCount := this.m_IDataProtectionProvider.all.Release;
+            temp := this.m_IDataProtectionProvider.all.Release;
             Free (this.m_IDataProtectionProvider);
          end if;
       end if;
@@ -66,11 +66,12 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    )
    return DataProtectionProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
       m_Factory    : access IDataProtectionProviderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
-      HStr_protectionDescriptor : WinRt.HString := To_HString (protectionDescriptor);
+      HStr_protectionDescriptor : constant WinRt.HString := To_HString (protectionDescriptor);
    begin
       return RetVal : DataProtectionProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IDataProtectionProviderFactory'Access , m_Factory'Address);
@@ -78,16 +79,17 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
             Hr := m_Factory.CreateOverloadExplicit (HStr_protectionDescriptor, m_ComRetVal'Access);
             Retval.m_IDataProtectionProvider := new Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
             Retval.m_IDataProtectionProvider.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_protectionDescriptor);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_protectionDescriptor);
       end return;
    end;
 
    function Constructor return DataProtectionProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
       m_ComRetVal  : aliased Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
    begin
       return RetVal : DataProtectionProvider do
@@ -96,7 +98,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
             Retval.m_IDataProtectionProvider := new Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
             Retval.m_IDataProtectionProvider.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -110,13 +112,13 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -134,7 +136,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -147,7 +149,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       Hr := this.m_IDataProtectionProvider.all.ProtectAsync (data, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -157,9 +159,9 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -174,13 +176,13 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -198,7 +200,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -211,7 +213,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       Hr := this.m_IDataProtectionProvider.all.UnprotectAsync (data, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -221,9 +223,9 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -238,7 +240,8 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       dest : Windows.Storage.Streams.IOutputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -246,7 +249,6 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -267,9 +269,9 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -282,7 +284,8 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       dest : Windows.Storage.Streams.IOutputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -290,7 +293,6 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -311,9 +313,9 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;

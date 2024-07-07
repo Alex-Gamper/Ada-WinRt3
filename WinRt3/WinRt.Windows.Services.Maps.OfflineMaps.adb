@@ -50,12 +50,12 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    end;
 
    procedure Finalize (this : in out OfflineMapPackage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOfflineMapPackage, IOfflineMapPackage_Ptr);
    begin
       if this.m_IOfflineMapPackage /= null then
          if this.m_IOfflineMapPackage.all /= null then
-            RefCount := this.m_IOfflineMapPackage.all.Release;
+            temp := this.m_IOfflineMapPackage.all.Release;
             Free (this.m_IOfflineMapPackage);
          end if;
       end if;
@@ -70,15 +70,15 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.OfflineMaps.OfflineMapPackage");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.OfflineMaps.OfflineMapPackage");
       m_Factory        : access WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_OfflineMapPackageQueryResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -96,7 +96,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_OfflineMapPackageQueryResult.Kind_Delegate, AsyncOperationCompletedHandler_OfflineMapPackageQueryResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -110,10 +110,10 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
          Hr := RoGetActivationFactory (m_hString, IID_IOfflineMapPackageStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindPackagesAsync (queryPoint.m_IGeopoint.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -125,15 +125,15 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                      Retval.m_IOfflineMapPackageQueryResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
                      Retval.m_IOfflineMapPackageQueryResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -143,15 +143,15 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.OfflineMaps.OfflineMapPackage");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.OfflineMaps.OfflineMapPackage");
       m_Factory        : access WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_OfflineMapPackageQueryResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -169,7 +169,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_OfflineMapPackageQueryResult.Kind_Delegate, AsyncOperationCompletedHandler_OfflineMapPackageQueryResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -183,10 +183,10 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
          Hr := RoGetActivationFactory (m_hString, IID_IOfflineMapPackageStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindPackagesInBoundingBoxAsync (queryBoundingBox.m_IGeoboundingBox.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -198,15 +198,15 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                      Retval.m_IOfflineMapPackageQueryResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
                      Retval.m_IOfflineMapPackageQueryResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -216,15 +216,15 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Services.Maps.OfflineMaps.OfflineMapPackage");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.OfflineMaps.OfflineMapPackage");
       m_Factory        : access WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_OfflineMapPackageQueryResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -242,7 +242,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_OfflineMapPackageQueryResult.Kind_Delegate, AsyncOperationCompletedHandler_OfflineMapPackageQueryResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -256,10 +256,10 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
          Hr := RoGetActivationFactory (m_hString, IID_IOfflineMapPackageStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindPackagesInGeocircleAsync (queryCircle.m_IGeocircle.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -271,15 +271,15 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                      Retval.m_IOfflineMapPackageQueryResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
                      Retval.m_IOfflineMapPackageQueryResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -292,10 +292,14 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus;
    begin
       Hr := this.m_IOfflineMapPackage.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -305,13 +309,17 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IOfflineMapPackage.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -321,13 +329,17 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IOfflineMapPackage.all.get_EnclosingRegionName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -337,10 +349,14 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IOfflineMapPackage.all.get_EstimatedSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -350,9 +366,13 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOfflineMapPackage.all.remove_StatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StatusChanged
@@ -362,10 +382,14 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IOfflineMapPackage.all.add_StatusChanged (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -375,13 +399,13 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_OfflineMapPackageStartDownloadResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -399,7 +423,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_OfflineMapPackageStartDownloadResult.Kind_Delegate, AsyncOperationCompletedHandler_OfflineMapPackageStartDownloadResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -413,7 +437,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
          Hr := this.m_IOfflineMapPackage.all.RequestStartDownloadAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -425,9 +449,9 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                   Retval.m_IOfflineMapPackageStartDownloadResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStartDownloadResult;
                   Retval.m_IOfflineMapPackageStartDownloadResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -444,12 +468,12 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    end;
 
    procedure Finalize (this : in out OfflineMapPackageQueryResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOfflineMapPackageQueryResult, IOfflineMapPackageQueryResult_Ptr);
    begin
       if this.m_IOfflineMapPackageQueryResult /= null then
          if this.m_IOfflineMapPackageQueryResult.all /= null then
-            RefCount := this.m_IOfflineMapPackageQueryResult.all.Release;
+            temp := this.m_IOfflineMapPackageQueryResult.all.Release;
             Free (this.m_IOfflineMapPackageQueryResult);
          end if;
       end if;
@@ -464,10 +488,14 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus;
    begin
       Hr := this.m_IOfflineMapPackageQueryResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -477,13 +505,17 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return IVectorView_IOfflineMapPackage.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IOfflineMapPackage.Kind;
    begin
       Hr := this.m_IOfflineMapPackageQueryResult.all.get_Packages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IOfflineMapPackage (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -496,12 +528,12 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    end;
 
    procedure Finalize (this : in out OfflineMapPackageStartDownloadResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOfflineMapPackageStartDownloadResult, IOfflineMapPackageStartDownloadResult_Ptr);
    begin
       if this.m_IOfflineMapPackageStartDownloadResult /= null then
          if this.m_IOfflineMapPackageStartDownloadResult.all /= null then
-            RefCount := this.m_IOfflineMapPackageStartDownloadResult.all.Release;
+            temp := this.m_IOfflineMapPackageStartDownloadResult.all.Release;
             Free (this.m_IOfflineMapPackageStartDownloadResult);
          end if;
       end if;
@@ -516,10 +548,14 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus;
    begin
       Hr := this.m_IOfflineMapPackageStartDownloadResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

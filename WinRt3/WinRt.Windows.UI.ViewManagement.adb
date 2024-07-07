@@ -50,12 +50,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out AccessibilitySettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccessibilitySettings, IAccessibilitySettings_Ptr);
    begin
       if this.m_IAccessibilitySettings /= null then
          if this.m_IAccessibilitySettings.all /= null then
-            RefCount := this.m_IAccessibilitySettings.all.Release;
+            temp := this.m_IAccessibilitySettings.all.Release;
             Free (this.m_IAccessibilitySettings);
          end if;
       end if;
@@ -66,7 +66,8 @@ package body WinRt.Windows.UI.ViewManagement is
 
    function Constructor return AccessibilitySettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ViewManagement.AccessibilitySettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.AccessibilitySettings");
       m_ComRetVal  : aliased Windows.UI.ViewManagement.IAccessibilitySettings;
    begin
       return RetVal : AccessibilitySettings do
@@ -75,7 +76,7 @@ package body WinRt.Windows.UI.ViewManagement is
             Retval.m_IAccessibilitySettings := new Windows.UI.ViewManagement.IAccessibilitySettings;
             Retval.m_IAccessibilitySettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -88,10 +89,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAccessibilitySettings.all.get_HighContrast (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -101,13 +106,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAccessibilitySettings.all.get_HighContrastScheme (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -118,10 +127,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAccessibilitySettings.all.add_HighContrastChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -131,9 +144,13 @@ package body WinRt.Windows.UI.ViewManagement is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAccessibilitySettings.all.remove_HighContrastChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -145,12 +162,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ActivationViewSwitcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IActivationViewSwitcher, IActivationViewSwitcher_Ptr);
    begin
       if this.m_IActivationViewSwitcher /= null then
          if this.m_IActivationViewSwitcher.all /= null then
-            RefCount := this.m_IActivationViewSwitcher.all.Release;
+            temp := this.m_IActivationViewSwitcher.all.Release;
             Free (this.m_IActivationViewSwitcher);
          end if;
       end if;
@@ -165,7 +182,8 @@ package body WinRt.Windows.UI.ViewManagement is
       viewId : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -173,7 +191,6 @@ package body WinRt.Windows.UI.ViewManagement is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -194,9 +211,9 @@ package body WinRt.Windows.UI.ViewManagement is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -209,7 +226,8 @@ package body WinRt.Windows.UI.ViewManagement is
       sizePreference : Windows.UI.ViewManagement.ViewSizePreference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -217,7 +235,6 @@ package body WinRt.Windows.UI.ViewManagement is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -238,9 +255,9 @@ package body WinRt.Windows.UI.ViewManagement is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -253,10 +270,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IActivationViewSwitcher.all.IsViewPresentedOnActivationVirtualDesktop (viewId, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -269,12 +290,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ApplicationView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationView, IApplicationView_Ptr);
    begin
       if this.m_IApplicationView /= null then
          if this.m_IApplicationView.all /= null then
-            RefCount := this.m_IApplicationView.all.Release;
+            temp := this.m_IApplicationView.all.Release;
             Free (this.m_IApplicationView);
          end if;
       end if;
@@ -286,49 +307,61 @@ package body WinRt.Windows.UI.ViewManagement is
    function get_Value
    return WinRt.Windows.UI.ViewManagement.ApplicationViewState is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewState;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_Value (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function TryUnsnap
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryUnsnap (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    procedure ClearAllPersistedState is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ClearAllPersistedState;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ClearPersistedState
@@ -336,34 +369,42 @@ package body WinRt.Windows.UI.ViewManagement is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ClearPersistedState (HStr_key);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    function TryUnsnapToFullscreen
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewFullscreenStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewFullscreenStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryUnsnapToFullscreen (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -373,54 +414,66 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewInteropStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewInteropStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetApplicationViewIdForWindow (window, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.ApplicationView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IApplicationView;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ApplicationView do
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IApplicationView := new Windows.UI.ViewManagement.IApplicationView;
             Retval.m_IApplicationView.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TerminateAppOnFinalViewClose
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_TerminateAppOnFinalViewClose (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -429,32 +482,40 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_TerminateAppOnFinalViewClose (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_PreferredLaunchWindowingMode
    return WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewWindowingMode;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_PreferredLaunchWindowingMode (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -463,32 +524,40 @@ package body WinRt.Windows.UI.ViewManagement is
       value : Windows.UI.ViewManagement.ApplicationViewWindowingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_PreferredLaunchWindowingMode (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_PreferredLaunchViewSize
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_PreferredLaunchViewSize (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -497,16 +566,20 @@ package body WinRt.Windows.UI.ViewManagement is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_PreferredLaunchViewSize (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -518,10 +591,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.ApplicationViewOrientation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewOrientation;
    begin
       Hr := this.m_IApplicationView.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -531,10 +608,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IApplicationView.all.get_AdjacentToLeftDisplayEdge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -544,10 +625,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IApplicationView.all.get_AdjacentToRightDisplayEdge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -557,10 +642,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IApplicationView.all.get_IsFullScreen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -570,10 +659,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IApplicationView.all.get_IsOnLockScreen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -583,10 +676,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IApplicationView.all.get_IsScreenCaptureEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -596,9 +693,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationView.all.put_IsScreenCaptureEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Title
@@ -607,11 +708,15 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IApplicationView.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Title
@@ -620,13 +725,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IApplicationView.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -636,10 +745,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IApplicationView.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -650,10 +763,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IApplicationView.all.add_Consolidated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -663,9 +780,13 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationView.all.remove_Consolidated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SuppressSystemOverlays
@@ -674,14 +795,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_SuppressSystemOverlays (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -691,13 +816,17 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.put_SuppressSystemOverlays (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VisibleBounds
@@ -706,14 +835,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_VisibleBounds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -724,14 +857,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.add_VisibleBoundsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -741,13 +878,17 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.remove_VisibleBoundsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function SetDesiredBoundsMode
@@ -757,14 +898,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.SetDesiredBoundsMode (boundsMode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -774,14 +919,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.ApplicationViewBoundsMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewBoundsMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_DesiredBoundsMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -791,15 +940,19 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.ApplicationViewTitleBar'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IApplicationViewTitleBar;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ApplicationViewTitleBar do
          m_Interface := QInterface (this.m_IApplicationView.all);
          Hr := m_Interface.get_TitleBar (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IApplicationViewTitleBar := new Windows.UI.ViewManagement.IApplicationViewTitleBar;
          Retval.m_IApplicationViewTitleBar.all := m_ComRetVal;
       end return;
@@ -811,14 +964,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.FullScreenSystemOverlayMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.FullScreenSystemOverlayMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_FullScreenSystemOverlayMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -828,13 +985,17 @@ package body WinRt.Windows.UI.ViewManagement is
       value : Windows.UI.ViewManagement.FullScreenSystemOverlayMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.put_FullScreenSystemOverlayMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsFullScreenMode
@@ -843,14 +1004,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_IsFullScreenMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -860,14 +1025,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.TryEnterFullScreenMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -876,13 +1045,17 @@ package body WinRt.Windows.UI.ViewManagement is
       this : in out ApplicationView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.ExitFullScreenMode;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowStandardSystemOverlays
@@ -890,13 +1063,17 @@ package body WinRt.Windows.UI.ViewManagement is
       this : in out ApplicationView
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.ShowStandardSystemOverlays;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryResizeView
@@ -906,14 +1083,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.TryResizeView (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -923,13 +1104,17 @@ package body WinRt.Windows.UI.ViewManagement is
       minSize : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.SetPreferredMinSize (minSize);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ViewMode
@@ -938,14 +1123,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.ApplicationViewMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView4, WinRt.Windows.UI.ViewManagement.IID_IApplicationView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_ViewMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -956,14 +1145,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView4, WinRt.Windows.UI.ViewManagement.IID_IApplicationView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.IsViewModeSupported (viewMode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -974,14 +1167,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -999,7 +1192,7 @@ package body WinRt.Windows.UI.ViewManagement is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1012,10 +1205,10 @@ package body WinRt.Windows.UI.ViewManagement is
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.TryEnterViewModeAsync (viewMode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1025,9 +1218,9 @@ package body WinRt.Windows.UI.ViewManagement is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1043,14 +1236,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1068,7 +1261,7 @@ package body WinRt.Windows.UI.ViewManagement is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1081,10 +1274,10 @@ package body WinRt.Windows.UI.ViewManagement is
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.TryEnterViewModeAsync (viewMode, viewModePreferences_p.m_IViewModePreferences.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1094,9 +1287,9 @@ package body WinRt.Windows.UI.ViewManagement is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1110,14 +1303,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1135,7 +1328,7 @@ package body WinRt.Windows.UI.ViewManagement is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1148,10 +1341,10 @@ package body WinRt.Windows.UI.ViewManagement is
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.TryConsolidateAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1161,9 +1354,9 @@ package body WinRt.Windows.UI.ViewManagement is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1177,17 +1370,21 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView7 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView7, WinRt.Windows.UI.ViewManagement.IID_IApplicationView7'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.get_PersistedStateId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1197,15 +1394,19 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView7 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView7, WinRt.Windows.UI.ViewManagement.IID_IApplicationView7'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.put_PersistedStateId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WindowingEnvironment
@@ -1214,15 +1415,19 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.WindowManagement.WindowingEnvironment'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView9 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WindowManagement.IWindowingEnvironment;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView9, WinRt.Windows.UI.ViewManagement.IID_IApplicationView9'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.WindowingEnvironment do
          m_Interface := QInterface (this.m_IApplicationView.all);
          Hr := m_Interface.get_WindowingEnvironment (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWindowingEnvironment := new Windows.UI.WindowManagement.IWindowingEnvironment;
          Retval.m_IWindowingEnvironment.all := m_ComRetVal;
       end return;
@@ -1234,14 +1439,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView9 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView9, WinRt.Windows.UI.ViewManagement.IID_IApplicationView9'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
       Hr := m_Interface.GetDisplayRegions (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1251,15 +1460,19 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.UIContext'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationViewWithContext := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.IUIContext;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationViewWithContext, WinRt.Windows.UI.ViewManagement.IID_IApplicationViewWithContext'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.UIContext do
          m_Interface := QInterface (this.m_IApplicationView.all);
          Hr := m_Interface.get_UIContext (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIContext := new Windows.UI.IUIContext;
          Retval.m_IUIContext.all := m_ComRetVal;
       end return;
@@ -1274,12 +1487,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ApplicationViewConsolidatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationViewConsolidatedEventArgs, IApplicationViewConsolidatedEventArgs_Ptr);
    begin
       if this.m_IApplicationViewConsolidatedEventArgs /= null then
          if this.m_IApplicationViewConsolidatedEventArgs.all /= null then
-            RefCount := this.m_IApplicationViewConsolidatedEventArgs.all.Release;
+            temp := this.m_IApplicationViewConsolidatedEventArgs.all.Release;
             Free (this.m_IApplicationViewConsolidatedEventArgs);
          end if;
       end if;
@@ -1294,10 +1507,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IApplicationViewConsolidatedEventArgs.all.get_IsUserInitiated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1307,14 +1524,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationViewConsolidatedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationViewConsolidatedEventArgs_Interface, WinRt.Windows.UI.ViewManagement.IApplicationViewConsolidatedEventArgs2, WinRt.Windows.UI.ViewManagement.IID_IApplicationViewConsolidatedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationViewConsolidatedEventArgs.all);
       Hr := m_Interface.get_IsAppInitiated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1327,12 +1548,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ApplicationViewScaling) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationViewScaling, IApplicationViewScaling_Ptr);
    begin
       if this.m_IApplicationViewScaling /= null then
          if this.m_IApplicationViewScaling.all /= null then
-            RefCount := this.m_IApplicationViewScaling.all.Release;
+            temp := this.m_IApplicationViewScaling.all.Release;
             Free (this.m_IApplicationViewScaling);
          end if;
       end if;
@@ -1344,17 +1565,21 @@ package body WinRt.Windows.UI.ViewManagement is
    function get_DisableLayoutScaling
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewScaling");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewScaling");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewScalingStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewScalingStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_DisableLayoutScaling (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1364,17 +1589,21 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewScaling");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewScaling");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewScalingStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewScalingStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TrySetDisableLayoutScaling (disableLayoutScaling, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1387,16 +1616,20 @@ package body WinRt.Windows.UI.ViewManagement is
 
       procedure DisableSystemViewActivationPolicy is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DisableSystemViewActivationPolicy;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function TryShowAsViewModeAsync
@@ -1406,15 +1639,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1432,7 +1665,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1445,10 +1678,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryShowAsViewModeAsync (viewId, viewMode, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1458,15 +1691,15 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1478,15 +1711,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1504,7 +1737,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1517,10 +1750,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryShowAsViewModeAsync (viewId, viewMode, viewModePreferences_p.m_IViewModePreferences.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1530,30 +1763,34 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       procedure DisableShowingMainViewOnActivation is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DisableShowingMainViewOnActivation;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function TryShowAsStandaloneAsync
@@ -1562,15 +1799,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1588,7 +1825,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1601,10 +1838,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryShowAsStandaloneAsync (viewId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1614,15 +1851,15 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1633,15 +1870,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1659,7 +1896,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1672,10 +1909,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryShowAsStandaloneAsync (viewId, sizePreference, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1685,15 +1922,15 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1706,15 +1943,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1732,7 +1969,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1745,10 +1982,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryShowAsStandaloneAsync (viewId, sizePreference, anchorViewId, anchorSizePreference, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1758,15 +1995,15 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1775,9 +2012,10 @@ package body WinRt.Windows.UI.ViewManagement is
          viewId : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -1785,7 +2023,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -1801,7 +2038,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SwitchAsync (viewId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1809,14 +2046,14 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SwitchAsync
@@ -1825,9 +2062,10 @@ package body WinRt.Windows.UI.ViewManagement is
          fromViewId : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -1835,7 +2073,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -1851,7 +2088,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SwitchAsync (toViewId, fromViewId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1859,14 +2096,14 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SwitchAsync
@@ -1876,9 +2113,10 @@ package body WinRt.Windows.UI.ViewManagement is
          options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -1886,7 +2124,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -1902,7 +2139,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SwitchAsync (toViewId, fromViewId, options, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1910,14 +2147,14 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function PrepareForCustomAnimatedSwitchAsync
@@ -1928,15 +2165,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewSwitcher");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewSwitcherStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1954,7 +2191,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1967,10 +2204,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewSwitcherStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.PrepareForCustomAnimatedSwitchAsync (toViewId, fromViewId, options, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1980,15 +2217,15 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -2003,12 +2240,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ApplicationViewTitleBar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationViewTitleBar, IApplicationViewTitleBar_Ptr);
    begin
       if this.m_IApplicationViewTitleBar /= null then
          if this.m_IApplicationViewTitleBar.all /= null then
-            RefCount := this.m_IApplicationViewTitleBar.all.Release;
+            temp := this.m_IApplicationViewTitleBar.all.Release;
             Free (this.m_IApplicationViewTitleBar);
          end if;
       end if;
@@ -2023,9 +2260,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundColor
@@ -2034,13 +2275,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2050,9 +2295,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -2061,13 +2310,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2077,9 +2330,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonForegroundColor
@@ -2088,13 +2345,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2104,9 +2365,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonBackgroundColor
@@ -2115,13 +2380,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2131,9 +2400,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonHoverForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonHoverForegroundColor
@@ -2142,13 +2415,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonHoverForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2158,9 +2435,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonHoverBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonHoverBackgroundColor
@@ -2169,13 +2450,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonHoverBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2185,9 +2470,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonPressedForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonPressedForegroundColor
@@ -2196,13 +2485,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonPressedForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2212,9 +2505,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonPressedBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonPressedBackgroundColor
@@ -2223,13 +2520,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonPressedBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2239,9 +2540,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_InactiveForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InactiveForegroundColor
@@ -2250,13 +2555,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_InactiveForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2266,9 +2575,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_InactiveBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InactiveBackgroundColor
@@ -2277,13 +2590,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_InactiveBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2293,9 +2610,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonInactiveForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonInactiveForegroundColor
@@ -2304,13 +2625,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonInactiveForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2320,9 +2645,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.put_ButtonInactiveBackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ButtonInactiveBackgroundColor
@@ -2331,13 +2660,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonInactiveBackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2350,12 +2683,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ApplicationViewTransferContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationViewTransferContext, IApplicationViewTransferContext_Ptr);
    begin
       if this.m_IApplicationViewTransferContext /= null then
          if this.m_IApplicationViewTransferContext.all /= null then
-            RefCount := this.m_IApplicationViewTransferContext.all.Release;
+            temp := this.m_IApplicationViewTransferContext.all.Release;
             Free (this.m_IApplicationViewTransferContext);
          end if;
       end if;
@@ -2366,7 +2699,8 @@ package body WinRt.Windows.UI.ViewManagement is
 
    function Constructor return ApplicationViewTransferContext is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewTransferContext");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewTransferContext");
       m_ComRetVal  : aliased Windows.UI.ViewManagement.IApplicationViewTransferContext;
    begin
       return RetVal : ApplicationViewTransferContext do
@@ -2375,7 +2709,7 @@ package body WinRt.Windows.UI.ViewManagement is
             Retval.m_IApplicationViewTransferContext := new Windows.UI.ViewManagement.IApplicationViewTransferContext;
             Retval.m_IApplicationViewTransferContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2385,20 +2719,24 @@ package body WinRt.Windows.UI.ViewManagement is
    function get_DataPackageFormatId
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewTransferContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewTransferContext");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewTransferContextStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewTransferContextStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_DataPackageFormatId (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2411,10 +2749,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IApplicationViewTransferContext.all.get_ViewId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2424,9 +2766,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IApplicationViewTransferContext.all.put_ViewId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2438,12 +2784,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out InputPane) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInputPane, IInputPane_Ptr);
    begin
       if this.m_IInputPane /= null then
          if this.m_IInputPane.all /= null then
-            RefCount := this.m_IInputPane.all.Release;
+            temp := this.m_IInputPane.all.Release;
             Free (this.m_IInputPane);
          end if;
       end if;
@@ -2455,20 +2801,24 @@ package body WinRt.Windows.UI.ViewManagement is
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.InputPane is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
          Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
             Retval.m_IInputPane.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2478,20 +2828,24 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.InputPane is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
          Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
             Retval.m_IInputPane.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2505,10 +2859,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInputPane.all.add_Showing (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2518,9 +2876,13 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputPane.all.remove_Showing (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Hiding
@@ -2530,10 +2892,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInputPane.all.add_Hiding (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2543,9 +2909,13 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputPane.all.remove_Hiding (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OccludedRect
@@ -2554,10 +2924,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInputPane.all.get_OccludedRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2567,14 +2941,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IInputPane2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IInputPane_Interface, WinRt.Windows.UI.ViewManagement.IInputPane2, WinRt.Windows.UI.ViewManagement.IID_IInputPane2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputPane.all);
       Hr := m_Interface.TryShow (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2584,14 +2962,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IInputPane2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IInputPane_Interface, WinRt.Windows.UI.ViewManagement.IInputPane2, WinRt.Windows.UI.ViewManagement.IID_IInputPane2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputPane.all);
       Hr := m_Interface.TryHide (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2601,14 +2983,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IInputPaneControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IInputPane_Interface, WinRt.Windows.UI.ViewManagement.IInputPaneControl, WinRt.Windows.UI.ViewManagement.IID_IInputPaneControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputPane.all);
       Hr := m_Interface.get_Visible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2618,13 +3004,17 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IInputPaneControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IInputPane_Interface, WinRt.Windows.UI.ViewManagement.IInputPaneControl, WinRt.Windows.UI.ViewManagement.IID_IInputPaneControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputPane.all);
       Hr := m_Interface.put_Visible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2636,12 +3026,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out InputPaneVisibilityEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInputPaneVisibilityEventArgs, IInputPaneVisibilityEventArgs_Ptr);
    begin
       if this.m_IInputPaneVisibilityEventArgs /= null then
          if this.m_IInputPaneVisibilityEventArgs.all /= null then
-            RefCount := this.m_IInputPaneVisibilityEventArgs.all.Release;
+            temp := this.m_IInputPaneVisibilityEventArgs.all.Release;
             Free (this.m_IInputPaneVisibilityEventArgs);
          end if;
       end if;
@@ -2656,10 +3046,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IInputPaneVisibilityEventArgs.all.get_OccludedRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2669,9 +3063,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputPaneVisibilityEventArgs.all.put_EnsuredFocusedElementInView (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EnsuredFocusedElementInView
@@ -2680,10 +3078,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInputPaneVisibilityEventArgs.all.get_EnsuredFocusedElementInView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2697,9 +3099,10 @@ package body WinRt.Windows.UI.ViewManagement is
          anchorViewId : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -2707,7 +3110,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -2723,7 +3125,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.StartProjectingAsync (projectionViewId, anchorViewId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2731,14 +3133,14 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SwapDisplaysForViewsAsync
@@ -2747,9 +3149,10 @@ package body WinRt.Windows.UI.ViewManagement is
          anchorViewId : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -2757,7 +3160,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -2773,7 +3175,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SwapDisplaysForViewsAsync (projectionViewId, anchorViewId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2781,14 +3183,14 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure StopProjectingAsync
@@ -2797,9 +3199,10 @@ package body WinRt.Windows.UI.ViewManagement is
          anchorViewId : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -2807,7 +3210,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -2823,7 +3225,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.StopProjectingAsync (projectionViewId, anchorViewId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2831,30 +3233,34 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_ProjectionDisplayAvailable
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ProjectionDisplayAvailable (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2864,17 +3270,21 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_ProjectionDisplayAvailableChanged (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2883,16 +3293,20 @@ package body WinRt.Windows.UI.ViewManagement is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_ProjectionDisplayAvailableChanged (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure StartProjectingAsync
@@ -2902,9 +3316,10 @@ package body WinRt.Windows.UI.ViewManagement is
          displayDeviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -2912,7 +3327,6 @@ package body WinRt.Windows.UI.ViewManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -2928,7 +3342,7 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.StartProjectingAsync (projectionViewId, anchorViewId, displayDeviceInfo.m_IDeviceInformation.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2936,14 +3350,14 @@ package body WinRt.Windows.UI.ViewManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RequestStartProjectingAsync
@@ -2954,15 +3368,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2980,7 +3394,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -2993,10 +3407,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestStartProjectingAsync (projectionViewId, anchorViewId, selection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3006,15 +3420,15 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -3027,15 +3441,15 @@ package body WinRt.Windows.UI.ViewManagement is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3053,7 +3467,7 @@ package body WinRt.Windows.UI.ViewManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3066,10 +3480,10 @@ package body WinRt.Windows.UI.ViewManagement is
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestStartProjectingAsync (projectionViewId, anchorViewId, selection, prefferedPlacement, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3079,35 +3493,39 @@ package body WinRt.Windows.UI.ViewManagement is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function GetDeviceSelector
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -3122,12 +3540,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out StatusBar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStatusBar, IStatusBar_Ptr);
    begin
       if this.m_IStatusBar /= null then
          if this.m_IStatusBar.all /= null then
-            RefCount := this.m_IStatusBar.all.Release;
+            temp := this.m_IStatusBar.all.Release;
             Free (this.m_IStatusBar);
          end if;
       end if;
@@ -3139,20 +3557,24 @@ package body WinRt.Windows.UI.ViewManagement is
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.StatusBar is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.StatusBar");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.StatusBar");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IStatusBarStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IStatusBar;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.StatusBar do
          Hr := RoGetActivationFactory (m_hString, IID_IStatusBarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IStatusBar := new Windows.UI.ViewManagement.IStatusBar;
             Retval.m_IStatusBar.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3164,7 +3586,8 @@ package body WinRt.Windows.UI.ViewManagement is
       this : in out StatusBar
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3172,7 +3595,6 @@ package body WinRt.Windows.UI.ViewManagement is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3193,9 +3615,9 @@ package body WinRt.Windows.UI.ViewManagement is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3206,7 +3628,8 @@ package body WinRt.Windows.UI.ViewManagement is
       this : in out StatusBar
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3214,7 +3637,6 @@ package body WinRt.Windows.UI.ViewManagement is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3235,9 +3657,9 @@ package body WinRt.Windows.UI.ViewManagement is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3249,10 +3671,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IStatusBar.all.get_BackgroundOpacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3262,9 +3688,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStatusBar.all.put_BackgroundOpacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundColor
@@ -3273,13 +3703,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IStatusBar.all.get_ForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3289,9 +3723,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStatusBar.all.put_ForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -3300,13 +3738,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IStatusBar.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3316,9 +3758,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStatusBar.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProgressIndicator
@@ -3327,11 +3773,15 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.StatusBarProgressIndicator'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IStatusBarProgressIndicator;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.StatusBarProgressIndicator do
          Hr := this.m_IStatusBar.all.get_ProgressIndicator (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStatusBarProgressIndicator := new Windows.UI.ViewManagement.IStatusBarProgressIndicator;
          Retval.m_IStatusBarProgressIndicator.all := m_ComRetVal;
       end return;
@@ -3343,10 +3793,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IStatusBar.all.get_OccludedRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3357,10 +3811,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStatusBar.all.add_Showing (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3370,9 +3828,13 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStatusBar.all.remove_Showing (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Hiding
@@ -3382,10 +3844,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStatusBar.all.add_Hiding (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3395,9 +3861,13 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStatusBar.all.remove_Hiding (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3409,12 +3879,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out StatusBarProgressIndicator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStatusBarProgressIndicator, IStatusBarProgressIndicator_Ptr);
    begin
       if this.m_IStatusBarProgressIndicator /= null then
          if this.m_IStatusBarProgressIndicator.all /= null then
-            RefCount := this.m_IStatusBarProgressIndicator.all.Release;
+            temp := this.m_IStatusBarProgressIndicator.all.Release;
             Free (this.m_IStatusBarProgressIndicator);
          end if;
       end if;
@@ -3428,7 +3898,8 @@ package body WinRt.Windows.UI.ViewManagement is
       this : in out StatusBarProgressIndicator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3436,7 +3907,6 @@ package body WinRt.Windows.UI.ViewManagement is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3457,9 +3927,9 @@ package body WinRt.Windows.UI.ViewManagement is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3470,7 +3940,8 @@ package body WinRt.Windows.UI.ViewManagement is
       this : in out StatusBarProgressIndicator
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3478,7 +3949,6 @@ package body WinRt.Windows.UI.ViewManagement is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3499,9 +3969,9 @@ package body WinRt.Windows.UI.ViewManagement is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3513,13 +3983,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStatusBarProgressIndicator.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3529,11 +4003,15 @@ package body WinRt.Windows.UI.ViewManagement is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IStatusBarProgressIndicator.all.put_Text (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ProgressValue
@@ -3542,13 +4020,17 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IStatusBarProgressIndicator.all.get_ProgressValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3558,9 +4040,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStatusBarProgressIndicator.all.put_ProgressValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3572,12 +4058,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out UISettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUISettings, IUISettings_Ptr);
    begin
       if this.m_IUISettings /= null then
          if this.m_IUISettings.all /= null then
-            RefCount := this.m_IUISettings.all.Release;
+            temp := this.m_IUISettings.all.Release;
             Free (this.m_IUISettings);
          end if;
       end if;
@@ -3588,7 +4074,8 @@ package body WinRt.Windows.UI.ViewManagement is
 
    function Constructor return UISettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ViewManagement.UISettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.UISettings");
       m_ComRetVal  : aliased Windows.UI.ViewManagement.IUISettings;
    begin
       return RetVal : UISettings do
@@ -3597,7 +4084,7 @@ package body WinRt.Windows.UI.ViewManagement is
             Retval.m_IUISettings := new Windows.UI.ViewManagement.IUISettings;
             Retval.m_IUISettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3610,10 +4097,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.HandPreference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.HandPreference;
    begin
       Hr := this.m_IUISettings.all.get_HandPreference (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3623,10 +4114,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_CursorSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3636,10 +4131,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_ScrollBarSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3649,10 +4148,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_ScrollBarArrowSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3662,10 +4165,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_ScrollBarThumbBoxSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3675,10 +4182,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUISettings.all.get_MessageDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3688,10 +4199,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IUISettings.all.get_AnimationsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3701,10 +4216,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IUISettings.all.get_CaretBrowsingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3714,10 +4233,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUISettings.all.get_CaretBlinkRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3727,10 +4250,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUISettings.all.get_CaretWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3740,10 +4267,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUISettings.all.get_DoubleClickTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3753,10 +4284,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUISettings.all.get_MouseHoverTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3767,10 +4302,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IUISettings.all.UIElementColor (desiredElement, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3780,14 +4319,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings2, WinRt.Windows.UI.ViewManagement.IID_IUISettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.get_TextScaleFactor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3798,14 +4341,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings2, WinRt.Windows.UI.ViewManagement.IID_IUISettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.add_TextScaleFactorChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3815,13 +4362,17 @@ package body WinRt.Windows.UI.ViewManagement is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings2, WinRt.Windows.UI.ViewManagement.IID_IUISettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.remove_TextScaleFactorChanged (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetColorValue
@@ -3831,14 +4382,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings3, WinRt.Windows.UI.ViewManagement.IID_IUISettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.GetColorValue (desiredColor, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3849,14 +4404,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings3, WinRt.Windows.UI.ViewManagement.IID_IUISettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.add_ColorValuesChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3866,13 +4425,17 @@ package body WinRt.Windows.UI.ViewManagement is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings3, WinRt.Windows.UI.ViewManagement.IID_IUISettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.remove_ColorValuesChanged (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AdvancedEffectsEnabled
@@ -3881,14 +4444,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings4, WinRt.Windows.UI.ViewManagement.IID_IUISettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.get_AdvancedEffectsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3899,14 +4466,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings4, WinRt.Windows.UI.ViewManagement.IID_IUISettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.add_AdvancedEffectsEnabledChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3916,13 +4487,17 @@ package body WinRt.Windows.UI.ViewManagement is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings4, WinRt.Windows.UI.ViewManagement.IID_IUISettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.remove_AdvancedEffectsEnabledChanged (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AutoHideScrollBars
@@ -3931,14 +4506,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings5, WinRt.Windows.UI.ViewManagement.IID_IUISettings5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.get_AutoHideScrollBars (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3949,14 +4528,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings5, WinRt.Windows.UI.ViewManagement.IID_IUISettings5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.add_AutoHideScrollBarsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3966,13 +4549,17 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings5, WinRt.Windows.UI.ViewManagement.IID_IUISettings5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.remove_AutoHideScrollBarsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AnimationsEnabledChanged
@@ -3982,14 +4569,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings6, WinRt.Windows.UI.ViewManagement.IID_IUISettings6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.add_AnimationsEnabledChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3999,13 +4590,17 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings6, WinRt.Windows.UI.ViewManagement.IID_IUISettings6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.remove_AnimationsEnabledChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MessageDurationChanged
@@ -4015,14 +4610,18 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings6, WinRt.Windows.UI.ViewManagement.IID_IUISettings6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.add_MessageDurationChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4032,13 +4631,17 @@ package body WinRt.Windows.UI.ViewManagement is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings6, WinRt.Windows.UI.ViewManagement.IID_IUISettings6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
       Hr := m_Interface.remove_MessageDurationChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4050,12 +4653,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out UISettingsAnimationsEnabledChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUISettingsAnimationsEnabledChangedEventArgs, IUISettingsAnimationsEnabledChangedEventArgs_Ptr);
    begin
       if this.m_IUISettingsAnimationsEnabledChangedEventArgs /= null then
          if this.m_IUISettingsAnimationsEnabledChangedEventArgs.all /= null then
-            RefCount := this.m_IUISettingsAnimationsEnabledChangedEventArgs.all.Release;
+            temp := this.m_IUISettingsAnimationsEnabledChangedEventArgs.all.Release;
             Free (this.m_IUISettingsAnimationsEnabledChangedEventArgs);
          end if;
       end if;
@@ -4073,12 +4676,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out UISettingsAutoHideScrollBarsChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUISettingsAutoHideScrollBarsChangedEventArgs, IUISettingsAutoHideScrollBarsChangedEventArgs_Ptr);
    begin
       if this.m_IUISettingsAutoHideScrollBarsChangedEventArgs /= null then
          if this.m_IUISettingsAutoHideScrollBarsChangedEventArgs.all /= null then
-            RefCount := this.m_IUISettingsAutoHideScrollBarsChangedEventArgs.all.Release;
+            temp := this.m_IUISettingsAutoHideScrollBarsChangedEventArgs.all.Release;
             Free (this.m_IUISettingsAutoHideScrollBarsChangedEventArgs);
          end if;
       end if;
@@ -4096,12 +4699,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out UISettingsMessageDurationChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUISettingsMessageDurationChangedEventArgs, IUISettingsMessageDurationChangedEventArgs_Ptr);
    begin
       if this.m_IUISettingsMessageDurationChangedEventArgs /= null then
          if this.m_IUISettingsMessageDurationChangedEventArgs.all /= null then
-            RefCount := this.m_IUISettingsMessageDurationChangedEventArgs.all.Release;
+            temp := this.m_IUISettingsMessageDurationChangedEventArgs.all.Release;
             Free (this.m_IUISettingsMessageDurationChangedEventArgs);
          end if;
       end if;
@@ -4119,12 +4722,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out UIViewSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUIViewSettings, IUIViewSettings_Ptr);
    begin
       if this.m_IUIViewSettings /= null then
          if this.m_IUIViewSettings.all /= null then
-            RefCount := this.m_IUIViewSettings.all.Release;
+            temp := this.m_IUIViewSettings.all.Release;
             Free (this.m_IUIViewSettings);
          end if;
       end if;
@@ -4136,20 +4739,24 @@ package body WinRt.Windows.UI.ViewManagement is
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.UIViewSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.UIViewSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.UIViewSettings");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IUIViewSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IUIViewSettings;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.UIViewSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IUIViewSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUIViewSettings := new Windows.UI.ViewManagement.IUIViewSettings;
             Retval.m_IUIViewSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4162,10 +4769,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.UserInteractionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.UserInteractionMode;
    begin
       Hr := this.m_IUIViewSettings.all.get_UserInteractionMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4178,12 +4789,12 @@ package body WinRt.Windows.UI.ViewManagement is
    end;
 
    procedure Finalize (this : in out ViewModePreferences) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IViewModePreferences, IViewModePreferences_Ptr);
    begin
       if this.m_IViewModePreferences /= null then
          if this.m_IViewModePreferences.all /= null then
-            RefCount := this.m_IViewModePreferences.all.Release;
+            temp := this.m_IViewModePreferences.all.Release;
             Free (this.m_IViewModePreferences);
          end if;
       end if;
@@ -4198,20 +4809,24 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.ViewModePreferences is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.ViewModePreferences");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ViewModePreferences");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IViewModePreferencesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.IViewModePreferences;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ViewModePreferences do
          Hr := RoGetActivationFactory (m_hString, IID_IViewModePreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDefault (mode, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IViewModePreferences := new Windows.UI.ViewManagement.IViewModePreferences;
             Retval.m_IViewModePreferences.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4224,10 +4839,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.UI.ViewManagement.ViewSizePreference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.ViewSizePreference;
    begin
       Hr := this.m_IViewModePreferences.all.get_ViewSizePreference (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4237,9 +4856,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : Windows.UI.ViewManagement.ViewSizePreference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IViewModePreferences.all.put_ViewSizePreference (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CustomSize
@@ -4248,10 +4871,14 @@ package body WinRt.Windows.UI.ViewManagement is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IViewModePreferences.all.get_CustomSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4261,9 +4888,13 @@ package body WinRt.Windows.UI.ViewManagement is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IViewModePreferences.all.put_CustomSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.ViewManagement;

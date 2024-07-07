@@ -43,12 +43,12 @@ package body WinRt.Windows.Networking is
    end;
 
    procedure Finalize (this : in out EndpointPair) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEndpointPair, IEndpointPair_Ptr);
    begin
       if this.m_IEndpointPair /= null then
          if this.m_IEndpointPair.all /= null then
-            RefCount := this.m_IEndpointPair.all.Release;
+            temp := this.m_IEndpointPair.all.Release;
             Free (this.m_IEndpointPair);
          end if;
       end if;
@@ -66,12 +66,13 @@ package body WinRt.Windows.Networking is
    )
    return EndpointPair is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.EndpointPair");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.EndpointPair");
       m_Factory    : access IEndpointPairFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.IEndpointPair;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
    begin
       return RetVal : EndpointPair do
          Hr := RoGetActivationFactory (m_hString, IID_IEndpointPairFactory'Access , m_Factory'Address);
@@ -79,11 +80,11 @@ package body WinRt.Windows.Networking is
             Hr := m_Factory.CreateEndpointPair (localHostName.m_IHostName.all, HStr_localServiceName, remoteHostName.m_IHostName.all, HStr_remoteServiceName, m_ComRetVal'Access);
             Retval.m_IEndpointPair := new Windows.Networking.IEndpointPair;
             Retval.m_IEndpointPair.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_localServiceName);
-         Hr := WindowsDeleteString (HStr_remoteServiceName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_localServiceName);
+         tmp := WindowsDeleteString (HStr_remoteServiceName);
       end return;
    end;
 
@@ -96,11 +97,15 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IEndpointPair.all.get_LocalHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -112,9 +117,13 @@ package body WinRt.Windows.Networking is
       value : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEndpointPair.all.put_LocalHostName (value.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LocalServiceName
@@ -123,13 +132,17 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEndpointPair.all.get_LocalServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -139,11 +152,15 @@ package body WinRt.Windows.Networking is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEndpointPair.all.put_LocalServiceName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_RemoteHostName
@@ -152,11 +169,15 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IEndpointPair.all.get_RemoteHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -168,9 +189,13 @@ package body WinRt.Windows.Networking is
       value : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEndpointPair.all.put_RemoteHostName (value.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RemoteServiceName
@@ -179,13 +204,17 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEndpointPair.all.get_RemoteServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -195,11 +224,15 @@ package body WinRt.Windows.Networking is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IEndpointPair.all.put_RemoteServiceName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -211,12 +244,12 @@ package body WinRt.Windows.Networking is
    end;
 
    procedure Finalize (this : in out HostName) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHostName, IHostName_Ptr);
    begin
       if this.m_IHostName /= null then
          if this.m_IHostName.all /= null then
-            RefCount := this.m_IHostName.all.Release;
+            temp := this.m_IHostName.all.Release;
             Free (this.m_IHostName);
          end if;
       end if;
@@ -231,11 +264,12 @@ package body WinRt.Windows.Networking is
    )
    return HostName is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.HostName");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.HostName");
       m_Factory    : access IHostNameFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.IHostName;
-      HStr_hostName_p : WinRt.HString := To_HString (hostName_p);
+      HStr_hostName_p : constant WinRt.HString := To_HString (hostName_p);
    begin
       return RetVal : HostName do
          Hr := RoGetActivationFactory (m_hString, IID_IHostNameFactory'Access , m_Factory'Address);
@@ -243,10 +277,10 @@ package body WinRt.Windows.Networking is
             Hr := m_Factory.CreateHostName (HStr_hostName_p, m_ComRetVal'Access);
             Retval.m_IHostName := new Windows.Networking.IHostName;
             Retval.m_IHostName.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_hostName_p);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_hostName_p);
       end return;
    end;
 
@@ -260,21 +294,25 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.HostName");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.HostName");
       m_Factory        : access WinRt.Windows.Networking.IHostNameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
-      HStr_value1 : WinRt.HString := To_HString (value1);
-      HStr_value2 : WinRt.HString := To_HString (value2);
+      HStr_value1 : constant WinRt.HString := To_HString (value1);
+      HStr_value2 : constant WinRt.HString := To_HString (value2);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IHostNameStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Compare (HStr_value1, HStr_value2, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_value1);
-      Hr := WindowsDeleteString (HStr_value2);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_value1);
+      tmp := WindowsDeleteString (HStr_value2);
       return m_ComRetVal;
    end;
 
@@ -287,11 +325,15 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.Windows.Networking.Connectivity.IPInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.IIPInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.IPInformation do
          Hr := this.m_IHostName.all.get_IPInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIPInformation := new Windows.Networking.Connectivity.IIPInformation;
          Retval.m_IIPInformation.all := m_ComRetVal;
       end return;
@@ -303,13 +345,17 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHostName.all.get_RawName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -319,13 +365,17 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHostName.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -335,13 +385,17 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHostName.all.get_CanonicalName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -351,10 +405,14 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.Windows.Networking.HostNameType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.HostNameType;
    begin
       Hr := this.m_IHostName.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -365,10 +423,14 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHostName.all.IsEqual (hostName_p.m_IHostName.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -378,17 +440,21 @@ package body WinRt.Windows.Networking is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.IHostName_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHostName.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

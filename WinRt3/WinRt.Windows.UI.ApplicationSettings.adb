@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out AccountsSettingsPane) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccountsSettingsPane, IAccountsSettingsPane_Ptr);
    begin
       if this.m_IAccountsSettingsPane /= null then
          if this.m_IAccountsSettingsPane.all /= null then
-            RefCount := this.m_IAccountsSettingsPane.all.Release;
+            temp := this.m_IAccountsSettingsPane.all.Release;
             Free (this.m_IAccountsSettingsPane);
          end if;
       end if;
@@ -65,9 +65,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
       user : Windows.System.User'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -75,7 +76,6 @@ package body WinRt.Windows.UI.ApplicationSettings is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -91,7 +91,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ShowManageAccountsForUserAsync (user.m_IUser.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -99,14 +99,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ShowAddAccountForUserAsync
@@ -114,9 +114,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
       user : Windows.System.User'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -124,7 +125,6 @@ package body WinRt.Windows.UI.ApplicationSettings is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -140,7 +140,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ShowAddAccountForUserAsync (user.m_IUser.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -148,55 +148,64 @@ package body WinRt.Windows.UI.ApplicationSettings is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetForCurrentView
    return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.IAccountsSettingsPane;
    begin
       return RetVal : WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPane do
          Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAccountsSettingsPane := new Windows.UI.ApplicationSettings.IAccountsSettingsPane;
             Retval.m_IAccountsSettingsPane.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    procedure Show is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Show;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ShowManageAccountsAsync is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -204,7 +213,6 @@ package body WinRt.Windows.UI.ApplicationSettings is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -220,7 +228,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ShowManageAccountsAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -228,21 +236,22 @@ package body WinRt.Windows.UI.ApplicationSettings is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ShowAddAccountAsync is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.AccountsSettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -250,7 +259,6 @@ package body WinRt.Windows.UI.ApplicationSettings is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -266,7 +274,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       Hr := RoGetActivationFactory (m_hString, IID_IAccountsSettingsPaneStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ShowAddAccountAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -274,14 +282,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -294,10 +302,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAccountsSettingsPane.all.add_AccountCommandsRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -307,9 +319,13 @@ package body WinRt.Windows.UI.ApplicationSettings is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAccountsSettingsPane.all.remove_AccountCommandsRequested (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -321,12 +337,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out AccountsSettingsPaneCommandsRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccountsSettingsPaneCommandsRequestedEventArgs, IAccountsSettingsPaneCommandsRequestedEventArgs_Ptr);
    begin
       if this.m_IAccountsSettingsPaneCommandsRequestedEventArgs /= null then
          if this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all /= null then
-            RefCount := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.Release;
+            temp := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.Release;
             Free (this.m_IAccountsSettingsPaneCommandsRequestedEventArgs);
          end if;
       end if;
@@ -341,13 +357,17 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return IVector_IWebAccountProviderCommand.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IWebAccountProviderCommand.Kind;
    begin
       Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.get_WebAccountProviderCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IWebAccountProviderCommand (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -357,13 +377,17 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return IVector_IWebAccountCommand.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IWebAccountCommand.Kind;
    begin
       Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.get_WebAccountCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IWebAccountCommand (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -373,13 +397,17 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return IVector_ICredentialCommand.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ICredentialCommand.Kind;
    begin
       Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.get_CredentialCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ICredentialCommand (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -389,10 +417,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.get_Commands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -402,13 +434,17 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.get_HeaderText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -418,11 +454,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.put_HeaderText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function GetDeferral
@@ -431,11 +471,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPaneEventDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.IAccountsSettingsPaneEventDeferral;
    begin
       return RetVal : WinRt.Windows.UI.ApplicationSettings.AccountsSettingsPaneEventDeferral do
          Hr := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAccountsSettingsPaneEventDeferral := new Windows.UI.ApplicationSettings.IAccountsSettingsPaneEventDeferral;
          Retval.m_IAccountsSettingsPaneEventDeferral.all := m_ComRetVal;
       end return;
@@ -447,15 +491,19 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneCommandsRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneCommandsRequestedEventArgs_Interface, WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneCommandsRequestedEventArgs2, WinRt.Windows.UI.ApplicationSettings.IID_IAccountsSettingsPaneCommandsRequestedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -470,12 +518,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out AccountsSettingsPaneEventDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccountsSettingsPaneEventDeferral, IAccountsSettingsPaneEventDeferral_Ptr);
    begin
       if this.m_IAccountsSettingsPaneEventDeferral /= null then
          if this.m_IAccountsSettingsPaneEventDeferral.all /= null then
-            RefCount := this.m_IAccountsSettingsPaneEventDeferral.all.Release;
+            temp := this.m_IAccountsSettingsPaneEventDeferral.all.Release;
             Free (this.m_IAccountsSettingsPaneEventDeferral);
          end if;
       end if;
@@ -489,9 +537,13 @@ package body WinRt.Windows.UI.ApplicationSettings is
       this : in out AccountsSettingsPaneEventDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAccountsSettingsPaneEventDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -503,12 +555,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out CredentialCommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICredentialCommand, ICredentialCommand_Ptr);
    begin
       if this.m_ICredentialCommand /= null then
          if this.m_ICredentialCommand.all /= null then
-            RefCount := this.m_ICredentialCommand.all.Release;
+            temp := this.m_ICredentialCommand.all.Release;
             Free (this.m_ICredentialCommand);
          end if;
       end if;
@@ -523,9 +575,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return CredentialCommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.CredentialCommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.CredentialCommand");
       m_Factory    : access ICredentialCommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.ApplicationSettings.ICredentialCommand;
    begin
       return RetVal : CredentialCommand do
@@ -534,9 +587,9 @@ package body WinRt.Windows.UI.ApplicationSettings is
             Hr := m_Factory.CreateCredentialCommand (passwordCredential.m_IPasswordCredential.all, m_ComRetVal'Access);
             Retval.m_ICredentialCommand := new Windows.UI.ApplicationSettings.ICredentialCommand;
             Retval.m_ICredentialCommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -547,9 +600,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return CredentialCommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.CredentialCommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.CredentialCommand");
       m_Factory    : access ICredentialCommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.ApplicationSettings.ICredentialCommand;
    begin
       return RetVal : CredentialCommand do
@@ -558,9 +612,9 @@ package body WinRt.Windows.UI.ApplicationSettings is
             Hr := m_Factory.CreateCredentialCommandWithHandler (passwordCredential.m_IPasswordCredential.all, deleted, m_ComRetVal'Access);
             Retval.m_ICredentialCommand := new Windows.UI.ApplicationSettings.ICredentialCommand;
             Retval.m_ICredentialCommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -573,11 +627,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_ICredentialCommand.all.get_PasswordCredential (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
@@ -589,10 +647,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler;
    begin
       Hr := this.m_ICredentialCommand.all.get_CredentialDeleted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -605,7 +667,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       command : Windows.UI.ApplicationSettings.ICredentialCommand
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (command);
       return Hr;
@@ -620,13 +682,13 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out SettingsCommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.UI.Popups.IUICommand;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.UI.Popups.IUICommand, WinRt.Windows.UI.Popups.IUICommand_Ptr);
    begin
       if this.m_IUICommand /= null then
          if this.m_IUICommand.all /= null then
-            RefCount := this.m_IUICommand.all.Release;
+            temp := this.m_IUICommand.all.Release;
             Free (this.m_IUICommand);
          end if;
       end if;
@@ -643,11 +705,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return SettingsCommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsCommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsCommand");
       m_Factory    : access ISettingsCommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : SettingsCommand do
          Hr := RoGetActivationFactory (m_hString, IID_ISettingsCommandFactory'Access , m_Factory'Address);
@@ -655,10 +718,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
             Hr := m_Factory.CreateSettingsCommand (settingsCommandId, HStr_label, handler, m_ComRetVal'Access);
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -668,20 +731,24 @@ package body WinRt.Windows.UI.ApplicationSettings is
    function get_AccountsCommand
    return WinRt.Windows.UI.ApplicationSettings.SettingsCommand is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsCommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsCommand");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.ISettingsCommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.IUICommand;
    begin
       return RetVal : WinRt.Windows.UI.ApplicationSettings.SettingsCommand do
          Hr := RoGetActivationFactory (m_hString, IID_ISettingsCommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AccountsCommand (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -694,13 +761,17 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUICommand.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -710,11 +781,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUICommand.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Invoked
@@ -723,10 +798,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.Popups.UICommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.UICommandInvokedHandler;
    begin
       Hr := this.m_IUICommand.all.get_Invoked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -736,9 +815,13 @@ package body WinRt.Windows.UI.ApplicationSettings is
       value : Windows.UI.Popups.UICommandInvokedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUICommand.all.put_Invoked (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -747,10 +830,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IUICommand.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -760,9 +847,13 @@ package body WinRt.Windows.UI.ApplicationSettings is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUICommand.all.put_Id (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -774,12 +865,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out SettingsPane) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISettingsPane, ISettingsPane_Ptr);
    begin
       if this.m_ISettingsPane /= null then
          if this.m_ISettingsPane.all /= null then
-            RefCount := this.m_ISettingsPane.all.Release;
+            temp := this.m_ISettingsPane.all.Release;
             Free (this.m_ISettingsPane);
          end if;
       end if;
@@ -791,51 +882,63 @@ package body WinRt.Windows.UI.ApplicationSettings is
    function GetForCurrentView
    return WinRt.Windows.UI.ApplicationSettings.SettingsPane is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.ISettingsPaneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.ISettingsPane;
    begin
       return RetVal : WinRt.Windows.UI.ApplicationSettings.SettingsPane do
          Hr := RoGetActivationFactory (m_hString, IID_ISettingsPaneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISettingsPane := new Windows.UI.ApplicationSettings.ISettingsPane;
             Retval.m_ISettingsPane.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    procedure Show_SettingsPane is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.ISettingsPaneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISettingsPaneStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Show;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_Edge
    return WinRt.Windows.UI.ApplicationSettings.SettingsEdgeLocation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsPane");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsPane");
       m_Factory        : access WinRt.Windows.UI.ApplicationSettings.ISettingsPaneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.SettingsEdgeLocation;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISettingsPaneStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_Edge (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -849,10 +952,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISettingsPane.all.add_CommandsRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -862,9 +969,13 @@ package body WinRt.Windows.UI.ApplicationSettings is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISettingsPane.all.remove_CommandsRequested (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -876,12 +987,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out SettingsPaneCommandsRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISettingsPaneCommandsRequest, ISettingsPaneCommandsRequest_Ptr);
    begin
       if this.m_ISettingsPaneCommandsRequest /= null then
          if this.m_ISettingsPaneCommandsRequest.all /= null then
-            RefCount := this.m_ISettingsPaneCommandsRequest.all.Release;
+            temp := this.m_ISettingsPaneCommandsRequest.all.Release;
             Free (this.m_ISettingsPaneCommandsRequest);
          end if;
       end if;
@@ -896,10 +1007,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ISettingsPaneCommandsRequest.all.get_ApplicationCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -912,12 +1027,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out SettingsPaneCommandsRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISettingsPaneCommandsRequestedEventArgs, ISettingsPaneCommandsRequestedEventArgs_Ptr);
    begin
       if this.m_ISettingsPaneCommandsRequestedEventArgs /= null then
          if this.m_ISettingsPaneCommandsRequestedEventArgs.all /= null then
-            RefCount := this.m_ISettingsPaneCommandsRequestedEventArgs.all.Release;
+            temp := this.m_ISettingsPaneCommandsRequestedEventArgs.all.Release;
             Free (this.m_ISettingsPaneCommandsRequestedEventArgs);
          end if;
       end if;
@@ -932,11 +1047,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.SettingsPaneCommandsRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.ISettingsPaneCommandsRequest;
    begin
       return RetVal : WinRt.Windows.UI.ApplicationSettings.SettingsPaneCommandsRequest do
          Hr := this.m_ISettingsPaneCommandsRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISettingsPaneCommandsRequest := new Windows.UI.ApplicationSettings.ISettingsPaneCommandsRequest;
          Retval.m_ISettingsPaneCommandsRequest.all := m_ComRetVal;
       end return;
@@ -951,12 +1070,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out WebAccountCommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebAccountCommand, IWebAccountCommand_Ptr);
    begin
       if this.m_IWebAccountCommand /= null then
          if this.m_IWebAccountCommand.all /= null then
-            RefCount := this.m_IWebAccountCommand.all.Release;
+            temp := this.m_IWebAccountCommand.all.Release;
             Free (this.m_IWebAccountCommand);
          end if;
       end if;
@@ -973,9 +1092,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WebAccountCommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.WebAccountCommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.WebAccountCommand");
       m_Factory    : access IWebAccountCommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.ApplicationSettings.IWebAccountCommand;
    begin
       return RetVal : WebAccountCommand do
@@ -984,9 +1104,9 @@ package body WinRt.Windows.UI.ApplicationSettings is
             Hr := m_Factory.CreateWebAccountCommand (webAccount.m_IWebAccount.all, invoked, actions, m_ComRetVal'Access);
             Retval.m_IWebAccountCommand := new Windows.UI.ApplicationSettings.IWebAccountCommand;
             Retval.m_IWebAccountCommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -999,11 +1119,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.Security.Credentials.WebAccount'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IWebAccount;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.WebAccount do
          Hr := this.m_IWebAccountCommand.all.get_WebAccount (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebAccount := new Windows.Security.Credentials.IWebAccount;
          Retval.m_IWebAccount.all := m_ComRetVal;
       end return;
@@ -1015,10 +1139,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler;
    begin
       Hr := this.m_IWebAccountCommand.all.get_Invoked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1028,10 +1156,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.SupportedWebAccountActions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.SupportedWebAccountActions;
    begin
       Hr := this.m_IWebAccountCommand.all.get_Actions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1045,7 +1177,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       args : Windows.UI.ApplicationSettings.IWebAccountInvokedArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (command, args);
       return Hr;
@@ -1060,12 +1192,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out WebAccountInvokedArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebAccountInvokedArgs, IWebAccountInvokedArgs_Ptr);
    begin
       if this.m_IWebAccountInvokedArgs /= null then
          if this.m_IWebAccountInvokedArgs.all /= null then
-            RefCount := this.m_IWebAccountInvokedArgs.all.Release;
+            temp := this.m_IWebAccountInvokedArgs.all.Release;
             Free (this.m_IWebAccountInvokedArgs);
          end if;
       end if;
@@ -1080,10 +1212,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.WebAccountAction is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.WebAccountAction;
    begin
       Hr := this.m_IWebAccountInvokedArgs.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1096,12 +1232,12 @@ package body WinRt.Windows.UI.ApplicationSettings is
    end;
 
    procedure Finalize (this : in out WebAccountProviderCommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebAccountProviderCommand, IWebAccountProviderCommand_Ptr);
    begin
       if this.m_IWebAccountProviderCommand /= null then
          if this.m_IWebAccountProviderCommand.all /= null then
-            RefCount := this.m_IWebAccountProviderCommand.all.Release;
+            temp := this.m_IWebAccountProviderCommand.all.Release;
             Free (this.m_IWebAccountProviderCommand);
          end if;
       end if;
@@ -1117,9 +1253,10 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WebAccountProviderCommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.WebAccountProviderCommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ApplicationSettings.WebAccountProviderCommand");
       m_Factory    : access IWebAccountProviderCommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.ApplicationSettings.IWebAccountProviderCommand;
    begin
       return RetVal : WebAccountProviderCommand do
@@ -1128,9 +1265,9 @@ package body WinRt.Windows.UI.ApplicationSettings is
             Hr := m_Factory.CreateWebAccountProviderCommand (webAccountProvider.m_IWebAccountProvider.all, invoked, m_ComRetVal'Access);
             Retval.m_IWebAccountProviderCommand := new Windows.UI.ApplicationSettings.IWebAccountProviderCommand;
             Retval.m_IWebAccountProviderCommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1143,11 +1280,15 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.Security.Credentials.WebAccountProvider'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IWebAccountProvider;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
          Hr := this.m_IWebAccountProviderCommand.all.get_WebAccountProvider (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
          Retval.m_IWebAccountProvider.all := m_ComRetVal;
       end return;
@@ -1159,10 +1300,14 @@ package body WinRt.Windows.UI.ApplicationSettings is
    )
    return WinRt.Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler;
    begin
       Hr := this.m_IWebAccountProviderCommand.all.get_Invoked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1175,7 +1320,7 @@ package body WinRt.Windows.UI.ApplicationSettings is
       command : Windows.UI.ApplicationSettings.IWebAccountProviderCommand
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (command);
       return Hr;

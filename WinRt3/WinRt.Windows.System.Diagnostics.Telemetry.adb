@@ -42,22 +42,26 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       )
       return WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient");
          m_Factory        : access WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryClientStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
-         HStr_id : WinRt.HString := To_HString (id);
+         HStr_id : constant WinRt.HString := To_HString (id);
       begin
          return RetVal : WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult do
             Hr := RoGetActivationFactory (m_hString, IID_IPlatformTelemetryClientStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.Register (HStr_id, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IPlatformTelemetryRegistrationResult := new Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
                Retval.m_IPlatformTelemetryRegistrationResult.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_id);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_id);
          end return;
       end;
 
@@ -68,22 +72,26 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       )
       return WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient");
          m_Factory        : access WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryClientStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
-         HStr_id : WinRt.HString := To_HString (id);
+         HStr_id : constant WinRt.HString := To_HString (id);
       begin
          return RetVal : WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult do
             Hr := RoGetActivationFactory (m_hString, IID_IPlatformTelemetryClientStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.Register (HStr_id, settings.m_IPlatformTelemetryRegistrationSettings.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IPlatformTelemetryRegistrationResult := new Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
                Retval.m_IPlatformTelemetryRegistrationResult.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_id);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_id);
          end return;
       end;
 
@@ -98,12 +106,12 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    end;
 
    procedure Finalize (this : in out PlatformTelemetryRegistrationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlatformTelemetryRegistrationResult, IPlatformTelemetryRegistrationResult_Ptr);
    begin
       if this.m_IPlatformTelemetryRegistrationResult /= null then
          if this.m_IPlatformTelemetryRegistrationResult.all /= null then
-            RefCount := this.m_IPlatformTelemetryRegistrationResult.all.Release;
+            temp := this.m_IPlatformTelemetryRegistrationResult.all.Release;
             Free (this.m_IPlatformTelemetryRegistrationResult);
          end if;
       end if;
@@ -118,10 +126,14 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    )
    return WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationStatus;
    begin
       Hr := this.m_IPlatformTelemetryRegistrationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -134,12 +146,12 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    end;
 
    procedure Finalize (this : in out PlatformTelemetryRegistrationSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPlatformTelemetryRegistrationSettings, IPlatformTelemetryRegistrationSettings_Ptr);
    begin
       if this.m_IPlatformTelemetryRegistrationSettings /= null then
          if this.m_IPlatformTelemetryRegistrationSettings.all /= null then
-            RefCount := this.m_IPlatformTelemetryRegistrationSettings.all.Release;
+            temp := this.m_IPlatformTelemetryRegistrationSettings.all.Release;
             Free (this.m_IPlatformTelemetryRegistrationSettings);
          end if;
       end if;
@@ -150,7 +162,8 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
 
    function Constructor return PlatformTelemetryRegistrationSettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings");
       m_ComRetVal  : aliased Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
    begin
       return RetVal : PlatformTelemetryRegistrationSettings do
@@ -159,7 +172,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
             Retval.m_IPlatformTelemetryRegistrationSettings := new Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
             Retval.m_IPlatformTelemetryRegistrationSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -172,10 +185,14 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPlatformTelemetryRegistrationSettings.all.get_StorageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -185,9 +202,13 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlatformTelemetryRegistrationSettings.all.put_StorageSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UploadQuotaSize
@@ -196,10 +217,14 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPlatformTelemetryRegistrationSettings.all.get_UploadQuotaSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -209,9 +234,13 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPlatformTelemetryRegistrationSettings.all.put_UploadQuotaSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.System.Diagnostics.Telemetry;

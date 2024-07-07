@@ -43,12 +43,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    end;
 
    procedure Finalize (this : in out ContactPickerUI) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactPickerUI, IContactPickerUI_Ptr);
    begin
       if this.m_IContactPickerUI /= null then
          if this.m_IContactPickerUI.all /= null then
-            RefCount := this.m_IContactPickerUI.all.Release;
+            temp := this.m_IContactPickerUI.all.Release;
             Free (this.m_IContactPickerUI);
          end if;
       end if;
@@ -65,12 +65,16 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.Provider.AddContactResult;
-      HStr_id : WinRt.HString := To_HString (id);
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_IContactPickerUI.all.AddContact (HStr_id, contact.m_IContact.all, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_id);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_id);
       return m_ComRetVal;
    end;
 
@@ -80,11 +84,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       id : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_IContactPickerUI.all.RemoveContact (HStr_id);
-      Hr := WindowsDeleteString (HStr_id);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_id);
    end;
 
    function ContainsContact
@@ -94,12 +102,16 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_id : WinRt.HString := To_HString (id);
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_IContactPickerUI.all.ContainsContact (HStr_id, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_id);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_id);
       return m_ComRetVal;
    end;
 
@@ -109,13 +121,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IContactPickerUI.all.get_DesiredFields (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -125,10 +141,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.ContactSelectionMode;
    begin
       Hr := this.m_IContactPickerUI.all.get_SelectionMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -139,10 +159,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContactPickerUI.all.add_ContactRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -152,9 +176,13 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContactPickerUI.all.remove_ContactRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function AddContact
@@ -164,14 +192,18 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.Provider.AddContactResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI_Interface, WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2, WinRt.Windows.ApplicationModel.Contacts.Provider.IID_IContactPickerUI2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerUI.all);
       Hr := m_Interface.AddContact (contact.m_IContact.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -181,17 +213,21 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return IVector_ContactFieldType.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ContactFieldType.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI_Interface, WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2, WinRt.Windows.ApplicationModel.Contacts.Provider.IID_IContactPickerUI2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerUI.all);
       Hr := m_Interface.get_DesiredFieldsWithContactFieldType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ContactFieldType (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -204,12 +240,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    end;
 
    procedure Finalize (this : in out ContactRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactRemovedEventArgs, IContactRemovedEventArgs_Ptr);
    begin
       if this.m_IContactRemovedEventArgs /= null then
          if this.m_IContactRemovedEventArgs.all /= null then
-            RefCount := this.m_IContactRemovedEventArgs.all.Release;
+            temp := this.m_IContactRemovedEventArgs.all.Release;
             Free (this.m_IContactRemovedEventArgs);
          end if;
       end if;
@@ -224,13 +260,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactRemovedEventArgs.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

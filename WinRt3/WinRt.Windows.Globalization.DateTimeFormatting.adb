@@ -43,12 +43,12 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    end;
 
    procedure Finalize (this : in out DateTimeFormatter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDateTimeFormatter, IDateTimeFormatter_Ptr);
    begin
       if this.m_IDateTimeFormatter /= null then
          if this.m_IDateTimeFormatter.all /= null then
-            RefCount := this.m_IDateTimeFormatter.all.Release;
+            temp := this.m_IDateTimeFormatter.all.Release;
             Free (this.m_IDateTimeFormatter);
          end if;
       end if;
@@ -63,11 +63,12 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
-      HStr_formatTemplate : WinRt.HString := To_HString (formatTemplate);
+      HStr_formatTemplate : constant WinRt.HString := To_HString (formatTemplate);
    begin
       return RetVal : DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterFactory'Access , m_Factory'Address);
@@ -75,10 +76,10 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatter (HStr_formatTemplate, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_formatTemplate);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_formatTemplate);
       end return;
    end;
 
@@ -89,11 +90,12 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
-      HStr_formatTemplate : WinRt.HString := To_HString (formatTemplate);
+      HStr_formatTemplate : constant WinRt.HString := To_HString (formatTemplate);
    begin
       return RetVal : DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterFactory'Access , m_Factory'Address);
@@ -101,10 +103,10 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatterLanguages (HStr_formatTemplate, languages, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_formatTemplate);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_formatTemplate);
       end return;
    end;
 
@@ -118,14 +120,15 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
-      HStr_formatTemplate : WinRt.HString := To_HString (formatTemplate);
-      HStr_geographicRegion : WinRt.HString := To_HString (geographicRegion);
-      HStr_calendar : WinRt.HString := To_HString (calendar);
-      HStr_clock : WinRt.HString := To_HString (clock);
+      HStr_formatTemplate : constant WinRt.HString := To_HString (formatTemplate);
+      HStr_geographicRegion : constant WinRt.HString := To_HString (geographicRegion);
+      HStr_calendar : constant WinRt.HString := To_HString (calendar);
+      HStr_clock : constant WinRt.HString := To_HString (clock);
    begin
       return RetVal : DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterFactory'Access , m_Factory'Address);
@@ -133,13 +136,13 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatterContext (HStr_formatTemplate, languages, HStr_geographicRegion, HStr_calendar, HStr_clock, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_formatTemplate);
-         Hr := WindowsDeleteString (HStr_geographicRegion);
-         Hr := WindowsDeleteString (HStr_calendar);
-         Hr := WindowsDeleteString (HStr_clock);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_formatTemplate);
+         tmp := WindowsDeleteString (HStr_geographicRegion);
+         tmp := WindowsDeleteString (HStr_calendar);
+         tmp := WindowsDeleteString (HStr_clock);
       end return;
    end;
 
@@ -152,9 +155,10 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : DateTimeFormatter do
@@ -163,9 +167,9 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatterDate (yearFormat, monthFormat, dayFormat, dayOfWeekFormat, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -177,9 +181,10 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : DateTimeFormatter do
@@ -188,9 +193,9 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatterTime (hourFormat, minuteFormat, secondFormat, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -207,9 +212,10 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : DateTimeFormatter do
@@ -218,9 +224,9 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatterDateTimeLanguages (yearFormat, monthFormat, dayFormat, dayOfWeekFormat, hourFormat, minuteFormat, secondFormat, languages, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -240,13 +246,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return DateTimeFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
-      HStr_geographicRegion : WinRt.HString := To_HString (geographicRegion);
-      HStr_calendar : WinRt.HString := To_HString (calendar);
-      HStr_clock : WinRt.HString := To_HString (clock);
+      HStr_geographicRegion : constant WinRt.HString := To_HString (geographicRegion);
+      HStr_calendar : constant WinRt.HString := To_HString (calendar);
+      HStr_clock : constant WinRt.HString := To_HString (clock);
    begin
       return RetVal : DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterFactory'Access , m_Factory'Address);
@@ -254,12 +261,12 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
             Hr := m_Factory.CreateDateTimeFormatterDateTimeContext (yearFormat, monthFormat, dayFormat, dayOfWeekFormat, hourFormat, minuteFormat, secondFormat, languages, HStr_geographicRegion, HStr_calendar, HStr_clock, m_ComRetVal'Access);
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_geographicRegion);
-         Hr := WindowsDeleteString (HStr_calendar);
-         Hr := WindowsDeleteString (HStr_clock);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_geographicRegion);
+         tmp := WindowsDeleteString (HStr_calendar);
+         tmp := WindowsDeleteString (HStr_clock);
       end return;
    end;
 
@@ -269,80 +276,96 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    function get_LongDate
    return WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory        : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LongDate (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LongTime
    return WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory        : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LongTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ShortDate
    return WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory        : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShortDate (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ShortTime
    return WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory        : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
    begin
       return RetVal : WinRt.Windows.Globalization.DateTimeFormatting.DateTimeFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDateTimeFormatterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShortTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDateTimeFormatter := new Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
             Retval.m_IDateTimeFormatter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -355,13 +378,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_Languages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -371,13 +398,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_GeographicRegion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -387,13 +418,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_Calendar (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -403,13 +438,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_Clock (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -419,13 +458,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_NumeralSystem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -435,11 +478,15 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDateTimeFormatter.all.put_NumeralSystem (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Patterns
@@ -448,13 +495,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_Patterns (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -464,13 +515,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_Template (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -481,13 +536,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.Format (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -497,10 +556,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.YearFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.YearFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeYear (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -510,10 +573,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.MonthFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeMonth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -523,10 +590,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeDayOfWeek (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -536,10 +607,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.DayFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.DayFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeDay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -549,10 +624,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.HourFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.HourFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeHour (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -562,10 +641,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.MinuteFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeMinute (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -575,10 +658,14 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DateTimeFormatting.SecondFormat;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_IncludeSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -588,13 +675,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_ResolvedLanguage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -604,13 +695,17 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDateTimeFormatter.all.get_ResolvedGeographicRegion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -622,19 +717,23 @@ package body WinRt.Windows.Globalization.DateTimeFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_timeZoneId : WinRt.HString := To_HString (timeZoneId);
+      HStr_timeZoneId : constant WinRt.HString := To_HString (timeZoneId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter_Interface, WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter2, WinRt.Windows.Globalization.DateTimeFormatting.IID_IDateTimeFormatter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDateTimeFormatter.all);
       Hr := m_Interface.Format (datetime, HStr_timeZoneId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_timeZoneId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_timeZoneId);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

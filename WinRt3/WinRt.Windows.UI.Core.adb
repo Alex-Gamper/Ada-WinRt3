@@ -52,12 +52,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out AcceleratorKeyEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAcceleratorKeyEventArgs, IAcceleratorKeyEventArgs_Ptr);
    begin
       if this.m_IAcceleratorKeyEventArgs /= null then
          if this.m_IAcceleratorKeyEventArgs.all /= null then
-            RefCount := this.m_IAcceleratorKeyEventArgs.all.Release;
+            temp := this.m_IAcceleratorKeyEventArgs.all.Release;
             Free (this.m_IAcceleratorKeyEventArgs);
          end if;
       end if;
@@ -72,10 +72,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreAcceleratorKeyEventType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreAcceleratorKeyEventType;
    begin
       Hr := this.m_IAcceleratorKeyEventArgs.all.get_EventType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -85,10 +89,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
    begin
       Hr := this.m_IAcceleratorKeyEventArgs.all.get_VirtualKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -98,10 +106,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CorePhysicalKeyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CorePhysicalKeyStatus;
    begin
       Hr := this.m_IAcceleratorKeyEventArgs.all.get_KeyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -111,14 +123,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IAcceleratorKeyEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAcceleratorKeyEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -128,13 +144,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IAcceleratorKeyEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAcceleratorKeyEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeviceId
@@ -143,17 +163,21 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.IAcceleratorKeyEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IAcceleratorKeyEventArgs_Interface, WinRt.Windows.UI.Core.IAcceleratorKeyEventArgs2, WinRt.Windows.UI.Core.IID_IAcceleratorKeyEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAcceleratorKeyEventArgs.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -166,12 +190,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out AutomationProviderRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAutomationProviderRequestedEventArgs, IAutomationProviderRequestedEventArgs_Ptr);
    begin
       if this.m_IAutomationProviderRequestedEventArgs /= null then
          if this.m_IAutomationProviderRequestedEventArgs.all /= null then
-            RefCount := this.m_IAutomationProviderRequestedEventArgs.all.Release;
+            temp := this.m_IAutomationProviderRequestedEventArgs.all.Release;
             Free (this.m_IAutomationProviderRequestedEventArgs);
          end if;
       end if;
@@ -186,10 +210,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IAutomationProviderRequestedEventArgs.all.get_AutomationProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -199,9 +227,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAutomationProviderRequestedEventArgs.all.put_AutomationProvider (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Handled
@@ -210,14 +242,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IAutomationProviderRequestedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationProviderRequestedEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -227,13 +263,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IAutomationProviderRequestedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationProviderRequestedEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -245,12 +285,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out BackRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackRequestedEventArgs, IBackRequestedEventArgs_Ptr);
    begin
       if this.m_IBackRequestedEventArgs /= null then
          if this.m_IBackRequestedEventArgs.all /= null then
-            RefCount := this.m_IBackRequestedEventArgs.all.Release;
+            temp := this.m_IBackRequestedEventArgs.all.Release;
             Free (this.m_IBackRequestedEventArgs);
          end if;
       end if;
@@ -265,10 +305,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBackRequestedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -278,9 +322,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackRequestedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -292,12 +340,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CharacterReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICharacterReceivedEventArgs, ICharacterReceivedEventArgs_Ptr);
    begin
       if this.m_ICharacterReceivedEventArgs /= null then
          if this.m_ICharacterReceivedEventArgs.all /= null then
-            RefCount := this.m_ICharacterReceivedEventArgs.all.Release;
+            temp := this.m_ICharacterReceivedEventArgs.all.Release;
             Free (this.m_ICharacterReceivedEventArgs);
          end if;
       end if;
@@ -312,10 +360,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICharacterReceivedEventArgs.all.get_KeyCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -325,10 +377,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CorePhysicalKeyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CorePhysicalKeyStatus;
    begin
       Hr := this.m_ICharacterReceivedEventArgs.all.get_KeyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -338,14 +394,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICharacterReceivedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICharacterReceivedEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -355,13 +415,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICharacterReceivedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICharacterReceivedEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -373,12 +437,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out ClosestInteractiveBoundsRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClosestInteractiveBoundsRequestedEventArgs, IClosestInteractiveBoundsRequestedEventArgs_Ptr);
    begin
       if this.m_IClosestInteractiveBoundsRequestedEventArgs /= null then
          if this.m_IClosestInteractiveBoundsRequestedEventArgs.all /= null then
-            RefCount := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.Release;
+            temp := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.Release;
             Free (this.m_IClosestInteractiveBoundsRequestedEventArgs);
          end if;
       end if;
@@ -393,10 +457,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.get_PointerPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -406,10 +474,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.get_SearchBounds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -419,10 +491,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.get_ClosestInteractiveBounds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -432,9 +508,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.put_ClosestInteractiveBounds (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -446,12 +526,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreAcceleratorKeys) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreAcceleratorKeys, ICoreAcceleratorKeys_Ptr);
    begin
       if this.m_ICoreAcceleratorKeys /= null then
          if this.m_ICoreAcceleratorKeys.all /= null then
-            RefCount := this.m_ICoreAcceleratorKeys.all.Release;
+            temp := this.m_ICoreAcceleratorKeys.all.Release;
             Free (this.m_ICoreAcceleratorKeys);
          end if;
       end if;
@@ -467,10 +547,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreAcceleratorKeys.all.add_AcceleratorKeyActivated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -480,9 +564,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreAcceleratorKeys.all.remove_AcceleratorKeyActivated (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -494,12 +582,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreComponentInputSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputSourceBase, ICoreInputSourceBase_Ptr);
    begin
       if this.m_ICoreInputSourceBase /= null then
          if this.m_ICoreInputSourceBase.all /= null then
-            RefCount := this.m_ICoreInputSourceBase.all.Release;
+            temp := this.m_ICoreInputSourceBase.all.Release;
             Free (this.m_ICoreInputSourceBase);
          end if;
       end if;
@@ -514,11 +602,15 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreDispatcher'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreDispatcher;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreDispatcher do
          Hr := this.m_ICoreInputSourceBase.all.get_Dispatcher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreDispatcher := new Windows.UI.Core.ICoreDispatcher;
          Retval.m_ICoreDispatcher.all := m_ComRetVal;
       end return;
@@ -530,10 +622,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputSourceBase.all.get_IsInputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -543,9 +639,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputSourceBase.all.put_IsInputEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_InputEnabled
@@ -555,10 +655,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInputSourceBase.all.add_InputEnabled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -568,9 +672,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputSourceBase.all.remove_InputEnabled (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReleasePointerCapture
@@ -578,13 +686,17 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreComponentInputSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.ReleasePointerCapture;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPointerCapture
@@ -592,13 +704,17 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreComponentInputSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.SetPointerCapture;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HasCapture
@@ -607,14 +723,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.get_HasCapture (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -624,14 +744,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.get_PointerPosition (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -641,15 +765,19 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreCursor'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreCursor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreCursor do
          m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
          Hr := m_Interface.get_PointerCursor (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreCursor := new Windows.UI.Core.ICoreCursor;
          Retval.m_ICoreCursor.all := m_ComRetVal;
       end return;
@@ -661,13 +789,17 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.CoreCursor'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.put_PointerCursor (value.m_ICoreCursor.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerCaptureLost
@@ -677,14 +809,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerCaptureLost (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -694,13 +830,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerCaptureLost (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerEntered
@@ -710,14 +850,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerEntered (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -727,13 +871,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerEntered (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerExited
@@ -743,14 +891,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerExited (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -760,13 +912,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerExited (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerMoved
@@ -776,14 +932,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerMoved (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -793,13 +953,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerMoved (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerPressed
@@ -809,14 +973,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerPressed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -826,13 +994,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerPressed (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerReleased
@@ -842,14 +1014,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerReleased (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -859,13 +1035,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerReleased (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerWheelChanged
@@ -875,14 +1055,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerWheelChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -892,13 +1076,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerWheelChanged (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentKeyState
@@ -908,14 +1096,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreVirtualKeyStates is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreVirtualKeyStates;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.GetCurrentKeyState (virtualKey, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -926,14 +1118,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_CharacterReceived (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -943,13 +1139,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_CharacterReceived (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_KeyDown
@@ -959,14 +1159,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_KeyDown (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -976,13 +1180,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_KeyDown (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_KeyUp
@@ -992,14 +1200,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_KeyUp (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1009,13 +1221,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_KeyUp (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HasFocus
@@ -1024,14 +1240,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreComponentFocusable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreComponentFocusable, WinRt.Windows.UI.Core.IID_ICoreComponentFocusable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.get_HasFocus (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1042,14 +1262,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreComponentFocusable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreComponentFocusable, WinRt.Windows.UI.Core.IID_ICoreComponentFocusable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_GotFocus (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1059,13 +1283,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreComponentFocusable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreComponentFocusable, WinRt.Windows.UI.Core.IID_ICoreComponentFocusable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_GotFocus (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LostFocus
@@ -1075,14 +1303,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreComponentFocusable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreComponentFocusable, WinRt.Windows.UI.Core.IID_ICoreComponentFocusable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_LostFocus (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1092,13 +1324,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreComponentFocusable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreComponentFocusable, WinRt.Windows.UI.Core.IID_ICoreComponentFocusable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_LostFocus (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TouchHitTesting
@@ -1108,14 +1344,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreTouchHitTesting := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreTouchHitTesting, WinRt.Windows.UI.Core.IID_ICoreTouchHitTesting'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_TouchHitTesting (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1125,13 +1365,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreTouchHitTesting := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreTouchHitTesting, WinRt.Windows.UI.Core.IID_ICoreTouchHitTesting'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_TouchHitTesting (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ClosestInteractiveBoundsRequested
@@ -1141,14 +1385,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreClosestInteractiveBoundsRequested := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreClosestInteractiveBoundsRequested, WinRt.Windows.UI.Core.IID_ICoreClosestInteractiveBoundsRequested'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_ClosestInteractiveBoundsRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1158,13 +1406,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreClosestInteractiveBoundsRequested := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreClosestInteractiveBoundsRequested, WinRt.Windows.UI.Core.IID_ICoreClosestInteractiveBoundsRequested'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_ClosestInteractiveBoundsRequested (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentKeyEventDeviceId
@@ -1173,17 +1425,21 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreKeyboardInputSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICoreKeyboardInputSource2, WinRt.Windows.UI.Core.IID_ICoreKeyboardInputSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.GetCurrentKeyEventDeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1193,15 +1449,19 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.System.DispatcherQueue'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource2, WinRt.Windows.UI.Core.IID_ICorePointerInputSource2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
          Hr := m_Interface.get_DispatcherQueue (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
@@ -1216,12 +1476,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreCursor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreCursor, ICoreCursor_Ptr);
    begin
       if this.m_ICoreCursor /= null then
          if this.m_ICoreCursor.all /= null then
-            RefCount := this.m_ICoreCursor.all.Release;
+            temp := this.m_ICoreCursor.all.Release;
             Free (this.m_ICoreCursor);
          end if;
       end if;
@@ -1237,9 +1497,10 @@ package body WinRt.Windows.UI.Core is
    )
    return CoreCursor is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Core.CoreCursor");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreCursor");
       m_Factory    : access ICoreCursorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Core.ICoreCursor;
    begin
       return RetVal : CoreCursor do
@@ -1248,9 +1509,9 @@ package body WinRt.Windows.UI.Core is
             Hr := m_Factory.CreateCursor (type_x, id, m_ComRetVal'Access);
             Retval.m_ICoreCursor := new Windows.UI.Core.ICoreCursor;
             Retval.m_ICoreCursor.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1263,10 +1524,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICoreCursor.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1276,10 +1541,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreCursorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreCursorType;
    begin
       Hr := this.m_ICoreCursor.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1292,12 +1561,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreDispatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreDispatcher, ICoreDispatcher_Ptr);
    begin
       if this.m_ICoreDispatcher /= null then
          if this.m_ICoreDispatcher.all /= null then
-            RefCount := this.m_ICoreDispatcher.all.Release;
+            temp := this.m_ICoreDispatcher.all.Release;
             Free (this.m_ICoreDispatcher);
          end if;
       end if;
@@ -1312,10 +1581,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreDispatcher.all.get_HasThreadAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1325,9 +1598,13 @@ package body WinRt.Windows.UI.Core is
       options : Windows.UI.Core.CoreProcessEventsOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreDispatcher.all.ProcessEvents (options);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RunAsync
@@ -1337,7 +1614,8 @@ package body WinRt.Windows.UI.Core is
       agileCallback : Windows.UI.Core.DispatchedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1345,7 +1623,6 @@ package body WinRt.Windows.UI.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1366,9 +1643,9 @@ package body WinRt.Windows.UI.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1380,7 +1657,8 @@ package body WinRt.Windows.UI.Core is
       agileCallback : Windows.UI.Core.IdleDispatchedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1388,7 +1666,6 @@ package body WinRt.Windows.UI.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1409,9 +1686,9 @@ package body WinRt.Windows.UI.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1424,14 +1701,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreAcceleratorKeys := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreAcceleratorKeys, WinRt.Windows.UI.Core.IID_ICoreAcceleratorKeys'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.add_AcceleratorKeyActivated (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1441,13 +1722,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreAcceleratorKeys := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreAcceleratorKeys, WinRt.Windows.UI.Core.IID_ICoreAcceleratorKeys'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.remove_AcceleratorKeyActivated (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentPriority
@@ -1456,14 +1741,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreDispatcherPriority is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreDispatcherPriority;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority, WinRt.Windows.UI.Core.IID_ICoreDispatcherWithTaskPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.get_CurrentPriority (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1473,13 +1762,17 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.CoreDispatcherPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority, WinRt.Windows.UI.Core.IID_ICoreDispatcherWithTaskPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.put_CurrentPriority (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ShouldYield
@@ -1488,14 +1781,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority, WinRt.Windows.UI.Core.IID_ICoreDispatcherWithTaskPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.ShouldYield (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1506,14 +1803,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority, WinRt.Windows.UI.Core.IID_ICoreDispatcherWithTaskPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.ShouldYield (priority, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1522,13 +1823,17 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreDispatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreDispatcher_Interface, WinRt.Windows.UI.Core.ICoreDispatcherWithTaskPriority, WinRt.Windows.UI.Core.IID_ICoreDispatcherWithTaskPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.StopProcessEvents;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryRunAsync
@@ -1539,14 +1844,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcher2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1564,7 +1869,7 @@ package body WinRt.Windows.UI.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1577,10 +1882,10 @@ package body WinRt.Windows.UI.Core is
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.TryRunAsync (priority, agileCallback, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1590,9 +1895,9 @@ package body WinRt.Windows.UI.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1607,14 +1912,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreDispatcher2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1632,7 +1937,7 @@ package body WinRt.Windows.UI.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1645,10 +1950,10 @@ package body WinRt.Windows.UI.Core is
    begin
       m_Interface := QInterface (this.m_ICoreDispatcher.all);
       Hr := m_Interface.TryRunIdleAsync (agileCallback, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1658,9 +1963,9 @@ package body WinRt.Windows.UI.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1677,12 +1982,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreIndependentInputSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputSourceBase, ICoreInputSourceBase_Ptr);
    begin
       if this.m_ICoreInputSourceBase /= null then
          if this.m_ICoreInputSourceBase.all /= null then
-            RefCount := this.m_ICoreInputSourceBase.all.Release;
+            temp := this.m_ICoreInputSourceBase.all.Release;
             Free (this.m_ICoreInputSourceBase);
          end if;
       end if;
@@ -1697,11 +2002,15 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreDispatcher'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreDispatcher;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreDispatcher do
          Hr := this.m_ICoreInputSourceBase.all.get_Dispatcher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreDispatcher := new Windows.UI.Core.ICoreDispatcher;
          Retval.m_ICoreDispatcher.all := m_ComRetVal;
       end return;
@@ -1713,10 +2022,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputSourceBase.all.get_IsInputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1726,9 +2039,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputSourceBase.all.put_IsInputEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_InputEnabled
@@ -1738,10 +2055,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInputSourceBase.all.add_InputEnabled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1751,9 +2072,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputSourceBase.all.remove_InputEnabled (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReleasePointerCapture
@@ -1761,13 +2086,17 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreIndependentInputSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.ReleasePointerCapture;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPointerCapture
@@ -1775,13 +2104,17 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreIndependentInputSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.SetPointerCapture;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HasCapture
@@ -1790,14 +2123,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.get_HasCapture (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1807,14 +2144,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.get_PointerPosition (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1824,15 +2165,19 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreCursor'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreCursor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreCursor do
          m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
          Hr := m_Interface.get_PointerCursor (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreCursor := new Windows.UI.Core.ICoreCursor;
          Retval.m_ICoreCursor.all := m_ComRetVal;
       end return;
@@ -1844,13 +2189,17 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.CoreCursor'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.put_PointerCursor (value.m_ICoreCursor.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerCaptureLost
@@ -1860,14 +2209,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerCaptureLost (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1877,13 +2230,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerCaptureLost (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerEntered
@@ -1893,14 +2250,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerEntered (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1910,13 +2271,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerEntered (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerExited
@@ -1926,14 +2291,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerExited (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1943,13 +2312,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerExited (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerMoved
@@ -1959,14 +2332,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerMoved (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1976,13 +2353,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerMoved (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerPressed
@@ -1992,14 +2373,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerPressed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2009,13 +2394,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerPressed (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerReleased
@@ -2025,14 +2414,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerReleased (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2042,13 +2435,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerReleased (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerWheelChanged
@@ -2058,14 +2455,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.add_PointerWheelChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2075,13 +2476,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource, WinRt.Windows.UI.Core.IID_ICorePointerInputSource'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
       Hr := m_Interface.remove_PointerWheelChanged (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DispatcherQueue
@@ -2090,15 +2495,19 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.System.DispatcherQueue'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerInputSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreInputSourceBase_Interface, WinRt.Windows.UI.Core.ICorePointerInputSource2, WinRt.Windows.UI.Core.IID_ICorePointerInputSource2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          m_Interface := QInterface (this.m_ICoreInputSourceBase.all);
          Hr := m_Interface.get_DispatcherQueue (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
@@ -2113,12 +2522,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreWindow) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWindow, ICoreWindow_Ptr);
    begin
       if this.m_ICoreWindow /= null then
          if this.m_ICoreWindow.all /= null then
-            RefCount := this.m_ICoreWindow.all.Release;
+            temp := this.m_ICoreWindow.all.Release;
             Free (this.m_ICoreWindow);
          end if;
       end if;
@@ -2130,20 +2539,24 @@ package body WinRt.Windows.UI.Core is
    function GetForCurrentThread
    return WinRt.Windows.UI.Core.CoreWindow is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Core.CoreWindow");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreWindow");
       m_Factory        : access WinRt.Windows.UI.Core.ICoreWindowStatic_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreWindow;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreWindow do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreWindowStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentThread (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICoreWindow := new Windows.UI.Core.ICoreWindow;
             Retval.m_ICoreWindow.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2156,10 +2569,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ICoreWindow.all.get_AutomationHostProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2169,10 +2586,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreWindow.all.get_Bounds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2182,10 +2603,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_ICoreWindow.all.get_CustomProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2195,11 +2620,15 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreDispatcher'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreDispatcher;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreDispatcher do
          Hr := this.m_ICoreWindow.all.get_Dispatcher (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreDispatcher := new Windows.UI.Core.ICoreDispatcher;
          Retval.m_ICoreDispatcher.all := m_ComRetVal;
       end return;
@@ -2211,10 +2640,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreWindowFlowDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreWindowFlowDirection;
    begin
       Hr := this.m_ICoreWindow.all.get_FlowDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2224,9 +2657,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.CoreWindowFlowDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.put_FlowDirection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsInputEnabled
@@ -2235,10 +2672,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreWindow.all.get_IsInputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2248,9 +2689,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.put_IsInputEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerCursor
@@ -2259,11 +2704,15 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreCursor'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreCursor;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreCursor do
          Hr := this.m_ICoreWindow.all.get_PointerCursor (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICoreCursor := new Windows.UI.Core.ICoreCursor;
          Retval.m_ICoreCursor.all := m_ComRetVal;
       end return;
@@ -2275,9 +2724,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.CoreCursor'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.put_PointerCursor (value.m_ICoreCursor.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerPosition
@@ -2286,10 +2739,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_ICoreWindow.all.get_PointerPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2299,10 +2756,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreWindow.all.get_Visible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2311,9 +2772,13 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreWindow
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.Activate;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -2321,9 +2786,13 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreWindow
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.Close;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetAsyncKeyState
@@ -2333,10 +2802,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreVirtualKeyStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreVirtualKeyStates;
    begin
       Hr := this.m_ICoreWindow.all.GetAsyncKeyState (virtualKey, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2347,10 +2820,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreVirtualKeyStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreVirtualKeyStates;
    begin
       Hr := this.m_ICoreWindow.all.GetKeyState (virtualKey, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2359,9 +2836,13 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreWindow
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.ReleasePointerCapture;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPointerCapture
@@ -2369,9 +2850,13 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreWindow
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.SetPointerCapture;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Activated
@@ -2381,10 +2866,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_Activated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2394,9 +2883,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_Activated (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AutomationProviderRequested
@@ -2406,10 +2899,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_AutomationProviderRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2419,9 +2916,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_AutomationProviderRequested (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CharacterReceived
@@ -2431,10 +2932,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_CharacterReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2444,9 +2949,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_CharacterReceived (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -2456,10 +2965,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2469,9 +2982,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_Closed (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_InputEnabled
@@ -2481,10 +2998,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_InputEnabled (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2494,9 +3015,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_InputEnabled (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_KeyDown
@@ -2506,10 +3031,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_KeyDown (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2519,9 +3048,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_KeyDown (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_KeyUp
@@ -2531,10 +3064,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_KeyUp (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2544,9 +3081,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_KeyUp (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerCaptureLost
@@ -2556,10 +3097,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerCaptureLost (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2569,9 +3114,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerCaptureLost (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerEntered
@@ -2581,10 +3130,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerEntered (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2594,9 +3147,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerEntered (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerExited
@@ -2606,10 +3163,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2619,9 +3180,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerExited (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerMoved
@@ -2631,10 +3196,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerMoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2644,9 +3213,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerMoved (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerPressed
@@ -2656,10 +3229,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerPressed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2669,9 +3246,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerPressed (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerReleased
@@ -2681,10 +3262,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerReleased (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2694,9 +3279,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerReleased (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TouchHitTesting
@@ -2706,10 +3295,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_TouchHitTesting (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2719,9 +3312,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_TouchHitTesting (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerWheelChanged
@@ -2731,10 +3328,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_PointerWheelChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2744,9 +3345,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_PointerWheelChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SizeChanged
@@ -2756,10 +3361,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_SizeChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2769,9 +3378,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_SizeChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VisibilityChanged
@@ -2781,10 +3394,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindow.all.add_VisibilityChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2794,9 +3411,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindow.all.remove_VisibilityChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_PointerPosition
@@ -2805,13 +3426,17 @@ package body WinRt.Windows.UI.Core is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow2, WinRt.Windows.UI.Core.IID_ICoreWindow2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.put_PointerPosition (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerRoutedAway
@@ -2821,14 +3446,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.add_PointerRoutedAway (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2838,13 +3467,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.remove_PointerRoutedAway (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerRoutedTo
@@ -2854,14 +3487,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.add_PointerRoutedTo (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2871,13 +3508,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.remove_PointerRoutedTo (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PointerRoutedReleased
@@ -2887,14 +3528,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.add_PointerRoutedReleased (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2904,13 +3549,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICorePointerRedirector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICorePointerRedirector, WinRt.Windows.UI.Core.IID_ICorePointerRedirector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.remove_PointerRoutedReleased (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ClosestInteractiveBoundsRequested
@@ -2920,14 +3569,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow3, WinRt.Windows.UI.Core.IID_ICoreWindow3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.add_ClosestInteractiveBoundsRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2937,13 +3590,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow3, WinRt.Windows.UI.Core.IID_ICoreWindow3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.remove_ClosestInteractiveBoundsRequested (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentKeyEventDeviceId
@@ -2952,17 +3609,21 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow3, WinRt.Windows.UI.Core.IID_ICoreWindow3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.GetCurrentKeyEventDeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2973,14 +3634,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow4, WinRt.Windows.UI.Core.IID_ICoreWindow4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.add_ResizeStarted (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2990,13 +3655,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow4, WinRt.Windows.UI.Core.IID_ICoreWindow4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.remove_ResizeStarted (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ResizeCompleted
@@ -3006,14 +3675,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow4, WinRt.Windows.UI.Core.IID_ICoreWindow4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.add_ResizeCompleted (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3023,13 +3696,17 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow4, WinRt.Windows.UI.Core.IID_ICoreWindow4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.remove_ResizeCompleted (cookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DispatcherQueue
@@ -3038,15 +3715,19 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.System.DispatcherQueue'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow5, WinRt.Windows.UI.Core.IID_ICoreWindow5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          m_Interface := QInterface (this.m_ICoreWindow.all);
          Hr := m_Interface.get_DispatcherQueue (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
@@ -3058,14 +3739,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreWindowActivationMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindow5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreWindowActivationMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindow5, WinRt.Windows.UI.Core.IID_ICoreWindow5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindow.all);
       Hr := m_Interface.get_ActivationMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3075,15 +3760,19 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.UIContext'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowWithContext := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.IUIContext;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindow_Interface, WinRt.Windows.UI.Core.ICoreWindowWithContext, WinRt.Windows.UI.Core.IID_ICoreWindowWithContext'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.UIContext do
          m_Interface := QInterface (this.m_ICoreWindow.all);
          Hr := m_Interface.get_UIContext (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIContext := new Windows.UI.IUIContext;
          Retval.m_IUIContext.all := m_ComRetVal;
       end return;
@@ -3098,12 +3787,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreWindowDialog) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWindowDialog, ICoreWindowDialog_Ptr);
    begin
       if this.m_ICoreWindowDialog /= null then
          if this.m_ICoreWindowDialog.all /= null then
-            RefCount := this.m_ICoreWindowDialog.all.Release;
+            temp := this.m_ICoreWindowDialog.all.Release;
             Free (this.m_ICoreWindowDialog);
          end if;
       end if;
@@ -3118,11 +3807,12 @@ package body WinRt.Windows.UI.Core is
    )
    return CoreWindowDialog is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowDialog");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowDialog");
       m_Factory    : access ICoreWindowDialogFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Core.ICoreWindowDialog;
-      HStr_title : WinRt.HString := To_HString (title);
+      HStr_title : constant WinRt.HString := To_HString (title);
    begin
       return RetVal : CoreWindowDialog do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreWindowDialogFactory'Access , m_Factory'Address);
@@ -3130,16 +3820,17 @@ package body WinRt.Windows.UI.Core is
             Hr := m_Factory.CreateWithTitle (HStr_title, m_ComRetVal'Access);
             Retval.m_ICoreWindowDialog := new Windows.UI.Core.ICoreWindowDialog;
             Retval.m_ICoreWindowDialog.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_title);
       end return;
    end;
 
    function Constructor return CoreWindowDialog is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowDialog");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowDialog");
       m_ComRetVal  : aliased Windows.UI.Core.ICoreWindowDialog;
    begin
       return RetVal : CoreWindowDialog do
@@ -3148,7 +3839,7 @@ package body WinRt.Windows.UI.Core is
             Retval.m_ICoreWindowDialog := new Windows.UI.Core.ICoreWindowDialog;
             Retval.m_ICoreWindowDialog.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3162,10 +3853,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindowDialog.all.add_Showing (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3175,9 +3870,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowDialog.all.remove_Showing (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxSize
@@ -3186,10 +3885,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_MaxSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3199,10 +3902,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_MinSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3212,13 +3919,17 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3228,11 +3939,15 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICoreWindowDialog.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsInteractionDelayed
@@ -3241,10 +3956,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_IsInteractionDelayed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3254,9 +3973,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowDialog.all.put_IsInteractionDelayed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Commands
@@ -3265,10 +3988,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_Commands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3278,10 +4005,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_DefaultCommandIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3291,9 +4022,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowDialog.all.put_DefaultCommandIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CancelCommandIndex
@@ -3302,10 +4037,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_CancelCommandIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3315,9 +4054,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowDialog.all.put_CancelCommandIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackButtonCommand
@@ -3326,10 +4069,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Popups.UICommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.UICommandInvokedHandler;
    begin
       Hr := this.m_ICoreWindowDialog.all.get_BackButtonCommand (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3339,9 +4086,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Popups.UICommandInvokedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowDialog.all.put_BackButtonCommand (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ShowAsync
@@ -3350,13 +4101,13 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Popups.IUICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IUICommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3374,7 +4125,7 @@ package body WinRt.Windows.UI.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IUICommand.Kind_Delegate, AsyncOperationCompletedHandler_IUICommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3387,7 +4138,7 @@ package body WinRt.Windows.UI.Core is
       Hr := this.m_ICoreWindowDialog.all.ShowAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3397,9 +4148,9 @@ package body WinRt.Windows.UI.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3416,12 +4167,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreWindowEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWindowEventArgs, ICoreWindowEventArgs_Ptr);
    begin
       if this.m_ICoreWindowEventArgs /= null then
          if this.m_ICoreWindowEventArgs.all /= null then
-            RefCount := this.m_ICoreWindowEventArgs.all.Release;
+            temp := this.m_ICoreWindowEventArgs.all.Release;
             Free (this.m_ICoreWindowEventArgs);
          end if;
       end if;
@@ -3436,10 +4187,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreWindowEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3449,9 +4204,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3463,12 +4222,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreWindowFlyout) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWindowFlyout, ICoreWindowFlyout_Ptr);
    begin
       if this.m_ICoreWindowFlyout /= null then
          if this.m_ICoreWindowFlyout.all /= null then
-            RefCount := this.m_ICoreWindowFlyout.all.Release;
+            temp := this.m_ICoreWindowFlyout.all.Release;
             Free (this.m_ICoreWindowFlyout);
          end if;
       end if;
@@ -3483,9 +4242,10 @@ package body WinRt.Windows.UI.Core is
    )
    return CoreWindowFlyout is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowFlyout");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowFlyout");
       m_Factory    : access ICoreWindowFlyoutFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Core.ICoreWindowFlyout;
    begin
       return RetVal : CoreWindowFlyout do
@@ -3494,9 +4254,9 @@ package body WinRt.Windows.UI.Core is
             Hr := m_Factory.Create (position, m_ComRetVal'Access);
             Retval.m_ICoreWindowFlyout := new Windows.UI.Core.ICoreWindowFlyout;
             Retval.m_ICoreWindowFlyout.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3507,11 +4267,12 @@ package body WinRt.Windows.UI.Core is
    )
    return CoreWindowFlyout is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowFlyout");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowFlyout");
       m_Factory    : access ICoreWindowFlyoutFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Core.ICoreWindowFlyout;
-      HStr_title : WinRt.HString := To_HString (title);
+      HStr_title : constant WinRt.HString := To_HString (title);
    begin
       return RetVal : CoreWindowFlyout do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreWindowFlyoutFactory'Access , m_Factory'Address);
@@ -3519,10 +4280,10 @@ package body WinRt.Windows.UI.Core is
             Hr := m_Factory.CreateWithTitle (position, HStr_title, m_ComRetVal'Access);
             Retval.m_ICoreWindowFlyout := new Windows.UI.Core.ICoreWindowFlyout;
             Retval.m_ICoreWindowFlyout.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_title);
       end return;
    end;
 
@@ -3536,10 +4297,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreWindowFlyout.all.add_Showing (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3549,9 +4314,13 @@ package body WinRt.Windows.UI.Core is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowFlyout.all.remove_Showing (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxSize
@@ -3560,10 +4329,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_MaxSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3573,10 +4346,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_MinSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3586,13 +4363,17 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3602,11 +4383,15 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICoreWindowFlyout.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsInteractionDelayed
@@ -3615,10 +4400,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_IsInteractionDelayed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3628,9 +4417,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowFlyout.all.put_IsInteractionDelayed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Commands
@@ -3639,10 +4432,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_Commands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3652,10 +4449,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_DefaultCommandIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3665,9 +4466,13 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowFlyout.all.put_DefaultCommandIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackButtonCommand
@@ -3676,10 +4481,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Popups.UICommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.UICommandInvokedHandler;
    begin
       Hr := this.m_ICoreWindowFlyout.all.get_BackButtonCommand (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3689,9 +4498,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Popups.UICommandInvokedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowFlyout.all.put_BackButtonCommand (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ShowAsync
@@ -3700,13 +4513,13 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Popups.IUICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IUICommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3724,7 +4537,7 @@ package body WinRt.Windows.UI.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IUICommand.Kind_Delegate, AsyncOperationCompletedHandler_IUICommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3737,7 +4550,7 @@ package body WinRt.Windows.UI.Core is
       Hr := this.m_ICoreWindowFlyout.all.ShowAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3747,9 +4560,9 @@ package body WinRt.Windows.UI.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3766,12 +4579,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreWindowPopupShowingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWindowPopupShowingEventArgs, ICoreWindowPopupShowingEventArgs_Ptr);
    begin
       if this.m_ICoreWindowPopupShowingEventArgs /= null then
          if this.m_ICoreWindowPopupShowingEventArgs.all /= null then
-            RefCount := this.m_ICoreWindowPopupShowingEventArgs.all.Release;
+            temp := this.m_ICoreWindowPopupShowingEventArgs.all.Release;
             Free (this.m_ICoreWindowPopupShowingEventArgs);
          end if;
       end if;
@@ -3786,9 +4599,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowPopupShowingEventArgs.all.SetDesiredSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3800,12 +4617,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out CoreWindowResizeManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreWindowResizeManager, ICoreWindowResizeManager_Ptr);
    begin
       if this.m_ICoreWindowResizeManager /= null then
          if this.m_ICoreWindowResizeManager.all /= null then
-            RefCount := this.m_ICoreWindowResizeManager.all.Release;
+            temp := this.m_ICoreWindowResizeManager.all.Release;
             Free (this.m_ICoreWindowResizeManager);
          end if;
       end if;
@@ -3817,20 +4634,24 @@ package body WinRt.Windows.UI.Core is
    function GetForCurrentView
    return WinRt.Windows.UI.Core.CoreWindowResizeManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowResizeManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.CoreWindowResizeManager");
       m_Factory        : access WinRt.Windows.UI.Core.ICoreWindowResizeManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ICoreWindowResizeManager;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreWindowResizeManager do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreWindowResizeManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICoreWindowResizeManager := new Windows.UI.Core.ICoreWindowResizeManager;
             Retval.m_ICoreWindowResizeManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3842,9 +4663,13 @@ package body WinRt.Windows.UI.Core is
       this : in out CoreWindowResizeManager
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreWindowResizeManager.all.NotifyLayoutCompleted;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_ShouldWaitForLayoutCompletion
@@ -3853,13 +4678,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowResizeManagerLayoutCapability := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindowResizeManager_Interface, WinRt.Windows.UI.Core.ICoreWindowResizeManagerLayoutCapability, WinRt.Windows.UI.Core.IID_ICoreWindowResizeManagerLayoutCapability'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindowResizeManager.all);
       Hr := m_Interface.put_ShouldWaitForLayoutCompletion (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShouldWaitForLayoutCompletion
@@ -3868,14 +4697,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowResizeManagerLayoutCapability := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ICoreWindowResizeManager_Interface, WinRt.Windows.UI.Core.ICoreWindowResizeManagerLayoutCapability, WinRt.Windows.UI.Core.IID_ICoreWindowResizeManagerLayoutCapability'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreWindowResizeManager.all);
       Hr := m_Interface.get_ShouldWaitForLayoutCompletion (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3887,7 +4720,7 @@ package body WinRt.Windows.UI.Core is
       this : access DispatchedHandler_Delegate
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback.all;
       return Hr;
@@ -3902,7 +4735,7 @@ package body WinRt.Windows.UI.Core is
       e : Windows.UI.Core.IIdleDispatchedHandlerArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (e);
       return Hr;
@@ -3917,12 +4750,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out IdleDispatchedHandlerArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIdleDispatchedHandlerArgs, IIdleDispatchedHandlerArgs_Ptr);
    begin
       if this.m_IIdleDispatchedHandlerArgs /= null then
          if this.m_IIdleDispatchedHandlerArgs.all /= null then
-            RefCount := this.m_IIdleDispatchedHandlerArgs.all.Release;
+            temp := this.m_IIdleDispatchedHandlerArgs.all.Release;
             Free (this.m_IIdleDispatchedHandlerArgs);
          end if;
       end if;
@@ -3937,10 +4770,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IIdleDispatchedHandlerArgs.all.get_IsDispatcherIdle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3953,12 +4790,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out InputEnabledEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInputEnabledEventArgs, IInputEnabledEventArgs_Ptr);
    begin
       if this.m_IInputEnabledEventArgs /= null then
          if this.m_IInputEnabledEventArgs.all /= null then
-            RefCount := this.m_IInputEnabledEventArgs.all.Release;
+            temp := this.m_IInputEnabledEventArgs.all.Release;
             Free (this.m_IInputEnabledEventArgs);
          end if;
       end if;
@@ -3973,10 +4810,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IInputEnabledEventArgs.all.get_InputEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3986,14 +4827,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IInputEnabledEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputEnabledEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4003,13 +4848,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IInputEnabledEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputEnabledEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4021,12 +4870,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out KeyEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyEventArgs, IKeyEventArgs_Ptr);
    begin
       if this.m_IKeyEventArgs /= null then
          if this.m_IKeyEventArgs.all /= null then
-            RefCount := this.m_IKeyEventArgs.all.Release;
+            temp := this.m_IKeyEventArgs.all.Release;
             Free (this.m_IKeyEventArgs);
          end if;
       end if;
@@ -4041,10 +4890,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
    begin
       Hr := this.m_IKeyEventArgs.all.get_VirtualKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4054,10 +4907,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CorePhysicalKeyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CorePhysicalKeyStatus;
    begin
       Hr := this.m_IKeyEventArgs.all.get_KeyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4067,14 +4924,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IKeyEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4084,13 +4945,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IKeyEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeviceId
@@ -4099,17 +4964,21 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.IKeyEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IKeyEventArgs_Interface, WinRt.Windows.UI.Core.IKeyEventArgs2, WinRt.Windows.UI.Core.IID_IKeyEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyEventArgs.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4122,12 +4991,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out PointerEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointerEventArgs, IPointerEventArgs_Ptr);
    begin
       if this.m_IPointerEventArgs /= null then
          if this.m_IPointerEventArgs.all /= null then
-            RefCount := this.m_IPointerEventArgs.all.Release;
+            temp := this.m_IPointerEventArgs.all.Release;
             Free (this.m_IPointerEventArgs);
          end if;
       end if;
@@ -4142,11 +5011,15 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Input.PointerPoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.IPointerPoint;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerPoint do
          Hr := this.m_IPointerEventArgs.all.get_CurrentPoint (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPointerPoint := new Windows.UI.Input.IPointerPoint;
          Retval.m_IPointerPoint.all := m_ComRetVal;
       end return;
@@ -4158,10 +5031,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.System.VirtualKeyModifiers is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IPointerEventArgs.all.get_KeyModifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4171,10 +5048,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IPointerEventArgs.all.GetIntermediatePoints (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4184,14 +5065,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IPointerEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointerEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4201,13 +5086,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IPointerEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointerEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4219,12 +5108,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out SystemNavigationManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemNavigationManager, ISystemNavigationManager_Ptr);
    begin
       if this.m_ISystemNavigationManager /= null then
          if this.m_ISystemNavigationManager.all /= null then
-            RefCount := this.m_ISystemNavigationManager.all.Release;
+            temp := this.m_ISystemNavigationManager.all.Release;
             Free (this.m_ISystemNavigationManager);
          end if;
       end if;
@@ -4236,20 +5125,24 @@ package body WinRt.Windows.UI.Core is
    function GetForCurrentView
    return WinRt.Windows.UI.Core.SystemNavigationManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Core.SystemNavigationManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Core.SystemNavigationManager");
       m_Factory        : access WinRt.Windows.UI.Core.ISystemNavigationManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.ISystemNavigationManager;
    begin
       return RetVal : WinRt.Windows.UI.Core.SystemNavigationManager do
          Hr := RoGetActivationFactory (m_hString, IID_ISystemNavigationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISystemNavigationManager := new Windows.UI.Core.ISystemNavigationManager;
             Retval.m_ISystemNavigationManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4263,10 +5156,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISystemNavigationManager.all.add_BackRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4276,9 +5173,13 @@ package body WinRt.Windows.UI.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISystemNavigationManager.all.remove_BackRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppViewBackButtonVisibility
@@ -4287,14 +5188,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.AppViewBackButtonVisibility is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ISystemNavigationManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.AppViewBackButtonVisibility;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ISystemNavigationManager_Interface, WinRt.Windows.UI.Core.ISystemNavigationManager2, WinRt.Windows.UI.Core.IID_ISystemNavigationManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISystemNavigationManager.all);
       Hr := m_Interface.get_AppViewBackButtonVisibility (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4304,13 +5209,17 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.AppViewBackButtonVisibility
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ISystemNavigationManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ISystemNavigationManager_Interface, WinRt.Windows.UI.Core.ISystemNavigationManager2, WinRt.Windows.UI.Core.IID_ISystemNavigationManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISystemNavigationManager.all);
       Hr := m_Interface.put_AppViewBackButtonVisibility (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4322,12 +5231,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out TouchHitTestingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITouchHitTestingEventArgs, ITouchHitTestingEventArgs_Ptr);
    begin
       if this.m_ITouchHitTestingEventArgs /= null then
          if this.m_ITouchHitTestingEventArgs.all /= null then
-            RefCount := this.m_ITouchHitTestingEventArgs.all.Release;
+            temp := this.m_ITouchHitTestingEventArgs.all.Release;
             Free (this.m_ITouchHitTestingEventArgs);
          end if;
       end if;
@@ -4342,10 +5251,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreProximityEvaluation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreProximityEvaluation;
    begin
       Hr := this.m_ITouchHitTestingEventArgs.all.get_ProximityEvaluation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4355,9 +5268,13 @@ package body WinRt.Windows.UI.Core is
       value : Windows.UI.Core.CoreProximityEvaluation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITouchHitTestingEventArgs.all.put_ProximityEvaluation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Point
@@ -4366,10 +5283,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_ITouchHitTestingEventArgs.all.get_Point (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4379,10 +5300,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ITouchHitTestingEventArgs.all.get_BoundingBox (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4393,10 +5318,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreProximityEvaluation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreProximityEvaluation;
    begin
       Hr := this.m_ITouchHitTestingEventArgs.all.EvaluateProximity (controlBoundingBox, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4407,11 +5336,15 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreProximityEvaluation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreProximityEvaluation;
       function Convert_controlVertices is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_ITouchHitTestingEventArgs.all.EvaluateProximity (WinRt.UInt32(controlVertices'Length), Convert_controlVertices (controlVertices (controlVertices'First)'Address), m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4421,14 +5354,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ITouchHitTestingEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITouchHitTestingEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4438,13 +5375,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.ITouchHitTestingEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITouchHitTestingEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4456,12 +5397,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out VisibilityChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVisibilityChangedEventArgs, IVisibilityChangedEventArgs_Ptr);
    begin
       if this.m_IVisibilityChangedEventArgs /= null then
          if this.m_IVisibilityChangedEventArgs.all /= null then
-            RefCount := this.m_IVisibilityChangedEventArgs.all.Release;
+            temp := this.m_IVisibilityChangedEventArgs.all.Release;
             Free (this.m_IVisibilityChangedEventArgs);
          end if;
       end if;
@@ -4476,10 +5417,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVisibilityChangedEventArgs.all.get_Visible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4489,14 +5434,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IVisibilityChangedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisibilityChangedEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4506,13 +5455,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IVisibilityChangedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisibilityChangedEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4524,12 +5477,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out WindowActivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWindowActivatedEventArgs, IWindowActivatedEventArgs_Ptr);
    begin
       if this.m_IWindowActivatedEventArgs /= null then
          if this.m_IWindowActivatedEventArgs.all /= null then
-            RefCount := this.m_IWindowActivatedEventArgs.all.Release;
+            temp := this.m_IWindowActivatedEventArgs.all.Release;
             Free (this.m_IWindowActivatedEventArgs);
          end if;
       end if;
@@ -4544,10 +5497,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.UI.Core.CoreWindowActivationState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CoreWindowActivationState;
    begin
       Hr := this.m_IWindowActivatedEventArgs.all.get_WindowActivationState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4557,14 +5514,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IWindowActivatedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWindowActivatedEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4574,13 +5535,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IWindowActivatedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWindowActivatedEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4592,12 +5557,12 @@ package body WinRt.Windows.UI.Core is
    end;
 
    procedure Finalize (this : in out WindowSizeChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWindowSizeChangedEventArgs, IWindowSizeChangedEventArgs_Ptr);
    begin
       if this.m_IWindowSizeChangedEventArgs /= null then
          if this.m_IWindowSizeChangedEventArgs.all /= null then
-            RefCount := this.m_IWindowSizeChangedEventArgs.all.Release;
+            temp := this.m_IWindowSizeChangedEventArgs.all.Release;
             Free (this.m_IWindowSizeChangedEventArgs);
          end if;
       end if;
@@ -4612,10 +5577,14 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IWindowSizeChangedEventArgs.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4625,14 +5594,18 @@ package body WinRt.Windows.UI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IWindowSizeChangedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWindowSizeChangedEventArgs.all);
       Hr := m_Interface.get_Handled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4642,13 +5615,17 @@ package body WinRt.Windows.UI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.ICoreWindowEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.IWindowSizeChangedEventArgs_Interface, WinRt.Windows.UI.Core.ICoreWindowEventArgs, WinRt.Windows.UI.Core.IID_ICoreWindowEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWindowSizeChangedEventArgs.all);
       Hr := m_Interface.put_Handled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Core;

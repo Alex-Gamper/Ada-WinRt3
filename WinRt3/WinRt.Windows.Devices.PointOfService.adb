@@ -103,12 +103,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScanner) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScanner, IBarcodeScanner_Ptr);
    begin
       if this.m_IBarcodeScanner /= null then
          if this.m_IBarcodeScanner.all /= null then
-            RefCount := this.m_IBarcodeScanner.all.Release;
+            temp := this.m_IBarcodeScanner.all.Release;
             Free (this.m_IBarcodeScanner);
          end if;
       end if;
@@ -123,35 +123,39 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBarcodeScannerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
    function GetDefaultAsync
    return WinRt.Windows.Devices.PointOfService.BarcodeScanner is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeScanner.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -169,7 +173,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeScanner.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeScanner.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -183,10 +187,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeScannerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -198,15 +202,15 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IBarcodeScanner := new Windows.Devices.PointOfService.IBarcodeScanner;
                      Retval.m_IBarcodeScanner.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -216,16 +220,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeScanner is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeScanner.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -243,7 +247,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeScanner.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeScanner.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -257,10 +261,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeScannerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -272,36 +276,40 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IBarcodeScanner := new Windows.Devices.PointOfService.IBarcodeScanner;
                      Retval.m_IBarcodeScanner.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScanner");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBarcodeScannerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -314,13 +322,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScanner.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -330,11 +342,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeScannerCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IBarcodeScannerCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.BarcodeScannerCapabilities do
          Hr := this.m_IBarcodeScanner.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerCapabilities := new Windows.Devices.PointOfService.IBarcodeScannerCapabilities;
          Retval.m_IBarcodeScannerCapabilities.all := m_ComRetVal;
       end return;
@@ -346,13 +362,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedBarcodeScanner'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ClaimedBarcodeScanner.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -370,7 +386,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ClaimedBarcodeScanner.Kind_Delegate, AsyncOperationCompletedHandler_ClaimedBarcodeScanner.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -384,7 +400,7 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := this.m_IBarcodeScanner.all.ClaimScannerAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -396,9 +412,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_IClaimedBarcodeScanner := new Windows.Devices.PointOfService.IClaimedBarcodeScanner;
                   Retval.m_IClaimedBarcodeScanner.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -413,13 +429,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -438,7 +454,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -451,7 +467,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IBarcodeScanner.all.CheckHealthAsync (level, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -461,15 +477,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -479,13 +495,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -503,7 +519,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -516,7 +532,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IBarcodeScanner.all.GetSupportedSymbologiesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -526,9 +542,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -543,13 +559,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -567,7 +583,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -580,7 +596,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IBarcodeScanner.all.IsSymbologySupportedAsync (barcodeSymbology, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -590,9 +606,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -607,13 +623,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -631,7 +647,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -644,7 +660,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IBarcodeScanner.all.RetrieveStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -654,9 +670,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -670,13 +686,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IBarcodeScanner.all.GetSupportedProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -687,12 +707,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_profile : WinRt.HString := To_HString (profile);
+      HStr_profile : constant WinRt.HString := To_HString (profile);
    begin
       Hr := this.m_IBarcodeScanner.all.IsProfileSupported (HStr_profile, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_profile);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_profile);
       return m_ComRetVal;
    end;
 
@@ -703,10 +727,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScanner.all.add_StatusUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -716,9 +744,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScanner.all.remove_StatusUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VideoDeviceId
@@ -727,17 +759,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IBarcodeScanner2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IBarcodeScanner_Interface, WinRt.Windows.Devices.PointOfService.IBarcodeScanner2, WinRt.Windows.Devices.PointOfService.IID_IBarcodeScanner2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScanner.all);
       Hr := m_Interface.get_VideoDeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -746,13 +782,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out BarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IBarcodeScanner_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScanner.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -764,12 +804,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScannerCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerCapabilities, IBarcodeScannerCapabilities_Ptr);
    begin
       if this.m_IBarcodeScannerCapabilities /= null then
          if this.m_IBarcodeScannerCapabilities.all /= null then
-            RefCount := this.m_IBarcodeScannerCapabilities.all.Release;
+            temp := this.m_IBarcodeScannerCapabilities.all.Release;
             Free (this.m_IBarcodeScannerCapabilities);
          end if;
       end if;
@@ -784,10 +824,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosPowerReportingType;
    begin
       Hr := this.m_IBarcodeScannerCapabilities.all.get_PowerReportingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -797,10 +841,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeScannerCapabilities.all.get_IsStatisticsReportingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -810,10 +858,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeScannerCapabilities.all.get_IsStatisticsUpdatingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -823,10 +875,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeScannerCapabilities.all.get_IsImagePreviewSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -836,14 +892,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities1 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities1, WinRt.Windows.Devices.PointOfService.IID_IBarcodeScannerCapabilities1'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerCapabilities.all);
       Hr := m_Interface.get_IsSoftwareTriggerSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -853,14 +913,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IBarcodeScannerCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerCapabilities.all);
       Hr := m_Interface.get_IsVideoPreviewSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -873,12 +937,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScannerDataReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerDataReceivedEventArgs, IBarcodeScannerDataReceivedEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerDataReceivedEventArgs /= null then
          if this.m_IBarcodeScannerDataReceivedEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerDataReceivedEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerDataReceivedEventArgs.all.Release;
             Free (this.m_IBarcodeScannerDataReceivedEventArgs);
          end if;
       end if;
@@ -893,11 +957,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeScannerReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IBarcodeScannerReport;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.BarcodeScannerReport do
          Hr := this.m_IBarcodeScannerDataReceivedEventArgs.all.get_Report (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerReport := new Windows.Devices.PointOfService.IBarcodeScannerReport;
          Retval.m_IBarcodeScannerReport.all := m_ComRetVal;
       end return;
@@ -912,12 +980,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScannerErrorOccurredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerErrorOccurredEventArgs, IBarcodeScannerErrorOccurredEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerErrorOccurredEventArgs /= null then
          if this.m_IBarcodeScannerErrorOccurredEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerErrorOccurredEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerErrorOccurredEventArgs.all.Release;
             Free (this.m_IBarcodeScannerErrorOccurredEventArgs);
          end if;
       end if;
@@ -932,11 +1000,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeScannerReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IBarcodeScannerReport;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.BarcodeScannerReport do
          Hr := this.m_IBarcodeScannerErrorOccurredEventArgs.all.get_PartialInputData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerReport := new Windows.Devices.PointOfService.IBarcodeScannerReport;
          Retval.m_IBarcodeScannerReport.all := m_ComRetVal;
       end return;
@@ -948,10 +1020,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeScannerErrorOccurredEventArgs.all.get_IsRetriable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -961,11 +1037,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosErrorData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IUnifiedPosErrorData;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorData do
          Hr := this.m_IBarcodeScannerErrorOccurredEventArgs.all.get_ErrorData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUnifiedPosErrorData := new Windows.Devices.PointOfService.IUnifiedPosErrorData;
          Retval.m_IUnifiedPosErrorData.all := m_ComRetVal;
       end return;
@@ -980,12 +1060,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScannerImagePreviewReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerImagePreviewReceivedEventArgs, IBarcodeScannerImagePreviewReceivedEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerImagePreviewReceivedEventArgs /= null then
          if this.m_IBarcodeScannerImagePreviewReceivedEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerImagePreviewReceivedEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerImagePreviewReceivedEventArgs.all.Release;
             Free (this.m_IBarcodeScannerImagePreviewReceivedEventArgs);
          end if;
       end if;
@@ -1000,10 +1080,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       Hr := this.m_IBarcodeScannerImagePreviewReceivedEventArgs.all.get_Preview (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1016,12 +1100,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScannerReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerReport, IBarcodeScannerReport_Ptr);
    begin
       if this.m_IBarcodeScannerReport /= null then
          if this.m_IBarcodeScannerReport.all /= null then
-            RefCount := this.m_IBarcodeScannerReport.all.Release;
+            temp := this.m_IBarcodeScannerReport.all.Release;
             Free (this.m_IBarcodeScannerReport);
          end if;
       end if;
@@ -1038,9 +1122,10 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return BarcodeScannerReport is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScannerReport");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScannerReport");
       m_Factory    : access IBarcodeScannerReportFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.PointOfService.IBarcodeScannerReport;
    begin
       return RetVal : BarcodeScannerReport do
@@ -1049,9 +1134,9 @@ package body WinRt.Windows.Devices.PointOfService is
             Hr := m_Factory.CreateInstance (scanDataType, scanData, scanDataLabel, m_ComRetVal'Access);
             Retval.m_IBarcodeScannerReport := new Windows.Devices.PointOfService.IBarcodeScannerReport;
             Retval.m_IBarcodeScannerReport.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1064,10 +1149,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeScannerReport.all.get_ScanDataType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1077,10 +1166,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IBarcodeScannerReport.all.get_ScanData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1090,10 +1183,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IBarcodeScannerReport.all.get_ScanDataLabel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1106,12 +1203,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeScannerStatusUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerStatusUpdatedEventArgs, IBarcodeScannerStatusUpdatedEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerStatusUpdatedEventArgs /= null then
          if this.m_IBarcodeScannerStatusUpdatedEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerStatusUpdatedEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerStatusUpdatedEventArgs.all.Release;
             Free (this.m_IBarcodeScannerStatusUpdatedEventArgs);
          end if;
       end if;
@@ -1126,10 +1223,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeScannerStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.BarcodeScannerStatus;
    begin
       Hr := this.m_IBarcodeScannerStatusUpdatedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1139,10 +1240,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeScannerStatusUpdatedEventArgs.all.get_ExtendedStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1153,1581 +1258,1953 @@ package body WinRt.Windows.Devices.PointOfService is
       function get_Unknown
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Unknown (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean8
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean8 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean8Add2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean8Add2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean8Add5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean8Add5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Eanv
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Eanv (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_EanvAdd2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EanvAdd2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_EanvAdd5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EanvAdd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean13
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean13 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean13Add2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean13Add2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean13Add5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean13Add5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Isbn
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Isbn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_IsbnAdd5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsbnAdd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ismn
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ismn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_IsmnAdd2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsmnAdd2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_IsmnAdd5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsmnAdd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Issn
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Issn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_IssnAdd2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IssnAdd2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_IssnAdd5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IssnAdd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean99
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean99 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean99Add2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean99Add2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ean99Add5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ean99Add5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Upca
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Upca (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UpcaAdd2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UpcaAdd2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UpcaAdd5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UpcaAdd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Upce
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Upce (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UpceAdd2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UpceAdd2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UpceAdd5
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UpceAdd5 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UpcCoupon
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UpcCoupon (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TfStd
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TfStd (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TfDis
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TfDis (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TfInt
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TfInt (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TfInd
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TfInd (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TfMat
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TfMat (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TfIata
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TfIata (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Gs1DatabarType1
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gs1DatabarType1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Gs1DatabarType2
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gs1DatabarType2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Gs1DatabarType3
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gs1DatabarType3 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code39
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code39 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code39Ex
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code39Ex (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Trioptic39
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Trioptic39 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code32
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code32 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Pzn
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pzn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code93
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code93 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code93Ex
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code93Ex (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code128
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code128 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Gs1128
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gs1128 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Gs1128Coupon
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gs1128Coupon (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UccEan128
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UccEan128 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Sisac
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sisac (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Isbt
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Isbt (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Codabar
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Codabar (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code11
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code11 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Msi
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Msi (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Plessey
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Plessey (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Telepen
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Telepen (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code16k
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code16k (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_CodablockA
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CodablockA (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_CodablockF
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CodablockF (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Codablock128
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Codablock128 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Code49
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Code49 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Aztec
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Aztec (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_DataCode
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DataCode (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_DataMatrix
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DataMatrix (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_HanXin
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HanXin (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Maxicode
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Maxicode (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MicroPdf417
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MicroPdf417 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MicroQr
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MicroQr (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Pdf417
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Pdf417 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Qr
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Qr (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MsTag
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MsTag (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ccab
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ccab (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ccc
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ccc (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Tlc39
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Tlc39 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_AusPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AusPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_CanPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CanPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ChinaPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ChinaPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_DutchKix
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DutchKix (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_InfoMail
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InfoMail (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ItalianPost25
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItalianPost25 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ItalianPost39
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItalianPost39 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_JapanPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_JapanPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_KoreanPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KoreanPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_SwedenPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SwedenPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UkPost
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UkPost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UsIntelligent
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UsIntelligent (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UsIntelligentPkg
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UsIntelligentPkg (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UsPlanet
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UsPlanet (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_UsPostNet
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UsPostNet (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Us4StateFics
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Us4StateFics (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_OcrA
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OcrA (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_OcrB
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OcrB (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Micr
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Micr (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ExtendedBase
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExtendedBase (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2737,37 +3214,45 @@ package body WinRt.Windows.Devices.PointOfService is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetName (scanDataType, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Gs1DWCode
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.BarcodeSymbologies");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologiesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBarcodeSymbologiesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gs1DWCode (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2782,12 +3267,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out BarcodeSymbologyAttributes) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeSymbologyAttributes, IBarcodeSymbologyAttributes_Ptr);
    begin
       if this.m_IBarcodeSymbologyAttributes /= null then
          if this.m_IBarcodeSymbologyAttributes.all /= null then
-            RefCount := this.m_IBarcodeSymbologyAttributes.all.Release;
+            temp := this.m_IBarcodeSymbologyAttributes.all.Release;
             Free (this.m_IBarcodeSymbologyAttributes);
          end if;
       end if;
@@ -2802,10 +3287,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_IsCheckDigitValidationEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2815,9 +3304,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.put_IsCheckDigitValidationEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCheckDigitValidationSupported
@@ -2826,10 +3319,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_IsCheckDigitValidationSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2839,10 +3336,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_IsCheckDigitTransmissionEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2852,9 +3353,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.put_IsCheckDigitTransmissionEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCheckDigitTransmissionSupported
@@ -2863,10 +3368,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_IsCheckDigitTransmissionSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2876,10 +3385,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_DecodeLength1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2889,9 +3402,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.put_DecodeLength1 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DecodeLength2
@@ -2900,10 +3417,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_DecodeLength2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2913,9 +3434,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.put_DecodeLength2 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DecodeLengthKind
@@ -2924,10 +3449,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_DecodeLengthKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2937,9 +3466,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.put_DecodeLengthKind (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDecodeLengthSupported
@@ -2948,10 +3481,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributes.all.get_IsDecodeLengthSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2964,12 +3501,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawer, ICashDrawer_Ptr);
    begin
       if this.m_ICashDrawer /= null then
          if this.m_ICashDrawer.all /= null then
-            RefCount := this.m_ICashDrawer.all.Release;
+            temp := this.m_ICashDrawer.all.Release;
             Free (this.m_ICashDrawer);
          end if;
       end if;
@@ -2981,15 +3518,15 @@ package body WinRt.Windows.Devices.PointOfService is
    function GetDefaultAsync_CashDrawer
    return WinRt.Windows.Devices.PointOfService.CashDrawer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ICashDrawerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CashDrawer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3007,7 +3544,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CashDrawer.Kind_Delegate, AsyncOperationCompletedHandler_CashDrawer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3021,10 +3558,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_ICashDrawerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3036,15 +3573,15 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_ICashDrawer := new Windows.Devices.PointOfService.ICashDrawer;
                      Retval.m_ICashDrawer.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3054,16 +3591,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ICashDrawerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CashDrawer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3081,7 +3618,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CashDrawer.Kind_Delegate, AsyncOperationCompletedHandler_CashDrawer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3095,10 +3632,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_ICashDrawerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3110,36 +3647,40 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_ICashDrawer := new Windows.Devices.PointOfService.ICashDrawer;
                      Retval.m_ICashDrawer.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector_CashDrawer
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ICashDrawerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICashDrawerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3149,20 +3690,24 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.CashDrawer");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ICashDrawerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICashDrawerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3175,13 +3720,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICashDrawer.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3191,11 +3740,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawerCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawerCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawerCapabilities do
          Hr := this.m_ICashDrawer.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawerCapabilities := new Windows.Devices.PointOfService.ICashDrawerCapabilities;
          Retval.m_ICashDrawerCapabilities.all := m_ComRetVal;
       end return;
@@ -3207,11 +3760,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawerStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawerStatus;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawerStatus do
          Hr := this.m_ICashDrawer.all.get_Status (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawerStatus := new Windows.Devices.PointOfService.ICashDrawerStatus;
          Retval.m_ICashDrawerStatus.all := m_ComRetVal;
       end return;
@@ -3223,10 +3780,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICashDrawer.all.get_IsDrawerOpen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3236,11 +3797,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawerEventSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawerEventSource;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawerEventSource do
          Hr := this.m_ICashDrawer.all.get_DrawerEventSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawerEventSource := new Windows.Devices.PointOfService.ICashDrawerEventSource;
          Retval.m_ICashDrawerEventSource.all := m_ComRetVal;
       end return;
@@ -3252,13 +3817,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedCashDrawer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ClaimedCashDrawer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3276,7 +3841,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ClaimedCashDrawer.Kind_Delegate, AsyncOperationCompletedHandler_ClaimedCashDrawer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3290,7 +3855,7 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := this.m_ICashDrawer.all.ClaimDrawerAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3302,9 +3867,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_IClaimedCashDrawer := new Windows.Devices.PointOfService.IClaimedCashDrawer;
                   Retval.m_IClaimedCashDrawer.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3319,13 +3884,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3344,7 +3909,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3357,7 +3922,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ICashDrawer.all.CheckHealthAsync (level, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3367,15 +3932,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -3386,13 +3951,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3411,7 +3976,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3424,7 +3989,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ICashDrawer.all.GetStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3434,15 +3999,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -3453,10 +4018,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICashDrawer.all.add_StatusUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3466,9 +4035,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawer.all.remove_StatusUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -3476,13 +4049,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out CashDrawer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ICashDrawer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICashDrawer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3494,12 +4071,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerCapabilities, ICashDrawerCapabilities_Ptr);
    begin
       if this.m_ICashDrawerCapabilities /= null then
          if this.m_ICashDrawerCapabilities.all /= null then
-            RefCount := this.m_ICashDrawerCapabilities.all.Release;
+            temp := this.m_ICashDrawerCapabilities.all.Release;
             Free (this.m_ICashDrawerCapabilities);
          end if;
       end if;
@@ -3514,10 +4091,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosPowerReportingType;
    begin
       Hr := this.m_ICashDrawerCapabilities.all.get_PowerReportingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3527,10 +4108,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICashDrawerCapabilities.all.get_IsStatisticsReportingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3540,10 +4125,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICashDrawerCapabilities.all.get_IsStatisticsUpdatingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3553,10 +4142,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICashDrawerCapabilities.all.get_IsStatusReportingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3566,10 +4159,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICashDrawerCapabilities.all.get_IsStatusMultiDrawerDetectSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3579,10 +4176,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICashDrawerCapabilities.all.get_IsDrawerOpenSensorAvailable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3595,12 +4196,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerCloseAlarm) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerCloseAlarm, ICashDrawerCloseAlarm_Ptr);
    begin
       if this.m_ICashDrawerCloseAlarm /= null then
          if this.m_ICashDrawerCloseAlarm.all /= null then
-            RefCount := this.m_ICashDrawerCloseAlarm.all.Release;
+            temp := this.m_ICashDrawerCloseAlarm.all.Release;
             Free (this.m_ICashDrawerCloseAlarm);
          end if;
       end if;
@@ -3615,9 +4216,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.put_AlarmTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AlarmTimeout
@@ -3626,10 +4231,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.get_AlarmTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3639,9 +4248,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.put_BeepFrequency (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BeepFrequency
@@ -3650,10 +4263,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.get_BeepFrequency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3663,9 +4280,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.put_BeepDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BeepDuration
@@ -3674,10 +4295,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.get_BeepDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3687,9 +4312,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.put_BeepDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BeepDelay
@@ -3698,10 +4327,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.get_BeepDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3712,10 +4345,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.add_AlarmTimeoutExpired (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3725,9 +4362,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerCloseAlarm.all.remove_AlarmTimeoutExpired (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function StartAsync
@@ -3736,13 +4377,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3760,7 +4401,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3773,7 +4414,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ICashDrawerCloseAlarm.all.StartAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3783,9 +4424,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3802,12 +4443,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerEventSourceEventArgs, ICashDrawerEventSourceEventArgs_Ptr);
    begin
       if this.m_ICashDrawerEventSourceEventArgs /= null then
          if this.m_ICashDrawerEventSourceEventArgs.all /= null then
-            RefCount := this.m_ICashDrawerEventSourceEventArgs.all.Release;
+            temp := this.m_ICashDrawerEventSourceEventArgs.all.Release;
             Free (this.m_ICashDrawerEventSourceEventArgs);
          end if;
       end if;
@@ -3822,11 +4463,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawer;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawer do
          Hr := this.m_ICashDrawerEventSourceEventArgs.all.get_CashDrawer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawer := new Windows.Devices.PointOfService.ICashDrawer;
          Retval.m_ICashDrawer.all := m_ComRetVal;
       end return;
@@ -3841,12 +4486,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerEventSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerEventSource, ICashDrawerEventSource_Ptr);
    begin
       if this.m_ICashDrawerEventSource /= null then
          if this.m_ICashDrawerEventSource.all /= null then
-            RefCount := this.m_ICashDrawerEventSource.all.Release;
+            temp := this.m_ICashDrawerEventSource.all.Release;
             Free (this.m_ICashDrawerEventSource);
          end if;
       end if;
@@ -3862,10 +4507,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICashDrawerEventSource.all.add_DrawerClosed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3875,9 +4524,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerEventSource.all.remove_DrawerClosed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DrawerOpened
@@ -3887,10 +4540,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICashDrawerEventSource.all.add_DrawerOpened (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3900,9 +4557,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICashDrawerEventSource.all.remove_DrawerOpened (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3914,12 +4575,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerOpenedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerEventSourceEventArgs, ICashDrawerEventSourceEventArgs_Ptr);
    begin
       if this.m_ICashDrawerEventSourceEventArgs /= null then
          if this.m_ICashDrawerEventSourceEventArgs.all /= null then
-            RefCount := this.m_ICashDrawerEventSourceEventArgs.all.Release;
+            temp := this.m_ICashDrawerEventSourceEventArgs.all.Release;
             Free (this.m_ICashDrawerEventSourceEventArgs);
          end if;
       end if;
@@ -3934,11 +4595,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawer;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawer do
          Hr := this.m_ICashDrawerEventSourceEventArgs.all.get_CashDrawer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawer := new Windows.Devices.PointOfService.ICashDrawer;
          Retval.m_ICashDrawer.all := m_ComRetVal;
       end return;
@@ -3953,12 +4618,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerStatus) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerStatus, ICashDrawerStatus_Ptr);
    begin
       if this.m_ICashDrawerStatus /= null then
          if this.m_ICashDrawerStatus.all /= null then
-            RefCount := this.m_ICashDrawerStatus.all.Release;
+            temp := this.m_ICashDrawerStatus.all.Release;
             Free (this.m_ICashDrawerStatus);
          end if;
       end if;
@@ -3973,10 +4638,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawerStatusKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.CashDrawerStatusKind;
    begin
       Hr := this.m_ICashDrawerStatus.all.get_StatusKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3986,10 +4655,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICashDrawerStatus.all.get_ExtendedStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4002,12 +4675,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out CashDrawerStatusUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICashDrawerStatusUpdatedEventArgs, ICashDrawerStatusUpdatedEventArgs_Ptr);
    begin
       if this.m_ICashDrawerStatusUpdatedEventArgs /= null then
          if this.m_ICashDrawerStatusUpdatedEventArgs.all /= null then
-            RefCount := this.m_ICashDrawerStatusUpdatedEventArgs.all.Release;
+            temp := this.m_ICashDrawerStatusUpdatedEventArgs.all.Release;
             Free (this.m_ICashDrawerStatusUpdatedEventArgs);
          end if;
       end if;
@@ -4022,11 +4695,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawerStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawerStatus;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawerStatus do
          Hr := this.m_ICashDrawerStatusUpdatedEventArgs.all.get_Status (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawerStatus := new Windows.Devices.PointOfService.ICashDrawerStatus;
          Retval.m_ICashDrawerStatus.all := m_ComRetVal;
       end return;
@@ -4041,12 +4718,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedBarcodeScanner) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedBarcodeScanner, IClaimedBarcodeScanner_Ptr);
    begin
       if this.m_IClaimedBarcodeScanner /= null then
          if this.m_IClaimedBarcodeScanner.all /= null then
-            RefCount := this.m_IClaimedBarcodeScanner.all.Release;
+            temp := this.m_IClaimedBarcodeScanner.all.Release;
             Free (this.m_IClaimedBarcodeScanner);
          end if;
       end if;
@@ -4061,13 +4738,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4077,10 +4758,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4090,9 +4775,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.put_IsDisabledOnDataReceived (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDisabledOnDataReceived
@@ -4101,10 +4790,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.get_IsDisabledOnDataReceived (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4114,9 +4807,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.put_IsDecodeDataEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDecodeDataEnabled
@@ -4125,10 +4822,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.get_IsDecodeDataEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4137,7 +4838,8 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4145,7 +4847,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4166,9 +4867,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4179,7 +4880,8 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4187,7 +4889,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4208,9 +4909,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4221,9 +4922,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.RetainDevice;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetActiveSymbologiesAsync
@@ -4232,7 +4937,8 @@ package body WinRt.Windows.Devices.PointOfService is
       symbologies : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4240,7 +4946,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4261,9 +4966,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4275,7 +4980,8 @@ package body WinRt.Windows.Devices.PointOfService is
       statisticsCategories : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4283,7 +4989,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4304,9 +5009,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4318,7 +5023,8 @@ package body WinRt.Windows.Devices.PointOfService is
       statistics : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4326,7 +5032,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4347,9 +5052,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4361,8 +5066,9 @@ package body WinRt.Windows.Devices.PointOfService is
       profile : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_profile : WinRt.HString := To_HString (profile);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_profile : constant WinRt.HString := To_HString (profile);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4370,7 +5076,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4391,13 +5096,13 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_profile);
+      tmp := WindowsDeleteString (HStr_profile);
    end;
 
    function add_DataReceived
@@ -4407,10 +5112,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.add_DataReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4420,9 +5129,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.remove_DataReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TriggerPressed
@@ -4432,10 +5145,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.add_TriggerPressed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4445,9 +5162,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.remove_TriggerPressed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TriggerReleased
@@ -4457,10 +5178,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.add_TriggerReleased (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4470,9 +5195,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.remove_TriggerReleased (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ReleaseDeviceRequested
@@ -4482,10 +5211,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.add_ReleaseDeviceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4495,9 +5228,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.remove_ReleaseDeviceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ImagePreviewReceived
@@ -4507,10 +5244,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.add_ImagePreviewReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4520,9 +5261,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.remove_ImagePreviewReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ErrorOccurred
@@ -4532,10 +5277,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.add_ErrorOccurred (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4545,9 +5294,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedBarcodeScanner.all.remove_ErrorOccurred (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartSoftwareTriggerAsync
@@ -4555,8 +5308,9 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner1 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4564,7 +5318,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4580,7 +5333,7 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.StartSoftwareTriggerAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4588,9 +5341,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4601,8 +5354,9 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner1 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4610,7 +5364,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4626,7 +5379,7 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.StopSoftwareTriggerAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4634,9 +5387,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4649,14 +5402,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeSymbologyAttributes.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4674,7 +5427,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeSymbologyAttributes.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeSymbologyAttributes.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4688,10 +5441,10 @@ package body WinRt.Windows.Devices.PointOfService is
       return RetVal : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes do
          m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
          Hr := m_Interface.GetSymbologyAttributesAsync (barcodeSymbology, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4703,9 +5456,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_IBarcodeSymbologyAttributes := new Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
                   Retval.m_IBarcodeSymbologyAttributes.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -4721,14 +5474,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4746,7 +5499,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4759,10 +5512,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.SetSymbologyAttributesAsync (barcodeSymbology, attributes.m_IBarcodeSymbologyAttributes.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4772,9 +5525,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4788,14 +5541,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4813,7 +5566,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4826,10 +5579,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.ShowVideoPreviewAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4839,9 +5592,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4854,13 +5607,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner_Interface, WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3, WinRt.Windows.Devices.PointOfService.IID_IClaimedBarcodeScanner3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.HideVideoPreview;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_IsVideoPreviewShownOnEnable
@@ -4869,13 +5626,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner_Interface, WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3, WinRt.Windows.Devices.PointOfService.IID_IClaimedBarcodeScanner3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.put_IsVideoPreviewShownOnEnable (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsVideoPreviewShownOnEnable
@@ -4884,14 +5645,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner_Interface, WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner3, WinRt.Windows.Devices.PointOfService.IID_IClaimedBarcodeScanner3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.get_IsVideoPreviewShownOnEnable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4902,14 +5667,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner_Interface, WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner4, WinRt.Windows.Devices.PointOfService.IID_IClaimedBarcodeScanner4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.add_Closed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4919,13 +5688,17 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner_Interface, WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner4, WinRt.Windows.Devices.PointOfService.IID_IClaimedBarcodeScanner4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.remove_Closed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -4933,13 +5706,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedBarcodeScanner
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedBarcodeScanner_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedBarcodeScanner.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4951,12 +5728,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedBarcodeScannerClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedBarcodeScannerClosedEventArgs, IClaimedBarcodeScannerClosedEventArgs_Ptr);
    begin
       if this.m_IClaimedBarcodeScannerClosedEventArgs /= null then
          if this.m_IClaimedBarcodeScannerClosedEventArgs.all /= null then
-            RefCount := this.m_IClaimedBarcodeScannerClosedEventArgs.all.Release;
+            temp := this.m_IClaimedBarcodeScannerClosedEventArgs.all.Release;
             Free (this.m_IClaimedBarcodeScannerClosedEventArgs);
          end if;
       end if;
@@ -4974,12 +5751,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedCashDrawer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedCashDrawer, IClaimedCashDrawer_Ptr);
    begin
       if this.m_IClaimedCashDrawer /= null then
          if this.m_IClaimedCashDrawer.all /= null then
-            RefCount := this.m_IClaimedCashDrawer.all.Release;
+            temp := this.m_IClaimedCashDrawer.all.Release;
             Free (this.m_IClaimedCashDrawer);
          end if;
       end if;
@@ -4994,13 +5771,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedCashDrawer.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5010,10 +5791,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedCashDrawer.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5023,10 +5808,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedCashDrawer.all.get_IsDrawerOpen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5036,11 +5825,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.CashDrawerCloseAlarm'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ICashDrawerCloseAlarm;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.CashDrawerCloseAlarm do
          Hr := this.m_IClaimedCashDrawer.all.get_CloseAlarm (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICashDrawerCloseAlarm := new Windows.Devices.PointOfService.ICashDrawerCloseAlarm;
          Retval.m_ICashDrawerCloseAlarm.all := m_ComRetVal;
       end return;
@@ -5052,13 +5845,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5076,7 +5869,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5089,7 +5882,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedCashDrawer.all.OpenDrawerAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5099,9 +5892,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5115,13 +5908,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5139,7 +5932,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5152,7 +5945,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedCashDrawer.all.EnableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5162,9 +5955,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5178,13 +5971,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5202,7 +5995,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5215,7 +6008,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedCashDrawer.all.DisableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5225,9 +6018,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5241,13 +6034,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5265,7 +6058,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5278,7 +6071,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedCashDrawer.all.RetainDeviceAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5288,9 +6081,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5305,13 +6098,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5329,7 +6122,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5342,7 +6135,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedCashDrawer.all.ResetStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5352,9 +6145,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5369,13 +6162,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5393,7 +6186,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5406,7 +6199,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedCashDrawer.all.UpdateStatisticsAsync (statistics, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5416,9 +6209,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5433,10 +6226,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedCashDrawer.all.add_ReleaseDeviceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5446,9 +6243,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedCashDrawer.all.remove_ReleaseDeviceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -5458,14 +6259,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer_Interface, WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer2, WinRt.Windows.Devices.PointOfService.IID_IClaimedCashDrawer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedCashDrawer.all);
       Hr := m_Interface.add_Closed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5475,13 +6280,17 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer_Interface, WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer2, WinRt.Windows.Devices.PointOfService.IID_IClaimedCashDrawer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedCashDrawer.all);
       Hr := m_Interface.remove_Closed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -5489,13 +6298,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedCashDrawer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedCashDrawer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedCashDrawer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5507,12 +6320,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedCashDrawerClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedCashDrawerClosedEventArgs, IClaimedCashDrawerClosedEventArgs_Ptr);
    begin
       if this.m_IClaimedCashDrawerClosedEventArgs /= null then
          if this.m_IClaimedCashDrawerClosedEventArgs.all /= null then
-            RefCount := this.m_IClaimedCashDrawerClosedEventArgs.all.Release;
+            temp := this.m_IClaimedCashDrawerClosedEventArgs.all.Release;
             Free (this.m_IClaimedCashDrawerClosedEventArgs);
          end if;
       end if;
@@ -5530,12 +6343,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedJournalPrinter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedJournalPrinter, IClaimedJournalPrinter_Ptr);
    begin
       if this.m_IClaimedJournalPrinter /= null then
          if this.m_IClaimedJournalPrinter.all /= null then
-            RefCount := this.m_IClaimedJournalPrinter.all.Release;
+            temp := this.m_IClaimedJournalPrinter.all.Release;
             Free (this.m_IClaimedJournalPrinter);
          end if;
       end if;
@@ -5550,11 +6363,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.JournalPrintJob'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IPosPrinterJob;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.JournalPrintJob do
          Hr := this.m_IClaimedJournalPrinter.all.CreateJob (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPosPrinterJob := new Windows.Devices.PointOfService.IPosPrinterJob;
          Retval.m_IPosPrinterJob.all := m_ComRetVal;
       end return;
@@ -5566,13 +6383,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.put_CharactersPerLine (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharactersPerLine
@@ -5581,14 +6402,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_CharactersPerLine (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5598,13 +6423,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.put_LineHeight (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineHeight
@@ -5613,14 +6442,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_LineHeight (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5630,13 +6463,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.put_LineSpacing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineSpacing
@@ -5645,14 +6482,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_LineSpacing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5662,14 +6503,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_LineWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5679,13 +6524,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.put_IsLetterQuality (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsLetterQuality
@@ -5694,14 +6543,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsLetterQuality (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5711,14 +6564,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsPaperNearEnd (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5728,13 +6585,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterColorCartridge
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.put_ColorCartridge (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ColorCartridge
@@ -5743,14 +6604,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterColorCartridge;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_ColorCartridge (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5760,14 +6625,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsCoverOpen (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5777,14 +6646,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsCartridgeRemoved (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5794,14 +6667,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsCartridgeEmpty (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5811,14 +6688,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsHeadCleaning (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5828,14 +6709,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsPaperEmpty (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5845,14 +6730,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.get_IsReadyToPrint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5863,16 +6752,20 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedJournalPrinter.all);
       Hr := m_Interface.ValidateData (HStr_data, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
       return m_ComRetVal;
    end;
 
@@ -5885,12 +6778,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedLineDisplay) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedLineDisplay, IClaimedLineDisplay_Ptr);
    begin
       if this.m_IClaimedLineDisplay /= null then
          if this.m_IClaimedLineDisplay.all /= null then
-            RefCount := this.m_IClaimedLineDisplay.all.Release;
+            temp := this.m_IClaimedLineDisplay.all.Release;
             Free (this.m_IClaimedLineDisplay);
          end if;
       end if;
@@ -5905,16 +6798,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedLineDisplay is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.ClaimedLineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.ClaimedLineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IClaimedLineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ClaimedLineDisplay.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5932,7 +6825,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ClaimedLineDisplay.Kind_Delegate, AsyncOperationCompletedHandler_ClaimedLineDisplay.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5946,10 +6839,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IClaimedLineDisplayStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -5961,36 +6854,40 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IClaimedLineDisplay := new Windows.Devices.PointOfService.IClaimedLineDisplay;
                      Retval.m_IClaimedLineDisplay.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector_ClaimedLineDisplay
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.ClaimedLineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.ClaimedLineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IClaimedLineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IClaimedLineDisplayStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6000,20 +6897,24 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.ClaimedLineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.ClaimedLineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IClaimedLineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IClaimedLineDisplayStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6026,13 +6927,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedLineDisplay.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6042,11 +6947,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayCapabilities do
          Hr := this.m_IClaimedLineDisplay.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayCapabilities := new Windows.Devices.PointOfService.ILineDisplayCapabilities;
          Retval.m_ILineDisplayCapabilities.all := m_ComRetVal;
       end return;
@@ -6058,13 +6967,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedLineDisplay.all.get_PhysicalDeviceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6074,13 +6987,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedLineDisplay.all.get_PhysicalDeviceDescription (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6090,13 +7007,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedLineDisplay.all.get_DeviceControlDescription (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6106,13 +7027,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedLineDisplay.all.get_DeviceControlVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6122,13 +7047,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedLineDisplay.all.get_DeviceServiceVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6138,11 +7067,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayWindow'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayWindow;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayWindow do
          Hr := this.m_IClaimedLineDisplay.all.get_DefaultWindow (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayWindow := new Windows.Devices.PointOfService.ILineDisplayWindow;
          Retval.m_ILineDisplayWindow.all := m_ComRetVal;
       end return;
@@ -6153,9 +7086,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedLineDisplay
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedLineDisplay.all.RetainDevice;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ReleaseDeviceRequested
@@ -6165,10 +7102,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedLineDisplay.all.add_ReleaseDeviceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6178,9 +7119,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedLineDisplay.all.remove_ReleaseDeviceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetStatisticsAsync
@@ -6190,14 +7135,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6216,7 +7161,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6229,10 +7174,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.GetStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6242,15 +7187,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -6261,14 +7206,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6287,7 +7232,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6300,10 +7245,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.CheckHealthAsync (level, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6313,15 +7258,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -6331,14 +7276,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayPowerStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplayPowerStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6356,7 +7301,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplayPowerStatus.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplayPowerStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6369,10 +7314,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.CheckPowerStatusAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6382,9 +7327,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6399,14 +7344,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.add_StatusUpdated (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6416,13 +7365,17 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.remove_StatusUpdated (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportedScreenSizesInCharacters
@@ -6431,17 +7384,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_Size.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Size.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.get_SupportedScreenSizesInCharacters (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Size (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6451,14 +7408,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.get_MaxBitmapSizeInPixels (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6468,17 +7429,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.get_SupportedCharacterSets (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6488,15 +7453,19 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayCustomGlyphs'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayCustomGlyphs;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayCustomGlyphs do
          m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
          Hr := m_Interface.get_CustomGlyphs (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayCustomGlyphs := new Windows.Devices.PointOfService.ILineDisplayCustomGlyphs;
          Retval.m_ILineDisplayCustomGlyphs.all := m_ComRetVal;
       end return;
@@ -6508,15 +7477,19 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayAttributes do
          m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
          Hr := m_Interface.GetAttributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayAttributes := new Windows.Devices.PointOfService.ILineDisplayAttributes;
          Retval.m_ILineDisplayAttributes.all := m_ComRetVal;
       end return;
@@ -6529,14 +7502,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6554,7 +7527,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6567,10 +7540,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.TryUpdateAttributesAsync (attributes.m_ILineDisplayAttributes.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6580,9 +7553,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6598,14 +7571,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6623,7 +7596,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6636,10 +7609,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.TrySetDescriptorAsync (descriptor, descriptorState, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6649,9 +7622,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6665,14 +7638,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6690,7 +7663,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6703,10 +7676,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.TryClearDescriptorsAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6716,9 +7689,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6734,14 +7707,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayWindow'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplayWindow.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6759,7 +7732,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplayWindow.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplayWindow.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6773,10 +7746,10 @@ package body WinRt.Windows.Devices.PointOfService is
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayWindow do
          m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
          Hr := m_Interface.TryCreateWindowAsync (viewport, windowSize, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6788,9 +7761,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_ILineDisplayWindow := new Windows.Devices.PointOfService.ILineDisplayWindow;
                   Retval.m_ILineDisplayWindow.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6805,14 +7778,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplayStoredBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6830,7 +7803,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplayStoredBitmap.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplayStoredBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6844,10 +7817,10 @@ package body WinRt.Windows.Devices.PointOfService is
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap do
          m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
          Hr := m_Interface.TryStoreStorageFileBitmapAsync (bitmap.m_IStorageFile.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6859,9 +7832,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_ILineDisplayStoredBitmap := new Windows.Devices.PointOfService.ILineDisplayStoredBitmap;
                   Retval.m_ILineDisplayStoredBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6878,14 +7851,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplayStoredBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6903,7 +7876,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplayStoredBitmap.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplayStoredBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6917,10 +7890,10 @@ package body WinRt.Windows.Devices.PointOfService is
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap do
          m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
          Hr := m_Interface.TryStoreStorageFileBitmapAsync (bitmap.m_IStorageFile.all, horizontalAlignment, verticalAlignment, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6932,9 +7905,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_ILineDisplayStoredBitmap := new Windows.Devices.PointOfService.ILineDisplayStoredBitmap;
                   Retval.m_ILineDisplayStoredBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6952,14 +7925,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplayStoredBitmap.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6977,7 +7950,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplayStoredBitmap.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplayStoredBitmap.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6991,10 +7964,10 @@ package body WinRt.Windows.Devices.PointOfService is
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap do
          m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
          Hr := m_Interface.TryStoreStorageFileBitmapAsync (bitmap.m_IStorageFile.all, horizontalAlignment, verticalAlignment, widthInPixels, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -7006,9 +7979,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_ILineDisplayStoredBitmap := new Windows.Devices.PointOfService.ILineDisplayStoredBitmap;
                   Retval.m_ILineDisplayStoredBitmap.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -7023,14 +7996,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay3, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.add_Closed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7040,13 +8017,17 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay3, WinRt.Windows.Devices.PointOfService.IID_IClaimedLineDisplay3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.remove_Closed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -7054,13 +8035,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedLineDisplay
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedLineDisplay_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedLineDisplay.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7072,12 +8057,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedLineDisplayClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedLineDisplayClosedEventArgs, IClaimedLineDisplayClosedEventArgs_Ptr);
    begin
       if this.m_IClaimedLineDisplayClosedEventArgs /= null then
          if this.m_IClaimedLineDisplayClosedEventArgs.all /= null then
-            RefCount := this.m_IClaimedLineDisplayClosedEventArgs.all.Release;
+            temp := this.m_IClaimedLineDisplayClosedEventArgs.all.Release;
             Free (this.m_IClaimedLineDisplayClosedEventArgs);
          end if;
       end if;
@@ -7095,12 +8080,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedMagneticStripeReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedMagneticStripeReader, IClaimedMagneticStripeReader_Ptr);
    begin
       if this.m_IClaimedMagneticStripeReader /= null then
          if this.m_IClaimedMagneticStripeReader.all /= null then
-            RefCount := this.m_IClaimedMagneticStripeReader.all.Release;
+            temp := this.m_IClaimedMagneticStripeReader.all.Release;
             Free (this.m_IClaimedMagneticStripeReader);
          end if;
       end if;
@@ -7115,13 +8100,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7131,10 +8120,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7144,9 +8137,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.put_IsDisabledOnDataReceived (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDisabledOnDataReceived
@@ -7155,10 +8152,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_IsDisabledOnDataReceived (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7168,9 +8169,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.put_IsDecodeDataEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDecodeDataEnabled
@@ -7179,10 +8184,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_IsDecodeDataEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7192,10 +8201,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_IsDeviceAuthenticated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7205,9 +8218,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.put_DataEncryptionAlgorithm (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DataEncryptionAlgorithm
@@ -7216,10 +8233,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_DataEncryptionAlgorithm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7229,9 +8250,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.put_TracksToRead (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TracksToRead
@@ -7240,10 +8265,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackIds is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderTrackIds;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_TracksToRead (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7253,9 +8282,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.put_IsTransmitSentinelsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsTransmitSentinelsEnabled
@@ -7264,10 +8297,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.get_IsTransmitSentinelsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7276,7 +8313,8 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedMagneticStripeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7284,7 +8322,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7305,9 +8342,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7318,7 +8355,8 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedMagneticStripeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7326,7 +8364,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7347,9 +8384,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7360,9 +8397,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedMagneticStripeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.RetainDevice;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetErrorReportingType
@@ -7371,9 +8412,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.SetErrorReportingType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function RetrieveDeviceAuthenticationDataAsync
@@ -7382,13 +8427,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7406,7 +8451,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7419,7 +8464,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedMagneticStripeReader.all.RetrieveDeviceAuthenticationDataAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -7429,9 +8474,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -7445,7 +8490,8 @@ package body WinRt.Windows.Devices.PointOfService is
       responseToken : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7453,7 +8499,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7475,9 +8520,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7489,7 +8534,8 @@ package body WinRt.Windows.Devices.PointOfService is
       responseToken : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7497,7 +8543,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7519,9 +8564,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7534,9 +8579,10 @@ package body WinRt.Windows.Devices.PointOfService is
       keyName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
-      HStr_keyName : WinRt.HString := To_HString (keyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_keyName : constant WinRt.HString := To_HString (keyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7544,7 +8590,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7565,14 +8610,14 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_key);
-      Hr := WindowsDeleteString (HStr_keyName);
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_keyName);
    end;
 
    procedure ResetStatisticsAsync
@@ -7581,7 +8626,8 @@ package body WinRt.Windows.Devices.PointOfService is
       statisticsCategories : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7589,7 +8635,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7610,9 +8655,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7624,7 +8669,8 @@ package body WinRt.Windows.Devices.PointOfService is
       statistics : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7632,7 +8678,6 @@ package body WinRt.Windows.Devices.PointOfService is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7653,9 +8698,9 @@ package body WinRt.Windows.Devices.PointOfService is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7668,10 +8713,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.add_BankCardDataReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7681,9 +8730,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.remove_BankCardDataReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AamvaCardDataReceived
@@ -7693,10 +8746,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.add_AamvaCardDataReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7706,9 +8763,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.remove_AamvaCardDataReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VendorSpecificDataReceived
@@ -7718,10 +8779,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.add_VendorSpecificDataReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7731,9 +8796,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.remove_VendorSpecificDataReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ReleaseDeviceRequested
@@ -7743,10 +8812,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.add_ReleaseDeviceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7756,9 +8829,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.remove_ReleaseDeviceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ErrorOccurred
@@ -7768,10 +8845,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.add_ErrorOccurred (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7781,9 +8862,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedMagneticStripeReader.all.remove_ErrorOccurred (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -7793,14 +8878,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader_Interface, WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader2, WinRt.Windows.Devices.PointOfService.IID_IClaimedMagneticStripeReader2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedMagneticStripeReader.all);
       Hr := m_Interface.add_Closed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7810,13 +8899,17 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader_Interface, WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader2, WinRt.Windows.Devices.PointOfService.IID_IClaimedMagneticStripeReader2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedMagneticStripeReader.all);
       Hr := m_Interface.remove_Closed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -7824,13 +8917,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedMagneticStripeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedMagneticStripeReader_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedMagneticStripeReader.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7842,12 +8939,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedMagneticStripeReaderClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedMagneticStripeReaderClosedEventArgs, IClaimedMagneticStripeReaderClosedEventArgs_Ptr);
    begin
       if this.m_IClaimedMagneticStripeReaderClosedEventArgs /= null then
          if this.m_IClaimedMagneticStripeReaderClosedEventArgs.all /= null then
-            RefCount := this.m_IClaimedMagneticStripeReaderClosedEventArgs.all.Release;
+            temp := this.m_IClaimedMagneticStripeReaderClosedEventArgs.all.Release;
             Free (this.m_IClaimedMagneticStripeReaderClosedEventArgs);
          end if;
       end if;
@@ -7865,12 +8962,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedPosPrinter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedPosPrinter, IClaimedPosPrinter_Ptr);
    begin
       if this.m_IClaimedPosPrinter /= null then
          if this.m_IClaimedPosPrinter.all /= null then
-            RefCount := this.m_IClaimedPosPrinter.all.Release;
+            temp := this.m_IClaimedPosPrinter.all.Release;
             Free (this.m_IClaimedPosPrinter);
          end if;
       end if;
@@ -7885,13 +8982,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IClaimedPosPrinter.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7901,10 +9002,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedPosPrinter.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7914,9 +9019,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedPosPrinter.all.put_CharacterSet (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharacterSet
@@ -7925,10 +9034,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedPosPrinter.all.get_CharacterSet (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7938,10 +9051,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedPosPrinter.all.get_IsCoverOpen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7951,9 +9068,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedPosPrinter.all.put_IsCharacterSetMappingEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCharacterSetMappingEnabled
@@ -7962,10 +9083,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IClaimedPosPrinter.all.get_IsCharacterSetMappingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7975,9 +9100,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterMapMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedPosPrinter.all.put_MapMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MapMode
@@ -7986,10 +9115,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterMapMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterMapMode;
    begin
       Hr := this.m_IClaimedPosPrinter.all.get_MapMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7999,11 +9132,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedReceiptPrinter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IClaimedReceiptPrinter;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.ClaimedReceiptPrinter do
          Hr := this.m_IClaimedPosPrinter.all.get_Receipt (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IClaimedReceiptPrinter := new Windows.Devices.PointOfService.IClaimedReceiptPrinter;
          Retval.m_IClaimedReceiptPrinter.all := m_ComRetVal;
       end return;
@@ -8015,11 +9152,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedSlipPrinter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IClaimedSlipPrinter;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.ClaimedSlipPrinter do
          Hr := this.m_IClaimedPosPrinter.all.get_Slip (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IClaimedSlipPrinter := new Windows.Devices.PointOfService.IClaimedSlipPrinter;
          Retval.m_IClaimedSlipPrinter.all := m_ComRetVal;
       end return;
@@ -8031,11 +9172,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedJournalPrinter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IClaimedJournalPrinter;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.ClaimedJournalPrinter do
          Hr := this.m_IClaimedPosPrinter.all.get_Journal (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IClaimedJournalPrinter := new Windows.Devices.PointOfService.IClaimedJournalPrinter;
          Retval.m_IClaimedJournalPrinter.all := m_ComRetVal;
       end return;
@@ -8047,13 +9192,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8071,7 +9216,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8084,7 +9229,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedPosPrinter.all.EnableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8094,9 +9239,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8110,13 +9255,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8134,7 +9279,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8147,7 +9292,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedPosPrinter.all.DisableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8157,9 +9302,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8173,13 +9318,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8197,7 +9342,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8210,7 +9355,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedPosPrinter.all.RetainDeviceAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8220,9 +9365,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8237,13 +9382,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8261,7 +9406,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8274,7 +9419,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedPosPrinter.all.ResetStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8284,9 +9429,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8301,13 +9446,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8325,7 +9470,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8338,7 +9483,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedPosPrinter.all.UpdateStatisticsAsync (statistics, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8348,9 +9493,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8365,10 +9510,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IClaimedPosPrinter.all.add_ReleaseDeviceRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8378,9 +9527,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedPosPrinter.all.remove_ReleaseDeviceRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -8390,14 +9543,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter_Interface, WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter2, WinRt.Windows.Devices.PointOfService.IID_IClaimedPosPrinter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedPosPrinter.all);
       Hr := m_Interface.add_Closed (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8407,13 +9564,17 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter_Interface, WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter2, WinRt.Windows.Devices.PointOfService.IID_IClaimedPosPrinter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedPosPrinter.all);
       Hr := m_Interface.remove_Closed (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -8421,13 +9582,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedPosPrinter
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedPosPrinter_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedPosPrinter.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8439,12 +9604,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedPosPrinterClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedPosPrinterClosedEventArgs, IClaimedPosPrinterClosedEventArgs_Ptr);
    begin
       if this.m_IClaimedPosPrinterClosedEventArgs /= null then
          if this.m_IClaimedPosPrinterClosedEventArgs.all /= null then
-            RefCount := this.m_IClaimedPosPrinterClosedEventArgs.all.Release;
+            temp := this.m_IClaimedPosPrinterClosedEventArgs.all.Release;
             Free (this.m_IClaimedPosPrinterClosedEventArgs);
          end if;
       end if;
@@ -8462,12 +9627,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedReceiptPrinter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedReceiptPrinter, IClaimedReceiptPrinter_Ptr);
    begin
       if this.m_IClaimedReceiptPrinter /= null then
          if this.m_IClaimedReceiptPrinter.all /= null then
-            RefCount := this.m_IClaimedReceiptPrinter.all.Release;
+            temp := this.m_IClaimedReceiptPrinter.all.Release;
             Free (this.m_IClaimedReceiptPrinter);
          end if;
       end if;
@@ -8482,10 +9647,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedReceiptPrinter.all.get_SidewaysMaxLines (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8495,10 +9664,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedReceiptPrinter.all.get_SidewaysMaxChars (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8508,10 +9681,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedReceiptPrinter.all.get_LinesToPaperCut (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8521,10 +9698,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IClaimedReceiptPrinter.all.get_PageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8534,10 +9715,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IClaimedReceiptPrinter.all.get_PrintArea (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8547,11 +9732,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ReceiptPrintJob'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IReceiptPrintJob;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.ReceiptPrintJob do
          Hr := this.m_IClaimedReceiptPrinter.all.CreateJob (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IReceiptPrintJob := new Windows.Devices.PointOfService.IReceiptPrintJob;
          Retval.m_IReceiptPrintJob.all := m_ComRetVal;
       end return;
@@ -8563,13 +9752,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.put_CharactersPerLine (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharactersPerLine
@@ -8578,14 +9771,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_CharactersPerLine (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8595,13 +9792,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.put_LineHeight (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineHeight
@@ -8610,14 +9811,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_LineHeight (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8627,13 +9832,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.put_LineSpacing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineSpacing
@@ -8642,14 +9851,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_LineSpacing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8659,14 +9872,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_LineWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8676,13 +9893,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.put_IsLetterQuality (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsLetterQuality
@@ -8691,14 +9912,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsLetterQuality (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8708,14 +9933,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsPaperNearEnd (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8725,13 +9954,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterColorCartridge
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.put_ColorCartridge (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ColorCartridge
@@ -8740,14 +9973,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterColorCartridge;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_ColorCartridge (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8757,14 +9994,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsCoverOpen (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8774,14 +10015,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsCartridgeRemoved (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8791,14 +10036,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsCartridgeEmpty (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8808,14 +10057,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsHeadCleaning (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8825,14 +10078,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsPaperEmpty (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8842,14 +10099,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.get_IsReadyToPrint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8860,16 +10121,20 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedReceiptPrinter.all);
       Hr := m_Interface.ValidateData (HStr_data, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
       return m_ComRetVal;
    end;
 
@@ -8882,12 +10147,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ClaimedSlipPrinter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IClaimedSlipPrinter, IClaimedSlipPrinter_Ptr);
    begin
       if this.m_IClaimedSlipPrinter /= null then
          if this.m_IClaimedSlipPrinter.all /= null then
-            RefCount := this.m_IClaimedSlipPrinter.all.Release;
+            temp := this.m_IClaimedSlipPrinter.all.Release;
             Free (this.m_IClaimedSlipPrinter);
          end if;
       end if;
@@ -8902,10 +10167,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_SidewaysMaxLines (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8915,10 +10184,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_SidewaysMaxChars (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8928,10 +10201,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_MaxLines (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8941,10 +10218,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_LinesNearEndToEnd (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8954,10 +10235,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterPrintSide is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterPrintSide;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_PrintSide (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8967,10 +10252,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_PageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8980,10 +10269,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.get_PrintArea (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8992,9 +10285,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedSlipPrinter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.OpenJaws;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure CloseJaws
@@ -9002,9 +10299,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ClaimedSlipPrinter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.CloseJaws;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function InsertSlipAsync
@@ -9014,13 +10315,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9038,7 +10339,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9051,7 +10352,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedSlipPrinter.all.InsertSlipAsync (timeout, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -9061,9 +10362,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -9078,13 +10379,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9102,7 +10403,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9115,7 +10416,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IClaimedSlipPrinter.all.RemoveSlipAsync (timeout, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -9125,9 +10426,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -9141,9 +10442,13 @@ package body WinRt.Windows.Devices.PointOfService is
       printSide : Windows.Devices.PointOfService.PosPrinterPrintSide
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IClaimedSlipPrinter.all.ChangePrintSide (printSide);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateJob
@@ -9152,11 +10457,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.SlipPrintJob'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IReceiptOrSlipJob;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.SlipPrintJob do
          Hr := this.m_IClaimedSlipPrinter.all.CreateJob (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IReceiptOrSlipJob := new Windows.Devices.PointOfService.IReceiptOrSlipJob;
          Retval.m_IReceiptOrSlipJob.all := m_ComRetVal;
       end return;
@@ -9168,13 +10477,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.put_CharactersPerLine (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharactersPerLine
@@ -9183,14 +10496,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_CharactersPerLine (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9200,13 +10517,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.put_LineHeight (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineHeight
@@ -9215,14 +10536,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_LineHeight (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9232,13 +10557,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.put_LineSpacing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LineSpacing
@@ -9247,14 +10576,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_LineSpacing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9264,14 +10597,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_LineWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9281,13 +10618,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.put_IsLetterQuality (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsLetterQuality
@@ -9296,14 +10637,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsLetterQuality (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9313,14 +10658,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsPaperNearEnd (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9330,13 +10679,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterColorCartridge
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.put_ColorCartridge (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ColorCartridge
@@ -9345,14 +10698,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterColorCartridge;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_ColorCartridge (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9362,14 +10719,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsCoverOpen (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9379,14 +10740,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsCartridgeRemoved (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9396,14 +10761,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsCartridgeEmpty (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9413,14 +10782,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsHeadCleaning (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9430,14 +10803,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsPaperEmpty (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9447,14 +10824,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.get_IsReadyToPrint (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9465,16 +10846,20 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter_Interface, WinRt.Windows.Devices.PointOfService.ICommonClaimedPosPrinterStation, WinRt.Windows.Devices.PointOfService.IID_ICommonClaimedPosPrinterStation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IClaimedSlipPrinter.all);
       Hr := m_Interface.ValidateData (HStr_data, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
       return m_ComRetVal;
    end;
 
@@ -9487,12 +10872,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out JournalPrintJob) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterJob, IPosPrinterJob_Ptr);
    begin
       if this.m_IPosPrinterJob /= null then
          if this.m_IPosPrinterJob.all /= null then
-            RefCount := this.m_IPosPrinterJob.all.Release;
+            temp := this.m_IPosPrinterJob.all.Release;
             Free (this.m_IPosPrinterJob);
          end if;
       end if;
@@ -9508,15 +10893,19 @@ package body WinRt.Windows.Devices.PointOfService is
       printOptions : Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrintJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IPosPrinterJob_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrintJob, WinRt.Windows.Devices.PointOfService.IID_IJournalPrintJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPosPrinterJob.all);
       Hr := m_Interface.Print (HStr_data, printOptions.m_IPosPrinterPrintOptions.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure FeedPaperByLine
@@ -9525,13 +10914,17 @@ package body WinRt.Windows.Devices.PointOfService is
       lineCount : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrintJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IPosPrinterJob_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrintJob, WinRt.Windows.Devices.PointOfService.IID_IJournalPrintJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPosPrinterJob.all);
       Hr := m_Interface.FeedPaperByLine (lineCount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure FeedPaperByMapModeUnit
@@ -9540,13 +10933,17 @@ package body WinRt.Windows.Devices.PointOfService is
       distance : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrintJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IPosPrinterJob_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrintJob, WinRt.Windows.Devices.PointOfService.IID_IJournalPrintJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPosPrinterJob.all);
       Hr := m_Interface.FeedPaperByMapModeUnit (distance);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Print
@@ -9555,11 +10952,15 @@ package body WinRt.Windows.Devices.PointOfService is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       Hr := this.m_IPosPrinterJob.all.Print (HStr_data);
-      Hr := WindowsDeleteString (HStr_data);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintLine
@@ -9568,11 +10969,15 @@ package body WinRt.Windows.Devices.PointOfService is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       Hr := this.m_IPosPrinterJob.all.PrintLine (HStr_data);
-      Hr := WindowsDeleteString (HStr_data);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintLine
@@ -9580,9 +10985,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out JournalPrintJob
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterJob.all.PrintLine;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ExecuteAsync
@@ -9591,13 +11000,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9615,7 +11024,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9628,7 +11037,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IPosPrinterJob.all.ExecuteAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -9638,9 +11047,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -9657,12 +11066,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out JournalPrinterCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJournalPrinterCapabilities, IJournalPrinterCapabilities_Ptr);
    begin
       if this.m_IJournalPrinterCapabilities /= null then
          if this.m_IJournalPrinterCapabilities.all /= null then
-            RefCount := this.m_IJournalPrinterCapabilities.all.Release;
+            temp := this.m_IJournalPrinterCapabilities.all.Release;
             Free (this.m_IJournalPrinterCapabilities);
          end if;
       end if;
@@ -9677,14 +11086,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IJournalPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsReverseVideoSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9694,14 +11107,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IJournalPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsStrikethroughSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9711,14 +11128,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IJournalPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsSuperscriptSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9728,14 +11149,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IJournalPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsSubscriptSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9745,14 +11170,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IJournalPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsReversePaperFeedByLineSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9762,14 +11191,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IJournalPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsReversePaperFeedByMapModeUnitSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9779,14 +11212,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsPrinterPresent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9796,14 +11233,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsDualColorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9813,14 +11254,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterColorCapabilities is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterColorCapabilities;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_ColorCartridgeCapabilities (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9830,14 +11275,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterCartridgeSensors is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterCartridgeSensors;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_CartridgeSensors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9847,14 +11296,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsBoldSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9864,14 +11317,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsItalicSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9881,14 +11338,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsUnderlineSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9898,14 +11359,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleHighPrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9915,14 +11380,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleWidePrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9932,14 +11401,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleHighDoubleWidePrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9949,14 +11422,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsPaperEmptySensorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9966,14 +11443,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_IsPaperNearEndSensorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9983,17 +11464,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJournalPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedCharactersPerLine (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -10006,12 +11491,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplay) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplay, ILineDisplay_Ptr);
    begin
       if this.m_ILineDisplay /= null then
          if this.m_ILineDisplay.all /= null then
-            RefCount := this.m_ILineDisplay.all.Release;
+            temp := this.m_ILineDisplay.all.Release;
             Free (this.m_ILineDisplay);
          end if;
       end if;
@@ -10026,16 +11511,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplay is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplay.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -10053,7 +11538,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplay.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplay.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -10067,10 +11552,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -10082,31 +11567,31 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_ILineDisplay := new Windows.Devices.PointOfService.ILineDisplay;
                      Retval.m_ILineDisplay.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDefaultAsync_LineDisplay
    return WinRt.Windows.Devices.PointOfService.LineDisplay is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplay.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -10124,7 +11609,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplay.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplay.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -10138,10 +11623,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -10153,35 +11638,39 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_ILineDisplay := new Windows.Devices.PointOfService.ILineDisplay;
                      Retval.m_ILineDisplay.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function GetDeviceSelector_LineDisplay
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10191,40 +11680,48 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
    function get_StatisticsCategorySelector
    return WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.LineDisplay");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayStatisticsCategorySelector do
          Hr := RoGetActivationFactory (m_hString, IID_ILineDisplayStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StatisticsCategorySelector (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILineDisplayStatisticsCategorySelector := new Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector;
             Retval.m_ILineDisplayStatisticsCategorySelector.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10237,13 +11734,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplay.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10253,11 +11754,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayCapabilities do
          Hr := this.m_ILineDisplay.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayCapabilities := new Windows.Devices.PointOfService.ILineDisplayCapabilities;
          Retval.m_ILineDisplayCapabilities.all := m_ComRetVal;
       end return;
@@ -10269,13 +11774,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplay.all.get_PhysicalDeviceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10285,13 +11794,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplay.all.get_PhysicalDeviceDescription (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10301,13 +11814,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplay.all.get_DeviceControlDescription (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10317,13 +11834,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplay.all.get_DeviceControlVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10333,13 +11854,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplay.all.get_DeviceServiceVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10349,13 +11874,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedLineDisplay'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ClaimedLineDisplay.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -10373,7 +11898,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ClaimedLineDisplay.Kind_Delegate, AsyncOperationCompletedHandler_ClaimedLineDisplay.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -10387,7 +11912,7 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := this.m_ILineDisplay.all.ClaimAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -10399,9 +11924,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_IClaimedLineDisplay := new Windows.Devices.PointOfService.IClaimedLineDisplay;
                   Retval.m_IClaimedLineDisplay.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -10415,14 +11940,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayPowerStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplay2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LineDisplayPowerStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -10440,7 +11965,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LineDisplayPowerStatus.Kind_Delegate, AsyncOperationCompletedHandler_LineDisplayPowerStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -10453,10 +11978,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplay.all);
       Hr := m_Interface.CheckPowerStatusAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -10466,9 +11991,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -10481,13 +12006,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out LineDisplay
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ILineDisplay_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILineDisplay.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10499,12 +12028,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayAttributes) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayAttributes, ILineDisplayAttributes_Ptr);
    begin
       if this.m_ILineDisplayAttributes /= null then
          if this.m_ILineDisplayAttributes.all /= null then
-            RefCount := this.m_ILineDisplayAttributes.all.Release;
+            temp := this.m_ILineDisplayAttributes.all.Release;
             Free (this.m_ILineDisplayAttributes);
          end if;
       end if;
@@ -10519,10 +12048,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayAttributes.all.get_IsPowerNotifyEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10532,9 +12065,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_IsPowerNotifyEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Brightness
@@ -10543,10 +12080,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILineDisplayAttributes.all.get_Brightness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10556,9 +12097,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_Brightness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BlinkRate
@@ -10567,10 +12112,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILineDisplayAttributes.all.get_BlinkRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10580,9 +12129,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_BlinkRate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScreenSizeInCharacters
@@ -10591,10 +12144,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ILineDisplayAttributes.all.get_ScreenSizeInCharacters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10604,9 +12161,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_ScreenSizeInCharacters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharacterSet
@@ -10615,10 +12176,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILineDisplayAttributes.all.get_CharacterSet (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10628,9 +12193,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_CharacterSet (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCharacterSetMappingEnabled
@@ -10639,10 +12208,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayAttributes.all.get_IsCharacterSetMappingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10652,9 +12225,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_IsCharacterSetMappingEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentWindow
@@ -10663,11 +12240,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayWindow'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayWindow;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayWindow do
          Hr := this.m_ILineDisplayAttributes.all.get_CurrentWindow (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayWindow := new Windows.Devices.PointOfService.ILineDisplayWindow;
          Retval.m_ILineDisplayWindow.all := m_ComRetVal;
       end return;
@@ -10679,9 +12260,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.LineDisplayWindow'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayAttributes.all.put_CurrentWindow (value.m_ILineDisplayWindow.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10693,12 +12278,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayCapabilities, ILineDisplayCapabilities_Ptr);
    begin
       if this.m_ILineDisplayCapabilities /= null then
          if this.m_ILineDisplayCapabilities.all /= null then
-            RefCount := this.m_ILineDisplayCapabilities.all.Release;
+            temp := this.m_ILineDisplayCapabilities.all.Release;
             Free (this.m_ILineDisplayCapabilities);
          end if;
       end if;
@@ -10713,10 +12298,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsStatisticsReportingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10726,10 +12315,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsStatisticsUpdatingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10739,10 +12332,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosPowerReportingType;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_PowerReportingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10752,10 +12349,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanChangeScreenSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10765,10 +12366,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanDisplayBitmaps (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10778,10 +12383,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanReadCharacterAtCursor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10791,10 +12400,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanMapCharacterSets (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10804,10 +12417,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanDisplayCustomGlyphs (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10817,10 +12434,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanReverse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10830,10 +12451,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanBlink (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10843,10 +12468,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_CanChangeBlinkRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10856,10 +12485,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsBrightnessSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10869,10 +12502,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsCursorSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10882,10 +12519,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsHorizontalMarqueeSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10895,10 +12536,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsVerticalMarqueeSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10908,10 +12553,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_IsInterCharacterWaitSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10921,10 +12570,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_SupportedDescriptors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10934,10 +12587,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ILineDisplayCapabilities.all.get_SupportedWindows (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10950,12 +12607,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayCursor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayCursor, ILineDisplayCursor_Ptr);
    begin
       if this.m_ILineDisplayCursor /= null then
          if this.m_ILineDisplayCursor.all /= null then
-            RefCount := this.m_ILineDisplayCursor.all.Release;
+            temp := this.m_ILineDisplayCursor.all.Release;
             Free (this.m_ILineDisplayCursor);
          end if;
       end if;
@@ -10970,10 +12627,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_CanCustomize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10983,10 +12644,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_IsBlinkSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10996,10 +12661,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_IsBlockSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11009,10 +12678,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_IsHalfBlockSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11022,10 +12695,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_IsUnderlineSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11035,10 +12712,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_IsReverseSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11048,10 +12729,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursor.all.get_IsOtherSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11061,11 +12746,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayCursorAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayCursorAttributes;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayCursorAttributes do
          Hr := this.m_ILineDisplayCursor.all.GetAttributes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayCursorAttributes := new Windows.Devices.PointOfService.ILineDisplayCursorAttributes;
          Retval.m_ILineDisplayCursorAttributes.all := m_ComRetVal;
       end return;
@@ -11078,13 +12767,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11102,7 +12791,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11115,7 +12804,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayCursor.all.TryUpdateAttributesAsync (attributes.m_ILineDisplayCursorAttributes.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11125,9 +12814,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -11144,12 +12833,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayCursorAttributes) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayCursorAttributes, ILineDisplayCursorAttributes_Ptr);
    begin
       if this.m_ILineDisplayCursorAttributes /= null then
          if this.m_ILineDisplayCursorAttributes.all /= null then
-            RefCount := this.m_ILineDisplayCursorAttributes.all.Release;
+            temp := this.m_ILineDisplayCursorAttributes.all.Release;
             Free (this.m_ILineDisplayCursorAttributes);
          end if;
       end if;
@@ -11164,10 +12853,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.get_IsBlinkEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11177,9 +12870,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.put_IsBlinkEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CursorType
@@ -11188,10 +12885,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayCursorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.LineDisplayCursorType;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.get_CursorType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11201,9 +12902,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.LineDisplayCursorType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.put_CursorType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsAutoAdvanceEnabled
@@ -11212,10 +12917,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.get_IsAutoAdvanceEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11225,9 +12934,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.put_IsAutoAdvanceEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Position
@@ -11236,10 +12949,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11249,9 +12966,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayCursorAttributes.all.put_Position (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11263,12 +12984,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayCustomGlyphs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayCustomGlyphs, ILineDisplayCustomGlyphs_Ptr);
    begin
       if this.m_ILineDisplayCustomGlyphs /= null then
          if this.m_ILineDisplayCustomGlyphs.all /= null then
-            RefCount := this.m_ILineDisplayCustomGlyphs.all.Release;
+            temp := this.m_ILineDisplayCustomGlyphs.all.Release;
             Free (this.m_ILineDisplayCustomGlyphs);
          end if;
       end if;
@@ -11283,10 +13004,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ILineDisplayCustomGlyphs.all.get_SizeInPixels (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11296,13 +13021,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_ILineDisplayCustomGlyphs.all.get_SupportedGlyphCodes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -11314,13 +13043,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11338,7 +13067,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11351,7 +13080,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayCustomGlyphs.all.TryRedefineAsync (glyphCode, glyphData, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11361,9 +13090,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -11380,12 +13109,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayMarquee) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayMarquee, ILineDisplayMarquee_Ptr);
    begin
       if this.m_ILineDisplayMarquee /= null then
          if this.m_ILineDisplayMarquee.all /= null then
-            RefCount := this.m_ILineDisplayMarquee.all.Release;
+            temp := this.m_ILineDisplayMarquee.all.Release;
             Free (this.m_ILineDisplayMarquee);
          end if;
       end if;
@@ -11400,10 +13129,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayMarqueeFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.LineDisplayMarqueeFormat;
    begin
       Hr := this.m_ILineDisplayMarquee.all.get_Format (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11413,9 +13146,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.LineDisplayMarqueeFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayMarquee.all.put_Format (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RepeatWaitInterval
@@ -11424,10 +13161,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILineDisplayMarquee.all.get_RepeatWaitInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11437,9 +13178,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayMarquee.all.put_RepeatWaitInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScrollWaitInterval
@@ -11448,10 +13193,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILineDisplayMarquee.all.get_ScrollWaitInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11461,9 +13210,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayMarquee.all.put_ScrollWaitInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryStartScrollingAsync
@@ -11473,13 +13226,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11497,7 +13250,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11510,7 +13263,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayMarquee.all.TryStartScrollingAsync (direction, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11520,9 +13273,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -11536,13 +13289,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11560,7 +13313,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11573,7 +13326,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayMarquee.all.TryStopScrollingAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11583,9 +13336,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -11602,12 +13355,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayStatisticsCategorySelector) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayStatisticsCategorySelector, ILineDisplayStatisticsCategorySelector_Ptr);
    begin
       if this.m_ILineDisplayStatisticsCategorySelector /= null then
          if this.m_ILineDisplayStatisticsCategorySelector.all /= null then
-            RefCount := this.m_ILineDisplayStatisticsCategorySelector.all.Release;
+            temp := this.m_ILineDisplayStatisticsCategorySelector.all.Release;
             Free (this.m_ILineDisplayStatisticsCategorySelector);
          end if;
       end if;
@@ -11622,13 +13375,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplayStatisticsCategorySelector.all.get_AllStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -11638,13 +13395,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplayStatisticsCategorySelector.all.get_UnifiedPosStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -11654,13 +13415,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplayStatisticsCategorySelector.all.get_ManufacturerStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -11673,12 +13438,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayStatusUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayStatusUpdatedEventArgs, ILineDisplayStatusUpdatedEventArgs_Ptr);
    begin
       if this.m_ILineDisplayStatusUpdatedEventArgs /= null then
          if this.m_ILineDisplayStatusUpdatedEventArgs.all /= null then
-            RefCount := this.m_ILineDisplayStatusUpdatedEventArgs.all.Release;
+            temp := this.m_ILineDisplayStatusUpdatedEventArgs.all.Release;
             Free (this.m_ILineDisplayStatusUpdatedEventArgs);
          end if;
       end if;
@@ -11693,10 +13458,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayPowerStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.LineDisplayPowerStatus;
    begin
       Hr := this.m_ILineDisplayStatusUpdatedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11709,12 +13478,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayStoredBitmap) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayStoredBitmap, ILineDisplayStoredBitmap_Ptr);
    begin
       if this.m_ILineDisplayStoredBitmap /= null then
          if this.m_ILineDisplayStoredBitmap.all /= null then
-            RefCount := this.m_ILineDisplayStoredBitmap.all.Release;
+            temp := this.m_ILineDisplayStoredBitmap.all.Release;
             Free (this.m_ILineDisplayStoredBitmap);
          end if;
       end if;
@@ -11729,13 +13498,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILineDisplayStoredBitmap.all.get_EscapeSequence (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -11745,13 +13518,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11769,7 +13542,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11782,7 +13555,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayStoredBitmap.all.TryDeleteAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11792,9 +13565,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -11811,12 +13584,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out LineDisplayWindow) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILineDisplayWindow, ILineDisplayWindow_Ptr);
    begin
       if this.m_ILineDisplayWindow /= null then
          if this.m_ILineDisplayWindow.all /= null then
-            RefCount := this.m_ILineDisplayWindow.all.Release;
+            temp := this.m_ILineDisplayWindow.all.Release;
             Free (this.m_ILineDisplayWindow);
          end if;
       end if;
@@ -11831,10 +13604,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ILineDisplayWindow.all.get_SizeInCharacters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11844,10 +13621,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILineDisplayWindow.all.get_InterCharacterWaitInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11857,9 +13638,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILineDisplayWindow.all.put_InterCharacterWaitInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryRefreshAsync
@@ -11868,13 +13653,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11892,7 +13677,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11905,7 +13690,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayWindow.all.TryRefreshAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11915,9 +13700,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -11933,14 +13718,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -11958,7 +13743,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -11971,7 +13756,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayWindow.all.TryDisplayTextAsync (HStr_text, displayAttribute, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -11981,14 +13766,14 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_text);
+      tmp := WindowsDeleteString (HStr_text);
       return m_RetVal;
    end;
 
@@ -12001,14 +13786,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12026,7 +13811,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12039,7 +13824,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayWindow.all.TryDisplayTextAsync (HStr_text, displayAttribute, startPosition, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12049,14 +13834,14 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_text);
+      tmp := WindowsDeleteString (HStr_text);
       return m_RetVal;
    end;
 
@@ -12067,14 +13852,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12092,7 +13877,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12105,7 +13890,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayWindow.all.TryDisplayTextAsync (HStr_text, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12115,14 +13900,14 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_text);
+      tmp := WindowsDeleteString (HStr_text);
       return m_RetVal;
    end;
 
@@ -12134,13 +13919,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12158,7 +13943,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12171,7 +13956,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayWindow.all.TryScrollTextAsync (direction, numberOfColumnsOrRows, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12181,9 +13966,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12197,13 +13982,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12221,7 +14006,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12234,7 +14019,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_ILineDisplayWindow.all.TryClearTextAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12244,9 +14029,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12260,15 +14045,19 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayCursor'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayCursor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ILineDisplayWindow_Interface, WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2, WinRt.Windows.Devices.PointOfService.IID_ILineDisplayWindow2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayCursor do
          m_Interface := QInterface (this.m_ILineDisplayWindow.all);
          Hr := m_Interface.get_Cursor (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayCursor := new Windows.Devices.PointOfService.ILineDisplayCursor;
          Retval.m_ILineDisplayCursor.all := m_ComRetVal;
       end return;
@@ -12280,15 +14069,19 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayMarquee'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ILineDisplayMarquee;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ILineDisplayWindow_Interface, WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2, WinRt.Windows.Devices.PointOfService.IID_ILineDisplayWindow2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.LineDisplayMarquee do
          m_Interface := QInterface (this.m_ILineDisplayWindow.all);
          Hr := m_Interface.get_Marquee (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILineDisplayMarquee := new Windows.Devices.PointOfService.ILineDisplayMarquee;
          Retval.m_ILineDisplayMarquee.all := m_ComRetVal;
       end return;
@@ -12300,14 +14093,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12325,7 +14118,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12338,10 +14131,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.ReadCharacterAtCursorAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12351,9 +14144,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12368,14 +14161,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12393,7 +14186,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12406,10 +14199,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.TryDisplayStoredBitmapAtCursorAsync (bitmap.m_ILineDisplayStoredBitmap.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12419,9 +14212,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12436,14 +14229,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12461,7 +14254,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12474,10 +14267,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.TryDisplayStorageFileBitmapAtCursorAsync (bitmap.m_IStorageFile.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12487,9 +14280,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12506,14 +14299,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12531,7 +14324,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12544,10 +14337,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.TryDisplayStorageFileBitmapAtCursorAsync (bitmap.m_IStorageFile.all, horizontalAlignment, verticalAlignment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12557,9 +14350,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12577,14 +14370,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12602,7 +14395,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12615,10 +14408,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.TryDisplayStorageFileBitmapAtCursorAsync (bitmap.m_IStorageFile.all, horizontalAlignment, verticalAlignment, widthInPixels, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12628,9 +14421,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12646,14 +14439,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12671,7 +14464,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12684,10 +14477,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.TryDisplayStorageFileBitmapAtPointAsync (bitmap.m_IStorageFile.all, offsetInPixels, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12697,9 +14490,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12716,14 +14509,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12741,7 +14534,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12754,10 +14547,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.TryDisplayStorageFileBitmapAtPointAsync (bitmap.m_IStorageFile.all, offsetInPixels, widthInPixels, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -12767,9 +14560,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -12782,13 +14575,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out LineDisplayWindow
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ILineDisplayWindow_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILineDisplayWindow.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12800,12 +14597,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReader, IMagneticStripeReader_Ptr);
    begin
       if this.m_IMagneticStripeReader /= null then
          if this.m_IMagneticStripeReader.all /= null then
-            RefCount := this.m_IMagneticStripeReader.all.Release;
+            temp := this.m_IMagneticStripeReader.all.Release;
             Free (this.m_IMagneticStripeReader);
          end if;
       end if;
@@ -12817,15 +14614,15 @@ package body WinRt.Windows.Devices.PointOfService is
    function GetDefaultAsync_MagneticStripeReader
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReader is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MagneticStripeReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12843,7 +14640,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MagneticStripeReader.Kind_Delegate, AsyncOperationCompletedHandler_MagneticStripeReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12857,10 +14654,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -12872,15 +14669,15 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IMagneticStripeReader := new Windows.Devices.PointOfService.IMagneticStripeReader;
                      Retval.m_IMagneticStripeReader.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12890,16 +14687,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReader is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MagneticStripeReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12917,7 +14714,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MagneticStripeReader.Kind_Delegate, AsyncOperationCompletedHandler_MagneticStripeReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12931,10 +14728,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -12946,36 +14743,40 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IMagneticStripeReader := new Windows.Devices.PointOfService.IMagneticStripeReader;
                      Retval.m_IMagneticStripeReader.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector_MagneticStripeReader
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -12985,20 +14786,24 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReader");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13011,13 +14816,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReader.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13027,11 +14836,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderCapabilities do
          Hr := this.m_IMagneticStripeReader.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderCapabilities := new Windows.Devices.PointOfService.IMagneticStripeReaderCapabilities;
          Retval.m_IMagneticStripeReaderCapabilities.all := m_ComRetVal;
       end return;
@@ -13043,11 +14856,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMagneticStripeReader.all.get_SupportedCardTypes (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.UInt32_Array (1..Integer(m_ComRetValSize));
          function To_Ada_UInt32 is new To_Ada_Type (WinRt.UInt32, WinRt.UInt32_Ptr); 
@@ -13065,10 +14882,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationProtocol is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationProtocol;
    begin
       Hr := this.m_IMagneticStripeReader.all.get_DeviceAuthenticationProtocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13079,13 +14900,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -13104,7 +14925,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -13117,7 +14938,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IMagneticStripeReader.all.CheckHealthAsync (level, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -13127,15 +14948,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -13145,13 +14966,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedMagneticStripeReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ClaimedMagneticStripeReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -13169,7 +14990,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ClaimedMagneticStripeReader.Kind_Delegate, AsyncOperationCompletedHandler_ClaimedMagneticStripeReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -13183,7 +15004,7 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := this.m_IMagneticStripeReader.all.ClaimReaderAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -13195,9 +15016,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_IClaimedMagneticStripeReader := new Windows.Devices.PointOfService.IClaimedMagneticStripeReader;
                   Retval.m_IClaimedMagneticStripeReader.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -13212,13 +15033,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -13236,7 +15057,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -13249,7 +15070,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IMagneticStripeReader.all.RetrieveStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -13259,9 +15080,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -13275,10 +15096,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType;
    begin
       Hr := this.m_IMagneticStripeReader.all.GetErrorReportingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13289,10 +15114,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMagneticStripeReader.all.add_StatusUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13302,9 +15131,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMagneticStripeReader.all.remove_StatusUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -13312,13 +15145,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out MagneticStripeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IMagneticStripeReader_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMagneticStripeReader.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -13330,12 +15167,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderAamvaCardDataReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderAamvaCardDataReceivedEventArgs, IMagneticStripeReaderAamvaCardDataReceivedEventArgs_Ptr);
    begin
       if this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs /= null then
          if this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all /= null then
-            RefCount := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.Release;
+            temp := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.Release;
             Free (this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs);
          end if;
       end if;
@@ -13350,11 +15187,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderReport;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport do
          Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Report (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderReport := new Windows.Devices.PointOfService.IMagneticStripeReaderReport;
          Retval.m_IMagneticStripeReaderReport.all := m_ComRetVal;
       end return;
@@ -13366,13 +15207,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_LicenseNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13382,13 +15227,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_ExpirationDate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13398,13 +15247,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Restrictions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13414,13 +15267,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Class (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13430,13 +15287,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Endorsements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13446,13 +15307,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_BirthDate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13462,13 +15327,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_FirstName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13478,13 +15347,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Surname (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13494,13 +15367,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Suffix (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13510,13 +15387,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Gender (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13526,13 +15407,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_HairColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13542,13 +15427,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_EyeColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13558,13 +15447,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13574,13 +15467,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Weight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13590,13 +15487,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_Address (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13606,13 +15507,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_City (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13622,13 +15527,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13638,13 +15547,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.get_PostalCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13657,12 +15570,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderBankCardDataReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderBankCardDataReceivedEventArgs, IMagneticStripeReaderBankCardDataReceivedEventArgs_Ptr);
    begin
       if this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs /= null then
          if this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all /= null then
-            RefCount := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.Release;
+            temp := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.Release;
             Free (this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs);
          end if;
       end if;
@@ -13677,11 +15590,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderReport;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport do
          Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_Report (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderReport := new Windows.Devices.PointOfService.IMagneticStripeReaderReport;
          Retval.m_IMagneticStripeReaderReport.all := m_ComRetVal;
       end return;
@@ -13693,13 +15610,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_AccountNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13709,13 +15630,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_ExpirationDate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13725,13 +15650,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_ServiceCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13741,13 +15670,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13757,13 +15690,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_FirstName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13773,13 +15710,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_MiddleInitial (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13789,13 +15730,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_Surname (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13805,13 +15750,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.get_Suffix (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13824,12 +15773,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderCapabilities, IMagneticStripeReaderCapabilities_Ptr);
    begin
       if this.m_IMagneticStripeReaderCapabilities /= null then
          if this.m_IMagneticStripeReaderCapabilities.all /= null then
-            RefCount := this.m_IMagneticStripeReaderCapabilities.all.Release;
+            temp := this.m_IMagneticStripeReaderCapabilities.all.Release;
             Free (this.m_IMagneticStripeReaderCapabilities);
          end if;
       end if;
@@ -13844,13 +15793,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_CardAuthentication (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -13860,10 +15813,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_SupportedEncryptionAlgorithms (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13873,10 +15830,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationLevel;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_AuthenticationLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13886,10 +15847,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsIsoSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13899,10 +15864,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsJisOneSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13912,10 +15881,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsJisTwoSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13925,10 +15898,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosPowerReportingType;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_PowerReportingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13938,10 +15915,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsStatisticsReportingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13951,10 +15932,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsStatisticsUpdatingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13964,10 +15949,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsTrackDataMaskingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13977,10 +15966,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMagneticStripeReaderCapabilities.all.get_IsTransmitSentinelsSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -13991,68 +15984,84 @@ package body WinRt.Windows.Devices.PointOfService is
       function get_Unknown_MagneticStripeReaderCardTypes
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderCardTypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderCardTypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Unknown (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Bank
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderCardTypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderCardTypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Bank (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Aamva
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderCardTypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderCardTypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Aamva (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ExtendedBase_MagneticStripeReaderCardTypes
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderCardTypes");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderCardTypesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderCardTypesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExtendedBase (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -14065,51 +16074,63 @@ package body WinRt.Windows.Devices.PointOfService is
       function get_None
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderEncryptionAlgorithms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderEncryptionAlgorithms");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderEncryptionAlgorithmsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderEncryptionAlgorithmsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_None (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_TripleDesDukpt
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderEncryptionAlgorithms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderEncryptionAlgorithms");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderEncryptionAlgorithmsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderEncryptionAlgorithmsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TripleDesDukpt (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ExtendedBase_MagneticStripeReaderEncryptionAlgorithms
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderEncryptionAlgorithms");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.MagneticStripeReaderEncryptionAlgorithms");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderEncryptionAlgorithmsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMagneticStripeReaderEncryptionAlgorithmsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExtendedBase (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -14124,12 +16145,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderErrorOccurredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderErrorOccurredEventArgs, IMagneticStripeReaderErrorOccurredEventArgs_Ptr);
    begin
       if this.m_IMagneticStripeReaderErrorOccurredEventArgs /= null then
          if this.m_IMagneticStripeReaderErrorOccurredEventArgs.all /= null then
-            RefCount := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.Release;
+            temp := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.Release;
             Free (this.m_IMagneticStripeReaderErrorOccurredEventArgs);
          end if;
       end if;
@@ -14144,10 +16165,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType;
    begin
       Hr := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.get_Track1Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14157,10 +16182,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType;
    begin
       Hr := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.get_Track2Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14170,10 +16199,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType;
    begin
       Hr := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.get_Track3Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14183,10 +16216,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType;
    begin
       Hr := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.get_Track4Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14196,11 +16233,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosErrorData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IUnifiedPosErrorData;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorData do
          Hr := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.get_ErrorData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUnifiedPosErrorData := new Windows.Devices.PointOfService.IUnifiedPosErrorData;
          Retval.m_IUnifiedPosErrorData.all := m_ComRetVal;
       end return;
@@ -14212,11 +16253,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderReport;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport do
          Hr := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.get_PartialInputData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderReport := new Windows.Devices.PointOfService.IMagneticStripeReaderReport;
          Retval.m_IMagneticStripeReaderReport.all := m_ComRetVal;
       end return;
@@ -14231,12 +16276,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderReport, IMagneticStripeReaderReport_Ptr);
    begin
       if this.m_IMagneticStripeReaderReport /= null then
          if this.m_IMagneticStripeReaderReport.all /= null then
-            RefCount := this.m_IMagneticStripeReaderReport.all.Release;
+            temp := this.m_IMagneticStripeReaderReport.all.Release;
             Free (this.m_IMagneticStripeReaderReport);
          end if;
       end if;
@@ -14251,10 +16296,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMagneticStripeReaderReport.all.get_CardType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14264,11 +16313,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData do
          Hr := this.m_IMagneticStripeReaderReport.all.get_Track1 (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderTrackData := new Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
          Retval.m_IMagneticStripeReaderTrackData.all := m_ComRetVal;
       end return;
@@ -14280,11 +16333,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData do
          Hr := this.m_IMagneticStripeReaderReport.all.get_Track2 (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderTrackData := new Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
          Retval.m_IMagneticStripeReaderTrackData.all := m_ComRetVal;
       end return;
@@ -14296,11 +16353,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData do
          Hr := this.m_IMagneticStripeReaderReport.all.get_Track3 (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderTrackData := new Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
          Retval.m_IMagneticStripeReaderTrackData.all := m_ComRetVal;
       end return;
@@ -14312,11 +16373,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackData do
          Hr := this.m_IMagneticStripeReaderReport.all.get_Track4 (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderTrackData := new Windows.Devices.PointOfService.IMagneticStripeReaderTrackData;
          Retval.m_IMagneticStripeReaderTrackData.all := m_ComRetVal;
       end return;
@@ -14328,13 +16393,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IMapView_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_IMagneticStripeReaderReport.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -14344,10 +16413,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMagneticStripeReaderReport.all.get_CardAuthenticationData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14357,10 +16430,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMagneticStripeReaderReport.all.get_CardAuthenticationDataLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14370,10 +16447,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMagneticStripeReaderReport.all.get_AdditionalSecurityInformation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14386,12 +16467,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderStatusUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderStatusUpdatedEventArgs, IMagneticStripeReaderStatusUpdatedEventArgs_Ptr);
    begin
       if this.m_IMagneticStripeReaderStatusUpdatedEventArgs /= null then
          if this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all /= null then
-            RefCount := this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all.Release;
+            temp := this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all.Release;
             Free (this.m_IMagneticStripeReaderStatusUpdatedEventArgs);
          end if;
       end if;
@@ -14406,10 +16487,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.MagneticStripeReaderStatus;
    begin
       Hr := this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14419,10 +16504,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all.get_ExtendedStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14435,12 +16524,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderTrackData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderTrackData, IMagneticStripeReaderTrackData_Ptr);
    begin
       if this.m_IMagneticStripeReaderTrackData /= null then
          if this.m_IMagneticStripeReaderTrackData.all /= null then
-            RefCount := this.m_IMagneticStripeReaderTrackData.all.Release;
+            temp := this.m_IMagneticStripeReaderTrackData.all.Release;
             Free (this.m_IMagneticStripeReaderTrackData);
          end if;
       end if;
@@ -14455,10 +16544,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMagneticStripeReaderTrackData.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14468,10 +16561,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMagneticStripeReaderTrackData.all.get_DiscretionaryData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14481,10 +16578,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMagneticStripeReaderTrackData.all.get_EncryptedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -14497,12 +16598,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out MagneticStripeReaderVendorSpecificCardDataReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs, IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs_Ptr);
    begin
       if this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs /= null then
          if this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs.all /= null then
-            RefCount := this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs.all.Release;
+            temp := this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs.all.Release;
             Free (this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs);
          end if;
       end if;
@@ -14517,11 +16618,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IMagneticStripeReaderReport;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderReport do
          Hr := this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs.all.get_Report (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMagneticStripeReaderReport := new Windows.Devices.PointOfService.IMagneticStripeReaderReport;
          Retval.m_IMagneticStripeReaderReport.all := m_ComRetVal;
       end return;
@@ -14536,12 +16641,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinter, IPosPrinter_Ptr);
    begin
       if this.m_IPosPrinter /= null then
          if this.m_IPosPrinter.all /= null then
-            RefCount := this.m_IPosPrinter.all.Release;
+            temp := this.m_IPosPrinter.all.Release;
             Free (this.m_IPosPrinter);
          end if;
       end if;
@@ -14553,15 +16658,15 @@ package body WinRt.Windows.Devices.PointOfService is
    function GetDefaultAsync_PosPrinter
    return WinRt.Windows.Devices.PointOfService.PosPrinter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PosPrinter.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -14579,7 +16684,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PosPrinter.Kind_Delegate, AsyncOperationCompletedHandler_PosPrinter.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -14593,10 +16698,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -14608,15 +16713,15 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IPosPrinter := new Windows.Devices.PointOfService.IPosPrinter;
                      Retval.m_IPosPrinter.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -14626,16 +16731,16 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PosPrinter.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -14653,7 +16758,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PosPrinter.Kind_Delegate, AsyncOperationCompletedHandler_PosPrinter.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -14667,10 +16772,10 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -14682,36 +16787,40 @@ package body WinRt.Windows.Devices.PointOfService is
                      Retval.m_IPosPrinter := new Windows.Devices.PointOfService.IPosPrinter;
                      Retval.m_IPosPrinter.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDeviceSelector_PosPrinter
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -14721,20 +16830,24 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinter");
       m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (connectionTypes, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -14747,13 +16860,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPosPrinter.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -14763,11 +16880,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IPosPrinterCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.PosPrinterCapabilities do
          Hr := this.m_IPosPrinter.all.get_Capabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPosPrinterCapabilities := new Windows.Devices.PointOfService.IPosPrinterCapabilities;
          Retval.m_IPosPrinterCapabilities.all := m_ComRetVal;
       end return;
@@ -14779,13 +16900,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IPosPrinter.all.get_SupportedCharacterSets (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -14795,13 +16920,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPosPrinter.all.get_SupportedTypeFaces (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -14811,11 +16940,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IPosPrinterStatus;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.PosPrinterStatus do
          Hr := this.m_IPosPrinter.all.get_Status (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPosPrinterStatus := new Windows.Devices.PointOfService.IPosPrinterStatus;
          Retval.m_IPosPrinterStatus.all := m_ComRetVal;
       end return;
@@ -14827,13 +16960,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ClaimedPosPrinter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ClaimedPosPrinter.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -14851,7 +16984,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ClaimedPosPrinter.Kind_Delegate, AsyncOperationCompletedHandler_ClaimedPosPrinter.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -14865,7 +16998,7 @@ package body WinRt.Windows.Devices.PointOfService is
          Hr := this.m_IPosPrinter.all.ClaimPrinterAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -14877,9 +17010,9 @@ package body WinRt.Windows.Devices.PointOfService is
                   Retval.m_IClaimedPosPrinter := new Windows.Devices.PointOfService.IClaimedPosPrinter;
                   Retval.m_IClaimedPosPrinter.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -14894,13 +17027,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -14919,7 +17052,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -14932,7 +17065,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IPosPrinter.all.CheckHealthAsync (level, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -14942,15 +17075,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -14961,13 +17094,13 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -14986,7 +17119,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -14999,7 +17132,7 @@ package body WinRt.Windows.Devices.PointOfService is
       Hr := this.m_IPosPrinter.all.GetStatisticsAsync (statisticsCategories, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -15009,15 +17142,15 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -15028,10 +17161,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPosPrinter.all.add_StatusUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15041,9 +17178,13 @@ package body WinRt.Windows.Devices.PointOfService is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinter.all.remove_StatusUpdated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportedBarcodeSymbologies
@@ -15052,17 +17193,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IPosPrinter_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinter2, WinRt.Windows.Devices.PointOfService.IID_IPosPrinter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPosPrinter.all);
       Hr := m_Interface.get_SupportedBarcodeSymbologies (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -15073,19 +17218,23 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterFontProperty'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IPosPrinterFontProperty;
-      HStr_typeface : WinRt.HString := To_HString (typeface);
+      HStr_typeface : constant WinRt.HString := To_HString (typeface);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IPosPrinter_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinter2, WinRt.Windows.Devices.PointOfService.IID_IPosPrinter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.PosPrinterFontProperty do
          m_Interface := QInterface (this.m_IPosPrinter.all);
          Hr := m_Interface.GetFontProperty (HStr_typeface, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPosPrinterFontProperty := new Windows.Devices.PointOfService.IPosPrinterFontProperty;
          Retval.m_IPosPrinterFontProperty.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_typeface);
+         tmp := WindowsDeleteString (HStr_typeface);
       end return;
    end;
 
@@ -15094,13 +17243,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out PosPrinter
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IPosPrinter_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPosPrinter.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -15112,12 +17265,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinterCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterCapabilities, IPosPrinterCapabilities_Ptr);
    begin
       if this.m_IPosPrinterCapabilities /= null then
          if this.m_IPosPrinterCapabilities.all /= null then
-            RefCount := this.m_IPosPrinterCapabilities.all.Release;
+            temp := this.m_IPosPrinterCapabilities.all.Release;
             Free (this.m_IPosPrinterCapabilities);
          end if;
       end if;
@@ -15132,10 +17285,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosPowerReportingType;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_PowerReportingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15145,10 +17302,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_IsStatisticsReportingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15158,10 +17319,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_IsStatisticsUpdatingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15171,10 +17336,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_DefaultCharacterSet (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15184,10 +17353,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_HasCoverSensor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15197,10 +17370,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_CanMapCharacterSet (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15210,10 +17387,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterCapabilities.all.get_IsTransactionSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15223,11 +17404,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.ReceiptPrinterCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IReceiptPrinterCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.ReceiptPrinterCapabilities do
          Hr := this.m_IPosPrinterCapabilities.all.get_Receipt (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IReceiptPrinterCapabilities := new Windows.Devices.PointOfService.IReceiptPrinterCapabilities;
          Retval.m_IReceiptPrinterCapabilities.all := m_ComRetVal;
       end return;
@@ -15239,11 +17424,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.SlipPrinterCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.ISlipPrinterCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.SlipPrinterCapabilities do
          Hr := this.m_IPosPrinterCapabilities.all.get_Slip (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISlipPrinterCapabilities := new Windows.Devices.PointOfService.ISlipPrinterCapabilities;
          Retval.m_ISlipPrinterCapabilities.all := m_ComRetVal;
       end return;
@@ -15255,11 +17444,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.JournalPrinterCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IJournalPrinterCapabilities;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.JournalPrinterCapabilities do
          Hr := this.m_IPosPrinterCapabilities.all.get_Journal (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJournalPrinterCapabilities := new Windows.Devices.PointOfService.IJournalPrinterCapabilities;
          Retval.m_IJournalPrinterCapabilities.all := m_ComRetVal;
       end return;
@@ -15272,51 +17465,63 @@ package body WinRt.Windows.Devices.PointOfService is
       function get_Utf16LE
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterCharacterSetIds");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterCharacterSetIds");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterCharacterSetIdsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterCharacterSetIdsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Utf16LE (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ascii
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterCharacterSetIds");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterCharacterSetIds");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterCharacterSetIdsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterCharacterSetIdsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ascii (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Ansi
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterCharacterSetIds");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterCharacterSetIds");
          m_Factory        : access WinRt.Windows.Devices.PointOfService.IPosPrinterCharacterSetIdsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPosPrinterCharacterSetIdsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ansi (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -15331,12 +17536,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinterFontProperty) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterFontProperty, IPosPrinterFontProperty_Ptr);
    begin
       if this.m_IPosPrinterFontProperty /= null then
          if this.m_IPosPrinterFontProperty.all /= null then
-            RefCount := this.m_IPosPrinterFontProperty.all.Release;
+            temp := this.m_IPosPrinterFontProperty.all.Release;
             Free (this.m_IPosPrinterFontProperty);
          end if;
       end if;
@@ -15351,13 +17556,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPosPrinterFontProperty.all.get_TypeFace (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -15367,10 +17576,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterFontProperty.all.get_IsScalableToAnySize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15380,13 +17593,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_SizeUInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SizeUInt32.Kind;
    begin
       Hr := this.m_IPosPrinterFontProperty.all.get_CharacterSizes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SizeUInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -15399,12 +17616,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinterPrintOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterPrintOptions, IPosPrinterPrintOptions_Ptr);
    begin
       if this.m_IPosPrinterPrintOptions /= null then
          if this.m_IPosPrinterPrintOptions.all /= null then
-            RefCount := this.m_IPosPrinterPrintOptions.all.Release;
+            temp := this.m_IPosPrinterPrintOptions.all.Release;
             Free (this.m_IPosPrinterPrintOptions);
          end if;
       end if;
@@ -15415,7 +17632,8 @@ package body WinRt.Windows.Devices.PointOfService is
 
    function Constructor return PosPrinterPrintOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterPrintOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterPrintOptions");
       m_ComRetVal  : aliased Windows.Devices.PointOfService.IPosPrinterPrintOptions;
    begin
       return RetVal : PosPrinterPrintOptions do
@@ -15424,7 +17642,7 @@ package body WinRt.Windows.Devices.PointOfService is
             Retval.m_IPosPrinterPrintOptions := new Windows.Devices.PointOfService.IPosPrinterPrintOptions;
             Retval.m_IPosPrinterPrintOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -15437,13 +17655,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_TypeFace (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -15453,11 +17675,15 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_TypeFace (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CharacterHeight
@@ -15466,10 +17692,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_CharacterHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15479,9 +17709,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_CharacterHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bold
@@ -15490,10 +17724,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Bold (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15503,9 +17741,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Bold (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Italic
@@ -15514,10 +17756,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Italic (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15527,9 +17773,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Italic (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Underline
@@ -15538,10 +17788,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Underline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15551,9 +17805,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Underline (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReverseVideo
@@ -15562,10 +17820,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_ReverseVideo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15575,9 +17837,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_ReverseVideo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Strikethrough
@@ -15586,10 +17852,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Strikethrough (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15599,9 +17869,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Strikethrough (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Superscript
@@ -15610,10 +17884,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Superscript (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15623,9 +17901,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Superscript (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Subscript
@@ -15634,10 +17916,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Subscript (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15647,9 +17933,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Subscript (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DoubleWide
@@ -15658,10 +17948,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_DoubleWide (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15671,9 +17965,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_DoubleWide (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DoubleHigh
@@ -15682,10 +17980,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_DoubleHigh (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15695,9 +17997,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_DoubleHigh (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Alignment
@@ -15706,10 +18012,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterAlignment;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_Alignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15719,9 +18029,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_Alignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CharacterSet
@@ -15730,10 +18044,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.get_CharacterSet (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15743,9 +18061,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPosPrinterPrintOptions.all.put_CharacterSet (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -15757,12 +18079,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinterReleaseDeviceRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterReleaseDeviceRequestedEventArgs, IPosPrinterReleaseDeviceRequestedEventArgs_Ptr);
    begin
       if this.m_IPosPrinterReleaseDeviceRequestedEventArgs /= null then
          if this.m_IPosPrinterReleaseDeviceRequestedEventArgs.all /= null then
-            RefCount := this.m_IPosPrinterReleaseDeviceRequestedEventArgs.all.Release;
+            temp := this.m_IPosPrinterReleaseDeviceRequestedEventArgs.all.Release;
             Free (this.m_IPosPrinterReleaseDeviceRequestedEventArgs);
          end if;
       end if;
@@ -15780,12 +18102,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinterStatus) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterStatus, IPosPrinterStatus_Ptr);
    begin
       if this.m_IPosPrinterStatus /= null then
          if this.m_IPosPrinterStatus.all /= null then
-            RefCount := this.m_IPosPrinterStatus.all.Release;
+            temp := this.m_IPosPrinterStatus.all.Release;
             Free (this.m_IPosPrinterStatus);
          end if;
       end if;
@@ -15800,10 +18122,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterStatusKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterStatusKind;
    begin
       Hr := this.m_IPosPrinterStatus.all.get_StatusKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15813,10 +18139,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPosPrinterStatus.all.get_ExtendedStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -15829,12 +18159,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out PosPrinterStatusUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPosPrinterStatusUpdatedEventArgs, IPosPrinterStatusUpdatedEventArgs_Ptr);
    begin
       if this.m_IPosPrinterStatusUpdatedEventArgs /= null then
          if this.m_IPosPrinterStatusUpdatedEventArgs.all /= null then
-            RefCount := this.m_IPosPrinterStatusUpdatedEventArgs.all.Release;
+            temp := this.m_IPosPrinterStatusUpdatedEventArgs.all.Release;
             Free (this.m_IPosPrinterStatusUpdatedEventArgs);
          end if;
       end if;
@@ -15849,11 +18179,15 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IPosPrinterStatus;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.PosPrinterStatus do
          Hr := this.m_IPosPrinterStatusUpdatedEventArgs.all.get_Status (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPosPrinterStatus := new Windows.Devices.PointOfService.IPosPrinterStatus;
          Retval.m_IPosPrinterStatus.all := m_ComRetVal;
       end return;
@@ -15868,12 +18202,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ReceiptPrintJob) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IReceiptPrintJob, IReceiptPrintJob_Ptr);
    begin
       if this.m_IReceiptPrintJob /= null then
          if this.m_IReceiptPrintJob.all /= null then
-            RefCount := this.m_IReceiptPrintJob.all.Release;
+            temp := this.m_IReceiptPrintJob.all.Release;
             Free (this.m_IReceiptPrintJob);
          end if;
       end if;
@@ -15888,9 +18222,13 @@ package body WinRt.Windows.Devices.PointOfService is
       kind : Windows.Devices.PointOfService.PosPrinterMarkFeedKind
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptPrintJob.all.MarkFeed (kind);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure CutPaper
@@ -15899,9 +18237,13 @@ package body WinRt.Windows.Devices.PointOfService is
       percentage : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptPrintJob.all.CutPaper (percentage);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure CutPaper
@@ -15909,9 +18251,13 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ReceiptPrintJob
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptPrintJob.all.CutPaper;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StampPaper
@@ -15919,13 +18265,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ReceiptPrintJob
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrintJob2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.StampPaper;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Print
@@ -15935,15 +18285,19 @@ package body WinRt.Windows.Devices.PointOfService is
       printOptions : Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrintJob2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.Print (HStr_data, printOptions.m_IPosPrinterPrintOptions.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure FeedPaperByLine
@@ -15952,13 +18306,17 @@ package body WinRt.Windows.Devices.PointOfService is
       lineCount : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrintJob2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.FeedPaperByLine (lineCount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure FeedPaperByMapModeUnit
@@ -15967,13 +18325,17 @@ package body WinRt.Windows.Devices.PointOfService is
       distance : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrintJob2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrintJob2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.FeedPaperByMapModeUnit (distance);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBarcodeRotation
@@ -15982,13 +18344,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetBarcodeRotation (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPrintRotation
@@ -15998,13 +18364,17 @@ package body WinRt.Windows.Devices.PointOfService is
       includeBitmaps : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetPrintRotation (value, includeBitmaps);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPrintArea
@@ -16013,13 +18383,17 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetPrintArea (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBitmap
@@ -16030,13 +18404,17 @@ package body WinRt.Windows.Devices.PointOfService is
       alignment : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignment);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBitmap
@@ -16048,13 +18426,17 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignment, width);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetCustomAlignedBitmap
@@ -16065,13 +18447,17 @@ package body WinRt.Windows.Devices.PointOfService is
       alignmentDistance : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetCustomAlignedBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignmentDistance);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetCustomAlignedBitmap
@@ -16083,13 +18469,17 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.SetCustomAlignedBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignmentDistance, width);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintSavedBitmap
@@ -16098,13 +18488,17 @@ package body WinRt.Windows.Devices.PointOfService is
       bitmapNumber : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintSavedBitmap (bitmapNumber);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure DrawRuledLine
@@ -16117,15 +18511,19 @@ package body WinRt.Windows.Devices.PointOfService is
       lineColor : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_positionList : WinRt.HString := To_HString (positionList);
+      temp             : WinRt.UInt32 := 0;
+      HStr_positionList : constant WinRt.HString := To_HString (positionList);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.DrawRuledLine (HStr_positionList, lineDirection, lineWidth, lineStyle, lineColor);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_positionList);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_positionList);
    end;
 
    procedure PrintBarcode
@@ -16139,15 +18537,19 @@ package body WinRt.Windows.Devices.PointOfService is
       alignment : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintBarcode (HStr_data, symbology, height, width, textPosition, alignment);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintBarcodeCustomAlign
@@ -16161,15 +18563,19 @@ package body WinRt.Windows.Devices.PointOfService is
       alignmentDistance : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintBarcodeCustomAlign (HStr_data, symbology, height, width, textPosition, alignmentDistance);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintBitmap
@@ -16179,13 +18585,17 @@ package body WinRt.Windows.Devices.PointOfService is
       alignment : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintBitmap (bitmap.m_IBitmapFrame.all, alignment);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintBitmap
@@ -16196,13 +18606,17 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintBitmap (bitmap.m_IBitmapFrame.all, alignment, width);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintCustomAlignedBitmap
@@ -16212,13 +18626,17 @@ package body WinRt.Windows.Devices.PointOfService is
       alignmentDistance : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintCustomAlignedBitmap (bitmap.m_IBitmapFrame.all, alignmentDistance);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintCustomAlignedBitmap
@@ -16229,13 +18647,17 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob, WinRt.Windows.Devices.PointOfService.IID_IReceiptOrSlipJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintCustomAlignedBitmap (bitmap.m_IBitmapFrame.all, alignmentDistance, width);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Print
@@ -16244,15 +18666,19 @@ package body WinRt.Windows.Devices.PointOfService is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinterJob, WinRt.Windows.Devices.PointOfService.IID_IPosPrinterJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.Print (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintLine
@@ -16261,15 +18687,19 @@ package body WinRt.Windows.Devices.PointOfService is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinterJob, WinRt.Windows.Devices.PointOfService.IID_IPosPrinterJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintLine (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintLine
@@ -16277,13 +18707,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out ReceiptPrintJob
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrintJob_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinterJob, WinRt.Windows.Devices.PointOfService.IID_IPosPrinterJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.PrintLine;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ExecuteAsync
@@ -16292,14 +18726,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -16317,7 +18751,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -16330,10 +18764,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IReceiptPrintJob.all);
       Hr := m_Interface.ExecuteAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -16343,9 +18777,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -16362,12 +18796,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out ReceiptPrinterCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IReceiptPrinterCapabilities, IReceiptPrinterCapabilities_Ptr);
    begin
       if this.m_IReceiptPrinterCapabilities /= null then
          if this.m_IReceiptPrinterCapabilities.all /= null then
-            RefCount := this.m_IReceiptPrinterCapabilities.all.Release;
+            temp := this.m_IReceiptPrinterCapabilities.all.Release;
             Free (this.m_IReceiptPrinterCapabilities);
          end if;
       end if;
@@ -16382,10 +18816,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IReceiptPrinterCapabilities.all.get_CanCutPaper (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16395,10 +18833,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IReceiptPrinterCapabilities.all.get_IsStampSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16408,10 +18850,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterMarkFeedCapabilities is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterMarkFeedCapabilities;
    begin
       Hr := this.m_IReceiptPrinterCapabilities.all.get_MarkFeedCapabilities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16421,14 +18867,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsReverseVideoSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16438,14 +18888,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsStrikethroughSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16455,14 +18909,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsSuperscriptSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16472,14 +18930,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsSubscriptSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16489,14 +18951,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsReversePaperFeedByLineSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16506,14 +18972,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_IReceiptPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsReversePaperFeedByMapModeUnitSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16523,14 +18993,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsBarcodeSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16540,14 +19014,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsBitmapSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16557,14 +19035,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsLeft90RotationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16574,14 +19056,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsRight90RotationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16591,14 +19077,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_Is180RotationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16608,14 +19098,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsPrintAreaSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16625,14 +19119,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterRuledLineCapabilities is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterRuledLineCapabilities;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_RuledLineCapabilities (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16642,17 +19140,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_PosPrinterRotation.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_PosPrinterRotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedBarcodeRotations (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_PosPrinterRotation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -16662,17 +19164,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_PosPrinterRotation.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_PosPrinterRotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedBitmapRotations (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_PosPrinterRotation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -16682,14 +19188,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsPrinterPresent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16699,14 +19209,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsDualColorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16716,14 +19230,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterColorCapabilities is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterColorCapabilities;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_ColorCartridgeCapabilities (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16733,14 +19251,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterCartridgeSensors is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterCartridgeSensors;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_CartridgeSensors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16750,14 +19272,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsBoldSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16767,14 +19293,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsItalicSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16784,14 +19314,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsUnderlineSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16801,14 +19335,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleHighPrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16818,14 +19356,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleWidePrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16835,14 +19377,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleHighDoubleWidePrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16852,14 +19398,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsPaperEmptySensorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16869,14 +19419,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_IsPaperNearEndSensorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -16886,17 +19440,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedCharactersPerLine (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -16909,12 +19467,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out SlipPrintJob) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IReceiptOrSlipJob, IReceiptOrSlipJob_Ptr);
    begin
       if this.m_IReceiptOrSlipJob /= null then
          if this.m_IReceiptOrSlipJob.all /= null then
-            RefCount := this.m_IReceiptOrSlipJob.all.Release;
+            temp := this.m_IReceiptOrSlipJob.all.Release;
             Free (this.m_IReceiptOrSlipJob);
          end if;
       end if;
@@ -16930,15 +19488,19 @@ package body WinRt.Windows.Devices.PointOfService is
       printOptions : Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrintJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrintJob, WinRt.Windows.Devices.PointOfService.IID_ISlipPrintJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.Print (HStr_data, printOptions.m_IPosPrinterPrintOptions.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure FeedPaperByLine
@@ -16947,13 +19509,17 @@ package body WinRt.Windows.Devices.PointOfService is
       lineCount : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrintJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrintJob, WinRt.Windows.Devices.PointOfService.IID_ISlipPrintJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.FeedPaperByLine (lineCount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure FeedPaperByMapModeUnit
@@ -16962,13 +19528,17 @@ package body WinRt.Windows.Devices.PointOfService is
       distance : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrintJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrintJob, WinRt.Windows.Devices.PointOfService.IID_ISlipPrintJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.FeedPaperByMapModeUnit (distance);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBarcodeRotation
@@ -16977,9 +19547,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Devices.PointOfService.PosPrinterRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetBarcodeRotation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPrintRotation
@@ -16989,9 +19563,13 @@ package body WinRt.Windows.Devices.PointOfService is
       includeBitmaps : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetPrintRotation (value, includeBitmaps);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetPrintArea
@@ -17000,9 +19578,13 @@ package body WinRt.Windows.Devices.PointOfService is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetPrintArea (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBitmap
@@ -17013,9 +19595,13 @@ package body WinRt.Windows.Devices.PointOfService is
       alignment : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignment);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBitmap
@@ -17027,9 +19613,13 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignment, width);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetCustomAlignedBitmap
@@ -17040,9 +19630,13 @@ package body WinRt.Windows.Devices.PointOfService is
       alignmentDistance : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetCustomAlignedBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignmentDistance);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetCustomAlignedBitmap
@@ -17054,9 +19648,13 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.SetCustomAlignedBitmap (bitmapNumber, bitmap.m_IBitmapFrame.all, alignmentDistance, width);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintSavedBitmap
@@ -17065,9 +19663,13 @@ package body WinRt.Windows.Devices.PointOfService is
       bitmapNumber : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintSavedBitmap (bitmapNumber);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure DrawRuledLine
@@ -17080,11 +19682,15 @@ package body WinRt.Windows.Devices.PointOfService is
       lineColor : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_positionList : WinRt.HString := To_HString (positionList);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_positionList : constant WinRt.HString := To_HString (positionList);
    begin
       Hr := this.m_IReceiptOrSlipJob.all.DrawRuledLine (HStr_positionList, lineDirection, lineWidth, lineStyle, lineColor);
-      Hr := WindowsDeleteString (HStr_positionList);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_positionList);
    end;
 
    procedure PrintBarcode
@@ -17098,11 +19704,15 @@ package body WinRt.Windows.Devices.PointOfService is
       alignment : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintBarcode (HStr_data, symbology, height, width, textPosition, alignment);
-      Hr := WindowsDeleteString (HStr_data);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintBarcodeCustomAlign
@@ -17116,11 +19726,15 @@ package body WinRt.Windows.Devices.PointOfService is
       alignmentDistance : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintBarcodeCustomAlign (HStr_data, symbology, height, width, textPosition, alignmentDistance);
-      Hr := WindowsDeleteString (HStr_data);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintBitmap
@@ -17130,9 +19744,13 @@ package body WinRt.Windows.Devices.PointOfService is
       alignment : Windows.Devices.PointOfService.PosPrinterAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintBitmap (bitmap.m_IBitmapFrame.all, alignment);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintBitmap
@@ -17143,9 +19761,13 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintBitmap (bitmap.m_IBitmapFrame.all, alignment, width);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintCustomAlignedBitmap
@@ -17155,9 +19777,13 @@ package body WinRt.Windows.Devices.PointOfService is
       alignmentDistance : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintCustomAlignedBitmap (bitmap.m_IBitmapFrame.all, alignmentDistance);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PrintCustomAlignedBitmap
@@ -17168,9 +19794,13 @@ package body WinRt.Windows.Devices.PointOfService is
       width : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IReceiptOrSlipJob.all.PrintCustomAlignedBitmap (bitmap.m_IBitmapFrame.all, alignmentDistance, width);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Print
@@ -17179,15 +19809,19 @@ package body WinRt.Windows.Devices.PointOfService is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinterJob, WinRt.Windows.Devices.PointOfService.IID_IPosPrinterJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.Print (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintLine
@@ -17196,15 +19830,19 @@ package body WinRt.Windows.Devices.PointOfService is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinterJob, WinRt.Windows.Devices.PointOfService.IID_IPosPrinterJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.PrintLine (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure PrintLine
@@ -17212,13 +19850,17 @@ package body WinRt.Windows.Devices.PointOfService is
       this : in out SlipPrintJob
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob_Interface, WinRt.Windows.Devices.PointOfService.IPosPrinterJob, WinRt.Windows.Devices.PointOfService.IID_IPosPrinterJob'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.PrintLine;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ExecuteAsync
@@ -17227,14 +19869,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.IPosPrinterJob := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -17252,7 +19894,7 @@ package body WinRt.Windows.Devices.PointOfService is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -17265,10 +19907,10 @@ package body WinRt.Windows.Devices.PointOfService is
    begin
       m_Interface := QInterface (this.m_IReceiptOrSlipJob.all);
       Hr := m_Interface.ExecuteAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -17278,9 +19920,9 @@ package body WinRt.Windows.Devices.PointOfService is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -17297,12 +19939,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out SlipPrinterCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISlipPrinterCapabilities, ISlipPrinterCapabilities_Ptr);
    begin
       if this.m_ISlipPrinterCapabilities /= null then
          if this.m_ISlipPrinterCapabilities.all /= null then
-            RefCount := this.m_ISlipPrinterCapabilities.all.Release;
+            temp := this.m_ISlipPrinterCapabilities.all.Release;
             Free (this.m_ISlipPrinterCapabilities);
          end if;
       end if;
@@ -17317,10 +19959,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISlipPrinterCapabilities.all.get_IsFullLengthSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17330,10 +19976,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISlipPrinterCapabilities.all.get_IsBothSidesPrintingSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17343,14 +19993,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_ISlipPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsReverseVideoSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17360,14 +20014,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_ISlipPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsStrikethroughSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17377,14 +20035,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_ISlipPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsSuperscriptSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17394,14 +20056,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_ISlipPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsSubscriptSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17411,14 +20077,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_ISlipPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsReversePaperFeedByLineSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17428,14 +20098,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities2, WinRt.Windows.Devices.PointOfService.IID_ISlipPrinterCapabilities2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsReversePaperFeedByMapModeUnitSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17445,14 +20119,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsBarcodeSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17462,14 +20140,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsBitmapSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17479,14 +20161,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsLeft90RotationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17496,14 +20182,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsRight90RotationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17513,14 +20203,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_Is180RotationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17530,14 +20224,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsPrintAreaSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17547,14 +20245,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterRuledLineCapabilities is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterRuledLineCapabilities;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_RuledLineCapabilities (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17564,17 +20266,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_PosPrinterRotation.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_PosPrinterRotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedBarcodeRotations (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_PosPrinterRotation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -17584,17 +20290,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_PosPrinterRotation.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_PosPrinterRotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonReceiptSlipCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonReceiptSlipCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedBitmapRotations (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_PosPrinterRotation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -17604,14 +20314,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsPrinterPresent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17621,14 +20335,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsDualColorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17638,14 +20356,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterColorCapabilities is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterColorCapabilities;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_ColorCartridgeCapabilities (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17655,14 +20377,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.PosPrinterCartridgeSensors is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.PosPrinterCartridgeSensors;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_CartridgeSensors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17672,14 +20398,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsBoldSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17689,14 +20419,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsItalicSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17706,14 +20440,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsUnderlineSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17723,14 +20461,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleHighPrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17740,14 +20482,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleWidePrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17757,14 +20503,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsDoubleHighDoubleWidePrintSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17774,14 +20524,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsPaperEmptySensorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17791,14 +20545,18 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_IsPaperNearEndSensorSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17808,17 +20566,21 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities_Interface, WinRt.Windows.Devices.PointOfService.ICommonPosPrintStationCapabilities, WinRt.Windows.Devices.PointOfService.IID_ICommonPosPrintStationCapabilities'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlipPrinterCapabilities.all);
       Hr := m_Interface.get_SupportedCharactersPerLine (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -17831,12 +20593,12 @@ package body WinRt.Windows.Devices.PointOfService is
    end;
 
    procedure Finalize (this : in out UnifiedPosErrorData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUnifiedPosErrorData, IUnifiedPosErrorData_Ptr);
    begin
       if this.m_IUnifiedPosErrorData /= null then
          if this.m_IUnifiedPosErrorData.all /= null then
-            RefCount := this.m_IUnifiedPosErrorData.all.Release;
+            temp := this.m_IUnifiedPosErrorData.all.Release;
             Free (this.m_IUnifiedPosErrorData);
          end if;
       end if;
@@ -17854,11 +20616,12 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return UnifiedPosErrorData is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.PointOfService.UnifiedPosErrorData");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.UnifiedPosErrorData");
       m_Factory    : access IUnifiedPosErrorDataFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.PointOfService.IUnifiedPosErrorData;
-      HStr_message : WinRt.HString := To_HString (message);
+      HStr_message : constant WinRt.HString := To_HString (message);
    begin
       return RetVal : UnifiedPosErrorData do
          Hr := RoGetActivationFactory (m_hString, IID_IUnifiedPosErrorDataFactory'Access , m_Factory'Address);
@@ -17866,10 +20629,10 @@ package body WinRt.Windows.Devices.PointOfService is
             Hr := m_Factory.CreateInstance (HStr_message, severity, reason, extendedReason, m_ComRetVal'Access);
             Retval.m_IUnifiedPosErrorData := new Windows.Devices.PointOfService.IUnifiedPosErrorData;
             Retval.m_IUnifiedPosErrorData.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_message);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_message);
       end return;
    end;
 
@@ -17882,13 +20645,17 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUnifiedPosErrorData.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -17898,10 +20665,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosErrorSeverity;
    begin
       Hr := this.m_IUnifiedPosErrorData.all.get_Severity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17911,10 +20682,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.Windows.Devices.PointOfService.UnifiedPosErrorReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.UnifiedPosErrorReason;
    begin
       Hr := this.m_IUnifiedPosErrorData.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -17924,10 +20699,14 @@ package body WinRt.Windows.Devices.PointOfService is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUnifiedPosErrorData.all.get_ExtendedReason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

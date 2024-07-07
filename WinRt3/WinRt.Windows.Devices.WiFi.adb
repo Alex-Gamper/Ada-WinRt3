@@ -60,12 +60,12 @@ package body WinRt.Windows.Devices.WiFi is
    end;
 
    procedure Finalize (this : in out WiFiAdapter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWiFiAdapter, IWiFiAdapter_Ptr);
    begin
       if this.m_IWiFiAdapter /= null then
          if this.m_IWiFiAdapter.all /= null then
-            RefCount := this.m_IWiFiAdapter.all.Release;
+            temp := this.m_IWiFiAdapter.all.Release;
             Free (this.m_IWiFiAdapter);
          end if;
       end if;
@@ -77,15 +77,15 @@ package body WinRt.Windows.Devices.WiFi is
    function FindAllAdaptersAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
       m_Factory        : access WinRt.Windows.Devices.WiFi.IWiFiAdapterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -103,7 +103,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -116,10 +116,10 @@ package body WinRt.Windows.Devices.WiFi is
       Hr := RoGetActivationFactory (m_hString, IID_IWiFiAdapterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAdaptersAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -129,35 +129,39 @@ package body WinRt.Windows.Devices.WiFi is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
       m_Factory        : access WinRt.Windows.Devices.WiFi.IWiFiAdapterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IWiFiAdapterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -167,16 +171,16 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiAdapter is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
       m_Factory        : access WinRt.Windows.Devices.WiFi.IWiFiAdapterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiAdapter.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -194,7 +198,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiAdapter.Kind_Delegate, AsyncOperationCompletedHandler_WiFiAdapter.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -208,10 +212,10 @@ package body WinRt.Windows.Devices.WiFi is
          Hr := RoGetActivationFactory (m_hString, IID_IWiFiAdapterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -223,31 +227,31 @@ package body WinRt.Windows.Devices.WiFi is
                      Retval.m_IWiFiAdapter := new Windows.Devices.WiFi.IWiFiAdapter;
                      Retval.m_IWiFiAdapter.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function RequestAccessAsync
    return WinRt.Windows.Devices.WiFi.WiFiAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiAdapter");
       m_Factory        : access WinRt.Windows.Devices.WiFi.IWiFiAdapterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -265,7 +269,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_WiFiAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -278,10 +282,10 @@ package body WinRt.Windows.Devices.WiFi is
       Hr := RoGetActivationFactory (m_hString, IID_IWiFiAdapterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -291,15 +295,15 @@ package body WinRt.Windows.Devices.WiFi is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -312,11 +316,15 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IWiFiAdapter.all.get_NetworkAdapter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
@@ -327,7 +335,8 @@ package body WinRt.Windows.Devices.WiFi is
       this : in out WiFiAdapter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -335,7 +344,6 @@ package body WinRt.Windows.Devices.WiFi is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -356,9 +364,9 @@ package body WinRt.Windows.Devices.WiFi is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -370,11 +378,15 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiNetworkReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiNetworkReport;
    begin
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiNetworkReport do
          Hr := this.m_IWiFiAdapter.all.get_NetworkReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWiFiNetworkReport := new Windows.Devices.WiFi.IWiFiNetworkReport;
          Retval.m_IWiFiNetworkReport.all := m_ComRetVal;
       end return;
@@ -387,10 +399,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiAdapter.all.add_AvailableNetworksChanged (args, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -400,9 +416,13 @@ package body WinRt.Windows.Devices.WiFi is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWiFiAdapter.all.remove_AvailableNetworksChanged (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ConnectAsync
@@ -413,13 +433,13 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiConnectionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -437,7 +457,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiConnectionResult.Kind_Delegate, AsyncOperationCompletedHandler_WiFiConnectionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -451,7 +471,7 @@ package body WinRt.Windows.Devices.WiFi is
          Hr := this.m_IWiFiAdapter.all.ConnectAsync (availableNetwork.m_IWiFiAvailableNetwork.all, reconnectionKind, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -463,9 +483,9 @@ package body WinRt.Windows.Devices.WiFi is
                   Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -482,13 +502,13 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiConnectionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -506,7 +526,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiConnectionResult.Kind_Delegate, AsyncOperationCompletedHandler_WiFiConnectionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -520,7 +540,7 @@ package body WinRt.Windows.Devices.WiFi is
          Hr := this.m_IWiFiAdapter.all.ConnectAsync (availableNetwork.m_IWiFiAvailableNetwork.all, reconnectionKind, passwordCredential.m_IPasswordCredential.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -532,9 +552,9 @@ package body WinRt.Windows.Devices.WiFi is
                   Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -552,14 +572,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_ssid : WinRt.HString := To_HString (ssid);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_ssid : constant WinRt.HString := To_HString (ssid);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiConnectionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -577,7 +597,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiConnectionResult.Kind_Delegate, AsyncOperationCompletedHandler_WiFiConnectionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -591,7 +611,7 @@ package body WinRt.Windows.Devices.WiFi is
          Hr := this.m_IWiFiAdapter.all.ConnectAsync (availableNetwork.m_IWiFiAvailableNetwork.all, reconnectionKind, passwordCredential.m_IPasswordCredential.all, HStr_ssid, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -603,14 +623,14 @@ package body WinRt.Windows.Devices.WiFi is
                   Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_ssid);
+         tmp := WindowsDeleteString (HStr_ssid);
       end return;
    end;
 
@@ -619,9 +639,13 @@ package body WinRt.Windows.Devices.WiFi is
       this : in out WiFiAdapter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWiFiAdapter.all.Disconnect;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetWpsConfigurationAsync
@@ -631,14 +655,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.WiFi.IWiFiAdapter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiWpsConfigurationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -656,7 +680,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiWpsConfigurationResult.Kind_Delegate, AsyncOperationCompletedHandler_WiFiWpsConfigurationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -670,10 +694,10 @@ package body WinRt.Windows.Devices.WiFi is
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationResult do
          m_Interface := QInterface (this.m_IWiFiAdapter.all);
          Hr := m_Interface.GetWpsConfigurationAsync (availableNetwork.m_IWiFiAvailableNetwork.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -685,9 +709,9 @@ package body WinRt.Windows.Devices.WiFi is
                   Retval.m_IWiFiWpsConfigurationResult := new Windows.Devices.WiFi.IWiFiWpsConfigurationResult;
                   Retval.m_IWiFiWpsConfigurationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -706,15 +730,15 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.WiFi.IWiFiAdapter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_ssid : WinRt.HString := To_HString (ssid);
+      temp             : WinRt.UInt32 := 0;
+      HStr_ssid : constant WinRt.HString := To_HString (ssid);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_WiFiConnectionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -732,7 +756,7 @@ package body WinRt.Windows.Devices.WiFi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WiFiConnectionResult.Kind_Delegate, AsyncOperationCompletedHandler_WiFiConnectionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -746,10 +770,10 @@ package body WinRt.Windows.Devices.WiFi is
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiConnectionResult do
          m_Interface := QInterface (this.m_IWiFiAdapter.all);
          Hr := m_Interface.ConnectAsync (availableNetwork.m_IWiFiAvailableNetwork.all, reconnectionKind, passwordCredential.m_IPasswordCredential.all, HStr_ssid, connectionMethod, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -761,14 +785,14 @@ package body WinRt.Windows.Devices.WiFi is
                   Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_ssid);
+         tmp := WindowsDeleteString (HStr_ssid);
       end return;
    end;
 
@@ -781,12 +805,12 @@ package body WinRt.Windows.Devices.WiFi is
    end;
 
    procedure Finalize (this : in out WiFiAvailableNetwork) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWiFiAvailableNetwork, IWiFiAvailableNetwork_Ptr);
    begin
       if this.m_IWiFiAvailableNetwork /= null then
          if this.m_IWiFiAvailableNetwork.all /= null then
-            RefCount := this.m_IWiFiAvailableNetwork.all.Release;
+            temp := this.m_IWiFiAvailableNetwork.all.Release;
             Free (this.m_IWiFiAvailableNetwork);
          end if;
       end if;
@@ -801,10 +825,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_Uptime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -814,13 +842,17 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_Ssid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -830,13 +862,17 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_Bssid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -846,10 +882,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_ChannelCenterFrequencyInKilohertz (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -859,10 +899,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_NetworkRssiInDecibelMilliwatts (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -872,10 +916,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_SignalBars (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -885,10 +933,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiNetworkKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiNetworkKind;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_NetworkKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -898,10 +950,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiPhyKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiPhyKind;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_PhyKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -911,11 +967,15 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkSecuritySettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkSecuritySettings;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkSecuritySettings do
          Hr := this.m_IWiFiAvailableNetwork.all.get_SecuritySettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkSecuritySettings := new Windows.Networking.Connectivity.INetworkSecuritySettings;
          Retval.m_INetworkSecuritySettings.all := m_ComRetVal;
       end return;
@@ -927,10 +987,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_BeaconInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -940,10 +1004,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_IsWiFiDirect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -956,12 +1024,12 @@ package body WinRt.Windows.Devices.WiFi is
    end;
 
    procedure Finalize (this : in out WiFiConnectionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWiFiConnectionResult, IWiFiConnectionResult_Ptr);
    begin
       if this.m_IWiFiConnectionResult /= null then
          if this.m_IWiFiConnectionResult.all /= null then
-            RefCount := this.m_IWiFiConnectionResult.all.Release;
+            temp := this.m_IWiFiConnectionResult.all.Release;
             Free (this.m_IWiFiConnectionResult);
          end if;
       end if;
@@ -976,10 +1044,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiConnectionStatus;
    begin
       Hr := this.m_IWiFiConnectionResult.all.get_ConnectionStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -992,12 +1064,12 @@ package body WinRt.Windows.Devices.WiFi is
    end;
 
    procedure Finalize (this : in out WiFiNetworkReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWiFiNetworkReport, IWiFiNetworkReport_Ptr);
    begin
       if this.m_IWiFiNetworkReport /= null then
          if this.m_IWiFiNetworkReport.all /= null then
-            RefCount := this.m_IWiFiNetworkReport.all.Release;
+            temp := this.m_IWiFiNetworkReport.all.Release;
             Free (this.m_IWiFiNetworkReport);
          end if;
       end if;
@@ -1012,10 +1084,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IWiFiNetworkReport.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1025,13 +1101,17 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return IVectorView_IWiFiAvailableNetwork.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IWiFiAvailableNetwork.Kind;
    begin
       Hr := this.m_IWiFiNetworkReport.all.get_AvailableNetworks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IWiFiAvailableNetwork (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1044,12 +1124,12 @@ package body WinRt.Windows.Devices.WiFi is
    end;
 
    procedure Finalize (this : in out WiFiWpsConfigurationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWiFiWpsConfigurationResult, IWiFiWpsConfigurationResult_Ptr);
    begin
       if this.m_IWiFiWpsConfigurationResult /= null then
          if this.m_IWiFiWpsConfigurationResult.all /= null then
-            RefCount := this.m_IWiFiWpsConfigurationResult.all.Release;
+            temp := this.m_IWiFiWpsConfigurationResult.all.Release;
             Free (this.m_IWiFiWpsConfigurationResult);
          end if;
       end if;
@@ -1064,10 +1144,14 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiWpsConfigurationStatus;
    begin
       Hr := this.m_IWiFiWpsConfigurationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1077,13 +1161,17 @@ package body WinRt.Windows.Devices.WiFi is
    )
    return IVectorView_WiFiWpsKind.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_WiFiWpsKind.Kind;
    begin
       Hr := this.m_IWiFiWpsConfigurationResult.all.get_SupportedWpsKinds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_WiFiWpsKind (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 

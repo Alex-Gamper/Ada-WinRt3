@@ -48,12 +48,12 @@ package body WinRt.Windows.UI.Notifications.Management is
    end;
 
    procedure Finalize (this : in out UserNotificationListener) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserNotificationListener, IUserNotificationListener_Ptr);
    begin
       if this.m_IUserNotificationListener /= null then
          if this.m_IUserNotificationListener.all /= null then
-            RefCount := this.m_IUserNotificationListener.all.Release;
+            temp := this.m_IUserNotificationListener.all.Release;
             Free (this.m_IUserNotificationListener);
          end if;
       end if;
@@ -65,20 +65,24 @@ package body WinRt.Windows.UI.Notifications.Management is
    function get_Current
    return WinRt.Windows.UI.Notifications.Management.UserNotificationListener is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Notifications.Management.UserNotificationListener");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.Management.UserNotificationListener");
       m_Factory        : access WinRt.Windows.UI.Notifications.Management.IUserNotificationListenerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.Management.IUserNotificationListener;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.Management.UserNotificationListener do
          Hr := RoGetActivationFactory (m_hString, IID_IUserNotificationListenerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserNotificationListener := new Windows.UI.Notifications.Management.IUserNotificationListener;
             Retval.m_IUserNotificationListener.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -91,13 +95,13 @@ package body WinRt.Windows.UI.Notifications.Management is
    )
    return WinRt.Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserNotificationListenerAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -115,7 +119,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserNotificationListenerAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_UserNotificationListenerAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -128,7 +132,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       Hr := this.m_IUserNotificationListener.all.RequestAccessAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -138,9 +142,9 @@ package body WinRt.Windows.UI.Notifications.Management is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -154,10 +158,14 @@ package body WinRt.Windows.UI.Notifications.Management is
    )
    return WinRt.Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus;
    begin
       Hr := this.m_IUserNotificationListener.all.GetAccessStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -168,10 +176,14 @@ package body WinRt.Windows.UI.Notifications.Management is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserNotificationListener.all.add_NotificationChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -181,9 +193,13 @@ package body WinRt.Windows.UI.Notifications.Management is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserNotificationListener.all.remove_NotificationChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetNotificationsAsync
@@ -193,13 +209,13 @@ package body WinRt.Windows.UI.Notifications.Management is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -217,7 +233,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -230,7 +246,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       Hr := this.m_IUserNotificationListener.all.GetNotificationsAsync (kinds, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -240,9 +256,9 @@ package body WinRt.Windows.UI.Notifications.Management is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -257,11 +273,15 @@ package body WinRt.Windows.UI.Notifications.Management is
    )
    return WinRt.Windows.UI.Notifications.UserNotification'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.IUserNotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.UserNotification do
          Hr := this.m_IUserNotificationListener.all.GetNotification (notificationId, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserNotification := new Windows.UI.Notifications.IUserNotification;
          Retval.m_IUserNotification.all := m_ComRetVal;
       end return;
@@ -272,9 +292,13 @@ package body WinRt.Windows.UI.Notifications.Management is
       this : in out UserNotificationListener
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserNotificationListener.all.ClearNotifications;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveNotification
@@ -283,9 +307,13 @@ package body WinRt.Windows.UI.Notifications.Management is
       notificationId : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserNotificationListener.all.RemoveNotification (notificationId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Notifications.Management;

@@ -78,12 +78,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpBufferContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpContent, IHttpContent_Ptr);
    begin
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
-            RefCount := this.m_IHttpContent.all.Release;
+            temp := this.m_IHttpContent.all.Release;
             Free (this.m_IHttpContent);
          end if;
       end if;
@@ -98,9 +98,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpBufferContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpBufferContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpBufferContent");
       m_Factory    : access IHttpBufferContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpBufferContent do
@@ -109,9 +110,9 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateFromBuffer (content, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -123,9 +124,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpBufferContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpBufferContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpBufferContent");
       m_Factory    : access IHttpBufferContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpBufferContent do
@@ -134,9 +136,9 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateFromBufferWithOffset (content, offset, count, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -149,11 +151,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection do
          Hr := this.m_IHttpContent.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
          Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
       end return;
@@ -165,13 +171,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -189,7 +195,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -202,7 +208,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.BufferAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -212,9 +218,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -228,13 +234,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -252,7 +258,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -265,7 +271,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsBufferAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -275,9 +281,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -291,13 +297,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -315,7 +321,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -328,7 +334,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsInputStreamAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -338,9 +344,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -354,13 +360,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -379,7 +385,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -392,7 +398,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsStringAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -402,15 +408,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -421,10 +427,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpContent.all.TryComputeLength (length, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -435,13 +445,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -459,7 +469,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -472,7 +482,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.WriteToStreamAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -482,9 +492,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -497,13 +507,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpBufferContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -512,17 +526,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -535,12 +553,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpClient) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpClient, IHttpClient_Ptr);
    begin
       if this.m_IHttpClient /= null then
          if this.m_IHttpClient.all /= null then
-            RefCount := this.m_IHttpClient.all.Release;
+            temp := this.m_IHttpClient.all.Release;
             Free (this.m_IHttpClient);
          end if;
       end if;
@@ -555,9 +573,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpClient is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpClient");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpClient");
       m_Factory    : access IHttpClientFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpClient;
    begin
       return RetVal : HttpClient do
@@ -566,15 +585,16 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.Create (filter, m_ComRetVal'Access);
             Retval.m_IHttpClient := new Windows.Web.Http.IHttpClient;
             Retval.m_IHttpClient.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return HttpClient is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpClient");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpClient");
       m_ComRetVal  : aliased Windows.Web.Http.IHttpClient;
    begin
       return RetVal : HttpClient do
@@ -583,7 +603,7 @@ package body WinRt.Windows.Web.Http is
             Retval.m_IHttpClient := new Windows.Web.Http.IHttpClient;
             Retval.m_IHttpClient.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -597,13 +617,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -621,7 +641,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -635,7 +655,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.DeleteAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -647,9 +667,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -664,13 +684,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -688,7 +708,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -702,7 +722,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.GetAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -714,9 +734,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -732,13 +752,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -756,7 +776,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -770,7 +790,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.GetAsync (uri.m_IUriRuntimeClass.all, completionOption, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -782,9 +802,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -799,13 +819,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -823,7 +843,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -836,7 +856,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpClient.all.GetBufferAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -846,9 +866,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -863,13 +883,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -887,7 +907,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -900,7 +920,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpClient.all.GetInputStreamAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -910,9 +930,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -927,13 +947,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -952,7 +972,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -965,7 +985,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpClient.all.GetStringAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -975,15 +995,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -995,13 +1015,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1019,7 +1039,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1033,7 +1053,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.PostAsync (uri.m_IUriRuntimeClass.all, content, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1045,9 +1065,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1063,13 +1083,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1087,7 +1107,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1101,7 +1121,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.PutAsync (uri.m_IUriRuntimeClass.all, content, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1113,9 +1133,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1130,13 +1150,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1154,7 +1174,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1168,7 +1188,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.SendRequestAsync (request.m_IHttpRequestMessage.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1180,9 +1200,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1198,13 +1218,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpResponseMessage.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1222,7 +1242,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpResponseMessage.Kind_Delegate, AsyncOperationCompletedHandler_HttpResponseMessage.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1236,7 +1256,7 @@ package body WinRt.Windows.Web.Http is
          Hr := this.m_IHttpClient.all.SendRequestAsync (request.m_IHttpRequestMessage.all, completionOption, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1248,9 +1268,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1264,11 +1284,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpRequestHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpRequestHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpRequestHeaderCollection do
          Hr := this.m_IHttpClient.all.get_DefaultRequestHeaders (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestHeaderCollection := new Windows.Web.Http.Headers.IHttpRequestHeaderCollection;
          Retval.m_IHttpRequestHeaderCollection.all := m_ComRetVal;
       end return;
@@ -1281,14 +1305,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1306,7 +1330,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1320,10 +1344,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryDeleteAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1335,9 +1359,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1352,14 +1376,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1377,7 +1401,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1391,10 +1415,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryGetAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1406,9 +1430,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1424,14 +1448,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1449,7 +1473,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1463,10 +1487,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryGetAsync (uri.m_IUriRuntimeClass.all, completionOption, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1478,9 +1502,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1495,14 +1519,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpGetBufferResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpGetBufferResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1520,7 +1544,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpGetBufferResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpGetBufferResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1534,10 +1558,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpGetBufferResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryGetBufferAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1549,9 +1573,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpGetBufferResult := new Windows.Web.Http.IHttpGetBufferResult;
                   Retval.m_IHttpGetBufferResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1566,14 +1590,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpGetInputStreamResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpGetInputStreamResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1591,7 +1615,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpGetInputStreamResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpGetInputStreamResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1605,10 +1629,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpGetInputStreamResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryGetInputStreamAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1620,9 +1644,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpGetInputStreamResult := new Windows.Web.Http.IHttpGetInputStreamResult;
                   Retval.m_IHttpGetInputStreamResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1637,14 +1661,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpGetStringResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpGetStringResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1662,7 +1686,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpGetStringResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpGetStringResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1676,10 +1700,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpGetStringResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryGetStringAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1691,9 +1715,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpGetStringResult := new Windows.Web.Http.IHttpGetStringResult;
                   Retval.m_IHttpGetStringResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1709,14 +1733,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1734,7 +1758,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1748,10 +1772,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryPostAsync (uri.m_IUriRuntimeClass.all, content, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1763,9 +1787,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1781,14 +1805,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1806,7 +1830,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1820,10 +1844,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TryPutAsync (uri.m_IUriRuntimeClass.all, content, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1835,9 +1859,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1852,14 +1876,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1877,7 +1901,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1891,10 +1915,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TrySendRequestAsync (request.m_IHttpRequestMessage.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1906,9 +1930,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1924,14 +1948,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpClient2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HttpRequestResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1949,7 +1973,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HttpRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_HttpRequestResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1963,10 +1987,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpRequestResult do
          m_Interface := QInterface (this.m_IHttpClient.all);
          Hr := m_Interface.TrySendRequestAsync (request.m_IHttpRequestMessage.all, completionOption, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1978,9 +2002,9 @@ package body WinRt.Windows.Web.Http is
                   Retval.m_IHttpRequestResult := new Windows.Web.Http.IHttpRequestResult;
                   Retval.m_IHttpRequestResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1993,13 +2017,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpClient
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpClient_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpClient.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -2008,17 +2036,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpClient_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpClient.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2031,12 +2063,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpCookie) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpCookie, IHttpCookie_Ptr);
    begin
       if this.m_IHttpCookie /= null then
          if this.m_IHttpCookie.all /= null then
-            RefCount := this.m_IHttpCookie.all.Release;
+            temp := this.m_IHttpCookie.all.Release;
             Free (this.m_IHttpCookie);
          end if;
       end if;
@@ -2053,13 +2085,14 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpCookie is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpCookie");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpCookie");
       m_Factory    : access IHttpCookieFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpCookie;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_domain : WinRt.HString := To_HString (domain);
-      HStr_path : WinRt.HString := To_HString (path);
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_domain : constant WinRt.HString := To_HString (domain);
+      HStr_path : constant WinRt.HString := To_HString (path);
    begin
       return RetVal : HttpCookie do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpCookieFactory'Access , m_Factory'Address);
@@ -2067,12 +2100,12 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.Create (HStr_name, HStr_domain, HStr_path, m_ComRetVal'Access);
             Retval.m_IHttpCookie := new Windows.Web.Http.IHttpCookie;
             Retval.m_IHttpCookie.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
-         Hr := WindowsDeleteString (HStr_domain);
-         Hr := WindowsDeleteString (HStr_path);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_domain);
+         tmp := WindowsDeleteString (HStr_path);
       end return;
    end;
 
@@ -2085,13 +2118,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpCookie.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2101,13 +2138,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpCookie.all.get_Domain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2117,13 +2158,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpCookie.all.get_Path (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2133,13 +2178,17 @@ package body WinRt.Windows.Web.Http is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpCookie.all.get_Expires (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2149,9 +2198,13 @@ package body WinRt.Windows.Web.Http is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpCookie.all.put_Expires (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HttpOnly
@@ -2160,10 +2213,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpCookie.all.get_HttpOnly (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2173,9 +2230,13 @@ package body WinRt.Windows.Web.Http is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpCookie.all.put_HttpOnly (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Secure
@@ -2184,10 +2245,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpCookie.all.get_Secure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2197,9 +2262,13 @@ package body WinRt.Windows.Web.Http is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpCookie.all.put_Secure (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Value
@@ -2208,13 +2277,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpCookie.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2224,11 +2297,15 @@ package body WinRt.Windows.Web.Http is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IHttpCookie.all.put_Value (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function ToString
@@ -2237,17 +2314,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpCookie_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpCookie.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2275,8 +2356,9 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpCookie'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IHttpCookie.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpCookie;
       m_GenericIID     : aliased WinRt.IID := (6604022, 16330, 22563, (157, 146, 134, 196, 11, 40, 173, 188 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IHttpCookie.Kind, m_GenericIID'Unchecked_Access);
@@ -2284,7 +2366,10 @@ package body WinRt.Windows.Web.Http is
       return RetVal : WinRt.Windows.Web.Http.HttpCookie do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpCookie := new Windows.Web.Http.IHttpCookie;
          Retval.m_IHttpCookie.all := m_ComRetVal;
       end return;
@@ -2296,15 +2381,19 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IHttpCookie.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (6604022, 16330, 22563, (157, 146, 134, 196, 11, 40, 173, 188 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IHttpCookie.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2316,15 +2405,19 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IHttpCookie.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (6604022, 16330, 22563, (157, 146, 134, 196, 11, 40, 173, 188 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IHttpCookie.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IHttpCookie.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2336,8 +2429,9 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IHttpCookie.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (6604022, 16330, 22563, (157, 146, 134, 196, 11, 40, 173, 188 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IHttpCookie.Kind, m_GenericIID'Unchecked_Access);
@@ -2345,7 +2439,10 @@ package body WinRt.Windows.Web.Http is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2356,15 +2453,19 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpCookie.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (247069238, 35038, 22797, (142, 160, 182, 19, 208, 171, 1, 95 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IHttpCookie.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2377,12 +2478,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpCookieManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpCookieManager, IHttpCookieManager_Ptr);
    begin
       if this.m_IHttpCookieManager /= null then
          if this.m_IHttpCookieManager.all /= null then
-            RefCount := this.m_IHttpCookieManager.all.Release;
+            temp := this.m_IHttpCookieManager.all.Release;
             Free (this.m_IHttpCookieManager);
          end if;
       end if;
@@ -2398,10 +2499,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpCookieManager.all.SetCookie (cookie.m_IHttpCookie.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2413,10 +2518,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpCookieManager.all.SetCookie (cookie.m_IHttpCookie.all, thirdParty, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2426,9 +2535,13 @@ package body WinRt.Windows.Web.Http is
       cookie : Windows.Web.Http.HttpCookie'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpCookieManager.all.DeleteCookie (cookie.m_IHttpCookie.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCookies
@@ -2438,11 +2551,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpCookieCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpCookieCollection do
          Hr := this.m_IHttpCookieManager.all.GetCookies (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -2457,12 +2574,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpFormUrlEncodedContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpContent, IHttpContent_Ptr);
    begin
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
-            RefCount := this.m_IHttpContent.all.Release;
+            temp := this.m_IHttpContent.all.Release;
             Free (this.m_IHttpContent);
          end if;
       end if;
@@ -2477,9 +2594,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpFormUrlEncodedContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpFormUrlEncodedContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpFormUrlEncodedContent");
       m_Factory    : access IHttpFormUrlEncodedContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpFormUrlEncodedContent do
@@ -2488,9 +2606,9 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.Create (content, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2503,11 +2621,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection do
          Hr := this.m_IHttpContent.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
          Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
       end return;
@@ -2519,13 +2641,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2543,7 +2665,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2556,7 +2678,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.BufferAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2566,9 +2688,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2582,13 +2704,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2606,7 +2728,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2619,7 +2741,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsBufferAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2629,9 +2751,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2645,13 +2767,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2669,7 +2791,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2682,7 +2804,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsInputStreamAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2692,9 +2814,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2708,13 +2830,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2733,7 +2855,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2746,7 +2868,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsStringAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2756,15 +2878,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -2775,10 +2897,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpContent.all.TryComputeLength (length, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2789,13 +2915,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2813,7 +2939,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2826,7 +2952,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.WriteToStreamAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2836,9 +2962,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2851,13 +2977,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpFormUrlEncodedContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -2866,17 +2996,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2889,12 +3023,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpGetBufferResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpGetBufferResult, IHttpGetBufferResult_Ptr);
    begin
       if this.m_IHttpGetBufferResult /= null then
          if this.m_IHttpGetBufferResult.all /= null then
-            RefCount := this.m_IHttpGetBufferResult.all.Release;
+            temp := this.m_IHttpGetBufferResult.all.Release;
             Free (this.m_IHttpGetBufferResult);
          end if;
       end if;
@@ -2909,10 +3043,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IHttpGetBufferResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2922,11 +3060,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpGetBufferResult.all.get_RequestMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -2938,11 +3080,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IHttpGetBufferResult.all.get_ResponseMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
@@ -2954,10 +3100,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpGetBufferResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2967,10 +3117,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHttpGetBufferResult.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2979,13 +3133,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpGetBufferResult
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpGetBufferResult_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpGetBufferResult.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -2994,17 +3152,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpGetBufferResult_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpGetBufferResult.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3017,12 +3179,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpGetInputStreamResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpGetInputStreamResult, IHttpGetInputStreamResult_Ptr);
    begin
       if this.m_IHttpGetInputStreamResult /= null then
          if this.m_IHttpGetInputStreamResult.all /= null then
-            RefCount := this.m_IHttpGetInputStreamResult.all.Release;
+            temp := this.m_IHttpGetInputStreamResult.all.Release;
             Free (this.m_IHttpGetInputStreamResult);
          end if;
       end if;
@@ -3037,10 +3199,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IHttpGetInputStreamResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3050,11 +3216,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpGetInputStreamResult.all.get_RequestMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -3066,11 +3236,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IHttpGetInputStreamResult.all.get_ResponseMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
@@ -3082,10 +3256,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpGetInputStreamResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3095,10 +3273,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IHttpGetInputStreamResult.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3107,13 +3289,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpGetInputStreamResult
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpGetInputStreamResult_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpGetInputStreamResult.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -3122,17 +3308,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpGetInputStreamResult_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpGetInputStreamResult.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3145,12 +3335,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpGetStringResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpGetStringResult, IHttpGetStringResult_Ptr);
    begin
       if this.m_IHttpGetStringResult /= null then
          if this.m_IHttpGetStringResult.all /= null then
-            RefCount := this.m_IHttpGetStringResult.all.Release;
+            temp := this.m_IHttpGetStringResult.all.Release;
             Free (this.m_IHttpGetStringResult);
          end if;
       end if;
@@ -3165,10 +3355,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IHttpGetStringResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3178,11 +3372,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpGetStringResult.all.get_RequestMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -3194,11 +3392,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IHttpGetStringResult.all.get_ResponseMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
@@ -3210,10 +3412,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpGetStringResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3223,13 +3429,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpGetStringResult.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3238,13 +3448,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpGetStringResult
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpGetStringResult_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpGetStringResult.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -3253,17 +3467,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpGetStringResult_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpGetStringResult.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3276,12 +3494,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpMethod) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpMethod, IHttpMethod_Ptr);
    begin
       if this.m_IHttpMethod /= null then
          if this.m_IHttpMethod.all /= null then
-            RefCount := this.m_IHttpMethod.all.Release;
+            temp := this.m_IHttpMethod.all.Release;
             Free (this.m_IHttpMethod);
          end if;
       end if;
@@ -3296,11 +3514,12 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpMethod is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory    : access IHttpMethodFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpMethod;
-      HStr_method : WinRt.HString := To_HString (method);
+      HStr_method : constant WinRt.HString := To_HString (method);
    begin
       return RetVal : HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodFactory'Access , m_Factory'Address);
@@ -3308,10 +3527,10 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.Create (HStr_method, m_ComRetVal'Access);
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_method);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_method);
       end return;
    end;
 
@@ -3321,140 +3540,168 @@ package body WinRt.Windows.Web.Http is
    function get_Delete
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Delete (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Get
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Get (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Head
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Head (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Options
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Options (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Patch
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Patch (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Post
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Post (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Put
    return WinRt.Windows.Web.Http.HttpMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory        : access WinRt.Windows.Web.Http.IHttpMethodStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMethodStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Put (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
             Retval.m_IHttpMethod.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3467,13 +3714,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpMethod.all.get_Method (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3483,17 +3734,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpMethod_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpMethod.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3506,12 +3761,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpMultipartContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpContent, IHttpContent_Ptr);
    begin
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
-            RefCount := this.m_IHttpContent.all.Release;
+            temp := this.m_IHttpContent.all.Release;
             Free (this.m_IHttpContent);
          end if;
       end if;
@@ -3522,7 +3777,8 @@ package body WinRt.Windows.Web.Http is
 
    function Constructor return HttpMultipartContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpMultipartContent do
@@ -3531,7 +3787,7 @@ package body WinRt.Windows.Web.Http is
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3541,11 +3797,12 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpMultipartContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
       m_Factory    : access IHttpMultipartContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-      HStr_subtype_x : WinRt.HString := To_HString (subtype_x);
+      HStr_subtype_x : constant WinRt.HString := To_HString (subtype_x);
    begin
       return RetVal : HttpMultipartContent do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMultipartContentFactory'Access , m_Factory'Address);
@@ -3553,10 +3810,10 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateWithSubtype (HStr_subtype_x, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_subtype_x);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_subtype_x);
       end return;
    end;
 
@@ -3567,12 +3824,13 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpMultipartContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
       m_Factory    : access IHttpMultipartContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-      HStr_subtype_x : WinRt.HString := To_HString (subtype_x);
-      HStr_boundary : WinRt.HString := To_HString (boundary);
+      HStr_subtype_x : constant WinRt.HString := To_HString (subtype_x);
+      HStr_boundary : constant WinRt.HString := To_HString (boundary);
    begin
       return RetVal : HttpMultipartContent do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMultipartContentFactory'Access , m_Factory'Address);
@@ -3580,11 +3838,11 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateWithSubtypeAndBoundary (HStr_subtype_x, HStr_boundary, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_subtype_x);
-         Hr := WindowsDeleteString (HStr_boundary);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_subtype_x);
+         tmp := WindowsDeleteString (HStr_boundary);
       end return;
    end;
 
@@ -3597,13 +3855,17 @@ package body WinRt.Windows.Web.Http is
       content : Windows.Web.Http.IHttpContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpMultipartContent := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Web.Http.IHttpMultipartContent, WinRt.Windows.Web.Http.IID_IHttpMultipartContent'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Add (content);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headers
@@ -3612,11 +3874,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection do
          Hr := this.m_IHttpContent.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
          Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
       end return;
@@ -3628,13 +3894,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3652,7 +3918,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3665,7 +3931,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.BufferAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3675,9 +3941,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3691,13 +3957,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3715,7 +3981,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3728,7 +3994,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsBufferAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3738,9 +4004,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3754,13 +4020,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3778,7 +4044,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3791,7 +4057,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsInputStreamAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3801,9 +4067,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3817,13 +4083,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3842,7 +4108,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3855,7 +4121,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsStringAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3865,15 +4131,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -3884,10 +4150,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpContent.all.TryComputeLength (length, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3898,13 +4168,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3922,7 +4192,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3935,7 +4205,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.WriteToStreamAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3945,9 +4215,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3960,13 +4230,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpMultipartContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.IHttpContent>
@@ -3976,15 +4250,19 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4043445631, 46210, 22326, (157, 18, 198, 131, 188, 73, 73, 66 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, IIterable_IHttpContent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3994,17 +4272,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4017,12 +4299,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpMultipartFormDataContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpContent, IHttpContent_Ptr);
    begin
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
-            RefCount := this.m_IHttpContent.all.Release;
+            temp := this.m_IHttpContent.all.Release;
             Free (this.m_IHttpContent);
          end if;
       end if;
@@ -4033,7 +4315,8 @@ package body WinRt.Windows.Web.Http is
 
    function Constructor return HttpMultipartFormDataContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartFormDataContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartFormDataContent");
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpMultipartFormDataContent do
@@ -4042,7 +4325,7 @@ package body WinRt.Windows.Web.Http is
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4052,11 +4335,12 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpMultipartFormDataContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartFormDataContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartFormDataContent");
       m_Factory    : access IHttpMultipartFormDataContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-      HStr_boundary : WinRt.HString := To_HString (boundary);
+      HStr_boundary : constant WinRt.HString := To_HString (boundary);
    begin
       return RetVal : HttpMultipartFormDataContent do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMultipartFormDataContentFactory'Access , m_Factory'Address);
@@ -4064,10 +4348,10 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateWithBoundary (HStr_boundary, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_boundary);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_boundary);
       end return;
    end;
 
@@ -4080,13 +4364,17 @@ package body WinRt.Windows.Web.Http is
       content : Windows.Web.Http.IHttpContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpMultipartFormDataContent := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Web.Http.IHttpMultipartFormDataContent, WinRt.Windows.Web.Http.IID_IHttpMultipartFormDataContent'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Add (content);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Add
@@ -4096,15 +4384,19 @@ package body WinRt.Windows.Web.Http is
       name : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpMultipartFormDataContent := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Web.Http.IHttpMultipartFormDataContent, WinRt.Windows.Web.Http.IID_IHttpMultipartFormDataContent'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Add (content, HStr_name);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_name);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure Add
@@ -4115,17 +4407,21 @@ package body WinRt.Windows.Web.Http is
       fileName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.IHttpMultipartFormDataContent := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_fileName : WinRt.HString := To_HString (fileName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_fileName : constant WinRt.HString := To_HString (fileName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Web.Http.IHttpMultipartFormDataContent, WinRt.Windows.Web.Http.IID_IHttpMultipartFormDataContent'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Add (content, HStr_name, HStr_fileName);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_name);
-      Hr := WindowsDeleteString (HStr_fileName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_fileName);
    end;
 
    function get_Headers
@@ -4134,11 +4430,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection do
          Hr := this.m_IHttpContent.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
          Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
       end return;
@@ -4150,13 +4450,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4174,7 +4474,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4187,7 +4487,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.BufferAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4197,9 +4497,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4213,13 +4513,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4237,7 +4537,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4250,7 +4550,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsBufferAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4260,9 +4560,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4276,13 +4576,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4300,7 +4600,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4313,7 +4613,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsInputStreamAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4323,9 +4623,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4339,13 +4639,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4364,7 +4664,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4377,7 +4677,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsStringAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4387,15 +4687,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4406,10 +4706,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpContent.all.TryComputeLength (length, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4420,13 +4724,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4444,7 +4748,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4457,7 +4761,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.WriteToStreamAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4467,9 +4771,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4482,13 +4786,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpMultipartFormDataContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.IHttpContent>
@@ -4498,15 +4806,19 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4043445631, 46210, 22326, (157, 18, 198, 131, 188, 73, 73, 66 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, IIterable_IHttpContent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4516,17 +4828,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4539,12 +4855,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpRequestMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpRequestMessage, IHttpRequestMessage_Ptr);
    begin
       if this.m_IHttpRequestMessage /= null then
          if this.m_IHttpRequestMessage.all /= null then
-            RefCount := this.m_IHttpRequestMessage.all.Release;
+            temp := this.m_IHttpRequestMessage.all.Release;
             Free (this.m_IHttpRequestMessage);
          end if;
       end if;
@@ -4560,9 +4876,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpRequestMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpRequestMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpRequestMessage");
       m_Factory    : access IHttpRequestMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : HttpRequestMessage do
@@ -4571,15 +4888,16 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.Create (method.m_IHttpMethod.all, uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
             Retval.m_IHttpRequestMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return HttpRequestMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpRequestMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpRequestMessage");
       m_ComRetVal  : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : HttpRequestMessage do
@@ -4588,7 +4906,7 @@ package body WinRt.Windows.Web.Http is
             Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
             Retval.m_IHttpRequestMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4601,10 +4919,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.IHttpContent is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpContent;
    begin
       Hr := this.m_IHttpRequestMessage.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4614,9 +4936,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.IHttpContent
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpRequestMessage.all.put_Content (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headers
@@ -4625,11 +4951,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpRequestHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpRequestHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpRequestHeaderCollection do
          Hr := this.m_IHttpRequestMessage.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestHeaderCollection := new Windows.Web.Http.Headers.IHttpRequestHeaderCollection;
          Retval.m_IHttpRequestHeaderCollection.all := m_ComRetVal;
       end return;
@@ -4641,11 +4971,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpMethod'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpMethod do
          Hr := this.m_IHttpRequestMessage.all.get_Method (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
          Retval.m_IHttpMethod.all := m_ComRetVal;
       end return;
@@ -4657,9 +4991,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.HttpMethod'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpRequestMessage.all.put_Method (value.m_IHttpMethod.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Properties
@@ -4668,13 +5006,17 @@ package body WinRt.Windows.Web.Http is
    )
    return IMap_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMap_HString_IInspectable.Kind;
    begin
       Hr := this.m_IHttpRequestMessage.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMap_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4684,11 +5026,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHttpRequestMessage.all.get_RequestUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -4700,9 +5046,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpRequestMessage.all.put_RequestUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransportInformation
@@ -4711,11 +5061,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpTransportInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpTransportInformation;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpTransportInformation do
          Hr := this.m_IHttpRequestMessage.all.get_TransportInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpTransportInformation := new Windows.Web.Http.IHttpTransportInformation;
          Retval.m_IHttpTransportInformation.all := m_ComRetVal;
       end return;
@@ -4726,13 +5080,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpRequestMessage
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpRequestMessage_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpRequestMessage.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -4741,17 +5099,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpRequestMessage_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpRequestMessage.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4764,12 +5126,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpRequestResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpRequestResult, IHttpRequestResult_Ptr);
    begin
       if this.m_IHttpRequestResult /= null then
          if this.m_IHttpRequestResult.all /= null then
-            RefCount := this.m_IHttpRequestResult.all.Release;
+            temp := this.m_IHttpRequestResult.all.Release;
             Free (this.m_IHttpRequestResult);
          end if;
       end if;
@@ -4784,10 +5146,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IHttpRequestResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4797,11 +5163,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpRequestResult.all.get_RequestMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -4813,11 +5183,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IHttpRequestResult.all.get_ResponseMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
@@ -4829,10 +5203,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpRequestResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4841,13 +5219,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpRequestResult
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpRequestResult_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpRequestResult.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -4856,17 +5238,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpRequestResult_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpRequestResult.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4879,12 +5265,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpResponseMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpResponseMessage, IHttpResponseMessage_Ptr);
    begin
       if this.m_IHttpResponseMessage /= null then
          if this.m_IHttpResponseMessage.all /= null then
-            RefCount := this.m_IHttpResponseMessage.all.Release;
+            temp := this.m_IHttpResponseMessage.all.Release;
             Free (this.m_IHttpResponseMessage);
          end if;
       end if;
@@ -4899,9 +5285,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpResponseMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
       m_Factory    : access IHttpResponseMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : HttpResponseMessage do
@@ -4910,15 +5297,16 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.Create (statusCode, m_ComRetVal'Access);
             Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
             Retval.m_IHttpResponseMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return HttpResponseMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
       m_ComRetVal  : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : HttpResponseMessage do
@@ -4927,7 +5315,7 @@ package body WinRt.Windows.Web.Http is
             Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
             Retval.m_IHttpResponseMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4940,10 +5328,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.IHttpContent is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpContent;
    begin
       Hr := this.m_IHttpResponseMessage.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4953,9 +5345,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.IHttpContent
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpResponseMessage.all.put_Content (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headers
@@ -4964,11 +5360,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpResponseHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpResponseHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpResponseHeaderCollection do
          Hr := this.m_IHttpResponseMessage.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseHeaderCollection := new Windows.Web.Http.Headers.IHttpResponseHeaderCollection;
          Retval.m_IHttpResponseHeaderCollection.all := m_ComRetVal;
       end return;
@@ -4980,10 +5380,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpResponseMessage.all.get_IsSuccessStatusCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4993,13 +5397,17 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpResponseMessage.all.get_ReasonPhrase (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5009,11 +5417,15 @@ package body WinRt.Windows.Web.Http is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IHttpResponseMessage.all.put_ReasonPhrase (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_RequestMessage
@@ -5022,11 +5434,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpResponseMessage.all.get_RequestMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -5038,9 +5454,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.HttpRequestMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpResponseMessage.all.put_RequestMessage (value.m_IHttpRequestMessage.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -5049,10 +5469,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessageSource is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.HttpResponseMessageSource;
    begin
       Hr := this.m_IHttpResponseMessage.all.get_Source (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5062,9 +5486,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.HttpResponseMessageSource
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpResponseMessage.all.put_Source (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StatusCode
@@ -5073,10 +5501,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpStatusCode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.HttpStatusCode;
    begin
       Hr := this.m_IHttpResponseMessage.all.get_StatusCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5086,9 +5518,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.HttpStatusCode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpResponseMessage.all.put_StatusCode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Version
@@ -5097,10 +5533,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpVersion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.HttpVersion;
    begin
       Hr := this.m_IHttpResponseMessage.all.get_Version (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5110,9 +5550,13 @@ package body WinRt.Windows.Web.Http is
       value : Windows.Web.Http.HttpVersion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpResponseMessage.all.put_Version (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function EnsureSuccessStatusCode
@@ -5121,11 +5565,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IHttpResponseMessage.all.EnsureSuccessStatusCode (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
@@ -5136,13 +5584,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpResponseMessage
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpResponseMessage_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpResponseMessage.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -5151,17 +5603,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpResponseMessage_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpResponseMessage.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5174,12 +5630,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpStreamContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpContent, IHttpContent_Ptr);
    begin
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
-            RefCount := this.m_IHttpContent.all.Release;
+            temp := this.m_IHttpContent.all.Release;
             Free (this.m_IHttpContent);
          end if;
       end if;
@@ -5194,9 +5650,10 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpStreamContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpStreamContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStreamContent");
       m_Factory    : access IHttpStreamContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpStreamContent do
@@ -5205,9 +5662,9 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateFromInputStream (content, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5220,11 +5677,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection do
          Hr := this.m_IHttpContent.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
          Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
       end return;
@@ -5236,13 +5697,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5260,7 +5721,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5273,7 +5734,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.BufferAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5283,9 +5744,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5299,13 +5760,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5323,7 +5784,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5336,7 +5797,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsBufferAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5346,9 +5807,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5362,13 +5823,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5386,7 +5847,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5399,7 +5860,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsInputStreamAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5409,9 +5870,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5425,13 +5886,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5450,7 +5911,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5463,7 +5924,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsStringAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5473,15 +5934,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -5492,10 +5953,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpContent.all.TryComputeLength (length, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5506,13 +5971,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5530,7 +5995,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5543,7 +6008,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.WriteToStreamAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5553,9 +6018,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5568,13 +6033,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpStreamContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -5583,17 +6052,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5606,12 +6079,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpStringContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpContent, IHttpContent_Ptr);
    begin
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
-            RefCount := this.m_IHttpContent.all.Release;
+            temp := this.m_IHttpContent.all.Release;
             Free (this.m_IHttpContent);
          end if;
       end if;
@@ -5626,11 +6099,12 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpStringContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
       m_Factory    : access IHttpStringContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-      HStr_content : WinRt.HString := To_HString (content);
+      HStr_content : constant WinRt.HString := To_HString (content);
    begin
       return RetVal : HttpStringContent do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpStringContentFactory'Access , m_Factory'Address);
@@ -5638,10 +6112,10 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateFromString (HStr_content, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_content);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_content);
       end return;
    end;
 
@@ -5652,11 +6126,12 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpStringContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
       m_Factory    : access IHttpStringContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-      HStr_content : WinRt.HString := To_HString (content);
+      HStr_content : constant WinRt.HString := To_HString (content);
    begin
       return RetVal : HttpStringContent do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpStringContentFactory'Access , m_Factory'Address);
@@ -5664,10 +6139,10 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateFromStringWithEncoding (HStr_content, encoding, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_content);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_content);
       end return;
    end;
 
@@ -5679,12 +6154,13 @@ package body WinRt.Windows.Web.Http is
    )
    return HttpStringContent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
       m_Factory    : access IHttpStringContentFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Web.Http.IHttpContent;
-      HStr_content : WinRt.HString := To_HString (content);
-      HStr_mediaType : WinRt.HString := To_HString (mediaType);
+      HStr_content : constant WinRt.HString := To_HString (content);
+      HStr_mediaType : constant WinRt.HString := To_HString (mediaType);
    begin
       return RetVal : HttpStringContent do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpStringContentFactory'Access , m_Factory'Address);
@@ -5692,11 +6168,11 @@ package body WinRt.Windows.Web.Http is
             Hr := m_Factory.CreateFromStringWithEncodingAndMediaType (HStr_content, encoding, HStr_mediaType, m_ComRetVal'Access);
             Retval.m_IHttpContent := new Windows.Web.Http.IHttpContent;
             Retval.m_IHttpContent.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_content);
-         Hr := WindowsDeleteString (HStr_mediaType);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_content);
+         tmp := WindowsDeleteString (HStr_mediaType);
       end return;
    end;
 
@@ -5709,11 +6185,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentHeaderCollection do
          Hr := this.m_IHttpContent.all.get_Headers (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
          Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
       end return;
@@ -5725,13 +6205,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5749,7 +6229,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5762,7 +6242,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.BufferAllAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5772,9 +6252,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5788,13 +6268,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5812,7 +6292,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5825,7 +6305,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsBufferAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5835,9 +6315,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5851,13 +6331,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5875,7 +6355,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5888,7 +6368,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsInputStreamAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5898,9 +6378,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5914,13 +6394,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5939,7 +6419,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5952,7 +6432,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.ReadAsStringAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5962,15 +6442,15 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -5981,10 +6461,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpContent.all.TryComputeLength (length, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5995,13 +6479,13 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt64.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6019,7 +6503,7 @@ package body WinRt.Windows.Web.Http is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt64.Kind_Delegate, AsyncOperationCompletedHandler_UInt64.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6032,7 +6516,7 @@ package body WinRt.Windows.Web.Http is
       Hr := this.m_IHttpContent.all.WriteToStreamAsync (outputStream, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6042,9 +6526,9 @@ package body WinRt.Windows.Web.Http is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6057,13 +6541,17 @@ package body WinRt.Windows.Web.Http is
       this : in out HttpStringContent
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ToString
@@ -6072,17 +6560,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpContent_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpContent.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6095,12 +6587,12 @@ package body WinRt.Windows.Web.Http is
    end;
 
    procedure Finalize (this : in out HttpTransportInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpTransportInformation, IHttpTransportInformation_Ptr);
    begin
       if this.m_IHttpTransportInformation /= null then
          if this.m_IHttpTransportInformation.all /= null then
-            RefCount := this.m_IHttpTransportInformation.all.Release;
+            temp := this.m_IHttpTransportInformation.all.Release;
             Free (this.m_IHttpTransportInformation);
          end if;
       end if;
@@ -6115,11 +6607,15 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IHttpTransportInformation.all.get_ServerCertificate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -6131,10 +6627,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
    begin
       Hr := this.m_IHttpTransportInformation.all.get_ServerCertificateErrorSeverity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6144,10 +6644,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IHttpTransportInformation.all.get_ServerCertificateErrors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6157,10 +6661,14 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IHttpTransportInformation.all.get_ServerIntermediateCertificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6170,17 +6678,21 @@ package body WinRt.Windows.Web.Http is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.IHttpTransportInformation_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpTransportInformation.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

@@ -42,12 +42,12 @@ package body WinRt.Windows.Phone.UI.Input is
    end;
 
    procedure Finalize (this : in out BackPressedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackPressedEventArgs, IBackPressedEventArgs_Ptr);
    begin
       if this.m_IBackPressedEventArgs /= null then
          if this.m_IBackPressedEventArgs.all /= null then
-            RefCount := this.m_IBackPressedEventArgs.all.Release;
+            temp := this.m_IBackPressedEventArgs.all.Release;
             Free (this.m_IBackPressedEventArgs);
          end if;
       end if;
@@ -62,10 +62,14 @@ package body WinRt.Windows.Phone.UI.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBackPressedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -75,9 +79,13 @@ package body WinRt.Windows.Phone.UI.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackPressedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -89,12 +97,12 @@ package body WinRt.Windows.Phone.UI.Input is
    end;
 
    procedure Finalize (this : in out CameraEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICameraEventArgs, ICameraEventArgs_Ptr);
    begin
       if this.m_ICameraEventArgs /= null then
          if this.m_ICameraEventArgs.all /= null then
-            RefCount := this.m_ICameraEventArgs.all.Release;
+            temp := this.m_ICameraEventArgs.all.Release;
             Free (this.m_ICameraEventArgs);
          end if;
       end if;
@@ -113,17 +121,21 @@ package body WinRt.Windows.Phone.UI.Input is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_CameraHalfPressed (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -132,16 +144,20 @@ package body WinRt.Windows.Phone.UI.Input is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_CameraHalfPressed (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_CameraPressed
@@ -150,17 +166,21 @@ package body WinRt.Windows.Phone.UI.Input is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_CameraPressed (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -169,16 +189,20 @@ package body WinRt.Windows.Phone.UI.Input is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_CameraPressed (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_CameraReleased
@@ -187,17 +211,21 @@ package body WinRt.Windows.Phone.UI.Input is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_CameraReleased (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -206,16 +234,20 @@ package body WinRt.Windows.Phone.UI.Input is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_CameraReleased (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function add_BackPressed
@@ -224,17 +256,21 @@ package body WinRt.Windows.Phone.UI.Input is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_BackPressed (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -243,16 +279,20 @@ package body WinRt.Windows.Phone.UI.Input is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.UI.Input.HardwareButtons");
          m_Factory        : access WinRt.Windows.Phone.UI.Input.IHardwareButtonsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IHardwareButtonsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_BackPressed (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end HardwareButtons;

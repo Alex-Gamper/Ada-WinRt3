@@ -57,12 +57,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out AppInstallItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppInstallItem, IAppInstallItem_Ptr);
    begin
       if this.m_IAppInstallItem /= null then
          if this.m_IAppInstallItem.all /= null then
-            RefCount := this.m_IAppInstallItem.all.Release;
+            temp := this.m_IAppInstallItem.all.Release;
             Free (this.m_IAppInstallItem);
          end if;
       end if;
@@ -77,13 +77,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppInstallItem.all.get_ProductId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -93,13 +97,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppInstallItem.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -109,10 +117,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallType;
    begin
       Hr := this.m_IAppInstallItem.all.get_InstallType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -122,10 +134,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppInstallItem.all.get_IsUserInitiated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -135,11 +151,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallStatus do
          Hr := this.m_IAppInstallItem.all.GetCurrentStatus (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppInstallStatus := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus;
          Retval.m_IAppInstallStatus.all := m_ComRetVal;
       end return;
@@ -150,9 +170,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       this : in out AppInstallItem
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallItem.all.Cancel;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Pause
@@ -160,9 +184,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       this : in out AppInstallItem
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallItem.all.Pause;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Restart
@@ -170,9 +198,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       this : in out AppInstallItem
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallItem.all.Restart;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Completed
@@ -182,10 +214,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppInstallItem.all.add_Completed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -195,9 +231,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallItem.all.remove_Completed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StatusChanged
@@ -207,10 +247,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppInstallItem.all.add_StatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -220,9 +264,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallItem.all.remove_StatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Cancel
@@ -231,15 +279,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.Cancel (HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    procedure Pause
@@ -248,15 +300,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.Pause (HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    procedure Restart
@@ -265,15 +321,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.Restart (HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    function get_Children
@@ -282,17 +342,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return IVectorView_IAppInstallItem.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppInstallItem.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem3, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_Children (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAppInstallItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -302,14 +366,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem3, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_ItemOperationsMightAffectOtherItems (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -319,14 +387,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem4, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_LaunchAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -336,13 +408,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem4, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.put_LaunchAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PinToDesktopAfterInstall
@@ -351,14 +427,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_PinToDesktopAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -368,13 +448,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.put_PinToDesktopAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PinToStartAfterInstall
@@ -383,14 +467,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_PinToStartAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -400,13 +488,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.put_PinToStartAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PinToTaskbarAfterInstall
@@ -415,14 +507,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_PinToTaskbarAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -432,13 +528,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.put_PinToTaskbarAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CompletedInstallToastNotificationMode
@@ -447,14 +547,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_CompletedInstallToastNotificationMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -464,13 +568,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.put_CompletedInstallToastNotificationMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstallInProgressToastNotificationMode
@@ -479,14 +587,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.get_InstallInProgressToastNotificationMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -496,13 +608,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallItem5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallItem.all);
       Hr := m_Interface.put_InstallInProgressToastNotificationMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -514,12 +630,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out AppInstallManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppInstallManager, IAppInstallManager_Ptr);
    begin
       if this.m_IAppInstallManager /= null then
          if this.m_IAppInstallManager.all /= null then
-            RefCount := this.m_IAppInstallManager.all.Release;
+            temp := this.m_IAppInstallManager.all.Release;
             Free (this.m_IAppInstallManager);
          end if;
       end if;
@@ -530,7 +646,8 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
 
    function Constructor return AppInstallManager is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallManager");
       m_ComRetVal  : aliased Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager;
    begin
       return RetVal : AppInstallManager do
@@ -539,7 +656,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             Retval.m_IAppInstallManager := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager;
             Retval.m_IAppInstallManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -552,13 +669,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return IVectorView_IAppInstallItem.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppInstallItem.Kind;
    begin
       Hr := this.m_IAppInstallManager.all.get_AppInstallItems (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAppInstallItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -568,11 +689,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       productId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
    begin
       Hr := this.m_IAppInstallManager.all.Cancel (HStr_productId);
-      Hr := WindowsDeleteString (HStr_productId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
    end;
 
    procedure Pause
@@ -581,11 +706,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       productId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
    begin
       Hr := this.m_IAppInstallManager.all.Pause (HStr_productId);
-      Hr := WindowsDeleteString (HStr_productId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
    end;
 
    procedure Restart
@@ -594,11 +723,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       productId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
    begin
       Hr := this.m_IAppInstallManager.all.Restart (HStr_productId);
-      Hr := WindowsDeleteString (HStr_productId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
    end;
 
    function add_ItemCompleted
@@ -608,10 +741,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppInstallManager.all.add_ItemCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -621,9 +758,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallManager.all.remove_ItemCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ItemStatusChanged
@@ -633,10 +774,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppInstallManager.all.add_ItemStatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -646,9 +791,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallManager.all.remove_ItemStatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AutoUpdateSetting
@@ -657,10 +806,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting;
    begin
       Hr := this.m_IAppInstallManager.all.get_AutoUpdateSetting (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -670,9 +823,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : Windows.ApplicationModel.Store.Preview.InstallControl.AutoUpdateSetting
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallManager.all.put_AutoUpdateSetting (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AcquisitionIdentity
@@ -681,13 +838,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppInstallManager.all.get_AcquisitionIdentity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -697,11 +858,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppInstallManager.all.put_AcquisitionIdentity (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function GetIsApplicableAsync
@@ -712,15 +877,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -738,7 +903,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -751,7 +916,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       Hr := this.m_IAppInstallManager.all.GetIsApplicableAsync (HStr_productId, HStr_skuId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -761,15 +926,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_skuId);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_skuId);
       return m_RetVal;
    end;
 
@@ -783,15 +948,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -809,7 +974,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -823,7 +988,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
          Hr := this.m_IAppInstallManager.all.StartAppInstallAsync (HStr_productId, HStr_skuId, repair, forceUseOfNonRemovableStorage, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -835,15 +1000,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
       end return;
    end;
 
@@ -854,14 +1019,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_packageFamilyName : WinRt.HString := To_HString (packageFamilyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -879,7 +1044,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -893,7 +1058,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
          Hr := this.m_IAppInstallManager.all.UpdateAppByPackageFamilyNameAsync (HStr_packageFamilyName, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -905,14 +1070,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_packageFamilyName);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
       end return;
    end;
 
@@ -924,15 +1089,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -950,7 +1115,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -964,7 +1129,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
          Hr := this.m_IAppInstallManager.all.SearchForUpdatesAsync (HStr_productId, HStr_skuId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -976,15 +1141,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
       end return;
    end;
 
@@ -994,13 +1159,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1018,7 +1183,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1031,7 +1196,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       Hr := this.m_IAppInstallManager.all.SearchForAllUpdatesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1041,9 +1206,9 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1059,15 +1224,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storeClientName : WinRt.HString := To_HString (storeClientName);
-      HStr_storeClientPublisher : WinRt.HString := To_HString (storeClientPublisher);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_storeClientName : constant WinRt.HString := To_HString (storeClientName);
+      HStr_storeClientPublisher : constant WinRt.HString := To_HString (storeClientPublisher);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1085,7 +1250,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1098,7 +1263,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       Hr := this.m_IAppInstallManager.all.IsStoreBlockedByPolicyAsync (HStr_storeClientName, HStr_storeClientPublisher, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1108,15 +1273,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_storeClientName);
-      Hr := WindowsDeleteString (HStr_storeClientPublisher);
+      tmp := WindowsDeleteString (HStr_storeClientName);
+      tmp := WindowsDeleteString (HStr_storeClientPublisher);
       return m_RetVal;
    end;
 
@@ -1127,14 +1292,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1152,7 +1317,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1165,7 +1330,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       Hr := this.m_IAppInstallManager.all.GetIsAppAllowedToInstallAsync (HStr_productId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1175,14 +1340,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_productId);
       return m_RetVal;
    end;
 
@@ -1199,19 +1364,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_bundleId : WinRt.HString := To_HString (bundleId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_bundleId : constant WinRt.HString := To_HString (bundleId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1229,7 +1394,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1243,10 +1408,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.StartAppInstallAsync (HStr_productId, HStr_skuId, repair, forceUseOfNonRemovableStorage, HStr_catalogId, HStr_bundleId, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1258,18 +1423,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
-         Hr := WindowsDeleteString (HStr_catalogId);
-         Hr := WindowsDeleteString (HStr_bundleId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_catalogId);
+         tmp := WindowsDeleteString (HStr_bundleId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -1281,16 +1446,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_packageFamilyName : WinRt.HString := To_HString (packageFamilyName);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1308,7 +1473,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1322,10 +1487,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.UpdateAppByPackageFamilyNameAsync (HStr_packageFamilyName, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1337,15 +1502,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_packageFamilyName);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -1359,18 +1524,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1388,7 +1553,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1402,10 +1567,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.SearchForUpdatesAsync (HStr_productId, HStr_skuId, HStr_catalogId, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1417,17 +1582,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
-         Hr := WindowsDeleteString (HStr_catalogId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_catalogId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -1438,15 +1603,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1464,7 +1629,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1477,10 +1642,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.SearchForAllUpdatesAsync (HStr_correlationVector, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1490,14 +1655,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -1511,18 +1676,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1540,7 +1705,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1553,10 +1718,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.GetIsAppAllowedToInstallAsync (HStr_productId, HStr_skuId, HStr_catalogId, HStr_correlationVector, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1566,17 +1731,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_skuId);
-      Hr := WindowsDeleteString (HStr_catalogId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_skuId);
+      tmp := WindowsDeleteString (HStr_catalogId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -1587,17 +1752,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.Cancel (HStr_productId, HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    procedure Pause
@@ -1607,17 +1776,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.Pause (HStr_productId, HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    procedure Restart
@@ -1627,17 +1800,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.Restart (HStr_productId, HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    function StartProductInstallAsync
@@ -1654,19 +1831,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_flightId : WinRt.HString := To_HString (flightId);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_flightId : constant WinRt.HString := To_HString (flightId);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1684,7 +1861,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1697,10 +1874,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.StartProductInstallAsync (HStr_productId, HStr_catalogId, HStr_flightId, HStr_clientId, repair, forceUseOfNonRemovableStorage, HStr_correlationVector, targetVolume.m_IPackageVolume.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1710,18 +1887,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_catalogId);
-      Hr := WindowsDeleteString (HStr_flightId);
-      Hr := WindowsDeleteString (HStr_clientId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_catalogId);
+      tmp := WindowsDeleteString (HStr_flightId);
+      tmp := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -1740,19 +1917,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_flightId : WinRt.HString := To_HString (flightId);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_flightId : constant WinRt.HString := To_HString (flightId);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1770,7 +1947,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1783,10 +1960,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.StartProductInstallForUserAsync (user.m_IUser.all, HStr_productId, HStr_catalogId, HStr_flightId, HStr_clientId, repair, forceUseOfNonRemovableStorage, HStr_correlationVector, targetVolume.m_IPackageVolume.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1796,18 +1973,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_catalogId);
-      Hr := WindowsDeleteString (HStr_flightId);
-      Hr := WindowsDeleteString (HStr_clientId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_catalogId);
+      tmp := WindowsDeleteString (HStr_flightId);
+      tmp := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -1820,16 +1997,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_packageFamilyName : WinRt.HString := To_HString (packageFamilyName);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1847,7 +2024,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1861,10 +2038,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.UpdateAppByPackageFamilyNameForUserAsync (user.m_IUser.all, HStr_packageFamilyName, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1876,15 +2053,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_packageFamilyName);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -1899,18 +2076,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1928,7 +2105,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1942,10 +2119,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.SearchForUpdatesForUserAsync (user.m_IUser.all, HStr_productId, HStr_skuId, HStr_catalogId, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1957,17 +2134,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
-         Hr := WindowsDeleteString (HStr_catalogId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_catalogId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -1979,15 +2156,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2005,7 +2182,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2018,10 +2195,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.SearchForAllUpdatesForUserAsync (user.m_IUser.all, HStr_correlationVector, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2031,14 +2208,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -2053,18 +2230,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_catalogId : WinRt.HString := To_HString (catalogId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_catalogId : constant WinRt.HString := To_HString (catalogId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2082,7 +2259,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2095,10 +2272,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.GetIsAppAllowedToInstallForUserAsync (user.m_IUser.all, HStr_productId, HStr_skuId, HStr_catalogId, HStr_correlationVector, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2108,17 +2285,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_skuId);
-      Hr := WindowsDeleteString (HStr_catalogId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_skuId);
+      tmp := WindowsDeleteString (HStr_catalogId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -2131,16 +2308,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2158,7 +2335,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2171,10 +2348,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.GetIsApplicableForUserAsync (user.m_IUser.all, HStr_productId, HStr_skuId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2184,15 +2361,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_skuId);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_skuId);
       return m_RetVal;
    end;
 
@@ -2203,17 +2380,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       correlationVector : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager3, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallManager3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.MoveToFrontOfDownloadQueue (HStr_productId, HStr_correlationVector);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
    end;
 
    function GetFreeUserEntitlementAsync
@@ -2225,17 +2406,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storeId : WinRt.HString := To_HString (storeId);
-      HStr_campaignId : WinRt.HString := To_HString (campaignId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_storeId : constant WinRt.HString := To_HString (storeId);
+      HStr_campaignId : constant WinRt.HString := To_HString (campaignId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GetEntitlementResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2253,7 +2434,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GetEntitlementResult.Kind_Delegate, AsyncOperationCompletedHandler_GetEntitlementResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2267,10 +2448,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementResult do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.GetFreeUserEntitlementAsync (HStr_storeId, HStr_campaignId, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2282,16 +2463,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IGetEntitlementResult := new Windows.ApplicationModel.Store.Preview.InstallControl.IGetEntitlementResult;
                   Retval.m_IGetEntitlementResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_storeId);
-         Hr := WindowsDeleteString (HStr_campaignId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_storeId);
+         tmp := WindowsDeleteString (HStr_campaignId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -2305,17 +2486,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storeId : WinRt.HString := To_HString (storeId);
-      HStr_campaignId : WinRt.HString := To_HString (campaignId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_storeId : constant WinRt.HString := To_HString (storeId);
+      HStr_campaignId : constant WinRt.HString := To_HString (campaignId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GetEntitlementResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2333,7 +2514,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GetEntitlementResult.Kind_Delegate, AsyncOperationCompletedHandler_GetEntitlementResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2347,10 +2528,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementResult do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.GetFreeUserEntitlementForUserAsync (user.m_IUser.all, HStr_storeId, HStr_campaignId, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2362,16 +2543,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IGetEntitlementResult := new Windows.ApplicationModel.Store.Preview.InstallControl.IGetEntitlementResult;
                   Retval.m_IGetEntitlementResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_storeId);
-         Hr := WindowsDeleteString (HStr_campaignId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_storeId);
+         tmp := WindowsDeleteString (HStr_campaignId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -2384,17 +2565,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storeId : WinRt.HString := To_HString (storeId);
-      HStr_campaignId : WinRt.HString := To_HString (campaignId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_storeId : constant WinRt.HString := To_HString (storeId);
+      HStr_campaignId : constant WinRt.HString := To_HString (campaignId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GetEntitlementResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2412,7 +2593,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GetEntitlementResult.Kind_Delegate, AsyncOperationCompletedHandler_GetEntitlementResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2426,10 +2607,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementResult do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.GetFreeDeviceEntitlementAsync (HStr_storeId, HStr_campaignId, HStr_correlationVector, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2441,16 +2622,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IGetEntitlementResult := new Windows.ApplicationModel.Store.Preview.InstallControl.IGetEntitlementResult;
                   Retval.m_IGetEntitlementResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_storeId);
-         Hr := WindowsDeleteString (HStr_campaignId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_storeId);
+         tmp := WindowsDeleteString (HStr_campaignId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
       end return;
    end;
 
@@ -2460,17 +2641,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return IVectorView_IAppInstallItem.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppInstallItem.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager5, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallManager5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.get_AppInstallItemsWithGroupSupport (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAppInstallItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2483,16 +2668,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2510,7 +2695,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2523,10 +2708,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.SearchForAllUpdatesAsync (HStr_correlationVector, HStr_clientId, updateOptions.m_IAppUpdateOptions.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2536,15 +2721,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_correlationVector);
-      Hr := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_clientId);
       return m_RetVal;
    end;
 
@@ -2558,16 +2743,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2585,7 +2770,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2598,10 +2783,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.SearchForAllUpdatesForUserAsync (user.m_IUser.all, HStr_correlationVector, HStr_clientId, updateOptions.m_IAppUpdateOptions.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2611,15 +2796,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_correlationVector);
-      Hr := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_clientId);
       return m_RetVal;
    end;
 
@@ -2634,18 +2819,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2663,7 +2848,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2677,10 +2862,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.SearchForUpdatesAsync (HStr_productId, HStr_skuId, HStr_correlationVector, HStr_clientId, updateOptions.m_IAppUpdateOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2692,17 +2877,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
-         Hr := WindowsDeleteString (HStr_clientId);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_clientId);
       end return;
    end;
 
@@ -2718,18 +2903,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_skuId : WinRt.HString := To_HString (skuId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_skuId : constant WinRt.HString := To_HString (skuId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppInstallItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2747,7 +2932,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppInstallItem.Kind_Delegate, AsyncOperationCompletedHandler_AppInstallItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2761,10 +2946,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          m_Interface := QInterface (this.m_IAppInstallManager.all);
          Hr := m_Interface.SearchForUpdatesForUserAsync (user.m_IUser.all, HStr_productId, HStr_skuId, HStr_correlationVector, HStr_clientId, updateOptions.m_IAppUpdateOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2776,17 +2961,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
                   Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
                   Retval.m_IAppInstallItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_productId);
-         Hr := WindowsDeleteString (HStr_skuId);
-         Hr := WindowsDeleteString (HStr_correlationVector);
-         Hr := WindowsDeleteString (HStr_clientId);
+         tmp := WindowsDeleteString (HStr_productId);
+         tmp := WindowsDeleteString (HStr_skuId);
+         tmp := WindowsDeleteString (HStr_correlationVector);
+         tmp := WindowsDeleteString (HStr_clientId);
       end return;
    end;
 
@@ -2801,18 +2986,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_flightId : WinRt.HString := To_HString (flightId);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_flightId : constant WinRt.HString := To_HString (flightId);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2830,7 +3015,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2843,10 +3028,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.StartProductInstallAsync (HStr_productId, HStr_flightId, HStr_clientId, HStr_correlationVector, installOptions.m_IAppInstallOptions.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2856,17 +3041,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_flightId);
-      Hr := WindowsDeleteString (HStr_clientId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_flightId);
+      tmp := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -2882,18 +3067,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_productId : WinRt.HString := To_HString (productId);
-      HStr_flightId : WinRt.HString := To_HString (flightId);
-      HStr_clientId : WinRt.HString := To_HString (clientId);
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
+      temp             : WinRt.UInt32 := 0;
+      HStr_productId : constant WinRt.HString := To_HString (productId);
+      HStr_flightId : constant WinRt.HString := To_HString (flightId);
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2911,7 +3096,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2924,10 +3109,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.StartProductInstallForUserAsync (user.m_IUser.all, HStr_productId, HStr_flightId, HStr_clientId, HStr_correlationVector, installOptions.m_IAppInstallOptions.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2937,17 +3122,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_productId);
-      Hr := WindowsDeleteString (HStr_flightId);
-      Hr := WindowsDeleteString (HStr_clientId);
-      Hr := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_productId);
+      tmp := WindowsDeleteString (HStr_flightId);
+      tmp := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_correlationVector);
       return m_RetVal;
    end;
 
@@ -2960,17 +3145,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
-      HStr_packageIdentityName : WinRt.HString := To_HString (packageIdentityName);
-      HStr_publisherCertificateName : WinRt.HString := To_HString (publisherCertificateName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
+      HStr_packageIdentityName : constant WinRt.HString := To_HString (packageIdentityName);
+      HStr_publisherCertificateName : constant WinRt.HString := To_HString (publisherCertificateName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2988,7 +3173,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3001,10 +3186,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.GetIsPackageIdentityAllowedToInstallAsync (HStr_correlationVector, HStr_packageIdentityName, HStr_publisherCertificateName, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3014,16 +3199,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_correlationVector);
-      Hr := WindowsDeleteString (HStr_packageIdentityName);
-      Hr := WindowsDeleteString (HStr_publisherCertificateName);
+      tmp := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_packageIdentityName);
+      tmp := WindowsDeleteString (HStr_publisherCertificateName);
       return m_RetVal;
    end;
 
@@ -3037,17 +3222,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationVector : WinRt.HString := To_HString (correlationVector);
-      HStr_packageIdentityName : WinRt.HString := To_HString (packageIdentityName);
-      HStr_publisherCertificateName : WinRt.HString := To_HString (publisherCertificateName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationVector : constant WinRt.HString := To_HString (correlationVector);
+      HStr_packageIdentityName : constant WinRt.HString := To_HString (packageIdentityName);
+      HStr_publisherCertificateName : constant WinRt.HString := To_HString (publisherCertificateName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3065,7 +3250,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3078,10 +3263,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.GetIsPackageIdentityAllowedToInstallForUserAsync (user.m_IUser.all, HStr_correlationVector, HStr_packageIdentityName, HStr_publisherCertificateName, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3091,16 +3276,16 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_correlationVector);
-      Hr := WindowsDeleteString (HStr_packageIdentityName);
-      Hr := WindowsDeleteString (HStr_publisherCertificateName);
+      tmp := WindowsDeleteString (HStr_correlationVector);
+      tmp := WindowsDeleteString (HStr_packageIdentityName);
+      tmp := WindowsDeleteString (HStr_publisherCertificateName);
       return m_RetVal;
    end;
 
@@ -3110,14 +3295,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager7 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallManager7, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallManager7'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallManager.all);
       Hr := m_Interface.get_CanInstallForAllUsers (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3130,12 +3319,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out AppInstallManagerItemEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppInstallManagerItemEventArgs, IAppInstallManagerItemEventArgs_Ptr);
    begin
       if this.m_IAppInstallManagerItemEventArgs /= null then
          if this.m_IAppInstallManagerItemEventArgs.all /= null then
-            RefCount := this.m_IAppInstallManagerItemEventArgs.all.Release;
+            temp := this.m_IAppInstallManagerItemEventArgs.all.Release;
             Free (this.m_IAppInstallManagerItemEventArgs);
          end if;
       end if;
@@ -3150,11 +3339,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallItem do
          Hr := this.m_IAppInstallManagerItemEventArgs.all.get_Item (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppInstallItem := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallItem;
          Retval.m_IAppInstallItem.all := m_ComRetVal;
       end return;
@@ -3169,12 +3362,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out AppInstallOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppInstallOptions, IAppInstallOptions_Ptr);
    begin
       if this.m_IAppInstallOptions /= null then
          if this.m_IAppInstallOptions.all /= null then
-            RefCount := this.m_IAppInstallOptions.all.Release;
+            temp := this.m_IAppInstallOptions.all.Release;
             Free (this.m_IAppInstallOptions);
          end if;
       end if;
@@ -3185,7 +3378,8 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
 
    function Constructor return AppInstallOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallOptions");
       m_ComRetVal  : aliased Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions;
    begin
       return RetVal : AppInstallOptions do
@@ -3194,7 +3388,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             Retval.m_IAppInstallOptions := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions;
             Retval.m_IAppInstallOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3207,13 +3401,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppInstallOptions.all.get_CatalogId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3223,11 +3421,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppInstallOptions.all.put_CatalogId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ForceUseOfNonRemovableStorage
@@ -3236,10 +3438,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppInstallOptions.all.get_ForceUseOfNonRemovableStorage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3249,9 +3455,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallOptions.all.put_ForceUseOfNonRemovableStorage (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowForcedAppRestart
@@ -3260,10 +3470,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppInstallOptions.all.get_AllowForcedAppRestart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3273,9 +3487,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallOptions.all.put_AllowForcedAppRestart (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Repair
@@ -3284,10 +3502,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppInstallOptions.all.get_Repair (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3297,9 +3519,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallOptions.all.put_Repair (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TargetVolume
@@ -3308,11 +3534,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.Management.Deployment.PackageVolume'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Management.Deployment.IPackageVolume;
    begin
       return RetVal : WinRt.Windows.Management.Deployment.PackageVolume do
          Hr := this.m_IAppInstallOptions.all.get_TargetVolume (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPackageVolume := new Windows.Management.Deployment.IPackageVolume;
          Retval.m_IPackageVolume.all := m_ComRetVal;
       end return;
@@ -3324,9 +3554,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : Windows.Management.Deployment.PackageVolume'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallOptions.all.put_TargetVolume (value.m_IPackageVolume.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LaunchAfterInstall
@@ -3335,10 +3569,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppInstallOptions.all.get_LaunchAfterInstall (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3348,9 +3586,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppInstallOptions.all.put_LaunchAfterInstall (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PinToDesktopAfterInstall
@@ -3359,14 +3601,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_PinToDesktopAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3376,13 +3622,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_PinToDesktopAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PinToStartAfterInstall
@@ -3391,14 +3641,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_PinToStartAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3408,13 +3662,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_PinToStartAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PinToTaskbarAfterInstall
@@ -3423,14 +3681,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_PinToTaskbarAfterInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3440,13 +3702,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_PinToTaskbarAfterInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CompletedInstallToastNotificationMode
@@ -3455,14 +3721,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_CompletedInstallToastNotificationMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3472,13 +3742,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_CompletedInstallToastNotificationMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstallInProgressToastNotificationMode
@@ -3487,14 +3761,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_InstallInProgressToastNotificationMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3504,13 +3782,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallationToastNotificationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_InstallInProgressToastNotificationMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstallForAllUsers
@@ -3519,14 +3801,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_InstallForAllUsers (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3536,13 +3822,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_InstallForAllUsers (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StageButDoNotInstall
@@ -3551,14 +3841,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_StageButDoNotInstall (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3568,13 +3862,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_StageButDoNotInstall (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CampaignId
@@ -3583,17 +3881,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_CampaignId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3603,15 +3905,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_CampaignId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ExtendedCampaignId
@@ -3620,17 +3926,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.get_ExtendedCampaignId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3640,15 +3950,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallOptions.all);
       Hr := m_Interface.put_ExtendedCampaignId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -3660,12 +3974,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out AppInstallStatus) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppInstallStatus, IAppInstallStatus_Ptr);
    begin
       if this.m_IAppInstallStatus /= null then
          if this.m_IAppInstallStatus.all /= null then
-            RefCount := this.m_IAppInstallStatus.all.Release;
+            temp := this.m_IAppInstallStatus.all.Release;
             Free (this.m_IAppInstallStatus);
          end if;
       end if;
@@ -3680,10 +3994,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.AppInstallState;
    begin
       Hr := this.m_IAppInstallStatus.all.get_InstallState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3693,10 +4011,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IAppInstallStatus.all.get_DownloadSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3706,10 +4028,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IAppInstallStatus.all.get_BytesDownloaded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3719,10 +4045,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IAppInstallStatus.all.get_PercentComplete (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3732,10 +4062,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IAppInstallStatus.all.get_ErrorCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3745,15 +4079,19 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallStatus2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IAppInstallStatus.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -3765,14 +4103,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallStatus2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallStatus.all);
       Hr := m_Interface.get_ReadyForLaunch (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3782,14 +4124,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppInstallStatus3, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppInstallStatus3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallStatus.all);
       Hr := m_Interface.get_IsStaged (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3802,12 +4148,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out AppUpdateOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppUpdateOptions, IAppUpdateOptions_Ptr);
    begin
       if this.m_IAppUpdateOptions /= null then
          if this.m_IAppUpdateOptions.all /= null then
-            RefCount := this.m_IAppUpdateOptions.all.Release;
+            temp := this.m_IAppUpdateOptions.all.Release;
             Free (this.m_IAppUpdateOptions);
          end if;
       end if;
@@ -3818,7 +4164,8 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
 
    function Constructor return AppUpdateOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.InstallControl.AppUpdateOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.InstallControl.AppUpdateOptions");
       m_ComRetVal  : aliased Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions;
    begin
       return RetVal : AppUpdateOptions do
@@ -3827,7 +4174,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
             Retval.m_IAppUpdateOptions := new Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions;
             Retval.m_IAppUpdateOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3840,13 +4187,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppUpdateOptions.all.get_CatalogId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3856,11 +4207,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppUpdateOptions.all.put_CatalogId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AllowForcedAppRestart
@@ -3869,10 +4224,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppUpdateOptions.all.get_AllowForcedAppRestart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3882,9 +4241,13 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppUpdateOptions.all.put_AllowForcedAppRestart (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AutomaticallyDownloadAndInstallUpdateIfFound
@@ -3893,14 +4256,18 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppUpdateOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppUpdateOptions.all);
       Hr := m_Interface.get_AutomaticallyDownloadAndInstallUpdateIfFound (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3910,13 +4277,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions_Interface, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IAppUpdateOptions2, WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.IID_IAppUpdateOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppUpdateOptions.all);
       Hr := m_Interface.put_AutomaticallyDownloadAndInstallUpdateIfFound (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3928,12 +4299,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    end;
 
    procedure Finalize (this : in out GetEntitlementResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGetEntitlementResult, IGetEntitlementResult_Ptr);
    begin
       if this.m_IGetEntitlementResult /= null then
          if this.m_IGetEntitlementResult.all /= null then
-            RefCount := this.m_IGetEntitlementResult.all.Release;
+            temp := this.m_IGetEntitlementResult.all.Release;
             Free (this.m_IGetEntitlementResult);
          end if;
       end if;
@@ -3948,10 +4319,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview.InstallControl is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.InstallControl.GetEntitlementStatus;
    begin
       Hr := this.m_IGetEntitlementResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

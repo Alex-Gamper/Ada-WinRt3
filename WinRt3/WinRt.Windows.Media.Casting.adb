@@ -61,12 +61,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingConnection, ICastingConnection_Ptr);
    begin
       if this.m_ICastingConnection /= null then
          if this.m_ICastingConnection.all /= null then
-            RefCount := this.m_ICastingConnection.all.Release;
+            temp := this.m_ICastingConnection.all.Release;
             Free (this.m_ICastingConnection);
          end if;
       end if;
@@ -81,10 +81,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingConnectionState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.CastingConnectionState;
    begin
       Hr := this.m_ICastingConnection.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -94,11 +98,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.ICastingDevice;
    begin
       return RetVal : WinRt.Windows.Media.Casting.CastingDevice do
          Hr := this.m_ICastingConnection.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICastingDevice := new Windows.Media.Casting.ICastingDevice;
          Retval.m_ICastingDevice.all := m_ComRetVal;
       end return;
@@ -110,11 +118,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.ICastingSource;
    begin
       return RetVal : WinRt.Windows.Media.Casting.CastingSource do
          Hr := this.m_ICastingConnection.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICastingSource := new Windows.Media.Casting.ICastingSource;
          Retval.m_ICastingSource.all := m_ComRetVal;
       end return;
@@ -126,9 +138,13 @@ package body WinRt.Windows.Media.Casting is
       value : Windows.Media.Casting.CastingSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingConnection.all.put_Source (value.m_ICastingSource.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StateChanged
@@ -138,10 +154,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICastingConnection.all.add_StateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -151,9 +171,13 @@ package body WinRt.Windows.Media.Casting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingConnection.all.remove_StateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ErrorOccurred
@@ -163,10 +187,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICastingConnection.all.add_ErrorOccurred (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -176,9 +204,13 @@ package body WinRt.Windows.Media.Casting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingConnection.all.remove_ErrorOccurred (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function RequestStartCastingAsync
@@ -188,13 +220,13 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingConnectionErrorStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CastingConnectionErrorStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -212,7 +244,7 @@ package body WinRt.Windows.Media.Casting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CastingConnectionErrorStatus.Kind_Delegate, AsyncOperationCompletedHandler_CastingConnectionErrorStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -225,7 +257,7 @@ package body WinRt.Windows.Media.Casting is
       Hr := this.m_ICastingConnection.all.RequestStartCastingAsync (value.m_ICastingSource.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -235,9 +267,9 @@ package body WinRt.Windows.Media.Casting is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -251,13 +283,13 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingConnectionErrorStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CastingConnectionErrorStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -275,7 +307,7 @@ package body WinRt.Windows.Media.Casting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CastingConnectionErrorStatus.Kind_Delegate, AsyncOperationCompletedHandler_CastingConnectionErrorStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -288,7 +320,7 @@ package body WinRt.Windows.Media.Casting is
       Hr := this.m_ICastingConnection.all.DisconnectAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -298,9 +330,9 @@ package body WinRt.Windows.Media.Casting is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -313,13 +345,17 @@ package body WinRt.Windows.Media.Casting is
       this : in out CastingConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Casting.ICastingConnection_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICastingConnection.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -331,12 +367,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingConnectionErrorOccurredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingConnectionErrorOccurredEventArgs, ICastingConnectionErrorOccurredEventArgs_Ptr);
    begin
       if this.m_ICastingConnectionErrorOccurredEventArgs /= null then
          if this.m_ICastingConnectionErrorOccurredEventArgs.all /= null then
-            RefCount := this.m_ICastingConnectionErrorOccurredEventArgs.all.Release;
+            temp := this.m_ICastingConnectionErrorOccurredEventArgs.all.Release;
             Free (this.m_ICastingConnectionErrorOccurredEventArgs);
          end if;
       end if;
@@ -351,10 +387,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingConnectionErrorStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.CastingConnectionErrorStatus;
    begin
       Hr := this.m_ICastingConnectionErrorOccurredEventArgs.all.get_ErrorStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -364,13 +404,17 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICastingConnectionErrorOccurredEventArgs.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -383,12 +427,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingDevice, ICastingDevice_Ptr);
    begin
       if this.m_ICastingDevice /= null then
          if this.m_ICastingDevice.all /= null then
-            RefCount := this.m_ICastingDevice.all.Release;
+            temp := this.m_ICastingDevice.all.Release;
             Free (this.m_ICastingDevice);
          end if;
       end if;
@@ -403,20 +447,24 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
       m_Factory        : access WinRt.Windows.Media.Casting.ICastingDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICastingDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (type_x, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -426,15 +474,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
       m_Factory        : access WinRt.Windows.Media.Casting.ICastingDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -453,7 +501,7 @@ package body WinRt.Windows.Media.Casting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -466,10 +514,10 @@ package body WinRt.Windows.Media.Casting is
       Hr := RoGetActivationFactory (m_hString, IID_ICastingDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelectorFromCastingSourceAsync (castingSource_p.m_ICastingSource.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -479,17 +527,17 @@ package body WinRt.Windows.Media.Casting is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -499,16 +547,16 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
       m_Factory        : access WinRt.Windows.Media.Casting.ICastingDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CastingDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -526,7 +574,7 @@ package body WinRt.Windows.Media.Casting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CastingDevice.Kind_Delegate, AsyncOperationCompletedHandler_CastingDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -540,10 +588,10 @@ package body WinRt.Windows.Media.Casting is
          Hr := RoGetActivationFactory (m_hString, IID_ICastingDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -555,16 +603,16 @@ package body WinRt.Windows.Media.Casting is
                      Retval.m_ICastingDevice := new Windows.Media.Casting.ICastingDevice;
                      Retval.m_ICastingDevice.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_value);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
       end return;
    end;
 
@@ -574,15 +622,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevice");
       m_Factory        : access WinRt.Windows.Media.Casting.ICastingDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -600,7 +648,7 @@ package body WinRt.Windows.Media.Casting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -613,10 +661,10 @@ package body WinRt.Windows.Media.Casting is
       Hr := RoGetActivationFactory (m_hString, IID_ICastingDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.DeviceInfoSupportsCastingAsync (device.m_IDeviceInformation.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -626,15 +674,15 @@ package body WinRt.Windows.Media.Casting is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -647,13 +695,17 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICastingDevice.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -663,13 +715,17 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICastingDevice.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -679,10 +735,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       Hr := this.m_ICastingDevice.all.get_Icon (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -692,13 +752,13 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingPlaybackTypes is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CastingPlaybackTypes.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -716,7 +776,7 @@ package body WinRt.Windows.Media.Casting is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CastingPlaybackTypes.Kind_Delegate, AsyncOperationCompletedHandler_CastingPlaybackTypes.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -729,7 +789,7 @@ package body WinRt.Windows.Media.Casting is
       Hr := this.m_ICastingDevice.all.GetSupportedCastingPlaybackTypesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -739,9 +799,9 @@ package body WinRt.Windows.Media.Casting is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -755,11 +815,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.ICastingConnection;
    begin
       return RetVal : WinRt.Windows.Media.Casting.CastingConnection do
          Hr := this.m_ICastingDevice.all.CreateCastingConnection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICastingConnection := new Windows.Media.Casting.ICastingConnection;
          Retval.m_ICastingConnection.all := m_ComRetVal;
       end return;
@@ -774,12 +838,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingDevicePicker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingDevicePicker, ICastingDevicePicker_Ptr);
    begin
       if this.m_ICastingDevicePicker /= null then
          if this.m_ICastingDevicePicker.all /= null then
-            RefCount := this.m_ICastingDevicePicker.all.Release;
+            temp := this.m_ICastingDevicePicker.all.Release;
             Free (this.m_ICastingDevicePicker);
          end if;
       end if;
@@ -790,7 +854,8 @@ package body WinRt.Windows.Media.Casting is
 
    function Constructor return CastingDevicePicker is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevicePicker");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevicePicker");
       m_ComRetVal  : aliased Windows.Media.Casting.ICastingDevicePicker;
    begin
       return RetVal : CastingDevicePicker do
@@ -799,7 +864,7 @@ package body WinRt.Windows.Media.Casting is
             Retval.m_ICastingDevicePicker := new Windows.Media.Casting.ICastingDevicePicker;
             Retval.m_ICastingDevicePicker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -812,11 +877,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingDevicePickerFilter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.ICastingDevicePickerFilter;
    begin
       return RetVal : WinRt.Windows.Media.Casting.CastingDevicePickerFilter do
          Hr := this.m_ICastingDevicePicker.all.get_Filter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICastingDevicePickerFilter := new Windows.Media.Casting.ICastingDevicePickerFilter;
          Retval.m_ICastingDevicePickerFilter.all := m_ComRetVal;
       end return;
@@ -828,11 +897,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePickerAppearance'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDevicePickerAppearance;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DevicePickerAppearance do
          Hr := this.m_ICastingDevicePicker.all.get_Appearance (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDevicePickerAppearance := new Windows.Devices.Enumeration.IDevicePickerAppearance;
          Retval.m_IDevicePickerAppearance.all := m_ComRetVal;
       end return;
@@ -845,10 +918,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICastingDevicePicker.all.add_CastingDeviceSelected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -858,9 +935,13 @@ package body WinRt.Windows.Media.Casting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePicker.all.remove_CastingDeviceSelected (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CastingDevicePickerDismissed
@@ -870,10 +951,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICastingDevicePicker.all.add_CastingDevicePickerDismissed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -883,9 +968,13 @@ package body WinRt.Windows.Media.Casting is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePicker.all.remove_CastingDevicePickerDismissed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Show
@@ -894,9 +983,13 @@ package body WinRt.Windows.Media.Casting is
       selection : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePicker.all.Show (selection);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Show
@@ -906,9 +999,13 @@ package body WinRt.Windows.Media.Casting is
       preferredPlacement : Windows.UI.Popups.Placement
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePicker.all.Show (selection, preferredPlacement);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Hide
@@ -916,9 +1013,13 @@ package body WinRt.Windows.Media.Casting is
       this : in out CastingDevicePicker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePicker.all.Hide;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -930,12 +1031,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingDevicePickerFilter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingDevicePickerFilter, ICastingDevicePickerFilter_Ptr);
    begin
       if this.m_ICastingDevicePickerFilter /= null then
          if this.m_ICastingDevicePickerFilter.all /= null then
-            RefCount := this.m_ICastingDevicePickerFilter.all.Release;
+            temp := this.m_ICastingDevicePickerFilter.all.Release;
             Free (this.m_ICastingDevicePickerFilter);
          end if;
       end if;
@@ -950,10 +1051,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.get_SupportsAudio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -963,9 +1068,13 @@ package body WinRt.Windows.Media.Casting is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.put_SupportsAudio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportsVideo
@@ -974,10 +1083,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.get_SupportsVideo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -987,9 +1100,13 @@ package body WinRt.Windows.Media.Casting is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.put_SupportsVideo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportsPictures
@@ -998,10 +1115,14 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.get_SupportsPictures (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1011,9 +1132,13 @@ package body WinRt.Windows.Media.Casting is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.put_SupportsPictures (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportedCastingSources
@@ -1022,13 +1147,17 @@ package body WinRt.Windows.Media.Casting is
    )
    return IVector_ICastingSource.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ICastingSource.Kind;
    begin
       Hr := this.m_ICastingDevicePickerFilter.all.get_SupportedCastingSources (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ICastingSource (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1041,12 +1170,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingDeviceSelectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingDeviceSelectedEventArgs, ICastingDeviceSelectedEventArgs_Ptr);
    begin
       if this.m_ICastingDeviceSelectedEventArgs /= null then
          if this.m_ICastingDeviceSelectedEventArgs.all /= null then
-            RefCount := this.m_ICastingDeviceSelectedEventArgs.all.Release;
+            temp := this.m_ICastingDeviceSelectedEventArgs.all.Release;
             Free (this.m_ICastingDeviceSelectedEventArgs);
          end if;
       end if;
@@ -1061,11 +1190,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Media.Casting.CastingDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Casting.ICastingDevice;
    begin
       return RetVal : WinRt.Windows.Media.Casting.CastingDevice do
          Hr := this.m_ICastingDeviceSelectedEventArgs.all.get_SelectedCastingDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICastingDevice := new Windows.Media.Casting.ICastingDevice;
          Retval.m_ICastingDevice.all := m_ComRetVal;
       end return;
@@ -1080,12 +1213,12 @@ package body WinRt.Windows.Media.Casting is
    end;
 
    procedure Finalize (this : in out CastingSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICastingSource, ICastingSource_Ptr);
    begin
       if this.m_ICastingSource /= null then
          if this.m_ICastingSource.all /= null then
-            RefCount := this.m_ICastingSource.all.Release;
+            temp := this.m_ICastingSource.all.Release;
             Free (this.m_ICastingSource);
          end if;
       end if;
@@ -1100,11 +1233,15 @@ package body WinRt.Windows.Media.Casting is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ICastingSource.all.get_PreferredSourceUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1116,9 +1253,13 @@ package body WinRt.Windows.Media.Casting is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICastingSource.all.put_PreferredSourceUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Media.Casting;

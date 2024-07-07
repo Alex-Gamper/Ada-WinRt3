@@ -60,12 +60,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    end;
 
    procedure Finalize (this : in out DeliveryOptimizationSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeliveryOptimizationSettings, IDeliveryOptimizationSettings_Ptr);
    begin
       if this.m_IDeliveryOptimizationSettings /= null then
          if this.m_IDeliveryOptimizationSettings.all /= null then
-            RefCount := this.m_IDeliveryOptimizationSettings.all.Release;
+            temp := this.m_IDeliveryOptimizationSettings.all.Release;
             Free (this.m_IDeliveryOptimizationSettings);
          end if;
       end if;
@@ -77,20 +77,24 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    function GetCurrentSettings
    return WinRt.Windows.ApplicationModel.Store.Preview.DeliveryOptimizationSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.DeliveryOptimizationSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.DeliveryOptimizationSettings");
       m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IDeliveryOptimizationSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.IDeliveryOptimizationSettings;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.DeliveryOptimizationSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IDeliveryOptimizationSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrentSettings (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDeliveryOptimizationSettings := new Windows.ApplicationModel.Store.Preview.IDeliveryOptimizationSettings;
             Retval.m_IDeliveryOptimizationSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -103,10 +107,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.DeliveryOptimizationDownloadMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.DeliveryOptimizationDownloadMode;
    begin
       Hr := this.m_IDeliveryOptimizationSettings.all.get_DownloadMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -116,10 +124,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.DeliveryOptimizationDownloadModeSource is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.DeliveryOptimizationDownloadModeSource;
    begin
       Hr := this.m_IDeliveryOptimizationSettings.all.get_DownloadModeSource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -135,22 +147,26 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          catalogHardwareDescriptor : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_catalogHardwareManufacturerId : WinRt.HString := To_HString (catalogHardwareManufacturerId);
-         HStr_catalogStoreContentModifierId : WinRt.HString := To_HString (catalogStoreContentModifierId);
-         HStr_catalogHardwareDescriptor : WinRt.HString := To_HString (catalogHardwareDescriptor);
+         temp             : WinRt.UInt32 := 0;
+         HStr_catalogHardwareManufacturerId : constant WinRt.HString := To_HString (catalogHardwareManufacturerId);
+         HStr_catalogStoreContentModifierId : constant WinRt.HString := To_HString (catalogStoreContentModifierId);
+         HStr_catalogHardwareDescriptor : constant WinRt.HString := To_HString (catalogHardwareDescriptor);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetSystemConfiguration (HStr_catalogHardwareManufacturerId, HStr_catalogStoreContentModifierId, systemConfigurationExpiration, HStr_catalogHardwareDescriptor);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_catalogHardwareManufacturerId);
-         Hr := WindowsDeleteString (HStr_catalogStoreContentModifierId);
-         Hr := WindowsDeleteString (HStr_catalogHardwareDescriptor);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_catalogHardwareManufacturerId);
+         tmp := WindowsDeleteString (HStr_catalogStoreContentModifierId);
+         tmp := WindowsDeleteString (HStr_catalogHardwareDescriptor);
       end;
 
       procedure SetMobileOperatorConfiguration
@@ -160,18 +176,22 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          updateDownloadLimitInMegabytes : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_mobileOperatorId : WinRt.HString := To_HString (mobileOperatorId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_mobileOperatorId : constant WinRt.HString := To_HString (mobileOperatorId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetMobileOperatorConfiguration (HStr_mobileOperatorId, appDownloadLimitInMegabytes, updateDownloadLimitInMegabytes);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_mobileOperatorId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_mobileOperatorId);
       end;
 
       procedure SetStoreWebAccountId
@@ -179,18 +199,22 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          webAccountId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_webAccountId : WinRt.HString := To_HString (webAccountId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetStoreWebAccountId (HStr_webAccountId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_webAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
       end;
 
       function IsStoreWebAccountId
@@ -199,39 +223,47 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
-         HStr_webAccountId : WinRt.HString := To_HString (webAccountId);
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsStoreWebAccountId (HStr_webAccountId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_webAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
          return m_ComRetVal;
       end;
 
       function get_HardwareManufacturerInfo
       return WinRt.Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.IStoreHardwareManufacturerInfo;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_HardwareManufacturerInfo (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IStoreHardwareManufacturerInfo := new Windows.ApplicationModel.Store.Preview.IStoreHardwareManufacturerInfo;
                Retval.m_IStoreHardwareManufacturerInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -241,15 +273,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -267,7 +299,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -280,10 +312,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FilterUnsupportedSystemFeaturesAsync (systemFeatures, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -293,32 +325,36 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function HasStoreWebAccount
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.HasStoreWebAccount (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -328,17 +364,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.HasStoreWebAccountForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -348,15 +388,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_IRandomAccessStreamReference.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -374,7 +414,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IRandomAccessStreamReference.Kind_Delegate, AsyncOperationCompletedHandler_IRandomAccessStreamReference.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -387,10 +427,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetStoreLogDataAsync (options, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -400,15 +440,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -418,18 +458,22 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          webAccountId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_webAccountId : WinRt.HString := To_HString (webAccountId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetStoreWebAccountIdForUser (user.m_IUser.all, HStr_webAccountId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_webAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
       end;
 
       function IsStoreWebAccountIdForUser
@@ -439,19 +483,23 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
-         HStr_webAccountId : WinRt.HString := To_HString (webAccountId);
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsStoreWebAccountIdForUser (user.m_IUser.all, HStr_webAccountId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_webAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
          return m_ComRetVal;
       end;
 
@@ -461,17 +509,21 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetPurchasePromptingPolicyForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -481,66 +533,82 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          value : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetPurchasePromptingPolicyForUser (user.m_IUser.all, value);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function IsPinToDesktopSupported
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsPinToDesktopSupported (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function IsPinToTaskbarSupported
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsPinToTaskbarSupported (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function IsPinToStartSupported
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsPinToStartSupported (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -549,18 +617,22 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          appPackageFamilyName : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appPackageFamilyName : WinRt.HString := To_HString (appPackageFamilyName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.PinToDesktop (HStr_appPackageFamilyName);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appPackageFamilyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
       end;
 
       procedure PinToDesktopForUser
@@ -569,37 +641,45 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          appPackageFamilyName : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics5_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appPackageFamilyName : WinRt.HString := To_HString (appPackageFamilyName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.PinToDesktopForUser (user.m_IUser.all, HStr_appPackageFamilyName);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appPackageFamilyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appPackageFamilyName);
       end;
 
       function GetStoreWebAccountId
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetStoreWebAccountId (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -609,20 +689,24 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetStoreWebAccountIdForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -631,18 +715,22 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          webAccountId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_webAccountId : WinRt.HString := To_HString (webAccountId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetEnterpriseStoreWebAccountId (HStr_webAccountId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_webAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
       end;
 
       procedure SetEnterpriseStoreWebAccountIdForUser
@@ -651,37 +739,45 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          webAccountId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_webAccountId : WinRt.HString := To_HString (webAccountId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_webAccountId : constant WinRt.HString := To_HString (webAccountId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetEnterpriseStoreWebAccountIdForUser (user.m_IUser.all, HStr_webAccountId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_webAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_webAccountId);
       end;
 
       function GetEnterpriseStoreWebAccountId
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetEnterpriseStoreWebAccountId (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -691,37 +787,45 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetEnterpriseStoreWebAccountIdForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function ShouldRestrictToEnterpriseStoreOnly
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShouldRestrictToEnterpriseStoreOnly (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -731,34 +835,42 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics4_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShouldRestrictToEnterpriseStoreOnlyForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_PurchasePromptingPolicy
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PurchasePromptingPolicy (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -767,16 +879,20 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          value : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StoreConfiguration");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStoreConfigurationStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStoreConfigurationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.put_PurchasePromptingPolicy (value);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end StoreConfiguration;
@@ -790,12 +906,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    end;
 
    procedure Finalize (this : in out StoreHardwareManufacturerInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStoreHardwareManufacturerInfo, IStoreHardwareManufacturerInfo_Ptr);
    begin
       if this.m_IStoreHardwareManufacturerInfo /= null then
          if this.m_IStoreHardwareManufacturerInfo.all /= null then
-            RefCount := this.m_IStoreHardwareManufacturerInfo.all.Release;
+            temp := this.m_IStoreHardwareManufacturerInfo.all.Release;
             Free (this.m_IStoreHardwareManufacturerInfo);
          end if;
       end if;
@@ -810,13 +926,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStoreHardwareManufacturerInfo.all.get_HardwareManufacturerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -826,13 +946,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStoreHardwareManufacturerInfo.all.get_StoreContentModifierId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -842,13 +966,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStoreHardwareManufacturerInfo.all.get_ModelName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -858,13 +986,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStoreHardwareManufacturerInfo.all.get_ManufacturerName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -879,17 +1011,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StorePreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StorePreview");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStorePreview_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_productId : WinRt.HString := To_HString (productId);
-         HStr_skuId : WinRt.HString := To_HString (skuId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_productId : constant WinRt.HString := To_HString (productId);
+         HStr_skuId : constant WinRt.HString := To_HString (skuId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_StorePreviewPurchaseResults.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -907,7 +1039,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorePreviewPurchaseResults.Kind_Delegate, AsyncOperationCompletedHandler_StorePreviewPurchaseResults.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -921,10 +1053,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
             Hr := RoGetActivationFactory (m_hString, IID_IStorePreview'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestProductPurchaseByProductIdAndSkuIdAsync (HStr_productId, HStr_skuId, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -936,32 +1068,32 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
                         Retval.m_IStorePreviewPurchaseResults := new Windows.ApplicationModel.Store.Preview.IStorePreviewPurchaseResults;
                         Retval.m_IStorePreviewPurchaseResults.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_productId);
-            Hr := WindowsDeleteString (HStr_skuId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_productId);
+            tmp := WindowsDeleteString (HStr_skuId);
          end return;
       end;
 
       function LoadAddOnProductInfosAsync
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StorePreview");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.StorePreview");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IStorePreview_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -979,7 +1111,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -992,10 +1124,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          Hr := RoGetActivationFactory (m_hString, IID_IStorePreview'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadAddOnProductInfosAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1005,15 +1137,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1028,12 +1160,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    end;
 
    procedure Finalize (this : in out StorePreviewProductInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStorePreviewProductInfo, IStorePreviewProductInfo_Ptr);
    begin
       if this.m_IStorePreviewProductInfo /= null then
          if this.m_IStorePreviewProductInfo.all /= null then
-            RefCount := this.m_IStorePreviewProductInfo.all.Release;
+            temp := this.m_IStorePreviewProductInfo.all.Release;
             Free (this.m_IStorePreviewProductInfo);
          end if;
       end if;
@@ -1048,13 +1180,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewProductInfo.all.get_ProductId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1064,13 +1200,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewProductInfo.all.get_ProductType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1080,13 +1220,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewProductInfo.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1096,13 +1240,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewProductInfo.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1112,13 +1260,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return IVectorView_IStorePreviewSkuInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IStorePreviewSkuInfo.Kind;
    begin
       Hr := this.m_IStorePreviewProductInfo.all.get_SkuInfoList (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IStorePreviewSkuInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1131,12 +1283,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    end;
 
    procedure Finalize (this : in out StorePreviewPurchaseResults) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStorePreviewPurchaseResults, IStorePreviewPurchaseResults_Ptr);
    begin
       if this.m_IStorePreviewPurchaseResults /= null then
          if this.m_IStorePreviewPurchaseResults.all /= null then
-            RefCount := this.m_IStorePreviewPurchaseResults.all.Release;
+            temp := this.m_IStorePreviewPurchaseResults.all.Release;
             Free (this.m_IStorePreviewPurchaseResults);
          end if;
       end if;
@@ -1151,10 +1303,14 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus;
    begin
       Hr := this.m_IStorePreviewPurchaseResults.all.get_ProductPurchaseStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1167,12 +1323,12 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    end;
 
    procedure Finalize (this : in out StorePreviewSkuInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStorePreviewSkuInfo, IStorePreviewSkuInfo_Ptr);
    begin
       if this.m_IStorePreviewSkuInfo /= null then
          if this.m_IStorePreviewSkuInfo.all /= null then
-            RefCount := this.m_IStorePreviewSkuInfo.all.Release;
+            temp := this.m_IStorePreviewSkuInfo.all.Release;
             Free (this.m_IStorePreviewSkuInfo);
          end if;
       end if;
@@ -1187,13 +1343,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_ProductId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1203,13 +1363,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_SkuId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1219,13 +1383,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_SkuType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1235,13 +1403,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1251,13 +1423,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1267,13 +1443,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_CustomDeveloperData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1283,13 +1463,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_CurrencyCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1299,13 +1483,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_FormattedListPrice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1315,13 +1503,17 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStorePreviewSkuInfo.all.get_ExtendedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1336,15 +1528,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.WebAuthenticationCoreManagerHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.WebAuthenticationCoreManagerHelper");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IWebAuthenticationCoreManagerHelper_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_WebTokenRequestResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1362,7 +1554,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebTokenRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_WebTokenRequestResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1376,10 +1568,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
             Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerHelper'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestTokenWithUIElementHostingAsync (request.m_IWebTokenRequest.all, uiElement.m_IUIElement.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -1391,15 +1583,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
                         Retval.m_IWebTokenRequestResult := new Windows.Security.Authentication.Web.Core.IWebTokenRequestResult;
                         Retval.m_IWebTokenRequestResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -1411,15 +1603,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.WebAuthenticationCoreManagerHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.Preview.WebAuthenticationCoreManagerHelper");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.Preview.IWebAuthenticationCoreManagerHelper_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_WebTokenRequestResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1437,7 +1629,7 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_WebTokenRequestResult.Kind_Delegate, AsyncOperationCompletedHandler_WebTokenRequestResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1451,10 +1643,10 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
             Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationCoreManagerHelper'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestTokenWithUIElementHostingAsync (request.m_IWebTokenRequest.all, webAccount.m_IWebAccount.all, uiElement.m_IUIElement.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -1466,15 +1658,15 @@ package body WinRt.Windows.ApplicationModel.Store.Preview is
                         Retval.m_IWebTokenRequestResult := new Windows.Security.Authentication.Web.Core.IWebTokenRequestResult;
                         Retval.m_IWebTokenRequestResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 

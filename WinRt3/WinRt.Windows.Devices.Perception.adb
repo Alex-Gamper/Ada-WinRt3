@@ -70,80 +70,96 @@ package body WinRt.Windows.Devices.Perception is
       function get_FocalLength
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownCameraIntrinsicsPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCameraIntrinsicsPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FocalLength (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PrincipalPoint
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownCameraIntrinsicsPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCameraIntrinsicsPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PrincipalPoint (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RadialDistortion
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownCameraIntrinsicsPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCameraIntrinsicsPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RadialDistortion (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TangentialDistortion
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownCameraIntrinsicsProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownCameraIntrinsicsPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCameraIntrinsicsPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TangentialDistortion (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -156,60 +172,72 @@ package body WinRt.Windows.Devices.Perception is
       function get_Exposure
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionColorFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionColorFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionColorFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionColorFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Exposure (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AutoExposureEnabled
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionColorFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionColorFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionColorFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionColorFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AutoExposureEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ExposureCompensation
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionColorFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionColorFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionColorFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionColorFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExposureCompensation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -222,40 +250,48 @@ package body WinRt.Windows.Devices.Perception is
       function get_MinDepth
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionDepthFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionDepthFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionDepthFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MinDepth (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_MaxDepth
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionDepthFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionDepthFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionDepthFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionDepthFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MaxDepth (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -268,120 +304,144 @@ package body WinRt.Windows.Devices.Perception is
       function get_Id
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Id (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PhysicalDeviceIds
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PhysicalDeviceIds (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_FrameKind
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FrameKind (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DeviceModelVersion
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DeviceModelVersion (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EnclosureLocation
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnclosureLocation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DeviceId
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionFrameSourcePropertiesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionFrameSourcePropertiesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DeviceId (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -394,140 +454,168 @@ package body WinRt.Windows.Devices.Perception is
       function get_Exposure_KnownPerceptionInfraredFrameSourceProperties
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Exposure (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AutoExposureEnabled_KnownPerceptionInfraredFrameSourceProperties
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AutoExposureEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ExposureCompensation_KnownPerceptionInfraredFrameSourceProperties
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExposureCompensation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ActiveIlluminationEnabled
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ActiveIlluminationEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AmbientSubtractionEnabled
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AmbientSubtractionEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_StructureLightPatternEnabled
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StructureLightPatternEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_InterleavedIlluminationEnabled
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionInfraredFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionInfraredFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionInfraredFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InterleavedIlluminationEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -540,100 +628,120 @@ package body WinRt.Windows.Devices.Perception is
       function get_VideoProfile
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VideoProfile (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SupportedVideoProfiles
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SupportedVideoProfiles (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AvailableVideoProfiles
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AvailableVideoProfiles (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_IsMirrored
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsMirrored (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CameraIntrinsics
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoFrameSourceProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoFrameSourcePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoFrameSourcePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CameraIntrinsics (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -646,100 +754,120 @@ package body WinRt.Windows.Devices.Perception is
       function get_BitmapPixelFormat
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoProfilePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BitmapPixelFormat (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BitmapAlphaMode
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoProfilePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BitmapAlphaMode (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Width
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoProfilePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Width (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Height
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoProfilePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Height (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_FrameDuration
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.KnownPerceptionVideoProfileProperties");
          m_Factory        : access WinRt.Windows.Devices.Perception.IKnownPerceptionVideoProfilePropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownPerceptionVideoProfilePropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FrameDuration (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -754,12 +882,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrame, IPerceptionColorFrame_Ptr);
    begin
       if this.m_IPerceptionColorFrame /= null then
          if this.m_IPerceptionColorFrame.all /= null then
-            RefCount := this.m_IPerceptionColorFrame.all.Release;
+            temp := this.m_IPerceptionColorFrame.all.Release;
             Free (this.m_IPerceptionColorFrame);
          end if;
       end if;
@@ -774,11 +902,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IPerceptionColorFrame.all.get_VideoFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -789,13 +921,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionColorFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionColorFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionColorFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -807,12 +943,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrameArrivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrameArrivedEventArgs, IPerceptionColorFrameArrivedEventArgs_Ptr);
    begin
       if this.m_IPerceptionColorFrameArrivedEventArgs /= null then
          if this.m_IPerceptionColorFrameArrivedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionColorFrameArrivedEventArgs.all.Release;
+            temp := this.m_IPerceptionColorFrameArrivedEventArgs.all.Release;
             Free (this.m_IPerceptionColorFrameArrivedEventArgs);
          end if;
       end if;
@@ -827,10 +963,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPerceptionColorFrameArrivedEventArgs.all.get_RelativeTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -840,11 +980,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrame do
          Hr := this.m_IPerceptionColorFrameArrivedEventArgs.all.TryOpenFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionColorFrame := new Windows.Devices.Perception.IPerceptionColorFrame;
          Retval.m_IPerceptionColorFrame.all := m_ComRetVal;
       end return;
@@ -859,12 +1003,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrameReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrameReader, IPerceptionColorFrameReader_Ptr);
    begin
       if this.m_IPerceptionColorFrameReader /= null then
          if this.m_IPerceptionColorFrameReader.all /= null then
-            RefCount := this.m_IPerceptionColorFrameReader.all.Release;
+            temp := this.m_IPerceptionColorFrameReader.all.Release;
             Free (this.m_IPerceptionColorFrameReader);
          end if;
       end if;
@@ -880,10 +1024,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameReader.all.add_FrameArrived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -893,9 +1041,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameReader.all.remove_FrameArrived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -904,11 +1056,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrameSource do
          Hr := this.m_IPerceptionColorFrameReader.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionColorFrameSource := new Windows.Devices.Perception.IPerceptionColorFrameSource;
          Retval.m_IPerceptionColorFrameSource.all := m_ComRetVal;
       end return;
@@ -920,10 +1076,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionColorFrameReader.all.get_IsPaused (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -933,9 +1093,13 @@ package body WinRt.Windows.Devices.Perception is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameReader.all.put_IsPaused (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryReadLatestFrame
@@ -944,11 +1108,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrame do
          Hr := this.m_IPerceptionColorFrameReader.all.TryReadLatestFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionColorFrame := new Windows.Devices.Perception.IPerceptionColorFrame;
          Retval.m_IPerceptionColorFrame.all := m_ComRetVal;
       end return;
@@ -959,13 +1127,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionColorFrameReader
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionColorFrameReader_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionColorFrameReader.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -977,12 +1149,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrameSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrameSource, IPerceptionColorFrameSource_Ptr);
    begin
       if this.m_IPerceptionColorFrameSource /= null then
          if this.m_IPerceptionColorFrameSource.all /= null then
-            RefCount := this.m_IPerceptionColorFrameSource.all.Release;
+            temp := this.m_IPerceptionColorFrameSource.all.Release;
             Free (this.m_IPerceptionColorFrameSource);
          end if;
       end if;
@@ -994,35 +1166,39 @@ package body WinRt.Windows.Devices.Perception is
    function CreateWatcher
    return WinRt.Windows.Devices.Perception.PerceptionColorFrameSourceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrameSourceWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrameSourceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionColorFrameSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPerceptionColorFrameSourceWatcher := new Windows.Devices.Perception.IPerceptionColorFrameSourceWatcher;
             Retval.m_IPerceptionColorFrameSourceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function FindAllAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1040,7 +1216,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1053,10 +1229,10 @@ package body WinRt.Windows.Devices.Perception is
       Hr := RoGetActivationFactory (m_hString, IID_IPerceptionColorFrameSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1066,15 +1242,15 @@ package body WinRt.Windows.Devices.Perception is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -1084,16 +1260,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrameSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionColorFrameSource.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1111,7 +1287,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionColorFrameSource.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionColorFrameSource.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1125,10 +1301,10 @@ package body WinRt.Windows.Devices.Perception is
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionColorFrameSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_id, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1140,31 +1316,31 @@ package body WinRt.Windows.Devices.Perception is
                      Retval.m_IPerceptionColorFrameSource := new Windows.Devices.Perception.IPerceptionColorFrameSource;
                      Retval.m_IPerceptionColorFrameSource.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
    function RequestAccessAsync
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourceAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionColorFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourceAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1182,7 +1358,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourceAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourceAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1195,10 +1371,10 @@ package body WinRt.Windows.Devices.Perception is
       Hr := RoGetActivationFactory (m_hString, IID_IPerceptionColorFrameSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1208,15 +1384,15 @@ package body WinRt.Windows.Devices.Perception is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -1230,10 +1406,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.add_AvailableChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1243,9 +1423,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.remove_AvailableChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ActiveChanged
@@ -1255,10 +1439,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.add_ActiveChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1268,9 +1456,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.remove_ActiveChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PropertiesChanged
@@ -1280,10 +1472,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.add_PropertiesChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1293,9 +1489,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.remove_PropertiesChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VideoProfileChanged
@@ -1305,10 +1505,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.add_VideoProfileChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1318,9 +1522,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.remove_VideoProfileChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CameraIntrinsicsChanged
@@ -1330,10 +1538,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.add_CameraIntrinsicsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1343,9 +1555,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.remove_CameraIntrinsicsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -1354,13 +1570,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1370,13 +1590,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1386,13 +1610,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_DeviceKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1402,10 +1630,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_Available (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1415,10 +1647,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_Active (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1428,10 +1664,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_IsControlled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1441,13 +1681,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1457,13 +1701,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IVectorView_IPerceptionVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionVideoProfile.Kind;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_SupportedVideoProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPerceptionVideoProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1473,13 +1721,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IVectorView_IPerceptionVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionVideoProfile.Kind;
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.get_AvailableVideoProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPerceptionVideoProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1489,11 +1741,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionVideoProfile;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionVideoProfile do
          Hr := this.m_IPerceptionColorFrameSource.all.get_VideoProfile (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionVideoProfile := new Windows.Devices.Perception.IPerceptionVideoProfile;
          Retval.m_IPerceptionVideoProfile.all := m_ComRetVal;
       end return;
@@ -1505,11 +1761,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.ICameraIntrinsics;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.CameraIntrinsics do
          Hr := this.m_IPerceptionColorFrameSource.all.get_CameraIntrinsics (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICameraIntrinsics := new Windows.Media.Devices.Core.ICameraIntrinsics;
          Retval.m_ICameraIntrinsics.all := m_ComRetVal;
       end return;
@@ -1521,11 +1781,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionControlSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionControlSession;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionControlSession do
          Hr := this.m_IPerceptionColorFrameSource.all.AcquireControlSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionControlSession := new Windows.Devices.Perception.IPerceptionControlSession;
          Retval.m_IPerceptionControlSession.all := m_ComRetVal;
       end return;
@@ -1538,12 +1802,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.CanControlIndependentlyFrom (HStr_targetId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -1554,12 +1822,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.IsCorrelatedWith (HStr_targetId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -1571,12 +1843,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionColorFrameSource.all.TryGetTransformTo (HStr_targetId, result, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -1587,13 +1863,13 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthCorrelatedCameraIntrinsics.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1611,7 +1887,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCameraIntrinsics.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCameraIntrinsics.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1625,7 +1901,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionColorFrameSource.all.TryGetDepthCorrelatedCameraIntrinsicsAsync (correlatedDepthFrameSource.m_IPerceptionDepthFrameSource.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1637,9 +1913,9 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionDepthCorrelatedCameraIntrinsics := new Windows.Devices.Perception.IPerceptionDepthCorrelatedCameraIntrinsics;
                   Retval.m_IPerceptionDepthCorrelatedCameraIntrinsics.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1655,14 +1931,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCoordinateMapper'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_targetSourceId : WinRt.HString := To_HString (targetSourceId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_targetSourceId : constant WinRt.HString := To_HString (targetSourceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthCorrelatedCoordinateMapper.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1680,7 +1956,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCoordinateMapper.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCoordinateMapper.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1694,7 +1970,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionColorFrameSource.all.TryGetDepthCorrelatedCoordinateMapperAsync (HStr_targetSourceId, correlatedDepthFrameSource.m_IPerceptionDepthFrameSource.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1706,14 +1982,14 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionDepthCorrelatedCoordinateMapper := new Windows.Devices.Perception.IPerceptionDepthCorrelatedCoordinateMapper;
                   Retval.m_IPerceptionDepthCorrelatedCoordinateMapper.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_targetSourceId);
+         tmp := WindowsDeleteString (HStr_targetSourceId);
       end return;
    end;
 
@@ -1725,13 +2001,13 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourcePropertyChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1749,7 +2025,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1763,7 +2039,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionColorFrameSource.all.TrySetVideoProfileAsync (controlSession.m_IPerceptionControlSession.all, profile.m_IPerceptionVideoProfile.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1775,9 +2051,9 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult := new Windows.Devices.Perception.IPerceptionFrameSourcePropertyChangeResult;
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1791,11 +2067,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrameReader;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrameReader do
          Hr := this.m_IPerceptionColorFrameSource.all.OpenReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionColorFrameReader := new Windows.Devices.Perception.IPerceptionColorFrameReader;
          Retval.m_IPerceptionColorFrameReader.all := m_ComRetVal;
       end return;
@@ -1807,17 +2087,21 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Perception.IPerceptionColorFrameSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionColorFrameSource_Interface, WinRt.Windows.Devices.Perception.IPerceptionColorFrameSource2, WinRt.Windows.Devices.Perception.IID_IPerceptionColorFrameSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionColorFrameSource.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1830,12 +2114,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrameSourceAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrameSourceAddedEventArgs, IPerceptionColorFrameSourceAddedEventArgs_Ptr);
    begin
       if this.m_IPerceptionColorFrameSourceAddedEventArgs /= null then
          if this.m_IPerceptionColorFrameSourceAddedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionColorFrameSourceAddedEventArgs.all.Release;
+            temp := this.m_IPerceptionColorFrameSourceAddedEventArgs.all.Release;
             Free (this.m_IPerceptionColorFrameSourceAddedEventArgs);
          end if;
       end if;
@@ -1850,11 +2134,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrameSource do
          Hr := this.m_IPerceptionColorFrameSourceAddedEventArgs.all.get_FrameSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionColorFrameSource := new Windows.Devices.Perception.IPerceptionColorFrameSource;
          Retval.m_IPerceptionColorFrameSource.all := m_ComRetVal;
       end return;
@@ -1869,12 +2157,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrameSourceRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrameSourceRemovedEventArgs, IPerceptionColorFrameSourceRemovedEventArgs_Ptr);
    begin
       if this.m_IPerceptionColorFrameSourceRemovedEventArgs /= null then
          if this.m_IPerceptionColorFrameSourceRemovedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionColorFrameSourceRemovedEventArgs.all.Release;
+            temp := this.m_IPerceptionColorFrameSourceRemovedEventArgs.all.Release;
             Free (this.m_IPerceptionColorFrameSourceRemovedEventArgs);
          end if;
       end if;
@@ -1889,11 +2177,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionColorFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionColorFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionColorFrameSource do
          Hr := this.m_IPerceptionColorFrameSourceRemovedEventArgs.all.get_FrameSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionColorFrameSource := new Windows.Devices.Perception.IPerceptionColorFrameSource;
          Retval.m_IPerceptionColorFrameSource.all := m_ComRetVal;
       end return;
@@ -1908,12 +2200,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionColorFrameSourceWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionColorFrameSourceWatcher, IPerceptionColorFrameSourceWatcher_Ptr);
    begin
       if this.m_IPerceptionColorFrameSourceWatcher /= null then
          if this.m_IPerceptionColorFrameSourceWatcher.all /= null then
-            RefCount := this.m_IPerceptionColorFrameSourceWatcher.all.Release;
+            temp := this.m_IPerceptionColorFrameSourceWatcher.all.Release;
             Free (this.m_IPerceptionColorFrameSourceWatcher);
          end if;
       end if;
@@ -1929,10 +2221,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.add_SourceAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1942,9 +2238,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.remove_SourceAdded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SourceRemoved
@@ -1954,10 +2254,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.add_SourceRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1967,9 +2271,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.remove_SourceRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -1979,10 +2287,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1992,9 +2304,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -2004,10 +2320,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2017,9 +2337,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -2028,10 +2352,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceWatcherStatus;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2040,9 +2368,13 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionColorFrameSourceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -2050,9 +2382,13 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionColorFrameSourceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionColorFrameSourceWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2064,12 +2400,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionControlSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionControlSession, IPerceptionControlSession_Ptr);
    begin
       if this.m_IPerceptionControlSession /= null then
          if this.m_IPerceptionControlSession.all /= null then
-            RefCount := this.m_IPerceptionControlSession.all.Release;
+            temp := this.m_IPerceptionControlSession.all.Release;
             Free (this.m_IPerceptionControlSession);
          end if;
       end if;
@@ -2085,10 +2421,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionControlSession.all.add_ControlLost (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2098,9 +2438,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionControlSession.all.remove_ControlLost (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TrySetPropertyAsync
@@ -2111,14 +2455,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourcePropertyChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2136,7 +2480,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2150,7 +2494,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionControlSession.all.TrySetPropertyAsync (HStr_name, value, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2162,14 +2506,14 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult := new Windows.Devices.Perception.IPerceptionFrameSourcePropertyChangeResult;
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -2178,13 +2522,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionControlSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionControlSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionControlSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2196,12 +2544,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthCorrelatedCameraIntrinsics) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthCorrelatedCameraIntrinsics, IPerceptionDepthCorrelatedCameraIntrinsics_Ptr);
    begin
       if this.m_IPerceptionDepthCorrelatedCameraIntrinsics /= null then
          if this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all /= null then
-            RefCount := this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all.Release;
+            temp := this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all.Release;
             Free (this.m_IPerceptionDepthCorrelatedCameraIntrinsics);
          end if;
       end if;
@@ -2218,10 +2566,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all.UnprojectPixelAtCorrelatedDepth (pixelCoordinate, depthFrame.m_IPerceptionDepthFrame.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2233,11 +2585,15 @@ package body WinRt.Windows.Devices.Perception is
       results : Windows.Foundation.Numerics.Vector3_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_sourceCoordinates is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Numerics.Vector3_Ptr);
    begin
       Hr := this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all.UnprojectPixelsAtCorrelatedDepth (WinRt.UInt32(sourceCoordinates'Length), Convert_sourceCoordinates (sourceCoordinates (sourceCoordinates'First)'Address), depthFrame.m_IPerceptionDepthFrame.all, WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UnprojectRegionPixelsAtCorrelatedDepthAsync
@@ -2248,7 +2604,8 @@ package body WinRt.Windows.Devices.Perception is
       results : Windows.Foundation.Numerics.Vector3_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2256,7 +2613,6 @@ package body WinRt.Windows.Devices.Perception is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2278,9 +2634,9 @@ package body WinRt.Windows.Devices.Perception is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2293,7 +2649,8 @@ package body WinRt.Windows.Devices.Perception is
       results : Windows.Foundation.Numerics.Vector3_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2301,7 +2658,6 @@ package body WinRt.Windows.Devices.Perception is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2323,9 +2679,9 @@ package body WinRt.Windows.Devices.Perception is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2340,12 +2696,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthCorrelatedCoordinateMapper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthCorrelatedCoordinateMapper, IPerceptionDepthCorrelatedCoordinateMapper_Ptr);
    begin
       if this.m_IPerceptionDepthCorrelatedCoordinateMapper /= null then
          if this.m_IPerceptionDepthCorrelatedCoordinateMapper.all /= null then
-            RefCount := this.m_IPerceptionDepthCorrelatedCoordinateMapper.all.Release;
+            temp := this.m_IPerceptionDepthCorrelatedCoordinateMapper.all.Release;
             Free (this.m_IPerceptionDepthCorrelatedCoordinateMapper);
          end if;
       end if;
@@ -2362,10 +2718,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IPerceptionDepthCorrelatedCoordinateMapper.all.MapPixelToTarget (sourcePixelCoordinate, depthFrame.m_IPerceptionDepthFrame.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2377,11 +2737,15 @@ package body WinRt.Windows.Devices.Perception is
       results : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_sourceCoordinates is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_IPerceptionDepthCorrelatedCoordinateMapper.all.MapPixelsToTarget (WinRt.UInt32(sourceCoordinates'Length), Convert_sourceCoordinates (sourceCoordinates (sourceCoordinates'First)'Address), depthFrame.m_IPerceptionDepthFrame.all, WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MapRegionOfPixelsToTargetAsync
@@ -2392,7 +2756,8 @@ package body WinRt.Windows.Devices.Perception is
       targetCoordinates : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2400,7 +2765,6 @@ package body WinRt.Windows.Devices.Perception is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2422,9 +2786,9 @@ package body WinRt.Windows.Devices.Perception is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2437,7 +2801,8 @@ package body WinRt.Windows.Devices.Perception is
       targetCoordinates : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2445,7 +2810,6 @@ package body WinRt.Windows.Devices.Perception is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2467,9 +2831,9 @@ package body WinRt.Windows.Devices.Perception is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2484,12 +2848,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrame, IPerceptionDepthFrame_Ptr);
    begin
       if this.m_IPerceptionDepthFrame /= null then
          if this.m_IPerceptionDepthFrame.all /= null then
-            RefCount := this.m_IPerceptionDepthFrame.all.Release;
+            temp := this.m_IPerceptionDepthFrame.all.Release;
             Free (this.m_IPerceptionDepthFrame);
          end if;
       end if;
@@ -2504,11 +2868,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IPerceptionDepthFrame.all.get_VideoFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -2519,13 +2887,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionDepthFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionDepthFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionDepthFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2537,12 +2909,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrameArrivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrameArrivedEventArgs, IPerceptionDepthFrameArrivedEventArgs_Ptr);
    begin
       if this.m_IPerceptionDepthFrameArrivedEventArgs /= null then
          if this.m_IPerceptionDepthFrameArrivedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionDepthFrameArrivedEventArgs.all.Release;
+            temp := this.m_IPerceptionDepthFrameArrivedEventArgs.all.Release;
             Free (this.m_IPerceptionDepthFrameArrivedEventArgs);
          end if;
       end if;
@@ -2557,10 +2929,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPerceptionDepthFrameArrivedEventArgs.all.get_RelativeTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2570,11 +2946,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrame do
          Hr := this.m_IPerceptionDepthFrameArrivedEventArgs.all.TryOpenFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionDepthFrame := new Windows.Devices.Perception.IPerceptionDepthFrame;
          Retval.m_IPerceptionDepthFrame.all := m_ComRetVal;
       end return;
@@ -2589,12 +2969,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrameReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrameReader, IPerceptionDepthFrameReader_Ptr);
    begin
       if this.m_IPerceptionDepthFrameReader /= null then
          if this.m_IPerceptionDepthFrameReader.all /= null then
-            RefCount := this.m_IPerceptionDepthFrameReader.all.Release;
+            temp := this.m_IPerceptionDepthFrameReader.all.Release;
             Free (this.m_IPerceptionDepthFrameReader);
          end if;
       end if;
@@ -2610,10 +2990,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameReader.all.add_FrameArrived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2623,9 +3007,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameReader.all.remove_FrameArrived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -2634,11 +3022,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource do
          Hr := this.m_IPerceptionDepthFrameReader.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionDepthFrameSource := new Windows.Devices.Perception.IPerceptionDepthFrameSource;
          Retval.m_IPerceptionDepthFrameSource.all := m_ComRetVal;
       end return;
@@ -2650,10 +3042,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionDepthFrameReader.all.get_IsPaused (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2663,9 +3059,13 @@ package body WinRt.Windows.Devices.Perception is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameReader.all.put_IsPaused (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryReadLatestFrame
@@ -2674,11 +3074,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrame do
          Hr := this.m_IPerceptionDepthFrameReader.all.TryReadLatestFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionDepthFrame := new Windows.Devices.Perception.IPerceptionDepthFrame;
          Retval.m_IPerceptionDepthFrame.all := m_ComRetVal;
       end return;
@@ -2689,13 +3093,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionDepthFrameReader
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionDepthFrameReader_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionDepthFrameReader.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2707,12 +3115,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrameSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrameSource, IPerceptionDepthFrameSource_Ptr);
    begin
       if this.m_IPerceptionDepthFrameSource /= null then
          if this.m_IPerceptionDepthFrameSource.all /= null then
-            RefCount := this.m_IPerceptionDepthFrameSource.all.Release;
+            temp := this.m_IPerceptionDepthFrameSource.all.Release;
             Free (this.m_IPerceptionDepthFrameSource);
          end if;
       end if;
@@ -2724,35 +3132,39 @@ package body WinRt.Windows.Devices.Perception is
    function CreateWatcher
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrameSourceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrameSourceWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSourceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionDepthFrameSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPerceptionDepthFrameSourceWatcher := new Windows.Devices.Perception.IPerceptionDepthFrameSourceWatcher;
             Retval.m_IPerceptionDepthFrameSourceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function FindAllAsync_PerceptionDepthFrameSource
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2770,7 +3182,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2783,10 +3195,10 @@ package body WinRt.Windows.Devices.Perception is
       Hr := RoGetActivationFactory (m_hString, IID_IPerceptionDepthFrameSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2796,15 +3208,15 @@ package body WinRt.Windows.Devices.Perception is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -2814,16 +3226,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthFrameSource.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2841,7 +3253,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthFrameSource.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthFrameSource.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2855,10 +3267,10 @@ package body WinRt.Windows.Devices.Perception is
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionDepthFrameSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_id, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2870,31 +3282,31 @@ package body WinRt.Windows.Devices.Perception is
                      Retval.m_IPerceptionDepthFrameSource := new Windows.Devices.Perception.IPerceptionDepthFrameSource;
                      Retval.m_IPerceptionDepthFrameSource.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
    function RequestAccessAsync_PerceptionDepthFrameSource
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourceAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionDepthFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourceAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2912,7 +3324,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourceAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourceAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2925,10 +3337,10 @@ package body WinRt.Windows.Devices.Perception is
       Hr := RoGetActivationFactory (m_hString, IID_IPerceptionDepthFrameSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2938,15 +3350,15 @@ package body WinRt.Windows.Devices.Perception is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -2960,10 +3372,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.add_AvailableChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2973,9 +3389,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.remove_AvailableChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ActiveChanged
@@ -2985,10 +3405,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.add_ActiveChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2998,9 +3422,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.remove_ActiveChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PropertiesChanged
@@ -3010,10 +3438,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.add_PropertiesChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3023,9 +3455,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.remove_PropertiesChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VideoProfileChanged
@@ -3035,10 +3471,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.add_VideoProfileChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3048,9 +3488,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.remove_VideoProfileChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CameraIntrinsicsChanged
@@ -3060,10 +3504,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.add_CameraIntrinsicsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3073,9 +3521,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.remove_CameraIntrinsicsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -3084,13 +3536,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3100,13 +3556,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3116,13 +3576,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_DeviceKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3132,10 +3596,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_Available (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3145,10 +3613,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_Active (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3158,10 +3630,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_IsControlled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3171,13 +3647,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3187,13 +3667,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IVectorView_IPerceptionVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionVideoProfile.Kind;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_SupportedVideoProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPerceptionVideoProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3203,13 +3687,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IVectorView_IPerceptionVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionVideoProfile.Kind;
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.get_AvailableVideoProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPerceptionVideoProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3219,11 +3707,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionVideoProfile;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionVideoProfile do
          Hr := this.m_IPerceptionDepthFrameSource.all.get_VideoProfile (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionVideoProfile := new Windows.Devices.Perception.IPerceptionVideoProfile;
          Retval.m_IPerceptionVideoProfile.all := m_ComRetVal;
       end return;
@@ -3235,11 +3727,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.ICameraIntrinsics;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.CameraIntrinsics do
          Hr := this.m_IPerceptionDepthFrameSource.all.get_CameraIntrinsics (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICameraIntrinsics := new Windows.Media.Devices.Core.ICameraIntrinsics;
          Retval.m_ICameraIntrinsics.all := m_ComRetVal;
       end return;
@@ -3251,11 +3747,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionControlSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionControlSession;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionControlSession do
          Hr := this.m_IPerceptionDepthFrameSource.all.AcquireControlSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionControlSession := new Windows.Devices.Perception.IPerceptionControlSession;
          Retval.m_IPerceptionControlSession.all := m_ComRetVal;
       end return;
@@ -3268,12 +3768,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.CanControlIndependentlyFrom (HStr_targetId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -3284,12 +3788,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.IsCorrelatedWith (HStr_targetId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -3301,12 +3809,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionDepthFrameSource.all.TryGetTransformTo (HStr_targetId, result, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -3317,13 +3829,13 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthCorrelatedCameraIntrinsics.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3341,7 +3853,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCameraIntrinsics.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCameraIntrinsics.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3355,7 +3867,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionDepthFrameSource.all.TryGetDepthCorrelatedCameraIntrinsicsAsync (target.m_IPerceptionDepthFrameSource.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3367,9 +3879,9 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionDepthCorrelatedCameraIntrinsics := new Windows.Devices.Perception.IPerceptionDepthCorrelatedCameraIntrinsics;
                   Retval.m_IPerceptionDepthCorrelatedCameraIntrinsics.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3385,14 +3897,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCoordinateMapper'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthCorrelatedCoordinateMapper.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3410,7 +3922,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCoordinateMapper.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCoordinateMapper.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3424,7 +3936,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionDepthFrameSource.all.TryGetDepthCorrelatedCoordinateMapperAsync (HStr_targetId, depthFrameSourceToMapWith.m_IPerceptionDepthFrameSource.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3436,14 +3948,14 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionDepthCorrelatedCoordinateMapper := new Windows.Devices.Perception.IPerceptionDepthCorrelatedCoordinateMapper;
                   Retval.m_IPerceptionDepthCorrelatedCoordinateMapper.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_targetId);
+         tmp := WindowsDeleteString (HStr_targetId);
       end return;
    end;
 
@@ -3455,13 +3967,13 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourcePropertyChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3479,7 +3991,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3493,7 +4005,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionDepthFrameSource.all.TrySetVideoProfileAsync (controlSession.m_IPerceptionControlSession.all, profile.m_IPerceptionVideoProfile.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3505,9 +4017,9 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult := new Windows.Devices.Perception.IPerceptionFrameSourcePropertyChangeResult;
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -3521,11 +4033,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrameReader;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrameReader do
          Hr := this.m_IPerceptionDepthFrameSource.all.OpenReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionDepthFrameReader := new Windows.Devices.Perception.IPerceptionDepthFrameReader;
          Retval.m_IPerceptionDepthFrameReader.all := m_ComRetVal;
       end return;
@@ -3537,17 +4053,21 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource_Interface, WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource2, WinRt.Windows.Devices.Perception.IID_IPerceptionDepthFrameSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionDepthFrameSource.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3560,12 +4080,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrameSourceAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrameSourceAddedEventArgs, IPerceptionDepthFrameSourceAddedEventArgs_Ptr);
    begin
       if this.m_IPerceptionDepthFrameSourceAddedEventArgs /= null then
          if this.m_IPerceptionDepthFrameSourceAddedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionDepthFrameSourceAddedEventArgs.all.Release;
+            temp := this.m_IPerceptionDepthFrameSourceAddedEventArgs.all.Release;
             Free (this.m_IPerceptionDepthFrameSourceAddedEventArgs);
          end if;
       end if;
@@ -3580,11 +4100,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource do
          Hr := this.m_IPerceptionDepthFrameSourceAddedEventArgs.all.get_FrameSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionDepthFrameSource := new Windows.Devices.Perception.IPerceptionDepthFrameSource;
          Retval.m_IPerceptionDepthFrameSource.all := m_ComRetVal;
       end return;
@@ -3599,12 +4123,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrameSourceRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrameSourceRemovedEventArgs, IPerceptionDepthFrameSourceRemovedEventArgs_Ptr);
    begin
       if this.m_IPerceptionDepthFrameSourceRemovedEventArgs /= null then
          if this.m_IPerceptionDepthFrameSourceRemovedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionDepthFrameSourceRemovedEventArgs.all.Release;
+            temp := this.m_IPerceptionDepthFrameSourceRemovedEventArgs.all.Release;
             Free (this.m_IPerceptionDepthFrameSourceRemovedEventArgs);
          end if;
       end if;
@@ -3619,11 +4143,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionDepthFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource do
          Hr := this.m_IPerceptionDepthFrameSourceRemovedEventArgs.all.get_FrameSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionDepthFrameSource := new Windows.Devices.Perception.IPerceptionDepthFrameSource;
          Retval.m_IPerceptionDepthFrameSource.all := m_ComRetVal;
       end return;
@@ -3638,12 +4166,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionDepthFrameSourceWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionDepthFrameSourceWatcher, IPerceptionDepthFrameSourceWatcher_Ptr);
    begin
       if this.m_IPerceptionDepthFrameSourceWatcher /= null then
          if this.m_IPerceptionDepthFrameSourceWatcher.all /= null then
-            RefCount := this.m_IPerceptionDepthFrameSourceWatcher.all.Release;
+            temp := this.m_IPerceptionDepthFrameSourceWatcher.all.Release;
             Free (this.m_IPerceptionDepthFrameSourceWatcher);
          end if;
       end if;
@@ -3659,10 +4187,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.add_SourceAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3672,9 +4204,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.remove_SourceAdded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SourceRemoved
@@ -3684,10 +4220,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.add_SourceRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3697,9 +4237,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.remove_SourceRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -3709,10 +4253,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3722,9 +4270,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -3734,10 +4286,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3747,9 +4303,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -3758,10 +4318,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceWatcherStatus;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3770,9 +4334,13 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionDepthFrameSourceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -3780,9 +4348,13 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionDepthFrameSourceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionDepthFrameSourceWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3794,12 +4366,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionFrameSourcePropertiesChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionFrameSourcePropertiesChangedEventArgs, IPerceptionFrameSourcePropertiesChangedEventArgs_Ptr);
    begin
       if this.m_IPerceptionFrameSourcePropertiesChangedEventArgs /= null then
          if this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all.Release;
+            temp := this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all.Release;
             Free (this.m_IPerceptionFrameSourcePropertiesChangedEventArgs);
          end if;
       end if;
@@ -3814,10 +4386,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.Collections.CollectionChange is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.CollectionChange;
    begin
       Hr := this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all.get_CollectionChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3827,13 +4403,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all.get_Key (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3846,12 +4426,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionFrameSourcePropertyChangeResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionFrameSourcePropertyChangeResult, IPerceptionFrameSourcePropertyChangeResult_Ptr);
    begin
       if this.m_IPerceptionFrameSourcePropertyChangeResult /= null then
          if this.m_IPerceptionFrameSourcePropertyChangeResult.all /= null then
-            RefCount := this.m_IPerceptionFrameSourcePropertyChangeResult.all.Release;
+            temp := this.m_IPerceptionFrameSourcePropertyChangeResult.all.Release;
             Free (this.m_IPerceptionFrameSourcePropertyChangeResult);
          end if;
       end if;
@@ -3866,10 +4446,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus;
    begin
       Hr := this.m_IPerceptionFrameSourcePropertyChangeResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3879,10 +4463,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPerceptionFrameSourcePropertyChangeResult.all.get_NewValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3895,12 +4483,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrame, IPerceptionInfraredFrame_Ptr);
    begin
       if this.m_IPerceptionInfraredFrame /= null then
          if this.m_IPerceptionInfraredFrame.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrame.all.Release;
+            temp := this.m_IPerceptionInfraredFrame.all.Release;
             Free (this.m_IPerceptionInfraredFrame);
          end if;
       end if;
@@ -3915,11 +4503,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IPerceptionInfraredFrame.all.get_VideoFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -3930,13 +4522,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionInfraredFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionInfraredFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionInfraredFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3948,12 +4544,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrameArrivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrameArrivedEventArgs, IPerceptionInfraredFrameArrivedEventArgs_Ptr);
    begin
       if this.m_IPerceptionInfraredFrameArrivedEventArgs /= null then
          if this.m_IPerceptionInfraredFrameArrivedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrameArrivedEventArgs.all.Release;
+            temp := this.m_IPerceptionInfraredFrameArrivedEventArgs.all.Release;
             Free (this.m_IPerceptionInfraredFrameArrivedEventArgs);
          end if;
       end if;
@@ -3968,10 +4564,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPerceptionInfraredFrameArrivedEventArgs.all.get_RelativeTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3981,11 +4581,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrame do
          Hr := this.m_IPerceptionInfraredFrameArrivedEventArgs.all.TryOpenFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionInfraredFrame := new Windows.Devices.Perception.IPerceptionInfraredFrame;
          Retval.m_IPerceptionInfraredFrame.all := m_ComRetVal;
       end return;
@@ -4000,12 +4604,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrameReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrameReader, IPerceptionInfraredFrameReader_Ptr);
    begin
       if this.m_IPerceptionInfraredFrameReader /= null then
          if this.m_IPerceptionInfraredFrameReader.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrameReader.all.Release;
+            temp := this.m_IPerceptionInfraredFrameReader.all.Release;
             Free (this.m_IPerceptionInfraredFrameReader);
          end if;
       end if;
@@ -4021,10 +4625,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameReader.all.add_FrameArrived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4034,9 +4642,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameReader.all.remove_FrameArrived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Source
@@ -4045,11 +4657,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource do
          Hr := this.m_IPerceptionInfraredFrameReader.all.get_Source (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionInfraredFrameSource := new Windows.Devices.Perception.IPerceptionInfraredFrameSource;
          Retval.m_IPerceptionInfraredFrameSource.all := m_ComRetVal;
       end return;
@@ -4061,10 +4677,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionInfraredFrameReader.all.get_IsPaused (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4074,9 +4694,13 @@ package body WinRt.Windows.Devices.Perception is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameReader.all.put_IsPaused (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryReadLatestFrame
@@ -4085,11 +4709,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrame do
          Hr := this.m_IPerceptionInfraredFrameReader.all.TryReadLatestFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionInfraredFrame := new Windows.Devices.Perception.IPerceptionInfraredFrame;
          Retval.m_IPerceptionInfraredFrame.all := m_ComRetVal;
       end return;
@@ -4100,13 +4728,17 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionInfraredFrameReader
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameReader_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionInfraredFrameReader.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4118,12 +4750,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrameSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrameSource, IPerceptionInfraredFrameSource_Ptr);
    begin
       if this.m_IPerceptionInfraredFrameSource /= null then
          if this.m_IPerceptionInfraredFrameSource.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrameSource.all.Release;
+            temp := this.m_IPerceptionInfraredFrameSource.all.Release;
             Free (this.m_IPerceptionInfraredFrameSource);
          end if;
       end if;
@@ -4135,35 +4767,39 @@ package body WinRt.Windows.Devices.Perception is
    function CreateWatcher
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSourceWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrameSourceWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSourceWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionInfraredFrameSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPerceptionInfraredFrameSourceWatcher := new Windows.Devices.Perception.IPerceptionInfraredFrameSourceWatcher;
             Retval.m_IPerceptionInfraredFrameSourceWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function FindAllAsync_PerceptionInfraredFrameSource
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4181,7 +4817,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4194,10 +4830,10 @@ package body WinRt.Windows.Devices.Perception is
       Hr := RoGetActivationFactory (m_hString, IID_IPerceptionInfraredFrameSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4207,15 +4843,15 @@ package body WinRt.Windows.Devices.Perception is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -4225,16 +4861,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionInfraredFrameSource.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4252,7 +4888,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionInfraredFrameSource.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionInfraredFrameSource.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4266,10 +4902,10 @@ package body WinRt.Windows.Devices.Perception is
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionInfraredFrameSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_id, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -4281,31 +4917,31 @@ package body WinRt.Windows.Devices.Perception is
                      Retval.m_IPerceptionInfraredFrameSource := new Windows.Devices.Perception.IPerceptionInfraredFrameSource;
                      Retval.m_IPerceptionInfraredFrameSource.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
    function RequestAccessAsync_PerceptionInfraredFrameSource
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourceAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Perception.PerceptionInfraredFrameSource");
       m_Factory        : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourceAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4323,7 +4959,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourceAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourceAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4336,10 +4972,10 @@ package body WinRt.Windows.Devices.Perception is
       Hr := RoGetActivationFactory (m_hString, IID_IPerceptionInfraredFrameSourceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4349,15 +4985,15 @@ package body WinRt.Windows.Devices.Perception is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -4371,10 +5007,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.add_AvailableChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4384,9 +5024,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.remove_AvailableChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ActiveChanged
@@ -4396,10 +5040,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.add_ActiveChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4409,9 +5057,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.remove_ActiveChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PropertiesChanged
@@ -4421,10 +5073,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.add_PropertiesChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4434,9 +5090,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.remove_PropertiesChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VideoProfileChanged
@@ -4446,10 +5106,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.add_VideoProfileChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4459,9 +5123,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.remove_VideoProfileChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CameraIntrinsicsChanged
@@ -4471,10 +5139,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.add_CameraIntrinsicsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4484,9 +5156,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.remove_CameraIntrinsicsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -4495,13 +5171,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4511,13 +5191,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4527,13 +5211,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_DeviceKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4543,10 +5231,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_Available (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4556,10 +5248,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_Active (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4569,10 +5265,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_IsControlled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4582,13 +5282,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4598,13 +5302,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IVectorView_IPerceptionVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionVideoProfile.Kind;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_SupportedVideoProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPerceptionVideoProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4614,13 +5322,17 @@ package body WinRt.Windows.Devices.Perception is
    )
    return IVectorView_IPerceptionVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionVideoProfile.Kind;
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.get_AvailableVideoProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPerceptionVideoProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4630,11 +5342,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionVideoProfile;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionVideoProfile do
          Hr := this.m_IPerceptionInfraredFrameSource.all.get_VideoProfile (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionVideoProfile := new Windows.Devices.Perception.IPerceptionVideoProfile;
          Retval.m_IPerceptionVideoProfile.all := m_ComRetVal;
       end return;
@@ -4646,11 +5362,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.ICameraIntrinsics;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.CameraIntrinsics do
          Hr := this.m_IPerceptionInfraredFrameSource.all.get_CameraIntrinsics (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICameraIntrinsics := new Windows.Media.Devices.Core.ICameraIntrinsics;
          Retval.m_ICameraIntrinsics.all := m_ComRetVal;
       end return;
@@ -4662,11 +5382,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionControlSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionControlSession;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionControlSession do
          Hr := this.m_IPerceptionInfraredFrameSource.all.AcquireControlSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionControlSession := new Windows.Devices.Perception.IPerceptionControlSession;
          Retval.m_IPerceptionControlSession.all := m_ComRetVal;
       end return;
@@ -4679,12 +5403,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.CanControlIndependentlyFrom (HStr_targetId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -4695,12 +5423,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.IsCorrelatedWith (HStr_targetId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -4712,12 +5444,16 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       Hr := this.m_IPerceptionInfraredFrameSource.all.TryGetTransformTo (HStr_targetId, result, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_targetId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_targetId);
       return m_ComRetVal;
    end;
 
@@ -4728,13 +5464,13 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthCorrelatedCameraIntrinsics.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4752,7 +5488,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCameraIntrinsics.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCameraIntrinsics.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4766,7 +5502,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionInfraredFrameSource.all.TryGetDepthCorrelatedCameraIntrinsicsAsync (target.m_IPerceptionDepthFrameSource.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4778,9 +5514,9 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionDepthCorrelatedCameraIntrinsics := new Windows.Devices.Perception.IPerceptionDepthCorrelatedCameraIntrinsics;
                   Retval.m_IPerceptionDepthCorrelatedCameraIntrinsics.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -4796,14 +5532,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCoordinateMapper'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_targetId : WinRt.HString := To_HString (targetId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_targetId : constant WinRt.HString := To_HString (targetId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionDepthCorrelatedCoordinateMapper.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4821,7 +5557,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCoordinateMapper.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionDepthCorrelatedCoordinateMapper.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4835,7 +5571,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionInfraredFrameSource.all.TryGetDepthCorrelatedCoordinateMapperAsync (HStr_targetId, depthFrameSourceToMapWith.m_IPerceptionDepthFrameSource.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4847,14 +5583,14 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionDepthCorrelatedCoordinateMapper := new Windows.Devices.Perception.IPerceptionDepthCorrelatedCoordinateMapper;
                   Retval.m_IPerceptionDepthCorrelatedCoordinateMapper.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_targetId);
+         tmp := WindowsDeleteString (HStr_targetId);
       end return;
    end;
 
@@ -4866,13 +5602,13 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PerceptionFrameSourcePropertyChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4890,7 +5626,7 @@ package body WinRt.Windows.Devices.Perception is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_PerceptionFrameSourcePropertyChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4904,7 +5640,7 @@ package body WinRt.Windows.Devices.Perception is
          Hr := this.m_IPerceptionInfraredFrameSource.all.TrySetVideoProfileAsync (controlSession.m_IPerceptionControlSession.all, profile.m_IPerceptionVideoProfile.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4916,9 +5652,9 @@ package body WinRt.Windows.Devices.Perception is
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult := new Windows.Devices.Perception.IPerceptionFrameSourcePropertyChangeResult;
                   Retval.m_IPerceptionFrameSourcePropertyChangeResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -4932,11 +5668,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrameReader;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrameReader do
          Hr := this.m_IPerceptionInfraredFrameSource.all.OpenReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionInfraredFrameReader := new Windows.Devices.Perception.IPerceptionInfraredFrameReader;
          Retval.m_IPerceptionInfraredFrameReader.all := m_ComRetVal;
       end return;
@@ -4948,17 +5688,21 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSource_Interface, WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSource2, WinRt.Windows.Devices.Perception.IID_IPerceptionInfraredFrameSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPerceptionInfraredFrameSource.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4971,12 +5715,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrameSourceAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrameSourceAddedEventArgs, IPerceptionInfraredFrameSourceAddedEventArgs_Ptr);
    begin
       if this.m_IPerceptionInfraredFrameSourceAddedEventArgs /= null then
          if this.m_IPerceptionInfraredFrameSourceAddedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrameSourceAddedEventArgs.all.Release;
+            temp := this.m_IPerceptionInfraredFrameSourceAddedEventArgs.all.Release;
             Free (this.m_IPerceptionInfraredFrameSourceAddedEventArgs);
          end if;
       end if;
@@ -4991,11 +5735,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource do
          Hr := this.m_IPerceptionInfraredFrameSourceAddedEventArgs.all.get_FrameSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionInfraredFrameSource := new Windows.Devices.Perception.IPerceptionInfraredFrameSource;
          Retval.m_IPerceptionInfraredFrameSource.all := m_ComRetVal;
       end return;
@@ -5010,12 +5758,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrameSourceRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrameSourceRemovedEventArgs, IPerceptionInfraredFrameSourceRemovedEventArgs_Ptr);
    begin
       if this.m_IPerceptionInfraredFrameSourceRemovedEventArgs /= null then
          if this.m_IPerceptionInfraredFrameSourceRemovedEventArgs.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrameSourceRemovedEventArgs.all.Release;
+            temp := this.m_IPerceptionInfraredFrameSourceRemovedEventArgs.all.Release;
             Free (this.m_IPerceptionInfraredFrameSourceRemovedEventArgs);
          end if;
       end if;
@@ -5030,11 +5778,15 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Perception.IPerceptionInfraredFrameSource;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.PerceptionInfraredFrameSource do
          Hr := this.m_IPerceptionInfraredFrameSourceRemovedEventArgs.all.get_FrameSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPerceptionInfraredFrameSource := new Windows.Devices.Perception.IPerceptionInfraredFrameSource;
          Retval.m_IPerceptionInfraredFrameSource.all := m_ComRetVal;
       end return;
@@ -5049,12 +5801,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionInfraredFrameSourceWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionInfraredFrameSourceWatcher, IPerceptionInfraredFrameSourceWatcher_Ptr);
    begin
       if this.m_IPerceptionInfraredFrameSourceWatcher /= null then
          if this.m_IPerceptionInfraredFrameSourceWatcher.all /= null then
-            RefCount := this.m_IPerceptionInfraredFrameSourceWatcher.all.Release;
+            temp := this.m_IPerceptionInfraredFrameSourceWatcher.all.Release;
             Free (this.m_IPerceptionInfraredFrameSourceWatcher);
          end if;
       end if;
@@ -5070,10 +5822,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.add_SourceAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5083,9 +5839,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.remove_SourceAdded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SourceRemoved
@@ -5095,10 +5855,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.add_SourceRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5108,9 +5872,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.remove_SourceRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -5120,10 +5888,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5133,9 +5905,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -5145,10 +5921,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5158,9 +5938,13 @@ package body WinRt.Windows.Devices.Perception is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -5169,10 +5953,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceWatcherStatus;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5181,9 +5969,13 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionInfraredFrameSourceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -5191,9 +5983,13 @@ package body WinRt.Windows.Devices.Perception is
       this : in out PerceptionInfraredFrameSourceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPerceptionInfraredFrameSourceWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5205,12 +6001,12 @@ package body WinRt.Windows.Devices.Perception is
    end;
 
    procedure Finalize (this : in out PerceptionVideoProfile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPerceptionVideoProfile, IPerceptionVideoProfile_Ptr);
    begin
       if this.m_IPerceptionVideoProfile /= null then
          if this.m_IPerceptionVideoProfile.all /= null then
-            RefCount := this.m_IPerceptionVideoProfile.all.Release;
+            temp := this.m_IPerceptionVideoProfile.all.Release;
             Free (this.m_IPerceptionVideoProfile);
          end if;
       end if;
@@ -5225,10 +6021,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_IPerceptionVideoProfile.all.get_BitmapPixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5238,10 +6038,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapAlphaMode;
    begin
       Hr := this.m_IPerceptionVideoProfile.all.get_BitmapAlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5251,10 +6055,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPerceptionVideoProfile.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5264,10 +6072,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPerceptionVideoProfile.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5277,10 +6089,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPerceptionVideoProfile.all.get_FrameDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5291,10 +6107,14 @@ package body WinRt.Windows.Devices.Perception is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPerceptionVideoProfile.all.IsEqual (other.m_IPerceptionVideoProfile.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

@@ -53,12 +53,12 @@ package body WinRt.Windows.Devices.Spi is
    end;
 
    procedure Finalize (this : in out SpiBusInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpiBusInfo, ISpiBusInfo_Ptr);
    begin
       if this.m_ISpiBusInfo /= null then
          if this.m_ISpiBusInfo.all /= null then
-            RefCount := this.m_ISpiBusInfo.all.Release;
+            temp := this.m_ISpiBusInfo.all.Release;
             Free (this.m_ISpiBusInfo);
          end if;
       end if;
@@ -73,10 +73,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISpiBusInfo.all.get_ChipSelectLineCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -86,10 +90,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISpiBusInfo.all.get_MinClockFrequency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -99,10 +107,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISpiBusInfo.all.get_MaxClockFrequency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -112,13 +124,17 @@ package body WinRt.Windows.Devices.Spi is
    )
    return IVectorView_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int32.Kind;
    begin
       Hr := this.m_ISpiBusInfo.all.get_SupportedDataBitLengths (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -131,12 +147,12 @@ package body WinRt.Windows.Devices.Spi is
    end;
 
    procedure Finalize (this : in out SpiConnectionSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpiConnectionSettings, ISpiConnectionSettings_Ptr);
    begin
       if this.m_ISpiConnectionSettings /= null then
          if this.m_ISpiConnectionSettings.all /= null then
-            RefCount := this.m_ISpiConnectionSettings.all.Release;
+            temp := this.m_ISpiConnectionSettings.all.Release;
             Free (this.m_ISpiConnectionSettings);
          end if;
       end if;
@@ -151,9 +167,10 @@ package body WinRt.Windows.Devices.Spi is
    )
    return SpiConnectionSettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiConnectionSettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiConnectionSettings");
       m_Factory    : access ISpiConnectionSettingsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Spi.ISpiConnectionSettings;
    begin
       return RetVal : SpiConnectionSettings do
@@ -162,9 +179,9 @@ package body WinRt.Windows.Devices.Spi is
             Hr := m_Factory.Create (chipSelectLine, m_ComRetVal'Access);
             Retval.m_ISpiConnectionSettings := new Windows.Devices.Spi.ISpiConnectionSettings;
             Retval.m_ISpiConnectionSettings.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -177,10 +194,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISpiConnectionSettings.all.get_ChipSelectLine (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -190,9 +211,13 @@ package body WinRt.Windows.Devices.Spi is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpiConnectionSettings.all.put_ChipSelectLine (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Mode
@@ -201,10 +226,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Windows.Devices.Spi.SpiMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.SpiMode;
    begin
       Hr := this.m_ISpiConnectionSettings.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -214,9 +243,13 @@ package body WinRt.Windows.Devices.Spi is
       value : Windows.Devices.Spi.SpiMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpiConnectionSettings.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DataBitLength
@@ -225,10 +258,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISpiConnectionSettings.all.get_DataBitLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -238,9 +275,13 @@ package body WinRt.Windows.Devices.Spi is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpiConnectionSettings.all.put_DataBitLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClockFrequency
@@ -249,10 +290,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISpiConnectionSettings.all.get_ClockFrequency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -262,9 +307,13 @@ package body WinRt.Windows.Devices.Spi is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpiConnectionSettings.all.put_ClockFrequency (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SharingMode
@@ -273,10 +322,14 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Windows.Devices.Spi.SpiSharingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.SpiSharingMode;
    begin
       Hr := this.m_ISpiConnectionSettings.all.get_SharingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,9 +339,13 @@ package body WinRt.Windows.Devices.Spi is
       value : Windows.Devices.Spi.SpiSharingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpiConnectionSettings.all.put_SharingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -300,12 +357,12 @@ package body WinRt.Windows.Devices.Spi is
    end;
 
    procedure Finalize (this : in out SpiController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpiController, ISpiController_Ptr);
    begin
       if this.m_ISpiController /= null then
          if this.m_ISpiController.all /= null then
-            RefCount := this.m_ISpiController.all.Release;
+            temp := this.m_ISpiController.all.Release;
             Free (this.m_ISpiController);
          end if;
       end if;
@@ -317,15 +374,15 @@ package body WinRt.Windows.Devices.Spi is
    function GetDefaultAsync
    return WinRt.Windows.Devices.Spi.SpiController is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiController");
       m_Factory        : access WinRt.Windows.Devices.Spi.ISpiControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpiController.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -343,7 +400,7 @@ package body WinRt.Windows.Devices.Spi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpiController.Kind_Delegate, AsyncOperationCompletedHandler_SpiController.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -357,10 +414,10 @@ package body WinRt.Windows.Devices.Spi is
          Hr := RoGetActivationFactory (m_hString, IID_ISpiControllerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -372,15 +429,15 @@ package body WinRt.Windows.Devices.Spi is
                      Retval.m_ISpiController := new Windows.Devices.Spi.ISpiController;
                      Retval.m_ISpiController.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -390,15 +447,15 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiController");
       m_Factory        : access WinRt.Windows.Devices.Spi.ISpiControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -416,7 +473,7 @@ package body WinRt.Windows.Devices.Spi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -429,10 +486,10 @@ package body WinRt.Windows.Devices.Spi is
       Hr := RoGetActivationFactory (m_hString, IID_ISpiControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetControllersAsync (provider, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -442,15 +499,15 @@ package body WinRt.Windows.Devices.Spi is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -464,11 +521,15 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Windows.Devices.Spi.SpiDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.ISpiDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Spi.SpiDevice do
          Hr := this.m_ISpiController.all.GetDevice (settings.m_ISpiConnectionSettings.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpiDevice := new Windows.Devices.Spi.ISpiDevice;
          Retval.m_ISpiDevice.all := m_ComRetVal;
       end return;
@@ -483,12 +544,12 @@ package body WinRt.Windows.Devices.Spi is
    end;
 
    procedure Finalize (this : in out SpiDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpiDevice, ISpiDevice_Ptr);
    begin
       if this.m_ISpiDevice /= null then
          if this.m_ISpiDevice.all /= null then
-            RefCount := this.m_ISpiDevice.all.Release;
+            temp := this.m_ISpiDevice.all.Release;
             Free (this.m_ISpiDevice);
          end if;
       end if;
@@ -500,20 +561,24 @@ package body WinRt.Windows.Devices.Spi is
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
       m_Factory        : access WinRt.Windows.Devices.Spi.ISpiDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpiDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -523,22 +588,26 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
       m_Factory        : access WinRt.Windows.Devices.Spi.ISpiDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpiDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (HStr_friendlyName, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_friendlyName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_friendlyName);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -548,22 +617,26 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Windows.Devices.Spi.SpiBusInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
       m_Factory        : access WinRt.Windows.Devices.Spi.ISpiDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.ISpiBusInfo;
-      HStr_busId : WinRt.HString := To_HString (busId);
+      HStr_busId : constant WinRt.HString := To_HString (busId);
    begin
       return RetVal : WinRt.Windows.Devices.Spi.SpiBusInfo do
          Hr := RoGetActivationFactory (m_hString, IID_ISpiDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetBusInfo (HStr_busId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISpiBusInfo := new Windows.Devices.Spi.ISpiBusInfo;
             Retval.m_ISpiBusInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_busId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_busId);
       end return;
    end;
 
@@ -574,16 +647,16 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Windows.Devices.Spi.SpiDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiDevice");
       m_Factory        : access WinRt.Windows.Devices.Spi.ISpiDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_busId : WinRt.HString := To_HString (busId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_busId : constant WinRt.HString := To_HString (busId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpiDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -601,7 +674,7 @@ package body WinRt.Windows.Devices.Spi is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpiDevice.Kind_Delegate, AsyncOperationCompletedHandler_SpiDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -615,10 +688,10 @@ package body WinRt.Windows.Devices.Spi is
          Hr := RoGetActivationFactory (m_hString, IID_ISpiDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_busId, settings.m_ISpiConnectionSettings.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -630,16 +703,16 @@ package body WinRt.Windows.Devices.Spi is
                      Retval.m_ISpiDevice := new Windows.Devices.Spi.ISpiDevice;
                      Retval.m_ISpiDevice.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_busId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_busId);
       end return;
    end;
 
@@ -652,13 +725,17 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpiDevice.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -668,11 +745,15 @@ package body WinRt.Windows.Devices.Spi is
    )
    return WinRt.Windows.Devices.Spi.SpiConnectionSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Spi.ISpiConnectionSettings;
    begin
       return RetVal : WinRt.Windows.Devices.Spi.SpiConnectionSettings do
          Hr := this.m_ISpiDevice.all.get_ConnectionSettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpiConnectionSettings := new Windows.Devices.Spi.ISpiConnectionSettings;
          Retval.m_ISpiConnectionSettings.all := m_ComRetVal;
       end return;
@@ -684,10 +765,14 @@ package body WinRt.Windows.Devices.Spi is
       buffer : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_buffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ISpiDevice.all.Write (WinRt.UInt32(buffer'Length), Convert_buffer (buffer (buffer'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Read
@@ -696,10 +781,14 @@ package body WinRt.Windows.Devices.Spi is
       buffer : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_buffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ISpiDevice.all.Read (WinRt.UInt32(buffer'Length), Convert_buffer (buffer (buffer'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TransferSequential
@@ -709,11 +798,15 @@ package body WinRt.Windows.Devices.Spi is
       readBuffer : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_writeBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       function Convert_readBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ISpiDevice.all.TransferSequential (WinRt.UInt32(writeBuffer'Length), Convert_writeBuffer (writeBuffer (writeBuffer'First)'Address), WinRt.UInt32(readBuffer'Length), Convert_readBuffer (readBuffer (readBuffer'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TransferFullDuplex
@@ -723,11 +816,15 @@ package body WinRt.Windows.Devices.Spi is
       readBuffer : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_writeBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       function Convert_readBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ISpiDevice.all.TransferFullDuplex (WinRt.UInt32(writeBuffer'Length), Convert_writeBuffer (writeBuffer (writeBuffer'First)'Address), WinRt.UInt32(readBuffer'Length), Convert_readBuffer (readBuffer (readBuffer'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -735,13 +832,17 @@ package body WinRt.Windows.Devices.Spi is
       this : in out SpiDevice
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Spi.ISpiDevice_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpiDevice.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.Spi;

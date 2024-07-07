@@ -45,12 +45,12 @@ package body WinRt.Windows.Security.Authentication.Identity is
    end;
 
    procedure Finalize (this : in out EnterpriseKeyCredentialRegistrationInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEnterpriseKeyCredentialRegistrationInfo, IEnterpriseKeyCredentialRegistrationInfo_Ptr);
    begin
       if this.m_IEnterpriseKeyCredentialRegistrationInfo /= null then
          if this.m_IEnterpriseKeyCredentialRegistrationInfo.all /= null then
-            RefCount := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.Release;
+            temp := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.Release;
             Free (this.m_IEnterpriseKeyCredentialRegistrationInfo);
          end if;
       end if;
@@ -65,13 +65,17 @@ package body WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.get_TenantId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -81,13 +85,17 @@ package body WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.get_TenantName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -97,13 +105,17 @@ package body WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.get_Subject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -113,13 +125,17 @@ package body WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.get_KeyId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -129,13 +145,17 @@ package body WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.get_KeyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -148,12 +168,12 @@ package body WinRt.Windows.Security.Authentication.Identity is
    end;
 
    procedure Finalize (this : in out EnterpriseKeyCredentialRegistrationManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEnterpriseKeyCredentialRegistrationManager, IEnterpriseKeyCredentialRegistrationManager_Ptr);
    begin
       if this.m_IEnterpriseKeyCredentialRegistrationManager /= null then
          if this.m_IEnterpriseKeyCredentialRegistrationManager.all /= null then
-            RefCount := this.m_IEnterpriseKeyCredentialRegistrationManager.all.Release;
+            temp := this.m_IEnterpriseKeyCredentialRegistrationManager.all.Release;
             Free (this.m_IEnterpriseKeyCredentialRegistrationManager);
          end if;
       end if;
@@ -165,20 +185,24 @@ package body WinRt.Windows.Security.Authentication.Identity is
    function get_Current
    return WinRt.Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager");
       m_Factory        : access WinRt.Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager do
          Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseKeyCredentialRegistrationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IEnterpriseKeyCredentialRegistrationManager := new Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
             Retval.m_IEnterpriseKeyCredentialRegistrationManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -191,13 +215,13 @@ package body WinRt.Windows.Security.Authentication.Identity is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -215,7 +239,7 @@ package body WinRt.Windows.Security.Authentication.Identity is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -228,7 +252,7 @@ package body WinRt.Windows.Security.Authentication.Identity is
       Hr := this.m_IEnterpriseKeyCredentialRegistrationManager.all.GetRegistrationsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -238,9 +262,9 @@ package body WinRt.Windows.Security.Authentication.Identity is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;

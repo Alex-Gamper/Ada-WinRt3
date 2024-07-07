@@ -46,12 +46,12 @@ package body WinRt.Windows.Data.Json is
    end;
 
    procedure Finalize (this : in out JsonArray) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJsonArray, IJsonArray_Ptr);
    begin
       if this.m_IJsonArray /= null then
          if this.m_IJsonArray.all /= null then
-            RefCount := this.m_IJsonArray.all.Release;
+            temp := this.m_IJsonArray.all.Release;
             Free (this.m_IJsonArray);
          end if;
       end if;
@@ -62,7 +62,8 @@ package body WinRt.Windows.Data.Json is
 
    function Constructor return JsonArray is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Json.JsonArray");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonArray");
       m_ComRetVal  : aliased Windows.Data.Json.IJsonArray;
    begin
       return RetVal : JsonArray do
@@ -71,7 +72,7 @@ package body WinRt.Windows.Data.Json is
             Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
             Retval.m_IJsonArray.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -84,22 +85,26 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonArray");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonArray");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonArrayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonArrayStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Parse (HStr_input, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
             Retval.m_IJsonArray.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_input);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_input);
       end return;
    end;
 
@@ -110,19 +115,23 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonArray");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonArray");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonArrayStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IJsonArrayStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParse (HStr_input, result, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_input);
       return m_ComRetVal;
    end;
 
@@ -136,11 +145,15 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          Hr := this.m_IJsonArray.all.GetObjectAt (index, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
          Retval.m_IJsonObject.all := m_ComRetVal;
       end return;
@@ -153,11 +166,15 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          Hr := this.m_IJsonArray.all.GetArrayAt (index, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
          Retval.m_IJsonArray.all := m_ComRetVal;
       end return;
@@ -170,13 +187,17 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJsonArray.all.GetStringAt (index, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -187,10 +208,14 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IJsonArray.all.GetNumberAt (index, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -201,10 +226,14 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IJsonArray.all.GetBooleanAt (index, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -214,14 +243,18 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValueType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.JsonValueType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.get_ValueType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -231,17 +264,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.Stringify (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -251,17 +288,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.GetString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -271,14 +312,18 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.GetNumber (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -288,14 +333,18 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.GetBoolean (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -305,15 +354,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          m_Interface := QInterface (this.m_IJsonArray.all);
          Hr := m_Interface.GetArray (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
          Retval.m_IJsonArray.all := m_ComRetVal;
       end return;
@@ -325,15 +378,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          m_Interface := QInterface (this.m_IJsonArray.all);
          Hr := m_Interface.GetObject (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
          Retval.m_IJsonObject.all := m_ComRetVal;
       end return;
@@ -347,15 +404,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.IJsonValue is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -365,15 +426,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -383,15 +448,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -403,15 +472,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.IndexOf (value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -422,14 +495,18 @@ package body WinRt.Windows.Data.Json is
       value : Windows.Data.Json.IJsonValue
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.SetAt (index, value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -439,14 +516,18 @@ package body WinRt.Windows.Data.Json is
       value : Windows.Data.Json.IJsonValue
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.InsertAt (index, value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -455,14 +536,18 @@ package body WinRt.Windows.Data.Json is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -471,14 +556,18 @@ package body WinRt.Windows.Data.Json is
       value : Windows.Data.Json.IJsonValue
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.Append (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -486,14 +575,18 @@ package body WinRt.Windows.Data.Json is
       this : in out JsonArray
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -501,14 +594,18 @@ package body WinRt.Windows.Data.Json is
       this : in out JsonArray
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -519,8 +616,9 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
@@ -528,7 +626,10 @@ package body WinRt.Windows.Data.Json is
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -538,15 +639,19 @@ package body WinRt.Windows.Data.Json is
       items : Windows.Data.Json.IJsonValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3561382588, 56547, 22952, (146, 114, 75, 33, 15, 51, 144, 139 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IVector_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Data.Json.IJsonValue>
@@ -556,15 +661,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3406074550, 16659, 21967, (178, 197, 153, 235, 66, 139, 164, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, IIterable_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -574,17 +683,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonArray_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonArray.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -598,17 +711,21 @@ package body WinRt.Windows.Data.Json is
       )
       return WinRt.Windows.Data.Json.JsonErrorStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonError");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonError");
          m_Factory        : access WinRt.Windows.Data.Json.IJsonErrorStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Data.Json.JsonErrorStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IJsonErrorStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetJsonStatus (hresult, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -623,12 +740,12 @@ package body WinRt.Windows.Data.Json is
    end;
 
    procedure Finalize (this : in out JsonObject) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJsonObject, IJsonObject_Ptr);
    begin
       if this.m_IJsonObject /= null then
          if this.m_IJsonObject.all /= null then
-            RefCount := this.m_IJsonObject.all.Release;
+            temp := this.m_IJsonObject.all.Release;
             Free (this.m_IJsonObject);
          end if;
       end if;
@@ -639,7 +756,8 @@ package body WinRt.Windows.Data.Json is
 
    function Constructor return JsonObject is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Json.JsonObject");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonObject");
       m_ComRetVal  : aliased Windows.Data.Json.IJsonObject;
    begin
       return RetVal : JsonObject do
@@ -648,7 +766,7 @@ package body WinRt.Windows.Data.Json is
             Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
             Retval.m_IJsonObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -661,22 +779,26 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonObject");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonObjectStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Parse (HStr_input, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
             Retval.m_IJsonObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_input);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_input);
       end return;
    end;
 
@@ -687,19 +809,23 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonObject");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IJsonObjectStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParse (HStr_input, result, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_input);
       return m_ComRetVal;
    end;
 
@@ -713,15 +839,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValue'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          Hr := this.m_IJsonObject.all.GetNamedValue (HStr_name, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
          Retval.m_IJsonValue.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -732,11 +862,15 @@ package body WinRt.Windows.Data.Json is
       value : Windows.Data.Json.IJsonValue
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IJsonObject.all.SetNamedValue (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    function GetNamedObject
@@ -746,15 +880,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          Hr := this.m_IJsonObject.all.GetNamedObject (HStr_name, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
          Retval.m_IJsonObject.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -765,15 +903,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          Hr := this.m_IJsonObject.all.GetNamedArray (HStr_name, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
          Retval.m_IJsonArray.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -784,15 +926,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IJsonObject.all.GetNamedString (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -803,12 +949,16 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IJsonObject.all.GetNamedNumber (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -819,12 +969,16 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IJsonObject.all.GetNamedBoolean (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -834,14 +988,18 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValueType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.JsonValueType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.get_ValueType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -851,17 +1009,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.Stringify (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -871,17 +1033,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -891,14 +1057,18 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetNumber (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -908,14 +1078,18 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetBoolean (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -925,15 +1099,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          m_Interface := QInterface (this.m_IJsonObject.all);
          Hr := m_Interface.GetArray (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
          Retval.m_IJsonArray.all := m_ComRetVal;
       end return;
@@ -945,15 +1123,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonValue, WinRt.Windows.Data.Json.IID_IJsonValue'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          m_Interface := QInterface (this.m_IJsonObject.all);
          Hr := m_Interface.GetObject (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
          Retval.m_IJsonObject.all := m_ComRetVal;
       end return;
@@ -967,17 +1149,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.IJsonValue is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -987,15 +1173,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1006,17 +1196,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1026,15 +1220,19 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1046,17 +1244,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.Insert (HStr_key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1066,16 +1268,20 @@ package body WinRt.Windows.Data.Json is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -1083,14 +1289,18 @@ package body WinRt.Windows.Data.Json is
       this : in out JsonObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IJsonValue.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3386484517, 30827, 20755, (180, 183, 155, 97, 118, 76, 34, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, IMap_HString_IJsonValue.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetNamedValue
@@ -1101,19 +1311,23 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValue'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues, WinRt.Windows.Data.Json.IID_IJsonObjectWithDefaultValues'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          m_Interface := QInterface (this.m_IJsonObject.all);
          Hr := m_Interface.GetNamedValue (HStr_name, defaultValue.m_IJsonValue.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
          Retval.m_IJsonValue.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1125,19 +1339,23 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues, WinRt.Windows.Data.Json.IID_IJsonObjectWithDefaultValues'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          m_Interface := QInterface (this.m_IJsonObject.all);
          Hr := m_Interface.GetNamedObject (HStr_name, defaultValue.m_IJsonObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
          Retval.m_IJsonObject.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1149,21 +1367,25 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_defaultValue : WinRt.HString := To_HString (defaultValue);
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_defaultValue : constant WinRt.HString := To_HString (defaultValue);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues, WinRt.Windows.Data.Json.IID_IJsonObjectWithDefaultValues'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetNamedString (HStr_name, HStr_defaultValue, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_name);
-      Hr := WindowsDeleteString (HStr_defaultValue);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (HStr_defaultValue);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1175,19 +1397,23 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues, WinRt.Windows.Data.Json.IID_IJsonObjectWithDefaultValues'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          m_Interface := QInterface (this.m_IJsonObject.all);
          Hr := m_Interface.GetNamedArray (HStr_name, defaultValue.m_IJsonArray.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
          Retval.m_IJsonArray.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1199,16 +1425,20 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues, WinRt.Windows.Data.Json.IID_IJsonObjectWithDefaultValues'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetNamedNumber (HStr_name, defaultValue, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_name);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -1220,16 +1450,20 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Data.Json.IJsonObjectWithDefaultValues, WinRt.Windows.Data.Json.IID_IJsonObjectWithDefaultValues'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.GetNamedBoolean (HStr_name, defaultValue, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_name);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -1239,17 +1473,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonObject_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonObject.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1262,12 +1500,12 @@ package body WinRt.Windows.Data.Json is
    end;
 
    procedure Finalize (this : in out JsonValue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJsonValue, IJsonValue_Ptr);
    begin
       if this.m_IJsonValue /= null then
          if this.m_IJsonValue.all /= null then
-            RefCount := this.m_IJsonValue.all.Release;
+            temp := this.m_IJsonValue.all.Release;
             Free (this.m_IJsonValue);
          end if;
       end if;
@@ -1282,22 +1520,26 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Parse (HStr_input, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
             Retval.m_IJsonValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_input);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_input);
       end return;
    end;
 
@@ -1308,19 +1550,23 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParse (HStr_input, result, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_input);
       return m_ComRetVal;
    end;
 
@@ -1330,20 +1576,24 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateBooleanValue (input, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
             Retval.m_IJsonValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1353,20 +1603,24 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateNumberValue (input, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
             Retval.m_IJsonValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1376,42 +1630,50 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateStringValue (HStr_input, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
             Retval.m_IJsonValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_input);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_input);
       end return;
    end;
 
    function CreateNullValue
    return WinRt.Windows.Data.Json.JsonValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Json.JsonValue");
       m_Factory        : access WinRt.Windows.Data.Json.IJsonValueStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonValue;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonValue do
          Hr := RoGetActivationFactory (m_hString, IID_IJsonValueStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateNullValue (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IJsonValue := new Windows.Data.Json.IJsonValue;
             Retval.m_IJsonValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1424,10 +1686,14 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonValueType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.JsonValueType;
    begin
       Hr := this.m_IJsonValue.all.get_ValueType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1437,13 +1703,17 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJsonValue.all.Stringify (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1453,13 +1723,17 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IJsonValue.all.GetString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1469,10 +1743,14 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IJsonValue.all.GetNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1482,10 +1760,14 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IJsonValue.all.GetBoolean (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1495,11 +1777,15 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonArray'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonArray;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonArray do
          Hr := this.m_IJsonValue.all.GetArray (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonArray := new Windows.Data.Json.IJsonArray;
          Retval.m_IJsonArray.all := m_ComRetVal;
       end return;
@@ -1511,11 +1797,15 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.Windows.Data.Json.JsonObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Json.IJsonObject;
    begin
       return RetVal : WinRt.Windows.Data.Json.JsonObject do
          Hr := this.m_IJsonValue.all.GetObject (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IJsonObject := new Windows.Data.Json.IJsonObject;
          Retval.m_IJsonObject.all := m_ComRetVal;
       end return;
@@ -1527,17 +1817,21 @@ package body WinRt.Windows.Data.Json is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Json.IJsonValue_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJsonValue.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

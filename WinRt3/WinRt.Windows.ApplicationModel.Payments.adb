@@ -52,12 +52,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentAddress) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentAddress, IPaymentAddress_Ptr);
    begin
       if this.m_IPaymentAddress /= null then
          if this.m_IPaymentAddress.all /= null then
-            RefCount := this.m_IPaymentAddress.all.Release;
+            temp := this.m_IPaymentAddress.all.Release;
             Free (this.m_IPaymentAddress);
          end if;
       end if;
@@ -68,7 +68,8 @@ package body WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor return PaymentAddress is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentAddress");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentAddress");
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentAddress;
    begin
       return RetVal : PaymentAddress do
@@ -77,7 +78,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Retval.m_IPaymentAddress := new Windows.ApplicationModel.Payments.IPaymentAddress;
             Retval.m_IPaymentAddress.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -90,13 +91,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_Country (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -106,11 +111,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_Country (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AddressLines
@@ -119,13 +128,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPaymentAddress.all.get_AddressLines (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -135,9 +148,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentAddress.all.put_AddressLines (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Region
@@ -146,13 +163,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_Region (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -162,11 +183,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_Region (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_City
@@ -175,13 +200,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_City (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -191,11 +220,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_City (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DependentLocality
@@ -204,13 +237,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_DependentLocality (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -220,11 +257,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_DependentLocality (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_PostalCode
@@ -233,13 +274,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_PostalCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -249,11 +294,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_PostalCode (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SortingCode
@@ -262,13 +311,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_SortingCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -278,11 +331,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_SortingCode (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_LanguageCode
@@ -291,13 +348,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_LanguageCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -307,11 +368,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_LanguageCode (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Organization
@@ -320,13 +385,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_Organization (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -336,11 +405,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_Organization (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Recipient
@@ -349,13 +422,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_Recipient (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -365,11 +442,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_Recipient (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_PhoneNumber
@@ -378,13 +459,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentAddress.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -394,11 +479,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentAddress.all.put_PhoneNumber (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Properties
@@ -407,11 +496,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IPaymentAddress.all.get_Properties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -426,12 +519,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentCanMakePaymentResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentCanMakePaymentResult, IPaymentCanMakePaymentResult_Ptr);
    begin
       if this.m_IPaymentCanMakePaymentResult /= null then
          if this.m_IPaymentCanMakePaymentResult.all /= null then
-            RefCount := this.m_IPaymentCanMakePaymentResult.all.Release;
+            temp := this.m_IPaymentCanMakePaymentResult.all.Release;
             Free (this.m_IPaymentCanMakePaymentResult);
          end if;
       end if;
@@ -446,9 +539,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentCanMakePaymentResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult");
       m_Factory    : access IPaymentCanMakePaymentResultFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult;
    begin
       return RetVal : PaymentCanMakePaymentResult do
@@ -457,9 +551,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (value, m_ComRetVal'Access);
             Retval.m_IPaymentCanMakePaymentResult := new Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult;
             Retval.m_IPaymentCanMakePaymentResult.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -472,10 +566,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus;
    begin
       Hr := this.m_IPaymentCanMakePaymentResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -488,12 +586,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentCurrencyAmount) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentCurrencyAmount, IPaymentCurrencyAmount_Ptr);
    begin
       if this.m_IPaymentCurrencyAmount /= null then
          if this.m_IPaymentCurrencyAmount.all /= null then
-            RefCount := this.m_IPaymentCurrencyAmount.all.Release;
+            temp := this.m_IPaymentCurrencyAmount.all.Release;
             Free (this.m_IPaymentCurrencyAmount);
          end if;
       end if;
@@ -509,12 +607,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentCurrencyAmount is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCurrencyAmount");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCurrencyAmount");
       m_Factory    : access IPaymentCurrencyAmountFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
-      HStr_value : WinRt.HString := To_HString (value);
-      HStr_currency : WinRt.HString := To_HString (currency);
+      HStr_value : constant WinRt.HString := To_HString (value);
+      HStr_currency : constant WinRt.HString := To_HString (currency);
    begin
       return RetVal : PaymentCurrencyAmount do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentCurrencyAmountFactory'Access , m_Factory'Address);
@@ -522,11 +621,11 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (HStr_value, HStr_currency, m_ComRetVal'Access);
             Retval.m_IPaymentCurrencyAmount := new Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
             Retval.m_IPaymentCurrencyAmount.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_value);
-         Hr := WindowsDeleteString (HStr_currency);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+         tmp := WindowsDeleteString (HStr_currency);
       end return;
    end;
 
@@ -538,13 +637,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentCurrencyAmount is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCurrencyAmount");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCurrencyAmount");
       m_Factory    : access IPaymentCurrencyAmountFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
-      HStr_value : WinRt.HString := To_HString (value);
-      HStr_currency : WinRt.HString := To_HString (currency);
-      HStr_currencySystem : WinRt.HString := To_HString (currencySystem);
+      HStr_value : constant WinRt.HString := To_HString (value);
+      HStr_currency : constant WinRt.HString := To_HString (currency);
+      HStr_currencySystem : constant WinRt.HString := To_HString (currencySystem);
    begin
       return RetVal : PaymentCurrencyAmount do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentCurrencyAmountFactory'Access , m_Factory'Address);
@@ -552,12 +652,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithCurrencySystem (HStr_value, HStr_currency, HStr_currencySystem, m_ComRetVal'Access);
             Retval.m_IPaymentCurrencyAmount := new Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
             Retval.m_IPaymentCurrencyAmount.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_value);
-         Hr := WindowsDeleteString (HStr_currency);
-         Hr := WindowsDeleteString (HStr_currencySystem);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
+         tmp := WindowsDeleteString (HStr_currency);
+         tmp := WindowsDeleteString (HStr_currencySystem);
       end return;
    end;
 
@@ -570,13 +670,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentCurrencyAmount.all.get_Currency (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -586,11 +690,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentCurrencyAmount.all.put_Currency (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CurrencySystem
@@ -599,13 +707,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentCurrencyAmount.all.get_CurrencySystem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -615,11 +727,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentCurrencyAmount.all.put_CurrencySystem (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Value
@@ -628,13 +744,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentCurrencyAmount.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -644,11 +764,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentCurrencyAmount.all.put_Value (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -660,12 +784,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentDetails, IPaymentDetails_Ptr);
    begin
       if this.m_IPaymentDetails /= null then
          if this.m_IPaymentDetails.all /= null then
-            RefCount := this.m_IPaymentDetails.all.Release;
+            temp := this.m_IPaymentDetails.all.Release;
             Free (this.m_IPaymentDetails);
          end if;
       end if;
@@ -676,7 +800,8 @@ package body WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor return PaymentDetails is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
    begin
       return RetVal : PaymentDetails do
@@ -685,7 +810,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
             Retval.m_IPaymentDetails.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -695,9 +820,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentDetails is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
       m_Factory    : access IPaymentDetailsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
    begin
       return RetVal : PaymentDetails do
@@ -706,9 +832,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (total.m_IPaymentItem.all, m_ComRetVal'Access);
             Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
             Retval.m_IPaymentDetails.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -719,9 +845,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentDetails is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
       m_Factory    : access IPaymentDetailsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
    begin
       return RetVal : PaymentDetails do
@@ -730,9 +857,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithDisplayItems (total.m_IPaymentItem.all, displayItems, m_ComRetVal'Access);
             Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
             Retval.m_IPaymentDetails.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -745,11 +872,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentItem;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentItem do
          Hr := this.m_IPaymentDetails.all.get_Total (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentItem := new Windows.ApplicationModel.Payments.IPaymentItem;
          Retval.m_IPaymentItem.all := m_ComRetVal;
       end return;
@@ -761,9 +892,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentDetails.all.put_Total (value.m_IPaymentItem.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DisplayItems
@@ -772,13 +907,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_IPaymentItem.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPaymentItem.Kind;
    begin
       Hr := this.m_IPaymentDetails.all.get_DisplayItems (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPaymentItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -788,9 +927,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentDetails.all.put_DisplayItems (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShippingOptions
@@ -799,13 +942,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_IPaymentShippingOption.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPaymentShippingOption.Kind;
    begin
       Hr := this.m_IPaymentDetails.all.get_ShippingOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPaymentShippingOption (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -815,9 +962,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentDetails.all.put_ShippingOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Modifiers
@@ -826,13 +977,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_IPaymentDetailsModifier.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPaymentDetailsModifier.Kind;
    begin
       Hr := this.m_IPaymentDetails.all.get_Modifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPaymentDetailsModifier (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -842,9 +997,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentDetails.all.put_Modifiers (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -856,12 +1015,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentDetailsModifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentDetailsModifier, IPaymentDetailsModifier_Ptr);
    begin
       if this.m_IPaymentDetailsModifier /= null then
          if this.m_IPaymentDetailsModifier.all /= null then
-            RefCount := this.m_IPaymentDetailsModifier.all.Release;
+            temp := this.m_IPaymentDetailsModifier.all.Release;
             Free (this.m_IPaymentDetailsModifier);
          end if;
       end if;
@@ -877,9 +1036,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentDetailsModifier is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
       m_Factory    : access IPaymentDetailsModifierFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
    begin
       return RetVal : PaymentDetailsModifier do
@@ -888,9 +1048,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (supportedMethodIds, total.m_IPaymentItem.all, m_ComRetVal'Access);
             Retval.m_IPaymentDetailsModifier := new Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
             Retval.m_IPaymentDetailsModifier.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -902,9 +1062,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentDetailsModifier is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
       m_Factory    : access IPaymentDetailsModifierFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
    begin
       return RetVal : PaymentDetailsModifier do
@@ -913,9 +1074,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithAdditionalDisplayItems (supportedMethodIds, total.m_IPaymentItem.all, additionalDisplayItems, m_ComRetVal'Access);
             Retval.m_IPaymentDetailsModifier := new Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
             Retval.m_IPaymentDetailsModifier.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -928,11 +1089,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentDetailsModifier is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
       m_Factory    : access IPaymentDetailsModifierFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
-      HStr_jsonData : WinRt.HString := To_HString (jsonData);
+      HStr_jsonData : constant WinRt.HString := To_HString (jsonData);
    begin
       return RetVal : PaymentDetailsModifier do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentDetailsModifierFactory'Access , m_Factory'Address);
@@ -940,10 +1102,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithAdditionalDisplayItemsAndJsonData (supportedMethodIds, total.m_IPaymentItem.all, additionalDisplayItems, HStr_jsonData, m_ComRetVal'Access);
             Retval.m_IPaymentDetailsModifier := new Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
             Retval.m_IPaymentDetailsModifier.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_jsonData);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_jsonData);
       end return;
    end;
 
@@ -956,13 +1118,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentDetailsModifier.all.get_JsonData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -972,13 +1138,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPaymentDetailsModifier.all.get_SupportedMethodIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -988,11 +1158,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentItem;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentItem do
          Hr := this.m_IPaymentDetailsModifier.all.get_Total (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentItem := new Windows.ApplicationModel.Payments.IPaymentItem;
          Retval.m_IPaymentItem.all := m_ComRetVal;
       end return;
@@ -1004,13 +1178,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_IPaymentItem.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPaymentItem.Kind;
    begin
       Hr := this.m_IPaymentDetailsModifier.all.get_AdditionalDisplayItems (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPaymentItem (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1023,12 +1201,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentItem, IPaymentItem_Ptr);
    begin
       if this.m_IPaymentItem /= null then
          if this.m_IPaymentItem.all /= null then
-            RefCount := this.m_IPaymentItem.all.Release;
+            temp := this.m_IPaymentItem.all.Release;
             Free (this.m_IPaymentItem);
          end if;
       end if;
@@ -1044,11 +1222,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentItem is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentItem");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentItem");
       m_Factory    : access IPaymentItemFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentItem;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : PaymentItem do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentItemFactory'Access , m_Factory'Address);
@@ -1056,10 +1235,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (HStr_label, amount.m_IPaymentCurrencyAmount.all, m_ComRetVal'Access);
             Retval.m_IPaymentItem := new Windows.ApplicationModel.Payments.IPaymentItem;
             Retval.m_IPaymentItem.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -1072,13 +1251,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentItem.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1088,11 +1271,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentItem.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Amount
@@ -1101,11 +1288,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount do
          Hr := this.m_IPaymentItem.all.get_Amount (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentCurrencyAmount := new Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
          Retval.m_IPaymentCurrencyAmount.all := m_ComRetVal;
       end return;
@@ -1117,9 +1308,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentItem.all.put_Amount (value.m_IPaymentCurrencyAmount.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pending
@@ -1128,10 +1323,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPaymentItem.all.get_Pending (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1141,9 +1340,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentItem.all.put_Pending (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1155,12 +1358,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentMediator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentMediator, IPaymentMediator_Ptr);
    begin
       if this.m_IPaymentMediator /= null then
          if this.m_IPaymentMediator.all /= null then
-            RefCount := this.m_IPaymentMediator.all.Release;
+            temp := this.m_IPaymentMediator.all.Release;
             Free (this.m_IPaymentMediator);
          end if;
       end if;
@@ -1171,7 +1374,8 @@ package body WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor return PaymentMediator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMediator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMediator");
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentMediator;
    begin
       return RetVal : PaymentMediator do
@@ -1180,7 +1384,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Retval.m_IPaymentMediator := new Windows.ApplicationModel.Payments.IPaymentMediator;
             Retval.m_IPaymentMediator.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1193,13 +1397,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1217,7 +1421,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1230,7 +1434,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
       Hr := this.m_IPaymentMediator.all.GetSupportedMethodIdsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1240,9 +1444,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1257,13 +1461,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestSubmitResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PaymentRequestSubmitResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1281,7 +1485,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PaymentRequestSubmitResult.Kind_Delegate, AsyncOperationCompletedHandler_PaymentRequestSubmitResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1295,7 +1499,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
          Hr := this.m_IPaymentMediator.all.SubmitPaymentRequestAsync (paymentRequest_p.m_IPaymentRequest.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1307,9 +1511,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
                   Retval.m_IPaymentRequestSubmitResult := new Windows.ApplicationModel.Payments.IPaymentRequestSubmitResult;
                   Retval.m_IPaymentRequestSubmitResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1325,13 +1529,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestSubmitResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PaymentRequestSubmitResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1349,7 +1553,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PaymentRequestSubmitResult.Kind_Delegate, AsyncOperationCompletedHandler_PaymentRequestSubmitResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1363,7 +1567,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
          Hr := this.m_IPaymentMediator.all.SubmitPaymentRequestAsync (paymentRequest_p.m_IPaymentRequest.all, changeHandler, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1375,9 +1579,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
                   Retval.m_IPaymentRequestSubmitResult := new Windows.ApplicationModel.Payments.IPaymentRequestSubmitResult;
                   Retval.m_IPaymentRequestSubmitResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1392,14 +1596,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Payments.IPaymentMediator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PaymentCanMakePaymentResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1417,7 +1621,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PaymentCanMakePaymentResult.Kind_Delegate, AsyncOperationCompletedHandler_PaymentCanMakePaymentResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1431,10 +1635,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult do
          m_Interface := QInterface (this.m_IPaymentMediator.all);
          Hr := m_Interface.CanMakePaymentAsync (paymentRequest_p.m_IPaymentRequest.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1446,9 +1650,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
                   Retval.m_IPaymentCanMakePaymentResult := new Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult;
                   Retval.m_IPaymentCanMakePaymentResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1465,12 +1669,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentMerchantInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentMerchantInfo, IPaymentMerchantInfo_Ptr);
    begin
       if this.m_IPaymentMerchantInfo /= null then
          if this.m_IPaymentMerchantInfo.all /= null then
-            RefCount := this.m_IPaymentMerchantInfo.all.Release;
+            temp := this.m_IPaymentMerchantInfo.all.Release;
             Free (this.m_IPaymentMerchantInfo);
          end if;
       end if;
@@ -1481,7 +1685,8 @@ package body WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor return PaymentMerchantInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMerchantInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMerchantInfo");
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
    begin
       return RetVal : PaymentMerchantInfo do
@@ -1490,7 +1695,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Retval.m_IPaymentMerchantInfo := new Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
             Retval.m_IPaymentMerchantInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1500,9 +1705,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentMerchantInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMerchantInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMerchantInfo");
       m_Factory    : access IPaymentMerchantInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
    begin
       return RetVal : PaymentMerchantInfo do
@@ -1511,9 +1717,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IPaymentMerchantInfo := new Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
             Retval.m_IPaymentMerchantInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1526,13 +1732,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentMerchantInfo.all.get_PackageFullName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1542,11 +1752,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IPaymentMerchantInfo.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1561,12 +1775,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentMethodData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentMethodData, IPaymentMethodData_Ptr);
    begin
       if this.m_IPaymentMethodData /= null then
          if this.m_IPaymentMethodData.all /= null then
-            RefCount := this.m_IPaymentMethodData.all.Release;
+            temp := this.m_IPaymentMethodData.all.Release;
             Free (this.m_IPaymentMethodData);
          end if;
       end if;
@@ -1581,9 +1795,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentMethodData is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMethodData");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMethodData");
       m_Factory    : access IPaymentMethodDataFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentMethodData;
    begin
       return RetVal : PaymentMethodData do
@@ -1592,9 +1807,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (supportedMethodIds, m_ComRetVal'Access);
             Retval.m_IPaymentMethodData := new Windows.ApplicationModel.Payments.IPaymentMethodData;
             Retval.m_IPaymentMethodData.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1605,11 +1820,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentMethodData is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMethodData");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMethodData");
       m_Factory    : access IPaymentMethodDataFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentMethodData;
-      HStr_jsonData : WinRt.HString := To_HString (jsonData);
+      HStr_jsonData : constant WinRt.HString := To_HString (jsonData);
    begin
       return RetVal : PaymentMethodData do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentMethodDataFactory'Access , m_Factory'Address);
@@ -1617,10 +1833,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithJsonData (supportedMethodIds, HStr_jsonData, m_ComRetVal'Access);
             Retval.m_IPaymentMethodData := new Windows.ApplicationModel.Payments.IPaymentMethodData;
             Retval.m_IPaymentMethodData.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_jsonData);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_jsonData);
       end return;
    end;
 
@@ -1633,13 +1849,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPaymentMethodData.all.get_SupportedMethodIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1649,13 +1869,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentMethodData.all.get_JsonData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1668,12 +1892,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentOptions, IPaymentOptions_Ptr);
    begin
       if this.m_IPaymentOptions /= null then
          if this.m_IPaymentOptions.all /= null then
-            RefCount := this.m_IPaymentOptions.all.Release;
+            temp := this.m_IPaymentOptions.all.Release;
             Free (this.m_IPaymentOptions);
          end if;
       end if;
@@ -1684,7 +1908,8 @@ package body WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor return PaymentOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentOptions");
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentOptions;
    begin
       return RetVal : PaymentOptions do
@@ -1693,7 +1918,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Retval.m_IPaymentOptions := new Windows.ApplicationModel.Payments.IPaymentOptions;
             Retval.m_IPaymentOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1706,10 +1931,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentOptionPresence;
    begin
       Hr := this.m_IPaymentOptions.all.get_RequestPayerEmail (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1719,9 +1948,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentOptionPresence
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentOptions.all.put_RequestPayerEmail (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RequestPayerName
@@ -1730,10 +1963,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentOptionPresence;
    begin
       Hr := this.m_IPaymentOptions.all.get_RequestPayerName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1743,9 +1980,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentOptionPresence
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentOptions.all.put_RequestPayerName (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RequestPayerPhoneNumber
@@ -1754,10 +1995,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentOptionPresence;
    begin
       Hr := this.m_IPaymentOptions.all.get_RequestPayerPhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1767,9 +2012,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentOptionPresence
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentOptions.all.put_RequestPayerPhoneNumber (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RequestShipping
@@ -1778,10 +2027,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPaymentOptions.all.get_RequestShipping (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1791,9 +2044,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentOptions.all.put_RequestShipping (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShippingType
@@ -1802,10 +2059,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentShippingType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentShippingType;
    begin
       Hr := this.m_IPaymentOptions.all.get_ShippingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1815,9 +2076,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentShippingType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentOptions.all.put_ShippingType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1829,12 +2094,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentRequest, IPaymentRequest_Ptr);
    begin
       if this.m_IPaymentRequest /= null then
          if this.m_IPaymentRequest.all /= null then
-            RefCount := this.m_IPaymentRequest.all.Release;
+            temp := this.m_IPaymentRequest.all.Release;
             Free (this.m_IPaymentRequest);
          end if;
       end if;
@@ -1853,11 +2118,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
-      HStr_id : WinRt.HString := To_HString (id);
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : PaymentRequest do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentRequestFactory2'Access , m_Factory'Address);
@@ -1865,10 +2131,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithMerchantInfoOptionsAndId (details.m_IPaymentDetails.all, methodData, merchantInfo.m_IPaymentMerchantInfo.all, options.m_IPaymentOptions.all, HStr_id, m_ComRetVal'Access);
             Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
             Retval.m_IPaymentRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -1879,9 +2145,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
    begin
       return RetVal : PaymentRequest do
@@ -1890,9 +2157,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (details.m_IPaymentDetails.all, methodData, m_ComRetVal'Access);
             Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
             Retval.m_IPaymentRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1904,9 +2171,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
    begin
       return RetVal : PaymentRequest do
@@ -1915,9 +2183,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithMerchantInfo (details.m_IPaymentDetails.all, methodData, merchantInfo.m_IPaymentMerchantInfo.all, m_ComRetVal'Access);
             Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
             Retval.m_IPaymentRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1930,9 +2198,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
    begin
       return RetVal : PaymentRequest do
@@ -1941,9 +2210,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithMerchantInfoAndOptions (details.m_IPaymentDetails.all, methodData, merchantInfo.m_IPaymentMerchantInfo.all, options.m_IPaymentOptions.all, m_ComRetVal'Access);
             Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
             Retval.m_IPaymentRequest.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1956,11 +2225,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentMerchantInfo do
          Hr := this.m_IPaymentRequest.all.get_MerchantInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentMerchantInfo := new Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
          Retval.m_IPaymentMerchantInfo.all := m_ComRetVal;
       end return;
@@ -1972,11 +2245,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentDetails do
          Hr := this.m_IPaymentRequest.all.get_Details (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
          Retval.m_IPaymentDetails.all := m_ComRetVal;
       end return;
@@ -1988,13 +2265,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return IVectorView_IPaymentMethodData.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPaymentMethodData.Kind;
    begin
       Hr := this.m_IPaymentRequest.all.get_MethodData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPaymentMethodData (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2004,11 +2285,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentOptions'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentOptions;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentOptions do
          Hr := this.m_IPaymentRequest.all.get_Options (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentOptions := new Windows.ApplicationModel.Payments.IPaymentOptions;
          Retval.m_IPaymentOptions.all := m_ComRetVal;
       end return;
@@ -2020,17 +2305,21 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Payments.IPaymentRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Payments.IPaymentRequest_Interface, WinRt.Windows.ApplicationModel.Payments.IPaymentRequest2, WinRt.Windows.ApplicationModel.Payments.IID_IPaymentRequest2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPaymentRequest.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2043,12 +2332,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentRequestChangedArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentRequestChangedArgs, IPaymentRequestChangedArgs_Ptr);
    begin
       if this.m_IPaymentRequestChangedArgs /= null then
          if this.m_IPaymentRequestChangedArgs.all /= null then
-            RefCount := this.m_IPaymentRequestChangedArgs.all.Release;
+            temp := this.m_IPaymentRequestChangedArgs.all.Release;
             Free (this.m_IPaymentRequestChangedArgs);
          end if;
       end if;
@@ -2063,10 +2352,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangeKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentRequestChangeKind;
    begin
       Hr := this.m_IPaymentRequestChangedArgs.all.get_ChangeKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2076,11 +2369,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentAddress;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentAddress do
          Hr := this.m_IPaymentRequestChangedArgs.all.get_ShippingAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentAddress := new Windows.ApplicationModel.Payments.IPaymentAddress;
          Retval.m_IPaymentAddress.all := m_ComRetVal;
       end return;
@@ -2092,11 +2389,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentShippingOption'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentShippingOption;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentShippingOption do
          Hr := this.m_IPaymentRequestChangedArgs.all.get_SelectedShippingOption (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentShippingOption := new Windows.ApplicationModel.Payments.IPaymentShippingOption;
          Retval.m_IPaymentShippingOption.all := m_ComRetVal;
       end return;
@@ -2108,9 +2409,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       changeResult : Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentRequestChangedArgs.all.Acknowledge (changeResult.m_IPaymentRequestChangedResult.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2123,7 +2428,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
       args : Windows.ApplicationModel.Payments.IPaymentRequestChangedArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (paymentRequest_p, args);
       return Hr;
@@ -2138,12 +2443,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentRequestChangedResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentRequestChangedResult, IPaymentRequestChangedResult_Ptr);
    begin
       if this.m_IPaymentRequestChangedResult /= null then
          if this.m_IPaymentRequestChangedResult.all /= null then
-            RefCount := this.m_IPaymentRequestChangedResult.all.Release;
+            temp := this.m_IPaymentRequestChangedResult.all.Release;
             Free (this.m_IPaymentRequestChangedResult);
          end if;
       end if;
@@ -2158,9 +2463,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentRequestChangedResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequestChangedResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequestChangedResult");
       m_Factory    : access IPaymentRequestChangedResultFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
    begin
       return RetVal : PaymentRequestChangedResult do
@@ -2169,9 +2475,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (changeAcceptedByMerchant, m_ComRetVal'Access);
             Retval.m_IPaymentRequestChangedResult := new Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
             Retval.m_IPaymentRequestChangedResult.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2182,9 +2488,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentRequestChangedResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequestChangedResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequestChangedResult");
       m_Factory    : access IPaymentRequestChangedResultFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
    begin
       return RetVal : PaymentRequestChangedResult do
@@ -2193,9 +2500,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithPaymentDetails (changeAcceptedByMerchant, updatedPaymentDetails.m_IPaymentDetails.all, m_ComRetVal'Access);
             Retval.m_IPaymentRequestChangedResult := new Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
             Retval.m_IPaymentRequestChangedResult.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2208,10 +2515,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPaymentRequestChangedResult.all.get_ChangeAcceptedByMerchant (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2221,9 +2532,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentRequestChangedResult.all.put_ChangeAcceptedByMerchant (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Message
@@ -2232,13 +2547,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentRequestChangedResult.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2248,11 +2567,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentRequestChangedResult.all.put_Message (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_UpdatedPaymentDetails
@@ -2261,11 +2584,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentDetails;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentDetails do
          Hr := this.m_IPaymentRequestChangedResult.all.get_UpdatedPaymentDetails (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentDetails := new Windows.ApplicationModel.Payments.IPaymentDetails;
          Retval.m_IPaymentDetails.all := m_ComRetVal;
       end return;
@@ -2277,9 +2604,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentDetails'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentRequestChangedResult.all.put_UpdatedPaymentDetails (value.m_IPaymentDetails.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2291,12 +2622,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentRequestSubmitResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentRequestSubmitResult, IPaymentRequestSubmitResult_Ptr);
    begin
       if this.m_IPaymentRequestSubmitResult /= null then
          if this.m_IPaymentRequestSubmitResult.all /= null then
-            RefCount := this.m_IPaymentRequestSubmitResult.all.Release;
+            temp := this.m_IPaymentRequestSubmitResult.all.Release;
             Free (this.m_IPaymentRequestSubmitResult);
          end if;
       end if;
@@ -2311,10 +2642,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentRequestStatus;
    begin
       Hr := this.m_IPaymentRequestSubmitResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2324,11 +2659,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentResponse'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentResponse;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentResponse do
          Hr := this.m_IPaymentRequestSubmitResult.all.get_Response (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentResponse := new Windows.ApplicationModel.Payments.IPaymentResponse;
          Retval.m_IPaymentResponse.all := m_ComRetVal;
       end return;
@@ -2343,12 +2682,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentResponse) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentResponse, IPaymentResponse_Ptr);
    begin
       if this.m_IPaymentResponse /= null then
          if this.m_IPaymentResponse.all /= null then
-            RefCount := this.m_IPaymentResponse.all.Release;
+            temp := this.m_IPaymentResponse.all.Release;
             Free (this.m_IPaymentResponse);
          end if;
       end if;
@@ -2363,11 +2702,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentToken'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentToken;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentToken do
          Hr := this.m_IPaymentResponse.all.get_PaymentToken (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentToken := new Windows.ApplicationModel.Payments.IPaymentToken;
          Retval.m_IPaymentToken.all := m_ComRetVal;
       end return;
@@ -2379,11 +2722,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentShippingOption'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentShippingOption;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentShippingOption do
          Hr := this.m_IPaymentResponse.all.get_ShippingOption (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentShippingOption := new Windows.ApplicationModel.Payments.IPaymentShippingOption;
          Retval.m_IPaymentShippingOption.all := m_ComRetVal;
       end return;
@@ -2395,11 +2742,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentAddress;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentAddress do
          Hr := this.m_IPaymentResponse.all.get_ShippingAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentAddress := new Windows.ApplicationModel.Payments.IPaymentAddress;
          Retval.m_IPaymentAddress.all := m_ComRetVal;
       end return;
@@ -2411,13 +2762,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentResponse.all.get_PayerEmail (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2427,13 +2782,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentResponse.all.get_PayerName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2443,13 +2802,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentResponse.all.get_PayerPhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2459,7 +2822,8 @@ package body WinRt.Windows.ApplicationModel.Payments is
       status : Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2467,7 +2831,6 @@ package body WinRt.Windows.ApplicationModel.Payments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2488,9 +2851,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2505,12 +2868,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentShippingOption) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentShippingOption, IPaymentShippingOption_Ptr);
    begin
       if this.m_IPaymentShippingOption /= null then
          if this.m_IPaymentShippingOption.all /= null then
-            RefCount := this.m_IPaymentShippingOption.all.Release;
+            temp := this.m_IPaymentShippingOption.all.Release;
             Free (this.m_IPaymentShippingOption);
          end if;
       end if;
@@ -2526,11 +2889,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentShippingOption is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
       m_Factory    : access IPaymentShippingOptionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentShippingOption;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : PaymentShippingOption do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentShippingOptionFactory'Access , m_Factory'Address);
@@ -2538,10 +2902,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (HStr_label, amount.m_IPaymentCurrencyAmount.all, m_ComRetVal'Access);
             Retval.m_IPaymentShippingOption := new Windows.ApplicationModel.Payments.IPaymentShippingOption;
             Retval.m_IPaymentShippingOption.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -2553,11 +2917,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentShippingOption is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
       m_Factory    : access IPaymentShippingOptionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentShippingOption;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : PaymentShippingOption do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentShippingOptionFactory'Access , m_Factory'Address);
@@ -2565,10 +2930,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithSelected (HStr_label, amount.m_IPaymentCurrencyAmount.all, selected, m_ComRetVal'Access);
             Retval.m_IPaymentShippingOption := new Windows.ApplicationModel.Payments.IPaymentShippingOption;
             Retval.m_IPaymentShippingOption.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -2581,12 +2946,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentShippingOption is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
       m_Factory    : access IPaymentShippingOptionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentShippingOption;
-      HStr_label : WinRt.HString := To_HString (label);
-      HStr_tag : WinRt.HString := To_HString (tag);
+      HStr_label : constant WinRt.HString := To_HString (label);
+      HStr_tag : constant WinRt.HString := To_HString (tag);
    begin
       return RetVal : PaymentShippingOption do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentShippingOptionFactory'Access , m_Factory'Address);
@@ -2594,11 +2960,11 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithSelectedAndTag (HStr_label, amount.m_IPaymentCurrencyAmount.all, selected, HStr_tag, m_ComRetVal'Access);
             Retval.m_IPaymentShippingOption := new Windows.ApplicationModel.Payments.IPaymentShippingOption;
             Retval.m_IPaymentShippingOption.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
-         Hr := WindowsDeleteString (HStr_tag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (HStr_tag);
       end return;
    end;
 
@@ -2611,13 +2977,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentShippingOption.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2627,11 +2997,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentShippingOption.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Amount
@@ -2640,11 +3014,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount do
          Hr := this.m_IPaymentShippingOption.all.get_Amount (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPaymentCurrencyAmount := new Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
          Retval.m_IPaymentCurrencyAmount.all := m_ComRetVal;
       end return;
@@ -2656,9 +3034,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentShippingOption.all.put_Amount (value.m_IPaymentCurrencyAmount.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Tag
@@ -2667,13 +3049,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentShippingOption.all.get_Tag (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2683,11 +3069,15 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPaymentShippingOption.all.put_Tag (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsSelected
@@ -2696,10 +3086,14 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPaymentShippingOption.all.get_IsSelected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2709,9 +3103,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaymentShippingOption.all.put_IsSelected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2723,12 +3121,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    end;
 
    procedure Finalize (this : in out PaymentToken) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaymentToken, IPaymentToken_Ptr);
    begin
       if this.m_IPaymentToken /= null then
          if this.m_IPaymentToken.all /= null then
-            RefCount := this.m_IPaymentToken.all.Release;
+            temp := this.m_IPaymentToken.all.Release;
             Free (this.m_IPaymentToken);
          end if;
       end if;
@@ -2743,11 +3141,12 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentToken is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentToken");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentToken");
       m_Factory    : access IPaymentTokenFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentToken;
-      HStr_paymentMethodId : WinRt.HString := To_HString (paymentMethodId);
+      HStr_paymentMethodId : constant WinRt.HString := To_HString (paymentMethodId);
    begin
       return RetVal : PaymentToken do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentTokenFactory'Access , m_Factory'Address);
@@ -2755,10 +3154,10 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.Create (HStr_paymentMethodId, m_ComRetVal'Access);
             Retval.m_IPaymentToken := new Windows.ApplicationModel.Payments.IPaymentToken;
             Retval.m_IPaymentToken.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_paymentMethodId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_paymentMethodId);
       end return;
    end;
 
@@ -2769,12 +3168,13 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return PaymentToken is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentToken");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentToken");
       m_Factory    : access IPaymentTokenFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Payments.IPaymentToken;
-      HStr_paymentMethodId : WinRt.HString := To_HString (paymentMethodId);
-      HStr_jsonDetails : WinRt.HString := To_HString (jsonDetails);
+      HStr_paymentMethodId : constant WinRt.HString := To_HString (paymentMethodId);
+      HStr_jsonDetails : constant WinRt.HString := To_HString (jsonDetails);
    begin
       return RetVal : PaymentToken do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentTokenFactory'Access , m_Factory'Address);
@@ -2782,11 +3182,11 @@ package body WinRt.Windows.ApplicationModel.Payments is
             Hr := m_Factory.CreateWithJsonDetails (HStr_paymentMethodId, HStr_jsonDetails, m_ComRetVal'Access);
             Retval.m_IPaymentToken := new Windows.ApplicationModel.Payments.IPaymentToken;
             Retval.m_IPaymentToken.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_paymentMethodId);
-         Hr := WindowsDeleteString (HStr_jsonDetails);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_paymentMethodId);
+         tmp := WindowsDeleteString (HStr_jsonDetails);
       end return;
    end;
 
@@ -2799,13 +3199,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentToken.all.get_PaymentMethodId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2815,13 +3219,17 @@ package body WinRt.Windows.ApplicationModel.Payments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPaymentToken.all.get_JsonDetails (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

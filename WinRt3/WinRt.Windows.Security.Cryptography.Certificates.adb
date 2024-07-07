@@ -63,12 +63,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out Certificate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificate, ICertificate_Ptr);
    begin
       if this.m_ICertificate /= null then
          if this.m_ICertificate.all /= null then
-            RefCount := this.m_ICertificate.all.Release;
+            temp := this.m_ICertificate.all.Release;
             Free (this.m_ICertificate);
          end if;
       end if;
@@ -83,9 +83,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return Certificate is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.Certificate");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.Certificate");
       m_Factory    : access ICertificateFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : Certificate do
@@ -94,9 +95,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Hr := m_Factory.CreateCertificate (certBlob, m_ComRetVal'Access);
             Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
             Retval.m_ICertificate.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -110,13 +111,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CertificateChain'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CertificateChain.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -134,7 +135,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CertificateChain.Kind_Delegate, AsyncOperationCompletedHandler_CertificateChain.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -148,7 +149,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := this.m_ICertificate.all.BuildChainAsync (certificates, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -160,9 +161,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   Retval.m_ICertificateChain := new Windows.Security.Cryptography.Certificates.ICertificateChain;
                   Retval.m_ICertificateChain.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -178,13 +179,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CertificateChain'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_CertificateChain.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -202,7 +203,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_CertificateChain.Kind_Delegate, AsyncOperationCompletedHandler_CertificateChain.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -216,7 +217,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := this.m_ICertificate.all.BuildChainAsync (certificates, parameters.m_IChainBuildingParameters.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -228,9 +229,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   Retval.m_ICertificateChain := new Windows.Security.Cryptography.Certificates.ICertificateChain;
                   Retval.m_ICertificateChain.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -244,11 +245,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificate.all.get_SerialNumber (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -266,11 +271,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificate.all.GetHashValue (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -289,13 +298,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
-      HStr_hashAlgorithmName : WinRt.HString := To_HString (hashAlgorithmName);
+      HStr_hashAlgorithmName : constant WinRt.HString := To_HString (hashAlgorithmName);
    begin
       Hr := this.m_ICertificate.all.GetHashValue (HStr_hashAlgorithmName, m_ComRetValSize'Access, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_hashAlgorithmName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_hashAlgorithmName);
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -313,10 +326,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICertificate.all.GetCertificateBlob (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -326,13 +343,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificate.all.get_Subject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -342,13 +363,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificate.all.get_Issuer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -358,10 +383,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificate.all.get_HasPrivateKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -371,10 +400,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificate.all.get_IsStronglyProtected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -384,10 +417,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICertificate.all.get_ValidFrom (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -397,10 +434,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICertificate.all.get_ValidTo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -410,13 +451,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ICertificate.all.get_EnhancedKeyUsages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -426,11 +471,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificate.all.put_FriendlyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FriendlyName
@@ -439,13 +488,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificate.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -455,14 +508,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_IsSecurityDeviceBound (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -472,15 +529,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CertificateKeyUsages'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificateKeyUsages;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.CertificateKeyUsages do
          m_Interface := QInterface (this.m_ICertificate.all);
          Hr := m_Interface.get_KeyUsages (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificateKeyUsages := new Windows.Security.Cryptography.Certificates.ICertificateKeyUsages;
          Retval.m_ICertificateKeyUsages.all := m_ComRetVal;
       end return;
@@ -492,17 +553,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_KeyAlgorithmName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -512,17 +577,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_SignatureAlgorithmName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -532,17 +601,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_SignatureHashAlgorithmName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -552,15 +625,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo do
          m_Interface := QInterface (this.m_ICertificate.all);
          Hr := m_Interface.get_SubjectAlternativeName (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISubjectAlternativeNameInfo := new Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
          Retval.m_ISubjectAlternativeNameInfo.all := m_ComRetVal;
       end return;
@@ -572,14 +649,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_IsPerUser (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -589,17 +670,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_StoreName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -609,17 +694,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificate3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificate_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificate3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificate3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificate.all);
       Hr := m_Interface.get_KeyStorageProviderName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -632,12 +721,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CertificateChain) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificateChain, ICertificateChain_Ptr);
    begin
       if this.m_ICertificateChain /= null then
          if this.m_ICertificateChain.all /= null then
-            RefCount := this.m_ICertificateChain.all.Release;
+            temp := this.m_ICertificateChain.all.Release;
             Free (this.m_ICertificateChain);
          end if;
       end if;
@@ -652,10 +741,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.ChainValidationResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ChainValidationResult;
    begin
       Hr := this.m_ICertificateChain.all.Validate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -666,10 +759,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.ChainValidationResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ChainValidationResult;
    begin
       Hr := this.m_ICertificateChain.all.Validate (parameter.m_IChainValidationParameters.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -680,13 +777,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_ICertificate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICertificate.Kind;
    begin
       Hr := this.m_ICertificateChain.all.GetCertificates (includeRoot, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICertificate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -700,15 +801,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -727,7 +828,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -740,10 +841,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateRequestAsync (request.m_ICertificateRequestProperties.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -753,17 +854,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -773,10 +874,11 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          installOption : Windows.Security.Cryptography.Certificates.InstallOptions
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_certificate_p : WinRt.HString := To_HString (certificate_p);
+         temp             : WinRt.UInt32 := 0;
+         HStr_certificate_p : constant WinRt.HString := To_HString (certificate_p);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -784,7 +886,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -800,7 +901,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.InstallCertificateAsync (HStr_certificate_p, installOption, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -808,15 +909,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_certificate_p);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_certificate_p);
       end;
 
       procedure ImportPfxDataAsync
@@ -829,12 +930,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          friendlyName : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_pfxData : WinRt.HString := To_HString (pfxData);
-         HStr_password : WinRt.HString := To_HString (password);
-         HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+         HStr_password : constant WinRt.HString := To_HString (password);
+         HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -842,7 +944,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -858,7 +959,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ImportPfxDataAsync (HStr_pfxData, HStr_password, exportable, keyProtectionLevel, installOption, HStr_friendlyName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -866,17 +967,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_pfxData);
-         Hr := WindowsDeleteString (HStr_password);
-         Hr := WindowsDeleteString (HStr_friendlyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_pfxData);
+         tmp := WindowsDeleteString (HStr_password);
+         tmp := WindowsDeleteString (HStr_friendlyName);
       end;
 
       procedure ImportPfxDataAsync
@@ -886,11 +987,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_pfxData : WinRt.HString := To_HString (pfxData);
-         HStr_password : WinRt.HString := To_HString (password);
+         temp             : WinRt.UInt32 := 0;
+         HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+         HStr_password : constant WinRt.HString := To_HString (password);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -898,7 +1000,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -914,7 +1015,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ImportPfxDataAsync (HStr_pfxData, HStr_password, pfxImportParameters_p.m_IPfxImportParameters.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -922,35 +1023,39 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_pfxData);
-         Hr := WindowsDeleteString (HStr_password);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_pfxData);
+         tmp := WindowsDeleteString (HStr_password);
       end;
 
       function get_UserCertificateEnrollmentManager
       return WinRt.Windows.Security.Cryptography.Certificates.UserCertificateEnrollmentManager is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.IUserCertificateEnrollmentManager;
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Certificates.UserCertificateEnrollmentManager do
             Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_UserCertificateEnrollmentManager (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IUserCertificateEnrollmentManager := new Windows.Security.Cryptography.Certificates.IUserCertificateEnrollmentManager;
                Retval.m_IUserCertificateEnrollmentManager.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -965,13 +1070,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          keyStorageProvider : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_pfxData : WinRt.HString := To_HString (pfxData);
-         HStr_password : WinRt.HString := To_HString (password);
-         HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
-         HStr_keyStorageProvider : WinRt.HString := To_HString (keyStorageProvider);
+         temp             : WinRt.UInt32 := 0;
+         HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+         HStr_password : constant WinRt.HString := To_HString (password);
+         HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
+         HStr_keyStorageProvider : constant WinRt.HString := To_HString (keyStorageProvider);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -979,7 +1085,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -995,7 +1100,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateEnrollmentManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ImportPfxDataAsync (HStr_pfxData, HStr_password, exportable, keyProtectionLevel, installOption, HStr_friendlyName, HStr_keyStorageProvider, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1003,18 +1108,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_pfxData);
-         Hr := WindowsDeleteString (HStr_password);
-         Hr := WindowsDeleteString (HStr_friendlyName);
-         Hr := WindowsDeleteString (HStr_keyStorageProvider);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_pfxData);
+         tmp := WindowsDeleteString (HStr_password);
+         tmp := WindowsDeleteString (HStr_friendlyName);
+         tmp := WindowsDeleteString (HStr_keyStorageProvider);
       end;
 
    end CertificateEnrollmentManager;
@@ -1028,12 +1133,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CertificateExtension) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificateExtension, ICertificateExtension_Ptr);
    begin
       if this.m_ICertificateExtension /= null then
          if this.m_ICertificateExtension.all /= null then
-            RefCount := this.m_ICertificateExtension.all.Release;
+            temp := this.m_ICertificateExtension.all.Release;
             Free (this.m_ICertificateExtension);
          end if;
       end if;
@@ -1044,7 +1149,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return CertificateExtension is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateExtension");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateExtension");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICertificateExtension;
    begin
       return RetVal : CertificateExtension do
@@ -1053,7 +1159,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_ICertificateExtension := new Windows.Security.Cryptography.Certificates.ICertificateExtension;
             Retval.m_ICertificateExtension.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1066,13 +1172,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateExtension.all.get_ObjectId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1082,11 +1192,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateExtension.all.put_ObjectId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsCritical
@@ -1095,10 +1209,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateExtension.all.get_IsCritical (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1108,9 +1226,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateExtension.all.put_IsCritical (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EncodeValue
@@ -1119,11 +1241,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateExtension.all.EncodeValue (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Value
@@ -1132,11 +1258,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateExtension.all.get_Value (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -1154,10 +1284,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ICertificateExtension.all.put_Value (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1169,12 +1303,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CertificateKeyUsages) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificateKeyUsages, ICertificateKeyUsages_Ptr);
    begin
       if this.m_ICertificateKeyUsages /= null then
          if this.m_ICertificateKeyUsages.all /= null then
-            RefCount := this.m_ICertificateKeyUsages.all.Release;
+            temp := this.m_ICertificateKeyUsages.all.Release;
             Free (this.m_ICertificateKeyUsages);
          end if;
       end if;
@@ -1185,7 +1319,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return CertificateKeyUsages is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateKeyUsages");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateKeyUsages");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICertificateKeyUsages;
    begin
       return RetVal : CertificateKeyUsages do
@@ -1194,7 +1329,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_ICertificateKeyUsages := new Windows.Security.Cryptography.Certificates.ICertificateKeyUsages;
             Retval.m_ICertificateKeyUsages.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1207,10 +1342,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_EncipherOnly (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1220,9 +1359,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_EncipherOnly (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CrlSign
@@ -1231,10 +1374,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_CrlSign (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1244,9 +1391,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_CrlSign (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyCertificateSign
@@ -1255,10 +1406,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_KeyCertificateSign (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1268,9 +1423,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_KeyCertificateSign (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyAgreement
@@ -1279,10 +1438,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_KeyAgreement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1292,9 +1455,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_KeyAgreement (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DataEncipherment
@@ -1303,10 +1470,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_DataEncipherment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1316,9 +1487,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_DataEncipherment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyEncipherment
@@ -1327,10 +1502,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_KeyEncipherment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1340,9 +1519,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_KeyEncipherment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NonRepudiation
@@ -1351,10 +1534,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_NonRepudiation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1364,9 +1551,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_NonRepudiation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DigitalSignature
@@ -1375,10 +1566,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateKeyUsages.all.get_DigitalSignature (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1388,9 +1583,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateKeyUsages.all.put_DigitalSignature (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1402,12 +1601,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CertificateQuery) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificateQuery, ICertificateQuery_Ptr);
    begin
       if this.m_ICertificateQuery /= null then
          if this.m_ICertificateQuery.all /= null then
-            RefCount := this.m_ICertificateQuery.all.Release;
+            temp := this.m_ICertificateQuery.all.Release;
             Free (this.m_ICertificateQuery);
          end if;
       end if;
@@ -1418,7 +1617,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return CertificateQuery is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateQuery");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateQuery");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICertificateQuery;
    begin
       return RetVal : CertificateQuery do
@@ -1427,7 +1627,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_ICertificateQuery := new Windows.Security.Cryptography.Certificates.ICertificateQuery;
             Retval.m_ICertificateQuery.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1440,13 +1640,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ICertificateQuery.all.get_EnhancedKeyUsages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1456,13 +1660,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateQuery.all.get_IssuerName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1472,11 +1680,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateQuery.all.put_IssuerName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FriendlyName
@@ -1485,13 +1697,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateQuery.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1501,11 +1717,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateQuery.all.put_FriendlyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Thumbprint
@@ -1514,11 +1734,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateQuery.all.get_Thumbprint (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -1536,10 +1760,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_ICertificateQuery.all.put_Thumbprint (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HardwareOnly
@@ -1548,10 +1776,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICertificateQuery.all.get_HardwareOnly (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1561,9 +1793,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateQuery.all.put_HardwareOnly (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IncludeDuplicates
@@ -1572,14 +1808,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateQuery2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateQuery.all);
       Hr := m_Interface.get_IncludeDuplicates (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1589,13 +1829,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateQuery2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateQuery.all);
       Hr := m_Interface.put_IncludeDuplicates (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IncludeExpiredCertificates
@@ -1604,14 +1848,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateQuery2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateQuery.all);
       Hr := m_Interface.get_IncludeExpiredCertificates (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1621,13 +1869,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateQuery2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateQuery.all);
       Hr := m_Interface.put_IncludeExpiredCertificates (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StoreName
@@ -1636,17 +1888,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateQuery2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateQuery.all);
       Hr := m_Interface.get_StoreName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1656,15 +1912,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateQuery2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateQuery.all);
       Hr := m_Interface.put_StoreName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -1676,12 +1936,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CertificateRequestProperties) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificateRequestProperties, ICertificateRequestProperties_Ptr);
    begin
       if this.m_ICertificateRequestProperties /= null then
          if this.m_ICertificateRequestProperties.all /= null then
-            RefCount := this.m_ICertificateRequestProperties.all.Release;
+            temp := this.m_ICertificateRequestProperties.all.Release;
             Free (this.m_ICertificateRequestProperties);
          end if;
       end if;
@@ -1692,7 +1952,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return CertificateRequestProperties is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateRequestProperties");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateRequestProperties");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
    begin
       return RetVal : CertificateRequestProperties do
@@ -1701,7 +1962,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_ICertificateRequestProperties := new Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
             Retval.m_ICertificateRequestProperties.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1714,13 +1975,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_Subject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1730,11 +1995,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_Subject (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_KeyAlgorithmName
@@ -1743,13 +2012,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_KeyAlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1759,11 +2032,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_KeyAlgorithmName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_KeySize
@@ -1772,10 +2049,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_KeySize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1785,9 +2066,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_KeySize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FriendlyName
@@ -1796,13 +2081,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1812,11 +2101,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_FriendlyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_HashAlgorithmName
@@ -1825,13 +2118,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_HashAlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1841,11 +2138,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_HashAlgorithmName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Exportable
@@ -1854,10 +2155,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.ExportOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ExportOption;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_Exportable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1867,9 +2172,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.ExportOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_Exportable (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyUsages
@@ -1878,10 +2187,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.EnrollKeyUsages is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.EnrollKeyUsages;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_KeyUsages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1891,9 +2204,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.EnrollKeyUsages
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_KeyUsages (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyProtectionLevel
@@ -1902,10 +2219,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_KeyProtectionLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1915,9 +2236,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.KeyProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_KeyProtectionLevel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyStorageProviderName
@@ -1926,13 +2251,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICertificateRequestProperties.all.get_KeyStorageProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1942,11 +2271,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICertificateRequestProperties.all.put_KeyStorageProviderName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SmartcardReaderName
@@ -1955,17 +2288,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_SmartcardReaderName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1975,15 +2312,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_SmartcardReaderName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SigningCertificate
@@ -1992,15 +2333,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
          Hr := m_Interface.get_SigningCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -2012,13 +2357,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_SigningCertificate (value.m_ICertificate.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AttestationCredentialCertificate
@@ -2027,15 +2376,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
          Hr := m_Interface.get_AttestationCredentialCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -2047,13 +2400,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_AttestationCredentialCertificate (value.m_ICertificate.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurveName
@@ -2062,17 +2419,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_CurveName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2082,15 +2443,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_CurveName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CurveParameters
@@ -2099,15 +2464,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_CurveParameters (m_ComRetValSize'Access, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -2125,14 +2494,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_CurveParameters (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContainerNamePrefix
@@ -2141,17 +2514,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_ContainerNamePrefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2161,15 +2538,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_ContainerNamePrefix (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContainerName
@@ -2178,17 +2559,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_ContainerName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2198,15 +2583,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_ContainerName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_UseExistingKey
@@ -2215,14 +2604,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_UseExistingKey (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2232,13 +2625,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties3, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.put_UseExistingKey (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SuppressedDefaults
@@ -2247,17 +2644,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties4, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_SuppressedDefaults (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2267,15 +2668,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties4, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo do
          m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
          Hr := m_Interface.get_SubjectAlternativeName (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISubjectAlternativeNameInfo := new Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
          Retval.m_ISubjectAlternativeNameInfo.all := m_ComRetVal;
       end return;
@@ -2287,17 +2692,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_ICertificateExtension.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ICertificateExtension.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties4, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateRequestProperties4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateRequestProperties.all);
       Hr := m_Interface.get_Extensions (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ICertificateExtension (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2310,12 +2719,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CertificateStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICertificateStore, ICertificateStore_Ptr);
    begin
       if this.m_ICertificateStore /= null then
          if this.m_ICertificateStore.all /= null then
-            RefCount := this.m_ICertificateStore.all.Release;
+            temp := this.m_ICertificateStore.all.Release;
             Free (this.m_ICertificateStore);
          end if;
       end if;
@@ -2330,9 +2739,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       certificate_p : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateStore.all.Add (certificate_p.m_ICertificate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Delete
@@ -2341,9 +2754,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       certificate_p : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICertificateStore.all.Delete (certificate_p.m_ICertificate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Name
@@ -2352,17 +2769,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ICertificateStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ICertificateStore_Interface, WinRt.Windows.Security.Cryptography.Certificates.ICertificateStore2, WinRt.Windows.Security.Cryptography.Certificates.IID_ICertificateStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICertificateStore.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2376,37 +2797,41 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.IUserCertificateStore;
-         HStr_storeName : WinRt.HString := To_HString (storeName);
+         HStr_storeName : constant WinRt.HString := To_HString (storeName);
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Certificates.UserCertificateStore do
             Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetUserStoreByName (HStr_storeName, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IUserCertificateStore := new Windows.Security.Cryptography.Certificates.IUserCertificateStore;
                Retval.m_IUserCertificateStore.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_storeName);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_storeName);
          end return;
       end;
 
       function FindAllAsync
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2424,7 +2849,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -2437,10 +2862,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2450,15 +2875,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -2468,15 +2893,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_GenericObject.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2494,7 +2919,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -2507,10 +2932,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (query.m_ICertificateQuery.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2520,55 +2945,63 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function get_TrustedRootCertificationAuthorities
       return WinRt.Windows.Security.Cryptography.Certificates.CertificateStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificateStore;
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Certificates.CertificateStore do
             Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_TrustedRootCertificationAuthorities (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ICertificateStore := new Windows.Security.Cryptography.Certificates.ICertificateStore;
                Retval.m_ICertificateStore.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function get_IntermediateCertificationAuthorities
       return WinRt.Windows.Security.Cryptography.Certificates.CertificateStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificateStore;
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Certificates.CertificateStore do
             Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_IntermediateCertificationAuthorities (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ICertificateStore := new Windows.Security.Cryptography.Certificates.ICertificateStore;
                Retval.m_ICertificateStore.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -2578,22 +3011,26 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.Windows.Security.Cryptography.Certificates.CertificateStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateStores");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStoresStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificateStore;
-         HStr_storeName : WinRt.HString := To_HString (storeName);
+         HStr_storeName : constant WinRt.HString := To_HString (storeName);
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Certificates.CertificateStore do
             Hr := RoGetActivationFactory (m_hString, IID_ICertificateStoresStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetStoreByName (HStr_storeName, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ICertificateStore := new Windows.Security.Cryptography.Certificates.ICertificateStore;
                Retval.m_ICertificateStore.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_storeName);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_storeName);
          end return;
       end;
 
@@ -2608,12 +3045,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out ChainBuildingParameters) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IChainBuildingParameters, IChainBuildingParameters_Ptr);
    begin
       if this.m_IChainBuildingParameters /= null then
          if this.m_IChainBuildingParameters.all /= null then
-            RefCount := this.m_IChainBuildingParameters.all.Release;
+            temp := this.m_IChainBuildingParameters.all.Release;
             Free (this.m_IChainBuildingParameters);
          end if;
       end if;
@@ -2624,7 +3061,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return ChainBuildingParameters is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ChainBuildingParameters");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ChainBuildingParameters");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.IChainBuildingParameters;
    begin
       return RetVal : ChainBuildingParameters do
@@ -2633,7 +3071,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_IChainBuildingParameters := new Windows.Security.Cryptography.Certificates.IChainBuildingParameters;
             Retval.m_IChainBuildingParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2646,13 +3084,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_EnhancedKeyUsages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2662,10 +3104,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_ValidationTimestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2675,9 +3121,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainBuildingParameters.all.put_ValidationTimestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RevocationCheckEnabled
@@ -2686,10 +3136,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_RevocationCheckEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2699,9 +3153,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainBuildingParameters.all.put_RevocationCheckEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NetworkRetrievalEnabled
@@ -2710,10 +3168,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_NetworkRetrievalEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2723,9 +3185,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainBuildingParameters.all.put_NetworkRetrievalEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AuthorityInformationAccessEnabled
@@ -2734,10 +3200,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_AuthorityInformationAccessEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2747,9 +3217,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainBuildingParameters.all.put_AuthorityInformationAccessEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentTimeValidationEnabled
@@ -2758,10 +3232,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_CurrentTimeValidationEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2771,9 +3249,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainBuildingParameters.all.put_CurrentTimeValidationEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExclusiveTrustRoots
@@ -2782,13 +3264,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_ICertificate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ICertificate.Kind;
    begin
       Hr := this.m_IChainBuildingParameters.all.get_ExclusiveTrustRoots (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ICertificate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2801,12 +3287,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out ChainValidationParameters) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IChainValidationParameters, IChainValidationParameters_Ptr);
    begin
       if this.m_IChainValidationParameters /= null then
          if this.m_IChainValidationParameters.all /= null then
-            RefCount := this.m_IChainValidationParameters.all.Release;
+            temp := this.m_IChainValidationParameters.all.Release;
             Free (this.m_IChainValidationParameters);
          end if;
       end if;
@@ -2817,7 +3303,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return ChainValidationParameters is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ChainValidationParameters");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ChainValidationParameters");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.IChainValidationParameters;
    begin
       return RetVal : ChainValidationParameters do
@@ -2826,7 +3313,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_IChainValidationParameters := new Windows.Security.Cryptography.Certificates.IChainValidationParameters;
             Retval.m_IChainValidationParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2839,10 +3326,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CertificateChainPolicy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.CertificateChainPolicy;
    begin
       Hr := this.m_IChainValidationParameters.all.get_CertificateChainPolicy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2852,9 +3343,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.CertificateChainPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainValidationParameters.all.put_CertificateChainPolicy (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ServerDnsName
@@ -2863,11 +3358,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IChainValidationParameters.all.get_ServerDnsName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -2879,9 +3378,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IChainValidationParameters.all.put_ServerDnsName (value.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2893,12 +3396,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CmsAttachedSignature) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICmsAttachedSignature, ICmsAttachedSignature_Ptr);
    begin
       if this.m_ICmsAttachedSignature /= null then
          if this.m_ICmsAttachedSignature.all /= null then
-            RefCount := this.m_ICmsAttachedSignature.all.Release;
+            temp := this.m_ICmsAttachedSignature.all.Release;
             Free (this.m_ICmsAttachedSignature);
          end if;
       end if;
@@ -2913,9 +3416,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return CmsAttachedSignature is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsAttachedSignature");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsAttachedSignature");
       m_Factory    : access ICmsAttachedSignatureFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICmsAttachedSignature;
    begin
       return RetVal : CmsAttachedSignature do
@@ -2924,9 +3428,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Hr := m_Factory.CreateCmsAttachedSignature (inputBlob, m_ComRetVal'Access);
             Retval.m_ICmsAttachedSignature := new Windows.Security.Cryptography.Certificates.ICmsAttachedSignature;
             Retval.m_ICmsAttachedSignature.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2941,15 +3445,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsAttachedSignature");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsAttachedSignature");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICmsAttachedSignatureStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2967,7 +3471,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2980,10 +3484,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       Hr := RoGetActivationFactory (m_hString, IID_ICmsAttachedSignatureStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GenerateSignatureAsync (data, signers, certificates, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2993,15 +3497,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -3014,13 +3518,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_ICertificate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICertificate.Kind;
    begin
       Hr := this.m_ICmsAttachedSignature.all.get_Certificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICertificate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3030,11 +3538,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICmsAttachedSignature.all.get_Content (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -3052,13 +3564,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_ICmsSignerInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICmsSignerInfo.Kind;
    begin
       Hr := this.m_ICmsAttachedSignature.all.get_Signers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICmsSignerInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3068,10 +3584,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.SignatureValidationResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.SignatureValidationResult;
    begin
       Hr := this.m_ICmsAttachedSignature.all.VerifySignature (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3084,12 +3604,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CmsDetachedSignature) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICmsDetachedSignature, ICmsDetachedSignature_Ptr);
    begin
       if this.m_ICmsDetachedSignature /= null then
          if this.m_ICmsDetachedSignature.all /= null then
-            RefCount := this.m_ICmsDetachedSignature.all.Release;
+            temp := this.m_ICmsDetachedSignature.all.Release;
             Free (this.m_ICmsDetachedSignature);
          end if;
       end if;
@@ -3104,9 +3624,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return CmsDetachedSignature is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsDetachedSignature");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsDetachedSignature");
       m_Factory    : access ICmsDetachedSignatureFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICmsDetachedSignature;
    begin
       return RetVal : CmsDetachedSignature do
@@ -3115,9 +3636,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Hr := m_Factory.CreateCmsDetachedSignature (inputBlob, m_ComRetVal'Access);
             Retval.m_ICmsDetachedSignature := new Windows.Security.Cryptography.Certificates.ICmsDetachedSignature;
             Retval.m_ICmsDetachedSignature.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3132,15 +3653,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsDetachedSignature");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsDetachedSignature");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.ICmsDetachedSignatureStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3158,7 +3679,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3171,10 +3692,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       Hr := RoGetActivationFactory (m_hString, IID_ICmsDetachedSignatureStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GenerateSignatureAsync (data, signers, certificates, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3184,15 +3705,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -3205,13 +3726,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_ICertificate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICertificate.Kind;
    begin
       Hr := this.m_ICmsDetachedSignature.all.get_Certificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICertificate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3221,13 +3746,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_ICmsSignerInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICmsSignerInfo.Kind;
    begin
       Hr := this.m_ICmsDetachedSignature.all.get_Signers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICmsSignerInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3238,13 +3767,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.SignatureValidationResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SignatureValidationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3262,7 +3791,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SignatureValidationResult.Kind_Delegate, AsyncOperationCompletedHandler_SignatureValidationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3275,7 +3804,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       Hr := this.m_ICmsDetachedSignature.all.VerifySignatureAsync (data, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3285,9 +3814,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3304,12 +3833,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CmsSignerInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICmsSignerInfo, ICmsSignerInfo_Ptr);
    begin
       if this.m_ICmsSignerInfo /= null then
          if this.m_ICmsSignerInfo.all /= null then
-            RefCount := this.m_ICmsSignerInfo.all.Release;
+            temp := this.m_ICmsSignerInfo.all.Release;
             Free (this.m_ICmsSignerInfo);
          end if;
       end if;
@@ -3320,7 +3849,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return CmsSignerInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsSignerInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsSignerInfo");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ICmsSignerInfo;
    begin
       return RetVal : CmsSignerInfo do
@@ -3329,7 +3859,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_ICmsSignerInfo := new Windows.Security.Cryptography.Certificates.ICmsSignerInfo;
             Retval.m_ICmsSignerInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3342,11 +3872,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_ICmsSignerInfo.all.get_Certificate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -3358,9 +3892,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICmsSignerInfo.all.put_Certificate (value.m_ICertificate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HashAlgorithmName
@@ -3369,13 +3907,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICmsSignerInfo.all.get_HashAlgorithmName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3385,11 +3927,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ICmsSignerInfo.all.put_HashAlgorithmName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TimestampInfo
@@ -3398,11 +3944,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CmsTimestampInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICmsTimestampInfo;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.CmsTimestampInfo do
          Hr := this.m_ICmsSignerInfo.all.get_TimestampInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICmsTimestampInfo := new Windows.Security.Cryptography.Certificates.ICmsTimestampInfo;
          Retval.m_ICmsTimestampInfo.all := m_ComRetVal;
       end return;
@@ -3417,12 +3967,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out CmsTimestampInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICmsTimestampInfo, ICmsTimestampInfo_Ptr);
    begin
       if this.m_ICmsTimestampInfo /= null then
          if this.m_ICmsTimestampInfo.all /= null then
-            RefCount := this.m_ICmsTimestampInfo.all.Release;
+            temp := this.m_ICmsTimestampInfo.all.Release;
             Free (this.m_ICmsTimestampInfo);
          end if;
       end if;
@@ -3437,11 +3987,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_ICmsTimestampInfo.all.get_SigningCertificate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -3453,13 +4007,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_ICertificate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICertificate.Kind;
    begin
       Hr := this.m_ICmsTimestampInfo.all.get_Certificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICertificate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3469,10 +4027,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICmsTimestampInfo.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3483,200 +4045,240 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       function get_Ecdsa
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdsa (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdh
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdh (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Rsa
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Rsa (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Dsa
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Dsa (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdh256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdh256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdh384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdh384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdh521
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdh521 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdsa256
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdsa256 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdsa384
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdsa384 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ecdsa521
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAlgorithmNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAlgorithmNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ecdsa521 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -3692,16 +4294,16 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_credential : WinRt.HString := To_HString (credential);
+         temp             : WinRt.UInt32 := 0;
+         HStr_credential : constant WinRt.HString := To_HString (credential);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3720,7 +4322,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3733,10 +4335,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAttestationHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DecryptTpmAttestationCredentialAsync (HStr_credential, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3746,18 +4348,18 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_credential);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_credential);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3767,22 +4369,26 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
-         HStr_credential : WinRt.HString := To_HString (credential);
+         HStr_credential : constant WinRt.HString := To_HString (credential);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAttestationHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetTpmAttestationCredentialId (HStr_credential, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_credential);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_credential);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -3793,17 +4399,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyAttestationHelper");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_credential : WinRt.HString := To_HString (credential);
-         HStr_containerName : WinRt.HString := To_HString (containerName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_credential : constant WinRt.HString := To_HString (credential);
+         HStr_containerName : constant WinRt.HString := To_HString (containerName);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3822,7 +4428,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3835,10 +4441,10 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
          Hr := RoGetActivationFactory (m_hString, IID_IKeyAttestationHelperStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DecryptTpmAttestationCredentialAsync (HStr_credential, HStr_containerName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3848,19 +4454,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_credential);
-         Hr := WindowsDeleteString (HStr_containerName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_credential);
+         tmp := WindowsDeleteString (HStr_containerName);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3873,80 +4479,96 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       function get_PassportKeyStorageProvider
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyStorageProviderNamesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyStorageProviderNamesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PassportKeyStorageProvider (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SoftwareKeyStorageProvider
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyStorageProviderNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyStorageProviderNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SoftwareKeyStorageProvider (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_SmartcardKeyStorageProvider
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyStorageProviderNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyStorageProviderNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SmartcardKeyStorageProvider (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PlatformKeyStorageProvider
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.KeyStorageProviderNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IKeyStorageProviderNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKeyStorageProviderNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlatformKeyStorageProvider (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -3961,12 +4583,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out PfxImportParameters) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPfxImportParameters, IPfxImportParameters_Ptr);
    begin
       if this.m_IPfxImportParameters /= null then
          if this.m_IPfxImportParameters.all /= null then
-            RefCount := this.m_IPfxImportParameters.all.Release;
+            temp := this.m_IPfxImportParameters.all.Release;
             Free (this.m_IPfxImportParameters);
          end if;
       end if;
@@ -3977,7 +4599,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return PfxImportParameters is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.PfxImportParameters");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.PfxImportParameters");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.IPfxImportParameters;
    begin
       return RetVal : PfxImportParameters do
@@ -3986,7 +4609,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_IPfxImportParameters := new Windows.Security.Cryptography.Certificates.IPfxImportParameters;
             Retval.m_IPfxImportParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3999,10 +4622,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.ExportOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ExportOption;
    begin
       Hr := this.m_IPfxImportParameters.all.get_Exportable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4012,9 +4639,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.ExportOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPfxImportParameters.all.put_Exportable (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyProtectionLevel
@@ -4023,10 +4654,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
    begin
       Hr := this.m_IPfxImportParameters.all.get_KeyProtectionLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4036,9 +4671,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.KeyProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPfxImportParameters.all.put_KeyProtectionLevel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstallOptions
@@ -4047,10 +4686,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.InstallOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.InstallOptions;
    begin
       Hr := this.m_IPfxImportParameters.all.get_InstallOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4060,9 +4703,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : Windows.Security.Cryptography.Certificates.InstallOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPfxImportParameters.all.put_InstallOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FriendlyName
@@ -4071,13 +4718,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPfxImportParameters.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4087,11 +4738,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPfxImportParameters.all.put_FriendlyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_KeyStorageProviderName
@@ -4100,13 +4755,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPfxImportParameters.all.get_KeyStorageProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4116,11 +4775,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPfxImportParameters.all.put_KeyStorageProviderName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContainerNamePrefix
@@ -4129,13 +4792,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPfxImportParameters.all.get_ContainerNamePrefix (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4145,11 +4812,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPfxImportParameters.all.put_ContainerNamePrefix (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ReaderName
@@ -4158,13 +4829,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPfxImportParameters.all.get_ReaderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4174,11 +4849,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPfxImportParameters.all.put_ReaderName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -4188,60 +4867,72 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       function get_Personal
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.StandardCertificateStoreNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.StandardCertificateStoreNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IStandardCertificateStoreNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardCertificateStoreNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Personal (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TrustedRootCertificationAuthorities
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.StandardCertificateStoreNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.StandardCertificateStoreNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IStandardCertificateStoreNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardCertificateStoreNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TrustedRootCertificationAuthorities (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_IntermediateCertificationAuthorities
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.StandardCertificateStoreNames");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.StandardCertificateStoreNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Certificates.IStandardCertificateStoreNamesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStandardCertificateStoreNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IntermediateCertificationAuthorities (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -4256,12 +4947,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out SubjectAlternativeNameInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISubjectAlternativeNameInfo, ISubjectAlternativeNameInfo_Ptr);
    begin
       if this.m_ISubjectAlternativeNameInfo /= null then
          if this.m_ISubjectAlternativeNameInfo.all /= null then
-            RefCount := this.m_ISubjectAlternativeNameInfo.all.Release;
+            temp := this.m_ISubjectAlternativeNameInfo.all.Release;
             Free (this.m_ISubjectAlternativeNameInfo);
          end if;
       end if;
@@ -4272,7 +4963,8 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor return SubjectAlternativeNameInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo");
       m_ComRetVal  : aliased Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
    begin
       return RetVal : SubjectAlternativeNameInfo do
@@ -4281,7 +4973,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             Retval.m_ISubjectAlternativeNameInfo := new Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
             Retval.m_ISubjectAlternativeNameInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4294,13 +4986,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISubjectAlternativeNameInfo.all.get_EmailName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4310,13 +5006,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISubjectAlternativeNameInfo.all.get_IPAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4326,13 +5026,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISubjectAlternativeNameInfo.all.get_Url (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4342,13 +5046,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISubjectAlternativeNameInfo.all.get_DnsName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4358,13 +5066,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISubjectAlternativeNameInfo.all.get_DistinguishedName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4374,13 +5086,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISubjectAlternativeNameInfo.all.get_PrincipalName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4390,17 +5106,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
       Hr := m_Interface.get_EmailNames (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4410,17 +5130,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
       Hr := m_Interface.get_IPAddresses (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4430,17 +5154,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
       Hr := m_Interface.get_Urls (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4450,17 +5178,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
       Hr := m_Interface.get_DnsNames (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4470,17 +5202,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
       Hr := m_Interface.get_DistinguishedNames (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4490,17 +5226,21 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
       Hr := m_Interface.get_PrincipalNames (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4510,15 +5250,19 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CertificateExtension'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificateExtension;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo_Interface, WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo2, WinRt.Windows.Security.Cryptography.Certificates.IID_ISubjectAlternativeNameInfo2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.CertificateExtension do
          m_Interface := QInterface (this.m_ISubjectAlternativeNameInfo.all);
          Hr := m_Interface.get_Extension (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificateExtension := new Windows.Security.Cryptography.Certificates.ICertificateExtension;
          Retval.m_ICertificateExtension.all := m_ComRetVal;
       end return;
@@ -4533,12 +5277,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out UserCertificateEnrollmentManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserCertificateEnrollmentManager, IUserCertificateEnrollmentManager_Ptr);
    begin
       if this.m_IUserCertificateEnrollmentManager /= null then
          if this.m_IUserCertificateEnrollmentManager.all /= null then
-            RefCount := this.m_IUserCertificateEnrollmentManager.all.Release;
+            temp := this.m_IUserCertificateEnrollmentManager.all.Release;
             Free (this.m_IUserCertificateEnrollmentManager);
          end if;
       end if;
@@ -4554,13 +5298,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4579,7 +5323,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4592,7 +5336,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       Hr := this.m_IUserCertificateEnrollmentManager.all.CreateRequestAsync (request.m_ICertificateRequestProperties.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4602,15 +5346,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4621,8 +5365,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       installOption : Windows.Security.Cryptography.Certificates.InstallOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_certificate_p : WinRt.HString := To_HString (certificate_p);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_certificate_p : constant WinRt.HString := To_HString (certificate_p);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4630,7 +5375,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4651,13 +5395,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_certificate_p);
+      tmp := WindowsDeleteString (HStr_certificate_p);
    end;
 
    procedure ImportPfxDataAsync
@@ -4671,10 +5415,11 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       friendlyName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_pfxData : WinRt.HString := To_HString (pfxData);
-      HStr_password : WinRt.HString := To_HString (password);
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+      HStr_password : constant WinRt.HString := To_HString (password);
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4682,7 +5427,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4703,15 +5447,15 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_pfxData);
-      Hr := WindowsDeleteString (HStr_password);
-      Hr := WindowsDeleteString (HStr_friendlyName);
+      tmp := WindowsDeleteString (HStr_pfxData);
+      tmp := WindowsDeleteString (HStr_password);
+      tmp := WindowsDeleteString (HStr_friendlyName);
    end;
 
    procedure ImportPfxDataAsync
@@ -4726,11 +5470,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       keyStorageProvider : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_pfxData : WinRt.HString := To_HString (pfxData);
-      HStr_password : WinRt.HString := To_HString (password);
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
-      HStr_keyStorageProvider : WinRt.HString := To_HString (keyStorageProvider);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+      HStr_password : constant WinRt.HString := To_HString (password);
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
+      HStr_keyStorageProvider : constant WinRt.HString := To_HString (keyStorageProvider);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4738,7 +5483,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4759,16 +5503,16 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_pfxData);
-      Hr := WindowsDeleteString (HStr_password);
-      Hr := WindowsDeleteString (HStr_friendlyName);
-      Hr := WindowsDeleteString (HStr_keyStorageProvider);
+      tmp := WindowsDeleteString (HStr_pfxData);
+      tmp := WindowsDeleteString (HStr_password);
+      tmp := WindowsDeleteString (HStr_friendlyName);
+      tmp := WindowsDeleteString (HStr_keyStorageProvider);
    end;
 
    procedure ImportPfxDataAsync
@@ -4779,10 +5523,11 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Certificates.IUserCertificateEnrollmentManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_pfxData : WinRt.HString := To_HString (pfxData);
-      HStr_password : WinRt.HString := To_HString (password);
+      temp             : WinRt.UInt32 := 0;
+      HStr_pfxData : constant WinRt.HString := To_HString (pfxData);
+      HStr_password : constant WinRt.HString := To_HString (password);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4790,7 +5535,6 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4806,7 +5550,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    begin
       m_Interface := QInterface (this.m_IUserCertificateEnrollmentManager.all);
       Hr := m_Interface.ImportPfxDataAsync (HStr_pfxData, HStr_password, pfxImportParameters_p.m_IPfxImportParameters.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4814,14 +5558,14 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_pfxData);
-      Hr := WindowsDeleteString (HStr_password);
+      tmp := WindowsDeleteString (HStr_pfxData);
+      tmp := WindowsDeleteString (HStr_password);
    end;
 
    -----------------------------------------------------------------------------
@@ -4833,12 +5577,12 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    end;
 
    procedure Finalize (this : in out UserCertificateStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserCertificateStore, IUserCertificateStore_Ptr);
    begin
       if this.m_IUserCertificateStore /= null then
          if this.m_IUserCertificateStore.all /= null then
-            RefCount := this.m_IUserCertificateStore.all.Release;
+            temp := this.m_IUserCertificateStore.all.Release;
             Free (this.m_IUserCertificateStore);
          end if;
       end if;
@@ -4854,13 +5598,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4878,7 +5622,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4891,7 +5635,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       Hr := this.m_IUserCertificateStore.all.RequestAddAsync (certificate_p.m_ICertificate.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4901,9 +5645,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4918,13 +5662,13 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4942,7 +5686,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4955,7 +5699,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
       Hr := this.m_IUserCertificateStore.all.RequestDeleteAsync (certificate_p.m_ICertificate.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4965,9 +5709,9 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4981,13 +5725,17 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserCertificateStore.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

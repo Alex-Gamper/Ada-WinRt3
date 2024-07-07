@@ -49,12 +49,12 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    end;
 
    procedure Finalize (this : in out ConditionForceEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IForceFeedbackEffect, IForceFeedbackEffect_Ptr);
    begin
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
-            RefCount := this.m_IForceFeedbackEffect.all.Release;
+            temp := this.m_IForceFeedbackEffect.all.Release;
             Free (this.m_IForceFeedbackEffect);
          end if;
       end if;
@@ -69,9 +69,10 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return ConditionForceEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConditionForceEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConditionForceEffect");
       m_Factory    : access IConditionForceEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : ConditionForceEffect do
@@ -80,9 +81,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             Hr := m_Factory.CreateInstance (effectKind, m_ComRetVal'Access);
             Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -95,10 +96,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_Gain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -108,9 +113,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.put_Gain (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -119,10 +128,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -131,9 +144,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ConditionForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -141,9 +158,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ConditionForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -152,14 +173,18 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IConditionForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IConditionForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IConditionForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -175,13 +200,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       bias : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IConditionForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IConditionForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IConditionForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParameters (direction, positiveCoefficient, negativeCoefficient, maxPositiveMagnitude, maxNegativeMagnitude, deadZone, bias);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -193,12 +222,12 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    end;
 
    procedure Finalize (this : in out ConstantForceEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IForceFeedbackEffect, IForceFeedbackEffect_Ptr);
    begin
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
-            RefCount := this.m_IForceFeedbackEffect.all.Release;
+            temp := this.m_IForceFeedbackEffect.all.Release;
             Free (this.m_IForceFeedbackEffect);
          end if;
       end if;
@@ -209,7 +238,8 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
 
    function Constructor return ConstantForceEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConstantForceEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConstantForceEffect");
       m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : ConstantForceEffect do
@@ -218,7 +248,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -231,10 +261,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_Gain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -244,9 +278,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.put_Gain (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -255,10 +293,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -267,9 +309,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ConstantForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -277,9 +323,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ConstantForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetParameters
@@ -289,13 +339,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       duration : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IConstantForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IConstantForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IConstantForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParameters (vector, duration);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetParametersWithEnvelope
@@ -312,13 +366,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       repeatCount : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IConstantForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IConstantForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IConstantForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParametersWithEnvelope (vector, attackGain, sustainGain, releaseGain, startDelay, attackDuration, sustainDuration, releaseDuration, repeatCount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -330,12 +388,12 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    end;
 
    procedure Finalize (this : in out ForceFeedbackMotor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IForceFeedbackMotor, IForceFeedbackMotor_Ptr);
    begin
       if this.m_IForceFeedbackMotor /= null then
          if this.m_IForceFeedbackMotor.all /= null then
-            RefCount := this.m_IForceFeedbackMotor.all.Release;
+            temp := this.m_IForceFeedbackMotor.all.Release;
             Free (this.m_IForceFeedbackMotor);
          end if;
       end if;
@@ -350,10 +408,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IForceFeedbackMotor.all.get_AreEffectsPaused (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -363,10 +425,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IForceFeedbackMotor.all.get_MasterGain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -376,9 +442,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackMotor.all.put_MasterGain (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsEnabled
@@ -387,10 +457,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IForceFeedbackMotor.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -400,10 +474,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectAxes is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectAxes;
    begin
       Hr := this.m_IForceFeedbackMotor.all.get_SupportedAxes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -414,13 +492,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackLoadEffectResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ForceFeedbackLoadEffectResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -438,7 +516,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ForceFeedbackLoadEffectResult.Kind_Delegate, AsyncOperationCompletedHandler_ForceFeedbackLoadEffectResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -451,7 +529,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr := this.m_IForceFeedbackMotor.all.LoadEffectAsync (effect, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -461,9 +539,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -476,9 +554,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ForceFeedbackMotor
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackMotor.all.PauseAllEffects;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ResumeAllEffects
@@ -486,9 +568,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ForceFeedbackMotor
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackMotor.all.ResumeAllEffects;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopAllEffects
@@ -496,9 +582,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out ForceFeedbackMotor
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackMotor.all.StopAllEffects;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryDisableAsync
@@ -507,13 +597,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -531,7 +621,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -544,7 +634,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr := this.m_IForceFeedbackMotor.all.TryDisableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -554,9 +644,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -570,13 +660,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -594,7 +684,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -607,7 +697,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr := this.m_IForceFeedbackMotor.all.TryEnableAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -617,9 +707,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -633,13 +723,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -657,7 +747,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -670,7 +760,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr := this.m_IForceFeedbackMotor.all.TryResetAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -680,9 +770,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -697,13 +787,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -721,7 +811,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -734,7 +824,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr := this.m_IForceFeedbackMotor.all.TryUnloadEffectAsync (effect, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -744,9 +834,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -763,12 +853,12 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    end;
 
    procedure Finalize (this : in out PeriodicForceEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IForceFeedbackEffect, IForceFeedbackEffect_Ptr);
    begin
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
-            RefCount := this.m_IForceFeedbackEffect.all.Release;
+            temp := this.m_IForceFeedbackEffect.all.Release;
             Free (this.m_IForceFeedbackEffect);
          end if;
       end if;
@@ -783,9 +873,10 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return PeriodicForceEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect");
       m_Factory    : access IPeriodicForceEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : PeriodicForceEffect do
@@ -794,9 +885,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             Hr := m_Factory.CreateInstance (effectKind, m_ComRetVal'Access);
             Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -809,10 +900,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_Gain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -822,9 +917,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.put_Gain (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -833,10 +932,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -845,9 +948,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out PeriodicForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -855,9 +962,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out PeriodicForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -866,14 +977,18 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IPeriodicForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -887,13 +1002,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       duration : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IPeriodicForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParameters (vector, frequency, phase, bias, duration);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetParametersWithEnvelope
@@ -913,13 +1032,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       repeatCount : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IPeriodicForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParametersWithEnvelope (vector, frequency, phase, bias, attackGain, sustainGain, releaseGain, startDelay, attackDuration, sustainDuration, releaseDuration, repeatCount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -931,12 +1054,12 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    end;
 
    procedure Finalize (this : in out RampForceEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IForceFeedbackEffect, IForceFeedbackEffect_Ptr);
    begin
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
-            RefCount := this.m_IForceFeedbackEffect.all.Release;
+            temp := this.m_IForceFeedbackEffect.all.Release;
             Free (this.m_IForceFeedbackEffect);
          end if;
       end if;
@@ -947,7 +1070,8 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
 
    function Constructor return RampForceEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.RampForceEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.RampForceEffect");
       m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : RampForceEffect do
@@ -956,7 +1080,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
             Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -969,10 +1093,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_Gain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -982,9 +1110,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.put_Gain (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -993,10 +1125,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1005,9 +1141,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out RampForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -1015,9 +1155,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       this : in out RampForceEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IForceFeedbackEffect.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetParameters
@@ -1028,13 +1172,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       duration : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IRampForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IRampForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IRampForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParameters (startVector, endVector, duration);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetParametersWithEnvelope
@@ -1052,13 +1200,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       repeatCount : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IRampForceEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IRampForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IRampForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
       Hr := m_Interface.SetParametersWithEnvelope (startVector, endVector, attackGain, sustainGain, releaseGain, startDelay, attackDuration, sustainDuration, releaseDuration, repeatCount);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Gaming.Input.ForceFeedback;

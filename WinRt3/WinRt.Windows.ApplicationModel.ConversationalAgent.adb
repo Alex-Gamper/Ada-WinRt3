@@ -78,12 +78,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ActivationSignalDetectionConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IActivationSignalDetectionConfiguration, IActivationSignalDetectionConfiguration_Ptr);
    begin
       if this.m_IActivationSignalDetectionConfiguration /= null then
          if this.m_IActivationSignalDetectionConfiguration.all /= null then
-            RefCount := this.m_IActivationSignalDetectionConfiguration.all.Release;
+            temp := this.m_IActivationSignalDetectionConfiguration.all.Release;
             Free (this.m_IActivationSignalDetectionConfiguration);
          end if;
       end if;
@@ -98,13 +98,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_SignalId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -114,13 +118,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_ModelId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -130,13 +138,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -146,10 +158,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_IsActive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -159,9 +175,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.SetEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetEnabledAsync
@@ -170,7 +190,8 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -178,7 +199,6 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -199,9 +219,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -213,11 +233,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationAvailabilityInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationAvailabilityInfo do
          Hr := this.m_IActivationSignalDetectionConfiguration.all.get_AvailabilityInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDetectionConfigurationAvailabilityInfo := new Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo;
          Retval.m_IDetectionConfigurationAvailabilityInfo.all := m_ComRetVal;
       end return;
@@ -230,10 +254,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.add_AvailabilityChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -243,9 +271,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.remove_AvailabilityChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetModelData
@@ -255,11 +287,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       data : Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_dataType : WinRt.HString := To_HString (dataType);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_dataType : constant WinRt.HString := To_HString (dataType);
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.SetModelData (HStr_dataType, data);
-      Hr := WindowsDeleteString (HStr_dataType);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_dataType);
    end;
 
    procedure SetModelDataAsync
@@ -269,8 +305,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       data : Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_dataType : WinRt.HString := To_HString (dataType);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_dataType : constant WinRt.HString := To_HString (dataType);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -278,7 +315,6 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -299,13 +335,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_dataType);
+      tmp := WindowsDeleteString (HStr_dataType);
    end;
 
    function GetModelDataType
@@ -314,13 +350,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.GetModelDataType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -330,13 +370,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -355,7 +395,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -368,7 +408,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IActivationSignalDetectionConfiguration.all.GetModelDataTypeAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -378,15 +418,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -396,10 +436,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.GetModelData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -409,13 +453,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -433,7 +477,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInputStream.Kind_Delegate, AsyncOperationCompletedHandler_IInputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -446,7 +490,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IActivationSignalDetectionConfiguration.all.GetModelDataAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -456,9 +500,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -471,9 +515,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out ActivationSignalDetectionConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.ClearModelData;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ClearModelDataAsync
@@ -481,7 +529,8 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out ActivationSignalDetectionConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -489,7 +538,6 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -510,9 +558,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -524,10 +572,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_TrainingStepsCompleted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -537,10 +589,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_TrainingStepsRemaining (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -550,10 +606,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.get_TrainingDataFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -565,10 +625,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.ApplyTrainingData (trainingDataFormat, trainingData, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -580,13 +644,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DetectionConfigurationTrainingStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -604,7 +668,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DetectionConfigurationTrainingStatus.Kind_Delegate, AsyncOperationCompletedHandler_DetectionConfigurationTrainingStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -617,7 +681,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IActivationSignalDetectionConfiguration.all.ApplyTrainingDataAsync (trainingDataFormat, trainingData, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -627,9 +691,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -642,9 +706,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out ActivationSignalDetectionConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IActivationSignalDetectionConfiguration.all.ClearTrainingData;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ClearTrainingDataAsync
@@ -652,7 +720,8 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out ActivationSignalDetectionConfiguration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -660,7 +729,6 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -681,9 +749,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -698,12 +766,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ActivationSignalDetector) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IActivationSignalDetector, IActivationSignalDetector_Ptr);
    begin
       if this.m_IActivationSignalDetector /= null then
          if this.m_IActivationSignalDetector.all /= null then
-            RefCount := this.m_IActivationSignalDetector.all.Release;
+            temp := this.m_IActivationSignalDetector.all.Release;
             Free (this.m_IActivationSignalDetector);
          end if;
       end if;
@@ -718,13 +786,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IActivationSignalDetector.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -734,10 +806,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
    begin
       Hr := this.m_IActivationSignalDetector.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -747,10 +823,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IActivationSignalDetector.all.get_CanCreateConfigurations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -760,13 +840,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IActivationSignalDetector.all.get_SupportedModelDataTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -776,13 +860,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_ActivationSignalDetectionTrainingDataFormat.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ActivationSignalDetectionTrainingDataFormat.Kind;
    begin
       Hr := this.m_IActivationSignalDetector.all.get_SupportedTrainingDataFormats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ActivationSignalDetectionTrainingDataFormat (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -792,13 +880,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_ActivationSignalDetectorPowerState.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ActivationSignalDetectorPowerState.Kind;
    begin
       Hr := this.m_IActivationSignalDetector.all.get_SupportedPowerStates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ActivationSignalDetectorPowerState (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -809,15 +901,19 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
    begin
       Hr := this.m_IActivationSignalDetector.all.GetSupportedModelIdsForSignalId (HStr_signalId, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_signalId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -828,14 +924,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -853,7 +949,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -866,7 +962,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IActivationSignalDetector.all.GetSupportedModelIdsForSignalIdAsync (HStr_signalId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -876,14 +972,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_signalId);
       return m_RetVal;
    end;
 
@@ -895,15 +991,19 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       displayName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
-      HStr_modelId : WinRt.HString := To_HString (modelId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       Hr := this.m_IActivationSignalDetector.all.CreateConfiguration (HStr_signalId, HStr_modelId, HStr_displayName);
-      Hr := WindowsDeleteString (HStr_signalId);
-      Hr := WindowsDeleteString (HStr_modelId);
-      Hr := WindowsDeleteString (HStr_displayName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_modelId);
+      tmp := WindowsDeleteString (HStr_displayName);
    end;
 
    procedure CreateConfigurationAsync
@@ -914,10 +1014,11 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       displayName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
-      HStr_modelId : WinRt.HString := To_HString (modelId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -925,7 +1026,6 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -946,15 +1046,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_signalId);
-      Hr := WindowsDeleteString (HStr_modelId);
-      Hr := WindowsDeleteString (HStr_displayName);
+      tmp := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_modelId);
+      tmp := WindowsDeleteString (HStr_displayName);
    end;
 
    function GetConfigurations
@@ -963,13 +1063,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_IActivationSignalDetectionConfiguration.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IActivationSignalDetectionConfiguration.Kind;
    begin
       Hr := this.m_IActivationSignalDetector.all.GetConfigurations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IActivationSignalDetectionConfiguration (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -979,13 +1083,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1003,7 +1107,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1016,7 +1120,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IActivationSignalDetector.all.GetConfigurationsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1026,9 +1130,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1044,17 +1148,21 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
-      HStr_modelId : WinRt.HString := To_HString (modelId);
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfiguration do
          Hr := this.m_IActivationSignalDetector.all.GetConfiguration (HStr_signalId, HStr_modelId, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IActivationSignalDetectionConfiguration := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration;
          Retval.m_IActivationSignalDetectionConfiguration.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_signalId);
-         Hr := WindowsDeleteString (HStr_modelId);
+         tmp := WindowsDeleteString (HStr_signalId);
+         tmp := WindowsDeleteString (HStr_modelId);
       end return;
    end;
 
@@ -1066,15 +1174,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
-      HStr_modelId : WinRt.HString := To_HString (modelId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ActivationSignalDetectionConfiguration.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1092,7 +1200,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ActivationSignalDetectionConfiguration.Kind_Delegate, AsyncOperationCompletedHandler_ActivationSignalDetectionConfiguration.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1106,7 +1214,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
          Hr := this.m_IActivationSignalDetector.all.GetConfigurationAsync (HStr_signalId, HStr_modelId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1118,15 +1226,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
                   Retval.m_IActivationSignalDetectionConfiguration := new Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration;
                   Retval.m_IActivationSignalDetectionConfiguration.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_signalId);
-         Hr := WindowsDeleteString (HStr_modelId);
+         tmp := WindowsDeleteString (HStr_signalId);
+         tmp := WindowsDeleteString (HStr_modelId);
       end return;
    end;
 
@@ -1137,13 +1245,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       modelId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
-      HStr_modelId : WinRt.HString := To_HString (modelId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
    begin
       Hr := this.m_IActivationSignalDetector.all.RemoveConfiguration (HStr_signalId, HStr_modelId);
-      Hr := WindowsDeleteString (HStr_signalId);
-      Hr := WindowsDeleteString (HStr_modelId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_modelId);
    end;
 
    procedure RemoveConfigurationAsync
@@ -1153,9 +1265,10 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       modelId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_signalId : WinRt.HString := To_HString (signalId);
-      HStr_modelId : WinRt.HString := To_HString (modelId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_signalId : constant WinRt.HString := To_HString (signalId);
+      HStr_modelId : constant WinRt.HString := To_HString (modelId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1163,7 +1276,6 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1184,14 +1296,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_signalId);
-      Hr := WindowsDeleteString (HStr_modelId);
+      tmp := WindowsDeleteString (HStr_signalId);
+      tmp := WindowsDeleteString (HStr_modelId);
    end;
 
    -----------------------------------------------------------------------------
@@ -1203,12 +1315,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ConversationalAgentDetectorManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConversationalAgentDetectorManager, IConversationalAgentDetectorManager_Ptr);
    begin
       if this.m_IConversationalAgentDetectorManager /= null then
          if this.m_IConversationalAgentDetectorManager.all /= null then
-            RefCount := this.m_IConversationalAgentDetectorManager.all.Release;
+            temp := this.m_IConversationalAgentDetectorManager.all.Release;
             Free (this.m_IConversationalAgentDetectorManager);
          end if;
       end if;
@@ -1220,20 +1332,24 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    function get_Default
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentDetectorManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.ConversationalAgent.ConversationalAgentDetectorManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ConversationalAgent.ConversationalAgentDetectorManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentDetectorManager do
          Hr := RoGetActivationFactory (m_hString, IID_IConversationalAgentDetectorManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Default (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IConversationalAgentDetectorManager := new Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager;
             Retval.m_IConversationalAgentDetectorManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1246,13 +1362,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_IActivationSignalDetector.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IActivationSignalDetector.Kind;
    begin
       Hr := this.m_IConversationalAgentDetectorManager.all.GetAllActivationSignalDetectors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IActivationSignalDetector (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1262,13 +1382,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1286,7 +1406,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1299,7 +1419,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentDetectorManager.all.GetAllActivationSignalDetectorsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1309,9 +1429,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1326,13 +1446,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_IActivationSignalDetector.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IActivationSignalDetector.Kind;
    begin
       Hr := this.m_IConversationalAgentDetectorManager.all.GetActivationSignalDetectors (kind, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IActivationSignalDetector (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1343,13 +1467,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1367,7 +1491,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1380,7 +1504,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentDetectorManager.all.GetActivationSignalDetectorsAsync (kind, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1390,9 +1514,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1409,12 +1533,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ConversationalAgentSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConversationalAgentSession, IConversationalAgentSession_Ptr);
    begin
       if this.m_IConversationalAgentSession /= null then
          if this.m_IConversationalAgentSession.all /= null then
-            RefCount := this.m_IConversationalAgentSession.all.Release;
+            temp := this.m_IConversationalAgentSession.all.Release;
             Free (this.m_IConversationalAgentSession);
          end if;
       end if;
@@ -1426,15 +1550,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    function GetCurrentSessionAsync
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession");
       m_Factory        : access WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ConversationalAgentSession.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1452,7 +1576,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConversationalAgentSession.Kind_Delegate, AsyncOperationCompletedHandler_ConversationalAgentSession.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1466,10 +1590,10 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
          Hr := RoGetActivationFactory (m_hString, IID_IConversationalAgentSessionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrentSessionAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1481,35 +1605,39 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
                      Retval.m_IConversationalAgentSession := new Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession;
                      Retval.m_IConversationalAgentSession.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function GetCurrentSessionSync
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession");
       m_Factory        : access WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSession do
          Hr := RoGetActivationFactory (m_hString, IID_IConversationalAgentSessionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrentSessionSync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IConversationalAgentSession := new Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession;
             Retval.m_IConversationalAgentSession.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1523,10 +1651,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IConversationalAgentSession.all.add_SessionInterrupted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1536,9 +1668,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSession.all.remove_SessionInterrupted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SignalDetected
@@ -1548,10 +1684,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IConversationalAgentSession.all.add_SignalDetected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1561,9 +1701,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSession.all.remove_SignalDetected (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SystemStateChanged
@@ -1573,10 +1717,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IConversationalAgentSession.all.add_SystemStateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1586,9 +1734,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSession.all.remove_SystemStateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AgentState
@@ -1597,10 +1749,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_AgentState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1610,11 +1766,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSignal'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSignal do
          Hr := this.m_IConversationalAgentSession.all.get_Signal (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConversationalAgentSignal := new Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal;
          Retval.m_IConversationalAgentSignal.all := m_ComRetVal;
       end return;
@@ -1626,10 +1786,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_IsIndicatorLightAvailable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1639,10 +1803,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_IsScreenAvailable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1652,10 +1820,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_IsUserAuthenticated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1665,10 +1837,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_IsVoiceActivationAvailable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1678,10 +1854,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_IsInterruptible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1691,10 +1871,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.get_IsInterrupted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1705,13 +1889,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ConversationalAgentSessionUpdateResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1729,7 +1913,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse.Kind_Delegate, AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1742,7 +1926,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.RequestInterruptibleAsync (interruptible, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1752,9 +1936,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1769,10 +1953,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse;
    begin
       Hr := this.m_IConversationalAgentSession.all.RequestInterruptible (interruptible, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1783,13 +1971,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ConversationalAgentSessionUpdateResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1807,7 +1995,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse.Kind_Delegate, AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1820,7 +2008,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.RequestAgentStateChangeAsync (state, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1830,9 +2018,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1847,10 +2035,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse;
    begin
       Hr := this.m_IConversationalAgentSession.all.RequestAgentStateChange (state, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1860,13 +2052,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ConversationalAgentSessionUpdateResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1884,7 +2076,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse.Kind_Delegate, AsyncOperationCompletedHandler_ConversationalAgentSessionUpdateResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1897,7 +2089,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.RequestForegroundActivationAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1907,9 +2099,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1923,10 +2115,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse;
    begin
       Hr := this.m_IConversationalAgentSession.all.RequestForegroundActivation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1936,13 +2132,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IInspectable.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1960,7 +2156,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IInspectable.Kind_Delegate, AsyncOperationCompletedHandler_IInspectable.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1973,7 +2169,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.GetAudioClientAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1983,9 +2179,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1999,10 +2195,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IConversationalAgentSession.all.GetAudioClient (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2013,13 +2213,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Media.Audio.AudioDeviceInputNode'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AudioDeviceInputNode.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2037,7 +2237,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AudioDeviceInputNode.Kind_Delegate, AsyncOperationCompletedHandler_AudioDeviceInputNode.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2051,7 +2251,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
          Hr := this.m_IConversationalAgentSession.all.CreateAudioDeviceInputNodeAsync (graph.m_IAudioGraph.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2063,9 +2263,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
                   Retval.m_IAudioDeviceInputNode := new Windows.Media.Audio.IAudioDeviceInputNode;
                   Retval.m_IAudioDeviceInputNode.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2080,11 +2280,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Media.Audio.AudioDeviceInputNode'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Audio.IAudioDeviceInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioDeviceInputNode do
          Hr := this.m_IConversationalAgentSession.all.CreateAudioDeviceInputNode (graph.m_IAudioGraph.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioDeviceInputNode := new Windows.Media.Audio.IAudioDeviceInputNode;
          Retval.m_IAudioDeviceInputNode.all := m_ComRetVal;
       end return;
@@ -2096,13 +2300,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2121,7 +2325,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2134,7 +2338,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.GetAudioCaptureDeviceIdAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2144,15 +2348,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -2162,13 +2366,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IConversationalAgentSession.all.GetAudioCaptureDeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2178,13 +2386,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2203,7 +2411,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2216,7 +2424,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.GetAudioRenderDeviceIdAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2226,15 +2434,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -2244,13 +2452,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IConversationalAgentSession.all.GetAudioRenderDeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2260,13 +2472,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2284,7 +2496,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2297,7 +2509,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.GetSignalModelIdAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2307,9 +2519,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2323,10 +2535,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IConversationalAgentSession.all.GetSignalModelId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2337,13 +2553,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2361,7 +2577,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2374,7 +2590,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.SetSignalModelIdAsync (signalModelId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2384,9 +2600,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2401,10 +2617,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSession.all.SetSignalModelId (signalModelId, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2414,13 +2634,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2438,7 +2658,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2451,7 +2671,7 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       Hr := this.m_IConversationalAgentSession.all.GetSupportedSignalModelIdsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2461,9 +2681,9 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2477,13 +2697,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IConversationalAgentSession.all.GetSupportedSignalModelIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2492,13 +2716,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       this : in out ConversationalAgentSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConversationalAgentSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2510,12 +2738,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ConversationalAgentSessionInterruptedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConversationalAgentSessionInterruptedEventArgs, IConversationalAgentSessionInterruptedEventArgs_Ptr);
    begin
       if this.m_IConversationalAgentSessionInterruptedEventArgs /= null then
          if this.m_IConversationalAgentSessionInterruptedEventArgs.all /= null then
-            RefCount := this.m_IConversationalAgentSessionInterruptedEventArgs.all.Release;
+            temp := this.m_IConversationalAgentSessionInterruptedEventArgs.all.Release;
             Free (this.m_IConversationalAgentSessionInterruptedEventArgs);
          end if;
       end if;
@@ -2533,12 +2761,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ConversationalAgentSignal) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConversationalAgentSignal, IConversationalAgentSignal_Ptr);
    begin
       if this.m_IConversationalAgentSignal /= null then
          if this.m_IConversationalAgentSignal.all /= null then
-            RefCount := this.m_IConversationalAgentSignal.all.Release;
+            temp := this.m_IConversationalAgentSignal.all.Release;
             Free (this.m_IConversationalAgentSignal);
          end if;
       end if;
@@ -2553,10 +2781,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConversationalAgentSignal.all.get_IsSignalVerificationRequired (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2566,9 +2798,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSignal.all.put_IsSignalVerificationRequired (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SignalId
@@ -2577,13 +2813,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IConversationalAgentSignal.all.get_SignalId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2593,11 +2833,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IConversationalAgentSignal.all.put_SignalId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SignalName
@@ -2606,13 +2850,17 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IConversationalAgentSignal.all.get_SignalName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2622,11 +2870,15 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IConversationalAgentSignal.all.put_SignalName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SignalContext
@@ -2635,10 +2887,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IConversationalAgentSignal.all.get_SignalContext (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2648,9 +2904,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSignal.all.put_SignalContext (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SignalStart
@@ -2659,10 +2919,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IConversationalAgentSignal.all.get_SignalStart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2672,9 +2936,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSignal.all.put_SignalStart (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SignalEnd
@@ -2683,10 +2951,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IConversationalAgentSignal.all.get_SignalEnd (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2696,9 +2968,13 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConversationalAgentSignal.all.put_SignalEnd (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2710,12 +2986,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ConversationalAgentSignalDetectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConversationalAgentSignalDetectedEventArgs, IConversationalAgentSignalDetectedEventArgs_Ptr);
    begin
       if this.m_IConversationalAgentSignalDetectedEventArgs /= null then
          if this.m_IConversationalAgentSignalDetectedEventArgs.all /= null then
-            RefCount := this.m_IConversationalAgentSignalDetectedEventArgs.all.Release;
+            temp := this.m_IConversationalAgentSignalDetectedEventArgs.all.Release;
             Free (this.m_IConversationalAgentSignalDetectedEventArgs);
          end if;
       end if;
@@ -2733,12 +3009,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out ConversationalAgentSystemStateChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConversationalAgentSystemStateChangedEventArgs, IConversationalAgentSystemStateChangedEventArgs_Ptr);
    begin
       if this.m_IConversationalAgentSystemStateChangedEventArgs /= null then
          if this.m_IConversationalAgentSystemStateChangedEventArgs.all /= null then
-            RefCount := this.m_IConversationalAgentSystemStateChangedEventArgs.all.Release;
+            temp := this.m_IConversationalAgentSystemStateChangedEventArgs.all.Release;
             Free (this.m_IConversationalAgentSystemStateChangedEventArgs);
          end if;
       end if;
@@ -2753,10 +3029,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSystemStateChangeType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSystemStateChangeType;
    begin
       Hr := this.m_IConversationalAgentSystemStateChangedEventArgs.all.get_SystemStateChangeType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2769,12 +3049,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out DetectionConfigurationAvailabilityChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDetectionConfigurationAvailabilityChangedEventArgs, IDetectionConfigurationAvailabilityChangedEventArgs_Ptr);
    begin
       if this.m_IDetectionConfigurationAvailabilityChangedEventArgs /= null then
          if this.m_IDetectionConfigurationAvailabilityChangedEventArgs.all /= null then
-            RefCount := this.m_IDetectionConfigurationAvailabilityChangedEventArgs.all.Release;
+            temp := this.m_IDetectionConfigurationAvailabilityChangedEventArgs.all.Release;
             Free (this.m_IDetectionConfigurationAvailabilityChangedEventArgs);
          end if;
       end if;
@@ -2789,10 +3069,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationAvailabilityChangeKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationAvailabilityChangeKind;
    begin
       Hr := this.m_IDetectionConfigurationAvailabilityChangedEventArgs.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2805,12 +3089,12 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    end;
 
    procedure Finalize (this : in out DetectionConfigurationAvailabilityInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDetectionConfigurationAvailabilityInfo, IDetectionConfigurationAvailabilityInfo_Ptr);
    begin
       if this.m_IDetectionConfigurationAvailabilityInfo /= null then
          if this.m_IDetectionConfigurationAvailabilityInfo.all /= null then
-            RefCount := this.m_IDetectionConfigurationAvailabilityInfo.all.Release;
+            temp := this.m_IDetectionConfigurationAvailabilityInfo.all.Release;
             Free (this.m_IDetectionConfigurationAvailabilityInfo);
          end if;
       end if;
@@ -2825,10 +3109,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDetectionConfigurationAvailabilityInfo.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2838,10 +3126,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDetectionConfigurationAvailabilityInfo.all.get_HasSystemResourceAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2851,10 +3143,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDetectionConfigurationAvailabilityInfo.all.get_HasPermission (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2864,10 +3160,14 @@ package body WinRt.Windows.ApplicationModel.ConversationalAgent is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDetectionConfigurationAvailabilityInfo.all.get_HasLockScreenPermission (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

@@ -43,12 +43,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Shape) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IShape, IShape_Ptr);
    begin
       if this.m_IShape /= null then
          if this.m_IShape.all /= null then
-            RefCount := this.m_IShape.all.Release;
+            temp := this.m_IShape.all.Release;
             Free (this.m_IShape);
          end if;
       end if;
@@ -64,9 +64,10 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return Shape is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory    : access IShapeFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.IShape;
    begin
       return RetVal : Shape do
@@ -75,9 +76,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IShape := new Windows.UI.Xaml.Shapes.IShape;
             Retval.m_IShape.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -87,220 +88,264 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function get_FillProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FillProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeMiterLimitProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeMiterLimitProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeThicknessProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeThicknessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeStartLineCapProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeStartLineCapProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeEndLineCapProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeEndLineCapProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeLineJoinProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeLineJoinProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeDashOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeDashOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeDashCapProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeDashCapProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeDashArrayProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeDashArrayProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StretchProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IShapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IShapeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StretchProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -313,11 +358,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IShape.all.get_Fill (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -329,9 +378,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_Fill (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Stroke
@@ -340,11 +393,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IShape.all.get_Stroke (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -356,9 +413,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_Stroke (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeMiterLimit
@@ -367,10 +428,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IShape.all.get_StrokeMiterLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -380,9 +445,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeMiterLimit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeThickness
@@ -391,10 +460,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IShape.all.get_StrokeThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -404,9 +477,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeStartLineCap
@@ -415,10 +492,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.PenLineCap is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.PenLineCap;
    begin
       Hr := this.m_IShape.all.get_StrokeStartLineCap (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -428,9 +509,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.PenLineCap
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeStartLineCap (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeEndLineCap
@@ -439,10 +524,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.PenLineCap is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.PenLineCap;
    begin
       Hr := this.m_IShape.all.get_StrokeEndLineCap (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -452,9 +541,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.PenLineCap
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeEndLineCap (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeLineJoin
@@ -463,10 +556,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.PenLineJoin is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.PenLineJoin;
    begin
       Hr := this.m_IShape.all.get_StrokeLineJoin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -476,9 +573,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.PenLineJoin
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeLineJoin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashOffset
@@ -487,10 +588,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IShape.all.get_StrokeDashOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -500,9 +605,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeDashOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashCap
@@ -511,10 +620,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.PenLineCap is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.PenLineCap;
    begin
       Hr := this.m_IShape.all.get_StrokeDashCap (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -524,9 +637,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.PenLineCap
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeDashCap (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashArray
@@ -535,11 +652,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.DoubleCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.DoubleCollection do
          Hr := this.m_IShape.all.get_StrokeDashArray (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -551,9 +672,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.DoubleCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_StrokeDashArray (value.m_GenericObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Stretch
@@ -562,10 +687,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.Stretch is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Stretch;
    begin
       Hr := this.m_IShape.all.get_Stretch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -575,9 +704,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.Stretch
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IShape.all.put_Stretch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GeometryTransform
@@ -586,11 +719,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.Transform'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Transform do
          Hr := this.m_IShape.all.get_GeometryTransform (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
@@ -602,15 +739,19 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Composition.CompositionBrush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Shapes.IShape2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Shapes.IShape_Interface, WinRt.Windows.UI.Xaml.Shapes.IShape2, WinRt.Windows.UI.Xaml.Shapes.IID_IShape2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          m_Interface := QInterface (this.m_IShape.all);
          Hr := m_Interface.GetAlphaMask (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
@@ -625,12 +766,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Ellipse) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEllipse, IEllipse_Ptr);
    begin
       if this.m_IEllipse /= null then
          if this.m_IEllipse.all /= null then
-            RefCount := this.m_IEllipse.all.Release;
+            temp := this.m_IEllipse.all.Release;
             Free (this.m_IEllipse);
          end if;
       end if;
@@ -641,7 +782,8 @@ package body WinRt.Windows.UI.Xaml.Shapes is
 
    function Constructor return Ellipse is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Ellipse");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Ellipse");
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.IEllipse;
    begin
       return RetVal : Ellipse do
@@ -650,7 +792,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Retval.m_IEllipse := new Windows.UI.Xaml.Shapes.IEllipse;
             Retval.m_IEllipse.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -666,12 +808,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Line) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILine, ILine_Ptr);
    begin
       if this.m_ILine /= null then
          if this.m_ILine.all /= null then
-            RefCount := this.m_ILine.all.Release;
+            temp := this.m_ILine.all.Release;
             Free (this.m_ILine);
          end if;
       end if;
@@ -682,7 +824,8 @@ package body WinRt.Windows.UI.Xaml.Shapes is
 
    function Constructor return Line is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.ILine;
    begin
       return RetVal : Line do
@@ -691,7 +834,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Retval.m_ILine := new Windows.UI.Xaml.Shapes.ILine;
             Retval.m_ILine.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -701,80 +844,96 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function get_X1Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.ILineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X1Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Y1Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.ILineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Y1Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_X2Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.ILineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_X2Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Y2Property
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.ILineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Y2Property (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -787,10 +946,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ILine.all.get_X1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -800,9 +963,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILine.all.put_X1 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Y1
@@ -811,10 +978,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ILine.all.get_Y1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -824,9 +995,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILine.all.put_Y1 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_X2
@@ -835,10 +1010,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ILine.all.get_X2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -848,9 +1027,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILine.all.put_X2 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Y2
@@ -859,10 +1042,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ILine.all.get_Y2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -872,9 +1059,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILine.all.put_Y2 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -886,12 +1077,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Path) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPath, IPath_Ptr);
    begin
       if this.m_IPath /= null then
          if this.m_IPath.all /= null then
-            RefCount := this.m_IPath.all.Release;
+            temp := this.m_IPath.all.Release;
             Free (this.m_IPath);
          end if;
       end if;
@@ -907,9 +1098,10 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return Path is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Path");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Path");
       m_Factory    : access IPathFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.IPath;
    begin
       return RetVal : Path do
@@ -918,9 +1110,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IPath := new Windows.UI.Xaml.Shapes.IPath;
             Retval.m_IPath.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -930,20 +1122,24 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function get_DataProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Path");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Path");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IPathStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DataProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -956,11 +1152,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.Geometry'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Geometry do
          Hr := this.m_IPath.all.get_Data (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
          Retval.m_IGeometry.all := m_ComRetVal;
       end return;
@@ -972,9 +1172,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.Geometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPath.all.put_Data (value.m_IGeometry.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -986,12 +1190,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Polygon) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPolygon, IPolygon_Ptr);
    begin
       if this.m_IPolygon /= null then
          if this.m_IPolygon.all /= null then
-            RefCount := this.m_IPolygon.all.Release;
+            temp := this.m_IPolygon.all.Release;
             Free (this.m_IPolygon);
          end if;
       end if;
@@ -1002,7 +1206,8 @@ package body WinRt.Windows.UI.Xaml.Shapes is
 
    function Constructor return Polygon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.IPolygon;
    begin
       return RetVal : Polygon do
@@ -1011,7 +1216,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Retval.m_IPolygon := new Windows.UI.Xaml.Shapes.IPolygon;
             Retval.m_IPolygon.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1021,40 +1226,48 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function get_FillRuleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IPolygonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolygonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FillRuleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IPolygonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolygonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1067,10 +1280,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.FillRule is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.FillRule;
    begin
       Hr := this.m_IPolygon.all.get_FillRule (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1080,9 +1297,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.FillRule
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPolygon.all.put_FillRule (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Points
@@ -1091,11 +1312,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.PointCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PointCollection do
          Hr := this.m_IPolygon.all.get_Points (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1107,9 +1332,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.PointCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPolygon.all.put_Points (value.m_GenericObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1121,12 +1350,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Polyline) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPolyline, IPolyline_Ptr);
    begin
       if this.m_IPolyline /= null then
          if this.m_IPolyline.all /= null then
-            RefCount := this.m_IPolyline.all.Release;
+            temp := this.m_IPolyline.all.Release;
             Free (this.m_IPolyline);
          end if;
       end if;
@@ -1137,7 +1366,8 @@ package body WinRt.Windows.UI.Xaml.Shapes is
 
    function Constructor return Polyline is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.IPolyline;
    begin
       return RetVal : Polyline do
@@ -1146,7 +1376,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Retval.m_IPolyline := new Windows.UI.Xaml.Shapes.IPolyline;
             Retval.m_IPolyline.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1156,40 +1386,48 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function get_FillRuleProperty_Polyline
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IPolylineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolylineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FillRuleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointsProperty_Polyline
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IPolylineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolylineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1202,10 +1440,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.FillRule is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.FillRule;
    begin
       Hr := this.m_IPolyline.all.get_FillRule (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1215,9 +1457,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.FillRule
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPolyline.all.put_FillRule (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Points
@@ -1226,11 +1472,15 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Windows.UI.Xaml.Media.PointCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PointCollection do
          Hr := this.m_IPolyline.all.get_Points (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1242,9 +1492,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : Windows.UI.Xaml.Media.PointCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPolyline.all.put_Points (value.m_GenericObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1256,12 +1510,12 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    end;
 
    procedure Finalize (this : in out Rectangle) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRectangle, IRectangle_Ptr);
    begin
       if this.m_IRectangle /= null then
          if this.m_IRectangle.all /= null then
-            RefCount := this.m_IRectangle.all.Release;
+            temp := this.m_IRectangle.all.Release;
             Free (this.m_IRectangle);
          end if;
       end if;
@@ -1272,7 +1526,8 @@ package body WinRt.Windows.UI.Xaml.Shapes is
 
    function Constructor return Rectangle is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
       m_ComRetVal  : aliased Windows.UI.Xaml.Shapes.IRectangle;
    begin
       return RetVal : Rectangle do
@@ -1281,7 +1536,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
             Retval.m_IRectangle := new Windows.UI.Xaml.Shapes.IRectangle;
             Retval.m_IRectangle.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1291,40 +1546,48 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function get_RadiusXProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IRectangleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRectangleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RadiusXProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RadiusYProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
       m_Factory        : access WinRt.Windows.UI.Xaml.Shapes.IRectangleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRectangleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RadiusYProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1337,10 +1600,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRectangle.all.get_RadiusX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1350,9 +1617,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRectangle.all.put_RadiusX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RadiusY
@@ -1361,10 +1632,14 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRectangle.all.get_RadiusY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1374,9 +1649,13 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRectangle.all.put_RadiusY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Xaml.Shapes;

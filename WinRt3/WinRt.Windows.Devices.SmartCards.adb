@@ -108,12 +108,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out CardAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICardAddedEventArgs, ICardAddedEventArgs_Ptr);
    begin
       if this.m_ICardAddedEventArgs /= null then
          if this.m_ICardAddedEventArgs.all /= null then
-            RefCount := this.m_ICardAddedEventArgs.all.Release;
+            temp := this.m_ICardAddedEventArgs.all.Release;
             Free (this.m_ICardAddedEventArgs);
          end if;
       end if;
@@ -128,11 +128,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCard'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          Hr := this.m_ICardAddedEventArgs.all.get_SmartCard (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
@@ -147,12 +151,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out CardRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICardRemovedEventArgs, ICardRemovedEventArgs_Ptr);
    begin
       if this.m_ICardRemovedEventArgs /= null then
          if this.m_ICardRemovedEventArgs.all /= null then
-            RefCount := this.m_ICardRemovedEventArgs.all.Release;
+            temp := this.m_ICardRemovedEventArgs.all.Release;
             Free (this.m_ICardRemovedEventArgs);
          end if;
       end if;
@@ -167,11 +171,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCard'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          Hr := this.m_ICardRemovedEventArgs.all.get_SmartCard (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
@@ -184,34 +192,42 @@ package body WinRt.Windows.Devices.SmartCards is
       function get_PaymentSystemEnvironment
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.KnownSmartCardAppletIds");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.KnownSmartCardAppletIds");
          m_Factory        : access WinRt.Windows.Devices.SmartCards.IKnownSmartCardAppletIds_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSmartCardAppletIds'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PaymentSystemEnvironment (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_ProximityPaymentSystemEnvironment
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.KnownSmartCardAppletIds");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.KnownSmartCardAppletIds");
          m_Factory        : access WinRt.Windows.Devices.SmartCards.IKnownSmartCardAppletIds_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSmartCardAppletIds'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ProximityPaymentSystemEnvironment (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -226,12 +242,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCard) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCard, ISmartCard_Ptr);
    begin
       if this.m_ISmartCard /= null then
          if this.m_ISmartCard.all /= null then
-            RefCount := this.m_ISmartCard.all.Release;
+            temp := this.m_ISmartCard.all.Release;
             Free (this.m_ISmartCard);
          end if;
       end if;
@@ -246,11 +262,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardReader;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardReader do
          Hr := this.m_ISmartCard.all.get_Reader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardReader := new Windows.Devices.SmartCards.ISmartCardReader;
          Retval.m_ISmartCardReader.all := m_ComRetVal;
       end return;
@@ -262,13 +282,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -286,7 +306,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -299,7 +319,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCard.all.GetStatusAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -309,9 +329,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -325,13 +345,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -349,7 +369,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -362,7 +382,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCard.all.GetAnswerToResetAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -372,9 +392,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -388,14 +408,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardConnection'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardConnect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardConnection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -413,7 +433,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardConnection.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardConnection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -427,10 +447,10 @@ package body WinRt.Windows.Devices.SmartCards is
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardConnection do
          m_Interface := QInterface (this.m_ISmartCard.all);
          Hr := m_Interface.ConnectAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -442,9 +462,9 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardConnection := new Windows.Devices.SmartCards.ISmartCardConnection;
                   Retval.m_ISmartCardConnection.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -461,12 +481,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardAppletIdGroup) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardAppletIdGroup, ISmartCardAppletIdGroup_Ptr);
    begin
       if this.m_ISmartCardAppletIdGroup /= null then
          if this.m_ISmartCardAppletIdGroup.all /= null then
-            RefCount := this.m_ISmartCardAppletIdGroup.all.Release;
+            temp := this.m_ISmartCardAppletIdGroup.all.Release;
             Free (this.m_ISmartCardAppletIdGroup);
          end if;
       end if;
@@ -477,7 +497,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardAppletIdGroup is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
    begin
       return RetVal : SmartCardAppletIdGroup do
@@ -486,7 +507,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
             Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -499,11 +520,12 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return SmartCardAppletIdGroup is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
       m_Factory    : access ISmartCardAppletIdGroupFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : SmartCardAppletIdGroup do
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardAppletIdGroupFactory'Access , m_Factory'Address);
@@ -511,10 +533,10 @@ package body WinRt.Windows.Devices.SmartCards is
             Hr := m_Factory.Create (HStr_displayName, appletIds, emulationCategory, emulationType, m_ComRetVal'Access);
             Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
             Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_displayName);
       end return;
    end;
 
@@ -524,17 +546,21 @@ package body WinRt.Windows.Devices.SmartCards is
    function get_MaxAppletIds
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardAppletIdGroupStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxAppletIds (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -547,13 +573,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -563,11 +593,15 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AppletIds
@@ -576,10 +610,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_AppletIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -589,10 +627,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulationCategory;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_SmartCardEmulationCategory (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -602,9 +644,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardEmulationCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.put_SmartCardEmulationCategory (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SmartCardEmulationType
@@ -613,10 +659,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulationType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulationType;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_SmartCardEmulationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -626,9 +676,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardEmulationType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.put_SmartCardEmulationType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AutomaticEnablement
@@ -637,10 +691,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_AutomaticEnablement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -650,9 +708,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.put_AutomaticEnablement (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Logo
@@ -661,14 +723,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
       Hr := m_Interface.get_Logo (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -678,13 +744,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
       Hr := m_Interface.put_Logo (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Description
@@ -693,17 +763,21 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -713,15 +787,19 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Properties
@@ -730,15 +808,19 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
          Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -750,14 +832,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
       Hr := m_Interface.get_SecureUserAuthenticationRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -767,13 +853,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
       Hr := m_Interface.put_SecureUserAuthenticationRequired (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -785,12 +875,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardAppletIdGroupRegistration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardAppletIdGroupRegistration, ISmartCardAppletIdGroupRegistration_Ptr);
    begin
       if this.m_ISmartCardAppletIdGroupRegistration /= null then
          if this.m_ISmartCardAppletIdGroupRegistration.all /= null then
-            RefCount := this.m_ISmartCardAppletIdGroupRegistration.all.Release;
+            temp := this.m_ISmartCardAppletIdGroupRegistration.all.Release;
             Free (this.m_ISmartCardAppletIdGroupRegistration);
          end if;
       end if;
@@ -805,10 +895,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy;
    begin
       Hr := this.m_ISmartCardAppletIdGroupRegistration.all.get_ActivationPolicy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -818,11 +912,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroup'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroup do
          Hr := this.m_ISmartCardAppletIdGroupRegistration.all.get_AppletIdGroup (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
          Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
       end return;
@@ -835,13 +933,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardActivationPolicyChangeResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -859,7 +957,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardActivationPolicyChangeResult.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardActivationPolicyChangeResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -872,7 +970,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardAppletIdGroupRegistration.all.RequestActivationPolicyChangeAsync (policy, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -882,9 +980,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -898,10 +996,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ISmartCardAppletIdGroupRegistration.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -911,7 +1013,8 @@ package body WinRt.Windows.Devices.SmartCards is
       apdus : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -919,7 +1022,6 @@ package body WinRt.Windows.Devices.SmartCards is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -940,9 +1042,9 @@ package body WinRt.Windows.Devices.SmartCards is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -954,17 +1056,21 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroupRegistration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroupRegistration.all);
       Hr := m_Interface.get_SmartCardReaderId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -974,8 +1080,9 @@ package body WinRt.Windows.Devices.SmartCards is
       props : Windows.Foundation.Collections.ValueSet'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -983,7 +1090,6 @@ package body WinRt.Windows.Devices.SmartCards is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -999,7 +1105,7 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroupRegistration.all);
       Hr := m_Interface.SetPropertiesAsync (props.m_IPropertySet.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1007,9 +1113,9 @@ package body WinRt.Windows.Devices.SmartCards is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1024,12 +1130,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardAutomaticResponseApdu) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardAutomaticResponseApdu, ISmartCardAutomaticResponseApdu_Ptr);
    begin
       if this.m_ISmartCardAutomaticResponseApdu /= null then
          if this.m_ISmartCardAutomaticResponseApdu.all /= null then
-            RefCount := this.m_ISmartCardAutomaticResponseApdu.all.Release;
+            temp := this.m_ISmartCardAutomaticResponseApdu.all.Release;
             Free (this.m_ISmartCardAutomaticResponseApdu);
          end if;
       end if;
@@ -1045,9 +1151,10 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return SmartCardAutomaticResponseApdu is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu");
       m_Factory    : access ISmartCardAutomaticResponseApduFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
    begin
       return RetVal : SmartCardAutomaticResponseApdu do
@@ -1056,9 +1163,9 @@ package body WinRt.Windows.Devices.SmartCards is
             Hr := m_Factory.Create (commandApdu, responseApdu, m_ComRetVal'Access);
             Retval.m_ISmartCardAutomaticResponseApdu := new Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
             Retval.m_ISmartCardAutomaticResponseApdu.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1071,10 +1178,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_CommandApdu (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1084,9 +1195,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.put_CommandApdu (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CommandApduBitMask
@@ -1095,10 +1210,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_CommandApduBitMask (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1108,9 +1227,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.put_CommandApduBitMask (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShouldMatchLength
@@ -1119,10 +1242,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_ShouldMatchLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1132,9 +1259,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.put_ShouldMatchLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppletId
@@ -1143,10 +1274,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_AppletId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1156,9 +1291,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.put_AppletId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResponseApdu
@@ -1167,10 +1306,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_ResponseApdu (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1180,9 +1323,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.put_ResponseApdu (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputState
@@ -1191,17 +1338,21 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAutomaticResponseApdu.all);
       Hr := m_Interface.get_InputState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1211,13 +1362,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAutomaticResponseApdu.all);
       Hr := m_Interface.put_InputState (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutputState
@@ -1226,17 +1381,21 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAutomaticResponseApdu.all);
       Hr := m_Interface.get_OutputState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1246,13 +1405,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAutomaticResponseApdu.all);
       Hr := m_Interface.put_OutputState (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowWhenCryptogramGeneratorNotPrepared
@@ -1261,14 +1424,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu3, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAutomaticResponseApdu.all);
       Hr := m_Interface.get_AllowWhenCryptogramGeneratorNotPrepared (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1278,13 +1445,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu3, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAutomaticResponseApdu.all);
       Hr := m_Interface.put_AllowWhenCryptogramGeneratorNotPrepared (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1296,12 +1467,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardChallengeContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardChallengeContext, ISmartCardChallengeContext_Ptr);
    begin
       if this.m_ISmartCardChallengeContext /= null then
          if this.m_ISmartCardChallengeContext.all /= null then
-            RefCount := this.m_ISmartCardChallengeContext.all.Release;
+            temp := this.m_ISmartCardChallengeContext.all.Release;
             Free (this.m_ISmartCardChallengeContext);
          end if;
       end if;
@@ -1316,10 +1487,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardChallengeContext.all.get_Challenge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1330,13 +1505,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1354,7 +1529,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1367,7 +1542,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardChallengeContext.all.VerifyResponseAsync (response, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1377,9 +1552,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1394,7 +1569,8 @@ package body WinRt.Windows.Devices.SmartCards is
       formatCard : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1402,7 +1578,6 @@ package body WinRt.Windows.Devices.SmartCards is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1423,9 +1598,9 @@ package body WinRt.Windows.Devices.SmartCards is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1439,7 +1614,8 @@ package body WinRt.Windows.Devices.SmartCards is
       newCardId : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1447,7 +1623,6 @@ package body WinRt.Windows.Devices.SmartCards is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1468,9 +1643,9 @@ package body WinRt.Windows.Devices.SmartCards is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1483,7 +1658,8 @@ package body WinRt.Windows.Devices.SmartCards is
       newAdministrativeKey : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1491,7 +1667,6 @@ package body WinRt.Windows.Devices.SmartCards is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1512,9 +1687,9 @@ package body WinRt.Windows.Devices.SmartCards is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1525,13 +1700,17 @@ package body WinRt.Windows.Devices.SmartCards is
       this : in out SmartCardChallengeContext
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardChallengeContext_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardChallengeContext.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1543,12 +1722,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardConnection, ISmartCardConnection_Ptr);
    begin
       if this.m_ISmartCardConnection /= null then
          if this.m_ISmartCardConnection.all /= null then
-            RefCount := this.m_ISmartCardConnection.all.Release;
+            temp := this.m_ISmartCardConnection.all.Release;
             Free (this.m_ISmartCardConnection);
          end if;
       end if;
@@ -1564,13 +1743,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IBuffer.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1588,7 +1767,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IBuffer.Kind_Delegate, AsyncOperationCompletedHandler_IBuffer.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1601,7 +1780,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardConnection.all.TransmitAsync (command, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1611,9 +1790,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1626,13 +1805,17 @@ package body WinRt.Windows.Devices.SmartCards is
       this : in out SmartCardConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardConnection_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardConnection.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1644,12 +1827,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramGenerator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramGenerator, ISmartCardCryptogramGenerator_Ptr);
    begin
       if this.m_ISmartCardCryptogramGenerator /= null then
          if this.m_ISmartCardCryptogramGenerator.all /= null then
-            RefCount := this.m_ISmartCardCryptogramGenerator.all.Release;
+            temp := this.m_ISmartCardCryptogramGenerator.all.Release;
             Free (this.m_ISmartCardCryptogramGenerator);
          end if;
       end if;
@@ -1661,32 +1844,36 @@ package body WinRt.Windows.Devices.SmartCards is
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGenerator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGenerator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGeneratorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardCryptogramGeneratorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetSmartCardCryptogramGeneratorAsync
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGenerator is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGenerator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGenerator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGeneratorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGenerator.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1704,7 +1891,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGenerator.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGenerator.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1718,10 +1905,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardCryptogramGeneratorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetSmartCardCryptogramGeneratorAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1733,15 +1920,15 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardCryptogramGenerator := new Windows.Devices.SmartCards.ISmartCardCryptogramGenerator;
                      Retval.m_ISmartCardCryptogramGenerator.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1754,13 +1941,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramMaterialType.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialType.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramMaterialTypes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramMaterialType (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1770,13 +1961,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramAlgorithm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramAlgorithm.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramAlgorithms (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramAlgorithm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1786,13 +1981,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramMaterialPackageFormat.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialPackageFormat.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramMaterialPackageFormats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramMaterialPackageFormat (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1802,13 +2001,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramMaterialPackageConfirmationResponseFormats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1818,13 +2021,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramStorageKeyCapabilities.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramStorageKeyCapabilities.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedSmartCardCryptogramStorageKeyCapabilities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramStorageKeyCapabilities (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1835,14 +2042,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storageKeyName : WinRt.HString := To_HString (storageKeyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_storageKeyName : constant WinRt.HString := To_HString (storageKeyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1860,7 +2067,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1873,7 +2080,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardCryptogramGenerator.all.DeleteCryptogramMaterialStorageKeyAsync (HStr_storageKeyName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1883,14 +2090,14 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_storageKeyName);
+      tmp := WindowsDeleteString (HStr_storageKeyName);
       return m_RetVal;
    end;
 
@@ -1904,14 +2111,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storageKeyName : WinRt.HString := To_HString (storageKeyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_storageKeyName : constant WinRt.HString := To_HString (storageKeyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1929,7 +2136,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1942,7 +2149,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardCryptogramGenerator.all.CreateCryptogramMaterialStorageKeyAsync (promptingBehavior, HStr_storageKeyName, algorithm, capabilities, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1952,14 +2159,14 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_storageKeyName);
+      tmp := WindowsDeleteString (HStr_storageKeyName);
       return m_RetVal;
    end;
 
@@ -1972,14 +2179,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storageKeyName : WinRt.HString := To_HString (storageKeyName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_storageKeyName : constant WinRt.HString := To_HString (storageKeyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramStorageKeyInfo.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1997,7 +2204,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramStorageKeyInfo.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramStorageKeyInfo.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2011,7 +2218,7 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := this.m_ISmartCardCryptogramGenerator.all.RequestCryptogramMaterialStorageKeyInfoAsync (promptingBehavior, HStr_storageKeyName, format, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2023,14 +2230,14 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardCryptogramStorageKeyInfo := new Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyInfo;
                   Retval.m_ISmartCardCryptogramStorageKeyInfo.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_storageKeyName);
+         tmp := WindowsDeleteString (HStr_storageKeyName);
       end return;
    end;
 
@@ -2044,15 +2251,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storageKeyName : WinRt.HString := To_HString (storageKeyName);
-      HStr_materialPackageName : WinRt.HString := To_HString (materialPackageName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_storageKeyName : constant WinRt.HString := To_HString (storageKeyName);
+      HStr_materialPackageName : constant WinRt.HString := To_HString (materialPackageName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2070,7 +2277,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2083,7 +2290,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardCryptogramGenerator.all.ImportCryptogramMaterialPackageAsync (format, HStr_storageKeyName, HStr_materialPackageName, cryptogramMaterialPackage, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2093,15 +2300,15 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_storageKeyName);
-      Hr := WindowsDeleteString (HStr_materialPackageName);
+      tmp := WindowsDeleteString (HStr_storageKeyName);
+      tmp := WindowsDeleteString (HStr_materialPackageName);
       return m_RetVal;
    end;
 
@@ -2116,15 +2323,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_materialPackageName : WinRt.HString := To_HString (materialPackageName);
-      HStr_materialName : WinRt.HString := To_HString (materialName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_materialPackageName : constant WinRt.HString := To_HString (materialPackageName);
+      HStr_materialName : constant WinRt.HString := To_HString (materialName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramMaterialPossessionProof.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2142,7 +2349,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramMaterialPossessionProof.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramMaterialPossessionProof.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2156,7 +2363,7 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := this.m_ISmartCardCryptogramGenerator.all.TryProvePossessionOfCryptogramMaterialPackageAsync (promptingBehavior, responseFormat, HStr_materialPackageName, HStr_materialName, challenge, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2168,15 +2375,15 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardCryptogramMaterialPossessionProof := new Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPossessionProof;
                   Retval.m_ISmartCardCryptogramMaterialPossessionProof.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_materialPackageName);
-         Hr := WindowsDeleteString (HStr_materialName);
+         tmp := WindowsDeleteString (HStr_materialPackageName);
+         tmp := WindowsDeleteString (HStr_materialName);
       end return;
    end;
 
@@ -2187,13 +2394,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2211,7 +2418,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2224,7 +2431,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardCryptogramGenerator.all.RequestUnlockCryptogramMaterialForUseAsync (promptingBehavior, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2234,9 +2441,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2251,14 +2458,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_materialPackageName : WinRt.HString := To_HString (materialPackageName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_materialPackageName : constant WinRt.HString := To_HString (materialPackageName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2276,7 +2483,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2289,7 +2496,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardCryptogramGenerator.all.DeleteCryptogramMaterialPackageAsync (HStr_materialPackageName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2299,14 +2506,14 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_materialPackageName);
+      tmp := WindowsDeleteString (HStr_materialPackageName);
       return m_RetVal;
    end;
 
@@ -2319,14 +2526,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2344,7 +2551,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2357,10 +2564,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardCryptogramGenerator.all);
       Hr := m_Interface.ValidateRequestApduAsync (promptingBehavior, apduToValidate, cryptogramPlacementSteps, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2370,9 +2577,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2386,14 +2593,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2411,7 +2618,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2425,10 +2632,10 @@ package body WinRt.Windows.Devices.SmartCards is
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult do
          m_Interface := QInterface (this.m_ISmartCardCryptogramGenerator.all);
          Hr := m_Interface.GetAllCryptogramStorageKeyCharacteristicsAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2440,9 +2647,9 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2456,14 +2663,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2481,7 +2688,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2495,10 +2702,10 @@ package body WinRt.Windows.Devices.SmartCards is
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult do
          m_Interface := QInterface (this.m_ISmartCardCryptogramGenerator.all);
          Hr := m_Interface.GetAllCryptogramMaterialPackageCharacteristicsAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2510,9 +2717,9 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2527,15 +2734,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_storageKeyName : WinRt.HString := To_HString (storageKeyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_storageKeyName : constant WinRt.HString := To_HString (storageKeyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2553,7 +2760,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2567,10 +2774,10 @@ package body WinRt.Windows.Devices.SmartCards is
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult do
          m_Interface := QInterface (this.m_ISmartCardCryptogramGenerator.all);
          Hr := m_Interface.GetAllCryptogramMaterialPackageCharacteristicsAsync (HStr_storageKeyName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2582,14 +2789,14 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_storageKeyName);
+         tmp := WindowsDeleteString (HStr_storageKeyName);
       end return;
    end;
 
@@ -2601,15 +2808,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_materialPackageName : WinRt.HString := To_HString (materialPackageName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_materialPackageName : constant WinRt.HString := To_HString (materialPackageName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2627,7 +2834,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2641,10 +2848,10 @@ package body WinRt.Windows.Devices.SmartCards is
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult do
          m_Interface := QInterface (this.m_ISmartCardCryptogramGenerator.all);
          Hr := m_Interface.GetAllCryptogramMaterialCharacteristicsAsync (promptingBehavior, HStr_materialPackageName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2656,14 +2863,14 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_materialPackageName);
+         tmp := WindowsDeleteString (HStr_materialPackageName);
       end return;
    end;
 
@@ -2676,12 +2883,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult, ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Ptr);
    begin
       if this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult /= null then
          if this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all /= null then
-            RefCount := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.Release;
+            temp := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.Release;
             Free (this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult);
          end if;
       end if;
@@ -2692,7 +2899,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult do
@@ -2701,7 +2909,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
             Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2714,10 +2922,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.get_OperationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2727,13 +2939,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_ISmartCardCryptogramMaterialCharacteristics.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmartCardCryptogramMaterialCharacteristics.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ISmartCardCryptogramMaterialCharacteristics (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2746,12 +2962,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult, ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult_Ptr);
    begin
       if this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult /= null then
          if this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all /= null then
-            RefCount := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.Release;
+            temp := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.Release;
             Free (this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult);
          end if;
       end if;
@@ -2762,7 +2978,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult do
@@ -2771,7 +2988,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
             Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2784,10 +3001,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.get_OperationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2797,13 +3018,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2816,12 +3041,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult, ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult_Ptr);
    begin
       if this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult /= null then
          if this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all /= null then
-            RefCount := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.Release;
+            temp := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.Release;
             Free (this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult);
          end if;
       end if;
@@ -2832,7 +3057,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult do
@@ -2841,7 +3067,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
             Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2854,10 +3080,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.get_OperationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2867,13 +3097,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_ISmartCardCryptogramStorageKeyCharacteristics.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmartCardCryptogramStorageKeyCharacteristics.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ISmartCardCryptogramStorageKeyCharacteristics (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2886,12 +3120,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramMaterialCharacteristics) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramMaterialCharacteristics, ISmartCardCryptogramMaterialCharacteristics_Ptr);
    begin
       if this.m_ISmartCardCryptogramMaterialCharacteristics /= null then
          if this.m_ISmartCardCryptogramMaterialCharacteristics.all /= null then
-            RefCount := this.m_ISmartCardCryptogramMaterialCharacteristics.all.Release;
+            temp := this.m_ISmartCardCryptogramMaterialCharacteristics.all.Release;
             Free (this.m_ISmartCardCryptogramMaterialCharacteristics);
          end if;
       end if;
@@ -2902,7 +3136,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramMaterialCharacteristics is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
    begin
       return RetVal : SmartCardCryptogramMaterialCharacteristics do
@@ -2911,7 +3146,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramMaterialCharacteristics := new Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
             Retval.m_ISmartCardCryptogramMaterialCharacteristics.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2924,13 +3159,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_MaterialName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2940,13 +3179,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramAlgorithm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramAlgorithm.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_AllowedAlgorithms (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramAlgorithm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2956,13 +3199,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_AllowedProofOfPossessionAlgorithms (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2972,13 +3219,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return IVectorView_SmartCardCryptogramAlgorithm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramAlgorithm.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_AllowedValidations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_SmartCardCryptogramAlgorithm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2988,10 +3239,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramMaterialType;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_MaterialType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3001,10 +3256,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_ProtectionMethod (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3014,10 +3273,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_ProtectionVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3027,10 +3290,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_MaterialLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3043,12 +3310,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramMaterialPackageCharacteristics) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramMaterialPackageCharacteristics, ISmartCardCryptogramMaterialPackageCharacteristics_Ptr);
    begin
       if this.m_ISmartCardCryptogramMaterialPackageCharacteristics /= null then
          if this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all /= null then
-            RefCount := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.Release;
+            temp := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.Release;
             Free (this.m_ISmartCardCryptogramMaterialPackageCharacteristics);
          end if;
       end if;
@@ -3059,7 +3326,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramMaterialPackageCharacteristics is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
    begin
       return RetVal : SmartCardCryptogramMaterialPackageCharacteristics do
@@ -3068,7 +3336,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramMaterialPackageCharacteristics := new Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
             Retval.m_ISmartCardCryptogramMaterialPackageCharacteristics.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3081,13 +3349,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.get_PackageName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3097,13 +3369,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.get_StorageKeyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3113,10 +3389,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.get_DateImported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3126,10 +3406,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.get_PackageFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3142,12 +3426,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramMaterialPossessionProof) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramMaterialPossessionProof, ISmartCardCryptogramMaterialPossessionProof_Ptr);
    begin
       if this.m_ISmartCardCryptogramMaterialPossessionProof /= null then
          if this.m_ISmartCardCryptogramMaterialPossessionProof.all /= null then
-            RefCount := this.m_ISmartCardCryptogramMaterialPossessionProof.all.Release;
+            temp := this.m_ISmartCardCryptogramMaterialPossessionProof.all.Release;
             Free (this.m_ISmartCardCryptogramMaterialPossessionProof);
          end if;
       end if;
@@ -3162,10 +3446,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPossessionProof.all.get_OperationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3175,10 +3463,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPossessionProof.all.get_Proof (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3191,12 +3483,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramPlacementStep) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramPlacementStep, ISmartCardCryptogramPlacementStep_Ptr);
    begin
       if this.m_ISmartCardCryptogramPlacementStep /= null then
          if this.m_ISmartCardCryptogramPlacementStep.all /= null then
-            RefCount := this.m_ISmartCardCryptogramPlacementStep.all.Release;
+            temp := this.m_ISmartCardCryptogramPlacementStep.all.Release;
             Free (this.m_ISmartCardCryptogramPlacementStep);
          end if;
       end if;
@@ -3207,7 +3499,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramPlacementStep is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
    begin
       return RetVal : SmartCardCryptogramPlacementStep do
@@ -3216,7 +3509,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramPlacementStep := new Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
             Retval.m_ISmartCardCryptogramPlacementStep.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3229,10 +3522,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_Algorithm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3242,9 +3539,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_Algorithm (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SourceData
@@ -3253,10 +3554,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_SourceData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3266,9 +3571,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_SourceData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CryptogramMaterialPackageName
@@ -3277,13 +3586,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_CryptogramMaterialPackageName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3293,11 +3606,15 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_CryptogramMaterialPackageName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CryptogramMaterialName
@@ -3306,13 +3623,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_CryptogramMaterialName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3322,11 +3643,15 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_CryptogramMaterialName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TemplateOffset
@@ -3335,10 +3660,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_TemplateOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3348,9 +3677,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_TemplateOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CryptogramOffset
@@ -3359,10 +3692,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_CryptogramOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3372,9 +3709,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_CryptogramOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CryptogramLength
@@ -3383,10 +3724,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_CryptogramLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3396,9 +3741,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_CryptogramLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CryptogramPlacementOptions
@@ -3407,10 +3756,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_CryptogramPlacementOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3420,9 +3773,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_CryptogramPlacementOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ChainedOutputStep
@@ -3431,11 +3788,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep do
          Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_ChainedOutputStep (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardCryptogramPlacementStep := new Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
          Retval.m_ISmartCardCryptogramPlacementStep.all := m_ComRetVal;
       end return;
@@ -3447,9 +3808,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.put_ChainedOutputStep (value.m_ISmartCardCryptogramPlacementStep.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3461,12 +3826,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramStorageKeyCharacteristics) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramStorageKeyCharacteristics, ISmartCardCryptogramStorageKeyCharacteristics_Ptr);
    begin
       if this.m_ISmartCardCryptogramStorageKeyCharacteristics /= null then
          if this.m_ISmartCardCryptogramStorageKeyCharacteristics.all /= null then
-            RefCount := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.Release;
+            temp := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.Release;
             Free (this.m_ISmartCardCryptogramStorageKeyCharacteristics);
          end if;
       end if;
@@ -3477,7 +3842,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardCryptogramStorageKeyCharacteristics is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
    begin
       return RetVal : SmartCardCryptogramStorageKeyCharacteristics do
@@ -3486,7 +3852,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardCryptogramStorageKeyCharacteristics := new Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
             Retval.m_ISmartCardCryptogramStorageKeyCharacteristics.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3499,13 +3865,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_StorageKeyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3515,10 +3885,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_DateCreated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3528,10 +3902,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_Algorithm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3541,10 +3919,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_Capabilities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3557,12 +3939,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardCryptogramStorageKeyInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardCryptogramStorageKeyInfo, ISmartCardCryptogramStorageKeyInfo_Ptr);
    begin
       if this.m_ISmartCardCryptogramStorageKeyInfo /= null then
          if this.m_ISmartCardCryptogramStorageKeyInfo.all /= null then
-            RefCount := this.m_ISmartCardCryptogramStorageKeyInfo.all.Release;
+            temp := this.m_ISmartCardCryptogramStorageKeyInfo.all.Release;
             Free (this.m_ISmartCardCryptogramStorageKeyInfo);
          end if;
       end if;
@@ -3577,10 +3959,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_OperationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3590,10 +3976,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_PublicKeyBlobType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3603,10 +3993,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_PublicKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3616,10 +4010,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_AttestationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3629,10 +4027,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_Attestation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3642,10 +4044,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_AttestationCertificateChain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3655,10 +4061,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_Capabilities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3668,17 +4078,21 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyInfo_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyInfo2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardCryptogramStorageKeyInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardCryptogramStorageKeyInfo.all);
       Hr := m_Interface.get_OperationalRequirements (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3691,12 +4105,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardEmulator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardEmulator, ISmartCardEmulator_Ptr);
    begin
       if this.m_ISmartCardEmulator /= null then
          if this.m_ISmartCardEmulator.all /= null then
-            RefCount := this.m_ISmartCardEmulator.all.Release;
+            temp := this.m_ISmartCardEmulator.all.Release;
             Free (this.m_ISmartCardEmulator);
          end if;
       end if;
@@ -3708,32 +4122,36 @@ package body WinRt.Windows.Devices.SmartCards is
    function IsSupported_SmartCardEmulator
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetDefaultAsync
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulator is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardEmulator.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3751,7 +4169,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardEmulator.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardEmulator.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3765,10 +4183,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3780,30 +4198,30 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardEmulator := new Windows.Devices.SmartCards.ISmartCardEmulator;
                      Retval.m_ISmartCardEmulator.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function GetAppletIdGroupRegistrationsAsync
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3821,7 +4239,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3834,10 +4252,10 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetAppletIdGroupRegistrationsAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3847,15 +4265,15 @@ package body WinRt.Windows.Devices.SmartCards is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -3865,15 +4283,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardAppletIdGroupRegistration.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3891,7 +4309,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardAppletIdGroupRegistration.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardAppletIdGroupRegistration.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3905,10 +4323,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RegisterAppletIdGroupAsync (appletIdGroup.m_ISmartCardAppletIdGroup.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3920,15 +4338,15 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardAppletIdGroupRegistration := new Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration;
                      Retval.m_ISmartCardAppletIdGroupRegistration.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3937,9 +4355,10 @@ package body WinRt.Windows.Devices.SmartCards is
       registration : Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3947,7 +4366,6 @@ package body WinRt.Windows.Devices.SmartCards is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3963,7 +4381,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.UnregisterAppletIdGroupAsync (registration.m_ISmartCardAppletIdGroupRegistration.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3971,30 +4389,34 @@ package body WinRt.Windows.Devices.SmartCards is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_MaxAppletIdGroupRegistrations
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardEmulator");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardEmulatorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxAppletIdGroupRegistrations (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -4007,10 +4429,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy;
    begin
       Hr := this.m_ISmartCardEmulator.all.get_EnablementPolicy (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4021,14 +4447,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
       Hr := m_Interface.add_ApduReceived (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4038,13 +4468,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
       Hr := m_Interface.remove_ApduReceived (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ConnectionDeactivated
@@ -4054,14 +4488,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
       Hr := m_Interface.add_ConnectionDeactivated (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4071,13 +4509,17 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
       Hr := m_Interface.remove_ConnectionDeactivated (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -4085,13 +4527,17 @@ package body WinRt.Windows.Devices.SmartCards is
       this : in out SmartCardEmulator
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
       Hr := m_Interface.Start;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function IsHostCardEmulationSupported
@@ -4100,14 +4546,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
       Hr := m_Interface.IsHostCardEmulationSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4120,12 +4570,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardEmulatorApduReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardEmulatorApduReceivedEventArgs, ISmartCardEmulatorApduReceivedEventArgs_Ptr);
    begin
       if this.m_ISmartCardEmulatorApduReceivedEventArgs /= null then
          if this.m_ISmartCardEmulatorApduReceivedEventArgs.all /= null then
-            RefCount := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.Release;
+            temp := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.Release;
             Free (this.m_ISmartCardEmulatorApduReceivedEventArgs);
          end if;
       end if;
@@ -4140,10 +4590,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.get_CommandApdu (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4153,11 +4607,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties do
          Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.get_ConnectionProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardEmulatorConnectionProperties := new Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
          Retval.m_ISmartCardEmulatorConnectionProperties.all := m_ComRetVal;
       end return;
@@ -4170,13 +4628,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4194,7 +4652,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4207,7 +4665,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.TryRespondAsync (responseApdu, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4217,9 +4675,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4233,10 +4691,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus;
    begin
       Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.get_AutomaticResponseStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4248,14 +4710,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorApduReceivedEventArgsWithCryptograms := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4273,7 +4735,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4286,10 +4748,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulatorApduReceivedEventArgs.all);
       Hr := m_Interface.TryRespondWithCryptogramsAsync (responseTemplate, cryptogramPlacementSteps, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4299,9 +4761,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4318,14 +4780,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorApduReceivedEventArgsWithCryptograms := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardCryptogramGeneratorOperationStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4343,7 +4805,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardCryptogramGeneratorOperationStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4356,10 +4818,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulatorApduReceivedEventArgs.all);
       Hr := m_Interface.TryRespondWithCryptogramsAsync (responseTemplate, cryptogramPlacementSteps, nextState, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4369,9 +4831,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4385,14 +4847,18 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorApduReceivedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorApduReceivedEventArgs_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorApduReceivedEventArgs2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulatorApduReceivedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulatorApduReceivedEventArgs.all);
       Hr := m_Interface.get_State (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4404,14 +4870,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorApduReceivedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4429,7 +4895,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4442,10 +4908,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulatorApduReceivedEventArgs.all);
       Hr := m_Interface.TryRespondAsync (responseApdu, nextState, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4455,9 +4921,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4474,12 +4940,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardEmulatorConnectionDeactivatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardEmulatorConnectionDeactivatedEventArgs, ISmartCardEmulatorConnectionDeactivatedEventArgs_Ptr);
    begin
       if this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs /= null then
          if this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all /= null then
-            RefCount := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.Release;
+            temp := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.Release;
             Free (this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs);
          end if;
       end if;
@@ -4494,11 +4960,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties do
          Hr := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.get_ConnectionProperties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardEmulatorConnectionProperties := new Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
          Retval.m_ISmartCardEmulatorConnectionProperties.all := m_ComRetVal;
       end return;
@@ -4510,10 +4980,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason;
    begin
       Hr := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4526,12 +5000,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardEmulatorConnectionProperties) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardEmulatorConnectionProperties, ISmartCardEmulatorConnectionProperties_Ptr);
    begin
       if this.m_ISmartCardEmulatorConnectionProperties /= null then
          if this.m_ISmartCardEmulatorConnectionProperties.all /= null then
-            RefCount := this.m_ISmartCardEmulatorConnectionProperties.all.Release;
+            temp := this.m_ISmartCardEmulatorConnectionProperties.all.Release;
             Free (this.m_ISmartCardEmulatorConnectionProperties);
          end if;
       end if;
@@ -4546,10 +5020,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ISmartCardEmulatorConnectionProperties.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4559,10 +5037,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource;
    begin
       Hr := this.m_ISmartCardEmulatorConnectionProperties.all.get_Source (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4575,12 +5057,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardPinPolicy) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardPinPolicy, ISmartCardPinPolicy_Ptr);
    begin
       if this.m_ISmartCardPinPolicy /= null then
          if this.m_ISmartCardPinPolicy.all /= null then
-            RefCount := this.m_ISmartCardPinPolicy.all.Release;
+            temp := this.m_ISmartCardPinPolicy.all.Release;
             Free (this.m_ISmartCardPinPolicy);
          end if;
       end if;
@@ -4591,7 +5073,8 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor return SmartCardPinPolicy is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardPinPolicy");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardPinPolicy");
       m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardPinPolicy;
    begin
       return RetVal : SmartCardPinPolicy do
@@ -4600,7 +5083,7 @@ package body WinRt.Windows.Devices.SmartCards is
             Retval.m_ISmartCardPinPolicy := new Windows.Devices.SmartCards.ISmartCardPinPolicy;
             Retval.m_ISmartCardPinPolicy.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4613,10 +5096,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_MinLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4626,9 +5113,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.put_MinLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxLength
@@ -4637,10 +5128,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_MaxLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4650,9 +5145,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.put_MaxLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UppercaseLetters
@@ -4661,10 +5160,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_UppercaseLetters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4674,9 +5177,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.put_UppercaseLetters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LowercaseLetters
@@ -4685,10 +5192,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_LowercaseLetters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4698,9 +5209,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.put_LowercaseLetters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Digits
@@ -4709,10 +5224,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_Digits (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4722,9 +5241,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.put_Digits (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SpecialCharacters
@@ -4733,10 +5256,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_SpecialCharacters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4746,9 +5273,13 @@ package body WinRt.Windows.Devices.SmartCards is
       value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.put_SpecialCharacters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4760,12 +5291,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardPinResetDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardPinResetDeferral, ISmartCardPinResetDeferral_Ptr);
    begin
       if this.m_ISmartCardPinResetDeferral /= null then
          if this.m_ISmartCardPinResetDeferral.all /= null then
-            RefCount := this.m_ISmartCardPinResetDeferral.all.Release;
+            temp := this.m_ISmartCardPinResetDeferral.all.Release;
             Free (this.m_ISmartCardPinResetDeferral);
          end if;
       end if;
@@ -4779,9 +5310,13 @@ package body WinRt.Windows.Devices.SmartCards is
       this : in out SmartCardPinResetDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinResetDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4794,7 +5329,7 @@ package body WinRt.Windows.Devices.SmartCards is
       request : Windows.Devices.SmartCards.ISmartCardPinResetRequest
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, request);
       return Hr;
@@ -4809,12 +5344,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardPinResetRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardPinResetRequest, ISmartCardPinResetRequest_Ptr);
    begin
       if this.m_ISmartCardPinResetRequest /= null then
          if this.m_ISmartCardPinResetRequest.all /= null then
-            RefCount := this.m_ISmartCardPinResetRequest.all.Release;
+            temp := this.m_ISmartCardPinResetRequest.all.Release;
             Free (this.m_ISmartCardPinResetRequest);
          end if;
       end if;
@@ -4829,10 +5364,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardPinResetRequest.all.get_Challenge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4842,10 +5381,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmartCardPinResetRequest.all.get_Deadline (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4855,11 +5398,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardPinResetDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardPinResetDeferral;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardPinResetDeferral do
          Hr := this.m_ISmartCardPinResetRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardPinResetDeferral := new Windows.Devices.SmartCards.ISmartCardPinResetDeferral;
          Retval.m_ISmartCardPinResetDeferral.all := m_ComRetVal;
       end return;
@@ -4871,9 +5418,13 @@ package body WinRt.Windows.Devices.SmartCards is
       response : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardPinResetRequest.all.SetResponse (response);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4885,12 +5436,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardProvisioning) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardProvisioning, ISmartCardProvisioning_Ptr);
    begin
       if this.m_ISmartCardProvisioning /= null then
          if this.m_ISmartCardProvisioning.all /= null then
-            RefCount := this.m_ISmartCardProvisioning.all.Release;
+            temp := this.m_ISmartCardProvisioning.all.Release;
             Free (this.m_ISmartCardProvisioning);
          end if;
       end if;
@@ -4907,16 +5458,16 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardProvisioning.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4934,7 +5485,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4948,10 +5499,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAttestedVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -4963,16 +5514,16 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_friendlyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_friendlyName);
       end return;
    end;
 
@@ -4985,16 +5536,16 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardProvisioning.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5012,7 +5563,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5026,10 +5577,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAttestedVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, cardId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -5041,16 +5592,16 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_friendlyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_friendlyName);
       end return;
    end;
 
@@ -5060,15 +5611,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardProvisioning.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5086,7 +5637,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5100,10 +5651,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromSmartCardAsync (card.m_ISmartCard.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -5115,15 +5666,15 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5135,16 +5686,16 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardProvisioning.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5162,7 +5713,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5176,10 +5727,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -5191,16 +5742,16 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_friendlyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_friendlyName);
       end return;
    end;
 
@@ -5213,16 +5764,16 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_friendlyName : WinRt.HString := To_HString (friendlyName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_friendlyName : constant WinRt.HString := To_HString (friendlyName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardProvisioning.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5240,7 +5791,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardProvisioning.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardProvisioning.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5254,10 +5805,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestVirtualSmartCardCreationAsync (HStr_friendlyName, administrativeKey, pinPolicy.m_ISmartCardPinPolicy.all, cardId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -5269,16 +5820,16 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_friendlyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_friendlyName);
       end return;
    end;
 
@@ -5288,15 +5839,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardProvisioning");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardProvisioningStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5314,7 +5865,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5327,10 +5878,10 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardProvisioningStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestVirtualSmartCardDeletionAsync (card.m_ISmartCard.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5340,15 +5891,15 @@ package body WinRt.Windows.Devices.SmartCards is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -5361,11 +5912,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCard'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          Hr := this.m_ISmartCardProvisioning.all.get_SmartCard (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
@@ -5377,13 +5932,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Guid.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5401,7 +5956,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Guid.Kind_Delegate, AsyncOperationCompletedHandler_Guid.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5414,7 +5969,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardProvisioning.all.GetIdAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5424,9 +5979,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5440,13 +5995,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5465,7 +6020,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5478,7 +6033,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardProvisioning.all.GetNameAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5488,15 +6043,15 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -5506,13 +6061,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardChallengeContext'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardChallengeContext.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5530,7 +6085,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardChallengeContext.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardChallengeContext.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5544,7 +6099,7 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := this.m_ISmartCardProvisioning.all.GetChallengeContextAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5556,9 +6111,9 @@ package body WinRt.Windows.Devices.SmartCards is
                   Retval.m_ISmartCardChallengeContext := new Windows.Devices.SmartCards.ISmartCardChallengeContext;
                   Retval.m_ISmartCardChallengeContext.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -5572,13 +6127,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5596,7 +6151,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5609,7 +6164,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardProvisioning.all.RequestPinChangeAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5619,9 +6174,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5636,13 +6191,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5660,7 +6215,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5673,7 +6228,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardProvisioning.all.RequestPinResetAsync (handler, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5683,9 +6238,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5699,14 +6254,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5725,7 +6280,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5738,10 +6293,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardProvisioning.all);
       Hr := m_Interface.GetAuthorityKeyContainerNameAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5751,15 +6306,15 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -5772,12 +6327,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardReader, ISmartCardReader_Ptr);
    begin
       if this.m_ISmartCardReader /= null then
          if this.m_ISmartCardReader.all /= null then
-            RefCount := this.m_ISmartCardReader.all.Release;
+            temp := this.m_ISmartCardReader.all.Release;
             Free (this.m_ISmartCardReader);
          end if;
       end if;
@@ -5789,20 +6344,24 @@ package body WinRt.Windows.Devices.SmartCards is
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardReader");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardReaderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5812,20 +6371,24 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardReader");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmartCardReaderStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (kind, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5835,16 +6398,16 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardReader is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardReader");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardReader");
       m_Factory        : access WinRt.Windows.Devices.SmartCards.ISmartCardReaderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5862,7 +6425,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardReader.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5876,10 +6439,10 @@ package body WinRt.Windows.Devices.SmartCards is
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardReaderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -5891,16 +6454,16 @@ package body WinRt.Windows.Devices.SmartCards is
                      Retval.m_ISmartCardReader := new Windows.Devices.SmartCards.ISmartCardReader;
                      Retval.m_ISmartCardReader.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -5913,13 +6476,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardReader.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5929,13 +6496,17 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISmartCardReader.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5945,10 +6516,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardReaderKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardReaderKind;
    begin
       Hr := this.m_ISmartCardReader.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5958,13 +6533,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardReaderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SmartCardReaderStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5982,7 +6557,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SmartCardReaderStatus.Kind_Delegate, AsyncOperationCompletedHandler_SmartCardReaderStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5995,7 +6570,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardReader.all.GetStatusAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6005,9 +6580,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6021,13 +6596,13 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6045,7 +6620,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6058,7 +6633,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr := this.m_ISmartCardReader.all.FindAllCardsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6068,9 +6643,9 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6085,10 +6660,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmartCardReader.all.add_CardAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6098,9 +6677,13 @@ package body WinRt.Windows.Devices.SmartCards is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardReader.all.remove_CardAdded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CardRemoved
@@ -6110,10 +6693,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmartCardReader.all.add_CardRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6123,9 +6710,13 @@ package body WinRt.Windows.Devices.SmartCards is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISmartCardReader.all.remove_CardRemoved (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6137,12 +6728,12 @@ package body WinRt.Windows.Devices.SmartCards is
    end;
 
    procedure Finalize (this : in out SmartCardTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardTriggerDetails, ISmartCardTriggerDetails_Ptr);
    begin
       if this.m_ISmartCardTriggerDetails /= null then
          if this.m_ISmartCardTriggerDetails.all /= null then
-            RefCount := this.m_ISmartCardTriggerDetails.all.Release;
+            temp := this.m_ISmartCardTriggerDetails.all.Release;
             Free (this.m_ISmartCardTriggerDetails);
          end if;
       end if;
@@ -6157,10 +6748,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardTriggerType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardTriggerType;
    begin
       Hr := this.m_ISmartCardTriggerDetails.all.get_TriggerType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6170,10 +6765,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardTriggerDetails.all.get_SourceAppletId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6183,10 +6782,14 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardTriggerDetails.all.get_TriggerData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6196,15 +6799,19 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardEmulator'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardEmulator;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardTriggerDetails2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulator do
          m_Interface := QInterface (this.m_ISmartCardTriggerDetails.all);
          Hr := m_Interface.get_Emulator (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCardEmulator := new Windows.Devices.SmartCards.ISmartCardEmulator;
          Retval.m_ISmartCardEmulator.all := m_ComRetVal;
       end return;
@@ -6217,15 +6824,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      temp             : WinRt.UInt32 := 0;
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6243,7 +6850,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6256,10 +6863,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardTriggerDetails.all);
       Hr := m_Interface.TryLaunchCurrentAppAsync (HStr_arguments, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6269,14 +6876,14 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_arguments);
+      tmp := WindowsDeleteString (HStr_arguments);
       return m_RetVal;
    end;
 
@@ -6288,15 +6895,15 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      temp             : WinRt.UInt32 := 0;
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6314,7 +6921,7 @@ package body WinRt.Windows.Devices.SmartCards is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6327,10 +6934,10 @@ package body WinRt.Windows.Devices.SmartCards is
    begin
       m_Interface := QInterface (this.m_ISmartCardTriggerDetails.all);
       Hr := m_Interface.TryLaunchCurrentAppAsync (HStr_arguments, behavior, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6340,14 +6947,14 @@ package body WinRt.Windows.Devices.SmartCards is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_arguments);
+      tmp := WindowsDeleteString (HStr_arguments);
       return m_RetVal;
    end;
 
@@ -6357,15 +6964,19 @@ package body WinRt.Windows.Devices.SmartCards is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCard'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails3, WinRt.Windows.Devices.SmartCards.IID_ISmartCardTriggerDetails3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          m_Interface := QInterface (this.m_ISmartCardTriggerDetails.all);
          Hr := m_Interface.get_SmartCard (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;

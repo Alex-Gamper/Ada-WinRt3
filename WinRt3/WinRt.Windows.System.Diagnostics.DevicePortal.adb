@@ -46,12 +46,12 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    end;
 
    procedure Finalize (this : in out DevicePortalConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePortalConnection, IDevicePortalConnection_Ptr);
    begin
       if this.m_IDevicePortalConnection /= null then
          if this.m_IDevicePortalConnection.all /= null then
-            RefCount := this.m_IDevicePortalConnection.all.Release;
+            temp := this.m_IDevicePortalConnection.all.Release;
             Free (this.m_IDevicePortalConnection);
          end if;
       end if;
@@ -66,20 +66,24 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.DevicePortal.DevicePortalConnection");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.DevicePortal.DevicePortalConnection");
       m_Factory        : access WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnectionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnection do
          Hr := RoGetActivationFactory (m_hString, IID_IDevicePortalConnectionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForAppServiceConnection (appServiceConnection.m_IAppServiceConnection.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDevicePortalConnection := new Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection;
             Retval.m_IDevicePortalConnection.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -93,10 +97,14 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDevicePortalConnection.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -106,9 +114,13 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePortalConnection.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_RequestReceived
@@ -118,10 +130,14 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDevicePortalConnection.all.add_RequestReceived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -131,9 +147,13 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDevicePortalConnection.all.remove_RequestReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetServerMessageWebSocketForRequest
@@ -143,15 +163,19 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerMessageWebSocket;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnection'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerMessageWebSocket do
          m_Interface := QInterface (this.m_IDevicePortalConnection.all);
          Hr := m_Interface.GetServerMessageWebSocketForRequest (request.m_IHttpRequestMessage.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerMessageWebSocket := new Windows.Networking.Sockets.IServerMessageWebSocket;
          Retval.m_IServerMessageWebSocket.all := m_ComRetVal;
       end return;
@@ -166,19 +190,23 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerMessageWebSocket;
-      HStr_protocol : WinRt.HString := To_HString (protocol);
+      HStr_protocol : constant WinRt.HString := To_HString (protocol);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnection'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerMessageWebSocket do
          m_Interface := QInterface (this.m_IDevicePortalConnection.all);
          Hr := m_Interface.GetServerMessageWebSocketForRequest (request.m_IHttpRequestMessage.all, messageType, HStr_protocol, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerMessageWebSocket := new Windows.Networking.Sockets.IServerMessageWebSocket;
          Retval.m_IServerMessageWebSocket.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_protocol);
+         tmp := WindowsDeleteString (HStr_protocol);
       end return;
    end;
 
@@ -194,19 +222,23 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerMessageWebSocket;
-      HStr_protocol : WinRt.HString := To_HString (protocol);
+      HStr_protocol : constant WinRt.HString := To_HString (protocol);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnection'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerMessageWebSocket do
          m_Interface := QInterface (this.m_IDevicePortalConnection.all);
          Hr := m_Interface.GetServerMessageWebSocketForRequest (request.m_IHttpRequestMessage.all, messageType, HStr_protocol, outboundBufferSizeInBytes, maxMessageSize, receiveMode, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerMessageWebSocket := new Windows.Networking.Sockets.IServerMessageWebSocket;
          Retval.m_IServerMessageWebSocket.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_protocol);
+         tmp := WindowsDeleteString (HStr_protocol);
       end return;
    end;
 
@@ -217,15 +249,19 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Networking.Sockets.ServerStreamWebSocket'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerStreamWebSocket;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnection'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerStreamWebSocket do
          m_Interface := QInterface (this.m_IDevicePortalConnection.all);
          Hr := m_Interface.GetServerStreamWebSocketForRequest (request.m_IHttpRequestMessage.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerStreamWebSocket := new Windows.Networking.Sockets.IServerStreamWebSocket;
          Retval.m_IServerStreamWebSocket.all := m_ComRetVal;
       end return;
@@ -241,19 +277,23 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Networking.Sockets.ServerStreamWebSocket'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerStreamWebSocket;
-      HStr_protocol : WinRt.HString := To_HString (protocol);
+      HStr_protocol : constant WinRt.HString := To_HString (protocol);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnection, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnection'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerStreamWebSocket do
          m_Interface := QInterface (this.m_IDevicePortalConnection.all);
          Hr := m_Interface.GetServerStreamWebSocketForRequest (request.m_IHttpRequestMessage.all, HStr_protocol, outboundBufferSizeInBytes, noDelay, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerStreamWebSocket := new Windows.Networking.Sockets.IServerStreamWebSocket;
          Retval.m_IServerStreamWebSocket.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_protocol);
+         tmp := WindowsDeleteString (HStr_protocol);
       end return;
    end;
 
@@ -266,12 +306,12 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    end;
 
    procedure Finalize (this : in out DevicePortalConnectionClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePortalConnectionClosedEventArgs, IDevicePortalConnectionClosedEventArgs_Ptr);
    begin
       if this.m_IDevicePortalConnectionClosedEventArgs /= null then
          if this.m_IDevicePortalConnectionClosedEventArgs.all /= null then
-            RefCount := this.m_IDevicePortalConnectionClosedEventArgs.all.Release;
+            temp := this.m_IDevicePortalConnectionClosedEventArgs.all.Release;
             Free (this.m_IDevicePortalConnectionClosedEventArgs);
          end if;
       end if;
@@ -286,10 +326,14 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnectionClosedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.DevicePortal.DevicePortalConnectionClosedReason;
    begin
       Hr := this.m_IDevicePortalConnectionClosedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -302,12 +346,12 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    end;
 
    procedure Finalize (this : in out DevicePortalConnectionRequestReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDevicePortalConnectionRequestReceivedEventArgs, IDevicePortalConnectionRequestReceivedEventArgs_Ptr);
    begin
       if this.m_IDevicePortalConnectionRequestReceivedEventArgs /= null then
          if this.m_IDevicePortalConnectionRequestReceivedEventArgs.all /= null then
-            RefCount := this.m_IDevicePortalConnectionRequestReceivedEventArgs.all.Release;
+            temp := this.m_IDevicePortalConnectionRequestReceivedEventArgs.all.Release;
             Free (this.m_IDevicePortalConnectionRequestReceivedEventArgs);
          end if;
       end if;
@@ -322,11 +366,15 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IDevicePortalConnectionRequestReceivedEventArgs.all.get_RequestMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -338,11 +386,15 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IDevicePortalConnectionRequestReceivedEventArgs.all.get_ResponseMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
@@ -354,14 +406,18 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnectionRequestReceivedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnectionRequestReceivedEventArgs_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnectionRequestReceivedEventArgs, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnectionRequestReceivedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePortalConnectionRequestReceivedEventArgs.all);
       Hr := m_Interface.get_IsWebSocketUpgradeRequest (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -371,17 +427,21 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnectionRequestReceivedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnectionRequestReceivedEventArgs_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnectionRequestReceivedEventArgs, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnectionRequestReceivedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePortalConnectionRequestReceivedEventArgs.all);
       Hr := m_Interface.get_WebSocketProtocolsRequested (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -391,15 +451,19 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnectionRequestReceivedEventArgs := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnectionRequestReceivedEventArgs_Interface, WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalWebSocketConnectionRequestReceivedEventArgs, WinRt.Windows.System.Diagnostics.DevicePortal.IID_IDevicePortalWebSocketConnectionRequestReceivedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          m_Interface := QInterface (this.m_IDevicePortalConnectionRequestReceivedEventArgs.all);
          Hr := m_Interface.GetDeferral (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;

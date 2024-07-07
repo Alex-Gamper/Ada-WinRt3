@@ -67,12 +67,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out Appointment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointment, IAppointment_Ptr);
    begin
       if this.m_IAppointment /= null then
          if this.m_IAppointment.all /= null then
-            RefCount := this.m_IAppointment.all.Release;
+            temp := this.m_IAppointment.all.Release;
             Free (this.m_IAppointment);
          end if;
       end if;
@@ -83,7 +83,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
    function Constructor return Appointment is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.Appointment");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.Appointment");
       m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : Appointment do
@@ -92,7 +93,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
             Retval.m_IAppointment.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -105,10 +106,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointment.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -118,9 +123,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_StartTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -129,10 +138,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppointment.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -142,9 +155,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Location
@@ -153,13 +170,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointment.all.get_Location (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -169,11 +190,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppointment.all.put_Location (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Subject
@@ -182,13 +207,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointment.all.get_Subject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -198,11 +227,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppointment.all.put_Subject (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Details
@@ -211,13 +244,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointment.all.get_Details (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -227,11 +264,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppointment.all.put_Details (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Reminder
@@ -240,13 +281,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAppointment.all.get_Reminder (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -256,9 +301,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_Reminder (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Organizer
@@ -267,11 +316,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentOrganizer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentParticipant;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentOrganizer do
          Hr := this.m_IAppointment.all.get_Organizer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentParticipant := new Windows.ApplicationModel.Appointments.IAppointmentParticipant;
          Retval.m_IAppointmentParticipant.all := m_ComRetVal;
       end return;
@@ -283,9 +336,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentOrganizer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_Organizer (value.m_IAppointmentParticipant.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Invitees
@@ -294,13 +351,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IVector_IAppointmentInvitee.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IAppointmentInvitee.Kind;
    begin
       Hr := this.m_IAppointment.all.get_Invitees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IAppointmentInvitee (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -310,11 +371,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence do
          Hr := this.m_IAppointment.all.get_Recurrence (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentRecurrence := new Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
          Retval.m_IAppointmentRecurrence.all := m_ComRetVal;
       end return;
@@ -326,9 +391,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_Recurrence (value.m_IAppointmentRecurrence.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BusyStatus
@@ -337,10 +406,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentBusyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentBusyStatus;
    begin
       Hr := this.m_IAppointment.all.get_BusyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -350,9 +423,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentBusyStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_BusyStatus (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllDay
@@ -361,10 +438,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppointment.all.get_AllDay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -374,9 +455,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_AllDay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Sensitivity
@@ -385,10 +470,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentSensitivity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentSensitivity;
    begin
       Hr := this.m_IAppointment.all.get_Sensitivity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -398,9 +487,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentSensitivity
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_Sensitivity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Uri
@@ -409,11 +502,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppointment.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -425,9 +522,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointment.all.put_Uri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LocalId
@@ -436,17 +537,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_LocalId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -456,17 +561,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_CalendarId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -476,17 +585,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_RoamingId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -496,15 +609,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_RoamingId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_OriginalStartTime
@@ -513,17 +630,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_OriginalStartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -533,14 +654,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_IsResponseRequested (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -550,13 +675,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_IsResponseRequested (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowNewTimeProposal
@@ -565,14 +694,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_AllowNewTimeProposal (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -582,13 +715,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_AllowNewTimeProposal (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OnlineMeetingLink
@@ -597,17 +734,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_OnlineMeetingLink (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -617,15 +758,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_OnlineMeetingLink (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ReplyTime
@@ -634,17 +779,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_ReplyTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -654,13 +803,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_ReplyTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UserResponse
@@ -669,14 +822,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_UserResponse (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -686,13 +843,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_UserResponse (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HasInvitees
@@ -701,14 +862,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_HasInvitees (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -718,14 +883,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_IsCanceledMeeting (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -735,13 +904,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_IsCanceledMeeting (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOrganizedByUser
@@ -750,14 +923,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_IsOrganizedByUser (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -767,13 +944,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_IsOrganizedByUser (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ChangeNumber
@@ -782,14 +963,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_ChangeNumber (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -799,14 +984,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_RemoteChangeNumber (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -816,13 +1005,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_RemoteChangeNumber (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DetailsKind
@@ -831,14 +1024,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentDetailsKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentDetailsKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.get_DetailsKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -848,13 +1045,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentDetailsKind
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
       Hr := m_Interface.put_DetailsKind (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -866,12 +1067,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentCalendar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentCalendar, IAppointmentCalendar_Ptr);
    begin
       if this.m_IAppointmentCalendar /= null then
          if this.m_IAppointmentCalendar.all /= null then
-            RefCount := this.m_IAppointmentCalendar.all.Release;
+            temp := this.m_IAppointmentCalendar.all.Release;
             Free (this.m_IAppointmentCalendar);
          end if;
       end if;
@@ -886,10 +1087,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_DisplayColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -899,13 +1104,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -915,11 +1124,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppointmentCalendar.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_LocalId
@@ -928,13 +1141,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_LocalId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -944,10 +1161,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_IsHidden (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -957,10 +1178,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_OtherAppReadAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -970,9 +1195,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentCalendar.all.put_OtherAppReadAccess (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OtherAppWriteAccess
@@ -981,10 +1210,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_OtherAppWriteAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -994,9 +1227,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentCalendar.all.put_OtherAppWriteAccess (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SourceDisplayName
@@ -1005,13 +1242,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_SourceDisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1021,10 +1262,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentSummaryCardView is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentSummaryCardView;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_SummaryCardView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1034,9 +1279,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentCalendar.all.put_SummaryCardView (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function FindAppointmentsAsync
@@ -1047,13 +1296,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1071,7 +1320,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1084,7 +1333,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindAppointmentsAsync (rangeStart, rangeLength, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1094,9 +1343,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1113,13 +1362,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1137,7 +1386,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1150,7 +1399,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindAppointmentsAsync (rangeStart, rangeLength, options.m_IFindAppointmentsOptions.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1160,9 +1409,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1177,14 +1426,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_masterLocalId : WinRt.HString := To_HString (masterLocalId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_masterLocalId : constant WinRt.HString := To_HString (masterLocalId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1202,7 +1451,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1215,7 +1464,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindExceptionsFromMasterAsync (HStr_masterLocalId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1225,14 +1474,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_masterLocalId);
+      tmp := WindowsDeleteString (HStr_masterLocalId);
       return m_RetVal;
    end;
 
@@ -1245,14 +1494,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_masterLocalId : WinRt.HString := To_HString (masterLocalId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_masterLocalId : constant WinRt.HString := To_HString (masterLocalId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1270,7 +1519,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1283,7 +1532,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindAllInstancesAsync (HStr_masterLocalId, rangeStart, rangeLength, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1293,14 +1542,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_masterLocalId);
+      tmp := WindowsDeleteString (HStr_masterLocalId);
       return m_RetVal;
    end;
 
@@ -1314,14 +1563,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_masterLocalId : WinRt.HString := To_HString (masterLocalId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_masterLocalId : constant WinRt.HString := To_HString (masterLocalId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1339,7 +1588,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1352,7 +1601,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindAllInstancesAsync (HStr_masterLocalId, rangeStart, rangeLength, pOptions.m_IFindAppointmentsOptions.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1362,14 +1611,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_masterLocalId);
+      tmp := WindowsDeleteString (HStr_masterLocalId);
       return m_RetVal;
    end;
 
@@ -1380,14 +1629,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Appointment.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1405,7 +1654,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Appointment.Kind_Delegate, AsyncOperationCompletedHandler_Appointment.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1419,7 +1668,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentCalendar.all.GetAppointmentAsync (HStr_localId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1431,14 +1680,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_localId);
+         tmp := WindowsDeleteString (HStr_localId);
       end return;
    end;
 
@@ -1450,14 +1699,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Appointment.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1475,7 +1724,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Appointment.Kind_Delegate, AsyncOperationCompletedHandler_Appointment.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1489,7 +1738,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentCalendar.all.GetAppointmentInstanceAsync (HStr_localId, instanceStartTime, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1501,14 +1750,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_localId);
+         tmp := WindowsDeleteString (HStr_localId);
       end return;
    end;
 
@@ -1518,13 +1767,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1542,7 +1791,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1555,7 +1804,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindUnexpandedAppointmentsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1565,9 +1814,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1582,13 +1831,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1606,7 +1855,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1619,7 +1868,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendar.all.FindUnexpandedAppointmentsAsync (options.m_IFindAppointmentsOptions.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1629,9 +1878,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1644,7 +1893,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentCalendar
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1652,7 +1902,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1673,9 +1922,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1686,7 +1935,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentCalendar
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1694,7 +1944,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1715,9 +1964,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1729,8 +1978,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       localId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1738,7 +1988,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1759,13 +2008,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
    end;
 
    procedure DeleteAppointmentInstanceAsync
@@ -1775,8 +2024,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       instanceStartTime : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1784,7 +2034,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1805,13 +2054,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
    end;
 
    procedure SaveAppointmentAsync
@@ -1820,7 +2069,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       pAppointment : Windows.ApplicationModel.Appointments.Appointment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1828,7 +2078,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1849,9 +2098,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1863,15 +2112,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncManager'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncManager do
          m_Interface := QInterface (this.m_IAppointmentCalendar.all);
          Hr := m_Interface.get_SyncManager (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentCalendarSyncManager := new Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager;
          Retval.m_IAppointmentCalendarSyncManager.all := m_ComRetVal;
       end return;
@@ -1883,17 +2136,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_RemoteId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1903,15 +2160,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_RemoteId (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure put_DisplayColor
@@ -1920,13 +2181,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_DisplayColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_IsHidden
@@ -1935,13 +2200,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_IsHidden (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UserDataAccountId
@@ -1950,17 +2219,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_UserDataAccountId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1970,14 +2243,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_CanCreateOrUpdateAppointments (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1987,13 +2264,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_CanCreateOrUpdateAppointments (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanCancelMeetings
@@ -2002,14 +2283,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_CanCancelMeetings (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2019,13 +2304,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_CanCancelMeetings (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanForwardMeetings
@@ -2034,14 +2323,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_CanForwardMeetings (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2051,13 +2344,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_CanForwardMeetings (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanProposeNewTimeForMeetings
@@ -2066,14 +2363,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_CanProposeNewTimeForMeetings (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2083,13 +2384,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_CanProposeNewTimeForMeetings (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanUpdateMeetingResponses
@@ -2098,14 +2403,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_CanUpdateMeetingResponses (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2115,13 +2424,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_CanUpdateMeetingResponses (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanNotifyInvitees
@@ -2130,14 +2443,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_CanNotifyInvitees (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2147,13 +2464,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_CanNotifyInvitees (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MustNofityInvitees
@@ -2162,14 +2483,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.get_MustNofityInvitees (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2179,13 +2504,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.put_MustNofityInvitees (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryCreateOrUpdateAppointmentAsync
@@ -2196,14 +2525,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2221,7 +2550,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2234,10 +2563,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.TryCreateOrUpdateAppointmentAsync (appointment_p.m_IAppointment.all, notifyInvitees, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2247,9 +2576,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2267,16 +2596,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2294,7 +2623,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2307,10 +2636,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.TryCancelMeetingAsync (meeting.m_IAppointment.all, HStr_subject, HStr_comment, notifyInvitees, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2320,15 +2649,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -2343,17 +2672,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_forwardHeader : WinRt.HString := To_HString (forwardHeader);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_forwardHeader : constant WinRt.HString := To_HString (forwardHeader);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2371,7 +2700,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2384,10 +2713,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.TryForwardMeetingAsync (meeting.m_IAppointment.all, invitees, HStr_subject, HStr_forwardHeader, HStr_comment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2397,16 +2726,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_forwardHeader);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_forwardHeader);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -2421,16 +2750,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2448,7 +2777,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2461,10 +2790,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.TryProposeNewTimeForMeetingAsync (meeting.m_IAppointment.all, newStartTime, newDuration, HStr_subject, HStr_comment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2474,15 +2803,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -2497,16 +2826,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_subject : WinRt.HString := To_HString (subject);
-      HStr_comment : WinRt.HString := To_HString (comment);
+      temp             : WinRt.UInt32 := 0;
+      HStr_subject : constant WinRt.HString := To_HString (subject);
+      HStr_comment : constant WinRt.HString := To_HString (comment);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2524,7 +2853,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2537,10 +2866,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.TryUpdateMeetingResponseAsync (meeting.m_IAppointment.all, response, HStr_subject, HStr_comment, sendUpdate, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2550,15 +2879,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_subject);
-      Hr := WindowsDeleteString (HStr_comment);
+      tmp := WindowsDeleteString (HStr_subject);
+      tmp := WindowsDeleteString (HStr_comment);
       return m_RetVal;
    end;
 
@@ -2567,8 +2896,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentCalendar
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2576,7 +2906,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2592,7 +2921,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendar.all);
       Hr := m_Interface.RegisterSyncManagerAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2600,9 +2929,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2617,12 +2946,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentCalendarSyncManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentCalendarSyncManager, IAppointmentCalendarSyncManager_Ptr);
    begin
       if this.m_IAppointmentCalendarSyncManager /= null then
          if this.m_IAppointmentCalendarSyncManager.all /= null then
-            RefCount := this.m_IAppointmentCalendarSyncManager.all.Release;
+            temp := this.m_IAppointmentCalendarSyncManager.all.Release;
             Free (this.m_IAppointmentCalendarSyncManager);
          end if;
       end if;
@@ -2637,10 +2966,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2650,10 +2983,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.get_LastSuccessfulSyncTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2663,10 +3000,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.get_LastAttemptedSyncTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2676,13 +3017,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2700,7 +3041,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2713,7 +3054,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentCalendarSyncManager.all.SyncAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2723,9 +3064,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -2740,10 +3081,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.add_SyncStatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2753,9 +3098,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.remove_SyncStatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Status
@@ -2764,13 +3113,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendarSyncManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendarSyncManager.all);
       Hr := m_Interface.put_Status (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_LastSuccessfulSyncTime
@@ -2779,13 +3132,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendarSyncManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendarSyncManager.all);
       Hr := m_Interface.put_LastSuccessfulSyncTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_LastAttemptedSyncTime
@@ -2794,13 +3151,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendarSyncManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentCalendarSyncManager.all);
       Hr := m_Interface.put_LastAttemptedSyncTime (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2812,12 +3173,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentConflictResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentConflictResult, IAppointmentConflictResult_Ptr);
    begin
       if this.m_IAppointmentConflictResult /= null then
          if this.m_IAppointmentConflictResult.all /= null then
-            RefCount := this.m_IAppointmentConflictResult.all.Release;
+            temp := this.m_IAppointmentConflictResult.all.Release;
             Free (this.m_IAppointmentConflictResult);
          end if;
       end if;
@@ -2832,10 +3193,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentConflictType;
    begin
       Hr := this.m_IAppointmentConflictResult.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2845,10 +3210,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentConflictResult.all.get_Date (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2861,12 +3230,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentException) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentException, IAppointmentException_Ptr);
    begin
       if this.m_IAppointmentException /= null then
          if this.m_IAppointmentException.all /= null then
-            RefCount := this.m_IAppointmentException.all.Release;
+            temp := this.m_IAppointmentException.all.Release;
             Free (this.m_IAppointmentException);
          end if;
       end if;
@@ -2881,11 +3250,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IAppointmentException.all.get_Appointment (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
@@ -2897,13 +3270,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IAppointmentException.all.get_ExceptionProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2913,10 +3290,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAppointmentException.all.get_IsDeleted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2929,12 +3310,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentInvitee) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentInvitee, IAppointmentInvitee_Ptr);
    begin
       if this.m_IAppointmentInvitee /= null then
          if this.m_IAppointmentInvitee.all /= null then
-            RefCount := this.m_IAppointmentInvitee.all.Release;
+            temp := this.m_IAppointmentInvitee.all.Release;
             Free (this.m_IAppointmentInvitee);
          end if;
       end if;
@@ -2945,7 +3326,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
    function Constructor return AppointmentInvitee is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentInvitee");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentInvitee");
       m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointmentInvitee;
    begin
       return RetVal : AppointmentInvitee do
@@ -2954,7 +3336,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             Retval.m_IAppointmentInvitee := new Windows.ApplicationModel.Appointments.IAppointmentInvitee;
             Retval.m_IAppointmentInvitee.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2967,10 +3349,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantRole is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentParticipantRole;
    begin
       Hr := this.m_IAppointmentInvitee.all.get_Role (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2980,9 +3366,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentParticipantRole
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentInvitee.all.put_Role (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Response
@@ -2991,10 +3381,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
    begin
       Hr := this.m_IAppointmentInvitee.all.get_Response (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3004,9 +3398,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentInvitee.all.put_Response (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DisplayName
@@ -3015,17 +3413,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentParticipant'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentInvitee.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3035,15 +3437,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentParticipant'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentInvitee.all);
       Hr := m_Interface.put_DisplayName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Address
@@ -3052,17 +3458,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentParticipant'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentInvitee.all);
       Hr := m_Interface.get_Address (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3072,15 +3482,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentParticipant'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentInvitee.all);
       Hr := m_Interface.put_Address (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -3094,15 +3508,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3121,7 +3535,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3134,10 +3548,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAddAppointmentAsync (appointment_p.m_IAppointment.all, selection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3147,17 +3561,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3169,15 +3583,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3196,7 +3610,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3209,10 +3623,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAddAppointmentAsync (appointment_p.m_IAppointment.all, selection, preferredPlacement, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3222,17 +3636,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3244,16 +3658,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3272,7 +3686,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3285,10 +3699,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowReplaceAppointmentAsync (HStr_appointmentId, appointment_p.m_IAppointment.all, selection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3298,18 +3712,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3322,16 +3736,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3350,7 +3764,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3363,10 +3777,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowReplaceAppointmentAsync (HStr_appointmentId, appointment_p.m_IAppointment.all, selection, preferredPlacement, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3376,18 +3790,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3401,16 +3815,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3429,7 +3843,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3442,10 +3856,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowReplaceAppointmentAsync (HStr_appointmentId, appointment_p.m_IAppointment.all, selection, preferredPlacement, instanceStartDate, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3455,18 +3869,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3477,16 +3891,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3504,7 +3918,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3517,10 +3931,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowRemoveAppointmentAsync (HStr_appointmentId, selection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3530,16 +3944,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
          return m_RetVal;
       end;
 
@@ -3551,16 +3965,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3578,7 +3992,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3591,10 +4005,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowRemoveAppointmentAsync (HStr_appointmentId, selection, preferredPlacement, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3604,16 +4018,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
          return m_RetVal;
       end;
 
@@ -3626,16 +4040,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3653,7 +4067,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3666,10 +4080,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowRemoveAppointmentAsync (HStr_appointmentId, selection, preferredPlacement, instanceStartDate, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3679,16 +4093,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
          return m_RetVal;
       end;
 
@@ -3698,9 +4112,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          duration : Windows.Foundation.TimeSpan
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -3708,7 +4123,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -3724,7 +4138,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowTimeFrameAsync (timeToShow, duration, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3732,14 +4146,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure ShowAppointmentDetailsAsync
@@ -3747,10 +4161,11 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          appointmentId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -3758,7 +4173,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -3774,7 +4188,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAppointmentDetailsAsync (HStr_appointmentId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3782,15 +4196,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
       end;
 
       procedure ShowAppointmentDetailsAsync
@@ -3799,10 +4213,11 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          instanceStartDate : Windows.Foundation.DateTime
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -3810,7 +4225,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -3826,7 +4240,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAppointmentDetailsAsync (HStr_appointmentId, instanceStartDate, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3834,15 +4248,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appointmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appointmentId);
       end;
 
       function ShowEditNewAppointmentAsync
@@ -3851,15 +4265,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3878,7 +4292,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3891,10 +4305,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowEditNewAppointmentAsync (appointment_p.m_IAppointment.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3904,17 +4318,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -3924,15 +4338,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_AppointmentStore.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3950,7 +4364,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentStore.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentStore.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -3964,10 +4378,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestStoreAsync (options, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -3979,15 +4393,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                         Retval.m_IAppointmentStore := new Windows.ApplicationModel.Appointments.IAppointmentStore;
                         Retval.m_IAppointmentStore.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -3997,20 +4411,24 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       )
       return WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentManagerForUser;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics3'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IAppointmentManagerForUser := new Windows.ApplicationModel.Appointments.IAppointmentManagerForUser;
                Retval.m_IAppointmentManagerForUser.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -4025,12 +4443,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentManagerForUser) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentManagerForUser, IAppointmentManagerForUser_Ptr);
    begin
       if this.m_IAppointmentManagerForUser /= null then
          if this.m_IAppointmentManagerForUser.all /= null then
-            RefCount := this.m_IAppointmentManagerForUser.all.Release;
+            temp := this.m_IAppointmentManagerForUser.all.Release;
             Free (this.m_IAppointmentManagerForUser);
          end if;
       end if;
@@ -4047,13 +4465,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4072,7 +4490,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4085,7 +4503,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowAddAppointmentAsync (appointment_p.m_IAppointment.all, selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4095,15 +4513,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4116,13 +4534,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4141,7 +4559,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4154,7 +4572,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowAddAppointmentAsync (appointment_p.m_IAppointment.all, selection, preferredPlacement, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4164,15 +4582,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4185,14 +4603,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4211,7 +4629,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4224,7 +4642,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowReplaceAppointmentAsync (HStr_appointmentId, appointment_p.m_IAppointment.all, selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4234,16 +4652,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4257,14 +4675,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4283,7 +4701,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4296,7 +4714,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowReplaceAppointmentAsync (HStr_appointmentId, appointment_p.m_IAppointment.all, selection, preferredPlacement, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4306,16 +4724,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4330,14 +4748,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4356,7 +4774,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4369,7 +4787,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowReplaceAppointmentAsync (HStr_appointmentId, appointment_p.m_IAppointment.all, selection, preferredPlacement, instanceStartDate, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4379,16 +4797,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4400,14 +4818,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4425,7 +4843,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4438,7 +4856,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowRemoveAppointmentAsync (HStr_appointmentId, selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4448,14 +4866,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
       return m_RetVal;
    end;
 
@@ -4468,14 +4886,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4493,7 +4911,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4506,7 +4924,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowRemoveAppointmentAsync (HStr_appointmentId, selection, preferredPlacement, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4516,14 +4934,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
       return m_RetVal;
    end;
 
@@ -4537,14 +4955,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4562,7 +4980,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4575,7 +4993,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowRemoveAppointmentAsync (HStr_appointmentId, selection, preferredPlacement, instanceStartDate, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4585,14 +5003,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
       return m_RetVal;
    end;
 
@@ -4603,7 +5021,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       duration : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4611,7 +5030,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4632,9 +5050,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4646,8 +5064,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       appointmentId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4655,7 +5074,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4676,13 +5094,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
    end;
 
    procedure ShowAppointmentDetailsAsync
@@ -4692,8 +5110,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       instanceStartDate : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appointmentId : WinRt.HString := To_HString (appointmentId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appointmentId : constant WinRt.HString := To_HString (appointmentId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4701,7 +5120,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4722,13 +5140,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appointmentId);
+      tmp := WindowsDeleteString (HStr_appointmentId);
    end;
 
    function ShowEditNewAppointmentAsync
@@ -4738,13 +5156,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4763,7 +5181,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4776,7 +5194,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentManagerForUser.all.ShowEditNewAppointmentAsync (appointment_p.m_IAppointment.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4786,15 +5204,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -4805,13 +5223,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppointmentStore.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4829,7 +5247,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentStore.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentStore.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4843,7 +5261,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentManagerForUser.all.RequestStoreAsync (options, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -4855,9 +5273,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointmentStore := new Windows.ApplicationModel.Appointments.IAppointmentStore;
                   Retval.m_IAppointmentStore.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -4871,11 +5289,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAppointmentManagerForUser.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -4890,12 +5312,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentOrganizer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentParticipant, IAppointmentParticipant_Ptr);
    begin
       if this.m_IAppointmentParticipant /= null then
          if this.m_IAppointmentParticipant.all /= null then
-            RefCount := this.m_IAppointmentParticipant.all.Release;
+            temp := this.m_IAppointmentParticipant.all.Release;
             Free (this.m_IAppointmentParticipant);
          end if;
       end if;
@@ -4906,7 +5328,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
    function Constructor return AppointmentOrganizer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentOrganizer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentOrganizer");
       m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointmentParticipant;
    begin
       return RetVal : AppointmentOrganizer do
@@ -4915,7 +5338,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             Retval.m_IAppointmentParticipant := new Windows.ApplicationModel.Appointments.IAppointmentParticipant;
             Retval.m_IAppointmentParticipant.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4928,13 +5351,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentParticipant.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4944,11 +5371,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppointmentParticipant.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Address
@@ -4957,13 +5388,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppointmentParticipant.all.get_Address (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4973,11 +5408,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppointmentParticipant.all.put_Address (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -4987,520 +5426,624 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function get_ChangeNumber
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ChangeNumber (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RemoteChangeNumber
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RemoteChangeNumber (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DetailsKind
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DetailsKind (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Subject
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Subject (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Location
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Location (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_StartTime
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StartTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Duration
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Duration (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Reminder
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Reminder (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_BusyStatus
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BusyStatus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sensitivity
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sensitivity (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_OriginalStartTime
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OriginalStartTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_IsResponseRequested
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsResponseRequested (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AllowNewTimeProposal
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllowNewTimeProposal (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AllDay
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllDay (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Details
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Details (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_OnlineMeetingLink
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OnlineMeetingLink (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ReplyTime
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ReplyTime (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Organizer
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Organizer (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_UserResponse
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UserResponse (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HasInvitees
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HasInvitees (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_IsCanceledMeeting
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsCanceledMeeting (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_IsOrganizedByUser
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsOrganizedByUser (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Recurrence
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Recurrence (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Uri
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Uri (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Invitees
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Invitees (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DefaultProperties
       return IVector_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVector_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DefaultProperties (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
@@ -5515,12 +6058,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentRecurrence) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentRecurrence, IAppointmentRecurrence_Ptr);
    begin
       if this.m_IAppointmentRecurrence /= null then
          if this.m_IAppointmentRecurrence.all /= null then
-            RefCount := this.m_IAppointmentRecurrence.all.Release;
+            temp := this.m_IAppointmentRecurrence.all.Release;
             Free (this.m_IAppointmentRecurrence);
          end if;
       end if;
@@ -5531,7 +6074,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
    function Constructor return AppointmentRecurrence is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentRecurrence");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentRecurrence");
       m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
    begin
       return RetVal : AppointmentRecurrence do
@@ -5540,7 +6084,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             Retval.m_IAppointmentRecurrence := new Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
             Retval.m_IAppointmentRecurrence.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5553,10 +6097,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Unit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5566,9 +6114,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_Unit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Occurrences
@@ -5577,13 +6129,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Occurrences (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5593,9 +6149,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_Occurrences (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Until
@@ -5604,13 +6164,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Until (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5620,9 +6184,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_Until (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Interval
@@ -5631,10 +6199,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Interval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5644,9 +6216,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_Interval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DaysOfWeek
@@ -5655,10 +6231,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_DaysOfWeek (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5668,9 +6248,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_DaysOfWeek (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_WeekOfMonth
@@ -5679,10 +6263,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_WeekOfMonth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5692,9 +6280,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_WeekOfMonth (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Month
@@ -5703,10 +6295,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Month (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5716,9 +6312,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_Month (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Day
@@ -5727,10 +6327,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Day (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5740,9 +6344,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentRecurrence.all.put_Day (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RecurrenceType
@@ -5751,14 +6359,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.RecurrenceType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.RecurrenceType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentRecurrence2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentRecurrence.all);
       Hr := m_Interface.get_RecurrenceType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5768,17 +6380,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentRecurrence2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentRecurrence.all);
       Hr := m_Interface.get_TimeZone (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5788,15 +6404,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentRecurrence2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentRecurrence.all);
       Hr := m_Interface.put_TimeZone (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CalendarIdentifier
@@ -5805,17 +6425,21 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentRecurrence3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentRecurrence.all);
       Hr := m_Interface.get_CalendarIdentifier (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5828,12 +6452,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStore, IAppointmentStore_Ptr);
    begin
       if this.m_IAppointmentStore /= null then
          if this.m_IAppointmentStore.all /= null then
-            RefCount := this.m_IAppointmentStore.all.Release;
+            temp := this.m_IAppointmentStore.all.Release;
             Free (this.m_IAppointmentStore);
          end if;
       end if;
@@ -5848,11 +6472,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeTracker'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeTracker do
          Hr := this.m_IAppointmentStore.all.get_ChangeTracker (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentStoreChangeTracker := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
          Retval.m_IAppointmentStoreChangeTracker.all := m_ComRetVal;
       end return;
@@ -5865,14 +6493,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppointmentCalendar.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5890,7 +6518,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentCalendar.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentCalendar.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5904,7 +6532,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentStore.all.CreateAppointmentCalendarAsync (HStr_name, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5916,14 +6544,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
                   Retval.m_IAppointmentCalendar.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -5934,14 +6562,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_calendarId : WinRt.HString := To_HString (calendarId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_calendarId : constant WinRt.HString := To_HString (calendarId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppointmentCalendar.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5959,7 +6587,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentCalendar.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentCalendar.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5973,7 +6601,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentStore.all.GetAppointmentCalendarAsync (HStr_calendarId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5985,14 +6613,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
                   Retval.m_IAppointmentCalendar.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_calendarId);
+         tmp := WindowsDeleteString (HStr_calendarId);
       end return;
    end;
 
@@ -6003,14 +6631,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Appointment.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6028,7 +6656,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Appointment.Kind_Delegate, AsyncOperationCompletedHandler_Appointment.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6042,7 +6670,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentStore.all.GetAppointmentAsync (HStr_localId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6054,14 +6682,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_localId);
+         tmp := WindowsDeleteString (HStr_localId);
       end return;
    end;
 
@@ -6073,14 +6701,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Appointment.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6098,7 +6726,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Appointment.Kind_Delegate, AsyncOperationCompletedHandler_Appointment.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6112,7 +6740,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentStore.all.GetAppointmentInstanceAsync (HStr_localId, instanceStartTime, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6124,14 +6752,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_localId);
+         tmp := WindowsDeleteString (HStr_localId);
       end return;
    end;
 
@@ -6141,13 +6769,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6165,7 +6793,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6178,7 +6806,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.FindAppointmentCalendarsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6188,9 +6816,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6205,13 +6833,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6229,7 +6857,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6242,7 +6870,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.FindAppointmentCalendarsAsync (options, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6252,9 +6880,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6270,13 +6898,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6294,7 +6922,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6307,7 +6935,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.FindAppointmentsAsync (rangeStart, rangeLength, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6317,9 +6945,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6336,13 +6964,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6360,7 +6988,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6373,7 +7001,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.FindAppointmentsAsync (rangeStart, rangeLength, options.m_IFindAppointmentsOptions.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6383,9 +7011,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6400,13 +7028,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppointmentConflictResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6424,7 +7052,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentConflictResult.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentConflictResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6438,7 +7066,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentStore.all.FindConflictAsync (appointment_p.m_IAppointment.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6450,9 +7078,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointmentConflictResult := new Windows.ApplicationModel.Appointments.IAppointmentConflictResult;
                   Retval.m_IAppointmentConflictResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6468,13 +7096,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppointmentConflictResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6492,7 +7120,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentConflictResult.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentConflictResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6506,7 +7134,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          Hr := this.m_IAppointmentStore.all.FindConflictAsync (appointment_p.m_IAppointment.all, instanceStartTime, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6518,9 +7146,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointmentConflictResult := new Windows.ApplicationModel.Appointments.IAppointmentConflictResult;
                   Retval.m_IAppointmentConflictResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6535,7 +7163,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       destinationCalendar : Windows.ApplicationModel.Appointments.AppointmentCalendar'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -6543,7 +7172,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -6564,9 +7192,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -6580,13 +7208,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6605,7 +7233,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6618,7 +7246,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.ShowAddAppointmentAsync (appointment_p.m_IAppointment.all, selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6628,15 +7256,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -6649,14 +7277,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6675,7 +7303,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6688,7 +7316,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.ShowReplaceAppointmentAsync (HStr_localId, appointment_p.m_IAppointment.all, selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6698,16 +7326,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -6722,14 +7350,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6748,7 +7376,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6761,7 +7389,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.ShowReplaceAppointmentAsync (HStr_localId, appointment_p.m_IAppointment.all, selection, preferredPlacement, instanceStartDate, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6771,16 +7399,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -6792,14 +7420,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6817,7 +7445,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6830,7 +7458,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.ShowRemoveAppointmentAsync (HStr_localId, selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6840,14 +7468,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
       return m_RetVal;
    end;
 
@@ -6861,14 +7489,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6886,7 +7514,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6899,7 +7527,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.ShowRemoveAppointmentAsync (HStr_localId, selection, preferredPlacement, instanceStartDate, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6909,14 +7537,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
       return m_RetVal;
    end;
 
@@ -6926,8 +7554,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       localId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -6935,7 +7564,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -6956,13 +7584,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
    end;
 
    procedure ShowAppointmentDetailsAsync
@@ -6972,8 +7600,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       instanceStartDate : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localId : WinRt.HString := To_HString (localId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localId : constant WinRt.HString := To_HString (localId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -6981,7 +7610,6 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7002,13 +7630,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localId);
+      tmp := WindowsDeleteString (HStr_localId);
    end;
 
    function ShowEditNewAppointmentAsync
@@ -7018,13 +7646,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7043,7 +7671,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7056,7 +7684,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.ShowEditNewAppointmentAsync (appointment_p.m_IAppointment.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -7066,15 +7694,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -7085,14 +7713,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_roamingId : WinRt.HString := To_HString (roamingId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_roamingId : constant WinRt.HString := To_HString (roamingId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7110,7 +7738,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7123,7 +7751,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStore.all.FindLocalIdsFromRoamingIdAsync (HStr_roamingId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -7133,14 +7761,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_roamingId);
+      tmp := WindowsDeleteString (HStr_roamingId);
       return m_RetVal;
    end;
 
@@ -7151,14 +7779,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentStore.all);
       Hr := m_Interface.add_StoreChanged (pHandler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7168,13 +7800,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentStore.all);
       Hr := m_Interface.remove_StoreChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateAppointmentCalendarAsync
@@ -7185,16 +7821,16 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
-      HStr_userDataAccountId : WinRt.HString := To_HString (userDataAccountId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
+      HStr_userDataAccountId : constant WinRt.HString := To_HString (userDataAccountId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_AppointmentCalendar.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7212,7 +7848,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AppointmentCalendar.Kind_Delegate, AsyncOperationCompletedHandler_AppointmentCalendar.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7226,10 +7862,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar do
          m_Interface := QInterface (this.m_IAppointmentStore.all);
          Hr := m_Interface.CreateAppointmentCalendarAsync (HStr_name, HStr_userDataAccountId, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -7241,15 +7877,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                   Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
                   Retval.m_IAppointmentCalendar.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_name);
-         Hr := WindowsDeleteString (HStr_userDataAccountId);
+         tmp := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_userDataAccountId);
       end return;
    end;
 
@@ -7260,19 +7896,23 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeTracker'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
-      HStr_identity : WinRt.HString := To_HString (identity);
+      HStr_identity : constant WinRt.HString := To_HString (identity);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStore3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeTracker do
          m_Interface := QInterface (this.m_IAppointmentStore.all);
          Hr := m_Interface.GetChangeTracker (HStr_identity, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentStoreChangeTracker := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
          Retval.m_IAppointmentStoreChangeTracker.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_identity);
+         tmp := WindowsDeleteString (HStr_identity);
       end return;
    end;
 
@@ -7285,12 +7925,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStoreChange) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreChange, IAppointmentStoreChange_Ptr);
    begin
       if this.m_IAppointmentStoreChange /= null then
          if this.m_IAppointmentStoreChange.all /= null then
-            RefCount := this.m_IAppointmentStoreChange.all.Release;
+            temp := this.m_IAppointmentStoreChange.all.Release;
             Free (this.m_IAppointmentStoreChange);
          end if;
       end if;
@@ -7305,11 +7945,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IAppointmentStoreChange.all.get_Appointment (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
@@ -7321,10 +7965,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentStoreChangeType;
    begin
       Hr := this.m_IAppointmentStoreChange.all.get_ChangeType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7334,15 +7982,19 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentCalendar;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStoreChange2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar do
          m_Interface := QInterface (this.m_IAppointmentStoreChange.all);
          Hr := m_Interface.get_AppointmentCalendar (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
          Retval.m_IAppointmentCalendar.all := m_ComRetVal;
       end return;
@@ -7357,12 +8009,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStoreChangeReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreChangeReader, IAppointmentStoreChangeReader_Ptr);
    begin
       if this.m_IAppointmentStoreChangeReader /= null then
          if this.m_IAppointmentStoreChangeReader.all /= null then
-            RefCount := this.m_IAppointmentStoreChangeReader.all.Release;
+            temp := this.m_IAppointmentStoreChangeReader.all.Release;
             Free (this.m_IAppointmentStoreChangeReader);
          end if;
       end if;
@@ -7377,13 +8029,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7401,7 +8053,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7414,7 +8066,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr := this.m_IAppointmentStoreChangeReader.all.ReadBatchAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -7424,9 +8076,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -7439,9 +8091,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentStoreChangeReader
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentStoreChangeReader.all.AcceptChanges;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AcceptChangesThrough
@@ -7450,9 +8106,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       lastChangeToAccept : Windows.ApplicationModel.Appointments.AppointmentStoreChange'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentStoreChangeReader.all.AcceptChangesThrough (lastChangeToAccept.m_IAppointmentStoreChange.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7464,12 +8124,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStoreChangeTracker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreChangeTracker, IAppointmentStoreChangeTracker_Ptr);
    begin
       if this.m_IAppointmentStoreChangeTracker /= null then
          if this.m_IAppointmentStoreChangeTracker.all /= null then
-            RefCount := this.m_IAppointmentStoreChangeTracker.all.Release;
+            temp := this.m_IAppointmentStoreChangeTracker.all.Release;
             Free (this.m_IAppointmentStoreChangeTracker);
          end if;
       end if;
@@ -7484,11 +8144,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeReader do
          Hr := this.m_IAppointmentStoreChangeTracker.all.GetChangeReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentStoreChangeReader := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader;
          Retval.m_IAppointmentStoreChangeReader.all := m_ComRetVal;
       end return;
@@ -7499,9 +8163,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentStoreChangeTracker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentStoreChangeTracker.all.Enable;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Reset
@@ -7509,9 +8177,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentStoreChangeTracker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentStoreChangeTracker.all.Reset;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsTracking
@@ -7520,14 +8192,18 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStoreChangeTracker2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentStoreChangeTracker.all);
       Hr := m_Interface.get_IsTracking (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7540,12 +8216,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStoreChangedDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreChangedDeferral, IAppointmentStoreChangedDeferral_Ptr);
    begin
       if this.m_IAppointmentStoreChangedDeferral /= null then
          if this.m_IAppointmentStoreChangedDeferral.all /= null then
-            RefCount := this.m_IAppointmentStoreChangedDeferral.all.Release;
+            temp := this.m_IAppointmentStoreChangedDeferral.all.Release;
             Free (this.m_IAppointmentStoreChangedDeferral);
          end if;
       end if;
@@ -7559,9 +8235,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       this : in out AppointmentStoreChangedDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppointmentStoreChangedDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7573,12 +8253,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStoreChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreChangedEventArgs, IAppointmentStoreChangedEventArgs_Ptr);
    begin
       if this.m_IAppointmentStoreChangedEventArgs /= null then
          if this.m_IAppointmentStoreChangedEventArgs.all /= null then
-            RefCount := this.m_IAppointmentStoreChangedEventArgs.all.Release;
+            temp := this.m_IAppointmentStoreChangedEventArgs.all.Release;
             Free (this.m_IAppointmentStoreChangedEventArgs);
          end if;
       end if;
@@ -7593,11 +8273,15 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangedDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangedDeferral do
          Hr := this.m_IAppointmentStoreChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointmentStoreChangedDeferral := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral;
          Retval.m_IAppointmentStoreChangedDeferral.all := m_ComRetVal;
       end return;
@@ -7612,12 +8296,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out AppointmentStoreNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreNotificationTriggerDetails, IAppointmentStoreNotificationTriggerDetails_Ptr);
    begin
       if this.m_IAppointmentStoreNotificationTriggerDetails /= null then
          if this.m_IAppointmentStoreNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IAppointmentStoreNotificationTriggerDetails.all.Release;
+            temp := this.m_IAppointmentStoreNotificationTriggerDetails.all.Release;
             Free (this.m_IAppointmentStoreNotificationTriggerDetails);
          end if;
       end if;
@@ -7635,12 +8319,12 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    end;
 
    procedure Finalize (this : in out FindAppointmentsOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFindAppointmentsOptions, IFindAppointmentsOptions_Ptr);
    begin
       if this.m_IFindAppointmentsOptions /= null then
          if this.m_IFindAppointmentsOptions.all /= null then
-            RefCount := this.m_IFindAppointmentsOptions.all.Release;
+            temp := this.m_IFindAppointmentsOptions.all.Release;
             Free (this.m_IFindAppointmentsOptions);
          end if;
       end if;
@@ -7651,7 +8335,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
    function Constructor return FindAppointmentsOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.FindAppointmentsOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.FindAppointmentsOptions");
       m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
    begin
       return RetVal : FindAppointmentsOptions do
@@ -7660,7 +8345,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
             Retval.m_IFindAppointmentsOptions := new Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
             Retval.m_IFindAppointmentsOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7673,13 +8358,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.get_CalendarIds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7689,13 +8378,17 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.get_FetchProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7705,10 +8398,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.get_IncludeHidden (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7718,9 +8415,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.put_IncludeHidden (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxCount
@@ -7729,10 +8430,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.get_MaxCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7742,9 +8447,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.put_MaxCount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.ApplicationModel.Appointments;

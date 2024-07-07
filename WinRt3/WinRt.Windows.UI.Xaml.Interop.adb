@@ -43,7 +43,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
       e : WinRt.IInspectable
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (vector, e);
       return Hr;
@@ -58,12 +58,12 @@ package body WinRt.Windows.UI.Xaml.Interop is
    end;
 
    procedure Finalize (this : in out NotifyCollectionChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INotifyCollectionChangedEventArgs, INotifyCollectionChangedEventArgs_Ptr);
    begin
       if this.m_INotifyCollectionChangedEventArgs /= null then
          if this.m_INotifyCollectionChangedEventArgs.all /= null then
-            RefCount := this.m_INotifyCollectionChangedEventArgs.all.Release;
+            temp := this.m_INotifyCollectionChangedEventArgs.all.Release;
             Free (this.m_INotifyCollectionChangedEventArgs);
          end if;
       end if;
@@ -84,9 +84,10 @@ package body WinRt.Windows.UI.Xaml.Interop is
    )
    return NotifyCollectionChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs");
       m_Factory    : access INotifyCollectionChangedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
    begin
       return RetVal : NotifyCollectionChangedEventArgs do
@@ -95,9 +96,9 @@ package body WinRt.Windows.UI.Xaml.Interop is
             Hr := m_Factory.CreateInstanceWithAllParameters (action, newItems, oldItems, newIndex, oldIndex, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_INotifyCollectionChangedEventArgs := new Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
             Retval.m_INotifyCollectionChangedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -110,10 +111,14 @@ package body WinRt.Windows.UI.Xaml.Interop is
    )
    return WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -123,10 +128,14 @@ package body WinRt.Windows.UI.Xaml.Interop is
    )
    return WinRt.Windows.UI.Xaml.Interop.IBindableVector is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Interop.IBindableVector;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_NewItems (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -136,10 +145,14 @@ package body WinRt.Windows.UI.Xaml.Interop is
    )
    return WinRt.Windows.UI.Xaml.Interop.IBindableVector is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Interop.IBindableVector;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_OldItems (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -149,10 +162,14 @@ package body WinRt.Windows.UI.Xaml.Interop is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_NewStartingIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -162,10 +179,14 @@ package body WinRt.Windows.UI.Xaml.Interop is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_OldStartingIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -179,7 +200,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
       e : Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;

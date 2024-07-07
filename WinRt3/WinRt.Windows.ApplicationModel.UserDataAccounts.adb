@@ -57,12 +57,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    end;
 
    procedure Finalize (this : in out UserDataAccount) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccount, IUserDataAccount_Ptr);
    begin
       if this.m_IUserDataAccount /= null then
          if this.m_IUserDataAccount.all /= null then
-            RefCount := this.m_IUserDataAccount.all.Release;
+            temp := this.m_IUserDataAccount.all.Release;
             Free (this.m_IUserDataAccount);
          end if;
       end if;
@@ -77,13 +77,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccount.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -93,13 +97,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccount.all.get_UserDisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -109,11 +117,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUserDataAccount.all.put_UserDisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_OtherAppReadAccess
@@ -122,10 +134,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess;
    begin
       Hr := this.m_IUserDataAccount.all.get_OtherAppReadAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -135,9 +151,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       value : Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataAccount.all.put_OtherAppReadAccess (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Icon
@@ -146,10 +166,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IUserDataAccount.all.get_Icon (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -159,13 +183,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccount.all.get_DeviceAccountTypeId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -175,13 +203,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccount.all.get_PackageFamilyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -190,7 +222,8 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       this : in out UserDataAccount
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -198,7 +231,6 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -219,9 +251,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -232,7 +264,8 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       this : in out UserDataAccount
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -240,7 +273,6 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -261,9 +293,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -275,13 +307,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -299,7 +331,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -312,7 +344,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       Hr := this.m_IUserDataAccount.all.FindAppointmentCalendarsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -322,9 +354,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -338,13 +370,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -362,7 +394,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -375,7 +407,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       Hr := this.m_IUserDataAccount.all.FindEmailMailboxesAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -385,9 +417,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -401,13 +433,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -425,7 +457,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -438,7 +470,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       Hr := this.m_IUserDataAccount.all.FindContactListsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -448,9 +480,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -464,13 +496,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -488,7 +520,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -501,7 +533,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       Hr := this.m_IUserDataAccount.all.FindContactAnnotationListsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -511,9 +543,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -527,17 +559,21 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount2, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.get_EnterpriseId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -547,14 +583,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount2, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.get_IsProtectedUnderLock (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -564,17 +604,21 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount3, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.get_ExplictReadAccessPackageFamilyNames (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -584,17 +628,21 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount3, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -604,15 +652,19 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount3, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.put_DisplayName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CanShowCreateContactGroup
@@ -621,14 +673,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.get_CanShowCreateContactGroup (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -638,13 +694,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.put_CanShowCreateContactGroup (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProviderProperties
@@ -653,14 +713,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.get_ProviderProperties (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -670,14 +734,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -695,7 +759,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -708,10 +772,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.FindUserDataTaskListsAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -721,9 +785,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -737,14 +801,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -762,7 +826,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -775,10 +839,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.FindContactGroupsAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -788,9 +852,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -804,14 +868,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -830,7 +894,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -843,10 +907,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.TryShowCreateContactGroupAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -856,15 +920,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -874,13 +938,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.put_IsProtectedUnderLock (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Icon
@@ -889,13 +957,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccount4, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccount4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccount.all);
       Hr := m_Interface.put_Icon (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -908,20 +980,24 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       )
       return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountManagerForUser is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerForUser;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IUserDataAccountManagerForUser := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerForUser;
                Retval.m_IUserDataAccountManagerForUser.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -931,15 +1007,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       )
       return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_UserDataAccountStore.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -957,7 +1033,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserDataAccountStore.Kind_Delegate, AsyncOperationCompletedHandler_UserDataAccountStore.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -971,10 +1047,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestStoreAsync (storeAccessType, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -986,15 +1062,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                         Retval.m_IUserDataAccountStore := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore;
                         Retval.m_IUserDataAccountStore.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -1004,15 +1080,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1031,7 +1107,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1044,10 +1120,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAddAccountAsync (contentKinds, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1057,17 +1133,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -1076,10 +1152,11 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          id : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_id : WinRt.HString := To_HString (id);
+         temp             : WinRt.UInt32 := 0;
+         HStr_id : constant WinRt.HString := To_HString (id);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -1087,7 +1164,6 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -1103,7 +1179,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAccountSettingsAsync (HStr_id, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1111,15 +1187,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end;
 
       procedure ShowAccountErrorResolverAsync
@@ -1127,10 +1203,11 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          id : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.UserDataAccountManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_id : WinRt.HString := To_HString (id);
+         temp             : WinRt.UInt32 := 0;
+         HStr_id : constant WinRt.HString := To_HString (id);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -1138,7 +1215,6 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -1154,7 +1230,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataAccountManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ShowAccountErrorResolverAsync (HStr_id, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1162,15 +1238,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end;
 
    end UserDataAccountManager;
@@ -1184,12 +1260,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    end;
 
    procedure Finalize (this : in out UserDataAccountManagerForUser) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountManagerForUser, IUserDataAccountManagerForUser_Ptr);
    begin
       if this.m_IUserDataAccountManagerForUser /= null then
          if this.m_IUserDataAccountManagerForUser.all /= null then
-            RefCount := this.m_IUserDataAccountManagerForUser.all.Release;
+            temp := this.m_IUserDataAccountManagerForUser.all.Release;
             Free (this.m_IUserDataAccountManagerForUser);
          end if;
       end if;
@@ -1205,13 +1281,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserDataAccountStore.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1229,7 +1305,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserDataAccountStore.Kind_Delegate, AsyncOperationCompletedHandler_UserDataAccountStore.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1243,7 +1319,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          Hr := this.m_IUserDataAccountManagerForUser.all.RequestStoreAsync (storeAccessType, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1255,9 +1331,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   Retval.m_IUserDataAccountStore := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore;
                   Retval.m_IUserDataAccountStore.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1271,11 +1347,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserDataAccountManagerForUser.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1290,12 +1370,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    end;
 
    procedure Finalize (this : in out UserDataAccountStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountStore, IUserDataAccountStore_Ptr);
    begin
       if this.m_IUserDataAccountStore /= null then
          if this.m_IUserDataAccountStore.all /= null then
-            RefCount := this.m_IUserDataAccountStore.all.Release;
+            temp := this.m_IUserDataAccountStore.all.Release;
             Free (this.m_IUserDataAccountStore);
          end if;
       end if;
@@ -1310,13 +1390,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1334,7 +1414,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1347,7 +1427,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       Hr := this.m_IUserDataAccountStore.all.FindAccountsAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1357,9 +1437,9 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1374,14 +1454,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccount'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserDataAccount.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1399,7 +1479,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserDataAccount.Kind_Delegate, AsyncOperationCompletedHandler_UserDataAccount.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1413,7 +1493,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          Hr := this.m_IUserDataAccountStore.all.GetAccountAsync (HStr_id, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1425,14 +1505,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   Retval.m_IUserDataAccount := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccount;
                   Retval.m_IUserDataAccount.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -1443,14 +1523,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccount'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userDisplayName : WinRt.HString := To_HString (userDisplayName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userDisplayName : constant WinRt.HString := To_HString (userDisplayName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserDataAccount.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1468,7 +1548,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserDataAccount.Kind_Delegate, AsyncOperationCompletedHandler_UserDataAccount.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1482,7 +1562,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
          Hr := this.m_IUserDataAccountStore.all.CreateAccountAsync (HStr_userDisplayName, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1494,14 +1574,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   Retval.m_IUserDataAccount := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccount;
                   Retval.m_IUserDataAccount.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_userDisplayName);
+         tmp := WindowsDeleteString (HStr_userDisplayName);
       end return;
    end;
 
@@ -1513,16 +1593,16 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccount'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userDisplayName : WinRt.HString := To_HString (userDisplayName);
-      HStr_packageRelativeAppId : WinRt.HString := To_HString (packageRelativeAppId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_userDisplayName : constant WinRt.HString := To_HString (userDisplayName);
+      HStr_packageRelativeAppId : constant WinRt.HString := To_HString (packageRelativeAppId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserDataAccount.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1540,7 +1620,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserDataAccount.Kind_Delegate, AsyncOperationCompletedHandler_UserDataAccount.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1554,10 +1634,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       return RetVal : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccount do
          m_Interface := QInterface (this.m_IUserDataAccountStore.all);
          Hr := m_Interface.CreateAccountAsync (HStr_userDisplayName, HStr_packageRelativeAppId, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1569,15 +1649,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   Retval.m_IUserDataAccount := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccount;
                   Retval.m_IUserDataAccount.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_userDisplayName);
-         Hr := WindowsDeleteString (HStr_packageRelativeAppId);
+         tmp := WindowsDeleteString (HStr_userDisplayName);
+         tmp := WindowsDeleteString (HStr_packageRelativeAppId);
       end return;
    end;
 
@@ -1588,14 +1668,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore2, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccountStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountStore.all);
       Hr := m_Interface.add_StoreChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1605,13 +1689,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore2, WinRt.Windows.ApplicationModel.UserDataAccounts.IID_IUserDataAccountStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountStore.all);
       Hr := m_Interface.remove_StoreChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateAccountAsync
@@ -1623,17 +1711,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccount'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountStore3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userDisplayName : WinRt.HString := To_HString (userDisplayName);
-      HStr_packageRelativeAppId : WinRt.HString := To_HString (packageRelativeAppId);
-      HStr_enterpriseId : WinRt.HString := To_HString (enterpriseId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_userDisplayName : constant WinRt.HString := To_HString (userDisplayName);
+      HStr_packageRelativeAppId : constant WinRt.HString := To_HString (packageRelativeAppId);
+      HStr_enterpriseId : constant WinRt.HString := To_HString (enterpriseId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserDataAccount.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1651,7 +1739,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserDataAccount.Kind_Delegate, AsyncOperationCompletedHandler_UserDataAccount.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1665,10 +1753,10 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
       return RetVal : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccount do
          m_Interface := QInterface (this.m_IUserDataAccountStore.all);
          Hr := m_Interface.CreateAccountAsync (HStr_userDisplayName, HStr_packageRelativeAppId, HStr_enterpriseId, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1680,16 +1768,16 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
                   Retval.m_IUserDataAccount := new Windows.ApplicationModel.UserDataAccounts.IUserDataAccount;
                   Retval.m_IUserDataAccount.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_userDisplayName);
-         Hr := WindowsDeleteString (HStr_packageRelativeAppId);
-         Hr := WindowsDeleteString (HStr_enterpriseId);
+         tmp := WindowsDeleteString (HStr_userDisplayName);
+         tmp := WindowsDeleteString (HStr_packageRelativeAppId);
+         tmp := WindowsDeleteString (HStr_enterpriseId);
       end return;
    end;
 
@@ -1702,12 +1790,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    end;
 
    procedure Finalize (this : in out UserDataAccountStoreChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountStoreChangedEventArgs, IUserDataAccountStoreChangedEventArgs_Ptr);
    begin
       if this.m_IUserDataAccountStoreChangedEventArgs /= null then
          if this.m_IUserDataAccountStoreChangedEventArgs.all /= null then
-            RefCount := this.m_IUserDataAccountStoreChangedEventArgs.all.Release;
+            temp := this.m_IUserDataAccountStoreChangedEventArgs.all.Release;
             Free (this.m_IUserDataAccountStoreChangedEventArgs);
          end if;
       end if;
@@ -1722,11 +1810,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataAccountStoreChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;

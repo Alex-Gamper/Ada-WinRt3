@@ -46,12 +46,12 @@ package body WinRt.Windows.Management.Update is
    end;
 
    procedure Finalize (this : in out PreviewBuildsManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPreviewBuildsManager, IPreviewBuildsManager_Ptr);
    begin
       if this.m_IPreviewBuildsManager /= null then
          if this.m_IPreviewBuildsManager.all /= null then
-            RefCount := this.m_IPreviewBuildsManager.all.Release;
+            temp := this.m_IPreviewBuildsManager.all.Release;
             Free (this.m_IPreviewBuildsManager);
          end if;
       end if;
@@ -63,37 +63,45 @@ package body WinRt.Windows.Management.Update is
    function GetDefault
    return WinRt.Windows.Management.Update.PreviewBuildsManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Management.Update.PreviewBuildsManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.PreviewBuildsManager");
       m_Factory        : access WinRt.Windows.Management.Update.IPreviewBuildsManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Management.Update.IPreviewBuildsManager;
    begin
       return RetVal : WinRt.Windows.Management.Update.PreviewBuildsManager do
          Hr := RoGetActivationFactory (m_hString, IID_IPreviewBuildsManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPreviewBuildsManager := new Windows.Management.Update.IPreviewBuildsManager;
             Retval.m_IPreviewBuildsManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Management.Update.PreviewBuildsManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Update.PreviewBuildsManager");
       m_Factory        : access WinRt.Windows.Management.Update.IPreviewBuildsManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPreviewBuildsManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -106,10 +114,14 @@ package body WinRt.Windows.Management.Update is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPreviewBuildsManager.all.get_ArePreviewBuildsAllowed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -119,9 +131,13 @@ package body WinRt.Windows.Management.Update is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPreviewBuildsManager.all.put_ArePreviewBuildsAllowed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentState
@@ -130,11 +146,15 @@ package body WinRt.Windows.Management.Update is
    )
    return WinRt.Windows.Management.Update.PreviewBuildsState'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Management.Update.IPreviewBuildsState;
    begin
       return RetVal : WinRt.Windows.Management.Update.PreviewBuildsState do
          Hr := this.m_IPreviewBuildsManager.all.GetCurrentState (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPreviewBuildsState := new Windows.Management.Update.IPreviewBuildsState;
          Retval.m_IPreviewBuildsState.all := m_ComRetVal;
       end return;
@@ -146,13 +166,13 @@ package body WinRt.Windows.Management.Update is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -170,7 +190,7 @@ package body WinRt.Windows.Management.Update is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -183,7 +203,7 @@ package body WinRt.Windows.Management.Update is
       Hr := this.m_IPreviewBuildsManager.all.SyncAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -193,9 +213,9 @@ package body WinRt.Windows.Management.Update is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -212,12 +232,12 @@ package body WinRt.Windows.Management.Update is
    end;
 
    procedure Finalize (this : in out PreviewBuildsState) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPreviewBuildsState, IPreviewBuildsState_Ptr);
    begin
       if this.m_IPreviewBuildsState /= null then
          if this.m_IPreviewBuildsState.all /= null then
-            RefCount := this.m_IPreviewBuildsState.all.Release;
+            temp := this.m_IPreviewBuildsState.all.Release;
             Free (this.m_IPreviewBuildsState);
          end if;
       end if;
@@ -232,11 +252,15 @@ package body WinRt.Windows.Management.Update is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IPreviewBuildsState.all.get_Properties (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;

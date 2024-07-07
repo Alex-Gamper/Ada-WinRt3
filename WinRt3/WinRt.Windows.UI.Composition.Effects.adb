@@ -42,12 +42,12 @@ package body WinRt.Windows.UI.Composition.Effects is
    end;
 
    procedure Finalize (this : in out SceneLightingEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneLightingEffect, ISceneLightingEffect_Ptr);
    begin
       if this.m_ISceneLightingEffect /= null then
          if this.m_ISceneLightingEffect.all /= null then
-            RefCount := this.m_ISceneLightingEffect.all.Release;
+            temp := this.m_ISceneLightingEffect.all.Release;
             Free (this.m_ISceneLightingEffect);
          end if;
       end if;
@@ -58,7 +58,8 @@ package body WinRt.Windows.UI.Composition.Effects is
 
    function Constructor return SceneLightingEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Composition.Effects.SceneLightingEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Effects.SceneLightingEffect");
       m_ComRetVal  : aliased Windows.UI.Composition.Effects.ISceneLightingEffect;
    begin
       return RetVal : SceneLightingEffect do
@@ -67,7 +68,7 @@ package body WinRt.Windows.UI.Composition.Effects is
             Retval.m_ISceneLightingEffect := new Windows.UI.Composition.Effects.ISceneLightingEffect;
             Retval.m_ISceneLightingEffect.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -80,10 +81,14 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneLightingEffect.all.get_AmbientAmount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -93,9 +98,13 @@ package body WinRt.Windows.UI.Composition.Effects is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneLightingEffect.all.put_AmbientAmount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DiffuseAmount
@@ -104,10 +113,14 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneLightingEffect.all.get_DiffuseAmount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -117,9 +130,13 @@ package body WinRt.Windows.UI.Composition.Effects is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneLightingEffect.all.put_DiffuseAmount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NormalMapSource
@@ -128,10 +145,14 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.Windows.Graphics.Effects.IGraphicsEffectSource is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Effects.IGraphicsEffectSource;
    begin
       Hr := this.m_ISceneLightingEffect.all.get_NormalMapSource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -141,9 +162,13 @@ package body WinRt.Windows.UI.Composition.Effects is
       value : Windows.Graphics.Effects.IGraphicsEffectSource
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneLightingEffect.all.put_NormalMapSource (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SpecularAmount
@@ -152,10 +177,14 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneLightingEffect.all.get_SpecularAmount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -165,9 +194,13 @@ package body WinRt.Windows.UI.Composition.Effects is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneLightingEffect.all.put_SpecularAmount (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SpecularShine
@@ -176,10 +209,14 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneLightingEffect.all.get_SpecularShine (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -189,9 +226,13 @@ package body WinRt.Windows.UI.Composition.Effects is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneLightingEffect.all.put_SpecularShine (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReflectanceModel
@@ -200,14 +241,18 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect_Interface, WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect2, WinRt.Windows.UI.Composition.Effects.IID_ISceneLightingEffect2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneLightingEffect.all);
       Hr := m_Interface.get_ReflectanceModel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -217,13 +262,17 @@ package body WinRt.Windows.UI.Composition.Effects is
       value : Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect_Interface, WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect2, WinRt.Windows.UI.Composition.Effects.IID_ISceneLightingEffect2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneLightingEffect.all);
       Hr := m_Interface.put_ReflectanceModel (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Name
@@ -232,17 +281,21 @@ package body WinRt.Windows.UI.Composition.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Effects.IGraphicsEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect_Interface, WinRt.Windows.Graphics.Effects.IGraphicsEffect, WinRt.Windows.Graphics.Effects.IID_IGraphicsEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneLightingEffect.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -252,15 +305,19 @@ package body WinRt.Windows.UI.Composition.Effects is
       name : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Effects.IGraphicsEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect_Interface, WinRt.Windows.Graphics.Effects.IGraphicsEffect, WinRt.Windows.Graphics.Effects.IID_IGraphicsEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneLightingEffect.all);
       Hr := m_Interface.put_Name (HStr_name);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_name);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
 end WinRt.Windows.UI.Composition.Effects;

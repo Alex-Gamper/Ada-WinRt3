@@ -42,12 +42,12 @@ package body WinRt.Windows.Phone.Devices.Power is
    end;
 
    procedure Finalize (this : in out Battery) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBattery, IBattery_Ptr);
    begin
       if this.m_IBattery /= null then
          if this.m_IBattery.all /= null then
-            RefCount := this.m_IBattery.all.Release;
+            temp := this.m_IBattery.all.Release;
             Free (this.m_IBattery);
          end if;
       end if;
@@ -59,20 +59,24 @@ package body WinRt.Windows.Phone.Devices.Power is
    function GetDefault
    return WinRt.Windows.Phone.Devices.Power.Battery is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.Devices.Power.Battery");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Devices.Power.Battery");
       m_Factory        : access WinRt.Windows.Phone.Devices.Power.IBatteryStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Devices.Power.IBattery;
    begin
       return RetVal : WinRt.Windows.Phone.Devices.Power.Battery do
          Hr := RoGetActivationFactory (m_hString, IID_IBatteryStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IBattery := new Windows.Phone.Devices.Power.IBattery;
             Retval.m_IBattery.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -85,10 +89,14 @@ package body WinRt.Windows.Phone.Devices.Power is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IBattery.all.get_RemainingChargePercent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -98,10 +106,14 @@ package body WinRt.Windows.Phone.Devices.Power is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBattery.all.get_RemainingDischargeTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -112,10 +124,14 @@ package body WinRt.Windows.Phone.Devices.Power is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBattery.all.add_RemainingChargePercentChanged (changeHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -125,9 +141,13 @@ package body WinRt.Windows.Phone.Devices.Power is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBattery.all.remove_RemainingChargePercentChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Phone.Devices.Power;

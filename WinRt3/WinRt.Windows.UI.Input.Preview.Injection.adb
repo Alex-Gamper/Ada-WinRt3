@@ -43,12 +43,12 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    end;
 
    procedure Finalize (this : in out InjectedInputGamepadInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInjectedInputGamepadInfo, IInjectedInputGamepadInfo_Ptr);
    begin
       if this.m_IInjectedInputGamepadInfo /= null then
          if this.m_IInjectedInputGamepadInfo.all /= null then
-            RefCount := this.m_IInjectedInputGamepadInfo.all.Release;
+            temp := this.m_IInjectedInputGamepadInfo.all.Release;
             Free (this.m_IInjectedInputGamepadInfo);
          end if;
       end if;
@@ -63,9 +63,10 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return InjectedInputGamepadInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputGamepadInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputGamepadInfo");
       m_Factory    : access IInjectedInputGamepadInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Input.Preview.Injection.IInjectedInputGamepadInfo;
    begin
       return RetVal : InjectedInputGamepadInfo do
@@ -74,15 +75,16 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
             Hr := m_Factory.CreateInstance (reading, m_ComRetVal'Access);
             Retval.m_IInjectedInputGamepadInfo := new Windows.UI.Input.Preview.Injection.IInjectedInputGamepadInfo;
             Retval.m_IInjectedInputGamepadInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return InjectedInputGamepadInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputGamepadInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputGamepadInfo");
       m_ComRetVal  : aliased Windows.UI.Input.Preview.Injection.IInjectedInputGamepadInfo;
    begin
       return RetVal : InjectedInputGamepadInfo do
@@ -91,7 +93,7 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
             Retval.m_IInjectedInputGamepadInfo := new Windows.UI.Input.Preview.Injection.IInjectedInputGamepadInfo;
             Retval.m_IInjectedInputGamepadInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -104,10 +106,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.Gaming.Input.GamepadButtons is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GamepadButtons;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_Buttons (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -117,9 +123,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.Gaming.Input.GamepadButtons
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_Buttons (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftThumbstickX
@@ -128,10 +138,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_LeftThumbstickX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -141,9 +155,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_LeftThumbstickX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftThumbstickY
@@ -152,10 +170,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_LeftThumbstickY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -165,9 +187,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_LeftThumbstickY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LeftTrigger
@@ -176,10 +202,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_LeftTrigger (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -189,9 +219,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_LeftTrigger (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightThumbstickX
@@ -200,10 +234,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_RightThumbstickX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -213,9 +251,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_RightThumbstickX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightThumbstickY
@@ -224,10 +266,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_RightThumbstickY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -237,9 +283,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_RightThumbstickY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RightTrigger
@@ -248,10 +298,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.get_RightTrigger (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -261,9 +315,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputGamepadInfo.all.put_RightTrigger (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -275,12 +333,12 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    end;
 
    procedure Finalize (this : in out InjectedInputKeyboardInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInjectedInputKeyboardInfo, IInjectedInputKeyboardInfo_Ptr);
    begin
       if this.m_IInjectedInputKeyboardInfo /= null then
          if this.m_IInjectedInputKeyboardInfo.all /= null then
-            RefCount := this.m_IInjectedInputKeyboardInfo.all.Release;
+            temp := this.m_IInjectedInputKeyboardInfo.all.Release;
             Free (this.m_IInjectedInputKeyboardInfo);
          end if;
       end if;
@@ -291,7 +349,8 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
 
    function Constructor return InjectedInputKeyboardInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputKeyboardInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputKeyboardInfo");
       m_ComRetVal  : aliased Windows.UI.Input.Preview.Injection.IInjectedInputKeyboardInfo;
    begin
       return RetVal : InjectedInputKeyboardInfo do
@@ -300,7 +359,7 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
             Retval.m_IInjectedInputKeyboardInfo := new Windows.UI.Input.Preview.Injection.IInjectedInputKeyboardInfo;
             Retval.m_IInjectedInputKeyboardInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -313,10 +372,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputKeyOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputKeyOptions;
    begin
       Hr := this.m_IInjectedInputKeyboardInfo.all.get_KeyOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -326,9 +389,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputKeyOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputKeyboardInfo.all.put_KeyOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScanCode
@@ -337,10 +404,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IInjectedInputKeyboardInfo.all.get_ScanCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -350,9 +421,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.UInt16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputKeyboardInfo.all.put_ScanCode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VirtualKey
@@ -361,10 +436,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IInjectedInputKeyboardInfo.all.get_VirtualKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -374,9 +453,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.UInt16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputKeyboardInfo.all.put_VirtualKey (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -388,12 +471,12 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    end;
 
    procedure Finalize (this : in out InjectedInputMouseInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInjectedInputMouseInfo, IInjectedInputMouseInfo_Ptr);
    begin
       if this.m_IInjectedInputMouseInfo /= null then
          if this.m_IInjectedInputMouseInfo.all /= null then
-            RefCount := this.m_IInjectedInputMouseInfo.all.Release;
+            temp := this.m_IInjectedInputMouseInfo.all.Release;
             Free (this.m_IInjectedInputMouseInfo);
          end if;
       end if;
@@ -404,7 +487,8 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
 
    function Constructor return InjectedInputMouseInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputMouseInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputMouseInfo");
       m_ComRetVal  : aliased Windows.UI.Input.Preview.Injection.IInjectedInputMouseInfo;
    begin
       return RetVal : InjectedInputMouseInfo do
@@ -413,7 +497,7 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
             Retval.m_IInjectedInputMouseInfo := new Windows.UI.Input.Preview.Injection.IInjectedInputMouseInfo;
             Retval.m_IInjectedInputMouseInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -426,10 +510,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputMouseOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputMouseOptions;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.get_MouseOptions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -439,9 +527,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputMouseOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.put_MouseOptions (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MouseData
@@ -450,10 +542,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.get_MouseData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -463,9 +559,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.put_MouseData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeltaY
@@ -474,10 +574,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.get_DeltaY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -487,9 +591,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.put_DeltaY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DeltaX
@@ -498,10 +606,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.get_DeltaX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -511,9 +623,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.put_DeltaX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TimeOffsetInMilliseconds
@@ -522,10 +638,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.get_TimeOffsetInMilliseconds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -535,9 +655,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputMouseInfo.all.put_TimeOffsetInMilliseconds (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -549,12 +673,12 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    end;
 
    procedure Finalize (this : in out InjectedInputPenInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInjectedInputPenInfo, IInjectedInputPenInfo_Ptr);
    begin
       if this.m_IInjectedInputPenInfo /= null then
          if this.m_IInjectedInputPenInfo.all /= null then
-            RefCount := this.m_IInjectedInputPenInfo.all.Release;
+            temp := this.m_IInjectedInputPenInfo.all.Release;
             Free (this.m_IInjectedInputPenInfo);
          end if;
       end if;
@@ -565,7 +689,8 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
 
    function Constructor return InjectedInputPenInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputPenInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputPenInfo");
       m_ComRetVal  : aliased Windows.UI.Input.Preview.Injection.IInjectedInputPenInfo;
    begin
       return RetVal : InjectedInputPenInfo do
@@ -574,7 +699,7 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
             Retval.m_IInjectedInputPenInfo := new Windows.UI.Input.Preview.Injection.IInjectedInputPenInfo;
             Retval.m_IInjectedInputPenInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -587,10 +712,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputPointerInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputPointerInfo;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_PointerInfo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -600,9 +729,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputPointerInfo
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_PointerInfo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PenButtons
@@ -611,10 +744,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputPenButtons is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputPenButtons;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_PenButtons (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -624,9 +761,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputPenButtons
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_PenButtons (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PenParameters
@@ -635,10 +776,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputPenParameters is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputPenParameters;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_PenParameters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -648,9 +793,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputPenParameters
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_PenParameters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pressure
@@ -659,10 +808,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_Pressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -672,9 +825,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_Pressure (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Rotation
@@ -683,10 +840,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_Rotation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -696,9 +857,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_Rotation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TiltX
@@ -707,10 +872,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_TiltX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -720,9 +889,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_TiltX (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TiltY
@@ -731,10 +904,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.get_TiltY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -744,9 +921,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputPenInfo.all.put_TiltY (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -758,12 +939,12 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    end;
 
    procedure Finalize (this : in out InjectedInputTouchInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInjectedInputTouchInfo, IInjectedInputTouchInfo_Ptr);
    begin
       if this.m_IInjectedInputTouchInfo /= null then
          if this.m_IInjectedInputTouchInfo.all /= null then
-            RefCount := this.m_IInjectedInputTouchInfo.all.Release;
+            temp := this.m_IInjectedInputTouchInfo.all.Release;
             Free (this.m_IInjectedInputTouchInfo);
          end if;
       end if;
@@ -774,7 +955,8 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
 
    function Constructor return InjectedInputTouchInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputTouchInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InjectedInputTouchInfo");
       m_ComRetVal  : aliased Windows.UI.Input.Preview.Injection.IInjectedInputTouchInfo;
    begin
       return RetVal : InjectedInputTouchInfo do
@@ -783,7 +965,7 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
             Retval.m_IInjectedInputTouchInfo := new Windows.UI.Input.Preview.Injection.IInjectedInputTouchInfo;
             Retval.m_IInjectedInputTouchInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -796,10 +978,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputRectangle is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputRectangle;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.get_Contact (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -809,9 +995,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputRectangle
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.put_Contact (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Orientation
@@ -820,10 +1010,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -833,9 +1027,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.put_Orientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerInfo
@@ -844,10 +1042,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputPointerInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputPointerInfo;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.get_PointerInfo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -857,9 +1059,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputPointerInfo
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.put_PointerInfo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pressure
@@ -868,10 +1074,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.get_Pressure (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -881,9 +1091,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.put_Pressure (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TouchParameters
@@ -892,10 +1106,14 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    )
    return WinRt.Windows.UI.Input.Preview.Injection.InjectedInputTouchParameters is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.InjectedInputTouchParameters;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.get_TouchParameters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -905,9 +1123,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       value : Windows.UI.Input.Preview.Injection.InjectedInputTouchParameters
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInjectedInputTouchInfo.all.put_TouchParameters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -919,12 +1141,12 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    end;
 
    procedure Finalize (this : in out InputInjector) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInputInjector, IInputInjector_Ptr);
    begin
       if this.m_IInputInjector /= null then
          if this.m_IInputInjector.all /= null then
-            RefCount := this.m_IInputInjector.all.Release;
+            temp := this.m_IInputInjector.all.Release;
             Free (this.m_IInputInjector);
          end if;
       end if;
@@ -936,40 +1158,48 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
    function TryCreate
    return WinRt.Windows.UI.Input.Preview.Injection.InputInjector is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InputInjector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InputInjector");
       m_Factory        : access WinRt.Windows.UI.Input.Preview.Injection.IInputInjectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.IInputInjector;
    begin
       return RetVal : WinRt.Windows.UI.Input.Preview.Injection.InputInjector do
          Hr := RoGetActivationFactory (m_hString, IID_IInputInjectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreate (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInputInjector := new Windows.UI.Input.Preview.Injection.IInputInjector;
             Retval.m_IInputInjector.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function TryCreateForAppBroadcastOnly
    return WinRt.Windows.UI.Input.Preview.Injection.InputInjector is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InputInjector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Preview.Injection.InputInjector");
       m_Factory        : access WinRt.Windows.UI.Input.Preview.Injection.IInputInjectorStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.Preview.Injection.IInputInjector;
    begin
       return RetVal : WinRt.Windows.UI.Input.Preview.Injection.InputInjector do
          Hr := RoGetActivationFactory (m_hString, IID_IInputInjectorStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateForAppBroadcastOnly (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInputInjector := new Windows.UI.Input.Preview.Injection.IInputInjector;
             Retval.m_IInputInjector.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -982,9 +1212,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       input : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InjectKeyboardInput (input);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InjectMouseInput
@@ -993,9 +1227,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       input : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InjectMouseInput (input);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InitializeTouchInjection
@@ -1004,9 +1242,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       visualMode : Windows.UI.Input.Preview.Injection.InjectedInputVisualizationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InitializeTouchInjection (visualMode);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InjectTouchInput
@@ -1015,9 +1257,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       input : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InjectTouchInput (input);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UninitializeTouchInjection
@@ -1025,9 +1271,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       this : in out InputInjector
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.UninitializeTouchInjection;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InitializePenInjection
@@ -1036,9 +1286,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       visualMode : Windows.UI.Input.Preview.Injection.InjectedInputVisualizationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InitializePenInjection (visualMode);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InjectPenInput
@@ -1047,9 +1301,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       input : Windows.UI.Input.Preview.Injection.InjectedInputPenInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InjectPenInput (input.m_IInjectedInputPenInfo.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UninitializePenInjection
@@ -1057,9 +1315,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       this : in out InputInjector
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.UninitializePenInjection;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InjectShortcut
@@ -1068,9 +1330,13 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       shortcut : Windows.UI.Input.Preview.Injection.InjectedInputShortcut
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputInjector.all.InjectShortcut (shortcut);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InitializeGamepadInjection
@@ -1078,13 +1344,17 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       this : in out InputInjector
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Preview.Injection.IInputInjector2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Preview.Injection.IInputInjector_Interface, WinRt.Windows.UI.Input.Preview.Injection.IInputInjector2, WinRt.Windows.UI.Input.Preview.Injection.IID_IInputInjector2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputInjector.all);
       Hr := m_Interface.InitializeGamepadInjection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InjectGamepadInput
@@ -1093,13 +1363,17 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       input : Windows.UI.Input.Preview.Injection.InjectedInputGamepadInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Preview.Injection.IInputInjector2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Preview.Injection.IInputInjector_Interface, WinRt.Windows.UI.Input.Preview.Injection.IInputInjector2, WinRt.Windows.UI.Input.Preview.Injection.IID_IInputInjector2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputInjector.all);
       Hr := m_Interface.InjectGamepadInput (input.m_IInjectedInputGamepadInfo.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UninitializeGamepadInjection
@@ -1107,13 +1381,17 @@ package body WinRt.Windows.UI.Input.Preview.Injection is
       this : in out InputInjector
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Preview.Injection.IInputInjector2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Preview.Injection.IInputInjector_Interface, WinRt.Windows.UI.Input.Preview.Injection.IInputInjector2, WinRt.Windows.UI.Input.Preview.Injection.IID_IInputInjector2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInputInjector.all);
       Hr := m_Interface.UninitializeGamepadInjection;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Input.Preview.Injection;

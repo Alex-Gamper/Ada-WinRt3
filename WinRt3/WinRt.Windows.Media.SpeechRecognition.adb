@@ -54,12 +54,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechContinuousRecognitionCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechContinuousRecognitionCompletedEventArgs, ISpeechContinuousRecognitionCompletedEventArgs_Ptr);
    begin
       if this.m_ISpeechContinuousRecognitionCompletedEventArgs /= null then
          if this.m_ISpeechContinuousRecognitionCompletedEventArgs.all /= null then
-            RefCount := this.m_ISpeechContinuousRecognitionCompletedEventArgs.all.Release;
+            temp := this.m_ISpeechContinuousRecognitionCompletedEventArgs.all.Release;
             Free (this.m_ISpeechContinuousRecognitionCompletedEventArgs);
          end if;
       end if;
@@ -74,10 +74,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus;
    begin
       Hr := this.m_ISpeechContinuousRecognitionCompletedEventArgs.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -90,12 +94,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechContinuousRecognitionResultGeneratedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechContinuousRecognitionResultGeneratedEventArgs, ISpeechContinuousRecognitionResultGeneratedEventArgs_Ptr);
    begin
       if this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs /= null then
          if this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs.all /= null then
-            RefCount := this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs.all.Release;
+            temp := this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs.all.Release;
             Free (this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs);
          end if;
       end if;
@@ -110,11 +114,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult do
          Hr := this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs.all.get_Result (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognitionResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
          Retval.m_ISpeechRecognitionResult.all := m_ComRetVal;
       end return;
@@ -129,12 +137,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechContinuousRecognitionSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechContinuousRecognitionSession, ISpeechContinuousRecognitionSession_Ptr);
    begin
       if this.m_ISpeechContinuousRecognitionSession /= null then
          if this.m_ISpeechContinuousRecognitionSession.all /= null then
-            RefCount := this.m_ISpeechContinuousRecognitionSession.all.Release;
+            temp := this.m_ISpeechContinuousRecognitionSession.all.Release;
             Free (this.m_ISpeechContinuousRecognitionSession);
          end if;
       end if;
@@ -149,10 +157,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.get_AutoStopSilenceTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -162,9 +174,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.put_AutoStopSilenceTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartAsync
@@ -172,7 +188,8 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechContinuousRecognitionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -180,7 +197,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -201,9 +217,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -215,7 +231,8 @@ package body WinRt.Windows.Media.SpeechRecognition is
       mode : Windows.Media.SpeechRecognition.SpeechContinuousRecognitionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -223,7 +240,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -244,9 +260,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -257,7 +273,8 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechContinuousRecognitionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -265,7 +282,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -286,9 +302,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -299,7 +315,8 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechContinuousRecognitionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -307,7 +324,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -328,9 +344,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -341,7 +357,8 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechContinuousRecognitionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -349,7 +366,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -370,9 +386,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -383,9 +399,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechContinuousRecognitionSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.Resume;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Completed
@@ -395,10 +415,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.add_Completed (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -408,9 +432,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.remove_Completed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ResultGenerated
@@ -420,10 +448,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.add_ResultGenerated (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -433,9 +465,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechContinuousRecognitionSession.all.remove_ResultGenerated (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -447,12 +483,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionCompilationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionCompilationResult, ISpeechRecognitionCompilationResult_Ptr);
    begin
       if this.m_ISpeechRecognitionCompilationResult /= null then
          if this.m_ISpeechRecognitionCompilationResult.all /= null then
-            RefCount := this.m_ISpeechRecognitionCompilationResult.all.Release;
+            temp := this.m_ISpeechRecognitionCompilationResult.all.Release;
             Free (this.m_ISpeechRecognitionCompilationResult);
          end if;
       end if;
@@ -467,10 +503,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus;
    begin
       Hr := this.m_ISpeechRecognitionCompilationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -483,12 +523,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionGrammarFileConstraint) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionGrammarFileConstraint, ISpeechRecognitionGrammarFileConstraint_Ptr);
    begin
       if this.m_ISpeechRecognitionGrammarFileConstraint /= null then
          if this.m_ISpeechRecognitionGrammarFileConstraint.all /= null then
-            RefCount := this.m_ISpeechRecognitionGrammarFileConstraint.all.Release;
+            temp := this.m_ISpeechRecognitionGrammarFileConstraint.all.Release;
             Free (this.m_ISpeechRecognitionGrammarFileConstraint);
          end if;
       end if;
@@ -503,9 +543,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognitionGrammarFileConstraint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint");
       m_Factory    : access ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint;
    begin
       return RetVal : SpeechRecognitionGrammarFileConstraint do
@@ -514,9 +555,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.Create (file.m_IStorageFile.all, m_ComRetVal'Access);
             Retval.m_ISpeechRecognitionGrammarFileConstraint := new Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint;
             Retval.m_ISpeechRecognitionGrammarFileConstraint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -527,11 +568,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognitionGrammarFileConstraint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint");
       m_Factory    : access ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint;
-      HStr_tag : WinRt.HString := To_HString (tag);
+      HStr_tag : constant WinRt.HString := To_HString (tag);
    begin
       return RetVal : SpeechRecognitionGrammarFileConstraint do
          Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognitionGrammarFileConstraintFactory'Access , m_Factory'Address);
@@ -539,10 +581,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.CreateWithTag (file.m_IStorageFile.all, HStr_tag, m_ComRetVal'Access);
             Retval.m_ISpeechRecognitionGrammarFileConstraint := new Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint;
             Retval.m_ISpeechRecognitionGrammarFileConstraint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_tag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tag);
       end return;
    end;
 
@@ -555,11 +597,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_ISpeechRecognitionGrammarFileConstraint.all.get_GrammarFile (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
@@ -571,14 +617,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.get_IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -588,13 +638,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.put_IsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Tag
@@ -603,17 +657,21 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.get_Tag (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -623,15 +681,19 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.put_Tag (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Type
@@ -640,14 +702,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -657,14 +723,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.get_Probability (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -674,13 +744,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionGrammarFileConstraint.all);
       Hr := m_Interface.put_Probability (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -692,12 +766,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionHypothesis) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionHypothesis, ISpeechRecognitionHypothesis_Ptr);
    begin
       if this.m_ISpeechRecognitionHypothesis /= null then
          if this.m_ISpeechRecognitionHypothesis.all /= null then
-            RefCount := this.m_ISpeechRecognitionHypothesis.all.Release;
+            temp := this.m_ISpeechRecognitionHypothesis.all.Release;
             Free (this.m_ISpeechRecognitionHypothesis);
          end if;
       end if;
@@ -712,13 +786,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeechRecognitionHypothesis.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -731,12 +809,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionHypothesisGeneratedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionHypothesisGeneratedEventArgs, ISpeechRecognitionHypothesisGeneratedEventArgs_Ptr);
    begin
       if this.m_ISpeechRecognitionHypothesisGeneratedEventArgs /= null then
          if this.m_ISpeechRecognitionHypothesisGeneratedEventArgs.all /= null then
-            RefCount := this.m_ISpeechRecognitionHypothesisGeneratedEventArgs.all.Release;
+            temp := this.m_ISpeechRecognitionHypothesisGeneratedEventArgs.all.Release;
             Free (this.m_ISpeechRecognitionHypothesisGeneratedEventArgs);
          end if;
       end if;
@@ -751,11 +829,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionHypothesis'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionHypothesis;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionHypothesis do
          Hr := this.m_ISpeechRecognitionHypothesisGeneratedEventArgs.all.get_Hypothesis (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognitionHypothesis := new Windows.Media.SpeechRecognition.ISpeechRecognitionHypothesis;
          Retval.m_ISpeechRecognitionHypothesis.all := m_ComRetVal;
       end return;
@@ -770,12 +852,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionListConstraint) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionListConstraint, ISpeechRecognitionListConstraint_Ptr);
    begin
       if this.m_ISpeechRecognitionListConstraint /= null then
          if this.m_ISpeechRecognitionListConstraint.all /= null then
-            RefCount := this.m_ISpeechRecognitionListConstraint.all.Release;
+            temp := this.m_ISpeechRecognitionListConstraint.all.Release;
             Free (this.m_ISpeechRecognitionListConstraint);
          end if;
       end if;
@@ -790,9 +872,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognitionListConstraint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint");
       m_Factory    : access ISpeechRecognitionListConstraintFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint;
    begin
       return RetVal : SpeechRecognitionListConstraint do
@@ -801,9 +884,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.Create (commands, m_ComRetVal'Access);
             Retval.m_ISpeechRecognitionListConstraint := new Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint;
             Retval.m_ISpeechRecognitionListConstraint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -814,11 +897,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognitionListConstraint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint");
       m_Factory    : access ISpeechRecognitionListConstraintFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint;
-      HStr_tag : WinRt.HString := To_HString (tag);
+      HStr_tag : constant WinRt.HString := To_HString (tag);
    begin
       return RetVal : SpeechRecognitionListConstraint do
          Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognitionListConstraintFactory'Access , m_Factory'Address);
@@ -826,10 +910,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.CreateWithTag (commands, HStr_tag, m_ComRetVal'Access);
             Retval.m_ISpeechRecognitionListConstraint := new Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint;
             Retval.m_ISpeechRecognitionListConstraint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_tag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_tag);
       end return;
    end;
 
@@ -842,13 +926,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISpeechRecognitionListConstraint.all.get_Commands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -858,14 +946,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.get_IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -875,13 +967,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.put_IsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Tag
@@ -890,17 +986,21 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.get_Tag (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -910,15 +1010,19 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.put_Tag (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Type
@@ -927,14 +1031,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -944,14 +1052,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.get_Probability (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -961,13 +1073,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionListConstraint.all);
       Hr := m_Interface.put_Probability (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -979,12 +1095,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionQualityDegradingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionQualityDegradingEventArgs, ISpeechRecognitionQualityDegradingEventArgs_Ptr);
    begin
       if this.m_ISpeechRecognitionQualityDegradingEventArgs /= null then
          if this.m_ISpeechRecognitionQualityDegradingEventArgs.all /= null then
-            RefCount := this.m_ISpeechRecognitionQualityDegradingEventArgs.all.Release;
+            temp := this.m_ISpeechRecognitionQualityDegradingEventArgs.all.Release;
             Free (this.m_ISpeechRecognitionQualityDegradingEventArgs);
          end if;
       end if;
@@ -999,10 +1115,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionAudioProblem is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionAudioProblem;
    begin
       Hr := this.m_ISpeechRecognitionQualityDegradingEventArgs.all.get_Problem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1015,12 +1135,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionResult, ISpeechRecognitionResult_Ptr);
    begin
       if this.m_ISpeechRecognitionResult /= null then
          if this.m_ISpeechRecognitionResult.all /= null then
-            RefCount := this.m_ISpeechRecognitionResult.all.Release;
+            temp := this.m_ISpeechRecognitionResult.all.Release;
             Free (this.m_ISpeechRecognitionResult);
          end if;
       end if;
@@ -1035,10 +1155,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1048,13 +1172,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1064,10 +1192,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConfidence is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConfidence;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.get_Confidence (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1077,11 +1209,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionSemanticInterpretation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionSemanticInterpretation;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionSemanticInterpretation do
          Hr := this.m_ISpeechRecognitionResult.all.get_SemanticInterpretation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognitionSemanticInterpretation := new Windows.Media.SpeechRecognition.ISpeechRecognitionSemanticInterpretation;
          Retval.m_ISpeechRecognitionSemanticInterpretation.all := m_ComRetVal;
       end return;
@@ -1094,13 +1230,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return IVectorView_ISpeechRecognitionResult.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISpeechRecognitionResult.Kind;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.GetAlternates (maxAlternates, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ISpeechRecognitionResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1110,10 +1250,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.get_Constraint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1123,13 +1267,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.get_RulePath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1139,10 +1287,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISpeechRecognitionResult.all.get_RawConfidence (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1152,14 +1304,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult2, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionResult.all);
       Hr := m_Interface.get_PhraseStartTime (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1169,14 +1325,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult2, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionResult.all);
       Hr := m_Interface.get_PhraseDuration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1189,12 +1349,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionSemanticInterpretation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionSemanticInterpretation, ISpeechRecognitionSemanticInterpretation_Ptr);
    begin
       if this.m_ISpeechRecognitionSemanticInterpretation /= null then
          if this.m_ISpeechRecognitionSemanticInterpretation.all /= null then
-            RefCount := this.m_ISpeechRecognitionSemanticInterpretation.all.Release;
+            temp := this.m_ISpeechRecognitionSemanticInterpretation.all.Release;
             Free (this.m_ISpeechRecognitionSemanticInterpretation);
          end if;
       end if;
@@ -1209,10 +1369,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ISpeechRecognitionSemanticInterpretation.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1225,12 +1389,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionTopicConstraint) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionTopicConstraint, ISpeechRecognitionTopicConstraint_Ptr);
    begin
       if this.m_ISpeechRecognitionTopicConstraint /= null then
          if this.m_ISpeechRecognitionTopicConstraint.all /= null then
-            RefCount := this.m_ISpeechRecognitionTopicConstraint.all.Release;
+            temp := this.m_ISpeechRecognitionTopicConstraint.all.Release;
             Free (this.m_ISpeechRecognitionTopicConstraint);
          end if;
       end if;
@@ -1246,11 +1410,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognitionTopicConstraint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionTopicConstraint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionTopicConstraint");
       m_Factory    : access ISpeechRecognitionTopicConstraintFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint;
-      HStr_topicHint : WinRt.HString := To_HString (topicHint);
+      HStr_topicHint : constant WinRt.HString := To_HString (topicHint);
    begin
       return RetVal : SpeechRecognitionTopicConstraint do
          Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognitionTopicConstraintFactory'Access , m_Factory'Address);
@@ -1258,10 +1423,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.Create (scenario, HStr_topicHint, m_ComRetVal'Access);
             Retval.m_ISpeechRecognitionTopicConstraint := new Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint;
             Retval.m_ISpeechRecognitionTopicConstraint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_topicHint);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_topicHint);
       end return;
    end;
 
@@ -1273,12 +1438,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognitionTopicConstraint is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionTopicConstraint");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionTopicConstraint");
       m_Factory    : access ISpeechRecognitionTopicConstraintFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint;
-      HStr_topicHint : WinRt.HString := To_HString (topicHint);
-      HStr_tag : WinRt.HString := To_HString (tag);
+      HStr_topicHint : constant WinRt.HString := To_HString (topicHint);
+      HStr_tag : constant WinRt.HString := To_HString (tag);
    begin
       return RetVal : SpeechRecognitionTopicConstraint do
          Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognitionTopicConstraintFactory'Access , m_Factory'Address);
@@ -1286,11 +1452,11 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.CreateWithTag (scenario, HStr_topicHint, HStr_tag, m_ComRetVal'Access);
             Retval.m_ISpeechRecognitionTopicConstraint := new Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint;
             Retval.m_ISpeechRecognitionTopicConstraint.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_topicHint);
-         Hr := WindowsDeleteString (HStr_tag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_topicHint);
+         tmp := WindowsDeleteString (HStr_tag);
       end return;
    end;
 
@@ -1303,10 +1469,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionScenario is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
    begin
       Hr := this.m_ISpeechRecognitionTopicConstraint.all.get_Scenario (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1316,13 +1486,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeechRecognitionTopicConstraint.all.get_TopicHint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1332,14 +1506,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.get_IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1349,13 +1527,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.put_IsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Tag
@@ -1364,17 +1546,21 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.get_Tag (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1384,15 +1570,19 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.put_Tag (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Type
@@ -1401,14 +1591,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1418,14 +1612,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.get_Probability (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1435,13 +1633,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionTopicConstraint.all);
       Hr := m_Interface.put_Probability (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1453,12 +1655,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognitionVoiceCommandDefinitionConstraint) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognitionVoiceCommandDefinitionConstraint, ISpeechRecognitionVoiceCommandDefinitionConstraint_Ptr);
    begin
       if this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint /= null then
          if this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all /= null then
-            RefCount := this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all.Release;
+            temp := this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all.Release;
             Free (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint);
          end if;
       end if;
@@ -1473,14 +1675,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.get_IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1490,13 +1696,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.put_IsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Tag
@@ -1505,17 +1715,21 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.get_Tag (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1525,15 +1739,19 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.put_Tag (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Type
@@ -1542,14 +1760,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.get_Type (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1559,14 +1781,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.get_Probability (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1576,13 +1802,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionVoiceCommandDefinitionConstraint_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognitionConstraint'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all);
       Hr := m_Interface.put_Probability (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1594,12 +1824,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognizer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognizer, ISpeechRecognizer_Ptr);
    begin
       if this.m_ISpeechRecognizer /= null then
          if this.m_ISpeechRecognizer.all /= null then
-            RefCount := this.m_ISpeechRecognizer.all.Release;
+            temp := this.m_ISpeechRecognizer.all.Release;
             Free (this.m_ISpeechRecognizer);
          end if;
       end if;
@@ -1610,7 +1840,8 @@ package body WinRt.Windows.Media.SpeechRecognition is
 
    function Constructor return SpeechRecognizer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognizer;
    begin
       return RetVal : SpeechRecognizer do
@@ -1619,7 +1850,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Retval.m_ISpeechRecognizer := new Windows.Media.SpeechRecognition.ISpeechRecognizer;
             Retval.m_ISpeechRecognizer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1629,9 +1860,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return SpeechRecognizer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_Factory    : access ISpeechRecognizerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.SpeechRecognition.ISpeechRecognizer;
    begin
       return RetVal : SpeechRecognizer do
@@ -1640,9 +1872,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             Hr := m_Factory.Create (language.m_ILanguage.all, m_ComRetVal'Access);
             Retval.m_ISpeechRecognizer := new Windows.Media.SpeechRecognition.ISpeechRecognizer;
             Retval.m_ISpeechRecognizer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1652,54 +1884,66 @@ package body WinRt.Windows.Media.SpeechRecognition is
    function get_SystemSpeechLanguage
    return WinRt.Windows.Globalization.Language is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SystemSpeechLanguage (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILanguage := new Windows.Globalization.ILanguage;
             Retval.m_ILanguage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SupportedTopicLanguages
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_SupportedTopicLanguages (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_SupportedGrammarLanguages
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_SupportedGrammarLanguages (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1709,15 +1953,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_Factory        : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1735,7 +1979,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1748,10 +1992,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
       Hr := RoGetActivationFactory (m_hString, IID_ISpeechRecognizerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TrySetSystemSpeechLanguageAsync (speechLanguage.m_ILanguage.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1761,15 +2005,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -1782,11 +2026,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Globalization.Language'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_ISpeechRecognizer.all.get_CurrentLanguage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILanguage := new Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
@@ -1798,13 +2046,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return IVector_ISpeechRecognitionConstraint.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ISpeechRecognitionConstraint.Kind;
    begin
       Hr := this.m_ISpeechRecognizer.all.get_Constraints (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ISpeechRecognitionConstraint (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1814,11 +2066,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerTimeouts'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognizerTimeouts;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerTimeouts do
          Hr := this.m_ISpeechRecognizer.all.get_Timeouts (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognizerTimeouts := new Windows.Media.SpeechRecognition.ISpeechRecognizerTimeouts;
          Retval.m_ISpeechRecognizerTimeouts.all := m_ComRetVal;
       end return;
@@ -1830,11 +2086,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerUIOptions'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognizerUIOptions;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerUIOptions do
          Hr := this.m_ISpeechRecognizer.all.get_UIOptions (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognizerUIOptions := new Windows.Media.SpeechRecognition.ISpeechRecognizerUIOptions;
          Retval.m_ISpeechRecognizerUIOptions.all := m_ComRetVal;
       end return;
@@ -1846,13 +2106,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionCompilationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpeechRecognitionCompilationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1870,7 +2130,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpeechRecognitionCompilationResult.Kind_Delegate, AsyncOperationCompletedHandler_SpeechRecognitionCompilationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1884,7 +2144,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
          Hr := this.m_ISpeechRecognizer.all.CompileConstraintsAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1896,9 +2156,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
                   Retval.m_ISpeechRecognitionCompilationResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionCompilationResult;
                   Retval.m_ISpeechRecognitionCompilationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1912,13 +2172,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpeechRecognitionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1936,7 +2196,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpeechRecognitionResult.Kind_Delegate, AsyncOperationCompletedHandler_SpeechRecognitionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1950,7 +2210,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
          Hr := this.m_ISpeechRecognizer.all.RecognizeAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1962,9 +2222,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
                   Retval.m_ISpeechRecognitionResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
                   Retval.m_ISpeechRecognitionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1978,13 +2238,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpeechRecognitionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2002,7 +2262,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpeechRecognitionResult.Kind_Delegate, AsyncOperationCompletedHandler_SpeechRecognitionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2016,7 +2276,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
          Hr := this.m_ISpeechRecognizer.all.RecognizeWithUIAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2028,9 +2288,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
                   Retval.m_ISpeechRecognitionResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
                   Retval.m_ISpeechRecognitionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2045,10 +2305,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpeechRecognizer.all.add_RecognitionQualityDegrading (speechRecognitionQualityDegradingHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2058,9 +2322,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizer.all.remove_RecognitionQualityDegrading (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StateChanged
@@ -2070,10 +2338,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpeechRecognizer.all.add_StateChanged (stateChangedHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2083,9 +2355,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizer.all.remove_StateChanged (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -2093,13 +2369,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechRecognizer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognizer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContinuousRecognitionSession
@@ -2108,15 +2388,19 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechContinuousRecognitionSession'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechContinuousRecognitionSession;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognizer2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechContinuousRecognitionSession do
          m_Interface := QInterface (this.m_ISpeechRecognizer.all);
          Hr := m_Interface.get_ContinuousRecognitionSession (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechContinuousRecognitionSession := new Windows.Media.SpeechRecognition.ISpeechContinuousRecognitionSession;
          Retval.m_ISpeechContinuousRecognitionSession.all := m_ComRetVal;
       end return;
@@ -2128,14 +2412,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognizerState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognizer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognizer.all);
       Hr := m_Interface.get_State (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2144,8 +2432,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
       this : in out SpeechRecognizer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2153,7 +2442,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2169,7 +2457,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
    begin
       m_Interface := QInterface (this.m_ISpeechRecognizer.all);
       Hr := m_Interface.StopRecognitionAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2177,9 +2465,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2192,14 +2480,18 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognizer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognizer.all);
       Hr := m_Interface.add_HypothesisGenerated (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2209,13 +2501,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer_Interface, WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer2, WinRt.Windows.Media.SpeechRecognition.IID_ISpeechRecognizer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpeechRecognizer.all);
       Hr := m_Interface.remove_HypothesisGenerated (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2227,12 +2523,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognizerStateChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognizerStateChangedEventArgs, ISpeechRecognizerStateChangedEventArgs_Ptr);
    begin
       if this.m_ISpeechRecognizerStateChangedEventArgs /= null then
          if this.m_ISpeechRecognizerStateChangedEventArgs.all /= null then
-            RefCount := this.m_ISpeechRecognizerStateChangedEventArgs.all.Release;
+            temp := this.m_ISpeechRecognizerStateChangedEventArgs.all.Release;
             Free (this.m_ISpeechRecognizerStateChangedEventArgs);
          end if;
       end if;
@@ -2247,10 +2543,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.SpeechRecognizerState;
    begin
       Hr := this.m_ISpeechRecognizerStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2263,12 +2563,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognizerTimeouts) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognizerTimeouts, ISpeechRecognizerTimeouts_Ptr);
    begin
       if this.m_ISpeechRecognizerTimeouts /= null then
          if this.m_ISpeechRecognizerTimeouts.all /= null then
-            RefCount := this.m_ISpeechRecognizerTimeouts.all.Release;
+            temp := this.m_ISpeechRecognizerTimeouts.all.Release;
             Free (this.m_ISpeechRecognizerTimeouts);
          end if;
       end if;
@@ -2283,10 +2583,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpeechRecognizerTimeouts.all.get_InitialSilenceTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2296,9 +2600,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizerTimeouts.all.put_InitialSilenceTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EndSilenceTimeout
@@ -2307,10 +2615,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpeechRecognizerTimeouts.all.get_EndSilenceTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2320,9 +2632,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizerTimeouts.all.put_EndSilenceTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BabbleTimeout
@@ -2331,10 +2647,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpeechRecognizerTimeouts.all.get_BabbleTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2344,9 +2664,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizerTimeouts.all.put_BabbleTimeout (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2358,12 +2682,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out SpeechRecognizerUIOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeechRecognizerUIOptions, ISpeechRecognizerUIOptions_Ptr);
    begin
       if this.m_ISpeechRecognizerUIOptions /= null then
          if this.m_ISpeechRecognizerUIOptions.all /= null then
-            RefCount := this.m_ISpeechRecognizerUIOptions.all.Release;
+            temp := this.m_ISpeechRecognizerUIOptions.all.Release;
             Free (this.m_ISpeechRecognizerUIOptions);
          end if;
       end if;
@@ -2378,13 +2702,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.get_ExampleText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2394,11 +2722,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.put_ExampleText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AudiblePrompt
@@ -2407,13 +2739,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.get_AudiblePrompt (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2423,11 +2759,15 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.put_AudiblePrompt (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsReadBackEnabled
@@ -2436,10 +2776,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.get_IsReadBackEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2449,9 +2793,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.put_IsReadBackEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShowConfirmation
@@ -2460,10 +2808,14 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.get_ShowConfirmation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2473,9 +2825,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpeechRecognizerUIOptions.all.put_ShowConfirmation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2487,9 +2843,10 @@ package body WinRt.Windows.Media.SpeechRecognition is
          file : Windows.Storage.StorageFile'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.VoiceCommandManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.VoiceCommandManager");
          m_Factory        : access WinRt.Windows.Media.SpeechRecognition.IVoiceCommandManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -2497,7 +2854,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -2513,7 +2869,7 @@ package body WinRt.Windows.Media.SpeechRecognition is
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.InstallCommandSetsFromStorageFileAsync (file.m_IStorageFile.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2521,30 +2877,34 @@ package body WinRt.Windows.Media.SpeechRecognition is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_InstalledCommandSets
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.VoiceCommandManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.SpeechRecognition.VoiceCommandManager");
          m_Factory        : access WinRt.Windows.Media.SpeechRecognition.IVoiceCommandManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InstalledCommandSets (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -2559,12 +2919,12 @@ package body WinRt.Windows.Media.SpeechRecognition is
    end;
 
    procedure Finalize (this : in out VoiceCommandSet) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandSet, IVoiceCommandSet_Ptr);
    begin
       if this.m_IVoiceCommandSet /= null then
          if this.m_IVoiceCommandSet.all /= null then
-            RefCount := this.m_IVoiceCommandSet.all.Release;
+            temp := this.m_IVoiceCommandSet.all.Release;
             Free (this.m_IVoiceCommandSet);
          end if;
       end if;
@@ -2579,13 +2939,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandSet.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2595,13 +2959,17 @@ package body WinRt.Windows.Media.SpeechRecognition is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandSet.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2612,8 +2980,9 @@ package body WinRt.Windows.Media.SpeechRecognition is
       phraseList : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_phraseListName : WinRt.HString := To_HString (phraseListName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_phraseListName : constant WinRt.HString := To_HString (phraseListName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2621,7 +2990,6 @@ package body WinRt.Windows.Media.SpeechRecognition is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2642,13 +3010,13 @@ package body WinRt.Windows.Media.SpeechRecognition is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_phraseListName);
+      tmp := WindowsDeleteString (HStr_phraseListName);
    end;
 
 end WinRt.Windows.Media.SpeechRecognition;

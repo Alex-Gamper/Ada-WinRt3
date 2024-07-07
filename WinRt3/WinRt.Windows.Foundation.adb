@@ -45,7 +45,7 @@ package body WinRt.Windows.Foundation is
       asyncStatus : Windows.Foundation.AsyncStatus
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (asyncInfo, asyncStatus);
       return Hr;
@@ -61,7 +61,7 @@ package body WinRt.Windows.Foundation is
          progressInfo : TProgress
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (asyncInfo, progressInfo);
          return Hr;
@@ -79,7 +79,7 @@ package body WinRt.Windows.Foundation is
          asyncStatus : Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (asyncInfo, asyncStatus);
          return Hr;
@@ -97,7 +97,7 @@ package body WinRt.Windows.Foundation is
          asyncStatus : Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (asyncInfo, asyncStatus);
          return Hr;
@@ -115,7 +115,7 @@ package body WinRt.Windows.Foundation is
          progressInfo : TProgress
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (asyncInfo, progressInfo);
          return Hr;
@@ -133,7 +133,7 @@ package body WinRt.Windows.Foundation is
          asyncStatus : Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (asyncInfo, asyncStatus);
          return Hr;
@@ -150,12 +150,12 @@ package body WinRt.Windows.Foundation is
    end;
 
    procedure Finalize (this : in out Deferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeferral, IDeferral_Ptr);
    begin
       if this.m_IDeferral /= null then
          if this.m_IDeferral.all /= null then
-            RefCount := this.m_IDeferral.all.Release;
+            temp := this.m_IDeferral.all.Release;
             Free (this.m_IDeferral);
          end if;
       end if;
@@ -170,9 +170,10 @@ package body WinRt.Windows.Foundation is
    )
    return Deferral is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Deferral");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Deferral");
       m_Factory    : access IDeferralFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : Deferral do
@@ -181,9 +182,9 @@ package body WinRt.Windows.Foundation is
             Hr := m_Factory.Create (handler, m_ComRetVal'Access);
             Retval.m_IDeferral := new Windows.Foundation.IDeferral;
             Retval.m_IDeferral.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -195,9 +196,13 @@ package body WinRt.Windows.Foundation is
       this : in out Deferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -205,13 +210,17 @@ package body WinRt.Windows.Foundation is
       this : in out Deferral
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IDeferral_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeferral.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -222,7 +231,7 @@ package body WinRt.Windows.Foundation is
       this : access DeferralCompletedHandler_Delegate
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback.all;
       return Hr;
@@ -238,7 +247,7 @@ package body WinRt.Windows.Foundation is
          args : T
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (sender, args);
          return Hr;
@@ -253,34 +262,42 @@ package body WinRt.Windows.Foundation is
       function CreateNewGuid
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.GuidHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.GuidHelper");
          m_Factory        : access WinRt.Windows.Foundation.IGuidHelperStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGuidHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateNewGuid (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_Empty
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.GuidHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.GuidHelper");
          m_Factory        : access WinRt.Windows.Foundation.IGuidHelperStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGuidHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Empty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -291,17 +308,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.GuidHelper");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.GuidHelper");
          m_Factory        : access WinRt.Windows.Foundation.IGuidHelperStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGuidHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Equals (target, value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -316,12 +337,12 @@ package body WinRt.Windows.Foundation is
    end;
 
    procedure Finalize (this : in out MemoryBuffer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMemoryBuffer, IMemoryBuffer_Ptr);
    begin
       if this.m_IMemoryBuffer /= null then
          if this.m_IMemoryBuffer.all /= null then
-            RefCount := this.m_IMemoryBuffer.all.Release;
+            temp := this.m_IMemoryBuffer.all.Release;
             Free (this.m_IMemoryBuffer);
          end if;
       end if;
@@ -336,9 +357,10 @@ package body WinRt.Windows.Foundation is
    )
    return MemoryBuffer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.MemoryBuffer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.MemoryBuffer");
       m_Factory    : access IMemoryBufferFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.IMemoryBuffer;
    begin
       return RetVal : MemoryBuffer do
@@ -347,9 +369,9 @@ package body WinRt.Windows.Foundation is
             Hr := m_Factory.Create (capacity, m_ComRetVal'Access);
             Retval.m_IMemoryBuffer := new Windows.Foundation.IMemoryBuffer;
             Retval.m_IMemoryBuffer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -362,10 +384,14 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
    begin
       Hr := this.m_IMemoryBuffer.all.CreateReference (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -374,13 +400,17 @@ package body WinRt.Windows.Foundation is
       this : in out MemoryBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IMemoryBuffer_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMemoryBuffer.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -390,17 +420,21 @@ package body WinRt.Windows.Foundation is
       function CreateEmpty
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateEmpty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -410,17 +444,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt8 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -430,17 +468,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInt16 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -450,17 +492,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt16 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -470,17 +516,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInt32 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -490,17 +540,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt32 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -510,17 +564,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInt64 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -530,17 +588,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt64 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -550,17 +612,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSingle (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -570,17 +636,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDouble (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -590,17 +660,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateChar16 (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -610,17 +684,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateBoolean (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -630,19 +708,23 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
-         HStr_value : WinRt.HString := To_HString (value);
+         HStr_value : constant WinRt.HString := To_HString (value);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateString (HStr_value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_value);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
          return m_ComRetVal;
       end;
 
@@ -652,17 +734,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInspectable (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -672,17 +758,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateGuid (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -692,17 +782,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDateTime (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -712,17 +806,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateTimeSpan (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -732,17 +830,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreatePoint (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -752,17 +854,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSize (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -772,17 +878,21 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateRect (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -792,18 +902,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt8Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -813,18 +927,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int16_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInt16Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -834,18 +952,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt16Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -855,18 +977,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInt32Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -876,18 +1002,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt32Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -897,18 +1027,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInt64Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -918,18 +1052,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.UInt64_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUInt64Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -939,18 +1077,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSingleArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -960,18 +1102,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDoubleArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -981,18 +1127,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Wide_Char_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateChar16Array (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1002,18 +1152,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateBooleanArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1023,18 +1177,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateStringArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1044,18 +1202,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.IInspectable_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInspectableArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1065,18 +1227,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Guid_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateGuidArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1086,18 +1252,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.DateTime_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDateTimeArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1107,18 +1277,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.TimeSpan_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateTimeSpanArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1128,18 +1302,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreatePointArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1149,18 +1327,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Size_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSizeArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1170,18 +1352,22 @@ package body WinRt.Windows.Foundation is
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.PropertyValue");
          m_Factory        : access WinRt.Windows.Foundation.IPropertyValueStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.IInspectable;
          function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Rect_Ptr);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateRectArray (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1197,7 +1383,7 @@ package body WinRt.Windows.Foundation is
          args : TResult
       )
       return WinRt.Hresult is
-         Hr : WinRt.HResult := S_OK;
+         Hr : constant WinRt.HResult := S_OK;
       begin
          this.Callback (sender, args);
          return Hr;
@@ -1214,12 +1400,12 @@ package body WinRt.Windows.Foundation is
    end;
 
    procedure Finalize (this : in out Uri) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUriRuntimeClass, IUriRuntimeClass_Ptr);
    begin
       if this.m_IUriRuntimeClass /= null then
          if this.m_IUriRuntimeClass.all /= null then
-            RefCount := this.m_IUriRuntimeClass.all.Release;
+            temp := this.m_IUriRuntimeClass.all.Release;
             Free (this.m_IUriRuntimeClass);
          end if;
       end if;
@@ -1234,11 +1420,12 @@ package body WinRt.Windows.Foundation is
    )
    return Uri is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Uri");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.IUriRuntimeClass;
-      HStr_uri_p : WinRt.HString := To_HString (uri_p);
+      HStr_uri_p : constant WinRt.HString := To_HString (uri_p);
    begin
       return RetVal : Uri do
          Hr := RoGetActivationFactory (m_hString, IID_IUriRuntimeClassFactory'Access , m_Factory'Address);
@@ -1246,10 +1433,10 @@ package body WinRt.Windows.Foundation is
             Hr := m_Factory.CreateUri (HStr_uri_p, m_ComRetVal'Access);
             Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
             Retval.m_IUriRuntimeClass.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uri_p);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uri_p);
       end return;
    end;
 
@@ -1260,12 +1447,13 @@ package body WinRt.Windows.Foundation is
    )
    return Uri is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.Uri");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.IUriRuntimeClass;
-      HStr_baseUri : WinRt.HString := To_HString (baseUri);
-      HStr_relativeUri : WinRt.HString := To_HString (relativeUri);
+      HStr_baseUri : constant WinRt.HString := To_HString (baseUri);
+      HStr_relativeUri : constant WinRt.HString := To_HString (relativeUri);
    begin
       return RetVal : Uri do
          Hr := RoGetActivationFactory (m_hString, IID_IUriRuntimeClassFactory'Access , m_Factory'Address);
@@ -1273,11 +1461,11 @@ package body WinRt.Windows.Foundation is
             Hr := m_Factory.CreateWithRelativeUri (HStr_baseUri, HStr_relativeUri, m_ComRetVal'Access);
             Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
             Retval.m_IUriRuntimeClass.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_baseUri);
-         Hr := WindowsDeleteString (HStr_relativeUri);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_baseUri);
+         tmp := WindowsDeleteString (HStr_relativeUri);
       end return;
    end;
 
@@ -1290,22 +1478,26 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Uri");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory        : access WinRt.Windows.Foundation.IUriEscapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_toUnescape : WinRt.HString := To_HString (toUnescape);
+      HStr_toUnescape : constant WinRt.HString := To_HString (toUnescape);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUriEscapeStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.UnescapeComponent (HStr_toUnescape, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_toUnescape);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_toUnescape);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1315,22 +1507,26 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Foundation.Uri");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory        : access WinRt.Windows.Foundation.IUriEscapeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_toEscape : WinRt.HString := To_HString (toEscape);
+      HStr_toEscape : constant WinRt.HString := To_HString (toEscape);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUriEscapeStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.EscapeComponent (HStr_toEscape, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_toEscape);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_toEscape);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1343,13 +1539,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_AbsoluteUri (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1359,13 +1559,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_DisplayUri (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1375,13 +1579,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Domain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1391,13 +1599,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Extension (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1407,13 +1619,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Fragment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1423,13 +1639,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Host (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1439,13 +1659,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Password (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1455,13 +1679,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Path (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1471,13 +1699,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Query (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1487,11 +1719,15 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Windows.Foundation.WwwFormUrlDecoder'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.WwwFormUrlDecoder do
          Hr := this.m_IUriRuntimeClass.all.get_QueryParsed (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWwwFormUrlDecoderRuntimeClass := new Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
          Retval.m_IWwwFormUrlDecoderRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1503,13 +1739,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_RawUri (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1519,13 +1759,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_SchemeName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1535,13 +1779,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_UserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1551,10 +1799,14 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Port (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1564,10 +1816,14 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IUriRuntimeClass.all.get_Suspicious (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1578,10 +1834,14 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IUriRuntimeClass.all.Equals (pUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1592,15 +1852,19 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
-      HStr_relativeUri : WinRt.HString := To_HString (relativeUri);
+      HStr_relativeUri : constant WinRt.HString := To_HString (relativeUri);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IUriRuntimeClass.all.CombineUri (HStr_relativeUri, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_relativeUri);
+         tmp := WindowsDeleteString (HStr_relativeUri);
       end return;
    end;
 
@@ -1610,17 +1874,21 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IUriRuntimeClass_Interface, WinRt.Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri, WinRt.Windows.Foundation.IID_IUriRuntimeClassWithAbsoluteCanonicalUri'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUriRuntimeClass.all);
       Hr := m_Interface.get_AbsoluteCanonicalUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1630,17 +1898,21 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IUriRuntimeClass_Interface, WinRt.Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri, WinRt.Windows.Foundation.IID_IUriRuntimeClassWithAbsoluteCanonicalUri'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUriRuntimeClass.all);
       Hr := m_Interface.get_DisplayIri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1650,17 +1922,21 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IUriRuntimeClass_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUriRuntimeClass.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1673,12 +1949,12 @@ package body WinRt.Windows.Foundation is
    end;
 
    procedure Finalize (this : in out WwwFormUrlDecoder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWwwFormUrlDecoderRuntimeClass, IWwwFormUrlDecoderRuntimeClass_Ptr);
    begin
       if this.m_IWwwFormUrlDecoderRuntimeClass /= null then
          if this.m_IWwwFormUrlDecoderRuntimeClass.all /= null then
-            RefCount := this.m_IWwwFormUrlDecoderRuntimeClass.all.Release;
+            temp := this.m_IWwwFormUrlDecoderRuntimeClass.all.Release;
             Free (this.m_IWwwFormUrlDecoderRuntimeClass);
          end if;
       end if;
@@ -1693,11 +1969,12 @@ package body WinRt.Windows.Foundation is
    )
    return WwwFormUrlDecoder is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Foundation.WwwFormUrlDecoder");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.WwwFormUrlDecoder");
       m_Factory    : access IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
-      HStr_query : WinRt.HString := To_HString (query);
+      HStr_query : constant WinRt.HString := To_HString (query);
    begin
       return RetVal : WwwFormUrlDecoder do
          Hr := RoGetActivationFactory (m_hString, IID_IWwwFormUrlDecoderRuntimeClassFactory'Access , m_Factory'Address);
@@ -1705,10 +1982,10 @@ package body WinRt.Windows.Foundation is
             Hr := m_Factory.CreateWwwFormUrlDecoder (HStr_query, m_ComRetVal'Access);
             Retval.m_IWwwFormUrlDecoderRuntimeClass := new Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
             Retval.m_IWwwFormUrlDecoderRuntimeClass.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_query);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_query);
       end return;
    end;
 
@@ -1722,15 +1999,19 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IWwwFormUrlDecoderRuntimeClass.all.GetFirstValueByName (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1742,15 +2023,19 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IWwwFormUrlDecoderEntry.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IWwwFormUrlDecoderEntry;
       m_GenericIID     : aliased WinRt.IID := (2985299259, 7942, 20759, (147, 234, 42, 13, 121, 17, 103, 1 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IVectorView_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWwwFormUrlDecoderRuntimeClass.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1760,15 +2045,19 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IWwwFormUrlDecoderEntry.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2985299259, 7942, 20759, (147, 234, 42, 13, 121, 17, 103, 1 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IVectorView_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWwwFormUrlDecoderRuntimeClass.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1780,15 +2069,19 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IWwwFormUrlDecoderEntry.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2985299259, 7942, 20759, (147, 234, 42, 13, 121, 17, 103, 1 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IVectorView_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWwwFormUrlDecoderRuntimeClass.all);
       Hr := m_Interface.IndexOf (value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1800,8 +2093,9 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IWwwFormUrlDecoderEntry.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2985299259, 7942, 20759, (147, 234, 42, 13, 121, 17, 103, 1 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IVectorView_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
@@ -1809,7 +2103,10 @@ package body WinRt.Windows.Foundation is
    begin
       m_Interface := QInterface (this.m_IWwwFormUrlDecoderRuntimeClass.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1820,15 +2117,19 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IWwwFormUrlDecoderEntry.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2271995963, 29208, 23547, (161, 105, 131, 21, 46, 247, 225, 70 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IIterable_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWwwFormUrlDecoderRuntimeClass.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1841,12 +2142,12 @@ package body WinRt.Windows.Foundation is
    end;
 
    procedure Finalize (this : in out WwwFormUrlDecoderEntry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWwwFormUrlDecoderEntry, IWwwFormUrlDecoderEntry_Ptr);
    begin
       if this.m_IWwwFormUrlDecoderEntry /= null then
          if this.m_IWwwFormUrlDecoderEntry.all /= null then
-            RefCount := this.m_IWwwFormUrlDecoderEntry.all.Release;
+            temp := this.m_IWwwFormUrlDecoderEntry.all.Release;
             Free (this.m_IWwwFormUrlDecoderEntry);
          end if;
       end if;
@@ -1861,13 +2162,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWwwFormUrlDecoderEntry.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1877,13 +2182,17 @@ package body WinRt.Windows.Foundation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWwwFormUrlDecoderEntry.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

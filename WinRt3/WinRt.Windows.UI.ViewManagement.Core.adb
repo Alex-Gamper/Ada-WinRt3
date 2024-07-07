@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out CoreInputView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputView, ICoreInputView_Ptr);
    begin
       if this.m_ICoreInputView /= null then
          if this.m_ICoreInputView.all /= null then
-            RefCount := this.m_ICoreInputView.all.Release;
+            temp := this.m_ICoreInputView.all.Release;
             Free (this.m_ICoreInputView);
          end if;
       end if;
@@ -63,20 +63,24 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    function GetForCurrentView
    return WinRt.Windows.UI.ViewManagement.Core.CoreInputView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreInputView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreInputView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.ICoreInputViewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.ICoreInputView;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.Core.CoreInputView do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreInputViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICoreInputView := new Windows.UI.ViewManagement.Core.ICoreInputView;
             Retval.m_ICoreInputView.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -86,20 +90,24 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.UI.ViewManagement.Core.CoreInputView is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreInputView");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.CoreInputView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.ICoreInputViewStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.ICoreInputView;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.Core.CoreInputView do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreInputViewStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ICoreInputView := new Windows.UI.ViewManagement.Core.ICoreInputView;
             Retval.m_ICoreInputView.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -113,10 +121,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreInputView.all.add_OcclusionsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -126,9 +138,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputView.all.remove_OcclusionsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCoreInputViewOcclusions
@@ -137,13 +153,17 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return IVectorView_ICoreInputViewOcclusion.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICoreInputViewOcclusion.Kind;
    begin
       Hr := this.m_ICoreInputView.all.GetCoreInputViewOcclusions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICoreInputViewOcclusion (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -153,10 +173,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputView.all.TryShowPrimaryView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -166,10 +190,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputView.all.TryHidePrimaryView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -180,14 +208,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.add_XYFocusTransferringFromPrimaryView (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -197,13 +229,17 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.remove_XYFocusTransferringFromPrimaryView (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_XYFocusTransferredToPrimaryView
@@ -213,14 +249,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.add_XYFocusTransferredToPrimaryView (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -230,13 +270,17 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.remove_XYFocusTransferredToPrimaryView (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryTransferXYFocusToPrimaryView
@@ -247,14 +291,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView2, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.TryTransferXYFocusToPrimaryView (origin, direction, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -264,14 +312,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView3, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.TryShow (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -282,14 +334,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView3, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.TryShow (type_x, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -299,14 +355,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView3, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.TryHide (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -317,14 +377,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.add_PrimaryViewShowing (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -334,13 +398,17 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.remove_PrimaryViewShowing (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PrimaryViewHiding
@@ -350,14 +418,18 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.add_PrimaryViewHiding (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -367,13 +439,17 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.Core.ICoreInputView_Interface, WinRt.Windows.UI.ViewManagement.Core.ICoreInputView4, WinRt.Windows.UI.ViewManagement.Core.IID_ICoreInputView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreInputView.all);
       Hr := m_Interface.remove_PrimaryViewHiding (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -385,12 +461,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out CoreInputViewHidingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputViewHidingEventArgs, ICoreInputViewHidingEventArgs_Ptr);
    begin
       if this.m_ICoreInputViewHidingEventArgs /= null then
          if this.m_ICoreInputViewHidingEventArgs.all /= null then
-            RefCount := this.m_ICoreInputViewHidingEventArgs.all.Release;
+            temp := this.m_ICoreInputViewHidingEventArgs.all.Release;
             Free (this.m_ICoreInputViewHidingEventArgs);
          end if;
       end if;
@@ -405,10 +481,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputViewHidingEventArgs.all.TryCancel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -421,12 +501,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out CoreInputViewOcclusion) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputViewOcclusion, ICoreInputViewOcclusion_Ptr);
    begin
       if this.m_ICoreInputViewOcclusion /= null then
          if this.m_ICoreInputViewOcclusion.all /= null then
-            RefCount := this.m_ICoreInputViewOcclusion.all.Release;
+            temp := this.m_ICoreInputViewOcclusion.all.Release;
             Free (this.m_ICoreInputViewOcclusion);
          end if;
       end if;
@@ -441,10 +521,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreInputViewOcclusion.all.get_OccludingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -454,10 +538,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.UI.ViewManagement.Core.CoreInputViewOcclusionKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.CoreInputViewOcclusionKind;
    begin
       Hr := this.m_ICoreInputViewOcclusion.all.get_OcclusionKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -470,12 +558,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out CoreInputViewOcclusionsChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputViewOcclusionsChangedEventArgs, ICoreInputViewOcclusionsChangedEventArgs_Ptr);
    begin
       if this.m_ICoreInputViewOcclusionsChangedEventArgs /= null then
          if this.m_ICoreInputViewOcclusionsChangedEventArgs.all /= null then
-            RefCount := this.m_ICoreInputViewOcclusionsChangedEventArgs.all.Release;
+            temp := this.m_ICoreInputViewOcclusionsChangedEventArgs.all.Release;
             Free (this.m_ICoreInputViewOcclusionsChangedEventArgs);
          end if;
       end if;
@@ -490,13 +578,17 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return IVectorView_ICoreInputViewOcclusion.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ICoreInputViewOcclusion.Kind;
    begin
       Hr := this.m_ICoreInputViewOcclusionsChangedEventArgs.all.get_Occlusions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ICoreInputViewOcclusion (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -506,10 +598,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputViewOcclusionsChangedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -519,9 +615,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputViewOcclusionsChangedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -533,12 +633,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out CoreInputViewShowingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputViewShowingEventArgs, ICoreInputViewShowingEventArgs_Ptr);
    begin
       if this.m_ICoreInputViewShowingEventArgs /= null then
          if this.m_ICoreInputViewShowingEventArgs.all /= null then
-            RefCount := this.m_ICoreInputViewShowingEventArgs.all.Release;
+            temp := this.m_ICoreInputViewShowingEventArgs.all.Release;
             Free (this.m_ICoreInputViewShowingEventArgs);
          end if;
       end if;
@@ -553,10 +653,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputViewShowingEventArgs.all.TryCancel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -569,12 +673,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out CoreInputViewTransferringXYFocusEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICoreInputViewTransferringXYFocusEventArgs, ICoreInputViewTransferringXYFocusEventArgs_Ptr);
    begin
       if this.m_ICoreInputViewTransferringXYFocusEventArgs /= null then
          if this.m_ICoreInputViewTransferringXYFocusEventArgs.all /= null then
-            RefCount := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.Release;
+            temp := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.Release;
             Free (this.m_ICoreInputViewTransferringXYFocusEventArgs);
          end if;
       end if;
@@ -589,10 +693,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.get_Origin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -602,10 +710,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection;
    begin
       Hr := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -615,9 +727,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.put_TransferHandled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransferHandled
@@ -626,10 +742,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.get_TransferHandled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -639,9 +759,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.put_KeepPrimaryViewVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeepPrimaryViewVisible
@@ -650,10 +774,14 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.get_KeepPrimaryViewVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -666,12 +794,12 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    end;
 
    procedure Finalize (this : in out UISettingsController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUISettingsController, IUISettingsController_Ptr);
    begin
       if this.m_IUISettingsController /= null then
          if this.m_IUISettingsController.all /= null then
-            RefCount := this.m_IUISettingsController.all.Release;
+            temp := this.m_IUISettingsController.all.Release;
             Free (this.m_IUISettingsController);
          end if;
       end if;
@@ -683,15 +811,15 @@ package body WinRt.Windows.UI.ViewManagement.Core is
    function RequestDefaultAsync
    return WinRt.Windows.UI.ViewManagement.Core.UISettingsController is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.UISettingsController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.Core.UISettingsController");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.Core.IUISettingsControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UISettingsController.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -709,7 +837,7 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UISettingsController.Kind_Delegate, AsyncOperationCompletedHandler_UISettingsController.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -723,10 +851,10 @@ package body WinRt.Windows.UI.ViewManagement.Core is
          Hr := RoGetActivationFactory (m_hString, IID_IUISettingsControllerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestDefaultAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -738,15 +866,15 @@ package body WinRt.Windows.UI.ViewManagement.Core is
                      Retval.m_IUISettingsController := new Windows.UI.ViewManagement.Core.IUISettingsController;
                      Retval.m_IUISettingsController.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -759,9 +887,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUISettingsController.all.SetAdvancedEffectsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetAnimationsEnabled
@@ -770,9 +902,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUISettingsController.all.SetAnimationsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetAutoHideScrollBars
@@ -781,9 +917,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUISettingsController.all.SetAutoHideScrollBars (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetMessageDuration
@@ -792,9 +932,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUISettingsController.all.SetMessageDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetTextScaleFactor
@@ -803,9 +947,13 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUISettingsController.all.SetTextScaleFactor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.ViewManagement.Core;

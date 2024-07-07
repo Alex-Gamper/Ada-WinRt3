@@ -47,12 +47,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out ArcadeStick) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IArcadeStick, IArcadeStick_Ptr);
    begin
       if this.m_IArcadeStick /= null then
          if this.m_IArcadeStick.all /= null then
-            RefCount := this.m_IArcadeStick.all.Release;
+            temp := this.m_IArcadeStick.all.Release;
             Free (this.m_IArcadeStick);
          end if;
       end if;
@@ -67,17 +67,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_ArcadeStickAdded (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -86,16 +90,20 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_ArcadeStickAdded (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_ArcadeStickRemoved
@@ -104,17 +112,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_ArcadeStickRemoved (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -123,32 +135,40 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_ArcadeStickRemoved (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_ArcadeSticks
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_ArcadeSticks (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -158,20 +178,24 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.ArcadeStick is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ArcadeStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IArcadeStickStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IArcadeStick;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.ArcadeStick do
          Hr := RoGetActivationFactory (m_hString, IID_IArcadeStickStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IArcadeStick := new Windows.Gaming.Input.IArcadeStick;
             Retval.m_IArcadeStick.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -185,10 +209,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
    begin
       Hr := this.m_IArcadeStick.all.GetButtonLabel (button, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -198,10 +226,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.ArcadeStickReading is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ArcadeStickReading;
    begin
       Hr := this.m_IArcadeStick.all.GetCurrentReading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -212,14 +244,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.add_HeadsetConnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -229,13 +265,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.remove_HeadsetConnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadsetDisconnected
@@ -245,14 +285,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.add_HeadsetDisconnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -262,13 +306,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.remove_HeadsetDisconnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserChanged
@@ -278,14 +326,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.add_UserChanged (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -295,13 +347,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.remove_UserChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headset
@@ -310,15 +366,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Headset'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IHeadset;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Headset do
          m_Interface := QInterface (this.m_IArcadeStick.all);
          Hr := m_Interface.get_Headset (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHeadset := new Windows.Gaming.Input.IHeadset;
          Retval.m_IHeadset.all := m_ComRetVal;
       end return;
@@ -330,14 +390,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IArcadeStick.all);
       Hr := m_Interface.get_IsWireless (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -347,15 +411,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IArcadeStick.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -367,15 +435,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IArcadeStick_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IArcadeStick.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -390,12 +462,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out FlightStick) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlightStick, IFlightStick_Ptr);
    begin
       if this.m_IFlightStick /= null then
          if this.m_IFlightStick.all /= null then
-            RefCount := this.m_IFlightStick.all.Release;
+            temp := this.m_IFlightStick.all.Release;
             Free (this.m_IFlightStick);
          end if;
       end if;
@@ -410,17 +482,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IFlightStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlightStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_FlightStickAdded (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -429,16 +505,20 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IFlightStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlightStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_FlightStickAdded (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_FlightStickRemoved
@@ -447,17 +527,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IFlightStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlightStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_FlightStickRemoved (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -466,32 +550,40 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IFlightStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlightStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_FlightStickRemoved (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_FlightSticks
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IFlightStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlightStickStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_FlightSticks (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -501,20 +593,24 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.FlightStick is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.FlightStick");
       m_Factory        : access WinRt.Windows.Gaming.Input.IFlightStickStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IFlightStick;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.FlightStick do
          Hr := RoGetActivationFactory (m_hString, IID_IFlightStickStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IFlightStick := new Windows.Gaming.Input.IFlightStick;
             Retval.m_IFlightStick.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -527,10 +623,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerSwitchKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerSwitchKind;
    begin
       Hr := this.m_IFlightStick.all.get_HatSwitchKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -541,10 +641,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
    begin
       Hr := this.m_IFlightStick.all.GetButtonLabel (button, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -554,10 +658,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.FlightStickReading is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.FlightStickReading;
    begin
       Hr := this.m_IFlightStick.all.GetCurrentReading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -568,14 +676,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.add_HeadsetConnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -585,13 +697,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.remove_HeadsetConnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadsetDisconnected
@@ -601,14 +717,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.add_HeadsetDisconnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -618,13 +738,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.remove_HeadsetDisconnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserChanged
@@ -634,14 +758,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.add_UserChanged (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -651,13 +779,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.remove_UserChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headset
@@ -666,15 +798,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Headset'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IHeadset;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Headset do
          m_Interface := QInterface (this.m_IFlightStick.all);
          Hr := m_Interface.get_Headset (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHeadset := new Windows.Gaming.Input.IHeadset;
          Retval.m_IHeadset.all := m_ComRetVal;
       end return;
@@ -686,14 +822,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlightStick.all);
       Hr := m_Interface.get_IsWireless (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -703,15 +843,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IFlightStick.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -723,15 +867,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IFlightStick_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IFlightStick.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -746,12 +894,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out Gamepad) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGamepad, IGamepad_Ptr);
    begin
       if this.m_IGamepad /= null then
          if this.m_IGamepad.all /= null then
-            RefCount := this.m_IGamepad.all.Release;
+            temp := this.m_IGamepad.all.Release;
             Free (this.m_IGamepad);
          end if;
       end if;
@@ -766,17 +914,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
       m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_GamepadAdded (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -785,16 +937,20 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
       m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_GamepadAdded (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_GamepadRemoved
@@ -803,17 +959,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
       m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_GamepadRemoved (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -822,32 +982,40 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
       m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_GamepadRemoved (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_Gamepads
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
       m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_Gamepads (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -857,20 +1025,24 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Gamepad is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Gamepad");
       m_Factory        : access WinRt.Windows.Gaming.Input.IGamepadStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IGamepad;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Gamepad do
          Hr := RoGetActivationFactory (m_hString, IID_IGamepadStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGamepad := new Windows.Gaming.Input.IGamepad;
             Retval.m_IGamepad.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -883,10 +1055,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GamepadVibration is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GamepadVibration;
    begin
       Hr := this.m_IGamepad.all.get_Vibration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -896,9 +1072,13 @@ package body WinRt.Windows.Gaming.Input is
       value : Windows.Gaming.Input.GamepadVibration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGamepad.all.put_Vibration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentReading
@@ -907,10 +1087,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GamepadReading is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GamepadReading;
    begin
       Hr := this.m_IGamepad.all.GetCurrentReading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -921,14 +1105,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.add_HeadsetConnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -938,13 +1126,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.remove_HeadsetConnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadsetDisconnected
@@ -954,14 +1146,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.add_HeadsetDisconnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -971,13 +1167,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.remove_HeadsetDisconnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserChanged
@@ -987,14 +1187,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.add_UserChanged (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1004,13 +1208,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.remove_UserChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headset
@@ -1019,15 +1227,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Headset'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IHeadset;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Headset do
          m_Interface := QInterface (this.m_IGamepad.all);
          Hr := m_Interface.get_Headset (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHeadset := new Windows.Gaming.Input.IHeadset;
          Retval.m_IHeadset.all := m_ComRetVal;
       end return;
@@ -1039,14 +1251,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.get_IsWireless (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1056,15 +1272,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IGamepad.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1077,14 +1297,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGamepad2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGamepad2, WinRt.Windows.Gaming.Input.IID_IGamepad2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGamepad.all);
       Hr := m_Interface.GetButtonLabel (button, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1094,15 +1318,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IGamepad_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IGamepad.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -1117,12 +1345,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out Headset) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHeadset, IHeadset_Ptr);
    begin
       if this.m_IHeadset /= null then
          if this.m_IHeadset.all /= null then
-            RefCount := this.m_IHeadset.all.Release;
+            temp := this.m_IHeadset.all.Release;
             Free (this.m_IHeadset);
          end if;
       end if;
@@ -1137,13 +1365,17 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHeadset.all.get_CaptureDeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1153,13 +1385,17 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHeadset.all.get_RenderDeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1169,15 +1405,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IHeadset_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IHeadset.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -1192,12 +1432,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out RacingWheel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRacingWheel, IRacingWheel_Ptr);
    begin
       if this.m_IRacingWheel /= null then
          if this.m_IRacingWheel.all /= null then
-            RefCount := this.m_IRacingWheel.all.Release;
+            temp := this.m_IRacingWheel.all.Release;
             Free (this.m_IRacingWheel);
          end if;
       end if;
@@ -1212,17 +1452,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_RacingWheelAdded (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1231,16 +1475,20 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_RacingWheelAdded (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_RacingWheelRemoved
@@ -1249,17 +1497,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_RacingWheelRemoved (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1268,32 +1520,40 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_RacingWheelRemoved (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_RacingWheels
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_RacingWheels (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1303,20 +1563,24 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.RacingWheel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RacingWheel");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRacingWheelStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IRacingWheel;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.RacingWheel do
          Hr := RoGetActivationFactory (m_hString, IID_IRacingWheelStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRacingWheel := new Windows.Gaming.Input.IRacingWheel;
             Retval.m_IRacingWheel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1329,10 +1593,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IRacingWheel.all.get_HasClutch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1342,10 +1610,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IRacingWheel.all.get_HasHandbrake (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1355,10 +1627,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IRacingWheel.all.get_HasPatternShifter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1368,10 +1644,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IRacingWheel.all.get_MaxPatternShifterGear (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1381,10 +1661,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRacingWheel.all.get_MaxWheelAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1394,11 +1678,15 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackMotor'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackMotor;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackMotor do
          Hr := this.m_IRacingWheel.all.get_WheelMotor (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IForceFeedbackMotor := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackMotor;
          Retval.m_IForceFeedbackMotor.all := m_ComRetVal;
       end return;
@@ -1411,10 +1699,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
    begin
       Hr := this.m_IRacingWheel.all.GetButtonLabel (button, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1424,10 +1716,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.RacingWheelReading is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.RacingWheelReading;
    begin
       Hr := this.m_IRacingWheel.all.GetCurrentReading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1438,14 +1734,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.add_HeadsetConnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1455,13 +1755,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.remove_HeadsetConnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadsetDisconnected
@@ -1471,14 +1775,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.add_HeadsetDisconnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1488,13 +1796,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.remove_HeadsetDisconnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserChanged
@@ -1504,14 +1816,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.add_UserChanged (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1521,13 +1837,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.remove_UserChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headset
@@ -1536,15 +1856,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Headset'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IHeadset;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Headset do
          m_Interface := QInterface (this.m_IRacingWheel.all);
          Hr := m_Interface.get_Headset (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHeadset := new Windows.Gaming.Input.IHeadset;
          Retval.m_IHeadset.all := m_ComRetVal;
       end return;
@@ -1556,14 +1880,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRacingWheel.all);
       Hr := m_Interface.get_IsWireless (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1573,15 +1901,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IRacingWheel.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1593,15 +1925,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRacingWheel_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IRacingWheel.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -1616,12 +1952,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out RawGameController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRawGameController, IRawGameController_Ptr);
    begin
       if this.m_IRawGameController /= null then
          if this.m_IRawGameController.all /= null then
-            RefCount := this.m_IRawGameController.all.Release;
+            temp := this.m_IRawGameController.all.Release;
             Free (this.m_IRawGameController);
          end if;
       end if;
@@ -1636,17 +1972,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRawGameControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRawGameControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_RawGameControllerAdded (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1655,16 +1995,20 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRawGameControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRawGameControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_RawGameControllerAdded (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_RawGameControllerRemoved
@@ -1673,17 +2017,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRawGameControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRawGameControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_RawGameControllerRemoved (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1692,32 +2040,40 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRawGameControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRawGameControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_RawGameControllerRemoved (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_RawGameControllers
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRawGameControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRawGameControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_RawGameControllers (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1727,20 +2083,24 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.RawGameController is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.RawGameController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IRawGameControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IRawGameController;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.RawGameController do
          Hr := RoGetActivationFactory (m_hString, IID_IRawGameControllerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IRawGameController := new Windows.Gaming.Input.IRawGameController;
             Retval.m_IRawGameController.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1753,10 +2113,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IRawGameController.all.get_AxisCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1766,10 +2130,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IRawGameController.all.get_ButtonCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1779,10 +2147,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IRawGameController.all.get_ForceFeedbackMotors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1792,10 +2164,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IRawGameController.all.get_HardwareProductId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1805,10 +2181,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IRawGameController.all.get_HardwareVendorId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1818,10 +2198,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IRawGameController.all.get_SwitchCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1832,10 +2216,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
    begin
       Hr := this.m_IRawGameController.all.GetButtonLabel (buttonIndex, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1848,13 +2236,17 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
       function Convert_buttonArray is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
       function Convert_switchArray is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Gaming.Input.GameControllerSwitchPosition_Ptr);
       function Convert_axisArray is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
    begin
       Hr := this.m_IRawGameController.all.GetCurrentReading (WinRt.UInt32(buttonArray'Length), Convert_buttonArray (buttonArray (buttonArray'First)'Address), WinRt.UInt32(switchArray'Length), Convert_switchArray (switchArray (switchArray'First)'Address), WinRt.UInt32(axisArray'Length), Convert_axisArray (axisArray (axisArray'First)'Address), m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1865,10 +2257,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerSwitchKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerSwitchKind;
    begin
       Hr := this.m_IRawGameController.all.GetSwitchKind (switchIndex, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1879,14 +2275,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.add_HeadsetConnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1896,13 +2296,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.remove_HeadsetConnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadsetDisconnected
@@ -1912,14 +2316,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.add_HeadsetDisconnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1929,13 +2337,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.remove_HeadsetDisconnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserChanged
@@ -1945,14 +2357,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.add_UserChanged (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1962,13 +2378,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.remove_UserChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headset
@@ -1977,15 +2397,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Headset'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IHeadset;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Headset do
          m_Interface := QInterface (this.m_IRawGameController.all);
          Hr := m_Interface.get_Headset (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHeadset := new Windows.Gaming.Input.IHeadset;
          Retval.m_IHeadset.all := m_ComRetVal;
       end return;
@@ -1997,14 +2421,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.get_IsWireless (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2014,15 +2442,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IRawGameController.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2034,15 +2466,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IRawGameController.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
@@ -2054,14 +2490,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IRawGameController2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IRawGameController2, WinRt.Windows.Gaming.Input.IID_IRawGameController2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.get_SimpleHapticsControllers (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2071,17 +2511,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IRawGameController2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IRawGameController2, WinRt.Windows.Gaming.Input.IID_IRawGameController2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.get_NonRoamableId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2091,17 +2535,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IRawGameController2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IRawGameController_Interface, WinRt.Windows.Gaming.Input.IRawGameController2, WinRt.Windows.Gaming.Input.IID_IRawGameController2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawGameController.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2114,12 +2562,12 @@ package body WinRt.Windows.Gaming.Input is
    end;
 
    procedure Finalize (this : in out UINavigationController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUINavigationController, IUINavigationController_Ptr);
    begin
       if this.m_IUINavigationController /= null then
          if this.m_IUINavigationController.all /= null then
-            RefCount := this.m_IUINavigationController.all.Release;
+            temp := this.m_IUINavigationController.all.Release;
             Free (this.m_IUINavigationController);
          end if;
       end if;
@@ -2134,20 +2582,24 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.UINavigationController is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IUINavigationController;
    begin
       return RetVal : WinRt.Windows.Gaming.Input.UINavigationController do
          Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromGameController (gameController, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUINavigationController := new Windows.Gaming.Input.IUINavigationController;
             Retval.m_IUINavigationController.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2157,17 +2609,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_UINavigationControllerAdded (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2176,16 +2632,20 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_UINavigationControllerAdded (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_UINavigationControllerRemoved
@@ -2194,17 +2654,21 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_UINavigationControllerRemoved (value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2213,32 +2677,40 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_UINavigationControllerRemoved (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_UINavigationControllers
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.UINavigationController");
       m_Factory        : access WinRt.Windows.Gaming.Input.IUINavigationControllerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUINavigationControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_UINavigationControllers (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2251,10 +2723,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.UINavigationReading is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.UINavigationReading;
    begin
       Hr := this.m_IUINavigationController.all.GetCurrentReading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2265,10 +2741,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
    begin
       Hr := this.m_IUINavigationController.all.GetOptionalButtonLabel (button, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2279,10 +2759,14 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.GameControllerButtonLabel;
    begin
       Hr := this.m_IUINavigationController.all.GetRequiredButtonLabel (button, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2293,14 +2777,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.add_HeadsetConnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2310,13 +2798,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.remove_HeadsetConnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadsetDisconnected
@@ -2326,14 +2818,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.add_HeadsetDisconnected (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2343,13 +2839,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.remove_HeadsetDisconnected (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UserChanged
@@ -2359,14 +2859,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.add_UserChanged (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2376,13 +2880,17 @@ package body WinRt.Windows.Gaming.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.remove_UserChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Headset
@@ -2391,15 +2899,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Gaming.Input.Headset'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Gaming.Input.IHeadset;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Gaming.Input.Headset do
          m_Interface := QInterface (this.m_IUINavigationController.all);
          Hr := m_Interface.get_Headset (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHeadset := new Windows.Gaming.Input.IHeadset;
          Retval.m_IHeadset.all := m_ComRetVal;
       end return;
@@ -2411,14 +2923,18 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUINavigationController.all);
       Hr := m_Interface.get_IsWireless (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2428,15 +2944,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameController := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameController, WinRt.Windows.Gaming.Input.IID_IGameController'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IUINavigationController.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -2448,15 +2968,19 @@ package body WinRt.Windows.Gaming.Input is
    )
    return WinRt.Windows.Devices.Power.BatteryReport'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.IUINavigationController_Interface, WinRt.Windows.Gaming.Input.IGameControllerBatteryInfo, WinRt.Windows.Gaming.Input.IID_IGameControllerBatteryInfo'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          m_Interface := QInterface (this.m_IUINavigationController.all);
          Hr := m_Interface.TryGetBatteryReport (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;

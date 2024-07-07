@@ -98,12 +98,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESim) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESim, IESim_Ptr);
    begin
       if this.m_IESim /= null then
          if this.m_IESim.all /= null then
-            RefCount := this.m_IESim.all.Release;
+            temp := this.m_IESim.all.Release;
             Free (this.m_IESim);
          end if;
       end if;
@@ -118,13 +118,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IESim.all.get_AvailableMemoryInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -134,13 +138,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESim.all.get_Eid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -150,13 +158,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESim.all.get_FirmwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -166,13 +178,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESim.all.get_MobileBroadbandModemDeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -182,11 +198,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimPolicy'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimPolicy;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimPolicy do
          Hr := this.m_IESim.all.get_Policy (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimPolicy := new Windows.Networking.NetworkOperators.IESimPolicy;
          Retval.m_IESimPolicy.all := m_ComRetVal;
       end return;
@@ -198,10 +218,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimState;
    begin
       Hr := this.m_IESim.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -211,13 +235,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IESimProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IESimProfile.Kind;
    begin
       Hr := this.m_IESim.all.GetProfiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IESimProfile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -228,14 +256,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_profileId : WinRt.HString := To_HString (profileId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_profileId : constant WinRt.HString := To_HString (profileId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -253,7 +281,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -267,7 +295,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESim.all.DeleteProfileAsync (HStr_profileId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -279,14 +307,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_profileId);
+         tmp := WindowsDeleteString (HStr_profileId);
       end return;
    end;
 
@@ -297,14 +325,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDownloadProfileMetadataResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_activationCode : WinRt.HString := To_HString (activationCode);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_activationCode : constant WinRt.HString := To_HString (activationCode);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimDownloadProfileMetadataResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -322,7 +350,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimDownloadProfileMetadataResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimDownloadProfileMetadataResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -336,7 +364,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESim.all.DownloadProfileMetadataAsync (HStr_activationCode, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -348,14 +376,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimDownloadProfileMetadataResult := new Windows.Networking.NetworkOperators.IESimDownloadProfileMetadataResult;
                   Retval.m_IESimDownloadProfileMetadataResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_activationCode);
+         tmp := WindowsDeleteString (HStr_activationCode);
       end return;
    end;
 
@@ -365,13 +393,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -389,7 +417,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -403,7 +431,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESim.all.ResetAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -415,9 +443,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -432,10 +460,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESim.all.add_ProfileChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -445,9 +477,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESim.all.remove_ProfileChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Discover
@@ -456,15 +492,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimDiscoverResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IESim_Interface, WinRt.Windows.Networking.NetworkOperators.IESim2, WinRt.Windows.Networking.NetworkOperators.IID_IESim2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult do
          m_Interface := QInterface (this.m_IESim.all);
          Hr := m_Interface.Discover (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
          Retval.m_IESimDiscoverResult.all := m_ComRetVal;
       end return;
@@ -478,21 +518,25 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimDiscoverResult;
-      HStr_serverAddress : WinRt.HString := To_HString (serverAddress);
-      HStr_matchingId : WinRt.HString := To_HString (matchingId);
+      HStr_serverAddress : constant WinRt.HString := To_HString (serverAddress);
+      HStr_matchingId : constant WinRt.HString := To_HString (matchingId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IESim_Interface, WinRt.Windows.Networking.NetworkOperators.IESim2, WinRt.Windows.Networking.NetworkOperators.IID_IESim2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult do
          m_Interface := QInterface (this.m_IESim.all);
          Hr := m_Interface.Discover (HStr_serverAddress, HStr_matchingId, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
          Retval.m_IESimDiscoverResult.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_serverAddress);
-         Hr := WindowsDeleteString (HStr_matchingId);
+         tmp := WindowsDeleteString (HStr_serverAddress);
+         tmp := WindowsDeleteString (HStr_matchingId);
       end return;
    end;
 
@@ -502,14 +546,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimDiscoverResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -527,7 +571,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimDiscoverResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimDiscoverResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -541,10 +585,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult do
          m_Interface := QInterface (this.m_IESim.all);
          Hr := m_Interface.DiscoverAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -556,9 +600,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
                   Retval.m_IESimDiscoverResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -574,16 +618,16 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_serverAddress : WinRt.HString := To_HString (serverAddress);
-      HStr_matchingId : WinRt.HString := To_HString (matchingId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_serverAddress : constant WinRt.HString := To_HString (serverAddress);
+      HStr_matchingId : constant WinRt.HString := To_HString (matchingId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimDiscoverResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -601,7 +645,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimDiscoverResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimDiscoverResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -615,10 +659,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult do
          m_Interface := QInterface (this.m_IESim.all);
          Hr := m_Interface.DiscoverAsync (HStr_serverAddress, HStr_matchingId, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -630,15 +674,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
                   Retval.m_IESimDiscoverResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_serverAddress);
-         Hr := WindowsDeleteString (HStr_matchingId);
+         tmp := WindowsDeleteString (HStr_serverAddress);
+         tmp := WindowsDeleteString (HStr_matchingId);
       end return;
    end;
 
@@ -651,12 +695,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimAddedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimAddedEventArgs, IESimAddedEventArgs_Ptr);
    begin
       if this.m_IESimAddedEventArgs /= null then
          if this.m_IESimAddedEventArgs.all /= null then
-            RefCount := this.m_IESimAddedEventArgs.all.Release;
+            temp := this.m_IESimAddedEventArgs.all.Release;
             Free (this.m_IESimAddedEventArgs);
          end if;
       end if;
@@ -671,11 +715,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESim'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESim;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESim do
          Hr := this.m_IESimAddedEventArgs.all.get_ESim (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESim := new Windows.Networking.NetworkOperators.IESim;
          Retval.m_IESim.all := m_ComRetVal;
       end return;
@@ -690,12 +738,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimDiscoverEvent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimDiscoverEvent, IESimDiscoverEvent_Ptr);
    begin
       if this.m_IESimDiscoverEvent /= null then
          if this.m_IESimDiscoverEvent.all /= null then
-            RefCount := this.m_IESimDiscoverEvent.all.Release;
+            temp := this.m_IESimDiscoverEvent.all.Release;
             Free (this.m_IESimDiscoverEvent);
          end if;
       end if;
@@ -710,13 +758,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimDiscoverEvent.all.get_MatchingId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -726,13 +778,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimDiscoverEvent.all.get_RspServerAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -745,12 +801,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimDiscoverResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimDiscoverResult, IESimDiscoverResult_Ptr);
    begin
       if this.m_IESimDiscoverResult /= null then
          if this.m_IESimDiscoverResult.all /= null then
-            RefCount := this.m_IESimDiscoverResult.all.Release;
+            temp := this.m_IESimDiscoverResult.all.Release;
             Free (this.m_IESimDiscoverResult);
          end if;
       end if;
@@ -765,13 +821,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IESimDiscoverEvent.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IESimDiscoverEvent.Kind;
    begin
       Hr := this.m_IESimDiscoverResult.all.get_Events (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IESimDiscoverEvent (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -781,10 +841,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResultKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimDiscoverResultKind;
    begin
       Hr := this.m_IESimDiscoverResult.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -794,11 +858,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadata'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfileMetadata;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadata do
          Hr := this.m_IESimDiscoverResult.all.get_ProfileMetadata (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimProfileMetadata := new Windows.Networking.NetworkOperators.IESimProfileMetadata;
          Retval.m_IESimProfileMetadata.all := m_ComRetVal;
       end return;
@@ -810,11 +878,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimOperationResult;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimOperationResult do
          Hr := this.m_IESimDiscoverResult.all.get_Result (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
          Retval.m_IESimOperationResult.all := m_ComRetVal;
       end return;
@@ -829,12 +901,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimDownloadProfileMetadataResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimDownloadProfileMetadataResult, IESimDownloadProfileMetadataResult_Ptr);
    begin
       if this.m_IESimDownloadProfileMetadataResult /= null then
          if this.m_IESimDownloadProfileMetadataResult.all /= null then
-            RefCount := this.m_IESimDownloadProfileMetadataResult.all.Release;
+            temp := this.m_IESimDownloadProfileMetadataResult.all.Release;
             Free (this.m_IESimDownloadProfileMetadataResult);
          end if;
       end if;
@@ -849,11 +921,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimOperationResult;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimOperationResult do
          Hr := this.m_IESimDownloadProfileMetadataResult.all.get_Result (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
          Retval.m_IESimOperationResult.all := m_ComRetVal;
       end return;
@@ -865,11 +941,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadata'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfileMetadata;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadata do
          Hr := this.m_IESimDownloadProfileMetadataResult.all.get_ProfileMetadata (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimProfileMetadata := new Windows.Networking.NetworkOperators.IESimProfileMetadata;
          Retval.m_IESimProfileMetadata.all := m_ComRetVal;
       end return;
@@ -882,40 +962,48 @@ package body WinRt.Windows.Networking.NetworkOperators is
       function get_ServiceInfo
       return WinRt.Windows.Networking.NetworkOperators.ESimServiceInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimServiceInfo;
       begin
          return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimServiceInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_ServiceInfo (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IESimServiceInfo := new Windows.Networking.NetworkOperators.IESimServiceInfo;
                Retval.m_IESimServiceInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function TryCreateESimWatcher
       return WinRt.Windows.Networking.NetworkOperators.ESimWatcher is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimWatcher;
       begin
          return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimWatcher do
             Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.TryCreateESimWatcher (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IESimWatcher := new Windows.Networking.NetworkOperators.IESimWatcher;
                Retval.m_IESimWatcher.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -925,17 +1013,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_ServiceInfoChanged (handler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -944,16 +1036,20 @@ package body WinRt.Windows.Networking.NetworkOperators is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_ServiceInfoChanged (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end ESimManager;
@@ -967,12 +1063,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimOperationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimOperationResult, IESimOperationResult_Ptr);
    begin
       if this.m_IESimOperationResult /= null then
          if this.m_IESimOperationResult.all /= null then
-            RefCount := this.m_IESimOperationResult.all.Release;
+            temp := this.m_IESimOperationResult.all.Release;
             Free (this.m_IESimOperationResult);
          end if;
       end if;
@@ -987,10 +1083,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimOperationStatus;
    begin
       Hr := this.m_IESimOperationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1003,12 +1103,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimPolicy) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimPolicy, IESimPolicy_Ptr);
    begin
       if this.m_IESimPolicy /= null then
          if this.m_IESimPolicy.all /= null then
-            RefCount := this.m_IESimPolicy.all.Release;
+            temp := this.m_IESimPolicy.all.Release;
             Free (this.m_IESimPolicy);
          end if;
       end if;
@@ -1023,10 +1123,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IESimPolicy.all.get_ShouldEnableManagingUi (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1039,12 +1143,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimProfile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimProfile, IESimProfile_Ptr);
    begin
       if this.m_IESimProfile /= null then
          if this.m_IESimProfile.all /= null then
-            RefCount := this.m_IESimProfile.all.Release;
+            temp := this.m_IESimProfile.all.Release;
             Free (this.m_IESimProfile);
          end if;
       end if;
@@ -1059,10 +1163,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfileClass is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimProfileClass;
    begin
       Hr := this.m_IESimProfile.all.get_Class (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1072,13 +1180,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfile.all.get_Nickname (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1088,11 +1200,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfilePolicy'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfilePolicy;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfilePolicy do
          Hr := this.m_IESimProfile.all.get_Policy (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimProfilePolicy := new Windows.Networking.NetworkOperators.IESimProfilePolicy;
          Retval.m_IESimProfilePolicy.all := m_ComRetVal;
       end return;
@@ -1104,13 +1220,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfile.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1120,10 +1240,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IESimProfile.all.get_ProviderIcon (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1133,13 +1257,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfile.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1149,13 +1277,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfile.all.get_ProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1165,10 +1297,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfileState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimProfileState;
    begin
       Hr := this.m_IESimProfile.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1178,13 +1314,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1202,7 +1338,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1216,7 +1352,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfile.all.DisableAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1228,9 +1364,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1244,13 +1380,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1268,7 +1404,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1282,7 +1418,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfile.all.EnableAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1294,9 +1430,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1311,14 +1447,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_newNickname : WinRt.HString := To_HString (newNickname);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_newNickname : constant WinRt.HString := To_HString (newNickname);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1336,7 +1472,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1350,7 +1486,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfile.all.SetNicknameAsync (HStr_newNickname, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1362,14 +1498,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_newNickname);
+         tmp := WindowsDeleteString (HStr_newNickname);
       end return;
    end;
 
@@ -1382,12 +1518,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimProfileMetadata) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimProfileMetadata, IESimProfileMetadata_Ptr);
    begin
       if this.m_IESimProfileMetadata /= null then
          if this.m_IESimProfileMetadata.all /= null then
-            RefCount := this.m_IESimProfileMetadata.all.Release;
+            temp := this.m_IESimProfileMetadata.all.Release;
             Free (this.m_IESimProfileMetadata);
          end if;
       end if;
@@ -1402,10 +1538,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_IsConfirmationCodeRequired (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1415,11 +1555,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfilePolicy'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfilePolicy;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfilePolicy do
          Hr := this.m_IESimProfileMetadata.all.get_Policy (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESimProfilePolicy := new Windows.Networking.NetworkOperators.IESimProfilePolicy;
          Retval.m_IESimProfilePolicy.all := m_ComRetVal;
       end return;
@@ -1431,13 +1575,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1447,10 +1595,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_ProviderIcon (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1460,13 +1612,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1476,13 +1632,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_ProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1492,10 +1652,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadataState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimProfileMetadataState;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1505,13 +1669,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1529,7 +1693,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1543,7 +1707,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfileMetadata.all.DenyInstallAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1555,9 +1719,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1571,13 +1735,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1595,7 +1759,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1609,7 +1773,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfileMetadata.all.ConfirmInstallAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1621,9 +1785,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1638,14 +1802,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_confirmationCode : WinRt.HString := To_HString (confirmationCode);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_confirmationCode : constant WinRt.HString := To_HString (confirmationCode);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1663,7 +1827,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1677,7 +1841,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfileMetadata.all.ConfirmInstallAsync (HStr_confirmationCode, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1689,14 +1853,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_confirmationCode);
+         tmp := WindowsDeleteString (HStr_confirmationCode);
       end return;
    end;
 
@@ -1706,13 +1870,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ESimOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1730,7 +1894,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ESimOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_ESimOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1744,7 +1908,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IESimProfileMetadata.all.PostponeInstallAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1756,9 +1920,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1773,10 +1937,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimProfileMetadata.all.add_StateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1786,9 +1954,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimProfileMetadata.all.remove_StateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1800,12 +1972,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimProfilePolicy) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimProfilePolicy, IESimProfilePolicy_Ptr);
    begin
       if this.m_IESimProfilePolicy /= null then
          if this.m_IESimProfilePolicy.all /= null then
-            RefCount := this.m_IESimProfilePolicy.all.Release;
+            temp := this.m_IESimProfilePolicy.all.Release;
             Free (this.m_IESimProfilePolicy);
          end if;
       end if;
@@ -1820,10 +1992,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IESimProfilePolicy.all.get_CanDelete (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1833,10 +2009,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IESimProfilePolicy.all.get_CanDisable (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1846,10 +2026,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IESimProfilePolicy.all.get_IsManagedByEnterprise (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1862,12 +2046,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimRemovedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimRemovedEventArgs, IESimRemovedEventArgs_Ptr);
    begin
       if this.m_IESimRemovedEventArgs /= null then
          if this.m_IESimRemovedEventArgs.all /= null then
-            RefCount := this.m_IESimRemovedEventArgs.all.Release;
+            temp := this.m_IESimRemovedEventArgs.all.Release;
             Free (this.m_IESimRemovedEventArgs);
          end if;
       end if;
@@ -1882,11 +2066,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESim'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESim;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESim do
          Hr := this.m_IESimRemovedEventArgs.all.get_ESim (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESim := new Windows.Networking.NetworkOperators.IESim;
          Retval.m_IESim.all := m_ComRetVal;
       end return;
@@ -1901,12 +2089,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimServiceInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimServiceInfo, IESimServiceInfo_Ptr);
    begin
       if this.m_IESimServiceInfo /= null then
          if this.m_IESimServiceInfo.all /= null then
-            RefCount := this.m_IESimServiceInfo.all.Release;
+            temp := this.m_IESimServiceInfo.all.Release;
             Free (this.m_IESimServiceInfo);
          end if;
       end if;
@@ -1921,10 +2109,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimAuthenticationPreference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimAuthenticationPreference;
    begin
       Hr := this.m_IESimServiceInfo.all.get_AuthenticationPreference (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1934,10 +2126,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IESimServiceInfo.all.get_IsESimUiEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1950,12 +2146,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimUpdatedEventArgs, IESimUpdatedEventArgs_Ptr);
    begin
       if this.m_IESimUpdatedEventArgs /= null then
          if this.m_IESimUpdatedEventArgs.all /= null then
-            RefCount := this.m_IESimUpdatedEventArgs.all.Release;
+            temp := this.m_IESimUpdatedEventArgs.all.Release;
             Free (this.m_IESimUpdatedEventArgs);
          end if;
       end if;
@@ -1970,11 +2166,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESim'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESim;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESim do
          Hr := this.m_IESimUpdatedEventArgs.all.get_ESim (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IESim := new Windows.Networking.NetworkOperators.IESim;
          Retval.m_IESim.all := m_ComRetVal;
       end return;
@@ -1989,12 +2189,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ESimWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IESimWatcher, IESimWatcher_Ptr);
    begin
       if this.m_IESimWatcher /= null then
          if this.m_IESimWatcher.all /= null then
-            RefCount := this.m_IESimWatcher.all.Release;
+            temp := this.m_IESimWatcher.all.Release;
             Free (this.m_IESimWatcher);
          end if;
       end if;
@@ -2009,10 +2209,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ESimWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimWatcherStatus;
    begin
       Hr := this.m_IESimWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2021,9 +2225,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out ESimWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -2031,9 +2239,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out ESimWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Added
@@ -2043,10 +2255,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Added (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2056,9 +2272,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.remove_Added (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -2068,10 +2288,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2081,9 +2305,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Removed
@@ -2093,10 +2321,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Removed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2106,9 +2338,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.remove_Removed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -2118,10 +2354,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2131,9 +2371,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Updated
@@ -2143,10 +2387,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Updated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2156,9 +2404,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IESimWatcher.all.remove_Updated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2171,16 +2423,16 @@ package body WinRt.Windows.Networking.NetworkOperators is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.FdnAccessManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.FdnAccessManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IFdnAccessManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_contactListId : WinRt.HString := To_HString (contactListId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_contactListId : constant WinRt.HString := To_HString (contactListId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2198,7 +2450,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -2211,10 +2463,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := RoGetActivationFactory (m_hString, IID_IFdnAccessManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestUnlockAsync (HStr_contactListId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2224,16 +2476,16 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_contactListId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_contactListId);
          return m_RetVal;
       end;
 
@@ -2248,12 +2500,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out HotspotAuthenticationContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHotspotAuthenticationContext, IHotspotAuthenticationContext_Ptr);
    begin
       if this.m_IHotspotAuthenticationContext /= null then
          if this.m_IHotspotAuthenticationContext.all /= null then
-            RefCount := this.m_IHotspotAuthenticationContext.all.Release;
+            temp := this.m_IHotspotAuthenticationContext.all.Release;
             Free (this.m_IHotspotAuthenticationContext);
          end if;
       end if;
@@ -2269,19 +2521,23 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.HotspotAuthenticationContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.HotspotAuthenticationContext");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IHotspotAuthenticationContextStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_evenToken : WinRt.HString := To_HString (evenToken);
+      HStr_evenToken : constant WinRt.HString := To_HString (evenToken);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IHotspotAuthenticationContextStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryGetAuthenticationContext (HStr_evenToken, context, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_evenToken);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_evenToken);
       return m_ComRetVal;
    end;
 
@@ -2294,11 +2550,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHotspotAuthenticationContext.all.get_WirelessNetworkId (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -2316,11 +2576,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IHotspotAuthenticationContext.all.get_NetworkAdapter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
@@ -2332,11 +2596,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHotspotAuthenticationContext.all.get_RedirectMessageUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2348,11 +2616,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IHotspotAuthenticationContext.all.get_RedirectMessageXml (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -2364,11 +2636,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHotspotAuthenticationContext.all.get_AuthenticationUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2383,15 +2659,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
       markAsManualConnectOnFailure : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userName : WinRt.HString := To_HString (userName);
-      HStr_password : WinRt.HString := To_HString (password);
-      HStr_extraParameters : WinRt.HString := To_HString (extraParameters);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userName : constant WinRt.HString := To_HString (userName);
+      HStr_password : constant WinRt.HString := To_HString (password);
+      HStr_extraParameters : constant WinRt.HString := To_HString (extraParameters);
    begin
       Hr := this.m_IHotspotAuthenticationContext.all.IssueCredentials (HStr_userName, HStr_password, HStr_extraParameters, markAsManualConnectOnFailure);
-      Hr := WindowsDeleteString (HStr_userName);
-      Hr := WindowsDeleteString (HStr_password);
-      Hr := WindowsDeleteString (HStr_extraParameters);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_userName);
+      tmp := WindowsDeleteString (HStr_password);
+      tmp := WindowsDeleteString (HStr_extraParameters);
    end;
 
    procedure AbortAuthentication
@@ -2400,9 +2680,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       markAsManual : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHotspotAuthenticationContext.all.AbortAuthentication (markAsManual);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SkipAuthentication
@@ -2410,9 +2694,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out HotspotAuthenticationContext
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHotspotAuthenticationContext.all.SkipAuthentication;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TriggerAttentionRequired
@@ -2422,13 +2710,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
       applicationParameters : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_packageRelativeApplicationId : WinRt.HString := To_HString (packageRelativeApplicationId);
-      HStr_applicationParameters : WinRt.HString := To_HString (applicationParameters);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_packageRelativeApplicationId : constant WinRt.HString := To_HString (packageRelativeApplicationId);
+      HStr_applicationParameters : constant WinRt.HString := To_HString (applicationParameters);
    begin
       Hr := this.m_IHotspotAuthenticationContext.all.TriggerAttentionRequired (HStr_packageRelativeApplicationId, HStr_applicationParameters);
-      Hr := WindowsDeleteString (HStr_packageRelativeApplicationId);
-      Hr := WindowsDeleteString (HStr_applicationParameters);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageRelativeApplicationId);
+      tmp := WindowsDeleteString (HStr_applicationParameters);
    end;
 
    function IssueCredentialsAsync
@@ -2441,17 +2733,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IHotspotAuthenticationContext2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userName : WinRt.HString := To_HString (userName);
-      HStr_password : WinRt.HString := To_HString (password);
-      HStr_extraParameters : WinRt.HString := To_HString (extraParameters);
+      temp             : WinRt.UInt32 := 0;
+      HStr_userName : constant WinRt.HString := To_HString (userName);
+      HStr_password : constant WinRt.HString := To_HString (password);
+      HStr_extraParameters : constant WinRt.HString := To_HString (extraParameters);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HotspotCredentialsAuthenticationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2469,7 +2761,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HotspotCredentialsAuthenticationResult.Kind_Delegate, AsyncOperationCompletedHandler_HotspotCredentialsAuthenticationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2483,10 +2775,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return RetVal : WinRt.Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult do
          m_Interface := QInterface (this.m_IHotspotAuthenticationContext.all);
          Hr := m_Interface.IssueCredentialsAsync (HStr_userName, HStr_password, HStr_extraParameters, markAsManualConnectOnFailure, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2498,16 +2790,16 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IHotspotCredentialsAuthenticationResult := new Windows.Networking.NetworkOperators.IHotspotCredentialsAuthenticationResult;
                   Retval.m_IHotspotCredentialsAuthenticationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_userName);
-         Hr := WindowsDeleteString (HStr_password);
-         Hr := WindowsDeleteString (HStr_extraParameters);
+         tmp := WindowsDeleteString (HStr_userName);
+         tmp := WindowsDeleteString (HStr_password);
+         tmp := WindowsDeleteString (HStr_extraParameters);
       end return;
    end;
 
@@ -2520,12 +2812,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out HotspotAuthenticationEventDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHotspotAuthenticationEventDetails, IHotspotAuthenticationEventDetails_Ptr);
    begin
       if this.m_IHotspotAuthenticationEventDetails /= null then
          if this.m_IHotspotAuthenticationEventDetails.all /= null then
-            RefCount := this.m_IHotspotAuthenticationEventDetails.all.Release;
+            temp := this.m_IHotspotAuthenticationEventDetails.all.Release;
             Free (this.m_IHotspotAuthenticationEventDetails);
          end if;
       end if;
@@ -2540,13 +2832,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHotspotAuthenticationEventDetails.all.get_EventToken (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2559,12 +2855,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out HotspotCredentialsAuthenticationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHotspotCredentialsAuthenticationResult, IHotspotCredentialsAuthenticationResult_Ptr);
    begin
       if this.m_IHotspotCredentialsAuthenticationResult /= null then
          if this.m_IHotspotCredentialsAuthenticationResult.all /= null then
-            RefCount := this.m_IHotspotCredentialsAuthenticationResult.all.Release;
+            temp := this.m_IHotspotCredentialsAuthenticationResult.all.Release;
             Free (this.m_IHotspotCredentialsAuthenticationResult);
          end if;
       end if;
@@ -2579,10 +2875,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_HasNetworkErrorOccurred (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2592,10 +2892,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode;
    begin
       Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_ResponseCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2605,11 +2909,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_LogoffUrl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -2621,11 +2929,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_AuthenticationReplyXml (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -2638,60 +2950,72 @@ package body WinRt.Windows.Networking.NetworkOperators is
       function get_EFSpn
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownCSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFSpn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid1
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownCSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid2
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownCSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
@@ -2704,60 +3028,72 @@ package body WinRt.Windows.Networking.NetworkOperators is
       function get_EFSpn_KnownRuimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownRuimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownRuimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFSpn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid1_KnownRuimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownRuimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownRuimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid2_KnownRuimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownRuimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownRuimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
@@ -2770,80 +3106,96 @@ package body WinRt.Windows.Networking.NetworkOperators is
       function get_EFOns
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFOns (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_EFSpn_KnownSimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFSpn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid1_KnownSimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid2_KnownSimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
@@ -2856,100 +3208,120 @@ package body WinRt.Windows.Networking.NetworkOperators is
       function get_EFSpn_KnownUSimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFSpn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_EFOpl
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFOpl (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_EFPnn
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EFPnn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid1_KnownUSimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Gid2_KnownUSimFilePaths
       return IVectorView_UInt32.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Gid2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
@@ -2964,12 +3336,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandAccount) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandAccount, IMobileBroadbandAccount_Ptr);
    begin
       if this.m_IMobileBroadbandAccount /= null then
          if this.m_IMobileBroadbandAccount.all /= null then
-            RefCount := this.m_IMobileBroadbandAccount.all.Release;
+            temp := this.m_IMobileBroadbandAccount.all.Release;
             Free (this.m_IMobileBroadbandAccount);
          end if;
       end if;
@@ -2981,20 +3353,24 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function get_AvailableNetworkAccountIds
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccount");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccount");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccountStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandAccountStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AvailableNetworkAccountIds (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3004,22 +3380,26 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccount is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccount");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccount");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccountStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
-      HStr_networkAccountId : WinRt.HString := To_HString (networkAccountId);
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccount do
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandAccountStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNetworkAccountId (HStr_networkAccountId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMobileBroadbandAccount := new Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
             Retval.m_IMobileBroadbandAccount.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_networkAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 
@@ -3032,13 +3412,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandAccount.all.get_NetworkAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3048,10 +3432,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IMobileBroadbandAccount.all.get_ServiceProviderGuid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3061,13 +3449,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandAccount.all.get_ServiceProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3077,11 +3469,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork do
          Hr := this.m_IMobileBroadbandAccount.all.get_CurrentNetwork (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandNetwork := new Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
          Retval.m_IMobileBroadbandNetwork.all := m_ComRetVal;
       end return;
@@ -3093,11 +3489,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation do
          Hr := this.m_IMobileBroadbandAccount.all.get_CurrentDeviceInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandDeviceInformation := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
          Retval.m_IMobileBroadbandDeviceInformation.all := m_ComRetVal;
       end return;
@@ -3109,14 +3509,18 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandAccount2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandAccount.all);
       Hr := m_Interface.GetConnectionProfiles (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3126,15 +3530,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandAccount3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          m_Interface := QInterface (this.m_IMobileBroadbandAccount.all);
          Hr := m_Interface.get_AccountExperienceUrl (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -3149,12 +3557,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandAccountEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandAccountEventArgs, IMobileBroadbandAccountEventArgs_Ptr);
    begin
       if this.m_IMobileBroadbandAccountEventArgs /= null then
          if this.m_IMobileBroadbandAccountEventArgs.all /= null then
-            RefCount := this.m_IMobileBroadbandAccountEventArgs.all.Release;
+            temp := this.m_IMobileBroadbandAccountEventArgs.all.Release;
             Free (this.m_IMobileBroadbandAccountEventArgs);
          end if;
       end if;
@@ -3169,13 +3577,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandAccountEventArgs.all.get_NetworkAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3188,12 +3600,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandAccountUpdatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandAccountUpdatedEventArgs, IMobileBroadbandAccountUpdatedEventArgs_Ptr);
    begin
       if this.m_IMobileBroadbandAccountUpdatedEventArgs /= null then
          if this.m_IMobileBroadbandAccountUpdatedEventArgs.all /= null then
-            RefCount := this.m_IMobileBroadbandAccountUpdatedEventArgs.all.Release;
+            temp := this.m_IMobileBroadbandAccountUpdatedEventArgs.all.Release;
             Free (this.m_IMobileBroadbandAccountUpdatedEventArgs);
          end if;
       end if;
@@ -3208,13 +3620,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandAccountUpdatedEventArgs.all.get_NetworkAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3224,10 +3640,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandAccountUpdatedEventArgs.all.get_HasDeviceInformationChanged (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3237,10 +3657,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandAccountUpdatedEventArgs.all.get_HasNetworkChanged (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3253,12 +3677,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandAccountWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandAccountWatcher, IMobileBroadbandAccountWatcher_Ptr);
    begin
       if this.m_IMobileBroadbandAccountWatcher /= null then
          if this.m_IMobileBroadbandAccountWatcher.all /= null then
-            RefCount := this.m_IMobileBroadbandAccountWatcher.all.Release;
+            temp := this.m_IMobileBroadbandAccountWatcher.all.Release;
             Free (this.m_IMobileBroadbandAccountWatcher);
          end if;
       end if;
@@ -3269,7 +3693,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    function Constructor return MobileBroadbandAccountWatcher is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher");
       m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
    begin
       return RetVal : MobileBroadbandAccountWatcher do
@@ -3278,7 +3703,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Retval.m_IMobileBroadbandAccountWatcher := new Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
             Retval.m_IMobileBroadbandAccountWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3292,10 +3717,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_AccountAdded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3305,9 +3734,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.remove_AccountAdded (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AccountUpdated
@@ -3317,10 +3750,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_AccountUpdated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3330,9 +3767,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.remove_AccountUpdated (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AccountRemoved
@@ -3342,10 +3783,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_AccountRemoved (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3355,9 +3800,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.remove_AccountRemoved (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -3367,10 +3816,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3380,9 +3833,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.remove_EnumerationCompleted (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -3392,10 +3849,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3405,9 +3866,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.remove_Stopped (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -3416,10 +3881,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3428,9 +3897,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandAccountWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -3438,9 +3911,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandAccountWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3452,12 +3929,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandAntennaSar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandAntennaSar, IMobileBroadbandAntennaSar_Ptr);
    begin
       if this.m_IMobileBroadbandAntennaSar /= null then
          if this.m_IMobileBroadbandAntennaSar.all /= null then
-            RefCount := this.m_IMobileBroadbandAntennaSar.all.Release;
+            temp := this.m_IMobileBroadbandAntennaSar.all.Release;
             Free (this.m_IMobileBroadbandAntennaSar);
          end if;
       end if;
@@ -3473,9 +3950,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return MobileBroadbandAntennaSar is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAntennaSar");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAntennaSar");
       m_Factory    : access IMobileBroadbandAntennaSarFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
    begin
       return RetVal : MobileBroadbandAntennaSar do
@@ -3484,9 +3962,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Hr := m_Factory.CreateWithIndex (antennaIndex, sarBackoffIndex, m_ComRetVal'Access);
             Retval.m_IMobileBroadbandAntennaSar := new Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
             Retval.m_IMobileBroadbandAntennaSar.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3499,10 +3977,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMobileBroadbandAntennaSar.all.get_AntennaIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3512,10 +3994,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMobileBroadbandAntennaSar.all.get_SarBackoffIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3528,12 +4014,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandCellCdma) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellCdma, IMobileBroadbandCellCdma_Ptr);
    begin
       if this.m_IMobileBroadbandCellCdma /= null then
          if this.m_IMobileBroadbandCellCdma.all /= null then
-            RefCount := this.m_IMobileBroadbandCellCdma.all.Release;
+            temp := this.m_IMobileBroadbandCellCdma.all.Release;
             Free (this.m_IMobileBroadbandCellCdma);
          end if;
       end if;
@@ -3548,13 +4034,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3564,13 +4054,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationPNCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3580,13 +4074,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationLatitude (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3596,13 +4094,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationLongitude (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3612,13 +4114,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationLastBroadcastGpsTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3628,13 +4134,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_NetworkId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3644,13 +4154,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_PilotSignalStrengthInDB (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3660,13 +4174,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_SystemId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3679,12 +4197,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandCellGsm) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellGsm, IMobileBroadbandCellGsm_Ptr);
    begin
       if this.m_IMobileBroadbandCellGsm /= null then
          if this.m_IMobileBroadbandCellGsm.all /= null then
-            RefCount := this.m_IMobileBroadbandCellGsm.all.Release;
+            temp := this.m_IMobileBroadbandCellGsm.all.Release;
             Free (this.m_IMobileBroadbandCellGsm);
          end if;
       end if;
@@ -3699,13 +4217,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_BaseStationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3715,13 +4237,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_CellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3731,13 +4257,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_ChannelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3747,13 +4277,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_LocationAreaCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3763,13 +4297,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3779,13 +4317,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_ReceivedSignalStrengthInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3795,13 +4337,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_TimingAdvanceInBitPeriods (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3814,12 +4360,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandCellLte) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellLte, IMobileBroadbandCellLte_Ptr);
    begin
       if this.m_IMobileBroadbandCellLte /= null then
          if this.m_IMobileBroadbandCellLte.all /= null then
-            RefCount := this.m_IMobileBroadbandCellLte.all.Release;
+            temp := this.m_IMobileBroadbandCellLte.all.Release;
             Free (this.m_IMobileBroadbandCellLte);
          end if;
       end if;
@@ -3834,13 +4380,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_CellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3850,13 +4400,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ChannelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3866,13 +4420,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_PhysicalCellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3882,13 +4440,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3898,13 +4460,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ReferenceSignalReceivedPowerInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3914,13 +4480,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ReferenceSignalReceivedQualityInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3930,13 +4500,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_TimingAdvanceInBitPeriods (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3946,13 +4520,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_TrackingAreaCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3965,12 +4543,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandCellTdscdma) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellTdscdma, IMobileBroadbandCellTdscdma_Ptr);
    begin
       if this.m_IMobileBroadbandCellTdscdma /= null then
          if this.m_IMobileBroadbandCellTdscdma.all /= null then
-            RefCount := this.m_IMobileBroadbandCellTdscdma.all.Release;
+            temp := this.m_IMobileBroadbandCellTdscdma.all.Release;
             Free (this.m_IMobileBroadbandCellTdscdma);
          end if;
       end if;
@@ -3985,13 +4563,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_CellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4001,13 +4583,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_CellParameterId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4017,13 +4603,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_ChannelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4033,13 +4623,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_LocationAreaCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4049,13 +4643,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_PathLossInDB (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4065,13 +4663,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4081,13 +4683,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_ReceivedSignalCodePowerInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4097,13 +4703,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_TimingAdvanceInBitPeriods (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4116,12 +4726,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandCellUmts) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellUmts, IMobileBroadbandCellUmts_Ptr);
    begin
       if this.m_IMobileBroadbandCellUmts /= null then
          if this.m_IMobileBroadbandCellUmts.all /= null then
-            RefCount := this.m_IMobileBroadbandCellUmts.all.Release;
+            temp := this.m_IMobileBroadbandCellUmts.all.Release;
             Free (this.m_IMobileBroadbandCellUmts);
          end if;
       end if;
@@ -4136,13 +4746,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_CellId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4152,13 +4766,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_ChannelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4168,13 +4786,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_LocationAreaCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4184,13 +4806,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_PathLossInDB (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4200,13 +4826,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_PrimaryScramblingCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4216,13 +4846,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_ProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4232,13 +4866,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_ReceivedSignalCodePowerInDBm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4248,13 +4886,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_SignalToNoiseRatioInDB (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4267,12 +4909,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandCellsInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandCellsInfo, IMobileBroadbandCellsInfo_Ptr);
    begin
       if this.m_IMobileBroadbandCellsInfo /= null then
          if this.m_IMobileBroadbandCellsInfo.all /= null then
-            RefCount := this.m_IMobileBroadbandCellsInfo.all.Release;
+            temp := this.m_IMobileBroadbandCellsInfo.all.Release;
             Free (this.m_IMobileBroadbandCellsInfo);
          end if;
       end if;
@@ -4287,13 +4929,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellCdma.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellCdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsCdma (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellCdma (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4303,13 +4949,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellGsm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellGsm.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsGsm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellGsm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4319,13 +4969,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellLte.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellLte.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsLte (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellLte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4335,13 +4989,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellTdscdma.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellTdscdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsTdscdma (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellTdscdma (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4351,13 +5009,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellUmts.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellUmts.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsUmts (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellUmts (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4367,13 +5029,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellCdma.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellCdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsCdma (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellCdma (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4383,13 +5049,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellGsm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellGsm.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsGsm (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellGsm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4399,13 +5069,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellLte.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellLte.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsLte (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellLte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4415,13 +5089,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellTdscdma.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellTdscdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsTdscdma (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellTdscdma (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4431,13 +5109,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandCellUmts.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellUmts.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsUmts (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandCellUmts (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4450,12 +5132,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceInformation, IMobileBroadbandDeviceInformation_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceInformation /= null then
          if this.m_IMobileBroadbandDeviceInformation.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceInformation.all.Release;
+            temp := this.m_IMobileBroadbandDeviceInformation.all.Release;
             Free (this.m_IMobileBroadbandDeviceInformation);
          end if;
       end if;
@@ -4470,10 +5152,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkDeviceStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkDeviceStatus;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_NetworkDeviceStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4483,13 +5169,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_Manufacturer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4499,13 +5189,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_Model (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4515,13 +5209,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_FirmwareInformation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4531,10 +5229,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Devices.Sms.CellularClass is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_CellularClass (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4544,10 +5246,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.DataClasses is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.DataClasses;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_DataClasses (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4557,13 +5263,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_CustomDataClass (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4573,13 +5283,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_MobileEquipmentId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4589,13 +5303,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_TelephoneNumbers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4605,13 +5323,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_SubscriberId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4621,13 +5343,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_SimIccId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4637,10 +5363,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandDeviceType;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_DeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4650,13 +5380,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4666,10 +5400,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandRadioState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_CurrentRadioState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4679,15 +5417,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinManager'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandPinManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinManager do
          m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
          Hr := m_Interface.get_PinManager (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandPinManager := new Windows.Networking.NetworkOperators.IMobileBroadbandPinManager;
          Retval.m_IMobileBroadbandPinManager.all := m_ComRetVal;
       end return;
@@ -4699,17 +5441,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
       Hr := m_Interface.get_Revision (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4719,17 +5465,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
       Hr := m_Interface.get_SerialNumber (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4739,17 +5489,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
       Hr := m_Interface.get_SimSpn (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4759,17 +5513,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
       Hr := m_Interface.get_SimPnn (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4779,17 +5537,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandDeviceInformation.all);
       Hr := m_Interface.get_SimGid1 (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4802,12 +5564,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceService) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceService, IMobileBroadbandDeviceService_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceService /= null then
          if this.m_IMobileBroadbandDeviceService.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceService.all.Release;
+            temp := this.m_IMobileBroadbandDeviceService.all.Release;
             Free (this.m_IMobileBroadbandDeviceService);
          end if;
       end if;
@@ -4822,10 +5584,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IMobileBroadbandDeviceService.all.get_DeviceServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4835,13 +5601,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IMobileBroadbandDeviceService.all.get_SupportedCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4851,11 +5621,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceDataSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceDataSession do
          Hr := this.m_IMobileBroadbandDeviceService.all.OpenDataSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandDeviceServiceDataSession := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession;
          Retval.m_IMobileBroadbandDeviceServiceDataSession.all := m_ComRetVal;
       end return;
@@ -4867,11 +5641,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandSession do
          Hr := this.m_IMobileBroadbandDeviceService.all.OpenCommandSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandDeviceServiceCommandSession := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
          Retval.m_IMobileBroadbandDeviceServiceCommandSession.all := m_ComRetVal;
       end return;
@@ -4886,12 +5664,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceCommandResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceCommandResult, IMobileBroadbandDeviceServiceCommandResult_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceServiceCommandResult /= null then
          if this.m_IMobileBroadbandDeviceServiceCommandResult.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceServiceCommandResult.all.Release;
+            temp := this.m_IMobileBroadbandDeviceServiceCommandResult.all.Release;
             Free (this.m_IMobileBroadbandDeviceServiceCommandResult);
          end if;
       end if;
@@ -4906,10 +5684,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceCommandResult.all.get_StatusCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4919,10 +5701,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceCommandResult.all.get_ResponseData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4935,12 +5721,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceCommandSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceCommandSession, IMobileBroadbandDeviceServiceCommandSession_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceServiceCommandSession /= null then
          if this.m_IMobileBroadbandDeviceServiceCommandSession.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceServiceCommandSession.all.Release;
+            temp := this.m_IMobileBroadbandDeviceServiceCommandSession.all.Release;
             Free (this.m_IMobileBroadbandDeviceServiceCommandSession);
          end if;
       end if;
@@ -4957,13 +5743,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandDeviceServiceCommandResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4981,7 +5767,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandDeviceServiceCommandResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandDeviceServiceCommandResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4995,7 +5781,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandDeviceServiceCommandSession.all.SendQueryCommandAsync (commandId, data, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5007,9 +5793,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandDeviceServiceCommandResult := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandResult;
                   Retval.m_IMobileBroadbandDeviceServiceCommandResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -5025,13 +5811,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandDeviceServiceCommandResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5049,7 +5835,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandDeviceServiceCommandResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandDeviceServiceCommandResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5063,7 +5849,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandDeviceServiceCommandSession.all.SendSetCommandAsync (commandId, data, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5075,9 +5861,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandDeviceServiceCommandResult := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandResult;
                   Retval.m_IMobileBroadbandDeviceServiceCommandResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -5090,9 +5876,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandDeviceServiceCommandSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceCommandSession.all.CloseSession;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5104,12 +5894,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceDataReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceDataReceivedEventArgs, IMobileBroadbandDeviceServiceDataReceivedEventArgs_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs /= null then
          if this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all.Release;
+            temp := this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all.Release;
             Free (this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs);
          end if;
       end if;
@@ -5124,10 +5914,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all.get_ReceivedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5140,12 +5934,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceDataSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceDataSession, IMobileBroadbandDeviceServiceDataSession_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceServiceDataSession /= null then
          if this.m_IMobileBroadbandDeviceServiceDataSession.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceServiceDataSession.all.Release;
+            temp := this.m_IMobileBroadbandDeviceServiceDataSession.all.Release;
             Free (this.m_IMobileBroadbandDeviceServiceDataSession);
          end if;
       end if;
@@ -5160,7 +5954,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -5168,7 +5963,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -5189,9 +5983,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -5202,9 +5996,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandDeviceServiceDataSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceDataSession.all.CloseSession;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DataReceived
@@ -5214,10 +6012,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceDataSession.all.add_DataReceived (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5227,9 +6029,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceDataSession.all.remove_DataReceived (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5241,12 +6047,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceInformation, IMobileBroadbandDeviceServiceInformation_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceServiceInformation /= null then
          if this.m_IMobileBroadbandDeviceServiceInformation.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceServiceInformation.all.Release;
+            temp := this.m_IMobileBroadbandDeviceServiceInformation.all.Release;
             Free (this.m_IMobileBroadbandDeviceServiceInformation);
          end if;
       end if;
@@ -5261,10 +6067,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceInformation.all.get_DeviceServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5274,10 +6084,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceInformation.all.get_IsDataReadSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5287,10 +6101,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceInformation.all.get_IsDataWriteSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5303,12 +6121,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandDeviceServiceTriggerDetails, IMobileBroadbandDeviceServiceTriggerDetails_Ptr);
    begin
       if this.m_IMobileBroadbandDeviceServiceTriggerDetails /= null then
          if this.m_IMobileBroadbandDeviceServiceTriggerDetails.all /= null then
-            RefCount := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.Release;
+            temp := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.Release;
             Free (this.m_IMobileBroadbandDeviceServiceTriggerDetails);
          end if;
       end if;
@@ -5323,13 +6141,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5339,10 +6161,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.get_DeviceServiceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5352,10 +6178,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.get_ReceivedData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5368,12 +6198,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandModem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandModem, IMobileBroadbandModem_Ptr);
    begin
       if this.m_IMobileBroadbandModem /= null then
          if this.m_IMobileBroadbandModem.all /= null then
-            RefCount := this.m_IMobileBroadbandModem.all.Release;
+            temp := this.m_IMobileBroadbandModem.all.Release;
             Free (this.m_IMobileBroadbandModem);
          end if;
       end if;
@@ -5385,20 +6215,24 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function GetDeviceSelector
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandModemStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5408,42 +6242,50 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModem is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandModem;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModem do
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandModemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromId (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMobileBroadbandModem := new Windows.Networking.NetworkOperators.IMobileBroadbandModem;
             Retval.m_IMobileBroadbandModem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
    function GetDefault
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModem is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandModem;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModem do
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandModemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMobileBroadbandModem := new Windows.Networking.NetworkOperators.IMobileBroadbandModem;
             Retval.m_IMobileBroadbandModem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5456,11 +6298,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccount'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccount do
          Hr := this.m_IMobileBroadbandModem.all.get_CurrentAccount (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandAccount := new Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
          Retval.m_IMobileBroadbandAccount.all := m_ComRetVal;
       end return;
@@ -5472,11 +6318,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation do
          Hr := this.m_IMobileBroadbandModem.all.get_DeviceInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandDeviceInformation := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
          Retval.m_IMobileBroadbandDeviceInformation.all := m_ComRetVal;
       end return;
@@ -5488,10 +6338,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandModem.all.get_MaxDeviceServiceCommandSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5501,10 +6355,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandModem.all.get_MaxDeviceServiceDataSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5514,13 +6372,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandDeviceServiceInformation.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandDeviceServiceInformation.Kind;
    begin
       Hr := this.m_IMobileBroadbandModem.all.get_DeviceServices (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandDeviceServiceInformation (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5531,11 +6393,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceService'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceService do
          Hr := this.m_IMobileBroadbandModem.all.GetDeviceService (deviceServiceId, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandDeviceService := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
          Retval.m_IMobileBroadbandDeviceService.all := m_ComRetVal;
       end return;
@@ -5547,10 +6413,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandModem.all.get_IsResetSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5559,7 +6429,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandModem
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -5567,7 +6438,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -5588,9 +6458,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -5602,13 +6472,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandModemConfiguration.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5626,7 +6496,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandModemConfiguration.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandModemConfiguration.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5640,7 +6510,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandModem.all.GetCurrentConfigurationAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5652,9 +6522,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandModemConfiguration := new Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration;
                   Retval.m_IMobileBroadbandModemConfiguration.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -5668,11 +6538,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork do
          Hr := this.m_IMobileBroadbandModem.all.get_CurrentNetwork (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandNetwork := new Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
          Retval.m_IMobileBroadbandNetwork.all := m_ComRetVal;
       end return;
@@ -5684,14 +6558,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5709,7 +6583,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5722,10 +6596,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
       Hr := m_Interface.GetIsPassthroughEnabledAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5735,9 +6609,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5752,14 +6626,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandModemStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5777,7 +6651,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandModemStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5790,10 +6664,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
       Hr := m_Interface.SetIsPassthroughEnabledAsync (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5803,9 +6677,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5819,14 +6693,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPco'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandPco.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5844,7 +6718,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandPco.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandPco.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5858,10 +6732,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPco do
          m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
          Hr := m_Interface.TryGetPcoAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -5873,9 +6747,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandPco := new Windows.Networking.NetworkOperators.IMobileBroadbandPco;
                   Retval.m_IMobileBroadbandPco.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -5889,14 +6763,18 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
       Hr := m_Interface.get_IsInEmergencyCallMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5907,14 +6785,18 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
       Hr := m_Interface.add_IsInEmergencyCallModeChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5924,13 +6806,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
       Hr := m_Interface.remove_IsInEmergencyCallModeChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5942,12 +6828,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandModemConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandModemConfiguration, IMobileBroadbandModemConfiguration_Ptr);
    begin
       if this.m_IMobileBroadbandModemConfiguration /= null then
          if this.m_IMobileBroadbandModemConfiguration.all /= null then
-            RefCount := this.m_IMobileBroadbandModemConfiguration.all.Release;
+            temp := this.m_IMobileBroadbandModemConfiguration.all.Release;
             Free (this.m_IMobileBroadbandModemConfiguration);
          end if;
       end if;
@@ -5962,11 +6848,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUicc'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandUicc;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUicc do
          Hr := this.m_IMobileBroadbandModemConfiguration.all.get_Uicc (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandUicc := new Windows.Networking.NetworkOperators.IMobileBroadbandUicc;
          Retval.m_IMobileBroadbandUicc.all := m_ComRetVal;
       end return;
@@ -5978,13 +6868,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandModemConfiguration.all.get_HomeProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5994,13 +6888,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandModemConfiguration.all.get_HomeProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6010,15 +6908,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSarManager'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandSarManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModemConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSarManager do
          m_Interface := QInterface (this.m_IMobileBroadbandModemConfiguration.all);
          Hr := m_Interface.get_SarManager (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandSarManager := new Windows.Networking.NetworkOperators.IMobileBroadbandSarManager;
          Retval.m_IMobileBroadbandSarManager.all := m_ComRetVal;
       end return;
@@ -6033,12 +6935,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandModemIsolation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandModemIsolation, IMobileBroadbandModemIsolation_Ptr);
    begin
       if this.m_IMobileBroadbandModemIsolation /= null then
          if this.m_IMobileBroadbandModemIsolation.all /= null then
-            RefCount := this.m_IMobileBroadbandModemIsolation.all.Release;
+            temp := this.m_IMobileBroadbandModemIsolation.all.Release;
             Free (this.m_IMobileBroadbandModemIsolation);
          end if;
       end if;
@@ -6054,12 +6956,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return MobileBroadbandModemIsolation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModemIsolation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModemIsolation");
       m_Factory    : access IMobileBroadbandModemIsolationFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
-      HStr_modemDeviceId : WinRt.HString := To_HString (modemDeviceId);
-      HStr_ruleGroupId : WinRt.HString := To_HString (ruleGroupId);
+      HStr_modemDeviceId : constant WinRt.HString := To_HString (modemDeviceId);
+      HStr_ruleGroupId : constant WinRt.HString := To_HString (ruleGroupId);
    begin
       return RetVal : MobileBroadbandModemIsolation do
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandModemIsolationFactory'Access , m_Factory'Address);
@@ -6067,11 +6970,11 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Hr := m_Factory.Create (HStr_modemDeviceId, HStr_ruleGroupId, m_ComRetVal'Access);
             Retval.m_IMobileBroadbandModemIsolation := new Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
             Retval.m_IMobileBroadbandModemIsolation.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_modemDeviceId);
-         Hr := WindowsDeleteString (HStr_ruleGroupId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_modemDeviceId);
+         tmp := WindowsDeleteString (HStr_ruleGroupId);
       end return;
    end;
 
@@ -6084,9 +6987,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       host : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandModemIsolation.all.AddAllowedHost (host.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddAllowedHostRange
@@ -6096,9 +7003,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       last : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandModemIsolation.all.AddAllowedHostRange (first.m_IHostName.all, last.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ApplyConfigurationAsync
@@ -6106,7 +7017,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandModemIsolation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -6114,7 +7026,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -6135,9 +7046,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -6148,7 +7059,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandModemIsolation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -6156,7 +7068,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -6177,9 +7088,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -6194,12 +7105,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandNetwork) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandNetwork, IMobileBroadbandNetwork_Ptr);
    begin
       if this.m_IMobileBroadbandNetwork /= null then
          if this.m_IMobileBroadbandNetwork.all /= null then
-            RefCount := this.m_IMobileBroadbandNetwork.all.Release;
+            temp := this.m_IMobileBroadbandNetwork.all.Release;
             Free (this.m_IMobileBroadbandNetwork);
          end if;
       end if;
@@ -6214,11 +7125,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IMobileBroadbandNetwork.all.get_NetworkAdapter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
@@ -6230,10 +7145,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkRegistrationState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkRegistrationState;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_NetworkRegistrationState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6243,10 +7162,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_RegistrationNetworkError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6256,10 +7179,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_PacketAttachNetworkError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6269,10 +7196,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_ActivationNetworkError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6282,13 +7213,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_AccessPointName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6298,10 +7233,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.DataClasses is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.DataClasses;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_RegisteredDataClass (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6311,13 +7250,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_RegisteredProviderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6327,13 +7270,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_RegisteredProviderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6342,9 +7289,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandNetwork
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.ShowConnectionUI;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetVoiceCallSupportAsync
@@ -6353,14 +7304,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6378,7 +7329,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6391,10 +7342,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandNetwork.all);
       Hr := m_Interface.GetVoiceCallSupportAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -6404,9 +7355,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -6420,17 +7371,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandUiccApp.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandUiccApp.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandNetwork2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandNetwork.all);
       Hr := m_Interface.get_RegistrationUiccApps (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandUiccApp (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6440,14 +7395,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandCellsInfo'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandCellsInfo.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6465,7 +7420,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandCellsInfo.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandCellsInfo.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6479,10 +7434,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandCellsInfo do
          m_Interface := QInterface (this.m_IMobileBroadbandNetwork.all);
          Hr := m_Interface.GetCellsInfoAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6494,9 +7449,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandCellsInfo := new Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo;
                   Retval.m_IMobileBroadbandCellsInfo.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -6513,12 +7468,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandNetworkRegistrationStateChange) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandNetworkRegistrationStateChange, IMobileBroadbandNetworkRegistrationStateChange_Ptr);
    begin
       if this.m_IMobileBroadbandNetworkRegistrationStateChange /= null then
          if this.m_IMobileBroadbandNetworkRegistrationStateChange.all /= null then
-            RefCount := this.m_IMobileBroadbandNetworkRegistrationStateChange.all.Release;
+            temp := this.m_IMobileBroadbandNetworkRegistrationStateChange.all.Release;
             Free (this.m_IMobileBroadbandNetworkRegistrationStateChange);
          end if;
       end if;
@@ -6533,13 +7488,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandNetworkRegistrationStateChange.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6549,11 +7508,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork do
          Hr := this.m_IMobileBroadbandNetworkRegistrationStateChange.all.get_Network (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandNetwork := new Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
          Retval.m_IMobileBroadbandNetwork.all := m_ComRetVal;
       end return;
@@ -6568,12 +7531,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandNetworkRegistrationStateChangeTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails, IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails_Ptr);
    begin
       if this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all /= null then
-            RefCount := this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all.Release;
+            temp := this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all.Release;
             Free (this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails);
          end if;
       end if;
@@ -6588,13 +7551,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandNetworkRegistrationStateChange.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandNetworkRegistrationStateChange.Kind;
    begin
       Hr := this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all.get_NetworkRegistrationStateChanges (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandNetworkRegistrationStateChange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6607,12 +7574,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPco) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPco, IMobileBroadbandPco_Ptr);
    begin
       if this.m_IMobileBroadbandPco /= null then
          if this.m_IMobileBroadbandPco.all /= null then
-            RefCount := this.m_IMobileBroadbandPco.all.Release;
+            temp := this.m_IMobileBroadbandPco.all.Release;
             Free (this.m_IMobileBroadbandPco);
          end if;
       end if;
@@ -6627,10 +7594,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandPco.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6640,10 +7611,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandPco.all.get_IsComplete (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6653,13 +7628,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandPco.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6672,12 +7651,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPcoDataChangeTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPcoDataChangeTriggerDetails, IMobileBroadbandPcoDataChangeTriggerDetails_Ptr);
    begin
       if this.m_IMobileBroadbandPcoDataChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all /= null then
-            RefCount := this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all.Release;
+            temp := this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all.Release;
             Free (this.m_IMobileBroadbandPcoDataChangeTriggerDetails);
          end if;
       end if;
@@ -6692,11 +7671,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPco'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandPco;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPco do
          Hr := this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all.get_UpdatedData (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandPco := new Windows.Networking.NetworkOperators.IMobileBroadbandPco;
          Retval.m_IMobileBroadbandPco.all := m_ComRetVal;
       end return;
@@ -6711,12 +7694,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPin) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPin, IMobileBroadbandPin_Ptr);
    begin
       if this.m_IMobileBroadbandPin /= null then
          if this.m_IMobileBroadbandPin.all /= null then
-            RefCount := this.m_IMobileBroadbandPin.all.Release;
+            temp := this.m_IMobileBroadbandPin.all.Release;
             Free (this.m_IMobileBroadbandPin);
          end if;
       end if;
@@ -6731,10 +7714,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinType;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6744,10 +7731,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinLockState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinLockState;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_LockState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6757,10 +7748,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinFormat;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_Format (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6770,10 +7765,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6783,10 +7782,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_MaxLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6796,10 +7799,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_MinLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6809,10 +7816,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_AttemptsRemaining (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6823,14 +7834,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_currentPin : WinRt.HString := To_HString (currentPin);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_currentPin : constant WinRt.HString := To_HString (currentPin);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandPinOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6848,7 +7859,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6862,7 +7873,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandPin.all.EnableAsync (HStr_currentPin, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6874,14 +7885,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_currentPin);
+         tmp := WindowsDeleteString (HStr_currentPin);
       end return;
    end;
 
@@ -6892,14 +7903,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_currentPin : WinRt.HString := To_HString (currentPin);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_currentPin : constant WinRt.HString := To_HString (currentPin);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandPinOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6917,7 +7928,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -6931,7 +7942,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandPin.all.DisableAsync (HStr_currentPin, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -6943,14 +7954,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_currentPin);
+         tmp := WindowsDeleteString (HStr_currentPin);
       end return;
    end;
 
@@ -6961,14 +7972,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_currentPin : WinRt.HString := To_HString (currentPin);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_currentPin : constant WinRt.HString := To_HString (currentPin);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandPinOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -6986,7 +7997,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7000,7 +8011,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandPin.all.EnterAsync (HStr_currentPin, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -7012,14 +8023,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_currentPin);
+         tmp := WindowsDeleteString (HStr_currentPin);
       end return;
    end;
 
@@ -7031,15 +8042,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_currentPin : WinRt.HString := To_HString (currentPin);
-      HStr_newPin : WinRt.HString := To_HString (newPin);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_currentPin : constant WinRt.HString := To_HString (currentPin);
+      HStr_newPin : constant WinRt.HString := To_HString (newPin);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandPinOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7057,7 +8068,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7071,7 +8082,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandPin.all.ChangeAsync (HStr_currentPin, HStr_newPin, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -7083,15 +8094,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_currentPin);
-         Hr := WindowsDeleteString (HStr_newPin);
+         tmp := WindowsDeleteString (HStr_currentPin);
+         tmp := WindowsDeleteString (HStr_newPin);
       end return;
    end;
 
@@ -7103,15 +8114,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_pinUnblockKey : WinRt.HString := To_HString (pinUnblockKey);
-      HStr_newPin : WinRt.HString := To_HString (newPin);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_pinUnblockKey : constant WinRt.HString := To_HString (pinUnblockKey);
+      HStr_newPin : constant WinRt.HString := To_HString (newPin);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandPinOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7129,7 +8140,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandPinOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7143,7 +8154,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandPin.all.UnblockAsync (HStr_pinUnblockKey, HStr_newPin, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -7155,15 +8166,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_pinUnblockKey);
-         Hr := WindowsDeleteString (HStr_newPin);
+         tmp := WindowsDeleteString (HStr_pinUnblockKey);
+         tmp := WindowsDeleteString (HStr_newPin);
       end return;
    end;
 
@@ -7176,12 +8187,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPinLockStateChange) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPinLockStateChange, IMobileBroadbandPinLockStateChange_Ptr);
    begin
       if this.m_IMobileBroadbandPinLockStateChange /= null then
          if this.m_IMobileBroadbandPinLockStateChange.all /= null then
-            RefCount := this.m_IMobileBroadbandPinLockStateChange.all.Release;
+            temp := this.m_IMobileBroadbandPinLockStateChange.all.Release;
             Free (this.m_IMobileBroadbandPinLockStateChange);
          end if;
       end if;
@@ -7196,13 +8207,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChange.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7212,10 +8227,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinType;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChange.all.get_PinType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7225,10 +8244,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinLockState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinLockState;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChange.all.get_PinLockState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7241,12 +8264,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPinLockStateChangeTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPinLockStateChangeTriggerDetails, IMobileBroadbandPinLockStateChangeTriggerDetails_Ptr);
    begin
       if this.m_IMobileBroadbandPinLockStateChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all /= null then
-            RefCount := this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all.Release;
+            temp := this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all.Release;
             Free (this.m_IMobileBroadbandPinLockStateChangeTriggerDetails);
          end if;
       end if;
@@ -7261,13 +8284,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandPinLockStateChange.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandPinLockStateChange.Kind;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all.get_PinLockStateChanges (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandPinLockStateChange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7280,12 +8307,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPinManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPinManager, IMobileBroadbandPinManager_Ptr);
    begin
       if this.m_IMobileBroadbandPinManager /= null then
          if this.m_IMobileBroadbandPinManager.all /= null then
-            RefCount := this.m_IMobileBroadbandPinManager.all.Release;
+            temp := this.m_IMobileBroadbandPinManager.all.Release;
             Free (this.m_IMobileBroadbandPinManager);
          end if;
       end if;
@@ -7300,13 +8327,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_MobileBroadbandPinType.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_MobileBroadbandPinType.Kind;
    begin
       Hr := this.m_IMobileBroadbandPinManager.all.get_SupportedPins (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_MobileBroadbandPinType (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7317,11 +8348,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPin'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandPin;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPin do
          Hr := this.m_IMobileBroadbandPinManager.all.GetPin (pinType, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMobileBroadbandPin := new Windows.Networking.NetworkOperators.IMobileBroadbandPin;
          Retval.m_IMobileBroadbandPin.all := m_ComRetVal;
       end return;
@@ -7336,12 +8371,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPinOperationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandPinOperationResult, IMobileBroadbandPinOperationResult_Ptr);
    begin
       if this.m_IMobileBroadbandPinOperationResult /= null then
          if this.m_IMobileBroadbandPinOperationResult.all /= null then
-            RefCount := this.m_IMobileBroadbandPinOperationResult.all.Release;
+            temp := this.m_IMobileBroadbandPinOperationResult.all.Release;
             Free (this.m_IMobileBroadbandPinOperationResult);
          end if;
       end if;
@@ -7356,10 +8391,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandPinOperationResult.all.get_IsSuccessful (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7369,10 +8408,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMobileBroadbandPinOperationResult.all.get_AttemptsRemaining (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7385,12 +8428,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandRadioStateChange) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandRadioStateChange, IMobileBroadbandRadioStateChange_Ptr);
    begin
       if this.m_IMobileBroadbandRadioStateChange /= null then
          if this.m_IMobileBroadbandRadioStateChange.all /= null then
-            RefCount := this.m_IMobileBroadbandRadioStateChange.all.Release;
+            temp := this.m_IMobileBroadbandRadioStateChange.all.Release;
             Free (this.m_IMobileBroadbandRadioStateChange);
          end if;
       end if;
@@ -7405,13 +8448,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandRadioStateChange.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7421,10 +8468,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandRadioState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
    begin
       Hr := this.m_IMobileBroadbandRadioStateChange.all.get_RadioState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7437,12 +8488,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandRadioStateChangeTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandRadioStateChangeTriggerDetails, IMobileBroadbandRadioStateChangeTriggerDetails_Ptr);
    begin
       if this.m_IMobileBroadbandRadioStateChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all /= null then
-            RefCount := this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all.Release;
+            temp := this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all.Release;
             Free (this.m_IMobileBroadbandRadioStateChangeTriggerDetails);
          end if;
       end if;
@@ -7457,13 +8508,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandRadioStateChange.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandRadioStateChange.Kind;
    begin
       Hr := this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all.get_RadioStateChanges (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandRadioStateChange (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7476,12 +8531,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandSarManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandSarManager, IMobileBroadbandSarManager_Ptr);
    begin
       if this.m_IMobileBroadbandSarManager /= null then
          if this.m_IMobileBroadbandSarManager.all /= null then
-            RefCount := this.m_IMobileBroadbandSarManager.all.Release;
+            temp := this.m_IMobileBroadbandSarManager.all.Release;
             Free (this.m_IMobileBroadbandSarManager);
          end if;
       end if;
@@ -7496,10 +8551,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_IsBackoffEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7509,10 +8568,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_IsWiFiHardwareIntegrated (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7522,10 +8585,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_IsSarControlledByHardware (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7535,13 +8602,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandAntennaSar.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandAntennaSar.Kind;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_Antennas (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandAntennaSar (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7551,10 +8622,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_HysteresisTimerPeriod (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7565,10 +8640,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.add_TransmissionStateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7578,9 +8657,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.remove_TransmissionStateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EnableBackoffAsync
@@ -7588,7 +8671,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandSarManager
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7596,7 +8680,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7617,9 +8700,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7630,7 +8713,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandSarManager
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7638,7 +8722,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7659,9 +8742,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7673,7 +8756,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       antennas : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7681,7 +8765,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7702,9 +8785,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7715,7 +8798,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandSarManager
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7723,7 +8807,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7744,9 +8827,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7758,7 +8841,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       timerPeriod : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -7766,7 +8850,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -7787,9 +8870,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -7801,13 +8884,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7825,7 +8908,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7838,7 +8921,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr := this.m_IMobileBroadbandSarManager.all.GetIsTransmittingAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -7848,9 +8931,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -7863,9 +8946,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandSarManager
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.StartTransmissionStateMonitoring;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopTransmissionStateMonitoring
@@ -7873,9 +8960,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out MobileBroadbandSarManager
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.StopTransmissionStateMonitoring;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7887,12 +8978,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandTransmissionStateChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandTransmissionStateChangedEventArgs, IMobileBroadbandTransmissionStateChangedEventArgs_Ptr);
    begin
       if this.m_IMobileBroadbandTransmissionStateChangedEventArgs /= null then
          if this.m_IMobileBroadbandTransmissionStateChangedEventArgs.all /= null then
-            RefCount := this.m_IMobileBroadbandTransmissionStateChangedEventArgs.all.Release;
+            temp := this.m_IMobileBroadbandTransmissionStateChangedEventArgs.all.Release;
             Free (this.m_IMobileBroadbandTransmissionStateChangedEventArgs);
          end if;
       end if;
@@ -7907,10 +8998,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMobileBroadbandTransmissionStateChangedEventArgs.all.get_IsTransmitting (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7923,12 +9018,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandUicc) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandUicc, IMobileBroadbandUicc_Ptr);
    begin
       if this.m_IMobileBroadbandUicc /= null then
          if this.m_IMobileBroadbandUicc.all /= null then
-            RefCount := this.m_IMobileBroadbandUicc.all.Release;
+            temp := this.m_IMobileBroadbandUicc.all.Release;
             Free (this.m_IMobileBroadbandUicc);
          end if;
       end if;
@@ -7943,13 +9038,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMobileBroadbandUicc.all.get_SimIccId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7959,13 +9058,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppsResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandUiccAppsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -7983,7 +9082,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandUiccAppsResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandUiccAppsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -7997,7 +9096,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandUicc.all.GetUiccAppsAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8009,9 +9108,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandUiccAppsResult := new Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppsResult;
                   Retval.m_IMobileBroadbandUiccAppsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -8028,12 +9127,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandUiccApp) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandUiccApp, IMobileBroadbandUiccApp_Ptr);
    begin
       if this.m_IMobileBroadbandUiccApp /= null then
          if this.m_IMobileBroadbandUiccApp.all /= null then
-            RefCount := this.m_IMobileBroadbandUiccApp.all.Release;
+            temp := this.m_IMobileBroadbandUiccApp.all.Release;
             Free (this.m_IMobileBroadbandUiccApp);
          end if;
       end if;
@@ -8048,10 +9147,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandUiccApp.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8061,10 +9164,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UiccAppKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAppKind;
    begin
       Hr := this.m_IMobileBroadbandUiccApp.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8075,13 +9182,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppRecordDetailsResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandUiccAppRecordDetailsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8099,7 +9206,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandUiccAppRecordDetailsResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandUiccAppRecordDetailsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8113,7 +9220,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandUiccApp.all.GetRecordDetailsAsync (uiccFilePath, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8125,9 +9232,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandUiccAppRecordDetailsResult := new Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppRecordDetailsResult;
                   Retval.m_IMobileBroadbandUiccAppRecordDetailsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -8143,13 +9250,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppReadRecordResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MobileBroadbandUiccAppReadRecordResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8167,7 +9274,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MobileBroadbandUiccAppReadRecordResult.Kind_Delegate, AsyncOperationCompletedHandler_MobileBroadbandUiccAppReadRecordResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8181,7 +9288,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IMobileBroadbandUiccApp.all.ReadRecordAsync (uiccFilePath, recordIndex, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -8193,9 +9300,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IMobileBroadbandUiccAppReadRecordResult := new Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppReadRecordResult;
                   Retval.m_IMobileBroadbandUiccAppReadRecordResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -8212,12 +9319,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandUiccAppReadRecordResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandUiccAppReadRecordResult, IMobileBroadbandUiccAppReadRecordResult_Ptr);
    begin
       if this.m_IMobileBroadbandUiccAppReadRecordResult /= null then
          if this.m_IMobileBroadbandUiccAppReadRecordResult.all /= null then
-            RefCount := this.m_IMobileBroadbandUiccAppReadRecordResult.all.Release;
+            temp := this.m_IMobileBroadbandUiccAppReadRecordResult.all.Release;
             Free (this.m_IMobileBroadbandUiccAppReadRecordResult);
          end if;
       end if;
@@ -8232,10 +9339,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
    begin
       Hr := this.m_IMobileBroadbandUiccAppReadRecordResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8245,10 +9356,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandUiccAppReadRecordResult.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8261,12 +9376,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandUiccAppRecordDetailsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandUiccAppRecordDetailsResult, IMobileBroadbandUiccAppRecordDetailsResult_Ptr);
    begin
       if this.m_IMobileBroadbandUiccAppRecordDetailsResult /= null then
          if this.m_IMobileBroadbandUiccAppRecordDetailsResult.all /= null then
-            RefCount := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.Release;
+            temp := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.Release;
             Free (this.m_IMobileBroadbandUiccAppRecordDetailsResult);
          end if;
       end if;
@@ -8281,10 +9396,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8294,10 +9413,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UiccAppRecordKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAppRecordKind;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8307,10 +9430,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_RecordCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8320,10 +9447,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_RecordSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8333,10 +9464,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UiccAccessCondition is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAccessCondition;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_ReadAccessCondition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8346,10 +9481,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UiccAccessCondition is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAccessCondition;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_WriteAccessCondition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8362,12 +9501,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out MobileBroadbandUiccAppsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMobileBroadbandUiccAppsResult, IMobileBroadbandUiccAppsResult_Ptr);
    begin
       if this.m_IMobileBroadbandUiccAppsResult /= null then
          if this.m_IMobileBroadbandUiccAppsResult.all /= null then
-            RefCount := this.m_IMobileBroadbandUiccAppsResult.all.Release;
+            temp := this.m_IMobileBroadbandUiccAppsResult.all.Release;
             Free (this.m_IMobileBroadbandUiccAppsResult);
          end if;
       end if;
@@ -8382,10 +9521,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
    begin
       Hr := this.m_IMobileBroadbandUiccAppsResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8395,13 +9538,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IMobileBroadbandUiccApp.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandUiccApp.Kind;
    begin
       Hr := this.m_IMobileBroadbandUiccAppsResult.all.get_UiccApps (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMobileBroadbandUiccApp (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8414,12 +9561,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out NetworkOperatorDataUsageTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorDataUsageTriggerDetails, INetworkOperatorDataUsageTriggerDetails_Ptr);
    begin
       if this.m_INetworkOperatorDataUsageTriggerDetails /= null then
          if this.m_INetworkOperatorDataUsageTriggerDetails.all /= null then
-            RefCount := this.m_INetworkOperatorDataUsageTriggerDetails.all.Release;
+            temp := this.m_INetworkOperatorDataUsageTriggerDetails.all.Release;
             Free (this.m_INetworkOperatorDataUsageTriggerDetails);
          end if;
       end if;
@@ -8434,10 +9581,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorDataUsageNotificationKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkOperatorDataUsageNotificationKind;
    begin
       Hr := this.m_INetworkOperatorDataUsageTriggerDetails.all.get_NotificationKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8450,12 +9601,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out NetworkOperatorNotificationEventDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorNotificationEventDetails, INetworkOperatorNotificationEventDetails_Ptr);
    begin
       if this.m_INetworkOperatorNotificationEventDetails /= null then
          if this.m_INetworkOperatorNotificationEventDetails.all /= null then
-            RefCount := this.m_INetworkOperatorNotificationEventDetails.all.Release;
+            temp := this.m_INetworkOperatorNotificationEventDetails.all.Release;
             Free (this.m_INetworkOperatorNotificationEventDetails);
          end if;
       end if;
@@ -8470,10 +9621,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_NotificationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8483,13 +9638,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_NetworkAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8499,10 +9658,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_EncodingType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8512,13 +9675,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8528,13 +9695,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_RuleId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8544,10 +9715,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Devices.Sms.ISmsMessage is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Sms.ISmsMessage;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_SmsMessage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8558,15 +9733,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
       entitlementFailureReason : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringEntitlementCheck := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_entitlementFailureReason : WinRt.HString := To_HString (entitlementFailureReason);
+      temp             : WinRt.UInt32 := 0;
+      HStr_entitlementFailureReason : constant WinRt.HString := To_HString (entitlementFailureReason);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorNotificationEventDetails_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringEntitlementCheck, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringEntitlementCheck'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorNotificationEventDetails.all);
       Hr := m_Interface.AuthorizeTethering (allow, HStr_entitlementFailureReason);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_entitlementFailureReason);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_entitlementFailureReason);
    end;
 
    -----------------------------------------------------------------------------
@@ -8578,12 +9757,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out NetworkOperatorTetheringAccessPointConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorTetheringAccessPointConfiguration, INetworkOperatorTetheringAccessPointConfiguration_Ptr);
    begin
       if this.m_INetworkOperatorTetheringAccessPointConfiguration /= null then
          if this.m_INetworkOperatorTetheringAccessPointConfiguration.all /= null then
-            RefCount := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.Release;
+            temp := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.Release;
             Free (this.m_INetworkOperatorTetheringAccessPointConfiguration);
          end if;
       end if;
@@ -8594,7 +9773,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    function Constructor return NetworkOperatorTetheringAccessPointConfiguration is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration");
       m_ComRetVal  : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
    begin
       return RetVal : NetworkOperatorTetheringAccessPointConfiguration do
@@ -8603,7 +9783,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Retval.m_INetworkOperatorTetheringAccessPointConfiguration := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
             Retval.m_INetworkOperatorTetheringAccessPointConfiguration.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8616,13 +9796,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.get_Ssid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8632,11 +9816,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.put_Ssid (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Passphrase
@@ -8645,13 +9833,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.get_Passphrase (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8661,11 +9853,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.put_Passphrase (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function IsBandSupported
@@ -8675,14 +9871,18 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
       Hr := m_Interface.IsBandSupported (band, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8693,14 +9893,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8718,7 +9918,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8731,10 +9931,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
       Hr := m_Interface.IsBandSupportedAsync (band, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -8744,9 +9944,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -8760,14 +9960,18 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiBand;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
       Hr := m_Interface.get_Band (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8777,13 +9981,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : Windows.Networking.NetworkOperators.TetheringWiFiBand
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
       Hr := m_Interface.put_Band (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8795,12 +10003,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out NetworkOperatorTetheringClient) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorTetheringClient, INetworkOperatorTetheringClient_Ptr);
    begin
       if this.m_INetworkOperatorTetheringClient /= null then
          if this.m_INetworkOperatorTetheringClient.all /= null then
-            RefCount := this.m_INetworkOperatorTetheringClient.all.Release;
+            temp := this.m_INetworkOperatorTetheringClient.all.Release;
             Free (this.m_INetworkOperatorTetheringClient);
          end if;
       end if;
@@ -8815,13 +10023,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorTetheringClient.all.get_MacAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8831,13 +10043,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_IHostName.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IHostName.Kind;
    begin
       Hr := this.m_INetworkOperatorTetheringClient.all.get_HostNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IHostName (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8850,12 +10066,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out NetworkOperatorTetheringManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorTetheringManager, INetworkOperatorTetheringManager_Ptr);
    begin
       if this.m_INetworkOperatorTetheringManager /= null then
          if this.m_INetworkOperatorTetheringManager.all /= null then
-            RefCount := this.m_INetworkOperatorTetheringManager.all.Release;
+            temp := this.m_INetworkOperatorTetheringManager.all.Release;
             Free (this.m_INetworkOperatorTetheringManager);
          end if;
       end if;
@@ -8870,17 +10086,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetTetheringCapabilityFromConnectionProfile (profile.m_IConnectionProfile.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8890,20 +10110,24 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
          Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8914,59 +10138,72 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
          Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromConnectionProfile (profile.m_IConnectionProfile.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function IsNoConnectionsTimeoutEnabled
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsNoConnectionsTimeoutEnabled (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    procedure EnableNoConnectionsTimeout is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.EnableNoConnectionsTimeout;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure EnableNoConnectionsTimeoutAsync is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -8974,7 +10211,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -8990,7 +10226,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.EnableNoConnectionsTimeoutAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -8998,35 +10234,40 @@ package body WinRt.Windows.Networking.NetworkOperators is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure DisableNoConnectionsTimeout is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.DisableNoConnectionsTimeout;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure DisableNoConnectionsTimeoutAsync is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -9034,7 +10275,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -9050,7 +10290,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.DisableNoConnectionsTimeoutAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_Captured := m_Completed;
             Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -9058,14 +10298,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                m_Captured := m_Completed;
             end loop;
-            m_RefCount := m_ComRetVal.Release;
-            m_RefCount := m_CompletedHandler.Release;
-            if m_RefCount = 0 then
+            temp := m_ComRetVal.Release;
+            temp := m_CompletedHandler.Release;
+            if temp = 0 then
                Free (m_CompletedHandler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetTetheringCapability
@@ -9074,19 +10314,23 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
-      HStr_networkAccountId : WinRt.HString := To_HString (networkAccountId);
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetTetheringCapability (HStr_networkAccountId, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_networkAccountId);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_networkAccountId);
       return m_ComRetVal;
    end;
 
@@ -9096,22 +10340,26 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
-      HStr_networkAccountId : WinRt.HString := To_HString (networkAccountId);
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
          Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNetworkAccountId (HStr_networkAccountId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_networkAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 
@@ -9124,10 +10372,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_INetworkOperatorTetheringManager.all.get_MaxClientCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9137,10 +10389,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_INetworkOperatorTetheringManager.all.get_ClientCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9150,10 +10406,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringOperationalState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringOperationalState;
    begin
       Hr := this.m_INetworkOperatorTetheringManager.all.get_TetheringOperationalState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9163,11 +10423,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration do
          Hr := this.m_INetworkOperatorTetheringManager.all.GetCurrentAccessPointConfiguration (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INetworkOperatorTetheringAccessPointConfiguration := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
          Retval.m_INetworkOperatorTetheringAccessPointConfiguration.all := m_ComRetVal;
       end return;
@@ -9179,7 +10443,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
       configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -9187,7 +10452,6 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -9208,9 +10472,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -9222,13 +10486,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_NetworkOperatorTetheringOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9246,7 +10510,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9260,7 +10524,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_INetworkOperatorTetheringManager.all.StartTetheringAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9272,9 +10536,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_INetworkOperatorTetheringOperationResult := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
                   Retval.m_INetworkOperatorTetheringOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -9288,13 +10552,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_NetworkOperatorTetheringOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9312,7 +10576,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_NetworkOperatorTetheringOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9326,7 +10590,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_INetworkOperatorTetheringManager.all.StopTetheringAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9338,9 +10602,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_INetworkOperatorTetheringOperationResult := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
                   Retval.m_INetworkOperatorTetheringOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -9354,17 +10618,21 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return IVectorView_INetworkOperatorTetheringClient.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringClientManager := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_INetworkOperatorTetheringClient.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringClientManager, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringClientManager'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringManager.all);
       Hr := m_Interface.GetTetheringClients (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_INetworkOperatorTetheringClient (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -9377,12 +10645,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out NetworkOperatorTetheringOperationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorTetheringOperationResult, INetworkOperatorTetheringOperationResult_Ptr);
    begin
       if this.m_INetworkOperatorTetheringOperationResult /= null then
          if this.m_INetworkOperatorTetheringOperationResult.all /= null then
-            RefCount := this.m_INetworkOperatorTetheringOperationResult.all.Release;
+            temp := this.m_INetworkOperatorTetheringOperationResult.all.Release;
             Free (this.m_INetworkOperatorTetheringOperationResult);
          end if;
       end if;
@@ -9397,10 +10665,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringOperationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringOperationStatus;
    begin
       Hr := this.m_INetworkOperatorTetheringOperationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9410,13 +10682,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorTetheringOperationResult.all.get_AdditionalErrorMessage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9429,12 +10705,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ProvisionFromXmlDocumentResults) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProvisionFromXmlDocumentResults, IProvisionFromXmlDocumentResults_Ptr);
    begin
       if this.m_IProvisionFromXmlDocumentResults /= null then
          if this.m_IProvisionFromXmlDocumentResults.all /= null then
-            RefCount := this.m_IProvisionFromXmlDocumentResults.all.Release;
+            temp := this.m_IProvisionFromXmlDocumentResults.all.Release;
             Free (this.m_IProvisionFromXmlDocumentResults);
          end if;
       end if;
@@ -9449,10 +10725,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IProvisionFromXmlDocumentResults.all.get_AllElementsProvisioned (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9462,13 +10742,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IProvisionFromXmlDocumentResults.all.get_ProvisionResultsXml (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9481,12 +10765,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ProvisionedProfile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProvisionedProfile, IProvisionedProfile_Ptr);
    begin
       if this.m_IProvisionedProfile /= null then
          if this.m_IProvisionedProfile.all /= null then
-            RefCount := this.m_IProvisionedProfile.all.Release;
+            temp := this.m_IProvisionedProfile.all.Release;
             Free (this.m_IProvisionedProfile);
          end if;
       end if;
@@ -9501,9 +10785,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : Windows.Networking.Connectivity.NetworkCostType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProvisionedProfile.all.UpdateCost (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UpdateUsage
@@ -9512,9 +10800,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : Windows.Networking.NetworkOperators.ProfileUsage
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProvisionedProfile.all.UpdateUsage (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9526,12 +10818,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out ProvisioningAgent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProvisioningAgent, IProvisioningAgent_Ptr);
    begin
       if this.m_IProvisioningAgent /= null then
          if this.m_IProvisioningAgent.all /= null then
-            RefCount := this.m_IProvisioningAgent.all.Release;
+            temp := this.m_IProvisioningAgent.all.Release;
             Free (this.m_IProvisioningAgent);
          end if;
       end if;
@@ -9542,7 +10834,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    function Constructor return ProvisioningAgent is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
       m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IProvisioningAgent;
    begin
       return RetVal : ProvisioningAgent do
@@ -9551,7 +10844,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Retval.m_IProvisioningAgent := new Windows.Networking.NetworkOperators.IProvisioningAgent;
             Retval.m_IProvisioningAgent.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9564,22 +10857,26 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ProvisioningAgent is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IProvisioningAgentStaticMethods_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IProvisioningAgent;
-      HStr_networkAccountId : WinRt.HString := To_HString (networkAccountId);
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ProvisioningAgent do
          Hr := RoGetActivationFactory (m_hString, IID_IProvisioningAgentStaticMethods'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNetworkAccountId (HStr_networkAccountId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IProvisioningAgent := new Windows.Networking.NetworkOperators.IProvisioningAgent;
             Retval.m_IProvisioningAgent.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_networkAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 
@@ -9593,14 +10890,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_provisioningXmlDocument : WinRt.HString := To_HString (provisioningXmlDocument);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_provisioningXmlDocument : constant WinRt.HString := To_HString (provisioningXmlDocument);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ProvisionFromXmlDocumentResults.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -9618,7 +10915,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ProvisionFromXmlDocumentResults.Kind_Delegate, AsyncOperationCompletedHandler_ProvisionFromXmlDocumentResults.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -9632,7 +10929,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IProvisioningAgent.all.ProvisionFromXmlDocumentAsync (HStr_provisioningXmlDocument, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -9644,14 +10941,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IProvisionFromXmlDocumentResults := new Windows.Networking.NetworkOperators.IProvisionFromXmlDocumentResults;
                   Retval.m_IProvisionFromXmlDocumentResults.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_provisioningXmlDocument);
+         tmp := WindowsDeleteString (HStr_provisioningXmlDocument);
       end return;
    end;
 
@@ -9663,15 +10960,19 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.ProvisionedProfile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IProvisionedProfile;
-      HStr_profileName : WinRt.HString := To_HString (profileName);
+      HStr_profileName : constant WinRt.HString := To_HString (profileName);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ProvisionedProfile do
          Hr := this.m_IProvisioningAgent.all.GetProvisionedProfile (mediaType, HStr_profileName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProvisionedProfile := new Windows.Networking.NetworkOperators.IProvisionedProfile;
          Retval.m_IProvisionedProfile.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_profileName);
+         tmp := WindowsDeleteString (HStr_profileName);
       end return;
    end;
 
@@ -9684,12 +10985,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out TetheringEntitlementCheckTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITetheringEntitlementCheckTriggerDetails, ITetheringEntitlementCheckTriggerDetails_Ptr);
    begin
       if this.m_ITetheringEntitlementCheckTriggerDetails /= null then
          if this.m_ITetheringEntitlementCheckTriggerDetails.all /= null then
-            RefCount := this.m_ITetheringEntitlementCheckTriggerDetails.all.Release;
+            temp := this.m_ITetheringEntitlementCheckTriggerDetails.all.Release;
             Free (this.m_ITetheringEntitlementCheckTriggerDetails);
          end if;
       end if;
@@ -9704,13 +11005,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITetheringEntitlementCheckTriggerDetails.all.get_NetworkAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9719,9 +11024,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out TetheringEntitlementCheckTriggerDetails
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITetheringEntitlementCheckTriggerDetails.all.AllowTethering;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure DenyTethering
@@ -9730,11 +11039,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
       entitlementFailureReason : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_entitlementFailureReason : WinRt.HString := To_HString (entitlementFailureReason);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_entitlementFailureReason : constant WinRt.HString := To_HString (entitlementFailureReason);
    begin
       Hr := this.m_ITetheringEntitlementCheckTriggerDetails.all.DenyTethering (HStr_entitlementFailureReason);
-      Hr := WindowsDeleteString (HStr_entitlementFailureReason);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_entitlementFailureReason);
    end;
 
    -----------------------------------------------------------------------------
@@ -9746,12 +11059,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out UssdMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUssdMessage, IUssdMessage_Ptr);
    begin
       if this.m_IUssdMessage /= null then
          if this.m_IUssdMessage.all /= null then
-            RefCount := this.m_IUssdMessage.all.Release;
+            temp := this.m_IUssdMessage.all.Release;
             Free (this.m_IUssdMessage);
          end if;
       end if;
@@ -9766,11 +11079,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return UssdMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdMessage");
       m_Factory    : access IUssdMessageFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IUssdMessage;
-      HStr_messageText : WinRt.HString := To_HString (messageText);
+      HStr_messageText : constant WinRt.HString := To_HString (messageText);
    begin
       return RetVal : UssdMessage do
          Hr := RoGetActivationFactory (m_hString, IID_IUssdMessageFactory'Access , m_Factory'Address);
@@ -9778,10 +11092,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
             Hr := m_Factory.CreateMessage (HStr_messageText, m_ComRetVal'Access);
             Retval.m_IUssdMessage := new Windows.Networking.NetworkOperators.IUssdMessage;
             Retval.m_IUssdMessage.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_messageText);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_messageText);
       end return;
    end;
 
@@ -9794,10 +11108,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IUssdMessage.all.get_DataCodingScheme (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9807,9 +11125,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUssdMessage.all.put_DataCodingScheme (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPayload
@@ -9818,11 +11140,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUssdMessage.all.GetPayload (m_ComRetValSize'Access, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       declare
          ArrayRetVal : WinRt.Byte_Array (1..Integer(m_ComRetValSize));
          function To_Ada_Byte is new To_Ada_Type (WinRt.Byte, WinRt.Byte_Ptr); 
@@ -9840,10 +11166,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IUssdMessage.all.SetPayload (WinRt.UInt32(value'Length), Convert_value (value (value'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PayloadAsText
@@ -9852,13 +11182,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUssdMessage.all.get_PayloadAsText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9868,11 +11202,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUssdMessage.all.put_PayloadAsText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -9884,12 +11222,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out UssdReply) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUssdReply, IUssdReply_Ptr);
    begin
       if this.m_IUssdReply /= null then
          if this.m_IUssdReply.all /= null then
-            RefCount := this.m_IUssdReply.all.Release;
+            temp := this.m_IUssdReply.all.Release;
             Free (this.m_IUssdReply);
          end if;
       end if;
@@ -9904,10 +11242,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdResultCode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UssdResultCode;
    begin
       Hr := this.m_IUssdReply.all.get_ResultCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9917,11 +11259,15 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IUssdMessage;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.UssdMessage do
          Hr := this.m_IUssdReply.all.get_Message (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUssdMessage := new Windows.Networking.NetworkOperators.IUssdMessage;
          Retval.m_IUssdMessage.all := m_ComRetVal;
       end return;
@@ -9936,12 +11282,12 @@ package body WinRt.Windows.Networking.NetworkOperators is
    end;
 
    procedure Finalize (this : in out UssdSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUssdSession, IUssdSession_Ptr);
    begin
       if this.m_IUssdSession /= null then
          if this.m_IUssdSession.all /= null then
-            RefCount := this.m_IUssdSession.all.Release;
+            temp := this.m_IUssdSession.all.Release;
             Free (this.m_IUssdSession);
          end if;
       end if;
@@ -9956,22 +11302,26 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdSession is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdSession");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IUssdSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IUssdSession;
-      HStr_networkAccountId : WinRt.HString := To_HString (networkAccountId);
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.UssdSession do
          Hr := RoGetActivationFactory (m_hString, IID_IUssdSessionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNetworkAccountId (HStr_networkAccountId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUssdSession := new Windows.Networking.NetworkOperators.IUssdSession;
             Retval.m_IUssdSession.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_networkAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 
@@ -9981,22 +11331,26 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdSession is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdSession");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IUssdSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IUssdSession;
-      HStr_networkInterfaceId : WinRt.HString := To_HString (networkInterfaceId);
+      HStr_networkInterfaceId : constant WinRt.HString := To_HString (networkInterfaceId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.UssdSession do
          Hr := RoGetActivationFactory (m_hString, IID_IUssdSessionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNetworkInterfaceId (HStr_networkInterfaceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUssdSession := new Windows.Networking.NetworkOperators.IUssdSession;
             Retval.m_IUssdSession.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_networkInterfaceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkInterfaceId);
       end return;
    end;
 
@@ -10010,13 +11364,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdReply'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UssdReply.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -10034,7 +11388,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UssdReply.Kind_Delegate, AsyncOperationCompletedHandler_UssdReply.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -10048,7 +11402,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := this.m_IUssdSession.all.SendMessageAndGetReplyAsync (message.m_IUssdMessage.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -10060,9 +11414,9 @@ package body WinRt.Windows.Networking.NetworkOperators is
                   Retval.m_IUssdReply := new Windows.Networking.NetworkOperators.IUssdReply;
                   Retval.m_IUssdReply.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -10075,9 +11429,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
       this : in out UssdSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUssdSession.all.Close;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Networking.NetworkOperators;

@@ -47,9 +47,10 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          license : Windows.Storage.Streams.IBuffer
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -57,7 +58,6 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -73,7 +73,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          Hr := RoGetActivationFactory (m_hString, IID_ILicenseManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AddLicenseAsync (license, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -81,14 +81,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetSatisfactionInfosAsync
@@ -98,15 +98,15 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       )
       return WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseSatisfactionResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_LicenseSatisfactionResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -124,7 +124,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LicenseSatisfactionResult.Kind_Delegate, AsyncOperationCompletedHandler_LicenseSatisfactionResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -138,10 +138,10 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
             Hr := RoGetActivationFactory (m_hString, IID_ILicenseManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetSatisfactionInfosAsync (contentIds, keyIds, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -153,15 +153,15 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
                         Retval.m_ILicenseSatisfactionResult := new Windows.ApplicationModel.Store.LicenseManagement.ILicenseSatisfactionResult;
                         Retval.m_ILicenseSatisfactionResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -170,9 +170,10 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.LicenseManagement.LicenseManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -180,7 +181,6 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -196,7 +196,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
          Hr := RoGetActivationFactory (m_hString, IID_ILicenseManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RefreshLicensesAsync (refreshOption, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -204,14 +204,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
    end LicenseManager;
@@ -225,12 +225,12 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    end;
 
    procedure Finalize (this : in out LicenseSatisfactionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILicenseSatisfactionInfo, ILicenseSatisfactionInfo_Ptr);
    begin
       if this.m_ILicenseSatisfactionInfo /= null then
          if this.m_ILicenseSatisfactionInfo.all /= null then
-            RefCount := this.m_ILicenseSatisfactionInfo.all.Release;
+            temp := this.m_ILicenseSatisfactionInfo.all.Release;
             Free (this.m_ILicenseSatisfactionInfo);
          end if;
       end if;
@@ -245,10 +245,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_SatisfiedByDevice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -258,10 +262,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_SatisfiedByOpenLicense (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -271,10 +279,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_SatisfiedByTrial (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -284,10 +296,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_SatisfiedByPass (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -297,10 +313,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_SatisfiedByInstallMedia (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -310,10 +330,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_SatisfiedBySignedInUser (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -323,10 +347,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILicenseSatisfactionInfo.all.get_IsSatisfied (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -339,12 +367,12 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    end;
 
    procedure Finalize (this : in out LicenseSatisfactionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILicenseSatisfactionResult, ILicenseSatisfactionResult_Ptr);
    begin
       if this.m_ILicenseSatisfactionResult /= null then
          if this.m_ILicenseSatisfactionResult.all /= null then
-            RefCount := this.m_ILicenseSatisfactionResult.all.Release;
+            temp := this.m_ILicenseSatisfactionResult.all.Release;
             Free (this.m_ILicenseSatisfactionResult);
          end if;
       end if;
@@ -359,13 +387,17 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return IMapView_HString_ILicenseSatisfactionInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_ILicenseSatisfactionInfo.Kind;
    begin
       Hr := this.m_ILicenseSatisfactionResult.all.get_LicenseSatisfactionInfos (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_ILicenseSatisfactionInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -375,10 +407,14 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_ILicenseSatisfactionResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

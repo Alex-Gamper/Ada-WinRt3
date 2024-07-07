@@ -50,12 +50,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out DtdEntity) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDtdEntity, IDtdEntity_Ptr);
    begin
       if this.m_IDtdEntity /= null then
          if this.m_IDtdEntity.all /= null then
-            RefCount := this.m_IDtdEntity.all.Release;
+            temp := this.m_IDtdEntity.all.Release;
             Free (this.m_IDtdEntity);
          end if;
       end if;
@@ -70,10 +70,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IDtdEntity.all.get_PublicId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -83,10 +87,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IDtdEntity.all.get_SystemId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -96,10 +104,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IDtdEntity.all.get_NotationName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -109,14 +121,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -126,13 +142,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -141,14 +161,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -158,17 +182,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -178,14 +206,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -195,15 +227,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IDtdEntity.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -215,14 +251,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -232,14 +272,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -249,14 +293,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -266,14 +314,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -283,15 +335,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IDtdEntity.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -303,14 +359,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -320,15 +380,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IDtdEntity.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -342,14 +406,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -361,14 +429,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -379,14 +451,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -397,14 +473,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -415,14 +495,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -432,14 +516,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -449,14 +537,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -466,14 +558,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -482,13 +578,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out DtdEntity
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -497,13 +597,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -512,17 +616,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -532,17 +640,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -552,15 +664,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -570,16 +686,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -590,19 +710,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IDtdEntity.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -614,16 +738,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdEntity.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -635,19 +763,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdEntity_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IDtdEntity.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -660,12 +792,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out DtdNotation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDtdNotation, IDtdNotation_Ptr);
    begin
       if this.m_IDtdNotation /= null then
          if this.m_IDtdNotation.all /= null then
-            RefCount := this.m_IDtdNotation.all.Release;
+            temp := this.m_IDtdNotation.all.Release;
             Free (this.m_IDtdNotation);
          end if;
       end if;
@@ -680,10 +812,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IDtdNotation.all.get_PublicId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -693,10 +829,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IDtdNotation.all.get_SystemId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -706,14 +846,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -723,13 +867,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -738,14 +886,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -755,17 +907,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -775,14 +931,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -792,15 +952,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IDtdNotation.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -812,14 +976,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -829,14 +997,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -846,14 +1018,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -863,14 +1039,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -880,15 +1060,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IDtdNotation.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -900,14 +1084,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -917,15 +1105,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IDtdNotation.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -939,14 +1131,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -958,14 +1154,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -976,14 +1176,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -994,14 +1198,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1012,14 +1220,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1029,14 +1241,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1046,14 +1262,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1063,14 +1283,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1079,13 +1303,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out DtdNotation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -1094,13 +1322,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -1109,17 +1341,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1129,17 +1365,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1149,15 +1389,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -1167,16 +1411,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -1187,19 +1435,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IDtdNotation.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -1211,16 +1463,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDtdNotation.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -1232,19 +1488,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IDtdNotation_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IDtdNotation.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -1257,12 +1517,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlAttribute) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlAttribute, IXmlAttribute_Ptr);
    begin
       if this.m_IXmlAttribute /= null then
          if this.m_IXmlAttribute.all /= null then
-            RefCount := this.m_IXmlAttribute.all.Release;
+            temp := this.m_IXmlAttribute.all.Release;
             Free (this.m_IXmlAttribute);
          end if;
       end if;
@@ -1277,13 +1537,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlAttribute.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1293,10 +1557,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXmlAttribute.all.get_Specified (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1306,13 +1574,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlAttribute.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1322,11 +1594,15 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXmlAttribute.all.put_Value (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_NodeValue
@@ -1335,14 +1611,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1352,13 +1632,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -1367,14 +1651,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1384,17 +1672,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1404,14 +1696,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1421,15 +1717,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlAttribute.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -1441,14 +1741,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1458,14 +1762,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1475,14 +1783,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1492,14 +1804,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1509,15 +1825,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlAttribute.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -1529,14 +1849,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1546,15 +1870,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlAttribute.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -1568,14 +1896,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1587,14 +1919,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1605,14 +1941,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1623,14 +1963,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1641,14 +1985,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1658,14 +2006,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1675,14 +2027,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1692,14 +2048,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1708,13 +2068,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlAttribute
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -1723,13 +2087,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -1738,17 +2106,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1758,17 +2130,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1778,15 +2154,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -1796,16 +2176,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -1816,19 +2200,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlAttribute.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -1840,16 +2228,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlAttribute.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -1861,19 +2253,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlAttribute_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlAttribute.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -1886,12 +2282,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlCDataSection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlCDataSection, IXmlCDataSection_Ptr);
    begin
       if this.m_IXmlCDataSection /= null then
          if this.m_IXmlCDataSection.all /= null then
-            RefCount := this.m_IXmlCDataSection.all.Release;
+            temp := this.m_IXmlCDataSection.all.Release;
             Free (this.m_IXmlCDataSection);
          end if;
       end if;
@@ -1907,14 +2303,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlText is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlText := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlText;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlText, WinRt.Windows.Data.Xml.Dom.IID_IXmlText'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.SplitText (offset, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1924,17 +2324,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_Data (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1944,15 +2348,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.put_Data (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Length
@@ -1961,14 +2369,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_Length (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1980,17 +2392,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.SubstringData (offset, count, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2000,15 +2416,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.AppendData (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure InsertData
@@ -2018,15 +2438,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.InsertData (offset, HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure DeleteData
@@ -2036,13 +2460,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       count : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.DeleteData (offset, count);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReplaceData
@@ -2053,15 +2481,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.ReplaceData (offset, count, HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    function get_NodeValue
@@ -2070,14 +2502,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2087,13 +2523,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -2102,14 +2542,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2119,17 +2563,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2139,14 +2587,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2156,15 +2608,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlCDataSection.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -2176,14 +2632,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2193,14 +2653,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2210,14 +2674,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2227,14 +2695,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2244,15 +2716,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlCDataSection.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -2264,14 +2740,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2281,15 +2761,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlCDataSection.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -2303,14 +2787,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2322,14 +2810,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2340,14 +2832,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2358,14 +2854,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2376,14 +2876,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2393,14 +2897,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2410,14 +2918,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2427,14 +2939,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2443,13 +2959,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlCDataSection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -2458,13 +2978,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -2473,17 +2997,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2493,17 +3021,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2513,15 +3045,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -2531,16 +3067,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -2551,19 +3091,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlCDataSection.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -2575,16 +3119,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlCDataSection.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -2596,19 +3144,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlCDataSection_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlCDataSection.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -2621,12 +3173,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlComment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlComment, IXmlComment_Ptr);
    begin
       if this.m_IXmlComment /= null then
          if this.m_IXmlComment.all /= null then
-            RefCount := this.m_IXmlComment.all.Release;
+            temp := this.m_IXmlComment.all.Release;
             Free (this.m_IXmlComment);
          end if;
       end if;
@@ -2641,17 +3193,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_Data (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2661,15 +3217,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.put_Data (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Length
@@ -2678,14 +3238,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_Length (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2697,17 +3261,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.SubstringData (offset, count, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2717,15 +3285,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.AppendData (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure InsertData
@@ -2735,15 +3307,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.InsertData (offset, HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure DeleteData
@@ -2753,13 +3329,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       count : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.DeleteData (offset, count);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReplaceData
@@ -2770,15 +3350,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.ReplaceData (offset, count, HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    function get_NodeValue
@@ -2787,14 +3371,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2804,13 +3392,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -2819,14 +3411,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2836,17 +3432,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2856,14 +3456,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2873,15 +3477,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlComment.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -2893,14 +3501,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2910,14 +3522,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2927,14 +3543,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2944,14 +3564,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2961,15 +3585,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlComment.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -2981,14 +3609,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2998,15 +3630,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlComment.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -3020,14 +3656,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3039,14 +3679,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3057,14 +3701,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3075,14 +3723,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3093,14 +3745,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3110,14 +3766,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3127,14 +3787,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3144,14 +3808,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3160,13 +3828,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlComment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -3175,13 +3847,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -3190,17 +3866,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3210,17 +3890,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3230,15 +3914,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -3248,16 +3936,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -3268,19 +3960,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlComment.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -3292,16 +3988,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlComment.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -3313,19 +4013,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlComment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlComment.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -3338,12 +4042,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlDocument) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlDocument, IXmlDocument_Ptr);
    begin
       if this.m_IXmlDocument /= null then
          if this.m_IXmlDocument.all /= null then
-            RefCount := this.m_IXmlDocument.all.Release;
+            temp := this.m_IXmlDocument.all.Release;
             Free (this.m_IXmlDocument);
          end if;
       end if;
@@ -3354,7 +4058,8 @@ package body WinRt.Windows.Data.Xml.Dom is
 
    function Constructor return XmlDocument is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_ComRetVal  : aliased Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : XmlDocument do
@@ -3363,7 +4068,7 @@ package body WinRt.Windows.Data.Xml.Dom is
             Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
             Retval.m_IXmlDocument.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3376,15 +4081,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_Factory        : access WinRt.Windows.Data.Xml.Dom.IXmlDocumentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XmlDocument.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3402,7 +4107,7 @@ package body WinRt.Windows.Data.Xml.Dom is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XmlDocument.Kind_Delegate, AsyncOperationCompletedHandler_XmlDocument.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3416,10 +4121,10 @@ package body WinRt.Windows.Data.Xml.Dom is
          Hr := RoGetActivationFactory (m_hString, IID_IXmlDocumentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromUriAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3431,15 +4136,15 @@ package body WinRt.Windows.Data.Xml.Dom is
                      Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
                      Retval.m_IXmlDocument.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3450,15 +4155,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_Factory        : access WinRt.Windows.Data.Xml.Dom.IXmlDocumentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XmlDocument.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3476,7 +4181,7 @@ package body WinRt.Windows.Data.Xml.Dom is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XmlDocument.Kind_Delegate, AsyncOperationCompletedHandler_XmlDocument.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3490,10 +4195,10 @@ package body WinRt.Windows.Data.Xml.Dom is
          Hr := RoGetActivationFactory (m_hString, IID_IXmlDocumentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromUriAsync (uri.m_IUriRuntimeClass.all, loadSettings.m_IXmlLoadSettings.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3505,15 +4210,15 @@ package body WinRt.Windows.Data.Xml.Dom is
                      Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
                      Retval.m_IXmlDocument.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3523,15 +4228,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_Factory        : access WinRt.Windows.Data.Xml.Dom.IXmlDocumentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XmlDocument.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3549,7 +4254,7 @@ package body WinRt.Windows.Data.Xml.Dom is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XmlDocument.Kind_Delegate, AsyncOperationCompletedHandler_XmlDocument.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3563,10 +4268,10 @@ package body WinRt.Windows.Data.Xml.Dom is
          Hr := RoGetActivationFactory (m_hString, IID_IXmlDocumentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromFileAsync (file, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3578,15 +4283,15 @@ package body WinRt.Windows.Data.Xml.Dom is
                      Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
                      Retval.m_IXmlDocument.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3597,15 +4302,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_Factory        : access WinRt.Windows.Data.Xml.Dom.IXmlDocumentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XmlDocument.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3623,7 +4328,7 @@ package body WinRt.Windows.Data.Xml.Dom is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XmlDocument.Kind_Delegate, AsyncOperationCompletedHandler_XmlDocument.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3637,10 +4342,10 @@ package body WinRt.Windows.Data.Xml.Dom is
          Hr := RoGetActivationFactory (m_hString, IID_IXmlDocumentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromFileAsync (file, loadSettings.m_IXmlLoadSettings.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3652,15 +4357,15 @@ package body WinRt.Windows.Data.Xml.Dom is
                      Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
                      Retval.m_IXmlDocument.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3673,11 +4378,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocumentType'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocumentType;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocumentType do
          Hr := this.m_IXmlDocument.all.get_Doctype (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocumentType := new Windows.Data.Xml.Dom.IXmlDocumentType;
          Retval.m_IXmlDocumentType.all := m_ComRetVal;
       end return;
@@ -3689,11 +4398,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDomImplementation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDomImplementation;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDomImplementation do
          Hr := this.m_IXmlDocument.all.get_Implementation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDomImplementation := new Windows.Data.Xml.Dom.IXmlDomImplementation;
          Retval.m_IXmlDomImplementation.all := m_ComRetVal;
       end return;
@@ -3705,11 +4418,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlElement;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlElement do
          Hr := this.m_IXmlDocument.all.get_DocumentElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlElement := new Windows.Data.Xml.Dom.IXmlElement;
          Retval.m_IXmlElement.all := m_ComRetVal;
       end return;
@@ -3722,15 +4439,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlElement;
-      HStr_tagName : WinRt.HString := To_HString (tagName);
+      HStr_tagName : constant WinRt.HString := To_HString (tagName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlElement do
          Hr := this.m_IXmlDocument.all.CreateElement (HStr_tagName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlElement := new Windows.Data.Xml.Dom.IXmlElement;
          Retval.m_IXmlElement.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_tagName);
+         tmp := WindowsDeleteString (HStr_tagName);
       end return;
    end;
 
@@ -3740,11 +4461,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocumentFragment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocumentFragment;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocumentFragment do
          Hr := this.m_IXmlDocument.all.CreateDocumentFragment (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocumentFragment := new Windows.Data.Xml.Dom.IXmlDocumentFragment;
          Retval.m_IXmlDocumentFragment.all := m_ComRetVal;
       end return;
@@ -3757,15 +4482,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlText'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlText;
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlText do
          Hr := this.m_IXmlDocument.all.CreateTextNode (HStr_data, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlText := new Windows.Data.Xml.Dom.IXmlText;
          Retval.m_IXmlText.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_data);
+         tmp := WindowsDeleteString (HStr_data);
       end return;
    end;
 
@@ -3776,15 +4505,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlComment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlComment;
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlComment do
          Hr := this.m_IXmlDocument.all.CreateComment (HStr_data, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlComment := new Windows.Data.Xml.Dom.IXmlComment;
          Retval.m_IXmlComment.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_data);
+         tmp := WindowsDeleteString (HStr_data);
       end return;
    end;
 
@@ -3796,17 +4529,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlProcessingInstruction'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlProcessingInstruction;
-      HStr_target : WinRt.HString := To_HString (target);
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_target : constant WinRt.HString := To_HString (target);
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlProcessingInstruction do
          Hr := this.m_IXmlDocument.all.CreateProcessingInstruction (HStr_target, HStr_data, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlProcessingInstruction := new Windows.Data.Xml.Dom.IXmlProcessingInstruction;
          Retval.m_IXmlProcessingInstruction.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_target);
-         Hr := WindowsDeleteString (HStr_data);
+         tmp := WindowsDeleteString (HStr_target);
+         tmp := WindowsDeleteString (HStr_data);
       end return;
    end;
 
@@ -3817,15 +4554,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlDocument.all.CreateAttribute (HStr_name, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3836,15 +4577,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlEntityReference'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlEntityReference;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlEntityReference do
          Hr := this.m_IXmlDocument.all.CreateEntityReference (HStr_name, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlEntityReference := new Windows.Data.Xml.Dom.IXmlEntityReference;
          Retval.m_IXmlEntityReference.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -3855,15 +4600,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_tagName : WinRt.HString := To_HString (tagName);
+      HStr_tagName : constant WinRt.HString := To_HString (tagName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          Hr := this.m_IXmlDocument.all.GetElementsByTagName (HStr_tagName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_tagName);
+         tmp := WindowsDeleteString (HStr_tagName);
       end return;
    end;
 
@@ -3874,15 +4623,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlCDataSection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlCDataSection;
-      HStr_data : WinRt.HString := To_HString (data);
+      HStr_data : constant WinRt.HString := To_HString (data);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlCDataSection do
          Hr := this.m_IXmlDocument.all.CreateCDataSection (HStr_data, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlCDataSection := new Windows.Data.Xml.Dom.IXmlCDataSection;
          Retval.m_IXmlCDataSection.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_data);
+         tmp := WindowsDeleteString (HStr_data);
       end return;
    end;
 
@@ -3892,13 +4645,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlDocument.all.get_DocumentUri (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3910,15 +4667,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
-      HStr_qualifiedName : WinRt.HString := To_HString (qualifiedName);
+      HStr_qualifiedName : constant WinRt.HString := To_HString (qualifiedName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlDocument.all.CreateAttributeNS (namespaceUri, HStr_qualifiedName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_qualifiedName);
+         tmp := WindowsDeleteString (HStr_qualifiedName);
       end return;
    end;
 
@@ -3930,15 +4691,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlElement;
-      HStr_qualifiedName : WinRt.HString := To_HString (qualifiedName);
+      HStr_qualifiedName : constant WinRt.HString := To_HString (qualifiedName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlElement do
          Hr := this.m_IXmlDocument.all.CreateElementNS (namespaceUri, HStr_qualifiedName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlElement := new Windows.Data.Xml.Dom.IXmlElement;
          Retval.m_IXmlElement.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_qualifiedName);
+         tmp := WindowsDeleteString (HStr_qualifiedName);
       end return;
    end;
 
@@ -3949,15 +4714,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlElement;
-      HStr_elementId : WinRt.HString := To_HString (elementId);
+      HStr_elementId : constant WinRt.HString := To_HString (elementId);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlElement do
          Hr := this.m_IXmlDocument.all.GetElementById (HStr_elementId, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlElement := new Windows.Data.Xml.Dom.IXmlElement;
          Retval.m_IXmlElement.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_elementId);
+         tmp := WindowsDeleteString (HStr_elementId);
       end return;
    end;
 
@@ -3969,10 +4738,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IXmlDocument.all.ImportNode (node, deep, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3982,14 +4755,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3999,13 +4776,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -4014,14 +4795,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4031,17 +4816,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4051,14 +4840,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4068,15 +4861,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocument.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -4088,14 +4885,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4105,14 +4906,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4122,14 +4927,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4139,14 +4948,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4156,15 +4969,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlDocument.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -4176,14 +4993,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4193,15 +5014,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlDocument.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -4215,14 +5040,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4234,14 +5063,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4252,14 +5085,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4270,14 +5107,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4288,14 +5129,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4305,14 +5150,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4322,14 +5171,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4339,14 +5192,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4355,13 +5212,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlDocument
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -4370,13 +5231,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -4385,17 +5250,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4405,17 +5274,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4425,15 +5298,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -4443,16 +5320,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -4463,19 +5344,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocument.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -4487,16 +5372,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -4508,19 +5397,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocument.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -4530,15 +5423,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       xml : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_xml : WinRt.HString := To_HString (xml);
+      temp             : WinRt.UInt32 := 0;
+      HStr_xml : constant WinRt.HString := To_HString (xml);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO, WinRt.Windows.Data.Xml.Dom.IID_IXmlDocumentIO'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.LoadXml (HStr_xml);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xml);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xml);
    end;
 
    procedure LoadXml
@@ -4548,15 +5445,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       loadSettings : Windows.Data.Xml.Dom.XmlLoadSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_xml : WinRt.HString := To_HString (xml);
+      temp             : WinRt.UInt32 := 0;
+      HStr_xml : constant WinRt.HString := To_HString (xml);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO, WinRt.Windows.Data.Xml.Dom.IID_IXmlDocumentIO'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.LoadXml (HStr_xml, loadSettings.m_IXmlLoadSettings.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xml);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xml);
    end;
 
    procedure SaveToFileAsync
@@ -4565,8 +5466,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       file : Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4574,7 +5476,6 @@ package body WinRt.Windows.Data.Xml.Dom is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4590,7 +5491,7 @@ package body WinRt.Windows.Data.Xml.Dom is
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.SaveToFileAsync (file, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4598,9 +5499,9 @@ package body WinRt.Windows.Data.Xml.Dom is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4612,13 +5513,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       buffer : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO2, WinRt.Windows.Data.Xml.Dom.IID_IXmlDocumentIO2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.LoadXmlFromBuffer (buffer);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LoadXmlFromBuffer
@@ -4628,13 +5533,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       loadSettings : Windows.Data.Xml.Dom.XmlLoadSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocument_Interface, WinRt.Windows.Data.Xml.Dom.IXmlDocumentIO2, WinRt.Windows.Data.Xml.Dom.IID_IXmlDocumentIO2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocument.all);
       Hr := m_Interface.LoadXmlFromBuffer (buffer, loadSettings.m_IXmlLoadSettings.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4646,12 +5555,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlDocumentFragment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlDocumentFragment, IXmlDocumentFragment_Ptr);
    begin
       if this.m_IXmlDocumentFragment /= null then
          if this.m_IXmlDocumentFragment.all /= null then
-            RefCount := this.m_IXmlDocumentFragment.all.Release;
+            temp := this.m_IXmlDocumentFragment.all.Release;
             Free (this.m_IXmlDocumentFragment);
          end if;
       end if;
@@ -4666,14 +5575,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4683,13 +5596,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -4698,14 +5615,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4715,17 +5636,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4735,14 +5660,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4752,15 +5681,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -4772,14 +5705,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4789,14 +5726,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4806,14 +5747,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4823,14 +5768,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4840,15 +5789,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -4860,14 +5813,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4877,15 +5834,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -4899,14 +5860,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4918,14 +5883,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4936,14 +5905,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4954,14 +5927,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4972,14 +5949,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4989,14 +5970,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5006,14 +5991,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5023,14 +6012,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5039,13 +6032,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlDocumentFragment
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -5054,13 +6051,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -5069,17 +6070,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5089,17 +6094,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5109,15 +6118,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -5127,16 +6140,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -5147,19 +6164,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -5171,16 +6192,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -5192,19 +6217,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentFragment_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocumentFragment.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -5217,12 +6246,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlDocumentType) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlDocumentType, IXmlDocumentType_Ptr);
    begin
       if this.m_IXmlDocumentType /= null then
          if this.m_IXmlDocumentType.all /= null then
-            RefCount := this.m_IXmlDocumentType.all.Release;
+            temp := this.m_IXmlDocumentType.all.Release;
             Free (this.m_IXmlDocumentType);
          end if;
       end if;
@@ -5237,13 +6266,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlDocumentType.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5253,11 +6286,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          Hr := this.m_IXmlDocumentType.all.get_Entities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -5269,11 +6306,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          Hr := this.m_IXmlDocumentType.all.get_Notations (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -5285,14 +6326,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5302,13 +6347,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -5317,14 +6366,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5334,17 +6387,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5354,14 +6411,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5371,15 +6432,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocumentType.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -5391,14 +6456,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5408,14 +6477,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5425,14 +6498,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5442,14 +6519,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5459,15 +6540,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlDocumentType.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -5479,14 +6564,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5496,15 +6585,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlDocumentType.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -5518,14 +6611,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5537,14 +6634,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5555,14 +6656,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5573,14 +6678,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5591,14 +6700,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5608,14 +6721,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5625,14 +6742,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5642,14 +6763,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5658,13 +6783,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlDocumentType
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -5673,13 +6802,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -5688,17 +6821,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5708,17 +6845,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5728,15 +6869,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -5746,16 +6891,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -5766,19 +6915,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocumentType.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -5790,16 +6943,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlDocumentType.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -5811,19 +6968,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlDocumentType_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlDocumentType.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -5836,12 +6997,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlDomImplementation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlDomImplementation, IXmlDomImplementation_Ptr);
    begin
       if this.m_IXmlDomImplementation /= null then
          if this.m_IXmlDomImplementation.all /= null then
-            RefCount := this.m_IXmlDomImplementation.all.Release;
+            temp := this.m_IXmlDomImplementation.all.Release;
             Free (this.m_IXmlDomImplementation);
          end if;
       end if;
@@ -5858,12 +7019,16 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_feature : WinRt.HString := To_HString (feature);
+      HStr_feature : constant WinRt.HString := To_HString (feature);
    begin
       Hr := this.m_IXmlDomImplementation.all.HasFeature (HStr_feature, version, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_feature);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_feature);
       return m_ComRetVal;
    end;
 
@@ -5876,12 +7041,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlElement) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlElement, IXmlElement_Ptr);
    begin
       if this.m_IXmlElement /= null then
          if this.m_IXmlElement.all /= null then
-            RefCount := this.m_IXmlElement.all.Release;
+            temp := this.m_IXmlElement.all.Release;
             Free (this.m_IXmlElement);
          end if;
       end if;
@@ -5896,13 +7061,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlElement.all.get_TagName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5913,15 +7082,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_attributeName : WinRt.HString := To_HString (attributeName);
+      HStr_attributeName : constant WinRt.HString := To_HString (attributeName);
    begin
       Hr := this.m_IXmlElement.all.GetAttribute (HStr_attributeName, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_attributeName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_attributeName);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5932,13 +7105,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       attributeValue : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_attributeName : WinRt.HString := To_HString (attributeName);
-      HStr_attributeValue : WinRt.HString := To_HString (attributeValue);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_attributeName : constant WinRt.HString := To_HString (attributeName);
+      HStr_attributeValue : constant WinRt.HString := To_HString (attributeValue);
    begin
       Hr := this.m_IXmlElement.all.SetAttribute (HStr_attributeName, HStr_attributeValue);
-      Hr := WindowsDeleteString (HStr_attributeName);
-      Hr := WindowsDeleteString (HStr_attributeValue);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_attributeName);
+      tmp := WindowsDeleteString (HStr_attributeValue);
    end;
 
    procedure RemoveAttribute
@@ -5947,11 +7124,15 @@ package body WinRt.Windows.Data.Xml.Dom is
       attributeName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_attributeName : WinRt.HString := To_HString (attributeName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_attributeName : constant WinRt.HString := To_HString (attributeName);
    begin
       Hr := this.m_IXmlElement.all.RemoveAttribute (HStr_attributeName);
-      Hr := WindowsDeleteString (HStr_attributeName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_attributeName);
    end;
 
    function GetAttributeNode
@@ -5961,15 +7142,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
-      HStr_attributeName : WinRt.HString := To_HString (attributeName);
+      HStr_attributeName : constant WinRt.HString := To_HString (attributeName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlElement.all.GetAttributeNode (HStr_attributeName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_attributeName);
+         tmp := WindowsDeleteString (HStr_attributeName);
       end return;
    end;
 
@@ -5980,11 +7165,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlElement.all.SetAttributeNode (newAttribute.m_IXmlAttribute.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
       end return;
@@ -5997,11 +7186,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlElement.all.RemoveAttributeNode (attributeNode.m_IXmlAttribute.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
       end return;
@@ -6014,15 +7207,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_tagName : WinRt.HString := To_HString (tagName);
+      HStr_tagName : constant WinRt.HString := To_HString (tagName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          Hr := this.m_IXmlElement.all.GetElementsByTagName (HStr_tagName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_tagName);
+         tmp := WindowsDeleteString (HStr_tagName);
       end return;
    end;
 
@@ -6034,13 +7231,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_qualifiedName : WinRt.HString := To_HString (qualifiedName);
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_qualifiedName : constant WinRt.HString := To_HString (qualifiedName);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXmlElement.all.SetAttributeNS (namespaceUri, HStr_qualifiedName, HStr_value);
-      Hr := WindowsDeleteString (HStr_qualifiedName);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_qualifiedName);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function GetAttributeNS
@@ -6051,15 +7252,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_localName : WinRt.HString := To_HString (localName);
+      HStr_localName : constant WinRt.HString := To_HString (localName);
    begin
       Hr := this.m_IXmlElement.all.GetAttributeNS (namespaceUri, HStr_localName, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_localName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_localName);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6070,11 +7275,15 @@ package body WinRt.Windows.Data.Xml.Dom is
       localName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localName : WinRt.HString := To_HString (localName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localName : constant WinRt.HString := To_HString (localName);
    begin
       Hr := this.m_IXmlElement.all.RemoveAttributeNS (namespaceUri, HStr_localName);
-      Hr := WindowsDeleteString (HStr_localName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_localName);
    end;
 
    function SetAttributeNodeNS
@@ -6084,11 +7293,15 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlElement.all.SetAttributeNodeNS (newAttribute.m_IXmlAttribute.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
       end return;
@@ -6102,15 +7315,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlAttribute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlAttribute;
-      HStr_localName : WinRt.HString := To_HString (localName);
+      HStr_localName : constant WinRt.HString := To_HString (localName);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlAttribute do
          Hr := this.m_IXmlElement.all.GetAttributeNodeNS (namespaceUri, HStr_localName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlAttribute := new Windows.Data.Xml.Dom.IXmlAttribute;
          Retval.m_IXmlAttribute.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_localName);
+         tmp := WindowsDeleteString (HStr_localName);
       end return;
    end;
 
@@ -6120,14 +7337,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6137,13 +7358,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -6152,14 +7377,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6169,17 +7398,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6189,14 +7422,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6206,15 +7443,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlElement.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -6226,14 +7467,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6243,14 +7488,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6260,14 +7509,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6277,14 +7530,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6294,15 +7551,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlElement.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -6314,14 +7575,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6331,15 +7596,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlElement.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -6353,14 +7622,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6372,14 +7645,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6390,14 +7667,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6408,14 +7689,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6426,14 +7711,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6443,14 +7732,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6460,14 +7753,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6477,14 +7774,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6493,13 +7794,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlElement
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -6508,13 +7813,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -6523,17 +7832,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6543,17 +7856,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6563,15 +7880,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -6581,16 +7902,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -6601,19 +7926,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlElement.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -6625,16 +7954,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlElement.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -6646,19 +7979,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlElement_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlElement.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -6671,12 +8008,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlEntityReference) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlEntityReference, IXmlEntityReference_Ptr);
    begin
       if this.m_IXmlEntityReference /= null then
          if this.m_IXmlEntityReference.all /= null then
-            RefCount := this.m_IXmlEntityReference.all.Release;
+            temp := this.m_IXmlEntityReference.all.Release;
             Free (this.m_IXmlEntityReference);
          end if;
       end if;
@@ -6691,14 +8028,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6708,13 +8049,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -6723,14 +8068,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6740,17 +8089,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6760,14 +8113,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6777,15 +8134,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlEntityReference.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -6797,14 +8158,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6814,14 +8179,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6831,14 +8200,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6848,14 +8221,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6865,15 +8242,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlEntityReference.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -6885,14 +8266,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6902,15 +8287,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlEntityReference.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -6924,14 +8313,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6943,14 +8336,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6961,14 +8358,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6979,14 +8380,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6997,14 +8402,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7014,14 +8423,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7031,14 +8444,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7048,14 +8465,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7064,13 +8485,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlEntityReference
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -7079,13 +8504,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -7094,17 +8523,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7114,17 +8547,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7134,15 +8571,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -7152,16 +8593,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -7172,19 +8617,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlEntityReference.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -7196,16 +8645,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlEntityReference.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -7217,19 +8670,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlEntityReference_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlEntityReference.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -7242,12 +8699,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlLoadSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlLoadSettings, IXmlLoadSettings_Ptr);
    begin
       if this.m_IXmlLoadSettings /= null then
          if this.m_IXmlLoadSettings.all /= null then
-            RefCount := this.m_IXmlLoadSettings.all.Release;
+            temp := this.m_IXmlLoadSettings.all.Release;
             Free (this.m_IXmlLoadSettings);
          end if;
       end if;
@@ -7258,7 +8715,8 @@ package body WinRt.Windows.Data.Xml.Dom is
 
    function Constructor return XmlLoadSettings is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlLoadSettings");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlLoadSettings");
       m_ComRetVal  : aliased Windows.Data.Xml.Dom.IXmlLoadSettings;
    begin
       return RetVal : XmlLoadSettings do
@@ -7267,7 +8725,7 @@ package body WinRt.Windows.Data.Xml.Dom is
             Retval.m_IXmlLoadSettings := new Windows.Data.Xml.Dom.IXmlLoadSettings;
             Retval.m_IXmlLoadSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7280,10 +8738,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IXmlLoadSettings.all.get_MaxElementDepth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7293,9 +8755,13 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXmlLoadSettings.all.put_MaxElementDepth (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProhibitDtd
@@ -7304,10 +8770,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXmlLoadSettings.all.get_ProhibitDtd (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7317,9 +8787,13 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXmlLoadSettings.all.put_ProhibitDtd (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ResolveExternals
@@ -7328,10 +8802,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXmlLoadSettings.all.get_ResolveExternals (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7341,9 +8819,13 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXmlLoadSettings.all.put_ResolveExternals (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ValidateOnParse
@@ -7352,10 +8834,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXmlLoadSettings.all.get_ValidateOnParse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7365,9 +8851,13 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXmlLoadSettings.all.put_ValidateOnParse (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ElementContentWhiteSpace
@@ -7376,10 +8866,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXmlLoadSettings.all.get_ElementContentWhiteSpace (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7389,9 +8883,13 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXmlLoadSettings.all.put_ElementContentWhiteSpace (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7403,12 +8901,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlNamedNodeMap) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlNamedNodeMap, IXmlNamedNodeMap_Ptr);
    begin
       if this.m_IXmlNamedNodeMap /= null then
          if this.m_IXmlNamedNodeMap.all /= null then
-            RefCount := this.m_IXmlNamedNodeMap.all.Release;
+            temp := this.m_IXmlNamedNodeMap.all.Release;
             Free (this.m_IXmlNamedNodeMap);
          end if;
       end if;
@@ -7423,10 +8921,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IXmlNamedNodeMap.all.get_Length (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7437,10 +8939,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IXmlNamedNodeMap.all.Item (index, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7451,12 +8957,16 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IXmlNamedNodeMap.all.GetNamedItem (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -7467,10 +8977,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IXmlNamedNodeMap.all.SetNamedItem (node, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7481,12 +8995,16 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IXmlNamedNodeMap.all.RemoveNamedItem (HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -7498,12 +9016,16 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IXmlNamedNodeMap.all.GetNamedItemNS (namespaceUri, HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -7515,12 +9037,16 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_IXmlNamedNodeMap.all.RemoveNamedItemNS (namespaceUri, HStr_name, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
       return m_ComRetVal;
    end;
 
@@ -7531,10 +9057,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IXmlNamedNodeMap.all.SetNamedItemNS (node, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7546,15 +9076,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNamedNodeMap_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNamedNodeMap.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7564,15 +9098,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNamedNodeMap_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNamedNodeMap.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7584,15 +9122,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNamedNodeMap_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNamedNodeMap.all);
       Hr := m_Interface.IndexOf (value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7604,8 +9146,9 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNamedNodeMap_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
@@ -7613,7 +9156,10 @@ package body WinRt.Windows.Data.Xml.Dom is
    begin
       m_Interface := QInterface (this.m_IXmlNamedNodeMap.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7624,15 +9170,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4044648444, 35986, 22248, (147, 241, 113, 31, 134, 114, 38, 51 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNamedNodeMap_Interface, IIterable_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNamedNodeMap.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7645,12 +9195,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlNodeList) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlNodeList, IXmlNodeList_Ptr);
    begin
       if this.m_IXmlNodeList /= null then
          if this.m_IXmlNodeList.all /= null then
-            RefCount := this.m_IXmlNodeList.all.Release;
+            temp := this.m_IXmlNodeList.all.Release;
             Free (this.m_IXmlNodeList);
          end if;
       end if;
@@ -7665,10 +9215,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IXmlNodeList.all.get_Length (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7679,10 +9233,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IXmlNodeList.all.Item (index, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7694,15 +9252,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNodeList_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNodeList.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7712,15 +9274,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNodeList_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNodeList.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7732,15 +9298,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNodeList_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNodeList.all);
       Hr := m_Interface.IndexOf (value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7752,8 +9322,9 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (329094558, 59317, 23734, (165, 150, 75, 84, 68, 120, 218, 155 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNodeList_Interface, IVectorView_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
@@ -7761,7 +9332,10 @@ package body WinRt.Windows.Data.Xml.Dom is
    begin
       m_Interface := QInterface (this.m_IXmlNodeList.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7772,15 +9346,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IXmlNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4044648444, 35986, 22248, (147, 241, 113, 31, 134, 114, 38, 51 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlNodeList_Interface, IIterable_IXmlNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlNodeList.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7793,12 +9371,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlProcessingInstruction) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlProcessingInstruction, IXmlProcessingInstruction_Ptr);
    begin
       if this.m_IXmlProcessingInstruction /= null then
          if this.m_IXmlProcessingInstruction.all /= null then
-            RefCount := this.m_IXmlProcessingInstruction.all.Release;
+            temp := this.m_IXmlProcessingInstruction.all.Release;
             Free (this.m_IXmlProcessingInstruction);
          end if;
       end if;
@@ -7813,13 +9391,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlProcessingInstruction.all.get_Target (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7829,13 +9411,17 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXmlProcessingInstruction.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7845,11 +9431,15 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXmlProcessingInstruction.all.put_Data (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_NodeValue
@@ -7858,14 +9448,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7875,13 +9469,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -7890,14 +9488,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7907,17 +9509,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7927,14 +9533,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7944,15 +9554,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -7964,14 +9578,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7981,14 +9599,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7998,14 +9620,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8015,14 +9641,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8032,15 +9662,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -8052,14 +9686,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8069,15 +9707,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -8091,14 +9733,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8110,14 +9756,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8128,14 +9778,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8146,14 +9800,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8164,14 +9822,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8181,14 +9843,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8198,14 +9864,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8215,14 +9885,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8231,13 +9905,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlProcessingInstruction
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -8246,13 +9924,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -8261,17 +9943,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8281,17 +9967,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8301,15 +9991,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -8319,16 +10013,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -8339,19 +10037,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -8363,16 +10065,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -8384,19 +10090,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlProcessingInstruction_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlProcessingInstruction.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -8409,12 +10119,12 @@ package body WinRt.Windows.Data.Xml.Dom is
    end;
 
    procedure Finalize (this : in out XmlText) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXmlText, IXmlText_Ptr);
    begin
       if this.m_IXmlText /= null then
          if this.m_IXmlText.all /= null then
-            RefCount := this.m_IXmlText.all.Release;
+            temp := this.m_IXmlText.all.Release;
             Free (this.m_IXmlText);
          end if;
       end if;
@@ -8430,10 +10140,14 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlText is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlText;
    begin
       Hr := this.m_IXmlText.all.SplitText (offset, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8443,17 +10157,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_Data (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8463,15 +10181,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.put_Data (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Length
@@ -8480,14 +10202,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_Length (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8499,17 +10225,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.SubstringData (offset, count, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8519,15 +10249,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.AppendData (HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure InsertData
@@ -8537,15 +10271,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.InsertData (offset, HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    procedure DeleteData
@@ -8555,13 +10293,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       count : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.DeleteData (offset, count);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReplaceData
@@ -8572,15 +10314,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       data : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlCharacterData := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_data : WinRt.HString := To_HString (data);
+      temp             : WinRt.UInt32 := 0;
+      HStr_data : constant WinRt.HString := To_HString (data);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlCharacterData, WinRt.Windows.Data.Xml.Dom.IID_IXmlCharacterData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.ReplaceData (offset, count, HStr_data);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_data);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_data);
    end;
 
    function get_NodeValue
@@ -8589,14 +10335,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_NodeValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8606,13 +10356,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.put_NodeValue (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NodeType
@@ -8621,14 +10375,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.NodeType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.NodeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_NodeType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8638,17 +10396,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_NodeName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8658,14 +10420,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_ParentNode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8675,15 +10441,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlText.all);
          Hr := m_Interface.get_ChildNodes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
       end return;
@@ -8695,14 +10465,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_FirstChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8712,14 +10486,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_LastChild (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8729,14 +10507,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_PreviousSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8746,14 +10528,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_NextSibling (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8763,15 +10549,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNamedNodeMap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNamedNodeMap do
          m_Interface := QInterface (this.m_IXmlText.all);
          Hr := m_Interface.get_Attributes (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNamedNodeMap := new Windows.Data.Xml.Dom.IXmlNamedNodeMap;
          Retval.m_IXmlNamedNodeMap.all := m_ComRetVal;
       end return;
@@ -8783,14 +10573,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.HasChildNodes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8800,15 +10594,19 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          m_Interface := QInterface (this.m_IXmlText.all);
          Hr := m_Interface.get_OwnerDocument (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
@@ -8822,14 +10620,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.InsertBefore (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8841,14 +10643,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.ReplaceChild (newChild, referenceChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8859,14 +10665,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.RemoveChild (childNode, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8877,14 +10687,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.AppendChild (newChild, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8895,14 +10709,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.CloneNode (deep, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8912,14 +10730,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_NamespaceUri (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8929,14 +10751,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_LocalName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8946,14 +10772,18 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_Prefix (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8962,13 +10792,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       this : in out XmlText
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.Normalize;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Prefix
@@ -8977,13 +10811,17 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNode := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNode, WinRt.Windows.Data.Xml.Dom.IID_IXmlNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.put_Prefix (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetXml
@@ -8992,17 +10830,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.GetXml (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9012,17 +10854,21 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.get_InnerText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9032,15 +10878,19 @@ package body WinRt.Windows.Data.Xml.Dom is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSerializer, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSerializer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.put_InnerText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function SelectSingleNode
@@ -9050,16 +10900,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.SelectSingleNode (HStr_xpath, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -9070,19 +10924,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlText.all);
          Hr := m_Interface.SelectNodes (HStr_xpath, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 
@@ -9094,16 +10952,20 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.IXmlNode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXmlText.all);
       Hr := m_Interface.SelectSingleNodeNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_xpath);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_xpath);
       return m_ComRetVal;
    end;
 
@@ -9115,19 +10977,23 @@ package body WinRt.Windows.Data.Xml.Dom is
    )
    return WinRt.Windows.Data.Xml.Dom.XmlNodeList'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNodeList;
-      HStr_xpath : WinRt.HString := To_HString (xpath);
+      HStr_xpath : constant WinRt.HString := To_HString (xpath);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Dom.IXmlText_Interface, WinRt.Windows.Data.Xml.Dom.IXmlNodeSelector, WinRt.Windows.Data.Xml.Dom.IID_IXmlNodeSelector'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlNodeList do
          m_Interface := QInterface (this.m_IXmlText.all);
          Hr := m_Interface.SelectNodesNS (HStr_xpath, namespaces, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXmlNodeList := new Windows.Data.Xml.Dom.IXmlNodeList;
          Retval.m_IXmlNodeList.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_xpath);
+         tmp := WindowsDeleteString (HStr_xpath);
       end return;
    end;
 

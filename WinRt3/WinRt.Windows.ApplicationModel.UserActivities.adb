@@ -53,12 +53,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivity) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivity, IUserActivity_Ptr);
    begin
       if this.m_IUserActivity /= null then
          if this.m_IUserActivity.all /= null then
-            RefCount := this.m_IUserActivity.all.Release;
+            temp := this.m_IUserActivity.all.Release;
             Free (this.m_IUserActivity);
          end if;
       end if;
@@ -73,11 +73,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return UserActivity is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
       m_Factory    : access IUserActivityFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.UserActivities.IUserActivity;
-      HStr_activityId : WinRt.HString := To_HString (activityId);
+      HStr_activityId : constant WinRt.HString := To_HString (activityId);
    begin
       return RetVal : UserActivity do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityFactory'Access , m_Factory'Address);
@@ -85,10 +86,10 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             Hr := m_Factory.CreateWithActivityId (HStr_activityId, m_ComRetVal'Access);
             Retval.m_IUserActivity := new Windows.ApplicationModel.UserActivities.IUserActivity;
             Retval.m_IUserActivity.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activityId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activityId);
       end return;
    end;
 
@@ -101,22 +102,26 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivity is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivity;
-      HStr_json : WinRt.HString := To_HString (json);
+      HStr_json : constant WinRt.HString := To_HString (json);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivity do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryParseFromJson (HStr_json, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserActivity := new Windows.ApplicationModel.UserActivities.IUserActivity;
             Retval.m_IUserActivity.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_json);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_json);
       end return;
    end;
 
@@ -126,19 +131,23 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
-      HStr_json : WinRt.HString := To_HString (json);
+      HStr_json : constant WinRt.HString := To_HString (json);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUserActivityStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParseFromJsonArray (HStr_json, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_json);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_json);
       return m_ComRetVal;
    end;
 
@@ -148,20 +157,24 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUserActivityStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ToJsonArray (activities, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -174,10 +187,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.UserActivityState;
    begin
       Hr := this.m_IUserActivity.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -187,13 +204,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivity.all.get_ActivityId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -203,11 +224,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityVisualElements'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityVisualElements;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityVisualElements do
          Hr := this.m_IUserActivity.all.get_VisualElements (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserActivityVisualElements := new Windows.ApplicationModel.UserActivities.IUserActivityVisualElements;
          Retval.m_IUserActivityVisualElements.all := m_ComRetVal;
       end return;
@@ -219,11 +244,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IUserActivity.all.get_ContentUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -235,9 +264,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivity.all.put_ContentUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentType
@@ -246,13 +279,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivity.all.get_ContentType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -262,11 +299,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUserActivity.all.put_ContentType (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FallbackUri
@@ -275,11 +316,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IUserActivity.all.get_FallbackUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -291,9 +336,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivity.all.put_FallbackUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActivationUri
@@ -302,11 +351,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IUserActivity.all.get_ActivationUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -318,9 +371,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivity.all.put_ActivationUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentInfo
@@ -329,10 +386,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.IUserActivityContentInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityContentInfo;
    begin
       Hr := this.m_IUserActivity.all.get_ContentInfo (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -342,9 +403,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivity.all.put_ContentInfo (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SaveAsync
@@ -352,7 +417,8 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       this : in out UserActivity
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -360,7 +426,6 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -381,9 +446,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -395,11 +460,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivitySession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivitySession;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivitySession do
          Hr := this.m_IUserActivity.all.CreateSession (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserActivitySession := new Windows.ApplicationModel.UserActivities.IUserActivitySession;
          Retval.m_IUserActivitySession.all := m_ComRetVal;
       end return;
@@ -411,17 +480,21 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivity2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserActivities.IUserActivity_Interface, WinRt.Windows.ApplicationModel.UserActivities.IUserActivity2, WinRt.Windows.ApplicationModel.UserActivities.IID_IUserActivity2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserActivity.all);
       Hr := m_Interface.ToJson (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -431,14 +504,18 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivity3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserActivities.IUserActivity_Interface, WinRt.Windows.ApplicationModel.UserActivities.IUserActivity3, WinRt.Windows.ApplicationModel.UserActivities.IID_IUserActivity3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserActivity.all);
       Hr := m_Interface.get_IsRoamable (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -448,13 +525,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivity3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserActivities.IUserActivity_Interface, WinRt.Windows.ApplicationModel.UserActivities.IUserActivity3, WinRt.Windows.ApplicationModel.UserActivities.IID_IUserActivity3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserActivity.all);
       Hr := m_Interface.put_IsRoamable (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -466,12 +547,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityAttribution) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityAttribution, IUserActivityAttribution_Ptr);
    begin
       if this.m_IUserActivityAttribution /= null then
          if this.m_IUserActivityAttribution.all /= null then
-            RefCount := this.m_IUserActivityAttribution.all.Release;
+            temp := this.m_IUserActivityAttribution.all.Release;
             Free (this.m_IUserActivityAttribution);
          end if;
       end if;
@@ -486,9 +567,10 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return UserActivityAttribution is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
       m_Factory    : access IUserActivityAttributionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
    begin
       return RetVal : UserActivityAttribution do
@@ -497,15 +579,16 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             Hr := m_Factory.CreateWithUri (iconUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IUserActivityAttribution := new Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
             Retval.m_IUserActivityAttribution.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return UserActivityAttribution is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
       m_ComRetVal  : aliased Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
    begin
       return RetVal : UserActivityAttribution do
@@ -514,7 +597,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             Retval.m_IUserActivityAttribution := new Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
             Retval.m_IUserActivityAttribution.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -527,11 +610,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IUserActivityAttribution.all.get_IconUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -543,9 +630,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityAttribution.all.put_IconUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AlternateText
@@ -554,13 +645,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivityAttribution.all.get_AlternateText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -570,11 +665,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUserActivityAttribution.all.put_AlternateText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AddImageQuery
@@ -583,10 +682,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IUserActivityAttribution.all.get_AddImageQuery (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -596,9 +699,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityAttribution.all.put_AddImageQuery (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -610,12 +717,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityChannel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityChannel, IUserActivityChannel_Ptr);
    begin
       if this.m_IUserActivityChannel /= null then
          if this.m_IUserActivityChannel.all /= null then
-            RefCount := this.m_IUserActivityChannel.all.Release;
+            temp := this.m_IUserActivityChannel.all.Release;
             Free (this.m_IUserActivityChannel);
          end if;
       end if;
@@ -627,35 +734,43 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    function GetDefault
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
             Retval.m_IUserActivityChannel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    procedure DisableAutoSessionCreation is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.DisableAutoSessionCreation;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function TryGetForWebAccount
@@ -664,20 +779,24 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryGetForWebAccount (account.m_IWebAccount.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
             Retval.m_IUserActivityChannel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -687,20 +806,24 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityChannel");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannelStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityChannel;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityChannelStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserActivityChannel := new Windows.ApplicationModel.UserActivities.IUserActivityChannel;
             Retval.m_IUserActivityChannel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -714,14 +837,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivity'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_activityId : WinRt.HString := To_HString (activityId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_activityId : constant WinRt.HString := To_HString (activityId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UserActivity.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -739,7 +862,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UserActivity.Kind_Delegate, AsyncOperationCompletedHandler_UserActivity.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -753,7 +876,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
          Hr := this.m_IUserActivityChannel.all.GetOrCreateUserActivityAsync (HStr_activityId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -765,14 +888,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
                   Retval.m_IUserActivity := new Windows.ApplicationModel.UserActivities.IUserActivity;
                   Retval.m_IUserActivity.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_activityId);
+         tmp := WindowsDeleteString (HStr_activityId);
       end return;
    end;
 
@@ -782,8 +905,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       activityId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_activityId : WinRt.HString := To_HString (activityId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_activityId : constant WinRt.HString := To_HString (activityId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -791,7 +915,6 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -812,13 +935,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_activityId);
+      tmp := WindowsDeleteString (HStr_activityId);
    end;
 
    procedure DeleteAllActivitiesAsync
@@ -826,7 +949,8 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       this : in out UserActivityChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -834,7 +958,6 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -855,9 +978,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -870,14 +993,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannel2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -895,7 +1018,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -908,10 +1031,10 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    begin
       m_Interface := QInterface (this.m_IUserActivityChannel.all);
       Hr := m_Interface.GetRecentUserActivitiesAsync (maxUniqueActivities, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -921,9 +1044,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -939,15 +1062,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannel2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_activityId : WinRt.HString := To_HString (activityId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_activityId : constant WinRt.HString := To_HString (activityId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -965,7 +1088,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -978,10 +1101,10 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    begin
       m_Interface := QInterface (this.m_IUserActivityChannel.all);
       Hr := m_Interface.GetSessionHistoryItemsForUserActivityAsync (HStr_activityId, startTime, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -991,14 +1114,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_activityId);
+      tmp := WindowsDeleteString (HStr_activityId);
       return m_RetVal;
    end;
 
@@ -1011,12 +1134,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityContentInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityContentInfo, IUserActivityContentInfo_Ptr);
    begin
       if this.m_IUserActivityContentInfo /= null then
          if this.m_IUserActivityContentInfo.all /= null then
-            RefCount := this.m_IUserActivityContentInfo.all.Release;
+            temp := this.m_IUserActivityContentInfo.all.Release;
             Free (this.m_IUserActivityContentInfo);
          end if;
       end if;
@@ -1031,22 +1154,26 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityContentInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityContentInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityContentInfo");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityContentInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityContentInfo;
-      HStr_value : WinRt.HString := To_HString (value);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityContentInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityContentInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromJson (HStr_value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserActivityContentInfo := new Windows.ApplicationModel.UserActivities.IUserActivityContentInfo;
             Retval.m_IUserActivityContentInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_value);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
       end return;
    end;
 
@@ -1059,13 +1186,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivityContentInfo.all.ToJson (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1078,12 +1209,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityRequest, IUserActivityRequest_Ptr);
    begin
       if this.m_IUserActivityRequest /= null then
          if this.m_IUserActivityRequest.all /= null then
-            RefCount := this.m_IUserActivityRequest.all.Release;
+            temp := this.m_IUserActivityRequest.all.Release;
             Free (this.m_IUserActivityRequest);
          end if;
       end if;
@@ -1098,9 +1229,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       activity : Windows.ApplicationModel.UserActivities.UserActivity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityRequest.all.SetUserActivity (activity.m_IUserActivity.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1112,12 +1247,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityRequestManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityRequestManager, IUserActivityRequestManager_Ptr);
    begin
       if this.m_IUserActivityRequestManager /= null then
          if this.m_IUserActivityRequestManager.all /= null then
-            RefCount := this.m_IUserActivityRequestManager.all.Release;
+            temp := this.m_IUserActivityRequestManager.all.Release;
             Free (this.m_IUserActivityRequestManager);
          end if;
       end if;
@@ -1129,20 +1264,24 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityRequestManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityRequestManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityRequestManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityRequestManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityRequestManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityRequestManager do
          Hr := RoGetActivationFactory (m_hString, IID_IUserActivityRequestManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserActivityRequestManager := new Windows.ApplicationModel.UserActivities.IUserActivityRequestManager;
             Retval.m_IUserActivityRequestManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1156,10 +1295,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserActivityRequestManager.all.add_UserActivityRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1169,9 +1312,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityRequestManager.all.remove_UserActivityRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1183,12 +1330,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityRequestedEventArgs, IUserActivityRequestedEventArgs_Ptr);
    begin
       if this.m_IUserActivityRequestedEventArgs /= null then
          if this.m_IUserActivityRequestedEventArgs.all /= null then
-            RefCount := this.m_IUserActivityRequestedEventArgs.all.Release;
+            temp := this.m_IUserActivityRequestedEventArgs.all.Release;
             Free (this.m_IUserActivityRequestedEventArgs);
          end if;
       end if;
@@ -1203,11 +1350,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityRequest do
          Hr := this.m_IUserActivityRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserActivityRequest := new Windows.ApplicationModel.UserActivities.IUserActivityRequest;
          Retval.m_IUserActivityRequest.all := m_ComRetVal;
       end return;
@@ -1219,11 +1370,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserActivityRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -1238,12 +1393,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivitySession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivitySession, IUserActivitySession_Ptr);
    begin
       if this.m_IUserActivitySession /= null then
          if this.m_IUserActivitySession.all /= null then
-            RefCount := this.m_IUserActivitySession.all.Release;
+            temp := this.m_IUserActivitySession.all.Release;
             Free (this.m_IUserActivitySession);
          end if;
       end if;
@@ -1258,13 +1413,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivitySession.all.get_ActivityId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1273,13 +1432,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       this : in out UserActivitySession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserActivities.IUserActivitySession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserActivitySession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1291,12 +1454,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivitySessionHistoryItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivitySessionHistoryItem, IUserActivitySessionHistoryItem_Ptr);
    begin
       if this.m_IUserActivitySessionHistoryItem /= null then
          if this.m_IUserActivitySessionHistoryItem.all /= null then
-            RefCount := this.m_IUserActivitySessionHistoryItem.all.Release;
+            temp := this.m_IUserActivitySessionHistoryItem.all.Release;
             Free (this.m_IUserActivitySessionHistoryItem);
          end if;
       end if;
@@ -1311,11 +1474,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivity'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivity;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivity do
          Hr := this.m_IUserActivitySessionHistoryItem.all.get_UserActivity (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserActivity := new Windows.ApplicationModel.UserActivities.IUserActivity;
          Retval.m_IUserActivity.all := m_ComRetVal;
       end return;
@@ -1327,10 +1494,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IUserActivitySessionHistoryItem.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1340,13 +1511,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return IReference_DateTime.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserActivitySessionHistoryItem.all.get_EndTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_DateTime (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1359,12 +1534,12 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    end;
 
    procedure Finalize (this : in out UserActivityVisualElements) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserActivityVisualElements, IUserActivityVisualElements_Ptr);
    begin
       if this.m_IUserActivityVisualElements /= null then
          if this.m_IUserActivityVisualElements.all /= null then
-            RefCount := this.m_IUserActivityVisualElements.all.Release;
+            temp := this.m_IUserActivityVisualElements.all.Release;
             Free (this.m_IUserActivityVisualElements);
          end if;
       end if;
@@ -1379,13 +1554,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivityVisualElements.all.get_DisplayText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1395,11 +1574,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUserActivityVisualElements.all.put_DisplayText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -1408,13 +1591,17 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserActivityVisualElements.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1424,11 +1611,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUserActivityVisualElements.all.put_Description (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_BackgroundColor
@@ -1437,10 +1628,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IUserActivityVisualElements.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1450,9 +1645,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityVisualElements.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Attribution
@@ -1461,11 +1660,15 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityAttribution'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserActivities.UserActivityAttribution do
          Hr := this.m_IUserActivityVisualElements.all.get_Attribution (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUserActivityAttribution := new Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
          Retval.m_IUserActivityAttribution.all := m_ComRetVal;
       end return;
@@ -1477,9 +1680,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.ApplicationModel.UserActivities.UserActivityAttribution'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityVisualElements.all.put_Attribution (value.m_IUserActivityAttribution.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Content
@@ -1488,9 +1695,13 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : Windows.UI.Shell.IAdaptiveCard
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserActivityVisualElements.all.put_Content (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Content
@@ -1499,10 +1710,14 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.Windows.UI.Shell.IAdaptiveCard is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Shell.IAdaptiveCard;
    begin
       Hr := this.m_IUserActivityVisualElements.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1512,17 +1727,21 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements_Interface, WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements2, WinRt.Windows.ApplicationModel.UserActivities.IID_IUserActivityVisualElements2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserActivityVisualElements.all);
       Hr := m_Interface.get_AttributionDisplayText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1532,15 +1751,19 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements_Interface, WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements2, WinRt.Windows.ApplicationModel.UserActivities.IID_IUserActivityVisualElements2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserActivityVisualElements.all);
       Hr := m_Interface.put_AttributionDisplayText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
 end WinRt.Windows.ApplicationModel.UserActivities;

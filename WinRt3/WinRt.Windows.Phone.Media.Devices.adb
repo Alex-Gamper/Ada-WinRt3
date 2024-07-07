@@ -42,12 +42,12 @@ package body WinRt.Windows.Phone.Media.Devices is
    end;
 
    procedure Finalize (this : in out AudioRoutingManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioRoutingManager, IAudioRoutingManager_Ptr);
    begin
       if this.m_IAudioRoutingManager /= null then
          if this.m_IAudioRoutingManager.all /= null then
-            RefCount := this.m_IAudioRoutingManager.all.Release;
+            temp := this.m_IAudioRoutingManager.all.Release;
             Free (this.m_IAudioRoutingManager);
          end if;
       end if;
@@ -59,20 +59,24 @@ package body WinRt.Windows.Phone.Media.Devices is
    function GetDefault
    return WinRt.Windows.Phone.Media.Devices.AudioRoutingManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.Media.Devices.AudioRoutingManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Media.Devices.AudioRoutingManager");
       m_Factory        : access WinRt.Windows.Phone.Media.Devices.IAudioRoutingManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Media.Devices.IAudioRoutingManager;
    begin
       return RetVal : WinRt.Windows.Phone.Media.Devices.AudioRoutingManager do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioRoutingManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAudioRoutingManager := new Windows.Phone.Media.Devices.IAudioRoutingManager;
             Retval.m_IAudioRoutingManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -85,10 +89,14 @@ package body WinRt.Windows.Phone.Media.Devices is
    )
    return WinRt.Windows.Phone.Media.Devices.AudioRoutingEndpoint is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Media.Devices.AudioRoutingEndpoint;
    begin
       Hr := this.m_IAudioRoutingManager.all.GetAudioEndpoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -98,9 +106,13 @@ package body WinRt.Windows.Phone.Media.Devices is
       endpoint : Windows.Phone.Media.Devices.AudioRoutingEndpoint
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAudioRoutingManager.all.SetAudioEndpoint (endpoint);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_AudioEndpointChanged
@@ -110,10 +122,14 @@ package body WinRt.Windows.Phone.Media.Devices is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioRoutingManager.all.add_AudioEndpointChanged (endpointChangeHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -123,9 +139,13 @@ package body WinRt.Windows.Phone.Media.Devices is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAudioRoutingManager.all.remove_AudioEndpointChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AvailableAudioEndpoints
@@ -134,10 +154,14 @@ package body WinRt.Windows.Phone.Media.Devices is
    )
    return WinRt.Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Media.Devices.AvailableAudioRoutingEndpoints;
    begin
       Hr := this.m_IAudioRoutingManager.all.get_AvailableAudioEndpoints (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

@@ -47,12 +47,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out DiagnosticActionResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiagnosticActionResult, IDiagnosticActionResult_Ptr);
    begin
       if this.m_IDiagnosticActionResult /= null then
          if this.m_IDiagnosticActionResult.all /= null then
-            RefCount := this.m_IDiagnosticActionResult.all.Release;
+            temp := this.m_IDiagnosticActionResult.all.Release;
             Free (this.m_IDiagnosticActionResult);
          end if;
       end if;
@@ -67,10 +67,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IDiagnosticActionResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -80,11 +84,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IDiagnosticActionResult.all.get_Results (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -99,12 +107,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out DiagnosticInvoker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiagnosticInvoker, IDiagnosticInvoker_Ptr);
    begin
       if this.m_IDiagnosticInvoker /= null then
          if this.m_IDiagnosticInvoker.all /= null then
-            RefCount := this.m_IDiagnosticInvoker.all.Release;
+            temp := this.m_IDiagnosticInvoker.all.Release;
             Free (this.m_IDiagnosticInvoker);
          end if;
       end if;
@@ -116,20 +124,24 @@ package body WinRt.Windows.System.Diagnostics is
    function GetDefault
    return WinRt.Windows.System.Diagnostics.DiagnosticInvoker is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IDiagnosticInvokerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IDiagnosticInvoker;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.DiagnosticInvoker do
          Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticInvokerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDiagnosticInvoker := new Windows.System.Diagnostics.IDiagnosticInvoker;
             Retval.m_IDiagnosticInvoker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -139,37 +151,45 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticInvoker is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IDiagnosticInvokerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IDiagnosticInvoker;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.DiagnosticInvoker do
          Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticInvokerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDiagnosticInvoker := new Windows.System.Diagnostics.IDiagnosticInvoker;
             Retval.m_IDiagnosticInvoker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IDiagnosticInvokerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticInvokerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -183,13 +203,13 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticActionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DiagnosticActionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -207,7 +227,7 @@ package body WinRt.Windows.System.Diagnostics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DiagnosticActionResult.Kind_Delegate, AsyncOperationCompletedHandler_DiagnosticActionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -221,7 +241,7 @@ package body WinRt.Windows.System.Diagnostics is
          Hr := this.m_IDiagnosticInvoker.all.RunDiagnosticActionAsync (context.m_IJsonObject.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -233,9 +253,9 @@ package body WinRt.Windows.System.Diagnostics is
                   Retval.m_IDiagnosticActionResult := new Windows.System.Diagnostics.IDiagnosticActionResult;
                   Retval.m_IDiagnosticActionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -250,15 +270,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticActionResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.IDiagnosticInvoker2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_context : WinRt.HString := To_HString (context);
+      temp             : WinRt.UInt32 := 0;
+      HStr_context : constant WinRt.HString := To_HString (context);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DiagnosticActionResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -276,7 +296,7 @@ package body WinRt.Windows.System.Diagnostics is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DiagnosticActionResult.Kind_Delegate, AsyncOperationCompletedHandler_DiagnosticActionResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -290,10 +310,10 @@ package body WinRt.Windows.System.Diagnostics is
       return RetVal : WinRt.Windows.System.Diagnostics.DiagnosticActionResult do
          m_Interface := QInterface (this.m_IDiagnosticInvoker.all);
          Hr := m_Interface.RunDiagnosticActionFromStringAsync (HStr_context, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -305,14 +325,14 @@ package body WinRt.Windows.System.Diagnostics is
                   Retval.m_IDiagnosticActionResult := new Windows.System.Diagnostics.IDiagnosticActionResult;
                   Retval.m_IDiagnosticActionResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_context);
+         tmp := WindowsDeleteString (HStr_context);
       end return;
    end;
 
@@ -325,12 +345,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessCpuUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessCpuUsage, IProcessCpuUsage_Ptr);
    begin
       if this.m_IProcessCpuUsage /= null then
          if this.m_IProcessCpuUsage.all /= null then
-            RefCount := this.m_IProcessCpuUsage.all.Release;
+            temp := this.m_IProcessCpuUsage.all.Release;
             Free (this.m_IProcessCpuUsage);
          end if;
       end if;
@@ -345,11 +365,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessCpuUsageReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessCpuUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessCpuUsageReport do
          Hr := this.m_IProcessCpuUsage.all.GetReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessCpuUsageReport := new Windows.System.Diagnostics.IProcessCpuUsageReport;
          Retval.m_IProcessCpuUsageReport.all := m_ComRetVal;
       end return;
@@ -364,12 +388,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessCpuUsageReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessCpuUsageReport, IProcessCpuUsageReport_Ptr);
    begin
       if this.m_IProcessCpuUsageReport /= null then
          if this.m_IProcessCpuUsageReport.all /= null then
-            RefCount := this.m_IProcessCpuUsageReport.all.Release;
+            temp := this.m_IProcessCpuUsageReport.all.Release;
             Free (this.m_IProcessCpuUsageReport);
          end if;
       end if;
@@ -384,10 +408,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IProcessCpuUsageReport.all.get_KernelTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -397,10 +425,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IProcessCpuUsageReport.all.get_UserTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -413,12 +445,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessDiagnosticInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessDiagnosticInfo, IProcessDiagnosticInfo_Ptr);
    begin
       if this.m_IProcessDiagnosticInfo /= null then
          if this.m_IProcessDiagnosticInfo.all /= null then
-            RefCount := this.m_IProcessDiagnosticInfo.all.Release;
+            temp := this.m_IProcessDiagnosticInfo.all.Release;
             Free (this.m_IProcessDiagnosticInfo);
          end if;
       end if;
@@ -430,37 +462,45 @@ package body WinRt.Windows.System.Diagnostics is
    function GetForProcesses
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProcessDiagnosticInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetForProcesses (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetForCurrentProcess
    return WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IProcessDiagnosticInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentProcess (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IProcessDiagnosticInfo := new Windows.System.Diagnostics.IProcessDiagnosticInfo;
             Retval.m_IProcessDiagnosticInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -470,20 +510,24 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfoStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IProcessDiagnosticInfoStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryGetForProcessId (processId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IProcessDiagnosticInfo := new Windows.System.Diagnostics.IProcessDiagnosticInfo;
             Retval.m_IProcessDiagnosticInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -496,10 +540,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IProcessDiagnosticInfo.all.get_ProcessId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -509,13 +557,17 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IProcessDiagnosticInfo.all.get_ExecutableFileName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -525,11 +577,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo do
          Hr := this.m_IProcessDiagnosticInfo.all.get_Parent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessDiagnosticInfo := new Windows.System.Diagnostics.IProcessDiagnosticInfo;
          Retval.m_IProcessDiagnosticInfo.all := m_ComRetVal;
       end return;
@@ -541,10 +597,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IProcessDiagnosticInfo.all.get_ProcessStartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -554,11 +614,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessDiskUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiskUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiskUsage do
          Hr := this.m_IProcessDiagnosticInfo.all.get_DiskUsage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessDiskUsage := new Windows.System.Diagnostics.IProcessDiskUsage;
          Retval.m_IProcessDiskUsage.all := m_ComRetVal;
       end return;
@@ -570,11 +634,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessMemoryUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessMemoryUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessMemoryUsage do
          Hr := this.m_IProcessDiagnosticInfo.all.get_MemoryUsage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessMemoryUsage := new Windows.System.Diagnostics.IProcessMemoryUsage;
          Retval.m_IProcessMemoryUsage.all := m_ComRetVal;
       end return;
@@ -586,11 +654,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessCpuUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessCpuUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessCpuUsage do
          Hr := this.m_IProcessDiagnosticInfo.all.get_CpuUsage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessCpuUsage := new Windows.System.Diagnostics.IProcessCpuUsage;
          Retval.m_IProcessCpuUsage.all := m_ComRetVal;
       end return;
@@ -602,17 +674,21 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return IVector_IAppDiagnosticInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IAppDiagnosticInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo_Interface, WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo2, WinRt.Windows.System.Diagnostics.IID_IProcessDiagnosticInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProcessDiagnosticInfo.all);
       Hr := m_Interface.GetAppDiagnosticInfos (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IAppDiagnosticInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -622,14 +698,18 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo_Interface, WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo2, WinRt.Windows.System.Diagnostics.IID_IProcessDiagnosticInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProcessDiagnosticInfo.all);
       Hr := m_Interface.get_IsPackaged (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -642,12 +722,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessDiskUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessDiskUsage, IProcessDiskUsage_Ptr);
    begin
       if this.m_IProcessDiskUsage /= null then
          if this.m_IProcessDiskUsage.all /= null then
-            RefCount := this.m_IProcessDiskUsage.all.Release;
+            temp := this.m_IProcessDiskUsage.all.Release;
             Free (this.m_IProcessDiskUsage);
          end if;
       end if;
@@ -662,11 +742,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessDiskUsageReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiskUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiskUsageReport do
          Hr := this.m_IProcessDiskUsage.all.GetReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessDiskUsageReport := new Windows.System.Diagnostics.IProcessDiskUsageReport;
          Retval.m_IProcessDiskUsageReport.all := m_ComRetVal;
       end return;
@@ -681,12 +765,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessDiskUsageReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessDiskUsageReport, IProcessDiskUsageReport_Ptr);
    begin
       if this.m_IProcessDiskUsageReport /= null then
          if this.m_IProcessDiskUsageReport.all /= null then
-            RefCount := this.m_IProcessDiskUsageReport.all.Release;
+            temp := this.m_IProcessDiskUsageReport.all.Release;
             Free (this.m_IProcessDiskUsageReport);
          end if;
       end if;
@@ -701,10 +785,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IProcessDiskUsageReport.all.get_ReadOperationCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -714,10 +802,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IProcessDiskUsageReport.all.get_WriteOperationCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -727,10 +819,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IProcessDiskUsageReport.all.get_OtherOperationCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -740,10 +836,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IProcessDiskUsageReport.all.get_BytesReadCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -753,10 +853,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IProcessDiskUsageReport.all.get_BytesWrittenCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -766,10 +870,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_IProcessDiskUsageReport.all.get_OtherBytesCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -782,12 +890,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessMemoryUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessMemoryUsage, IProcessMemoryUsage_Ptr);
    begin
       if this.m_IProcessMemoryUsage /= null then
          if this.m_IProcessMemoryUsage.all /= null then
-            RefCount := this.m_IProcessMemoryUsage.all.Release;
+            temp := this.m_IProcessMemoryUsage.all.Release;
             Free (this.m_IProcessMemoryUsage);
          end if;
       end if;
@@ -802,11 +910,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.ProcessMemoryUsageReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessMemoryUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessMemoryUsageReport do
          Hr := this.m_IProcessMemoryUsage.all.GetReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IProcessMemoryUsageReport := new Windows.System.Diagnostics.IProcessMemoryUsageReport;
          Retval.m_IProcessMemoryUsageReport.all := m_ComRetVal;
       end return;
@@ -821,12 +933,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out ProcessMemoryUsageReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessMemoryUsageReport, IProcessMemoryUsageReport_Ptr);
    begin
       if this.m_IProcessMemoryUsageReport /= null then
          if this.m_IProcessMemoryUsageReport.all /= null then
-            RefCount := this.m_IProcessMemoryUsageReport.all.Release;
+            temp := this.m_IProcessMemoryUsageReport.all.Release;
             Free (this.m_IProcessMemoryUsageReport);
          end if;
       end if;
@@ -841,10 +953,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_NonPagedPoolSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -854,10 +970,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PageFaultCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -867,10 +987,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PageFileSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -880,10 +1004,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PagedPoolSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -893,10 +1021,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PeakNonPagedPoolSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -906,10 +1038,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PeakPageFileSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -919,10 +1055,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PeakPagedPoolSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -932,10 +1072,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PeakVirtualMemorySizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -945,10 +1089,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PeakWorkingSetSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -958,10 +1106,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_PrivatePageCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -971,10 +1123,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_VirtualMemorySizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -984,10 +1140,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IProcessMemoryUsageReport.all.get_WorkingSetSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1000,12 +1160,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out SystemCpuUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemCpuUsage, ISystemCpuUsage_Ptr);
    begin
       if this.m_ISystemCpuUsage /= null then
          if this.m_ISystemCpuUsage.all /= null then
-            RefCount := this.m_ISystemCpuUsage.all.Release;
+            temp := this.m_ISystemCpuUsage.all.Release;
             Free (this.m_ISystemCpuUsage);
          end if;
       end if;
@@ -1020,11 +1180,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.SystemCpuUsageReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemCpuUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemCpuUsageReport do
          Hr := this.m_ISystemCpuUsage.all.GetReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISystemCpuUsageReport := new Windows.System.Diagnostics.ISystemCpuUsageReport;
          Retval.m_ISystemCpuUsageReport.all := m_ComRetVal;
       end return;
@@ -1039,12 +1203,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out SystemCpuUsageReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemCpuUsageReport, ISystemCpuUsageReport_Ptr);
    begin
       if this.m_ISystemCpuUsageReport /= null then
          if this.m_ISystemCpuUsageReport.all /= null then
-            RefCount := this.m_ISystemCpuUsageReport.all.Release;
+            temp := this.m_ISystemCpuUsageReport.all.Release;
             Free (this.m_ISystemCpuUsageReport);
          end if;
       end if;
@@ -1059,10 +1223,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISystemCpuUsageReport.all.get_KernelTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1072,10 +1240,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISystemCpuUsageReport.all.get_UserTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1085,10 +1257,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISystemCpuUsageReport.all.get_IdleTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1101,12 +1277,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out SystemDiagnosticInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemDiagnosticInfo, ISystemDiagnosticInfo_Ptr);
    begin
       if this.m_ISystemDiagnosticInfo /= null then
          if this.m_ISystemDiagnosticInfo.all /= null then
-            RefCount := this.m_ISystemDiagnosticInfo.all.Release;
+            temp := this.m_ISystemDiagnosticInfo.all.Release;
             Free (this.m_ISystemDiagnosticInfo);
          end if;
       end if;
@@ -1118,20 +1294,24 @@ package body WinRt.Windows.System.Diagnostics is
    function GetForCurrentSystem
    return WinRt.Windows.System.Diagnostics.SystemDiagnosticInfo is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.Diagnostics.SystemDiagnosticInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.SystemDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemDiagnosticInfo do
          Hr := RoGetActivationFactory (m_hString, IID_ISystemDiagnosticInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentSystem (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISystemDiagnosticInfo := new Windows.System.Diagnostics.ISystemDiagnosticInfo;
             Retval.m_ISystemDiagnosticInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1144,11 +1324,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.SystemMemoryUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemMemoryUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemMemoryUsage do
          Hr := this.m_ISystemDiagnosticInfo.all.get_MemoryUsage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISystemMemoryUsage := new Windows.System.Diagnostics.ISystemMemoryUsage;
          Retval.m_ISystemMemoryUsage.all := m_ComRetVal;
       end return;
@@ -1160,11 +1344,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.SystemCpuUsage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemCpuUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemCpuUsage do
          Hr := this.m_ISystemDiagnosticInfo.all.get_CpuUsage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISystemCpuUsage := new Windows.System.Diagnostics.ISystemCpuUsage;
          Retval.m_ISystemCpuUsage.all := m_ComRetVal;
       end return;
@@ -1179,12 +1367,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out SystemMemoryUsage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemMemoryUsage, ISystemMemoryUsage_Ptr);
    begin
       if this.m_ISystemMemoryUsage /= null then
          if this.m_ISystemMemoryUsage.all /= null then
-            RefCount := this.m_ISystemMemoryUsage.all.Release;
+            temp := this.m_ISystemMemoryUsage.all.Release;
             Free (this.m_ISystemMemoryUsage);
          end if;
       end if;
@@ -1199,11 +1387,15 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.Windows.System.Diagnostics.SystemMemoryUsageReport'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemMemoryUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemMemoryUsageReport do
          Hr := this.m_ISystemMemoryUsage.all.GetReport (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISystemMemoryUsageReport := new Windows.System.Diagnostics.ISystemMemoryUsageReport;
          Retval.m_ISystemMemoryUsageReport.all := m_ComRetVal;
       end return;
@@ -1218,12 +1410,12 @@ package body WinRt.Windows.System.Diagnostics is
    end;
 
    procedure Finalize (this : in out SystemMemoryUsageReport) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemMemoryUsageReport, ISystemMemoryUsageReport_Ptr);
    begin
       if this.m_ISystemMemoryUsageReport /= null then
          if this.m_ISystemMemoryUsageReport.all /= null then
-            RefCount := this.m_ISystemMemoryUsageReport.all.Release;
+            temp := this.m_ISystemMemoryUsageReport.all.Release;
             Free (this.m_ISystemMemoryUsageReport);
          end if;
       end if;
@@ -1238,10 +1430,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_ISystemMemoryUsageReport.all.get_TotalPhysicalSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1251,10 +1447,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_ISystemMemoryUsageReport.all.get_AvailableSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1264,10 +1464,14 @@ package body WinRt.Windows.System.Diagnostics is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_ISystemMemoryUsageReport.all.get_CommittedSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

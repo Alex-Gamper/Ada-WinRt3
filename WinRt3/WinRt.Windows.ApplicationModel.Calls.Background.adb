@@ -42,12 +42,12 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    end;
 
    procedure Finalize (this : in out PhoneCallBlockedTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneCallBlockedTriggerDetails, IPhoneCallBlockedTriggerDetails_Ptr);
    begin
       if this.m_IPhoneCallBlockedTriggerDetails /= null then
          if this.m_IPhoneCallBlockedTriggerDetails.all /= null then
-            RefCount := this.m_IPhoneCallBlockedTriggerDetails.all.Release;
+            temp := this.m_IPhoneCallBlockedTriggerDetails.all.Release;
             Free (this.m_IPhoneCallBlockedTriggerDetails);
          end if;
       end if;
@@ -62,13 +62,17 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneCallBlockedTriggerDetails.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -78,10 +82,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneCallBlockedTriggerDetails.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -91,10 +99,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason;
    begin
       Hr := this.m_IPhoneCallBlockedTriggerDetails.all.get_CallBlockedReason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -107,12 +119,12 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    end;
 
    procedure Finalize (this : in out PhoneCallOriginDataRequestTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneCallOriginDataRequestTriggerDetails, IPhoneCallOriginDataRequestTriggerDetails_Ptr);
    begin
       if this.m_IPhoneCallOriginDataRequestTriggerDetails /= null then
          if this.m_IPhoneCallOriginDataRequestTriggerDetails.all /= null then
-            RefCount := this.m_IPhoneCallOriginDataRequestTriggerDetails.all.Release;
+            temp := this.m_IPhoneCallOriginDataRequestTriggerDetails.all.Release;
             Free (this.m_IPhoneCallOriginDataRequestTriggerDetails);
          end if;
       end if;
@@ -127,10 +139,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneCallOriginDataRequestTriggerDetails.all.get_RequestId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -140,13 +156,17 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneCallOriginDataRequestTriggerDetails.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -159,12 +179,12 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    end;
 
    procedure Finalize (this : in out PhoneIncomingCallDismissedTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneIncomingCallDismissedTriggerDetails, IPhoneIncomingCallDismissedTriggerDetails_Ptr);
    begin
       if this.m_IPhoneIncomingCallDismissedTriggerDetails /= null then
          if this.m_IPhoneIncomingCallDismissedTriggerDetails.all /= null then
-            RefCount := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.Release;
+            temp := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.Release;
             Free (this.m_IPhoneIncomingCallDismissedTriggerDetails);
          end if;
       end if;
@@ -179,10 +199,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -192,13 +216,17 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -208,13 +236,17 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -224,10 +256,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_DismissalTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -237,13 +273,17 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_TextReplyMessage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -253,10 +293,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -269,12 +313,12 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    end;
 
    procedure Finalize (this : in out PhoneLineChangedTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneLineChangedTriggerDetails, IPhoneLineChangedTriggerDetails_Ptr);
    begin
       if this.m_IPhoneLineChangedTriggerDetails /= null then
          if this.m_IPhoneLineChangedTriggerDetails.all /= null then
-            RefCount := this.m_IPhoneLineChangedTriggerDetails.all.Release;
+            temp := this.m_IPhoneLineChangedTriggerDetails.all.Release;
             Free (this.m_IPhoneLineChangedTriggerDetails);
          end if;
       end if;
@@ -289,10 +333,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneLineChangedTriggerDetails.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -302,10 +350,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind;
    begin
       Hr := this.m_IPhoneLineChangedTriggerDetails.all.get_ChangeType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -316,10 +368,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPhoneLineChangedTriggerDetails.all.HasLinePropertyChanged (lineProperty, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -332,12 +388,12 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    end;
 
    procedure Finalize (this : in out PhoneNewVoicemailMessageTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneNewVoicemailMessageTriggerDetails, IPhoneNewVoicemailMessageTriggerDetails_Ptr);
    begin
       if this.m_IPhoneNewVoicemailMessageTriggerDetails /= null then
          if this.m_IPhoneNewVoicemailMessageTriggerDetails.all /= null then
-            RefCount := this.m_IPhoneNewVoicemailMessageTriggerDetails.all.Release;
+            temp := this.m_IPhoneNewVoicemailMessageTriggerDetails.all.Release;
             Free (this.m_IPhoneNewVoicemailMessageTriggerDetails);
          end if;
       end if;
@@ -352,10 +408,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneNewVoicemailMessageTriggerDetails.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -365,10 +425,14 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPhoneNewVoicemailMessageTriggerDetails.all.get_VoicemailCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -378,13 +442,17 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneNewVoicemailMessageTriggerDetails.all.get_OperatorMessage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

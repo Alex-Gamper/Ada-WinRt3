@@ -58,12 +58,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    end;
 
    procedure Finalize (this : in out NamedResource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INamedResource, INamedResource_Ptr);
    begin
       if this.m_INamedResource /= null then
          if this.m_INamedResource.all /= null then
-            RefCount := this.m_INamedResource.all.Release;
+            temp := this.m_INamedResource.all.Release;
             Free (this.m_INamedResource);
          end if;
       end if;
@@ -78,11 +78,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_INamedResource.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -94,13 +98,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_IResourceCandidate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IResourceCandidate.Kind;
    begin
       Hr := this.m_INamedResource.all.get_Candidates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IResourceCandidate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -110,11 +118,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceCandidate;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate do
          Hr := this.m_INamedResource.all.Resolve (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceCandidate := new Windows.ApplicationModel.Resources.Core.IResourceCandidate;
          Retval.m_IResourceCandidate.all := m_ComRetVal;
       end return;
@@ -127,11 +139,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceCandidate;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate do
          Hr := this.m_INamedResource.all.Resolve (resourceContext_p.m_IResourceContext.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceCandidate := new Windows.ApplicationModel.Resources.Core.IResourceCandidate;
          Retval.m_IResourceCandidate.all := m_ComRetVal;
       end return;
@@ -143,13 +159,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_IResourceCandidate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IResourceCandidate.Kind;
    begin
       Hr := this.m_INamedResource.all.ResolveAll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IResourceCandidate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -160,13 +180,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_IResourceCandidate.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IResourceCandidate.Kind;
    begin
       Hr := this.m_INamedResource.all.ResolveAll (resourceContext_p.m_IResourceContext.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IResourceCandidate (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -179,12 +203,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    end;
 
    procedure Finalize (this : in out ResourceCandidate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IResourceCandidate, IResourceCandidate_Ptr);
    begin
       if this.m_IResourceCandidate /= null then
          if this.m_IResourceCandidate.all /= null then
-            RefCount := this.m_IResourceCandidate.all.Release;
+            temp := this.m_IResourceCandidate.all.Release;
             Free (this.m_IResourceCandidate);
          end if;
       end if;
@@ -199,13 +223,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_IResourceQualifier.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IResourceQualifier.Kind;
    begin
       Hr := this.m_IResourceCandidate.all.get_Qualifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IResourceQualifier (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -215,10 +243,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IResourceCandidate.all.get_IsMatch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -228,10 +260,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IResourceCandidate.all.get_IsMatchAsDefault (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -241,10 +277,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IResourceCandidate.all.get_IsDefault (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -254,13 +294,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IResourceCandidate.all.get_ValueAsString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -270,13 +314,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StorageFile.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -294,7 +338,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StorageFile.Kind_Delegate, AsyncOperationCompletedHandler_StorageFile.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -308,7 +352,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
          Hr := this.m_IResourceCandidate.all.GetValueAsFileAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -320,9 +364,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
                   Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -337,15 +381,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_qualifierName : WinRt.HString := To_HString (qualifierName);
+      HStr_qualifierName : constant WinRt.HString := To_HString (qualifierName);
    begin
       Hr := this.m_IResourceCandidate.all.GetQualifierValue (HStr_qualifierName, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_qualifierName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_qualifierName);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -355,14 +403,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IRandomAccessStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -380,7 +428,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IRandomAccessStream.Kind_Delegate, AsyncOperationCompletedHandler_IRandomAccessStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -393,10 +441,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    begin
       m_Interface := QInterface (this.m_IResourceCandidate.all);
       Hr := m_Interface.GetValueAsStreamAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -406,9 +454,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -422,14 +470,18 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidateKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.ResourceCandidateKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate_Interface, WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate3, WinRt.Windows.ApplicationModel.Resources.Core.IID_IResourceCandidate3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceCandidate.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -457,8 +509,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceCandidate.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceCandidate;
       m_GenericIID     : aliased WinRt.IID := (3800994544, 40955, 24231, (159, 201, 167, 59, 218, 71, 24, 134 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceCandidate.Kind, m_GenericIID'Unchecked_Access);
@@ -466,7 +519,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceCandidate := new Windows.ApplicationModel.Resources.Core.IResourceCandidate;
          Retval.m_IResourceCandidate.all := m_ComRetVal;
       end return;
@@ -478,15 +534,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceCandidate.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3800994544, 40955, 24231, (159, 201, 167, 59, 218, 71, 24, 134 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceCandidate.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -498,15 +558,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceCandidate.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3800994544, 40955, 24231, (159, 201, 167, 59, 218, 71, 24, 134 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceCandidate.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IResourceCandidate.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -518,8 +582,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceCandidate.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3800994544, 40955, 24231, (159, 201, 167, 59, 218, 71, 24, 134 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceCandidate.Kind, m_GenericIID'Unchecked_Access);
@@ -527,7 +592,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -538,15 +606,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IResourceCandidate.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3634140312, 34921, 22520, (168, 131, 156, 45, 254, 236, 182, 198 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IResourceCandidate.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -559,12 +631,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    end;
 
    procedure Finalize (this : in out ResourceContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IResourceContext, IResourceContext_Ptr);
    begin
       if this.m_IResourceContext /= null then
          if this.m_IResourceContext.all /= null then
-            RefCount := this.m_IResourceContext.all.Release;
+            temp := this.m_IResourceContext.all.Release;
             Free (this.m_IResourceContext);
          end if;
       end if;
@@ -575,7 +647,8 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
 
    function Constructor return ResourceContext is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : ResourceContext do
@@ -584,7 +657,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
             Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
             Retval.m_IResourceContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -597,20 +670,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateMatchingContext (result, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
             Retval.m_IResourceContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -621,20 +698,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetGlobalQualifierValue (HStr_key, HStr_value, persistence);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_key);
-      Hr := WindowsDeleteString (HStr_value);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function GetForUIContext
@@ -643,40 +724,48 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUIContext (context.m_IUIContext.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
             Retval.m_IResourceContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function GetForCurrentView
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
             Retval.m_IResourceContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -686,34 +775,42 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetGlobalQualifierValue (HStr_key, HStr_value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_key);
-      Hr := WindowsDeleteString (HStr_value);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure ResetGlobalQualifierValues is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ResetGlobalQualifierValues;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ResetGlobalQualifierValues
@@ -721,35 +818,43 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       qualifierNames : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ResetGlobalQualifierValues (qualifierNames);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function GetForViewIndependentUse
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContextStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceContextStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForViewIndependentUse (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
             Retval.m_IResourceContext.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -762,13 +867,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IObservableMap_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IObservableMap_HString_HString.Kind;
    begin
       Hr := this.m_IResourceContext.all.get_QualifierValues (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IObservableMap_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -777,9 +886,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       this : in out ResourceContext
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IResourceContext.all.Reset;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Reset
@@ -788,9 +901,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       qualifierNames : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IResourceContext.all.Reset (qualifierNames);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OverrideToMatch
@@ -799,9 +916,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       result : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IResourceContext.all.OverrideToMatch (result);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Clone
@@ -810,11 +931,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
          Hr := this.m_IResourceContext.all.Clone (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
          Retval.m_IResourceContext.all := m_ComRetVal;
       end return;
@@ -826,13 +951,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IResourceContext.all.get_Languages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -842,9 +971,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       languages : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IResourceContext.all.put_Languages (languages);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -871,8 +1004,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased HString;
       AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (789823494, 41018, 24425, (176, 144, 117, 164, 62, 51, 66, 62 ));
@@ -880,9 +1014,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -892,15 +1029,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (789823494, 41018, 24425, (176, 144, 117, 164, 62, 51, 66, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -912,17 +1053,21 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_value : WinRt.HString := To_HString (value);
+      HStr_value : constant WinRt.HString := To_HString (value);
       m_GenericIID     : aliased WinRt.IID := (789823494, 41018, 24425, (176, 144, 117, 164, 62, 51, 66, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (HStr_value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
       return m_ComRetVal;
    end;
 
@@ -934,8 +1079,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (789823494, 41018, 24425, (176, 144, 117, 164, 62, 51, 66, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_HString.Kind, m_GenericIID'Unchecked_Access);
@@ -943,7 +1089,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -954,15 +1103,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3808217025, 15356, 23051, (178, 176, 114, 231, 105, 209, 203, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -975,12 +1128,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    end;
 
    procedure Finalize (this : in out ResourceManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IResourceManager, IResourceManager_Ptr);
    begin
       if this.m_IResourceManager /= null then
          if this.m_IResourceManager.all /= null then
-            RefCount := this.m_IResourceManager.all.Release;
+            temp := this.m_IResourceManager.all.Release;
             Free (this.m_IResourceManager);
          end if;
       end if;
@@ -992,20 +1145,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    function get_Current
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceManager do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IResourceManager := new Windows.ApplicationModel.Resources.Core.IResourceManager;
             Retval.m_IResourceManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1015,19 +1172,23 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_resourceReference : WinRt.HString := To_HString (resourceReference);
+      HStr_resourceReference : constant WinRt.HString := To_HString (resourceReference);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IResourceManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsResourceReference (HStr_resourceReference, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_resourceReference);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_resourceReference);
       return m_ComRetVal;
    end;
 
@@ -1040,11 +1201,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceMap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceMap;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceMap do
          Hr := this.m_IResourceManager.all.get_MainResourceMap (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceMap := new Windows.ApplicationModel.Resources.Core.IResourceMap;
          Retval.m_IResourceMap.all := m_ComRetVal;
       end return;
@@ -1056,13 +1221,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IMapView_HString_IResourceMap.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IResourceMap.Kind;
    begin
       Hr := this.m_IResourceManager.all.get_AllResourceMaps (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IResourceMap (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1072,11 +1241,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext do
          Hr := this.m_IResourceManager.all.get_DefaultContext (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceContext := new Windows.ApplicationModel.Resources.Core.IResourceContext;
          Retval.m_IResourceContext.all := m_ComRetVal;
       end return;
@@ -1088,9 +1261,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       files : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IResourceManager.all.LoadPriFiles (files);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UnloadPriFiles
@@ -1099,9 +1276,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       files : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IResourceManager.all.UnloadPriFiles (files);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetAllNamedResourcesForPackage
@@ -1112,19 +1293,23 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_INamedResource.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_INamedResource.Kind;
-      HStr_packageName : WinRt.HString := To_HString (packageName);
+      HStr_packageName : constant WinRt.HString := To_HString (packageName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager_Interface, WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager2, WinRt.Windows.ApplicationModel.Resources.Core.IID_IResourceManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceManager.all);
       Hr := m_Interface.GetAllNamedResourcesForPackage (HStr_packageName, resourceLayoutInfo, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_packageName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageName);
       m_GenericRetVal := QInterface_IVectorView_INamedResource (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1136,19 +1321,23 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return IVectorView_IResourceMap.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IResourceMap.Kind;
-      HStr_packageName : WinRt.HString := To_HString (packageName);
+      HStr_packageName : constant WinRt.HString := To_HString (packageName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager_Interface, WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager2, WinRt.Windows.ApplicationModel.Resources.Core.IID_IResourceManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceManager.all);
       Hr := m_Interface.GetAllSubtreesForPackage (HStr_packageName, resourceLayoutInfo, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_packageName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_packageName);
       m_GenericRetVal := QInterface_IVectorView_IResourceMap (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1161,12 +1350,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    end;
 
    procedure Finalize (this : in out ResourceMap) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IResourceMap, IResourceMap_Ptr);
    begin
       if this.m_IResourceMap /= null then
          if this.m_IResourceMap.all /= null then
-            RefCount := this.m_IResourceMap.all.Release;
+            temp := this.m_IResourceMap.all.Release;
             Free (this.m_IResourceMap);
          end if;
       end if;
@@ -1181,11 +1370,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IResourceMap.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1198,15 +1391,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceCandidate;
-      HStr_resource : WinRt.HString := To_HString (resource);
+      HStr_resource : constant WinRt.HString := To_HString (resource);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate do
          Hr := this.m_IResourceMap.all.GetValue (HStr_resource, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceCandidate := new Windows.ApplicationModel.Resources.Core.IResourceCandidate;
          Retval.m_IResourceCandidate.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_resource);
+         tmp := WindowsDeleteString (HStr_resource);
       end return;
    end;
 
@@ -1218,15 +1415,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceCandidate;
-      HStr_resource : WinRt.HString := To_HString (resource);
+      HStr_resource : constant WinRt.HString := To_HString (resource);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate do
          Hr := this.m_IResourceMap.all.GetValue (HStr_resource, context.m_IResourceContext.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceCandidate := new Windows.ApplicationModel.Resources.Core.IResourceCandidate;
          Retval.m_IResourceCandidate.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_resource);
+         tmp := WindowsDeleteString (HStr_resource);
       end return;
    end;
 
@@ -1237,15 +1438,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceMap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceMap;
-      HStr_reference : WinRt.HString := To_HString (reference);
+      HStr_reference : constant WinRt.HString := To_HString (reference);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceMap do
          Hr := this.m_IResourceMap.all.GetSubtree (HStr_reference, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceMap := new Windows.ApplicationModel.Resources.Core.IResourceMap;
          Retval.m_IResourceMap.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_reference);
+         tmp := WindowsDeleteString (HStr_reference);
       end return;
    end;
 
@@ -1257,20 +1462,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.NamedResource'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_INamedResource.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.INamedResource;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1210439364, 33626, 23969, (155, 221, 18, 233, 126, 22, 251, 122 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap_Interface, IMapView_HString_INamedResource.Kind, m_GenericIID'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.NamedResource do
          m_Interface := QInterface (this.m_IResourceMap.all);
          Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INamedResource := new Windows.ApplicationModel.Resources.Core.INamedResource;
          Retval.m_INamedResource.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_key);
+         tmp := WindowsDeleteString (HStr_key);
       end return;
    end;
 
@@ -1280,15 +1489,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_INamedResource.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1210439364, 33626, 23969, (155, 221, 18, 233, 126, 22, 251, 122 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap_Interface, IMapView_HString_INamedResource.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceMap.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1299,17 +1512,21 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_INamedResource.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1210439364, 33626, 23969, (155, 221, 18, 233, 126, 22, 251, 122 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap_Interface, IMapView_HString_INamedResource.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceMap.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1320,14 +1537,18 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       second : access GenericObject_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_INamedResource.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1210439364, 33626, 23969, (155, 221, 18, 233, 126, 22, 251, 122 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap_Interface, IMapView_HString_INamedResource.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceMap.all);
       Hr := m_Interface.Split (first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1370,20 +1591,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceMap'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IResourceMap.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceMap;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3560217310, 37809, 21285, (186, 92, 5, 243, 94, 239, 252, 85 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_IResourceMap.Kind, m_GenericIID'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceMap do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceMap := new Windows.ApplicationModel.Resources.Core.IResourceMap;
          Retval.m_IResourceMap.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_key);
+         tmp := WindowsDeleteString (HStr_key);
       end return;
    end;
 
@@ -1393,15 +1618,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IResourceMap.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3560217310, 37809, 21285, (186, 92, 5, 243, 94, 239, 252, 85 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_IResourceMap.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1412,17 +1641,21 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IResourceMap.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3560217310, 37809, 21285, (186, 92, 5, 243, 94, 239, 252, 85 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_IResourceMap.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1433,14 +1666,18 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       second : access GenericObject_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IResourceMap.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3560217310, 37809, 21285, (186, 92, 5, 243, 94, 239, 252, 85 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_IResourceMap.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Split (first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1468,12 +1705,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    end;
 
    procedure Finalize (this : in out ResourceQualifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IResourceQualifier, IResourceQualifier_Ptr);
    begin
       if this.m_IResourceQualifier /= null then
          if this.m_IResourceQualifier.all /= null then
-            RefCount := this.m_IResourceQualifier.all.Release;
+            temp := this.m_IResourceQualifier.all.Release;
             Free (this.m_IResourceQualifier);
          end if;
       end if;
@@ -1488,13 +1725,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IResourceQualifier.all.get_QualifierName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1504,13 +1745,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IResourceQualifier.all.get_QualifierValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1520,10 +1765,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IResourceQualifier.all.get_IsDefault (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1533,10 +1782,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IResourceQualifier.all.get_IsMatch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1546,10 +1799,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IResourceQualifier.all.get_Score (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1577,20 +1834,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased HString;
       AdaRetval        : WString;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (2894014194, 65207, 23338, (138, 196, 52, 91, 198, 44, 174, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1600,15 +1861,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2894014194, 65207, 23338, (138, 196, 52, 91, 198, 44, 174, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1619,17 +1884,21 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (2894014194, 65207, 23338, (138, 196, 52, 91, 198, 44, 174, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1640,14 +1909,18 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       second : access GenericObject_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2894014194, 65207, 23338, (138, 196, 52, 91, 198, 44, 174, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMapView_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Split (first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1674,15 +1947,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (503538294, 12128, 22006, (183, 243, 248, 96, 121, 230, 144, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IObservableMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.add_MapChanged (vhnd, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1692,14 +1969,18 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (503538294, 12128, 22006, (183, 243, 248, 96, 121, 230, 144, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IObservableMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.remove_MapChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.String>
@@ -1710,20 +1991,24 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased HString;
       AdaRetval        : WString;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1733,15 +2018,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1752,17 +2041,21 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1772,15 +2065,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1792,19 +2089,23 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
-      HStr_value : WinRt.HString := To_HString (value);
+      HStr_key : constant WinRt.HString := To_HString (key);
+      HStr_value : constant WinRt.HString := To_HString (value);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Insert (HStr_key, HStr_value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
+      tmp := WindowsDeleteString (HStr_value);
       return m_ComRetVal;
    end;
 
@@ -1814,16 +2115,20 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -1831,14 +2136,18 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       this : in out ResourceQualifierObservableMap
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1865,8 +2174,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifier'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceQualifier.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Core.IResourceQualifier;
       m_GenericIID     : aliased WinRt.IID := (3089914076, 7360, 21488, (176, 244, 102, 239, 57, 168, 28, 214 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceQualifier.Kind, m_GenericIID'Unchecked_Access);
@@ -1874,7 +2184,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifier do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IResourceQualifier := new Windows.ApplicationModel.Resources.Core.IResourceQualifier;
          Retval.m_IResourceQualifier.all := m_ComRetVal;
       end return;
@@ -1886,15 +2199,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceQualifier.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3089914076, 7360, 21488, (176, 244, 102, 239, 57, 168, 28, 214 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceQualifier.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1906,15 +2223,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceQualifier.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3089914076, 7360, 21488, (176, 244, 102, 239, 57, 168, 28, 214 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceQualifier.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IResourceQualifier.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1926,8 +2247,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IResourceQualifier.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3089914076, 7360, 21488, (176, 244, 102, 239, 57, 168, 28, 214 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IResourceQualifier.Kind, m_GenericIID'Unchecked_Access);
@@ -1935,7 +2257,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1946,15 +2271,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IResourceQualifier.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (787376354, 26748, 24442, (161, 78, 88, 140, 77, 48, 137, 225 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IResourceQualifier.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

@@ -58,12 +58,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out ControlChannelTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IControlChannelTrigger, IControlChannelTrigger_Ptr);
    begin
       if this.m_IControlChannelTrigger /= null then
          if this.m_IControlChannelTrigger.all /= null then
-            RefCount := this.m_IControlChannelTrigger.all.Release;
+            temp := this.m_IControlChannelTrigger.all.Release;
             Free (this.m_IControlChannelTrigger);
          end if;
       end if;
@@ -79,11 +79,12 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return ControlChannelTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.ControlChannelTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.ControlChannelTrigger");
       m_Factory    : access IControlChannelTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.Sockets.IControlChannelTrigger;
-      HStr_channelId : WinRt.HString := To_HString (channelId);
+      HStr_channelId : constant WinRt.HString := To_HString (channelId);
    begin
       return RetVal : ControlChannelTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IControlChannelTriggerFactory'Access , m_Factory'Address);
@@ -91,10 +92,10 @@ package body WinRt.Windows.Networking.Sockets is
             Hr := m_Factory.CreateControlChannelTrigger (HStr_channelId, serverKeepAliveIntervalInMinutes, m_ComRetVal'Access);
             Retval.m_IControlChannelTrigger := new Windows.Networking.Sockets.IControlChannelTrigger;
             Retval.m_IControlChannelTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_channelId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_channelId);
       end return;
    end;
 
@@ -106,11 +107,12 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return ControlChannelTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.ControlChannelTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.ControlChannelTrigger");
       m_Factory    : access IControlChannelTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.Sockets.IControlChannelTrigger;
-      HStr_channelId : WinRt.HString := To_HString (channelId);
+      HStr_channelId : constant WinRt.HString := To_HString (channelId);
    begin
       return RetVal : ControlChannelTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IControlChannelTriggerFactory'Access , m_Factory'Address);
@@ -118,10 +120,10 @@ package body WinRt.Windows.Networking.Sockets is
             Hr := m_Factory.CreateControlChannelTriggerEx (HStr_channelId, serverKeepAliveIntervalInMinutes, resourceRequestType, m_ComRetVal'Access);
             Retval.m_IControlChannelTrigger := new Windows.Networking.Sockets.IControlChannelTrigger;
             Retval.m_IControlChannelTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_channelId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_channelId);
       end return;
    end;
 
@@ -134,13 +136,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IControlChannelTrigger.all.get_ControlChannelTriggerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -150,10 +156,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IControlChannelTrigger.all.get_ServerKeepAliveIntervalInMinutes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -163,9 +173,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IControlChannelTrigger.all.put_ServerKeepAliveIntervalInMinutes (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CurrentKeepAliveIntervalInMinutes
@@ -174,10 +188,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IControlChannelTrigger.all.get_CurrentKeepAliveIntervalInMinutes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -187,10 +205,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IControlChannelTrigger.all.get_TransportObject (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -200,10 +222,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       Hr := this.m_IControlChannelTrigger.all.get_KeepAliveTrigger (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -213,10 +239,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       Hr := this.m_IControlChannelTrigger.all.get_PushNotificationTrigger (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -226,9 +256,13 @@ package body WinRt.Windows.Networking.Sockets is
       transport : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IControlChannelTrigger.all.UsingTransport (transport);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function WaitForPushEnabled
@@ -237,10 +271,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.ControlChannelTriggerStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.ControlChannelTriggerStatus;
    begin
       Hr := this.m_IControlChannelTrigger.all.WaitForPushEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -249,9 +287,13 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out ControlChannelTrigger
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IControlChannelTrigger.all.DecreaseNetworkKeepAliveInterval;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure FlushTransport
@@ -259,9 +301,13 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out ControlChannelTrigger
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IControlChannelTrigger.all.FlushTransport;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -269,13 +315,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out ControlChannelTrigger
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IControlChannelTrigger_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IControlChannelTrigger.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsWakeFromLowPowerSupported
@@ -284,14 +334,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IControlChannelTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IControlChannelTrigger_Interface, WinRt.Windows.Networking.Sockets.IControlChannelTrigger2, WinRt.Windows.Networking.Sockets.IID_IControlChannelTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IControlChannelTrigger.all);
       Hr := m_Interface.get_IsWakeFromLowPowerSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -304,12 +358,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out DatagramSocket) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDatagramSocket, IDatagramSocket_Ptr);
    begin
       if this.m_IDatagramSocket /= null then
          if this.m_IDatagramSocket.all /= null then
-            RefCount := this.m_IDatagramSocket.all.Release;
+            temp := this.m_IDatagramSocket.all.Release;
             Free (this.m_IDatagramSocket);
          end if;
       end if;
@@ -320,7 +374,8 @@ package body WinRt.Windows.Networking.Sockets is
 
    function Constructor return DatagramSocket is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
       m_ComRetVal  : aliased Windows.Networking.Sockets.IDatagramSocket;
    begin
       return RetVal : DatagramSocket do
@@ -329,7 +384,7 @@ package body WinRt.Windows.Networking.Sockets is
             Retval.m_IDatagramSocket := new Windows.Networking.Sockets.IDatagramSocket;
             Retval.m_IDatagramSocket.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -343,16 +398,16 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
       m_Factory        : access WinRt.Windows.Networking.Sockets.IDatagramSocketStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -370,7 +425,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -383,10 +438,10 @@ package body WinRt.Windows.Networking.Sockets is
       Hr := RoGetActivationFactory (m_hString, IID_IDatagramSocketStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEndpointPairsAsync (remoteHostName.m_IHostName.all, HStr_remoteServiceName, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -396,16 +451,16 @@ package body WinRt.Windows.Networking.Sockets is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
       return m_RetVal;
    end;
 
@@ -417,16 +472,16 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
       m_Factory        : access WinRt.Windows.Networking.Sockets.IDatagramSocketStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -444,7 +499,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -457,10 +512,10 @@ package body WinRt.Windows.Networking.Sockets is
       Hr := RoGetActivationFactory (m_hString, IID_IDatagramSocketStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEndpointPairsAsync (remoteHostName.m_IHostName.all, HStr_remoteServiceName, sortOptions, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -470,16 +525,16 @@ package body WinRt.Windows.Networking.Sockets is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
       return m_RetVal;
    end;
 
@@ -492,11 +547,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.DatagramSocketControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IDatagramSocketControl;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.DatagramSocketControl do
          Hr := this.m_IDatagramSocket.all.get_Control (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDatagramSocketControl := new Windows.Networking.Sockets.IDatagramSocketControl;
          Retval.m_IDatagramSocketControl.all := m_ComRetVal;
       end return;
@@ -508,11 +567,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.DatagramSocketInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IDatagramSocketInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.DatagramSocketInformation do
          Hr := this.m_IDatagramSocket.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDatagramSocketInformation := new Windows.Networking.Sockets.IDatagramSocketInformation;
          Retval.m_IDatagramSocketInformation.all := m_ComRetVal;
       end return;
@@ -524,10 +587,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IDatagramSocket.all.get_OutputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -538,8 +605,9 @@ package body WinRt.Windows.Networking.Sockets is
       remoteServiceName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -547,7 +615,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -568,13 +635,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
    end;
 
    procedure ConnectAsync
@@ -583,7 +650,8 @@ package body WinRt.Windows.Networking.Sockets is
       endpointPair : Windows.Networking.EndpointPair'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -591,7 +659,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -612,9 +679,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -626,8 +693,9 @@ package body WinRt.Windows.Networking.Sockets is
       localServiceName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -635,7 +703,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -656,13 +723,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    procedure BindEndpointAsync
@@ -672,8 +739,9 @@ package body WinRt.Windows.Networking.Sockets is
       localServiceName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -681,7 +749,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -702,13 +769,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    procedure JoinMulticastGroup
@@ -717,9 +784,13 @@ package body WinRt.Windows.Networking.Sockets is
       host : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDatagramSocket.all.JoinMulticastGroup (host.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetOutputStreamAsync
@@ -730,14 +801,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IOutputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -755,7 +826,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IOutputStream.Kind_Delegate, AsyncOperationCompletedHandler_IOutputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -768,7 +839,7 @@ package body WinRt.Windows.Networking.Sockets is
       Hr := this.m_IDatagramSocket.all.GetOutputStreamAsync (remoteHostName.m_IHostName.all, HStr_remoteServiceName, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -778,14 +849,14 @@ package body WinRt.Windows.Networking.Sockets is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
       return m_RetVal;
    end;
 
@@ -796,13 +867,13 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IOutputStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -820,7 +891,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IOutputStream.Kind_Delegate, AsyncOperationCompletedHandler_IOutputStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -833,7 +904,7 @@ package body WinRt.Windows.Networking.Sockets is
       Hr := this.m_IDatagramSocket.all.GetOutputStreamAsync (endpointPair.m_IEndpointPair.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -843,9 +914,9 @@ package body WinRt.Windows.Networking.Sockets is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -860,10 +931,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDatagramSocket.all.add_MessageReceived (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -873,9 +948,13 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDatagramSocket.all.remove_MessageReceived (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -883,13 +962,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out DatagramSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocket_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure BindServiceNameAsync
@@ -899,9 +982,10 @@ package body WinRt.Windows.Networking.Sockets is
       adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -909,7 +993,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -925,7 +1008,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.BindServiceNameAsync (HStr_localServiceName, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -933,13 +1016,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    procedure CancelIOAsync
@@ -947,8 +1030,9 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out DatagramSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -956,7 +1040,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -972,7 +1055,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.CancelIOAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -980,9 +1063,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -994,13 +1077,17 @@ package body WinRt.Windows.Networking.Sockets is
       taskId : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocket_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocket3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.EnableTransferOwnership (taskId);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EnableTransferOwnership
@@ -1010,13 +1097,17 @@ package body WinRt.Windows.Networking.Sockets is
       connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocket_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocket3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.EnableTransferOwnership (taskId, connectedStandbyAction);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TransferOwnership
@@ -1025,15 +1116,19 @@ package body WinRt.Windows.Networking.Sockets is
       socketId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocket_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocket3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    procedure TransferOwnership
@@ -1043,15 +1138,19 @@ package body WinRt.Windows.Networking.Sockets is
       data : Windows.Networking.Sockets.SocketActivityContext'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocket_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocket3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId, data.m_ISocketActivityContext.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    procedure TransferOwnership
@@ -1062,15 +1161,19 @@ package body WinRt.Windows.Networking.Sockets is
       keepAliveTime : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocket_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocket3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocket.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId, data.m_ISocketActivityContext.all, keepAliveTime);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    -----------------------------------------------------------------------------
@@ -1082,12 +1185,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out DatagramSocketControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDatagramSocketControl, IDatagramSocketControl_Ptr);
    begin
       if this.m_IDatagramSocketControl /= null then
          if this.m_IDatagramSocketControl.all /= null then
-            RefCount := this.m_IDatagramSocketControl.all.Release;
+            temp := this.m_IDatagramSocketControl.all.Release;
             Free (this.m_IDatagramSocketControl);
          end if;
       end if;
@@ -1102,10 +1205,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketQualityOfService is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketQualityOfService;
    begin
       Hr := this.m_IDatagramSocketControl.all.get_QualityOfService (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1115,9 +1222,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.SocketQualityOfService
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDatagramSocketControl.all.put_QualityOfService (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundUnicastHopLimit
@@ -1126,10 +1237,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IDatagramSocketControl.all.get_OutboundUnicastHopLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1139,9 +1254,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDatagramSocketControl.all.put_OutboundUnicastHopLimit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InboundBufferSizeInBytes
@@ -1150,14 +1269,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocketControl_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocketControl2, WinRt.Windows.Networking.Sockets.IID_IDatagramSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocketControl.all);
       Hr := m_Interface.get_InboundBufferSizeInBytes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1167,13 +1290,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocketControl_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocketControl2, WinRt.Windows.Networking.Sockets.IID_IDatagramSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocketControl.all);
       Hr := m_Interface.put_InboundBufferSizeInBytes (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DontFragment
@@ -1182,14 +1309,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocketControl_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocketControl2, WinRt.Windows.Networking.Sockets.IID_IDatagramSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocketControl.all);
       Hr := m_Interface.get_DontFragment (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1199,13 +1330,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocketControl_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocketControl2, WinRt.Windows.Networking.Sockets.IID_IDatagramSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocketControl.all);
       Hr := m_Interface.put_DontFragment (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MulticastOnly
@@ -1214,14 +1349,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocketControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocketControl_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocketControl3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocketControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocketControl.all);
       Hr := m_Interface.get_MulticastOnly (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1231,13 +1370,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IDatagramSocketControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IDatagramSocketControl_Interface, WinRt.Windows.Networking.Sockets.IDatagramSocketControl3, WinRt.Windows.Networking.Sockets.IID_IDatagramSocketControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDatagramSocketControl.all);
       Hr := m_Interface.put_MulticastOnly (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1249,12 +1392,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out DatagramSocketInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDatagramSocketInformation, IDatagramSocketInformation_Ptr);
    begin
       if this.m_IDatagramSocketInformation /= null then
          if this.m_IDatagramSocketInformation.all /= null then
-            RefCount := this.m_IDatagramSocketInformation.all.Release;
+            temp := this.m_IDatagramSocketInformation.all.Release;
             Free (this.m_IDatagramSocketInformation);
          end if;
       end if;
@@ -1269,11 +1412,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IDatagramSocketInformation.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -1285,13 +1432,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDatagramSocketInformation.all.get_LocalPort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1301,11 +1452,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IDatagramSocketInformation.all.get_RemoteAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -1317,13 +1472,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDatagramSocketInformation.all.get_RemotePort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1336,12 +1495,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out DatagramSocketMessageReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDatagramSocketMessageReceivedEventArgs, IDatagramSocketMessageReceivedEventArgs_Ptr);
    begin
       if this.m_IDatagramSocketMessageReceivedEventArgs /= null then
          if this.m_IDatagramSocketMessageReceivedEventArgs.all /= null then
-            RefCount := this.m_IDatagramSocketMessageReceivedEventArgs.all.Release;
+            temp := this.m_IDatagramSocketMessageReceivedEventArgs.all.Release;
             Free (this.m_IDatagramSocketMessageReceivedEventArgs);
          end if;
       end if;
@@ -1356,11 +1515,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IDatagramSocketMessageReceivedEventArgs.all.get_RemoteAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -1372,13 +1535,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDatagramSocketMessageReceivedEventArgs.all.get_RemotePort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1388,11 +1555,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IDatagramSocketMessageReceivedEventArgs.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -1404,11 +1575,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.DataReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IDataReader;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.DataReader do
          Hr := this.m_IDatagramSocketMessageReceivedEventArgs.all.GetDataReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataReader := new Windows.Storage.Streams.IDataReader;
          Retval.m_IDataReader.all := m_ComRetVal;
       end return;
@@ -1420,10 +1595,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IDatagramSocketMessageReceivedEventArgs.all.GetDataStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1436,12 +1615,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out MessageWebSocket) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMessageWebSocket, IMessageWebSocket_Ptr);
    begin
       if this.m_IMessageWebSocket /= null then
          if this.m_IMessageWebSocket.all /= null then
-            RefCount := this.m_IMessageWebSocket.all.Release;
+            temp := this.m_IMessageWebSocket.all.Release;
             Free (this.m_IMessageWebSocket);
          end if;
       end if;
@@ -1452,7 +1631,8 @@ package body WinRt.Windows.Networking.Sockets is
 
    function Constructor return MessageWebSocket is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.MessageWebSocket");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.MessageWebSocket");
       m_ComRetVal  : aliased Windows.Networking.Sockets.IMessageWebSocket;
    begin
       return RetVal : MessageWebSocket do
@@ -1461,7 +1641,7 @@ package body WinRt.Windows.Networking.Sockets is
             Retval.m_IMessageWebSocket := new Windows.Networking.Sockets.IMessageWebSocket;
             Retval.m_IMessageWebSocket.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1474,11 +1654,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.MessageWebSocketControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IMessageWebSocketControl;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.MessageWebSocketControl do
          Hr := this.m_IMessageWebSocket.all.get_Control (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMessageWebSocketControl := new Windows.Networking.Sockets.IMessageWebSocketControl;
          Retval.m_IMessageWebSocketControl.all := m_ComRetVal;
       end return;
@@ -1490,11 +1674,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.MessageWebSocketInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IWebSocketInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.MessageWebSocketInformation do
          Hr := this.m_IMessageWebSocket.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebSocketInformation := new Windows.Networking.Sockets.IWebSocketInformation;
          Retval.m_IWebSocketInformation.all := m_ComRetVal;
       end return;
@@ -1507,10 +1695,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMessageWebSocket.all.add_MessageReceived (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1520,9 +1712,13 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMessageWebSocket.all.remove_MessageReceived (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutputStream
@@ -1531,14 +1727,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.get_OutputStream (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1548,8 +1748,9 @@ package body WinRt.Windows.Networking.Sockets is
       uri : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1557,7 +1758,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1573,7 +1773,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.ConnectAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1581,9 +1781,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1596,17 +1796,21 @@ package body WinRt.Windows.Networking.Sockets is
       headerValue : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_headerName : WinRt.HString := To_HString (headerName);
-      HStr_headerValue : WinRt.HString := To_HString (headerValue);
+      temp             : WinRt.UInt32 := 0;
+      HStr_headerName : constant WinRt.HString := To_HString (headerName);
+      HStr_headerValue : constant WinRt.HString := To_HString (headerValue);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.SetRequestHeader (HStr_headerName, HStr_headerValue);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_headerName);
-      Hr := WindowsDeleteString (HStr_headerValue);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_headerName);
+      tmp := WindowsDeleteString (HStr_headerValue);
    end;
 
    function add_Closed
@@ -1616,14 +1820,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.add_Closed (eventHandler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1633,13 +1841,17 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.remove_Closed (eventCookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -1649,15 +1861,19 @@ package body WinRt.Windows.Networking.Sockets is
       reason : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_reason : WinRt.HString := To_HString (reason);
+      temp             : WinRt.UInt32 := 0;
+      HStr_reason : constant WinRt.HString := To_HString (reason);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.Close (code, HStr_reason);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_reason);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_reason);
    end;
 
    procedure Close
@@ -1665,13 +1881,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out MessageWebSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ServerCustomValidationRequested
@@ -1681,14 +1901,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocket2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocket2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocket2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.add_ServerCustomValidationRequested (eventHandler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1698,13 +1922,17 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocket2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocket_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocket2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocket2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.remove_ServerCustomValidationRequested (eventCookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function SendNonfinalFrameAsync
@@ -1714,14 +1942,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1739,7 +1967,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1752,10 +1980,10 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.SendNonfinalFrameAsync (data, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1765,9 +1993,9 @@ package body WinRt.Windows.Networking.Sockets is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1782,14 +2010,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_UInt32.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1807,7 +2035,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_UInt32.Kind_Delegate, AsyncOperationCompletedHandler_UInt32.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1820,10 +2048,10 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IMessageWebSocket.all);
       Hr := m_Interface.SendFinalFrameAsync (data, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1833,9 +2061,9 @@ package body WinRt.Windows.Networking.Sockets is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1852,12 +2080,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out MessageWebSocketControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMessageWebSocketControl, IMessageWebSocketControl_Ptr);
    begin
       if this.m_IMessageWebSocketControl /= null then
          if this.m_IMessageWebSocketControl.all /= null then
-            RefCount := this.m_IMessageWebSocketControl.all.Release;
+            temp := this.m_IMessageWebSocketControl.all.Release;
             Free (this.m_IMessageWebSocketControl);
          end if;
       end if;
@@ -1872,10 +2100,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMessageWebSocketControl.all.get_MaxMessageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1885,9 +2117,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMessageWebSocketControl.all.put_MaxMessageSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MessageType
@@ -1896,10 +2132,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketMessageType;
    begin
       Hr := this.m_IMessageWebSocketControl.all.get_MessageType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1909,9 +2149,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.SocketMessageType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMessageWebSocketControl.all.put_MessageType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundBufferSizeInBytes
@@ -1920,14 +2164,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.get_OutboundBufferSizeInBytes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1937,13 +2185,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.put_OutboundBufferSizeInBytes (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ServerCredential
@@ -1952,15 +2204,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
          Hr := m_Interface.get_ServerCredential (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
@@ -1972,13 +2228,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.put_ServerCredential (value.m_IPasswordCredential.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProxyCredential
@@ -1987,15 +2247,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
          Hr := m_Interface.get_ProxyCredential (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
@@ -2007,13 +2271,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.put_ProxyCredential (value.m_IPasswordCredential.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportedProtocols
@@ -2022,17 +2290,21 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.get_SupportedProtocols (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2042,14 +2314,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.get_IgnorableServerCertificateErrors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2059,14 +2335,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.get_DesiredUnsolicitedPongInterval (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2076,13 +2356,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.put_DesiredUnsolicitedPongInterval (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActualUnsolicitedPongInterval
@@ -2091,14 +2375,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.get_ActualUnsolicitedPongInterval (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2108,14 +2396,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.MessageWebSocketReceiveMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.get_ReceiveMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2125,13 +2417,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.MessageWebSocketReceiveMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.put_ReceiveMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClientCertificate
@@ -2140,15 +2436,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
          Hr := m_Interface.get_ClientCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -2160,13 +2460,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketControl.all);
       Hr := m_Interface.put_ClientCertificate (value.m_ICertificate.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2178,12 +2482,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out MessageWebSocketInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebSocketInformation, IWebSocketInformation_Ptr);
    begin
       if this.m_IWebSocketInformation /= null then
          if this.m_IWebSocketInformation.all /= null then
-            RefCount := this.m_IWebSocketInformation.all.Release;
+            temp := this.m_IWebSocketInformation.all.Release;
             Free (this.m_IWebSocketInformation);
          end if;
       end if;
@@ -2198,11 +2502,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IWebSocketInformation.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -2214,10 +2522,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.BandwidthStatistics is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.BandwidthStatistics;
    begin
       Hr := this.m_IWebSocketInformation.all.get_BandwidthStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2227,13 +2539,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebSocketInformation.all.get_Protocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2243,15 +2559,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_IWebSocketInformation.all);
          Hr := m_Interface.get_ServerCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -2263,14 +2583,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebSocketInformation.all);
       Hr := m_Interface.get_ServerCertificateErrorSeverity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2280,14 +2604,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebSocketInformation.all);
       Hr := m_Interface.get_ServerCertificateErrors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2297,14 +2625,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebSocketInformation.all);
       Hr := m_Interface.get_ServerIntermediateCertificates (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2317,12 +2649,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out MessageWebSocketMessageReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMessageWebSocketMessageReceivedEventArgs, IMessageWebSocketMessageReceivedEventArgs_Ptr);
    begin
       if this.m_IMessageWebSocketMessageReceivedEventArgs /= null then
          if this.m_IMessageWebSocketMessageReceivedEventArgs.all /= null then
-            RefCount := this.m_IMessageWebSocketMessageReceivedEventArgs.all.Release;
+            temp := this.m_IMessageWebSocketMessageReceivedEventArgs.all.Release;
             Free (this.m_IMessageWebSocketMessageReceivedEventArgs);
          end if;
       end if;
@@ -2337,10 +2669,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketMessageType;
    begin
       Hr := this.m_IMessageWebSocketMessageReceivedEventArgs.all.get_MessageType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2350,11 +2686,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.DataReader'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IDataReader;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.DataReader do
          Hr := this.m_IMessageWebSocketMessageReceivedEventArgs.all.GetDataReader (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataReader := new Windows.Storage.Streams.IDataReader;
          Retval.m_IDataReader.all := m_ComRetVal;
       end return;
@@ -2366,10 +2706,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IMessageWebSocketMessageReceivedEventArgs.all.GetDataStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2379,14 +2723,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IMessageWebSocketMessageReceivedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IMessageWebSocketMessageReceivedEventArgs_Interface, WinRt.Windows.Networking.Sockets.IMessageWebSocketMessageReceivedEventArgs2, WinRt.Windows.Networking.Sockets.IID_IMessageWebSocketMessageReceivedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMessageWebSocketMessageReceivedEventArgs.all);
       Hr := m_Interface.get_IsMessageComplete (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2399,12 +2747,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out ServerMessageWebSocket) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IServerMessageWebSocket, IServerMessageWebSocket_Ptr);
    begin
       if this.m_IServerMessageWebSocket /= null then
          if this.m_IServerMessageWebSocket.all /= null then
-            RefCount := this.m_IServerMessageWebSocket.all.Release;
+            temp := this.m_IServerMessageWebSocket.all.Release;
             Free (this.m_IServerMessageWebSocket);
          end if;
       end if;
@@ -2420,10 +2768,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IServerMessageWebSocket.all.add_MessageReceived (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2433,9 +2785,13 @@ package body WinRt.Windows.Networking.Sockets is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IServerMessageWebSocket.all.remove_MessageReceived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Control
@@ -2444,11 +2800,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocketControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerMessageWebSocketControl;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerMessageWebSocketControl do
          Hr := this.m_IServerMessageWebSocket.all.get_Control (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerMessageWebSocketControl := new Windows.Networking.Sockets.IServerMessageWebSocketControl;
          Retval.m_IServerMessageWebSocketControl.all := m_ComRetVal;
       end return;
@@ -2460,11 +2820,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocketInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerMessageWebSocketInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerMessageWebSocketInformation do
          Hr := this.m_IServerMessageWebSocket.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerMessageWebSocketInformation := new Windows.Networking.Sockets.IServerMessageWebSocketInformation;
          Retval.m_IServerMessageWebSocketInformation.all := m_ComRetVal;
       end return;
@@ -2476,10 +2840,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IServerMessageWebSocket.all.get_OutputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2490,10 +2858,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IServerMessageWebSocket.all.add_Closed (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2503,9 +2875,13 @@ package body WinRt.Windows.Networking.Sockets is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IServerMessageWebSocket.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -2515,11 +2891,15 @@ package body WinRt.Windows.Networking.Sockets is
       reason : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_reason : WinRt.HString := To_HString (reason);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_reason : constant WinRt.HString := To_HString (reason);
    begin
       Hr := this.m_IServerMessageWebSocket.all.Close (code, HStr_reason);
-      Hr := WindowsDeleteString (HStr_reason);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_reason);
    end;
 
    procedure Close
@@ -2527,13 +2907,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out ServerMessageWebSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IServerMessageWebSocket_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IServerMessageWebSocket.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2545,12 +2929,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out ServerMessageWebSocketControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IServerMessageWebSocketControl, IServerMessageWebSocketControl_Ptr);
    begin
       if this.m_IServerMessageWebSocketControl /= null then
          if this.m_IServerMessageWebSocketControl.all /= null then
-            RefCount := this.m_IServerMessageWebSocketControl.all.Release;
+            temp := this.m_IServerMessageWebSocketControl.all.Release;
             Free (this.m_IServerMessageWebSocketControl);
          end if;
       end if;
@@ -2565,10 +2949,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketMessageType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketMessageType;
    begin
       Hr := this.m_IServerMessageWebSocketControl.all.get_MessageType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2578,9 +2966,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.SocketMessageType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IServerMessageWebSocketControl.all.put_MessageType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2592,12 +2984,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out ServerMessageWebSocketInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IServerMessageWebSocketInformation, IServerMessageWebSocketInformation_Ptr);
    begin
       if this.m_IServerMessageWebSocketInformation /= null then
          if this.m_IServerMessageWebSocketInformation.all /= null then
-            RefCount := this.m_IServerMessageWebSocketInformation.all.Release;
+            temp := this.m_IServerMessageWebSocketInformation.all.Release;
             Free (this.m_IServerMessageWebSocketInformation);
          end if;
       end if;
@@ -2612,10 +3004,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.BandwidthStatistics is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.BandwidthStatistics;
    begin
       Hr := this.m_IServerMessageWebSocketInformation.all.get_BandwidthStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2625,13 +3021,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IServerMessageWebSocketInformation.all.get_Protocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2641,11 +3041,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IServerMessageWebSocketInformation.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -2660,12 +3064,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out ServerStreamWebSocket) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IServerStreamWebSocket, IServerStreamWebSocket_Ptr);
    begin
       if this.m_IServerStreamWebSocket /= null then
          if this.m_IServerStreamWebSocket.all /= null then
-            RefCount := this.m_IServerStreamWebSocket.all.Release;
+            temp := this.m_IServerStreamWebSocket.all.Release;
             Free (this.m_IServerStreamWebSocket);
          end if;
       end if;
@@ -2680,11 +3084,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.ServerStreamWebSocketInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IServerStreamWebSocketInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.ServerStreamWebSocketInformation do
          Hr := this.m_IServerStreamWebSocket.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IServerStreamWebSocketInformation := new Windows.Networking.Sockets.IServerStreamWebSocketInformation;
          Retval.m_IServerStreamWebSocketInformation.all := m_ComRetVal;
       end return;
@@ -2696,10 +3104,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IServerStreamWebSocket.all.get_InputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2709,10 +3121,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IServerStreamWebSocket.all.get_OutputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2723,10 +3139,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IServerStreamWebSocket.all.add_Closed (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2736,9 +3156,13 @@ package body WinRt.Windows.Networking.Sockets is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IServerStreamWebSocket.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -2748,11 +3172,15 @@ package body WinRt.Windows.Networking.Sockets is
       reason : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_reason : WinRt.HString := To_HString (reason);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_reason : constant WinRt.HString := To_HString (reason);
    begin
       Hr := this.m_IServerStreamWebSocket.all.Close (code, HStr_reason);
-      Hr := WindowsDeleteString (HStr_reason);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_reason);
    end;
 
    procedure Close
@@ -2760,13 +3188,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out ServerStreamWebSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IServerStreamWebSocket_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IServerStreamWebSocket.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2778,12 +3210,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out ServerStreamWebSocketInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IServerStreamWebSocketInformation, IServerStreamWebSocketInformation_Ptr);
    begin
       if this.m_IServerStreamWebSocketInformation /= null then
          if this.m_IServerStreamWebSocketInformation.all /= null then
-            RefCount := this.m_IServerStreamWebSocketInformation.all.Release;
+            temp := this.m_IServerStreamWebSocketInformation.all.Release;
             Free (this.m_IServerStreamWebSocketInformation);
          end if;
       end if;
@@ -2798,10 +3230,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.BandwidthStatistics is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.BandwidthStatistics;
    begin
       Hr := this.m_IServerStreamWebSocketInformation.all.get_BandwidthStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2811,13 +3247,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IServerStreamWebSocketInformation.all.get_Protocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2827,11 +3267,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IServerStreamWebSocketInformation.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -2846,12 +3290,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out SocketActivityContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocketActivityContext, ISocketActivityContext_Ptr);
    begin
       if this.m_ISocketActivityContext /= null then
          if this.m_ISocketActivityContext.all /= null then
-            RefCount := this.m_ISocketActivityContext.all.Release;
+            temp := this.m_ISocketActivityContext.all.Release;
             Free (this.m_ISocketActivityContext);
          end if;
       end if;
@@ -2866,9 +3310,10 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return SocketActivityContext is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.SocketActivityContext");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.SocketActivityContext");
       m_Factory    : access ISocketActivityContextFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.Sockets.ISocketActivityContext;
    begin
       return RetVal : SocketActivityContext do
@@ -2877,9 +3322,9 @@ package body WinRt.Windows.Networking.Sockets is
             Hr := m_Factory.Create (data, m_ComRetVal'Access);
             Retval.m_ISocketActivityContext := new Windows.Networking.Sockets.ISocketActivityContext;
             Retval.m_ISocketActivityContext.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2892,10 +3337,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISocketActivityContext.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2908,12 +3357,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out SocketActivityInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocketActivityInformation, ISocketActivityInformation_Ptr);
    begin
       if this.m_ISocketActivityInformation /= null then
          if this.m_ISocketActivityInformation.all /= null then
-            RefCount := this.m_ISocketActivityInformation.all.Release;
+            temp := this.m_ISocketActivityInformation.all.Release;
             Free (this.m_ISocketActivityInformation);
          end if;
       end if;
@@ -2925,17 +3374,21 @@ package body WinRt.Windows.Networking.Sockets is
    function get_AllSockets
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.SocketActivityInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.SocketActivityInformation");
       m_Factory        : access WinRt.Windows.Networking.Sockets.ISocketActivityInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISocketActivityInformationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AllSockets (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2948,10 +3401,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ISocketActivityInformation.all.get_TaskId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2961,13 +3418,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocketActivityInformation.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2977,10 +3438,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketActivityKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketActivityKind;
    begin
       Hr := this.m_ISocketActivityInformation.all.get_SocketKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2990,11 +3455,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketActivityContext'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.ISocketActivityContext;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.SocketActivityContext do
          Hr := this.m_ISocketActivityInformation.all.get_Context (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocketActivityContext := new Windows.Networking.Sockets.ISocketActivityContext;
          Retval.m_ISocketActivityContext.all := m_ComRetVal;
       end return;
@@ -3006,11 +3475,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.DatagramSocket'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IDatagramSocket;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.DatagramSocket do
          Hr := this.m_ISocketActivityInformation.all.get_DatagramSocket (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDatagramSocket := new Windows.Networking.Sockets.IDatagramSocket;
          Retval.m_IDatagramSocket.all := m_ComRetVal;
       end return;
@@ -3022,11 +3495,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocket'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocket;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocket do
          Hr := this.m_ISocketActivityInformation.all.get_StreamSocket (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocket := new Windows.Networking.Sockets.IStreamSocket;
          Retval.m_IStreamSocket.all := m_ComRetVal;
       end return;
@@ -3038,11 +3515,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocketListener'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocketListener;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocketListener do
          Hr := this.m_ISocketActivityInformation.all.get_StreamSocketListener (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocketListener := new Windows.Networking.Sockets.IStreamSocketListener;
          Retval.m_IStreamSocketListener.all := m_ComRetVal;
       end return;
@@ -3057,12 +3538,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out SocketActivityTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocketActivityTriggerDetails, ISocketActivityTriggerDetails_Ptr);
    begin
       if this.m_ISocketActivityTriggerDetails /= null then
          if this.m_ISocketActivityTriggerDetails.all /= null then
-            RefCount := this.m_ISocketActivityTriggerDetails.all.Release;
+            temp := this.m_ISocketActivityTriggerDetails.all.Release;
             Free (this.m_ISocketActivityTriggerDetails);
          end if;
       end if;
@@ -3077,10 +3558,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketActivityTriggerReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketActivityTriggerReason;
    begin
       Hr := this.m_ISocketActivityTriggerDetails.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3090,11 +3575,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketActivityInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.ISocketActivityInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.SocketActivityInformation do
          Hr := this.m_ISocketActivityTriggerDetails.all.get_SocketInformation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocketActivityInformation := new Windows.Networking.Sockets.ISocketActivityInformation;
          Retval.m_ISocketActivityInformation.all := m_ComRetVal;
       end return;
@@ -3110,17 +3599,21 @@ package body WinRt.Windows.Networking.Sockets is
       )
       return WinRt.Windows.Networking.Sockets.SocketErrorStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.SocketError");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.SocketError");
          m_Factory        : access WinRt.Windows.Networking.Sockets.ISocketErrorStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Networking.Sockets.SocketErrorStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISocketErrorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetStatus (hresult, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -3135,12 +3628,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocket) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocket, IStreamSocket_Ptr);
    begin
       if this.m_IStreamSocket /= null then
          if this.m_IStreamSocket.all /= null then
-            RefCount := this.m_IStreamSocket.all.Release;
+            temp := this.m_IStreamSocket.all.Release;
             Free (this.m_IStreamSocket);
          end if;
       end if;
@@ -3151,7 +3644,8 @@ package body WinRt.Windows.Networking.Sockets is
 
    function Constructor return StreamSocket is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
       m_ComRetVal  : aliased Windows.Networking.Sockets.IStreamSocket;
    begin
       return RetVal : StreamSocket do
@@ -3160,7 +3654,7 @@ package body WinRt.Windows.Networking.Sockets is
             Retval.m_IStreamSocket := new Windows.Networking.Sockets.IStreamSocket;
             Retval.m_IStreamSocket.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3174,16 +3668,16 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
       m_Factory        : access WinRt.Windows.Networking.Sockets.IStreamSocketStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3201,7 +3695,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3214,10 +3708,10 @@ package body WinRt.Windows.Networking.Sockets is
       Hr := RoGetActivationFactory (m_hString, IID_IStreamSocketStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEndpointPairsAsync (remoteHostName.m_IHostName.all, HStr_remoteServiceName, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3227,16 +3721,16 @@ package body WinRt.Windows.Networking.Sockets is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
       return m_RetVal;
    end;
 
@@ -3248,16 +3742,16 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
       m_Factory        : access WinRt.Windows.Networking.Sockets.IStreamSocketStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3275,7 +3769,7 @@ package body WinRt.Windows.Networking.Sockets is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3288,10 +3782,10 @@ package body WinRt.Windows.Networking.Sockets is
       Hr := RoGetActivationFactory (m_hString, IID_IStreamSocketStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetEndpointPairsAsync (remoteHostName.m_IHostName.all, HStr_remoteServiceName, sortOptions, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -3301,16 +3795,16 @@ package body WinRt.Windows.Networking.Sockets is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
       return m_RetVal;
    end;
 
@@ -3323,11 +3817,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocketControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocketControl;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocketControl do
          Hr := this.m_IStreamSocket.all.get_Control (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocketControl := new Windows.Networking.Sockets.IStreamSocketControl;
          Retval.m_IStreamSocketControl.all := m_ComRetVal;
       end return;
@@ -3339,11 +3837,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocketInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocketInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocketInformation do
          Hr := this.m_IStreamSocket.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocketInformation := new Windows.Networking.Sockets.IStreamSocketInformation;
          Retval.m_IStreamSocketInformation.all := m_ComRetVal;
       end return;
@@ -3355,10 +3857,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IStreamSocket.all.get_InputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3368,10 +3874,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IStreamSocket.all.get_OutputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3381,7 +3891,8 @@ package body WinRt.Windows.Networking.Sockets is
       endpointPair : Windows.Networking.EndpointPair'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3389,7 +3900,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3410,9 +3920,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3425,8 +3935,9 @@ package body WinRt.Windows.Networking.Sockets is
       remoteServiceName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3434,7 +3945,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3455,13 +3965,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
    end;
 
    procedure ConnectAsync
@@ -3471,7 +3981,8 @@ package body WinRt.Windows.Networking.Sockets is
       protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3479,7 +3990,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3500,9 +4010,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3516,8 +4026,9 @@ package body WinRt.Windows.Networking.Sockets is
       protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3525,7 +4036,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3546,13 +4056,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
    end;
 
    procedure UpgradeToSslAsync
@@ -3562,7 +4072,8 @@ package body WinRt.Windows.Networking.Sockets is
       validationHostName : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3570,7 +4081,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3591,9 +4101,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3604,13 +4114,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out StreamSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocket_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ConnectAsync
@@ -3622,9 +4136,10 @@ package body WinRt.Windows.Networking.Sockets is
       adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_remoteServiceName : WinRt.HString := To_HString (remoteServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3632,7 +4147,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3648,7 +4162,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.ConnectAsync (remoteHostName.m_IHostName.all, HStr_remoteServiceName, protectionLevel, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3656,13 +4170,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_remoteServiceName);
+      tmp := WindowsDeleteString (HStr_remoteServiceName);
    end;
 
    procedure CancelIOAsync
@@ -3670,8 +4184,9 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out StreamSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3679,7 +4194,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3695,7 +4209,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.CancelIOAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3703,9 +4217,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3717,13 +4231,17 @@ package body WinRt.Windows.Networking.Sockets is
       taskId : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamSocket3, WinRt.Windows.Networking.Sockets.IID_IStreamSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.EnableTransferOwnership (taskId);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EnableTransferOwnership
@@ -3733,13 +4251,17 @@ package body WinRt.Windows.Networking.Sockets is
       connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamSocket3, WinRt.Windows.Networking.Sockets.IID_IStreamSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.EnableTransferOwnership (taskId, connectedStandbyAction);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TransferOwnership
@@ -3748,15 +4270,19 @@ package body WinRt.Windows.Networking.Sockets is
       socketId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamSocket3, WinRt.Windows.Networking.Sockets.IID_IStreamSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    procedure TransferOwnership
@@ -3766,15 +4292,19 @@ package body WinRt.Windows.Networking.Sockets is
       data : Windows.Networking.Sockets.SocketActivityContext'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamSocket3, WinRt.Windows.Networking.Sockets.IID_IStreamSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId, data.m_ISocketActivityContext.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    procedure TransferOwnership
@@ -3785,15 +4315,19 @@ package body WinRt.Windows.Networking.Sockets is
       keepAliveTime : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocket3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamSocket3, WinRt.Windows.Networking.Sockets.IID_IStreamSocket3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocket.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId, data.m_ISocketActivityContext.all, keepAliveTime);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    -----------------------------------------------------------------------------
@@ -3805,12 +4339,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocketControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocketControl, IStreamSocketControl_Ptr);
    begin
       if this.m_IStreamSocketControl /= null then
          if this.m_IStreamSocketControl.all /= null then
-            RefCount := this.m_IStreamSocketControl.all.Release;
+            temp := this.m_IStreamSocketControl.all.Release;
             Free (this.m_IStreamSocketControl);
          end if;
       end if;
@@ -3825,10 +4359,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreamSocketControl.all.get_NoDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3838,9 +4376,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketControl.all.put_NoDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeepAlive
@@ -3849,10 +4391,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreamSocketControl.all.get_KeepAlive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3862,9 +4408,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketControl.all.put_KeepAlive (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundBufferSizeInBytes
@@ -3873,10 +4423,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IStreamSocketControl.all.get_OutboundBufferSizeInBytes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3886,9 +4440,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketControl.all.put_OutboundBufferSizeInBytes (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_QualityOfService
@@ -3897,10 +4455,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketQualityOfService is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketQualityOfService;
    begin
       Hr := this.m_IStreamSocketControl.all.get_QualityOfService (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3910,9 +4472,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.SocketQualityOfService
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketControl.all.put_QualityOfService (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundUnicastHopLimit
@@ -3921,10 +4487,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IStreamSocketControl.all.get_OutboundUnicastHopLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3934,9 +4504,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketControl.all.put_OutboundUnicastHopLimit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IgnorableServerCertificateErrors
@@ -3945,14 +4519,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketControl.all);
       Hr := m_Interface.get_IgnorableServerCertificateErrors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3962,14 +4540,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketControl.all);
       Hr := m_Interface.get_SerializeConnectionAttempts (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3979,13 +4561,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketControl.all);
       Hr := m_Interface.put_SerializeConnectionAttempts (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClientCertificate
@@ -3994,15 +4580,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_IStreamSocketControl.all);
          Hr := m_Interface.get_ClientCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -4014,13 +4604,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketControl.all);
       Hr := m_Interface.put_ClientCertificate (value.m_ICertificate.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinProtectionLevel
@@ -4029,14 +4623,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketProtectionLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl4, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketControl.all);
       Hr := m_Interface.get_MinProtectionLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4046,13 +4644,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.SocketProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketControl4, WinRt.Windows.Networking.Sockets.IID_IStreamSocketControl4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketControl.all);
       Hr := m_Interface.put_MinProtectionLevel (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4064,12 +4666,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocketInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocketInformation, IStreamSocketInformation_Ptr);
    begin
       if this.m_IStreamSocketInformation /= null then
          if this.m_IStreamSocketInformation.all /= null then
-            RefCount := this.m_IStreamSocketInformation.all.Release;
+            temp := this.m_IStreamSocketInformation.all.Release;
             Free (this.m_IStreamSocketInformation);
          end if;
       end if;
@@ -4084,11 +4686,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IStreamSocketInformation.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -4100,13 +4706,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_LocalPort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4116,11 +4726,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IStreamSocketInformation.all.get_RemoteHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -4132,11 +4746,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IStreamSocketInformation.all.get_RemoteAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -4148,13 +4766,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_RemoteServiceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4164,13 +4786,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_RemotePort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4180,10 +4806,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.RoundTripTimeStatistics is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.RoundTripTimeStatistics;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_RoundTripTimeStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4193,10 +4823,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.BandwidthStatistics is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.BandwidthStatistics;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_BandwidthStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4206,10 +4840,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketProtectionLevel;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_ProtectionLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4219,10 +4857,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IStreamSocketInformation.all.get_SessionKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4232,14 +4874,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketInformation.all);
       Hr := m_Interface.get_ServerCertificateErrorSeverity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4249,14 +4895,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketInformation.all);
       Hr := m_Interface.get_ServerCertificateErrors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4266,15 +4916,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketInformation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_IStreamSocketInformation.all);
          Hr := m_Interface.get_ServerCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -4286,14 +4940,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketInformation.all);
       Hr := m_Interface.get_ServerIntermediateCertificates (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4306,12 +4964,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocketListener) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocketListener, IStreamSocketListener_Ptr);
    begin
       if this.m_IStreamSocketListener /= null then
          if this.m_IStreamSocketListener.all /= null then
-            RefCount := this.m_IStreamSocketListener.all.Release;
+            temp := this.m_IStreamSocketListener.all.Release;
             Free (this.m_IStreamSocketListener);
          end if;
       end if;
@@ -4322,7 +4980,8 @@ package body WinRt.Windows.Networking.Sockets is
 
    function Constructor return StreamSocketListener is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocketListener");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamSocketListener");
       m_ComRetVal  : aliased Windows.Networking.Sockets.IStreamSocketListener;
    begin
       return RetVal : StreamSocketListener do
@@ -4331,7 +4990,7 @@ package body WinRt.Windows.Networking.Sockets is
             Retval.m_IStreamSocketListener := new Windows.Networking.Sockets.IStreamSocketListener;
             Retval.m_IStreamSocketListener.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4344,11 +5003,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocketListenerControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocketListenerControl;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocketListenerControl do
          Hr := this.m_IStreamSocketListener.all.get_Control (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocketListenerControl := new Windows.Networking.Sockets.IStreamSocketListenerControl;
          Retval.m_IStreamSocketListenerControl.all := m_ComRetVal;
       end return;
@@ -4360,11 +5023,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocketListenerInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocketListenerInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocketListenerInformation do
          Hr := this.m_IStreamSocketListener.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocketListenerInformation := new Windows.Networking.Sockets.IStreamSocketListenerInformation;
          Retval.m_IStreamSocketListenerInformation.all := m_ComRetVal;
       end return;
@@ -4376,8 +5043,9 @@ package body WinRt.Windows.Networking.Sockets is
       localServiceName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4385,7 +5053,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4406,13 +5073,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    procedure BindEndpointAsync
@@ -4422,8 +5089,9 @@ package body WinRt.Windows.Networking.Sockets is
       localServiceName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4431,7 +5099,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4452,13 +5119,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    function add_ConnectionReceived
@@ -4468,10 +5135,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStreamSocketListener.all.add_ConnectionReceived (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4481,9 +5152,13 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketListener.all.remove_ConnectionReceived (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -4491,13 +5166,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out StreamSocketListener
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListener_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure BindServiceNameAsync
@@ -4507,9 +5186,10 @@ package body WinRt.Windows.Networking.Sockets is
       protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4517,7 +5197,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4533,7 +5212,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.BindServiceNameAsync (HStr_localServiceName, protectionLevel, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4541,13 +5220,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    procedure BindServiceNameAsync
@@ -4558,9 +5237,10 @@ package body WinRt.Windows.Networking.Sockets is
       adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_localServiceName : WinRt.HString := To_HString (localServiceName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4568,7 +5248,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4584,7 +5263,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.BindServiceNameAsync (HStr_localServiceName, protectionLevel, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4592,13 +5271,13 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_localServiceName);
+      tmp := WindowsDeleteString (HStr_localServiceName);
    end;
 
    procedure CancelIOAsync
@@ -4606,8 +5285,9 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out StreamSocketListener
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -4615,7 +5295,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -4631,7 +5310,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.CancelIOAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -4639,9 +5318,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -4653,13 +5332,17 @@ package body WinRt.Windows.Networking.Sockets is
       taskId : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListener_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListener3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListener3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.EnableTransferOwnership (taskId);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EnableTransferOwnership
@@ -4669,13 +5352,17 @@ package body WinRt.Windows.Networking.Sockets is
       connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListener_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListener3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListener3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.EnableTransferOwnership (taskId, connectedStandbyAction);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TransferOwnership
@@ -4684,15 +5371,19 @@ package body WinRt.Windows.Networking.Sockets is
       socketId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListener_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListener3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListener3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    procedure TransferOwnership
@@ -4702,15 +5393,19 @@ package body WinRt.Windows.Networking.Sockets is
       data : Windows.Networking.Sockets.SocketActivityContext'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListener3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_socketId : WinRt.HString := To_HString (socketId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_socketId : constant WinRt.HString := To_HString (socketId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListener_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListener3, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListener3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListener.all);
       Hr := m_Interface.TransferOwnership (HStr_socketId, data.m_ISocketActivityContext.all);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_socketId);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_socketId);
    end;
 
    -----------------------------------------------------------------------------
@@ -4722,12 +5417,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocketListenerConnectionReceivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocketListenerConnectionReceivedEventArgs, IStreamSocketListenerConnectionReceivedEventArgs_Ptr);
    begin
       if this.m_IStreamSocketListenerConnectionReceivedEventArgs /= null then
          if this.m_IStreamSocketListenerConnectionReceivedEventArgs.all /= null then
-            RefCount := this.m_IStreamSocketListenerConnectionReceivedEventArgs.all.Release;
+            temp := this.m_IStreamSocketListenerConnectionReceivedEventArgs.all.Release;
             Free (this.m_IStreamSocketListenerConnectionReceivedEventArgs);
          end if;
       end if;
@@ -4742,11 +5437,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamSocket'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocket;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocket do
          Hr := this.m_IStreamSocketListenerConnectionReceivedEventArgs.all.get_Socket (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamSocket := new Windows.Networking.Sockets.IStreamSocket;
          Retval.m_IStreamSocket.all := m_ComRetVal;
       end return;
@@ -4761,12 +5460,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocketListenerControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocketListenerControl, IStreamSocketListenerControl_Ptr);
    begin
       if this.m_IStreamSocketListenerControl /= null then
          if this.m_IStreamSocketListenerControl.all /= null then
-            RefCount := this.m_IStreamSocketListenerControl.all.Release;
+            temp := this.m_IStreamSocketListenerControl.all.Release;
             Free (this.m_IStreamSocketListenerControl);
          end if;
       end if;
@@ -4781,10 +5480,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketQualityOfService is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketQualityOfService;
    begin
       Hr := this.m_IStreamSocketListenerControl.all.get_QualityOfService (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4794,9 +5497,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Networking.Sockets.SocketQualityOfService
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamSocketListenerControl.all.put_QualityOfService (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NoDelay
@@ -4805,14 +5512,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.get_NoDelay (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4822,13 +5533,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.put_NoDelay (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeepAlive
@@ -4837,14 +5552,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.get_KeepAlive (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4854,13 +5573,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.put_KeepAlive (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundBufferSizeInBytes
@@ -4869,14 +5592,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.get_OutboundBufferSizeInBytes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4886,13 +5613,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.put_OutboundBufferSizeInBytes (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundUnicastHopLimit
@@ -4901,14 +5632,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.get_OutboundUnicastHopLimit (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4918,13 +5653,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl_Interface, WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl2, WinRt.Windows.Networking.Sockets.IID_IStreamSocketListenerControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamSocketListenerControl.all);
       Hr := m_Interface.put_OutboundUnicastHopLimit (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4936,12 +5675,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamSocketListenerInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamSocketListenerInformation, IStreamSocketListenerInformation_Ptr);
    begin
       if this.m_IStreamSocketListenerInformation /= null then
          if this.m_IStreamSocketListenerInformation.all /= null then
-            RefCount := this.m_IStreamSocketListenerInformation.all.Release;
+            temp := this.m_IStreamSocketListenerInformation.all.Release;
             Free (this.m_IStreamSocketListenerInformation);
          end if;
       end if;
@@ -4956,13 +5695,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IStreamSocketListenerInformation.all.get_LocalPort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4975,12 +5718,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamWebSocket) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamWebSocket, IStreamWebSocket_Ptr);
    begin
       if this.m_IStreamWebSocket /= null then
          if this.m_IStreamWebSocket.all /= null then
-            RefCount := this.m_IStreamWebSocket.all.Release;
+            temp := this.m_IStreamWebSocket.all.Release;
             Free (this.m_IStreamWebSocket);
          end if;
       end if;
@@ -4991,7 +5734,8 @@ package body WinRt.Windows.Networking.Sockets is
 
    function Constructor return StreamWebSocket is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamWebSocket");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.StreamWebSocket");
       m_ComRetVal  : aliased Windows.Networking.Sockets.IStreamWebSocket;
    begin
       return RetVal : StreamWebSocket do
@@ -5000,7 +5744,7 @@ package body WinRt.Windows.Networking.Sockets is
             Retval.m_IStreamWebSocket := new Windows.Networking.Sockets.IStreamWebSocket;
             Retval.m_IStreamWebSocket.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5013,11 +5757,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamWebSocketControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamWebSocketControl;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamWebSocketControl do
          Hr := this.m_IStreamWebSocket.all.get_Control (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStreamWebSocketControl := new Windows.Networking.Sockets.IStreamWebSocketControl;
          Retval.m_IStreamWebSocketControl.all := m_ComRetVal;
       end return;
@@ -5029,11 +5777,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.StreamWebSocketInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.IWebSocketInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamWebSocketInformation do
          Hr := this.m_IStreamWebSocket.all.get_Information (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebSocketInformation := new Windows.Networking.Sockets.IWebSocketInformation;
          Retval.m_IWebSocketInformation.all := m_ComRetVal;
       end return;
@@ -5045,10 +5797,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IStreamWebSocket.all.get_InputStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5058,14 +5814,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Storage.Streams.IOutputStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.get_OutputStream (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5075,8 +5835,9 @@ package body WinRt.Windows.Networking.Sockets is
       uri : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -5084,7 +5845,6 @@ package body WinRt.Windows.Networking.Sockets is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -5100,7 +5860,7 @@ package body WinRt.Windows.Networking.Sockets is
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.ConnectAsync (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -5108,9 +5868,9 @@ package body WinRt.Windows.Networking.Sockets is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -5123,17 +5883,21 @@ package body WinRt.Windows.Networking.Sockets is
       headerValue : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_headerName : WinRt.HString := To_HString (headerName);
-      HStr_headerValue : WinRt.HString := To_HString (headerValue);
+      temp             : WinRt.UInt32 := 0;
+      HStr_headerName : constant WinRt.HString := To_HString (headerName);
+      HStr_headerValue : constant WinRt.HString := To_HString (headerValue);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.SetRequestHeader (HStr_headerName, HStr_headerValue);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_headerName);
-      Hr := WindowsDeleteString (HStr_headerValue);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_headerName);
+      tmp := WindowsDeleteString (HStr_headerValue);
    end;
 
    function add_Closed
@@ -5143,14 +5907,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.add_Closed (eventHandler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5160,13 +5928,17 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.remove_Closed (eventCookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -5176,15 +5948,19 @@ package body WinRt.Windows.Networking.Sockets is
       reason : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocket := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_reason : WinRt.HString := To_HString (reason);
+      temp             : WinRt.UInt32 := 0;
+      HStr_reason : constant WinRt.HString := To_HString (reason);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IWebSocket, WinRt.Windows.Networking.Sockets.IID_IWebSocket'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.Close (code, HStr_reason);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_reason);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_reason);
    end;
 
    procedure Close
@@ -5192,13 +5968,17 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out StreamWebSocket
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ServerCustomValidationRequested
@@ -5208,14 +5988,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocket2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocket2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocket2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.add_ServerCustomValidationRequested (eventHandler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5225,13 +6009,17 @@ package body WinRt.Windows.Networking.Sockets is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocket2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocket_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocket2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocket2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocket.all);
       Hr := m_Interface.remove_ServerCustomValidationRequested (eventCookie);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5243,12 +6031,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamWebSocketControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreamWebSocketControl, IStreamWebSocketControl_Ptr);
    begin
       if this.m_IStreamWebSocketControl /= null then
          if this.m_IStreamWebSocketControl.all /= null then
-            RefCount := this.m_IStreamWebSocketControl.all.Release;
+            temp := this.m_IStreamWebSocketControl.all.Release;
             Free (this.m_IStreamWebSocketControl);
          end if;
       end if;
@@ -5263,10 +6051,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreamWebSocketControl.all.get_NoDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5276,9 +6068,13 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreamWebSocketControl.all.put_NoDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutboundBufferSizeInBytes
@@ -5287,14 +6083,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.get_OutboundBufferSizeInBytes (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5304,13 +6104,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.put_OutboundBufferSizeInBytes (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ServerCredential
@@ -5319,15 +6123,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
          Hr := m_Interface.get_ServerCredential (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
@@ -5339,13 +6147,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.put_ServerCredential (value.m_IPasswordCredential.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProxyCredential
@@ -5354,15 +6166,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
          Hr := m_Interface.get_ProxyCredential (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
@@ -5374,13 +6190,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.put_ProxyCredential (value.m_IPasswordCredential.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SupportedProtocols
@@ -5389,17 +6209,21 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.get_SupportedProtocols (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5409,14 +6233,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.get_IgnorableServerCertificateErrors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5426,14 +6254,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.get_DesiredUnsolicitedPongInterval (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5443,13 +6275,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.put_DesiredUnsolicitedPongInterval (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActualUnsolicitedPongInterval
@@ -5458,14 +6294,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.get_ActualUnsolicitedPongInterval (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5475,15 +6315,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocketControl2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
          Hr := m_Interface.get_ClientCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -5495,13 +6339,17 @@ package body WinRt.Windows.Networking.Sockets is
       value : Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IStreamWebSocketControl_Interface, WinRt.Windows.Networking.Sockets.IStreamWebSocketControl2, WinRt.Windows.Networking.Sockets.IID_IStreamWebSocketControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStreamWebSocketControl.all);
       Hr := m_Interface.put_ClientCertificate (value.m_ICertificate.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5513,12 +6361,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out StreamWebSocketInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebSocketInformation, IWebSocketInformation_Ptr);
    begin
       if this.m_IWebSocketInformation /= null then
          if this.m_IWebSocketInformation.all /= null then
-            RefCount := this.m_IWebSocketInformation.all.Release;
+            temp := this.m_IWebSocketInformation.all.Release;
             Free (this.m_IWebSocketInformation);
          end if;
       end if;
@@ -5533,11 +6381,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IWebSocketInformation.all.get_LocalAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -5549,10 +6401,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.BandwidthStatistics is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.BandwidthStatistics;
    begin
       Hr := this.m_IWebSocketInformation.all.get_BandwidthStatistics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5562,13 +6418,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebSocketInformation.all.get_Protocol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5578,15 +6438,19 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          m_Interface := QInterface (this.m_IWebSocketInformation.all);
          Hr := m_Interface.get_ServerCertificate (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -5598,14 +6462,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebSocketInformation.all);
       Hr := m_Interface.get_ServerCertificateErrorSeverity (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5615,14 +6483,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebSocketInformation.all);
       Hr := m_Interface.get_ServerCertificateErrors (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5632,14 +6504,18 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Sockets.IWebSocketInformation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Sockets.IWebSocketInformation_Interface, WinRt.Windows.Networking.Sockets.IWebSocketInformation2, WinRt.Windows.Networking.Sockets.IID_IWebSocketInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebSocketInformation.all);
       Hr := m_Interface.get_ServerIntermediateCertificates (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5652,12 +6528,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out WebSocketClosedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebSocketClosedEventArgs, IWebSocketClosedEventArgs_Ptr);
    begin
       if this.m_IWebSocketClosedEventArgs /= null then
          if this.m_IWebSocketClosedEventArgs.all /= null then
-            RefCount := this.m_IWebSocketClosedEventArgs.all.Release;
+            temp := this.m_IWebSocketClosedEventArgs.all.Release;
             Free (this.m_IWebSocketClosedEventArgs);
          end if;
       end if;
@@ -5672,10 +6548,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IWebSocketClosedEventArgs.all.get_Code (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5685,13 +6565,17 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebSocketClosedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5705,17 +6589,21 @@ package body WinRt.Windows.Networking.Sockets is
       )
       return WinRt.Windows.Web.WebErrorStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Networking.Sockets.WebSocketError");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.WebSocketError");
          m_Factory        : access WinRt.Windows.Networking.Sockets.IWebSocketErrorStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Web.WebErrorStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWebSocketErrorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetStatus (hresult, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -5730,13 +6618,13 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out WebSocketKeepAlive) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.ApplicationModel.Background.IBackgroundTask;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.ApplicationModel.Background.IBackgroundTask, WinRt.Windows.ApplicationModel.Background.IBackgroundTask_Ptr);
    begin
       if this.m_IBackgroundTask /= null then
          if this.m_IBackgroundTask.all /= null then
-            RefCount := this.m_IBackgroundTask.all.Release;
+            temp := this.m_IBackgroundTask.all.Release;
             Free (this.m_IBackgroundTask);
          end if;
       end if;
@@ -5747,7 +6635,8 @@ package body WinRt.Windows.Networking.Sockets is
 
    function Constructor return WebSocketKeepAlive is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.Sockets.WebSocketKeepAlive");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Sockets.WebSocketKeepAlive");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTask;
    begin
       return RetVal : WebSocketKeepAlive do
@@ -5756,7 +6645,7 @@ package body WinRt.Windows.Networking.Sockets is
             Retval.m_IBackgroundTask := new Windows.ApplicationModel.Background.IBackgroundTask;
             Retval.m_IBackgroundTask.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5769,9 +6658,13 @@ package body WinRt.Windows.Networking.Sockets is
       taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTask.all.Run (taskInstance);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5783,12 +6676,12 @@ package body WinRt.Windows.Networking.Sockets is
    end;
 
    procedure Finalize (this : in out WebSocketServerCustomValidationRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebSocketServerCustomValidationRequestedEventArgs, IWebSocketServerCustomValidationRequestedEventArgs_Ptr);
    begin
       if this.m_IWebSocketServerCustomValidationRequestedEventArgs /= null then
          if this.m_IWebSocketServerCustomValidationRequestedEventArgs.all /= null then
-            RefCount := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.Release;
+            temp := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.Release;
             Free (this.m_IWebSocketServerCustomValidationRequestedEventArgs);
          end if;
       end if;
@@ -5803,11 +6696,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.get_ServerCertificate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
@@ -5819,10 +6716,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
    begin
       Hr := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.get_ServerCertificateErrorSeverity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5832,10 +6733,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.get_ServerCertificateErrors (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5845,10 +6750,14 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.get_ServerIntermediateCertificates (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5857,9 +6766,13 @@ package body WinRt.Windows.Networking.Sockets is
       this : in out WebSocketServerCustomValidationRequestedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.Reject;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -5868,11 +6781,15 @@ package body WinRt.Windows.Networking.Sockets is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;

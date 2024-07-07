@@ -47,12 +47,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlContentLoadingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlContentLoadingEventArgs, IWebViewControlContentLoadingEventArgs_Ptr);
    begin
       if this.m_IWebViewControlContentLoadingEventArgs /= null then
          if this.m_IWebViewControlContentLoadingEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlContentLoadingEventArgs.all.Release;
+            temp := this.m_IWebViewControlContentLoadingEventArgs.all.Release;
             Free (this.m_IWebViewControlContentLoadingEventArgs);
          end if;
       end if;
@@ -67,11 +67,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlContentLoadingEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -86,12 +90,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlDOMContentLoadedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlDOMContentLoadedEventArgs, IWebViewControlDOMContentLoadedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlDOMContentLoadedEventArgs /= null then
          if this.m_IWebViewControlDOMContentLoadedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlDOMContentLoadedEventArgs.all.Release;
+            temp := this.m_IWebViewControlDOMContentLoadedEventArgs.all.Release;
             Free (this.m_IWebViewControlDOMContentLoadedEventArgs);
          end if;
       end if;
@@ -106,11 +110,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlDOMContentLoadedEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -125,12 +133,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlDeferredPermissionRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlDeferredPermissionRequest, IWebViewControlDeferredPermissionRequest_Ptr);
    begin
       if this.m_IWebViewControlDeferredPermissionRequest /= null then
          if this.m_IWebViewControlDeferredPermissionRequest.all /= null then
-            RefCount := this.m_IWebViewControlDeferredPermissionRequest.all.Release;
+            temp := this.m_IWebViewControlDeferredPermissionRequest.all.Release;
             Free (this.m_IWebViewControlDeferredPermissionRequest);
          end if;
       end if;
@@ -145,10 +153,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IWebViewControlDeferredPermissionRequest.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -158,11 +170,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlDeferredPermissionRequest.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -174,10 +190,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.UI.WebViewControlPermissionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.WebViewControlPermissionType;
    begin
       Hr := this.m_IWebViewControlDeferredPermissionRequest.all.get_PermissionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -186,9 +206,13 @@ package body WinRt.Windows.Web.UI is
       this : in out WebViewControlDeferredPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlDeferredPermissionRequest.all.Allow;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Deny
@@ -196,9 +220,13 @@ package body WinRt.Windows.Web.UI is
       this : in out WebViewControlDeferredPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlDeferredPermissionRequest.all.Deny;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -210,12 +238,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlLongRunningScriptDetectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlLongRunningScriptDetectedEventArgs, IWebViewControlLongRunningScriptDetectedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlLongRunningScriptDetectedEventArgs /= null then
          if this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all.Release;
+            temp := this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all.Release;
             Free (this.m_IWebViewControlLongRunningScriptDetectedEventArgs);
          end if;
       end if;
@@ -230,10 +258,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all.get_ExecutionTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -243,10 +275,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all.get_StopPageScriptExecution (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -256,9 +292,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all.put_StopPageScriptExecution (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -270,12 +310,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlNavigationCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlNavigationCompletedEventArgs, IWebViewControlNavigationCompletedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlNavigationCompletedEventArgs /= null then
          if this.m_IWebViewControlNavigationCompletedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlNavigationCompletedEventArgs.all.Release;
+            temp := this.m_IWebViewControlNavigationCompletedEventArgs.all.Release;
             Free (this.m_IWebViewControlNavigationCompletedEventArgs);
          end if;
       end if;
@@ -290,11 +330,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlNavigationCompletedEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -306,10 +350,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlNavigationCompletedEventArgs.all.get_IsSuccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -319,10 +367,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.WebErrorStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.WebErrorStatus;
    begin
       Hr := this.m_IWebViewControlNavigationCompletedEventArgs.all.get_WebErrorStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -335,12 +387,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlNavigationStartingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlNavigationStartingEventArgs, IWebViewControlNavigationStartingEventArgs_Ptr);
    begin
       if this.m_IWebViewControlNavigationStartingEventArgs /= null then
          if this.m_IWebViewControlNavigationStartingEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlNavigationStartingEventArgs.all.Release;
+            temp := this.m_IWebViewControlNavigationStartingEventArgs.all.Release;
             Free (this.m_IWebViewControlNavigationStartingEventArgs);
          end if;
       end if;
@@ -355,11 +407,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlNavigationStartingEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -371,10 +427,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlNavigationStartingEventArgs.all.get_Cancel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -384,9 +444,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlNavigationStartingEventArgs.all.put_Cancel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -398,12 +462,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlNewWindowRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlNewWindowRequestedEventArgs, IWebViewControlNewWindowRequestedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlNewWindowRequestedEventArgs /= null then
          if this.m_IWebViewControlNewWindowRequestedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlNewWindowRequestedEventArgs.all.Release;
+            temp := this.m_IWebViewControlNewWindowRequestedEventArgs.all.Release;
             Free (this.m_IWebViewControlNewWindowRequestedEventArgs);
          end if;
       end if;
@@ -418,11 +482,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlNewWindowRequestedEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -434,11 +502,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlNewWindowRequestedEventArgs.all.get_Referrer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -450,10 +522,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlNewWindowRequestedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -463,9 +539,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlNewWindowRequestedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NewWindow
@@ -474,14 +554,18 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.UI.IWebViewControl is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.IWebViewControl;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs_Interface, WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs2, WinRt.Windows.Web.UI.IID_IWebViewControlNewWindowRequestedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControlNewWindowRequestedEventArgs.all);
       Hr := m_Interface.get_NewWindow (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -491,13 +575,17 @@ package body WinRt.Windows.Web.UI is
       value : Windows.Web.UI.IWebViewControl
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs_Interface, WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs2, WinRt.Windows.Web.UI.IID_IWebViewControlNewWindowRequestedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebViewControlNewWindowRequestedEventArgs.all);
       Hr := m_Interface.put_NewWindow (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -506,15 +594,19 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs_Interface, WinRt.Windows.Web.UI.IWebViewControlNewWindowRequestedEventArgs2, WinRt.Windows.Web.UI.IID_IWebViewControlNewWindowRequestedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          m_Interface := QInterface (this.m_IWebViewControlNewWindowRequestedEventArgs.all);
          Hr := m_Interface.GetDeferral (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -529,12 +621,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlPermissionRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlPermissionRequest, IWebViewControlPermissionRequest_Ptr);
    begin
       if this.m_IWebViewControlPermissionRequest /= null then
          if this.m_IWebViewControlPermissionRequest.all /= null then
-            RefCount := this.m_IWebViewControlPermissionRequest.all.Release;
+            temp := this.m_IWebViewControlPermissionRequest.all.Release;
             Free (this.m_IWebViewControlPermissionRequest);
          end if;
       end if;
@@ -549,10 +641,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IWebViewControlPermissionRequest.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -562,11 +658,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlPermissionRequest.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -578,10 +678,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.UI.WebViewControlPermissionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.WebViewControlPermissionType;
    begin
       Hr := this.m_IWebViewControlPermissionRequest.all.get_PermissionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -591,10 +695,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.UI.WebViewControlPermissionState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.WebViewControlPermissionState;
    begin
       Hr := this.m_IWebViewControlPermissionRequest.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -603,9 +711,13 @@ package body WinRt.Windows.Web.UI is
       this : in out WebViewControlPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlPermissionRequest.all.Defer;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Allow
@@ -613,9 +725,13 @@ package body WinRt.Windows.Web.UI is
       this : in out WebViewControlPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlPermissionRequest.all.Allow;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Deny
@@ -623,9 +739,13 @@ package body WinRt.Windows.Web.UI is
       this : in out WebViewControlPermissionRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlPermissionRequest.all.Deny;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -637,12 +757,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlPermissionRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlPermissionRequestedEventArgs, IWebViewControlPermissionRequestedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlPermissionRequestedEventArgs /= null then
          if this.m_IWebViewControlPermissionRequestedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlPermissionRequestedEventArgs.all.Release;
+            temp := this.m_IWebViewControlPermissionRequestedEventArgs.all.Release;
             Free (this.m_IWebViewControlPermissionRequestedEventArgs);
          end if;
       end if;
@@ -657,11 +777,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.UI.WebViewControlPermissionRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.UI.IWebViewControlPermissionRequest;
    begin
       return RetVal : WinRt.Windows.Web.UI.WebViewControlPermissionRequest do
          Hr := this.m_IWebViewControlPermissionRequestedEventArgs.all.get_PermissionRequest (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebViewControlPermissionRequest := new Windows.Web.UI.IWebViewControlPermissionRequest;
          Retval.m_IWebViewControlPermissionRequest.all := m_ComRetVal;
       end return;
@@ -676,12 +800,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlScriptNotifyEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlScriptNotifyEventArgs, IWebViewControlScriptNotifyEventArgs_Ptr);
    begin
       if this.m_IWebViewControlScriptNotifyEventArgs /= null then
          if this.m_IWebViewControlScriptNotifyEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlScriptNotifyEventArgs.all.Release;
+            temp := this.m_IWebViewControlScriptNotifyEventArgs.all.Release;
             Free (this.m_IWebViewControlScriptNotifyEventArgs);
          end if;
       end if;
@@ -696,11 +820,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlScriptNotifyEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -712,13 +840,17 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebViewControlScriptNotifyEventArgs.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -731,12 +863,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlSettings, IWebViewControlSettings_Ptr);
    begin
       if this.m_IWebViewControlSettings /= null then
          if this.m_IWebViewControlSettings.all /= null then
-            RefCount := this.m_IWebViewControlSettings.all.Release;
+            temp := this.m_IWebViewControlSettings.all.Release;
             Free (this.m_IWebViewControlSettings);
          end if;
       end if;
@@ -751,9 +883,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlSettings.all.put_IsJavaScriptEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsJavaScriptEnabled
@@ -762,10 +898,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlSettings.all.get_IsJavaScriptEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -775,9 +915,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlSettings.all.put_IsIndexedDBEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsIndexedDBEnabled
@@ -786,10 +930,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlSettings.all.get_IsIndexedDBEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -799,9 +947,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlSettings.all.put_IsScriptNotifyAllowed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsScriptNotifyAllowed
@@ -810,10 +962,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlSettings.all.get_IsScriptNotifyAllowed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -826,12 +982,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlUnsupportedUriSchemeIdentifiedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs, IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs /= null then
          if this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all.Release;
+            temp := this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all.Release;
             Free (this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs);
          end if;
       end if;
@@ -846,11 +1002,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -862,10 +1022,14 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -875,9 +1039,13 @@ package body WinRt.Windows.Web.UI is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -889,12 +1057,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlUnviewableContentIdentifiedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlUnviewableContentIdentifiedEventArgs, IWebViewControlUnviewableContentIdentifiedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlUnviewableContentIdentifiedEventArgs /= null then
          if this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all.Release;
+            temp := this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all.Release;
             Free (this.m_IWebViewControlUnviewableContentIdentifiedEventArgs);
          end if;
       end if;
@@ -909,11 +1077,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -925,11 +1097,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all.get_Referrer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -941,13 +1117,17 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all.get_MediaType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -960,12 +1140,12 @@ package body WinRt.Windows.Web.UI is
    end;
 
    procedure Finalize (this : in out WebViewControlWebResourceRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebViewControlWebResourceRequestedEventArgs, IWebViewControlWebResourceRequestedEventArgs_Ptr);
    begin
       if this.m_IWebViewControlWebResourceRequestedEventArgs /= null then
          if this.m_IWebViewControlWebResourceRequestedEventArgs.all /= null then
-            RefCount := this.m_IWebViewControlWebResourceRequestedEventArgs.all.Release;
+            temp := this.m_IWebViewControlWebResourceRequestedEventArgs.all.Release;
             Free (this.m_IWebViewControlWebResourceRequestedEventArgs);
          end if;
       end if;
@@ -980,11 +1160,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IWebViewControlWebResourceRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -996,11 +1180,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.Http.HttpRequestMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IWebViewControlWebResourceRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
@@ -1012,9 +1200,13 @@ package body WinRt.Windows.Web.UI is
       value : Windows.Web.Http.HttpResponseMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebViewControlWebResourceRequestedEventArgs.all.put_Response (value.m_IHttpResponseMessage.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Response
@@ -1023,11 +1215,15 @@ package body WinRt.Windows.Web.UI is
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IWebViewControlWebResourceRequestedEventArgs.all.get_Response (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;

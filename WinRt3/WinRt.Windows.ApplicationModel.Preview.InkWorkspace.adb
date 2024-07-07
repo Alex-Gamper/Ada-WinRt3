@@ -43,12 +43,12 @@ package body WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
    end;
 
    procedure Finalize (this : in out InkWorkspaceHostedAppManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInkWorkspaceHostedAppManager, IInkWorkspaceHostedAppManager_Ptr);
    begin
       if this.m_IInkWorkspaceHostedAppManager /= null then
          if this.m_IInkWorkspaceHostedAppManager.all /= null then
-            RefCount := this.m_IInkWorkspaceHostedAppManager.all.Release;
+            temp := this.m_IInkWorkspaceHostedAppManager.all.Release;
             Free (this.m_IInkWorkspaceHostedAppManager);
          end if;
       end if;
@@ -60,20 +60,24 @@ package body WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
    function GetForCurrentApp
    return WinRt.Windows.ApplicationModel.Preview.InkWorkspace.InkWorkspaceHostedAppManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.InkWorkspace.InkWorkspaceHostedAppManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.InkWorkspace.InkWorkspaceHostedAppManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.Preview.InkWorkspace.IInkWorkspaceHostedAppManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Preview.InkWorkspace.IInkWorkspaceHostedAppManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Preview.InkWorkspace.InkWorkspaceHostedAppManager do
          Hr := RoGetActivationFactory (m_hString, IID_IInkWorkspaceHostedAppManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentApp (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IInkWorkspaceHostedAppManager := new Windows.ApplicationModel.Preview.InkWorkspace.IInkWorkspaceHostedAppManager;
             Retval.m_IInkWorkspaceHostedAppManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -86,7 +90,8 @@ package body WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
       bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -94,7 +99,6 @@ package body WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -115,9 +119,9 @@ package body WinRt.Windows.ApplicationModel.Preview.InkWorkspace is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;

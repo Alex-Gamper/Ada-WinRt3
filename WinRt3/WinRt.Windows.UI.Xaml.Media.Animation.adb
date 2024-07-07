@@ -58,12 +58,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out Transition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITransition, ITransition_Ptr);
    begin
       if this.m_ITransition /= null then
          if this.m_ITransition.all /= null then
-            RefCount := this.m_ITransition.all.Release;
+            temp := this.m_ITransition.all.Release;
             Free (this.m_ITransition);
          end if;
       end if;
@@ -84,12 +84,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out AddDeleteThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAddDeleteThemeTransition, IAddDeleteThemeTransition_Ptr);
    begin
       if this.m_IAddDeleteThemeTransition /= null then
          if this.m_IAddDeleteThemeTransition.all /= null then
-            RefCount := this.m_IAddDeleteThemeTransition.all.Release;
+            temp := this.m_IAddDeleteThemeTransition.all.Release;
             Free (this.m_IAddDeleteThemeTransition);
          end if;
       end if;
@@ -100,7 +100,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return AddDeleteThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.AddDeleteThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.AddDeleteThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IAddDeleteThemeTransition;
    begin
       return RetVal : AddDeleteThemeTransition do
@@ -109,7 +110,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IAddDeleteThemeTransition := new Windows.UI.Xaml.Media.Animation.IAddDeleteThemeTransition;
             Retval.m_IAddDeleteThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -125,12 +126,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EasingFunctionBase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEasingFunctionBase, IEasingFunctionBase_Ptr);
    begin
       if this.m_IEasingFunctionBase /= null then
          if this.m_IEasingFunctionBase.all /= null then
-            RefCount := this.m_IEasingFunctionBase.all.Release;
+            temp := this.m_IEasingFunctionBase.all.Release;
             Free (this.m_IEasingFunctionBase);
          end if;
       end if;
@@ -145,20 +146,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EasingModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingFunctionBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingFunctionBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEasingFunctionBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -171,10 +176,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.EasingMode;
    begin
       Hr := this.m_IEasingFunctionBase.all.get_EasingMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -184,9 +193,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEasingFunctionBase.all.put_EasingMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Ease
@@ -196,10 +209,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IEasingFunctionBase.all.Ease (normalizedTime, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -212,12 +229,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out BackEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackEase, IBackEase_Ptr);
    begin
       if this.m_IBackEase /= null then
          if this.m_IBackEase.all /= null then
-            RefCount := this.m_IBackEase.all.Release;
+            temp := this.m_IBackEase.all.Release;
             Free (this.m_IBackEase);
          end if;
       end if;
@@ -228,7 +245,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return BackEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BackEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BackEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IBackEase;
    begin
       return RetVal : BackEase do
@@ -237,7 +255,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IBackEase := new Windows.UI.Xaml.Media.Animation.IBackEase;
             Retval.m_IBackEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -247,20 +265,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_AmplitudeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BackEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BackEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IBackEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBackEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AmplitudeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -273,10 +295,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IBackEase.all.get_Amplitude (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,9 +312,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackEase.all.put_Amplitude (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -300,12 +330,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ConnectedAnimationConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectedAnimationConfiguration, IConnectedAnimationConfiguration_Ptr);
    begin
       if this.m_IConnectedAnimationConfiguration /= null then
          if this.m_IConnectedAnimationConfiguration.all /= null then
-            RefCount := this.m_IConnectedAnimationConfiguration.all.Release;
+            temp := this.m_IConnectedAnimationConfiguration.all.Release;
             Free (this.m_IConnectedAnimationConfiguration);
          end if;
       end if;
@@ -326,12 +356,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out BasicConnectedAnimationConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBasicConnectedAnimationConfiguration, IBasicConnectedAnimationConfiguration_Ptr);
    begin
       if this.m_IBasicConnectedAnimationConfiguration /= null then
          if this.m_IBasicConnectedAnimationConfiguration.all /= null then
-            RefCount := this.m_IBasicConnectedAnimationConfiguration.all.Release;
+            temp := this.m_IBasicConnectedAnimationConfiguration.all.Release;
             Free (this.m_IBasicConnectedAnimationConfiguration);
          end if;
       end if;
@@ -347,9 +377,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return BasicConnectedAnimationConfiguration is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BasicConnectedAnimationConfiguration");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BasicConnectedAnimationConfiguration");
       m_Factory    : access IBasicConnectedAnimationConfigurationFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IBasicConnectedAnimationConfiguration;
    begin
       return RetVal : BasicConnectedAnimationConfiguration do
@@ -358,9 +389,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IBasicConnectedAnimationConfiguration := new Windows.UI.Xaml.Media.Animation.IBasicConnectedAnimationConfiguration;
             Retval.m_IBasicConnectedAnimationConfiguration.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -376,12 +407,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out BeginStoryboard) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBeginStoryboard, IBeginStoryboard_Ptr);
    begin
       if this.m_IBeginStoryboard /= null then
          if this.m_IBeginStoryboard.all /= null then
-            RefCount := this.m_IBeginStoryboard.all.Release;
+            temp := this.m_IBeginStoryboard.all.Release;
             Free (this.m_IBeginStoryboard);
          end if;
       end if;
@@ -392,7 +423,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return BeginStoryboard is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BeginStoryboard");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BeginStoryboard");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IBeginStoryboard;
    begin
       return RetVal : BeginStoryboard do
@@ -401,7 +433,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IBeginStoryboard := new Windows.UI.Xaml.Media.Animation.IBeginStoryboard;
             Retval.m_IBeginStoryboard.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -411,20 +443,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_StoryboardProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BeginStoryboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BeginStoryboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IBeginStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBeginStoryboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StoryboardProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -437,11 +473,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.Storyboard'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IStoryboard;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Storyboard do
          Hr := this.m_IBeginStoryboard.all.get_Storyboard (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IStoryboard := new Windows.UI.Xaml.Media.Animation.IStoryboard;
          Retval.m_IStoryboard.all := m_ComRetVal;
       end return;
@@ -453,9 +493,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Storyboard'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBeginStoryboard.all.put_Storyboard (value.m_IStoryboard.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -467,12 +511,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out BounceEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBounceEase, IBounceEase_Ptr);
    begin
       if this.m_IBounceEase /= null then
          if this.m_IBounceEase.all /= null then
-            RefCount := this.m_IBounceEase.all.Release;
+            temp := this.m_IBounceEase.all.Release;
             Free (this.m_IBounceEase);
          end if;
       end if;
@@ -483,7 +527,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return BounceEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BounceEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BounceEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IBounceEase;
    begin
       return RetVal : BounceEase do
@@ -492,7 +537,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IBounceEase := new Windows.UI.Xaml.Media.Animation.IBounceEase;
             Retval.m_IBounceEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -502,40 +547,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_BouncesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BounceEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BounceEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IBounceEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBounceEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BouncesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_BouncinessProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BounceEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.BounceEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IBounceEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBounceEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BouncinessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -548,10 +601,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IBounceEase.all.get_Bounces (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -561,9 +618,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceEase.all.put_Bounces (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bounciness
@@ -572,10 +633,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IBounceEase.all.get_Bounciness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -585,9 +650,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBounceEase.all.put_Bounciness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -599,12 +668,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out CircleEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICircleEase, ICircleEase_Ptr);
    begin
       if this.m_ICircleEase /= null then
          if this.m_ICircleEase.all /= null then
-            RefCount := this.m_ICircleEase.all.Release;
+            temp := this.m_ICircleEase.all.Release;
             Free (this.m_ICircleEase);
          end if;
       end if;
@@ -615,7 +684,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return CircleEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CircleEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CircleEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ICircleEase;
    begin
       return RetVal : CircleEase do
@@ -624,7 +694,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ICircleEase := new Windows.UI.Xaml.Media.Animation.ICircleEase;
             Retval.m_ICircleEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -640,12 +710,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out Timeline) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimeline, ITimeline_Ptr);
    begin
       if this.m_ITimeline /= null then
          if this.m_ITimeline.all /= null then
-            RefCount := this.m_ITimeline.all.Release;
+            temp := this.m_ITimeline.all.Release;
             Free (this.m_ITimeline);
          end if;
       end if;
@@ -661,9 +731,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return Timeline is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory    : access ITimelineFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ITimeline;
    begin
       return RetVal : Timeline do
@@ -672,9 +743,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ITimeline := new Windows.UI.Xaml.Media.Animation.ITimeline;
             Retval.m_ITimeline.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -684,17 +755,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_AllowDependentAnimations
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AllowDependentAnimations (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -703,135 +778,163 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_AllowDependentAnimations (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_AutoReverseProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AutoReverseProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_BeginTimeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BeginTimeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DurationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DurationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SpeedRatioProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SpeedRatioProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FillBehaviorProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FillBehaviorProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RepeatBehaviorProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Timeline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ITimelineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RepeatBehaviorProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -844,10 +947,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITimeline.all.get_AutoReverse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -857,9 +964,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.put_AutoReverse (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BeginTime
@@ -868,13 +979,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_ITimeline.all.get_BeginTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -884,9 +999,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.put_BeginTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -895,10 +1014,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Duration is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Duration;
    begin
       Hr := this.m_ITimeline.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -908,9 +1031,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Duration
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SpeedRatio
@@ -919,10 +1046,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ITimeline.all.get_SpeedRatio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -932,9 +1063,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.put_SpeedRatio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FillBehavior
@@ -943,10 +1078,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.FillBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.FillBehavior;
    begin
       Hr := this.m_ITimeline.all.get_FillBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -956,9 +1095,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.FillBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.put_FillBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RepeatBehavior
@@ -967,10 +1110,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.RepeatBehavior;
    begin
       Hr := this.m_ITimeline.all.get_RepeatBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -980,9 +1127,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.RepeatBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.put_RepeatBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Completed
@@ -992,10 +1143,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITimeline.all.add_Completed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1005,9 +1160,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITimeline.all.remove_Completed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1019,12 +1178,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ColorAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorAnimation, IColorAnimation_Ptr);
    begin
       if this.m_IColorAnimation /= null then
          if this.m_IColorAnimation.all /= null then
-            RefCount := this.m_IColorAnimation.all.Release;
+            temp := this.m_IColorAnimation.all.Release;
             Free (this.m_IColorAnimation);
          end if;
       end if;
@@ -1035,7 +1194,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ColorAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IColorAnimation;
    begin
       return RetVal : ColorAnimation do
@@ -1044,7 +1204,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IColorAnimation := new Windows.UI.Xaml.Media.Animation.IColorAnimation;
             Retval.m_IColorAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1054,100 +1214,120 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_FromProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ToProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ToProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ByProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ByProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EasingFunctionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingFunctionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EnableDependentAnimationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1160,13 +1340,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IColorAnimation.all.get_From (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1176,9 +1360,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorAnimation.all.put_From (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_To
@@ -1187,13 +1375,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IColorAnimation.all.get_To (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1203,9 +1395,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorAnimation.all.put_To (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_By
@@ -1214,13 +1410,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Color.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IColorAnimation.all.get_By (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Color (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1230,9 +1430,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorAnimation.all.put_By (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EasingFunction
@@ -1241,11 +1445,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase do
          Hr := this.m_IColorAnimation.all.get_EasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEasingFunctionBase := new Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
          Retval.m_IEasingFunctionBase.all := m_ComRetVal;
       end return;
@@ -1257,9 +1465,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorAnimation.all.put_EasingFunction (value.m_IEasingFunctionBase.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EnableDependentAnimation
@@ -1268,10 +1480,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IColorAnimation.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1281,9 +1497,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorAnimation.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1295,12 +1515,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ColorAnimationUsingKeyFrames) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorAnimationUsingKeyFrames, IColorAnimationUsingKeyFrames_Ptr);
    begin
       if this.m_IColorAnimationUsingKeyFrames /= null then
          if this.m_IColorAnimationUsingKeyFrames.all /= null then
-            RefCount := this.m_IColorAnimationUsingKeyFrames.all.Release;
+            temp := this.m_IColorAnimationUsingKeyFrames.all.Release;
             Free (this.m_IColorAnimationUsingKeyFrames);
          end if;
       end if;
@@ -1311,7 +1531,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ColorAnimationUsingKeyFrames is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimationUsingKeyFrames");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimationUsingKeyFrames");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IColorAnimationUsingKeyFrames;
    begin
       return RetVal : ColorAnimationUsingKeyFrames do
@@ -1320,7 +1541,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IColorAnimationUsingKeyFrames := new Windows.UI.Xaml.Media.Animation.IColorAnimationUsingKeyFrames;
             Retval.m_IColorAnimationUsingKeyFrames.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1330,20 +1551,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EnableDependentAnimationProperty_ColorAnimationUsingKeyFrames
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimationUsingKeyFrames");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorAnimationUsingKeyFrames");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorAnimationUsingKeyFramesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorAnimationUsingKeyFramesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1356,11 +1581,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrameCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrameCollection do
          Hr := this.m_IColorAnimationUsingKeyFrames.all.get_KeyFrames (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1372,10 +1601,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IColorAnimationUsingKeyFrames.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1385,9 +1618,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorAnimationUsingKeyFrames.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1399,12 +1636,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ColorKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorKeyFrame, IColorKeyFrame_Ptr);
    begin
       if this.m_IColorKeyFrame /= null then
          if this.m_IColorKeyFrame.all /= null then
-            RefCount := this.m_IColorKeyFrame.all.Release;
+            temp := this.m_IColorKeyFrame.all.Release;
             Free (this.m_IColorKeyFrame);
          end if;
       end if;
@@ -1420,9 +1657,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return ColorKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrame");
       m_Factory    : access IColorKeyFrameFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
    begin
       return RetVal : ColorKeyFrame do
@@ -1431,9 +1669,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IColorKeyFrame := new Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
             Retval.m_IColorKeyFrame.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1443,40 +1681,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_ValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTimeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTimeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1489,10 +1735,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IColorKeyFrame.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1502,9 +1752,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorKeyFrame.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTime
@@ -1513,10 +1767,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeyTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.KeyTime;
    begin
       Hr := this.m_IColorKeyFrame.all.get_KeyTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1526,9 +1784,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeyTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorKeyFrame.all.put_KeyTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1549,7 +1811,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ColorKeyFrameCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrameCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ColorKeyFrameCollection");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : ColorKeyFrameCollection do
@@ -1558,7 +1821,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1573,8 +1836,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -1582,7 +1846,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IColorKeyFrame := new Windows.UI.Xaml.Media.Animation.IColorKeyFrame;
          Retval.m_IColorKeyFrame.all := m_ComRetVal;
       end return;
@@ -1594,15 +1861,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1612,15 +1883,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1632,15 +1907,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IColorKeyFrame.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1651,14 +1930,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_IColorKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -1668,14 +1951,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_IColorKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -1684,14 +1971,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -1700,14 +1991,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_IColorKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -1715,14 +2010,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out ColorKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -1730,14 +2029,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out ColorKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -1748,8 +2051,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -1757,7 +2061,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1767,15 +2074,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       items : Windows.UI.Xaml.Media.Animation.IColorKeyFrame_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2463256504, 44884, 20864, (152, 136, 87, 86, 86, 106, 19, 255 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.ColorKeyFrame>
@@ -1785,15 +2096,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IColorKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (408542472, 22573, 20956, (130, 161, 70, 97, 17, 202, 249, 68 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IColorKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1806,12 +2121,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out NavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INavigationTransitionInfo, INavigationTransitionInfo_Ptr);
    begin
       if this.m_INavigationTransitionInfo /= null then
          if this.m_INavigationTransitionInfo.all /= null then
-            RefCount := this.m_INavigationTransitionInfo.all.Release;
+            temp := this.m_INavigationTransitionInfo.all.Release;
             Free (this.m_INavigationTransitionInfo);
          end if;
       end if;
@@ -1827,9 +2142,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return NavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo");
       m_Factory    : access INavigationTransitionInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
    begin
       return RetVal : NavigationTransitionInfo do
@@ -1838,9 +2154,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_INavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
             Retval.m_INavigationTransitionInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1853,17 +2169,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfoOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo_Interface, WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfoOverrides, WinRt.Windows.UI.Xaml.Media.Animation.IID_INavigationTransitionInfoOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INavigationTransitionInfo.all);
       Hr := m_Interface.GetNavigationStateCore (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1873,15 +2193,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       navigationState : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfoOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_navigationState : WinRt.HString := To_HString (navigationState);
+      temp             : WinRt.UInt32 := 0;
+      HStr_navigationState : constant WinRt.HString := To_HString (navigationState);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo_Interface, WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfoOverrides, WinRt.Windows.UI.Xaml.Media.Animation.IID_INavigationTransitionInfoOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INavigationTransitionInfo.all);
       Hr := m_Interface.SetNavigationStateCore (HStr_navigationState);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_navigationState);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_navigationState);
    end;
 
    -----------------------------------------------------------------------------
@@ -1893,12 +2217,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out CommonNavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICommonNavigationTransitionInfo, ICommonNavigationTransitionInfo_Ptr);
    begin
       if this.m_ICommonNavigationTransitionInfo /= null then
          if this.m_ICommonNavigationTransitionInfo.all /= null then
-            RefCount := this.m_ICommonNavigationTransitionInfo.all.Release;
+            temp := this.m_ICommonNavigationTransitionInfo.all.Release;
             Free (this.m_ICommonNavigationTransitionInfo);
          end if;
       end if;
@@ -1909,7 +2233,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return CommonNavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfo;
    begin
       return RetVal : CommonNavigationTransitionInfo do
@@ -1918,7 +2243,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ICommonNavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfo;
             Retval.m_ICommonNavigationTransitionInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1928,40 +2253,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_IsStaggeringEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICommonNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsStaggeringEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsStaggerElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICommonNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsStaggerElementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1971,17 +2304,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICommonNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetIsStaggerElement (element.m_IUIElement.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1991,16 +2328,20 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICommonNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetIsStaggerElement (element.m_IUIElement.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -2012,10 +2353,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICommonNavigationTransitionInfo.all.get_IsStaggeringEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2025,9 +2370,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICommonNavigationTransitionInfo.all.put_IsStaggeringEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2039,12 +2388,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ConnectedAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectedAnimation, IConnectedAnimation_Ptr);
    begin
       if this.m_IConnectedAnimation /= null then
          if this.m_IConnectedAnimation.all /= null then
-            RefCount := this.m_IConnectedAnimation.all.Release;
+            temp := this.m_IConnectedAnimation.all.Release;
             Free (this.m_IConnectedAnimation);
          end if;
       end if;
@@ -2060,10 +2409,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IConnectedAnimation.all.add_Completed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2073,9 +2426,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectedAnimation.all.remove_Completed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryStart
@@ -2085,10 +2442,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IConnectedAnimation.all.TryStart (destination.m_IUIElement.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2097,9 +2458,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out ConnectedAnimation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectedAnimation.all.Cancel;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsScaleAnimationEnabled
@@ -2108,14 +2473,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IConnectedAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectedAnimation.all);
       Hr := m_Interface.get_IsScaleAnimationEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2125,13 +2494,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IConnectedAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectedAnimation.all);
       Hr := m_Interface.put_IsScaleAnimationEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryStart
@@ -2142,14 +2515,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IConnectedAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectedAnimation.all);
       Hr := m_Interface.TryStart (destination.m_IUIElement.all, coordinatedElements, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2160,13 +2537,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       animation : Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IConnectedAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectedAnimation.all);
       Hr := m_Interface.SetAnimationComponent (component, animation);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Configuration
@@ -2175,15 +2556,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IConnectedAnimationConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation3, WinRt.Windows.UI.Xaml.Media.Animation.IID_IConnectedAnimation3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationConfiguration do
          m_Interface := QInterface (this.m_IConnectedAnimation.all);
          Hr := m_Interface.get_Configuration (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConnectedAnimationConfiguration := new Windows.UI.Xaml.Media.Animation.IConnectedAnimationConfiguration;
          Retval.m_IConnectedAnimationConfiguration.all := m_ComRetVal;
       end return;
@@ -2195,13 +2580,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ConnectedAnimationConfiguration'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation3, WinRt.Windows.UI.Xaml.Media.Animation.IID_IConnectedAnimation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IConnectedAnimation.all);
       Hr := m_Interface.put_Configuration (value.m_IConnectedAnimationConfiguration.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2213,12 +2602,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ConnectedAnimationService) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IConnectedAnimationService, IConnectedAnimationService_Ptr);
    begin
       if this.m_IConnectedAnimationService /= null then
          if this.m_IConnectedAnimationService.all /= null then
-            RefCount := this.m_IConnectedAnimationService.all.Release;
+            temp := this.m_IConnectedAnimationService.all.Release;
             Free (this.m_IConnectedAnimationService);
          end if;
       end if;
@@ -2230,20 +2619,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function GetForCurrentView
    return WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationService is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ConnectedAnimationService");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ConnectedAnimationService");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimationServiceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IConnectedAnimationService;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationService do
          Hr := RoGetActivationFactory (m_hString, IID_IConnectedAnimationServiceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IConnectedAnimationService := new Windows.UI.Xaml.Media.Animation.IConnectedAnimationService;
             Retval.m_IConnectedAnimationService.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2256,10 +2649,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IConnectedAnimationService.all.get_DefaultDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2269,9 +2666,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectedAnimationService.all.put_DefaultDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DefaultEasingFunction
@@ -2280,11 +2681,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Composition.CompositionEasingFunction'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEasingFunction do
          Hr := this.m_IConnectedAnimationService.all.get_DefaultEasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositionEasingFunction := new Windows.UI.Composition.ICompositionEasingFunction;
          Retval.m_ICompositionEasingFunction.all := m_ComRetVal;
       end return;
@@ -2296,9 +2701,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IConnectedAnimationService.all.put_DefaultEasingFunction (value.m_ICompositionEasingFunction.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function PrepareToAnimate
@@ -2309,15 +2718,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IConnectedAnimation;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimation do
          Hr := this.m_IConnectedAnimationService.all.PrepareToAnimate (HStr_key, source.m_IUIElement.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConnectedAnimation := new Windows.UI.Xaml.Media.Animation.IConnectedAnimation;
          Retval.m_IConnectedAnimation.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_key);
+         tmp := WindowsDeleteString (HStr_key);
       end return;
    end;
 
@@ -2328,15 +2741,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IConnectedAnimation;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimation do
          Hr := this.m_IConnectedAnimationService.all.GetAnimation (HStr_key, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IConnectedAnimation := new Windows.UI.Xaml.Media.Animation.IConnectedAnimation;
          Retval.m_IConnectedAnimation.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_key);
+         tmp := WindowsDeleteString (HStr_key);
       end return;
    end;
 
@@ -2349,12 +2766,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ContentThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContentThemeTransition, IContentThemeTransition_Ptr);
    begin
       if this.m_IContentThemeTransition /= null then
          if this.m_IContentThemeTransition.all /= null then
-            RefCount := this.m_IContentThemeTransition.all.Release;
+            temp := this.m_IContentThemeTransition.all.Release;
             Free (this.m_IContentThemeTransition);
          end if;
       end if;
@@ -2365,7 +2782,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ContentThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContentThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContentThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IContentThemeTransition;
    begin
       return RetVal : ContentThemeTransition do
@@ -2374,7 +2792,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IContentThemeTransition := new Windows.UI.Xaml.Media.Animation.IContentThemeTransition;
             Retval.m_IContentThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2384,40 +2802,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_HorizontalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContentThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContentThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContentThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_VerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContentThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContentThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContentThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContentThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2430,10 +2856,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IContentThemeTransition.all.get_HorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2443,9 +2873,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentThemeTransition.all.put_HorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VerticalOffset
@@ -2454,10 +2888,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IContentThemeTransition.all.get_VerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2467,9 +2905,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContentThemeTransition.all.put_VerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2481,12 +2923,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ContinuumNavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContinuumNavigationTransitionInfo, IContinuumNavigationTransitionInfo_Ptr);
    begin
       if this.m_IContinuumNavigationTransitionInfo /= null then
          if this.m_IContinuumNavigationTransitionInfo.all /= null then
-            RefCount := this.m_IContinuumNavigationTransitionInfo.all.Release;
+            temp := this.m_IContinuumNavigationTransitionInfo.all.Release;
             Free (this.m_IContinuumNavigationTransitionInfo);
          end if;
       end if;
@@ -2497,7 +2939,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ContinuumNavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfo;
    begin
       return RetVal : ContinuumNavigationTransitionInfo do
@@ -2506,7 +2949,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IContinuumNavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfo;
             Retval.m_IContinuumNavigationTransitionInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2516,40 +2959,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_ExitElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitElementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsEntranceElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsEntranceElementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2559,17 +3010,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetIsEntranceElement (element.m_IUIElement.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2579,35 +3034,43 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetIsEntranceElement (element.m_IUIElement.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_IsExitElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsExitElementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2617,17 +3080,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetIsExitElement (element.m_IUIElement.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2637,35 +3104,43 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetIsExitElement (element.m_IUIElement.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_ExitElementContainerProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitElementContainerProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2675,17 +3150,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetExitElementContainer (element.m_IListViewBase.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2695,16 +3174,20 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IContinuumNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetExitElementContainer (element.m_IListViewBase.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -2716,11 +3199,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IContinuumNavigationTransitionInfo.all.get_ExitElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -2732,9 +3219,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContinuumNavigationTransitionInfo.all.put_ExitElement (value.m_IUIElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2746,12 +3237,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out CubicEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICubicEase, ICubicEase_Ptr);
    begin
       if this.m_ICubicEase /= null then
          if this.m_ICubicEase.all /= null then
-            RefCount := this.m_ICubicEase.all.Release;
+            temp := this.m_ICubicEase.all.Release;
             Free (this.m_ICubicEase);
          end if;
       end if;
@@ -2762,7 +3253,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return CubicEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CubicEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.CubicEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ICubicEase;
    begin
       return RetVal : CubicEase do
@@ -2771,7 +3263,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ICubicEase := new Windows.UI.Xaml.Media.Animation.ICubicEase;
             Retval.m_ICubicEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2787,12 +3279,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DirectConnectedAnimationConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDirectConnectedAnimationConfiguration, IDirectConnectedAnimationConfiguration_Ptr);
    begin
       if this.m_IDirectConnectedAnimationConfiguration /= null then
          if this.m_IDirectConnectedAnimationConfiguration.all /= null then
-            RefCount := this.m_IDirectConnectedAnimationConfiguration.all.Release;
+            temp := this.m_IDirectConnectedAnimationConfiguration.all.Release;
             Free (this.m_IDirectConnectedAnimationConfiguration);
          end if;
       end if;
@@ -2808,9 +3300,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return DirectConnectedAnimationConfiguration is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DirectConnectedAnimationConfiguration");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DirectConnectedAnimationConfiguration");
       m_Factory    : access IDirectConnectedAnimationConfigurationFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDirectConnectedAnimationConfiguration;
    begin
       return RetVal : DirectConnectedAnimationConfiguration do
@@ -2819,9 +3312,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDirectConnectedAnimationConfiguration := new Windows.UI.Xaml.Media.Animation.IDirectConnectedAnimationConfiguration;
             Retval.m_IDirectConnectedAnimationConfiguration.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2837,12 +3330,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DiscreteColorKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiscreteColorKeyFrame, IDiscreteColorKeyFrame_Ptr);
    begin
       if this.m_IDiscreteColorKeyFrame /= null then
          if this.m_IDiscreteColorKeyFrame.all /= null then
-            RefCount := this.m_IDiscreteColorKeyFrame.all.Release;
+            temp := this.m_IDiscreteColorKeyFrame.all.Release;
             Free (this.m_IDiscreteColorKeyFrame);
          end if;
       end if;
@@ -2853,7 +3346,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DiscreteColorKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscreteColorKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscreteColorKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDiscreteColorKeyFrame;
    begin
       return RetVal : DiscreteColorKeyFrame do
@@ -2862,7 +3356,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDiscreteColorKeyFrame := new Windows.UI.Xaml.Media.Animation.IDiscreteColorKeyFrame;
             Retval.m_IDiscreteColorKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2878,12 +3372,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DoubleKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDoubleKeyFrame, IDoubleKeyFrame_Ptr);
    begin
       if this.m_IDoubleKeyFrame /= null then
          if this.m_IDoubleKeyFrame.all /= null then
-            RefCount := this.m_IDoubleKeyFrame.all.Release;
+            temp := this.m_IDoubleKeyFrame.all.Release;
             Free (this.m_IDoubleKeyFrame);
          end if;
       end if;
@@ -2899,9 +3393,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return DoubleKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrame");
       m_Factory    : access IDoubleKeyFrameFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
    begin
       return RetVal : DoubleKeyFrame do
@@ -2910,9 +3405,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
             Retval.m_IDoubleKeyFrame.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2922,40 +3417,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_ValueProperty_DoubleKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTimeProperty_DoubleKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTimeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2968,10 +3471,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDoubleKeyFrame.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2981,9 +3488,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleKeyFrame.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTime
@@ -2992,10 +3503,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeyTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.KeyTime;
    begin
       Hr := this.m_IDoubleKeyFrame.all.get_KeyTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3005,9 +3520,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeyTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleKeyFrame.all.put_KeyTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3019,12 +3538,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DiscreteDoubleKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiscreteDoubleKeyFrame, IDiscreteDoubleKeyFrame_Ptr);
    begin
       if this.m_IDiscreteDoubleKeyFrame /= null then
          if this.m_IDiscreteDoubleKeyFrame.all /= null then
-            RefCount := this.m_IDiscreteDoubleKeyFrame.all.Release;
+            temp := this.m_IDiscreteDoubleKeyFrame.all.Release;
             Free (this.m_IDiscreteDoubleKeyFrame);
          end if;
       end if;
@@ -3035,7 +3554,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DiscreteDoubleKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscreteDoubleKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscreteDoubleKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDiscreteDoubleKeyFrame;
    begin
       return RetVal : DiscreteDoubleKeyFrame do
@@ -3044,7 +3564,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDiscreteDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.IDiscreteDoubleKeyFrame;
             Retval.m_IDiscreteDoubleKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3060,12 +3580,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ObjectKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IObjectKeyFrame, IObjectKeyFrame_Ptr);
    begin
       if this.m_IObjectKeyFrame /= null then
          if this.m_IObjectKeyFrame.all /= null then
-            RefCount := this.m_IObjectKeyFrame.all.Release;
+            temp := this.m_IObjectKeyFrame.all.Release;
             Free (this.m_IObjectKeyFrame);
          end if;
       end if;
@@ -3081,9 +3601,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return ObjectKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrame");
       m_Factory    : access IObjectKeyFrameFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
    begin
       return RetVal : ObjectKeyFrame do
@@ -3092,9 +3613,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IObjectKeyFrame := new Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
             Retval.m_IObjectKeyFrame.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3104,40 +3625,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_ValueProperty_ObjectKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IObjectKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTimeProperty_ObjectKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IObjectKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTimeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3150,10 +3679,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IObjectKeyFrame.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3163,9 +3696,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IObjectKeyFrame.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTime
@@ -3174,10 +3711,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeyTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.KeyTime;
    begin
       Hr := this.m_IObjectKeyFrame.all.get_KeyTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3187,9 +3728,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeyTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IObjectKeyFrame.all.put_KeyTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3201,12 +3746,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DiscreteObjectKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiscreteObjectKeyFrame, IDiscreteObjectKeyFrame_Ptr);
    begin
       if this.m_IDiscreteObjectKeyFrame /= null then
          if this.m_IDiscreteObjectKeyFrame.all /= null then
-            RefCount := this.m_IDiscreteObjectKeyFrame.all.Release;
+            temp := this.m_IDiscreteObjectKeyFrame.all.Release;
             Free (this.m_IDiscreteObjectKeyFrame);
          end if;
       end if;
@@ -3217,7 +3762,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DiscreteObjectKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscreteObjectKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscreteObjectKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDiscreteObjectKeyFrame;
    begin
       return RetVal : DiscreteObjectKeyFrame do
@@ -3226,7 +3772,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDiscreteObjectKeyFrame := new Windows.UI.Xaml.Media.Animation.IDiscreteObjectKeyFrame;
             Retval.m_IDiscreteObjectKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3242,12 +3788,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PointKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointKeyFrame, IPointKeyFrame_Ptr);
    begin
       if this.m_IPointKeyFrame /= null then
          if this.m_IPointKeyFrame.all /= null then
-            RefCount := this.m_IPointKeyFrame.all.Release;
+            temp := this.m_IPointKeyFrame.all.Release;
             Free (this.m_IPointKeyFrame);
          end if;
       end if;
@@ -3263,9 +3809,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return PointKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrame");
       m_Factory    : access IPointKeyFrameFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
    begin
       return RetVal : PointKeyFrame do
@@ -3274,9 +3821,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IPointKeyFrame := new Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
             Retval.m_IPointKeyFrame.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3286,40 +3833,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_ValueProperty_PointKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyTimeProperty_PointKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyTimeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3332,10 +3887,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IPointKeyFrame.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3345,9 +3904,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointKeyFrame.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyTime
@@ -3356,10 +3919,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeyTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.KeyTime;
    begin
       Hr := this.m_IPointKeyFrame.all.get_KeyTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3369,9 +3936,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeyTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointKeyFrame.all.put_KeyTime (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3383,12 +3954,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DiscretePointKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiscretePointKeyFrame, IDiscretePointKeyFrame_Ptr);
    begin
       if this.m_IDiscretePointKeyFrame /= null then
          if this.m_IDiscretePointKeyFrame.all /= null then
-            RefCount := this.m_IDiscretePointKeyFrame.all.Release;
+            temp := this.m_IDiscretePointKeyFrame.all.Release;
             Free (this.m_IDiscretePointKeyFrame);
          end if;
       end if;
@@ -3399,7 +3970,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DiscretePointKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscretePointKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DiscretePointKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDiscretePointKeyFrame;
    begin
       return RetVal : DiscretePointKeyFrame do
@@ -3408,7 +3980,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDiscretePointKeyFrame := new Windows.UI.Xaml.Media.Animation.IDiscretePointKeyFrame;
             Retval.m_IDiscretePointKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3424,12 +3996,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DoubleAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDoubleAnimation, IDoubleAnimation_Ptr);
    begin
       if this.m_IDoubleAnimation /= null then
          if this.m_IDoubleAnimation.all /= null then
-            RefCount := this.m_IDoubleAnimation.all.Release;
+            temp := this.m_IDoubleAnimation.all.Release;
             Free (this.m_IDoubleAnimation);
          end if;
       end if;
@@ -3440,7 +4012,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DoubleAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDoubleAnimation;
    begin
       return RetVal : DoubleAnimation do
@@ -3449,7 +4022,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDoubleAnimation := new Windows.UI.Xaml.Media.Animation.IDoubleAnimation;
             Retval.m_IDoubleAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3459,100 +4032,120 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_FromProperty_DoubleAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ToProperty_DoubleAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ToProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ByProperty_DoubleAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ByProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EasingFunctionProperty_DoubleAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingFunctionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EnableDependentAnimationProperty_DoubleAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3565,13 +4158,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IDoubleAnimation.all.get_From (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3581,9 +4178,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleAnimation.all.put_From (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_To
@@ -3592,13 +4193,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IDoubleAnimation.all.get_To (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3608,9 +4213,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleAnimation.all.put_To (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_By
@@ -3619,13 +4228,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IDoubleAnimation.all.get_By (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3635,9 +4248,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleAnimation.all.put_By (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EasingFunction
@@ -3646,11 +4263,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase do
          Hr := this.m_IDoubleAnimation.all.get_EasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEasingFunctionBase := new Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
          Retval.m_IEasingFunctionBase.all := m_ComRetVal;
       end return;
@@ -3662,9 +4283,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleAnimation.all.put_EasingFunction (value.m_IEasingFunctionBase.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EnableDependentAnimation
@@ -3673,10 +4298,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDoubleAnimation.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3686,9 +4315,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleAnimation.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3700,12 +4333,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DoubleAnimationUsingKeyFrames) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDoubleAnimationUsingKeyFrames, IDoubleAnimationUsingKeyFrames_Ptr);
    begin
       if this.m_IDoubleAnimationUsingKeyFrames /= null then
          if this.m_IDoubleAnimationUsingKeyFrames.all /= null then
-            RefCount := this.m_IDoubleAnimationUsingKeyFrames.all.Release;
+            temp := this.m_IDoubleAnimationUsingKeyFrames.all.Release;
             Free (this.m_IDoubleAnimationUsingKeyFrames);
          end if;
       end if;
@@ -3716,7 +4349,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DoubleAnimationUsingKeyFrames is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDoubleAnimationUsingKeyFrames;
    begin
       return RetVal : DoubleAnimationUsingKeyFrames do
@@ -3725,7 +4359,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDoubleAnimationUsingKeyFrames := new Windows.UI.Xaml.Media.Animation.IDoubleAnimationUsingKeyFrames;
             Retval.m_IDoubleAnimationUsingKeyFrames.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3735,20 +4369,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EnableDependentAnimationProperty_DoubleAnimationUsingKeyFrames
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleAnimationUsingKeyFramesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDoubleAnimationUsingKeyFramesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3761,11 +4399,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrameCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrameCollection do
          Hr := this.m_IDoubleAnimationUsingKeyFrames.all.get_KeyFrames (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -3777,10 +4419,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDoubleAnimationUsingKeyFrames.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3790,9 +4436,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleAnimationUsingKeyFrames.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3813,7 +4463,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DoubleKeyFrameCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrameCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DoubleKeyFrameCollection");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : DoubleKeyFrameCollection do
@@ -3822,7 +4473,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3837,8 +4488,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -3846,7 +4498,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame;
          Retval.m_IDoubleKeyFrame.all := m_ComRetVal;
       end return;
@@ -3858,15 +4513,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3876,15 +4535,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3896,15 +4559,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IDoubleKeyFrame.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3915,14 +4582,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_IDoubleKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -3932,14 +4603,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_IDoubleKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -3948,14 +4623,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -3964,14 +4643,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_IDoubleKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -3979,14 +4662,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out DoubleKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -3994,14 +4681,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out DoubleKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -4012,8 +4703,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -4021,7 +4713,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4031,15 +4726,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       items : Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3620462114, 34495, 22319, (132, 115, 7, 157, 21, 7, 108, 62 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.DoubleKeyFrame>
@@ -4049,15 +4748,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDoubleKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1595307738, 41989, 23418, (186, 241, 150, 141, 228, 57, 31, 183 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDoubleKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4070,12 +4773,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DragItemThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDragItemThemeAnimation, IDragItemThemeAnimation_Ptr);
    begin
       if this.m_IDragItemThemeAnimation /= null then
          if this.m_IDragItemThemeAnimation.all /= null then
-            RefCount := this.m_IDragItemThemeAnimation.all.Release;
+            temp := this.m_IDragItemThemeAnimation.all.Release;
             Free (this.m_IDragItemThemeAnimation);
          end if;
       end if;
@@ -4086,7 +4789,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DragItemThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragItemThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragItemThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDragItemThemeAnimation;
    begin
       return RetVal : DragItemThemeAnimation do
@@ -4095,7 +4799,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDragItemThemeAnimation := new Windows.UI.Xaml.Media.Animation.IDragItemThemeAnimation;
             Retval.m_IDragItemThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4105,20 +4809,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragItemThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragItemThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDragItemThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragItemThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4131,13 +4839,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDragItemThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4147,11 +4859,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDragItemThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -4163,12 +4879,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DragOverThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDragOverThemeAnimation, IDragOverThemeAnimation_Ptr);
    begin
       if this.m_IDragOverThemeAnimation /= null then
          if this.m_IDragOverThemeAnimation.all /= null then
-            RefCount := this.m_IDragOverThemeAnimation.all.Release;
+            temp := this.m_IDragOverThemeAnimation.all.Release;
             Free (this.m_IDragOverThemeAnimation);
          end if;
       end if;
@@ -4179,7 +4895,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DragOverThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDragOverThemeAnimation;
    begin
       return RetVal : DragOverThemeAnimation do
@@ -4188,7 +4905,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDragOverThemeAnimation := new Windows.UI.Xaml.Media.Animation.IDragOverThemeAnimation;
             Retval.m_IDragOverThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4198,60 +4915,72 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_DragOverThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDragOverThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragOverThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ToOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDragOverThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragOverThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ToOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DirectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DragOverThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDragOverThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragOverThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DirectionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4264,13 +4993,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDragOverThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4280,11 +5013,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDragOverThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ToOffset
@@ -4293,10 +5030,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragOverThemeAnimation.all.get_ToOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4306,9 +5047,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDragOverThemeAnimation.all.put_ToOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Direction
@@ -4317,10 +5062,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.AnimationDirection;
    begin
       Hr := this.m_IDragOverThemeAnimation.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4330,9 +5079,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDragOverThemeAnimation.all.put_Direction (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4344,12 +5097,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DrillInNavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDrillInNavigationTransitionInfo, IDrillInNavigationTransitionInfo_Ptr);
    begin
       if this.m_IDrillInNavigationTransitionInfo /= null then
          if this.m_IDrillInNavigationTransitionInfo.all /= null then
-            RefCount := this.m_IDrillInNavigationTransitionInfo.all.Release;
+            temp := this.m_IDrillInNavigationTransitionInfo.all.Release;
             Free (this.m_IDrillInNavigationTransitionInfo);
          end if;
       end if;
@@ -4360,7 +5113,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DrillInNavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDrillInNavigationTransitionInfo;
    begin
       return RetVal : DrillInNavigationTransitionInfo do
@@ -4369,7 +5123,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDrillInNavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.IDrillInNavigationTransitionInfo;
             Retval.m_IDrillInNavigationTransitionInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4385,12 +5139,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DrillInThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDrillInThemeAnimation, IDrillInThemeAnimation_Ptr);
    begin
       if this.m_IDrillInThemeAnimation /= null then
          if this.m_IDrillInThemeAnimation.all /= null then
-            RefCount := this.m_IDrillInThemeAnimation.all.Release;
+            temp := this.m_IDrillInThemeAnimation.all.Release;
             Free (this.m_IDrillInThemeAnimation);
          end if;
       end if;
@@ -4401,7 +5155,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DrillInThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDrillInThemeAnimation;
    begin
       return RetVal : DrillInThemeAnimation do
@@ -4410,7 +5165,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDrillInThemeAnimation := new Windows.UI.Xaml.Media.Animation.IDrillInThemeAnimation;
             Retval.m_IDrillInThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4420,80 +5175,96 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EntranceTargetNameProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EntranceTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EntranceTargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EntranceTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ExitTargetNameProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ExitTargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4506,13 +5277,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDrillInThemeAnimation.all.get_EntranceTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4522,11 +5297,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDrillInThemeAnimation.all.put_EntranceTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_EntranceTarget
@@ -4535,11 +5314,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IDrillInThemeAnimation.all.get_EntranceTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4551,9 +5334,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDrillInThemeAnimation.all.put_EntranceTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExitTargetName
@@ -4562,13 +5349,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDrillInThemeAnimation.all.get_ExitTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4578,11 +5369,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDrillInThemeAnimation.all.put_ExitTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ExitTarget
@@ -4591,11 +5386,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IDrillInThemeAnimation.all.get_ExitTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4607,9 +5406,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDrillInThemeAnimation.all.put_ExitTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4621,12 +5424,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DrillOutThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDrillOutThemeAnimation, IDrillOutThemeAnimation_Ptr);
    begin
       if this.m_IDrillOutThemeAnimation /= null then
          if this.m_IDrillOutThemeAnimation.all /= null then
-            RefCount := this.m_IDrillOutThemeAnimation.all.Release;
+            temp := this.m_IDrillOutThemeAnimation.all.Release;
             Free (this.m_IDrillOutThemeAnimation);
          end if;
       end if;
@@ -4637,7 +5440,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DrillOutThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDrillOutThemeAnimation;
    begin
       return RetVal : DrillOutThemeAnimation do
@@ -4646,7 +5450,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDrillOutThemeAnimation := new Windows.UI.Xaml.Media.Animation.IDrillOutThemeAnimation;
             Retval.m_IDrillOutThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4656,80 +5460,96 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EntranceTargetNameProperty_DrillOutThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillOutThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillOutThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EntranceTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EntranceTargetProperty_DrillOutThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillOutThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillOutThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EntranceTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ExitTargetNameProperty_DrillOutThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillOutThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillOutThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ExitTargetProperty_DrillOutThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDrillOutThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDrillOutThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExitTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4742,13 +5562,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDrillOutThemeAnimation.all.get_EntranceTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4758,11 +5582,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDrillOutThemeAnimation.all.put_EntranceTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_EntranceTarget
@@ -4771,11 +5599,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IDrillOutThemeAnimation.all.get_EntranceTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4787,9 +5619,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDrillOutThemeAnimation.all.put_EntranceTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExitTargetName
@@ -4798,13 +5634,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDrillOutThemeAnimation.all.get_ExitTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4814,11 +5654,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDrillOutThemeAnimation.all.put_ExitTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ExitTarget
@@ -4827,11 +5671,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IDrillOutThemeAnimation.all.get_ExitTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -4843,9 +5691,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDrillOutThemeAnimation.all.put_ExitTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4857,12 +5709,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out DropTargetItemThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDropTargetItemThemeAnimation, IDropTargetItemThemeAnimation_Ptr);
    begin
       if this.m_IDropTargetItemThemeAnimation /= null then
          if this.m_IDropTargetItemThemeAnimation.all /= null then
-            RefCount := this.m_IDropTargetItemThemeAnimation.all.Release;
+            temp := this.m_IDropTargetItemThemeAnimation.all.Release;
             Free (this.m_IDropTargetItemThemeAnimation);
          end if;
       end if;
@@ -4873,7 +5725,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return DropTargetItemThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IDropTargetItemThemeAnimation;
    begin
       return RetVal : DropTargetItemThemeAnimation do
@@ -4882,7 +5735,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IDropTargetItemThemeAnimation := new Windows.UI.Xaml.Media.Animation.IDropTargetItemThemeAnimation;
             Retval.m_IDropTargetItemThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4892,20 +5745,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_DropTargetItemThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IDropTargetItemThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDropTargetItemThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4918,13 +5775,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDropTargetItemThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4934,11 +5795,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDropTargetItemThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -4950,12 +5815,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EasingColorKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEasingColorKeyFrame, IEasingColorKeyFrame_Ptr);
    begin
       if this.m_IEasingColorKeyFrame /= null then
          if this.m_IEasingColorKeyFrame.all /= null then
-            RefCount := this.m_IEasingColorKeyFrame.all.Release;
+            temp := this.m_IEasingColorKeyFrame.all.Release;
             Free (this.m_IEasingColorKeyFrame);
          end if;
       end if;
@@ -4966,7 +5831,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return EasingColorKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingColorKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingColorKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IEasingColorKeyFrame;
    begin
       return RetVal : EasingColorKeyFrame do
@@ -4975,7 +5841,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IEasingColorKeyFrame := new Windows.UI.Xaml.Media.Animation.IEasingColorKeyFrame;
             Retval.m_IEasingColorKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4985,20 +5851,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EasingFunctionProperty_EasingColorKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingColorKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingColorKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingColorKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEasingColorKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingFunctionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5011,11 +5881,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase do
          Hr := this.m_IEasingColorKeyFrame.all.get_EasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEasingFunctionBase := new Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
          Retval.m_IEasingFunctionBase.all := m_ComRetVal;
       end return;
@@ -5027,9 +5901,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEasingColorKeyFrame.all.put_EasingFunction (value.m_IEasingFunctionBase.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5041,12 +5919,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EasingDoubleKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEasingDoubleKeyFrame, IEasingDoubleKeyFrame_Ptr);
    begin
       if this.m_IEasingDoubleKeyFrame /= null then
          if this.m_IEasingDoubleKeyFrame.all /= null then
-            RefCount := this.m_IEasingDoubleKeyFrame.all.Release;
+            temp := this.m_IEasingDoubleKeyFrame.all.Release;
             Free (this.m_IEasingDoubleKeyFrame);
          end if;
       end if;
@@ -5057,7 +5935,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return EasingDoubleKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingDoubleKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingDoubleKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IEasingDoubleKeyFrame;
    begin
       return RetVal : EasingDoubleKeyFrame do
@@ -5066,7 +5945,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IEasingDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.IEasingDoubleKeyFrame;
             Retval.m_IEasingDoubleKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5076,20 +5955,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EasingFunctionProperty_EasingDoubleKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingDoubleKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingDoubleKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingDoubleKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEasingDoubleKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingFunctionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5102,11 +5985,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase do
          Hr := this.m_IEasingDoubleKeyFrame.all.get_EasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEasingFunctionBase := new Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
          Retval.m_IEasingFunctionBase.all := m_ComRetVal;
       end return;
@@ -5118,9 +6005,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEasingDoubleKeyFrame.all.put_EasingFunction (value.m_IEasingFunctionBase.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5132,12 +6023,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EasingPointKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEasingPointKeyFrame, IEasingPointKeyFrame_Ptr);
    begin
       if this.m_IEasingPointKeyFrame /= null then
          if this.m_IEasingPointKeyFrame.all /= null then
-            RefCount := this.m_IEasingPointKeyFrame.all.Release;
+            temp := this.m_IEasingPointKeyFrame.all.Release;
             Free (this.m_IEasingPointKeyFrame);
          end if;
       end if;
@@ -5148,7 +6039,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return EasingPointKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingPointKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingPointKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IEasingPointKeyFrame;
    begin
       return RetVal : EasingPointKeyFrame do
@@ -5157,7 +6049,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IEasingPointKeyFrame := new Windows.UI.Xaml.Media.Animation.IEasingPointKeyFrame;
             Retval.m_IEasingPointKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5167,20 +6059,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EasingFunctionProperty_EasingPointKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingPointKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EasingPointKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingPointKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEasingPointKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingFunctionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5193,11 +6089,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase do
          Hr := this.m_IEasingPointKeyFrame.all.get_EasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEasingFunctionBase := new Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
          Retval.m_IEasingFunctionBase.all := m_ComRetVal;
       end return;
@@ -5209,9 +6109,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEasingPointKeyFrame.all.put_EasingFunction (value.m_IEasingFunctionBase.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5223,12 +6127,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EdgeUIThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEdgeUIThemeTransition, IEdgeUIThemeTransition_Ptr);
    begin
       if this.m_IEdgeUIThemeTransition /= null then
          if this.m_IEdgeUIThemeTransition.all /= null then
-            RefCount := this.m_IEdgeUIThemeTransition.all.Release;
+            temp := this.m_IEdgeUIThemeTransition.all.Release;
             Free (this.m_IEdgeUIThemeTransition);
          end if;
       end if;
@@ -5239,7 +6143,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return EdgeUIThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EdgeUIThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EdgeUIThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IEdgeUIThemeTransition;
    begin
       return RetVal : EdgeUIThemeTransition do
@@ -5248,7 +6153,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IEdgeUIThemeTransition := new Windows.UI.Xaml.Media.Animation.IEdgeUIThemeTransition;
             Retval.m_IEdgeUIThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5258,20 +6163,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EdgeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EdgeUIThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EdgeUIThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEdgeUIThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEdgeUIThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EdgeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5284,10 +6193,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation;
    begin
       Hr := this.m_IEdgeUIThemeTransition.all.get_Edge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5297,9 +6210,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEdgeUIThemeTransition.all.put_Edge (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5311,12 +6228,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ElasticEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IElasticEase, IElasticEase_Ptr);
    begin
       if this.m_IElasticEase /= null then
          if this.m_IElasticEase.all /= null then
-            RefCount := this.m_IElasticEase.all.Release;
+            temp := this.m_IElasticEase.all.Release;
             Free (this.m_IElasticEase);
          end if;
       end if;
@@ -5327,7 +6244,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ElasticEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ElasticEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ElasticEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IElasticEase;
    begin
       return RetVal : ElasticEase do
@@ -5336,7 +6254,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IElasticEase := new Windows.UI.Xaml.Media.Animation.IElasticEase;
             Retval.m_IElasticEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5346,40 +6264,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_OscillationsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ElasticEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ElasticEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IElasticEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IElasticEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OscillationsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SpringinessProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ElasticEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ElasticEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IElasticEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IElasticEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SpringinessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5392,10 +6318,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IElasticEase.all.get_Oscillations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5405,9 +6335,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IElasticEase.all.put_Oscillations (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Springiness
@@ -5416,10 +6350,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IElasticEase.all.get_Springiness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5429,9 +6367,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IElasticEase.all.put_Springiness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5443,12 +6385,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EntranceNavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEntranceNavigationTransitionInfo, IEntranceNavigationTransitionInfo_Ptr);
    begin
       if this.m_IEntranceNavigationTransitionInfo /= null then
          if this.m_IEntranceNavigationTransitionInfo.all /= null then
-            RefCount := this.m_IEntranceNavigationTransitionInfo.all.Release;
+            temp := this.m_IEntranceNavigationTransitionInfo.all.Release;
             Free (this.m_IEntranceNavigationTransitionInfo);
          end if;
       end if;
@@ -5459,7 +6401,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return EntranceNavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfo;
    begin
       return RetVal : EntranceNavigationTransitionInfo do
@@ -5468,7 +6411,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IEntranceNavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfo;
             Retval.m_IEntranceNavigationTransitionInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5478,20 +6421,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_IsTargetElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEntranceNavigationTransitionInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsTargetElementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5501,17 +6448,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IEntranceNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetIsTargetElement (element.m_IUIElement.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5521,16 +6472,20 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IEntranceNavigationTransitionInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetIsTargetElement (element.m_IUIElement.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -5545,12 +6500,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out EntranceThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEntranceThemeTransition, IEntranceThemeTransition_Ptr);
    begin
       if this.m_IEntranceThemeTransition /= null then
          if this.m_IEntranceThemeTransition.all /= null then
-            RefCount := this.m_IEntranceThemeTransition.all.Release;
+            temp := this.m_IEntranceThemeTransition.all.Release;
             Free (this.m_IEntranceThemeTransition);
          end if;
       end if;
@@ -5561,7 +6516,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return EntranceThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IEntranceThemeTransition;
    begin
       return RetVal : EntranceThemeTransition do
@@ -5570,7 +6526,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IEntranceThemeTransition := new Windows.UI.Xaml.Media.Animation.IEntranceThemeTransition;
             Retval.m_IEntranceThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5580,60 +6536,72 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_FromHorizontalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEntranceThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEntranceThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromVerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEntranceThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEntranceThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsStaggeringEnabledProperty_EntranceThemeTransition
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.EntranceThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IEntranceThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEntranceThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsStaggeringEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5646,10 +6614,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IEntranceThemeTransition.all.get_FromHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5659,9 +6631,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEntranceThemeTransition.all.put_FromHorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FromVerticalOffset
@@ -5670,10 +6646,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IEntranceThemeTransition.all.get_FromVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5683,9 +6663,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEntranceThemeTransition.all.put_FromVerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsStaggeringEnabled
@@ -5694,10 +6678,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEntranceThemeTransition.all.get_IsStaggeringEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5707,9 +6695,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IEntranceThemeTransition.all.put_IsStaggeringEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5721,12 +6713,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ExponentialEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IExponentialEase, IExponentialEase_Ptr);
    begin
       if this.m_IExponentialEase /= null then
          if this.m_IExponentialEase.all /= null then
-            RefCount := this.m_IExponentialEase.all.Release;
+            temp := this.m_IExponentialEase.all.Release;
             Free (this.m_IExponentialEase);
          end if;
       end if;
@@ -5737,7 +6729,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ExponentialEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ExponentialEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ExponentialEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IExponentialEase;
    begin
       return RetVal : ExponentialEase do
@@ -5746,7 +6739,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IExponentialEase := new Windows.UI.Xaml.Media.Animation.IExponentialEase;
             Retval.m_IExponentialEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5756,20 +6749,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_ExponentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ExponentialEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ExponentialEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IExponentialEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IExponentialEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ExponentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5782,10 +6779,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IExponentialEase.all.get_Exponent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5795,9 +6796,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IExponentialEase.all.put_Exponent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5809,12 +6814,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out FadeInThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFadeInThemeAnimation, IFadeInThemeAnimation_Ptr);
    begin
       if this.m_IFadeInThemeAnimation /= null then
          if this.m_IFadeInThemeAnimation.all /= null then
-            RefCount := this.m_IFadeInThemeAnimation.all.Release;
+            temp := this.m_IFadeInThemeAnimation.all.Release;
             Free (this.m_IFadeInThemeAnimation);
          end if;
       end if;
@@ -5825,7 +6830,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return FadeInThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeInThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeInThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IFadeInThemeAnimation;
    begin
       return RetVal : FadeInThemeAnimation do
@@ -5834,7 +6840,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IFadeInThemeAnimation := new Windows.UI.Xaml.Media.Animation.IFadeInThemeAnimation;
             Retval.m_IFadeInThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5844,20 +6850,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_FadeInThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IFadeInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFadeInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5870,13 +6880,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IFadeInThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5886,11 +6900,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IFadeInThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -5902,12 +6920,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out FadeOutThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFadeOutThemeAnimation, IFadeOutThemeAnimation_Ptr);
    begin
       if this.m_IFadeOutThemeAnimation /= null then
          if this.m_IFadeOutThemeAnimation.all /= null then
-            RefCount := this.m_IFadeOutThemeAnimation.all.Release;
+            temp := this.m_IFadeOutThemeAnimation.all.Release;
             Free (this.m_IFadeOutThemeAnimation);
          end if;
       end if;
@@ -5918,7 +6936,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return FadeOutThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeOutThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeOutThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IFadeOutThemeAnimation;
    begin
       return RetVal : FadeOutThemeAnimation do
@@ -5927,7 +6946,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IFadeOutThemeAnimation := new Windows.UI.Xaml.Media.Animation.IFadeOutThemeAnimation;
             Retval.m_IFadeOutThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5937,20 +6956,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_FadeOutThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeOutThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.FadeOutThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IFadeOutThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFadeOutThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5963,13 +6986,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IFadeOutThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5979,11 +7006,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IFadeOutThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -5995,12 +7026,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out GravityConnectedAnimationConfiguration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGravityConnectedAnimationConfiguration, IGravityConnectedAnimationConfiguration_Ptr);
    begin
       if this.m_IGravityConnectedAnimationConfiguration /= null then
          if this.m_IGravityConnectedAnimationConfiguration.all /= null then
-            RefCount := this.m_IGravityConnectedAnimationConfiguration.all.Release;
+            temp := this.m_IGravityConnectedAnimationConfiguration.all.Release;
             Free (this.m_IGravityConnectedAnimationConfiguration);
          end if;
       end if;
@@ -6016,9 +7047,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return GravityConnectedAnimationConfiguration is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.GravityConnectedAnimationConfiguration");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.GravityConnectedAnimationConfiguration");
       m_Factory    : access IGravityConnectedAnimationConfigurationFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration;
    begin
       return RetVal : GravityConnectedAnimationConfiguration do
@@ -6027,9 +7059,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGravityConnectedAnimationConfiguration := new Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration;
             Retval.m_IGravityConnectedAnimationConfiguration.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6042,14 +7074,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IGravityConnectedAnimationConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGravityConnectedAnimationConfiguration.all);
       Hr := m_Interface.get_IsShadowEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6059,13 +7095,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IGravityConnectedAnimationConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGravityConnectedAnimationConfiguration.all);
       Hr := m_Interface.put_IsShadowEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6077,12 +7117,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out KeySpline) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeySpline, IKeySpline_Ptr);
    begin
       if this.m_IKeySpline /= null then
          if this.m_IKeySpline.all /= null then
-            RefCount := this.m_IKeySpline.all.Release;
+            temp := this.m_IKeySpline.all.Release;
             Free (this.m_IKeySpline);
          end if;
       end if;
@@ -6093,7 +7133,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return KeySpline is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.KeySpline");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.KeySpline");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IKeySpline;
    begin
       return RetVal : KeySpline do
@@ -6102,7 +7143,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IKeySpline := new Windows.UI.Xaml.Media.Animation.IKeySpline;
             Retval.m_IKeySpline.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6115,10 +7156,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IKeySpline.all.get_ControlPoint1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6128,9 +7173,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeySpline.all.put_ControlPoint1 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ControlPoint2
@@ -6139,10 +7188,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IKeySpline.all.get_ControlPoint2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6152,9 +7205,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeySpline.all.put_ControlPoint2 (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6166,12 +7223,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out KeyTimeHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyTimeHelper, IKeyTimeHelper_Ptr);
    begin
       if this.m_IKeyTimeHelper /= null then
          if this.m_IKeyTimeHelper.all /= null then
-            RefCount := this.m_IKeyTimeHelper.all.Release;
+            temp := this.m_IKeyTimeHelper.all.Release;
             Free (this.m_IKeyTimeHelper);
          end if;
       end if;
@@ -6186,17 +7243,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeyTime is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.KeyTimeHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.KeyTimeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IKeyTimeHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.KeyTime;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IKeyTimeHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FromTimeSpan (timeSpan, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6212,12 +7273,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out LinearColorKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILinearColorKeyFrame, ILinearColorKeyFrame_Ptr);
    begin
       if this.m_ILinearColorKeyFrame /= null then
          if this.m_ILinearColorKeyFrame.all /= null then
-            RefCount := this.m_ILinearColorKeyFrame.all.Release;
+            temp := this.m_ILinearColorKeyFrame.all.Release;
             Free (this.m_ILinearColorKeyFrame);
          end if;
       end if;
@@ -6228,7 +7289,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return LinearColorKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.LinearColorKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.LinearColorKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ILinearColorKeyFrame;
    begin
       return RetVal : LinearColorKeyFrame do
@@ -6237,7 +7299,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ILinearColorKeyFrame := new Windows.UI.Xaml.Media.Animation.ILinearColorKeyFrame;
             Retval.m_ILinearColorKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6253,12 +7315,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out LinearDoubleKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILinearDoubleKeyFrame, ILinearDoubleKeyFrame_Ptr);
    begin
       if this.m_ILinearDoubleKeyFrame /= null then
          if this.m_ILinearDoubleKeyFrame.all /= null then
-            RefCount := this.m_ILinearDoubleKeyFrame.all.Release;
+            temp := this.m_ILinearDoubleKeyFrame.all.Release;
             Free (this.m_ILinearDoubleKeyFrame);
          end if;
       end if;
@@ -6269,7 +7331,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return LinearDoubleKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.LinearDoubleKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.LinearDoubleKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ILinearDoubleKeyFrame;
    begin
       return RetVal : LinearDoubleKeyFrame do
@@ -6278,7 +7341,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ILinearDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.ILinearDoubleKeyFrame;
             Retval.m_ILinearDoubleKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6294,12 +7357,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out LinearPointKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILinearPointKeyFrame, ILinearPointKeyFrame_Ptr);
    begin
       if this.m_ILinearPointKeyFrame /= null then
          if this.m_ILinearPointKeyFrame.all /= null then
-            RefCount := this.m_ILinearPointKeyFrame.all.Release;
+            temp := this.m_ILinearPointKeyFrame.all.Release;
             Free (this.m_ILinearPointKeyFrame);
          end if;
       end if;
@@ -6310,7 +7373,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return LinearPointKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.LinearPointKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.LinearPointKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ILinearPointKeyFrame;
    begin
       return RetVal : LinearPointKeyFrame do
@@ -6319,7 +7383,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ILinearPointKeyFrame := new Windows.UI.Xaml.Media.Animation.ILinearPointKeyFrame;
             Retval.m_ILinearPointKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6335,12 +7399,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out NavigationThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INavigationThemeTransition, INavigationThemeTransition_Ptr);
    begin
       if this.m_INavigationThemeTransition /= null then
          if this.m_INavigationThemeTransition.all /= null then
-            RefCount := this.m_INavigationThemeTransition.all.Release;
+            temp := this.m_INavigationThemeTransition.all.Release;
             Free (this.m_INavigationThemeTransition);
          end if;
       end if;
@@ -6351,7 +7415,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return NavigationThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.NavigationThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.NavigationThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.INavigationThemeTransition;
    begin
       return RetVal : NavigationThemeTransition do
@@ -6360,7 +7425,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_INavigationThemeTransition := new Windows.UI.Xaml.Media.Animation.INavigationThemeTransition;
             Retval.m_INavigationThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6370,20 +7435,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_DefaultNavigationTransitionInfoProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.NavigationThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.NavigationThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_INavigationThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DefaultNavigationTransitionInfoProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6396,11 +7465,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo do
          Hr := this.m_INavigationThemeTransition.all.get_DefaultNavigationTransitionInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_INavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
          Retval.m_INavigationTransitionInfo.all := m_ComRetVal;
       end return;
@@ -6412,9 +7485,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INavigationThemeTransition.all.put_DefaultNavigationTransitionInfo (value.m_INavigationTransitionInfo.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6426,12 +7503,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ObjectAnimationUsingKeyFrames) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IObjectAnimationUsingKeyFrames, IObjectAnimationUsingKeyFrames_Ptr);
    begin
       if this.m_IObjectAnimationUsingKeyFrames /= null then
          if this.m_IObjectAnimationUsingKeyFrames.all /= null then
-            RefCount := this.m_IObjectAnimationUsingKeyFrames.all.Release;
+            temp := this.m_IObjectAnimationUsingKeyFrames.all.Release;
             Free (this.m_IObjectAnimationUsingKeyFrames);
          end if;
       end if;
@@ -6442,7 +7519,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ObjectAnimationUsingKeyFrames is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IObjectAnimationUsingKeyFrames;
    begin
       return RetVal : ObjectAnimationUsingKeyFrames do
@@ -6451,7 +7529,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IObjectAnimationUsingKeyFrames := new Windows.UI.Xaml.Media.Animation.IObjectAnimationUsingKeyFrames;
             Retval.m_IObjectAnimationUsingKeyFrames.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6461,20 +7539,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EnableDependentAnimationProperty_ObjectAnimationUsingKeyFrames
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IObjectAnimationUsingKeyFramesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IObjectAnimationUsingKeyFramesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6487,11 +7569,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrameCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrameCollection do
          Hr := this.m_IObjectAnimationUsingKeyFrames.all.get_KeyFrames (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -6503,10 +7589,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IObjectAnimationUsingKeyFrames.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6516,9 +7606,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IObjectAnimationUsingKeyFrames.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6539,7 +7633,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ObjectKeyFrameCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrameCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ObjectKeyFrameCollection");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : ObjectKeyFrameCollection do
@@ -6548,7 +7643,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6563,8 +7658,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -6572,7 +7668,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IObjectKeyFrame := new Windows.UI.Xaml.Media.Animation.IObjectKeyFrame;
          Retval.m_IObjectKeyFrame.all := m_ComRetVal;
       end return;
@@ -6584,15 +7683,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6602,15 +7705,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6622,15 +7729,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IObjectKeyFrame.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6641,14 +7752,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_IObjectKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -6658,14 +7773,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_IObjectKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -6674,14 +7793,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -6690,14 +7813,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_IObjectKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -6705,14 +7832,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out ObjectKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -6720,14 +7851,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out ObjectKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -6738,8 +7873,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -6747,7 +7883,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6757,15 +7896,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       items : Windows.UI.Xaml.Media.Animation.IObjectKeyFrame_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1601387839, 29350, 21251, (151, 39, 43, 3, 234, 231, 221, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.ObjectKeyFrame>
@@ -6775,15 +7918,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IObjectKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2424613089, 36685, 24035, (177, 198, 229, 240, 87, 36, 202, 237 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IObjectKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6796,12 +7943,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PaneThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPaneThemeTransition, IPaneThemeTransition_Ptr);
    begin
       if this.m_IPaneThemeTransition /= null then
          if this.m_IPaneThemeTransition.all /= null then
-            RefCount := this.m_IPaneThemeTransition.all.Release;
+            temp := this.m_IPaneThemeTransition.all.Release;
             Free (this.m_IPaneThemeTransition);
          end if;
       end if;
@@ -6812,7 +7959,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PaneThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PaneThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PaneThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPaneThemeTransition;
    begin
       return RetVal : PaneThemeTransition do
@@ -6821,7 +7969,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPaneThemeTransition := new Windows.UI.Xaml.Media.Animation.IPaneThemeTransition;
             Retval.m_IPaneThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6831,20 +7979,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EdgeProperty_PaneThemeTransition
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PaneThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PaneThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPaneThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPaneThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EdgeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6857,10 +8009,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation;
    begin
       Hr := this.m_IPaneThemeTransition.all.get_Edge (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6870,9 +8026,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPaneThemeTransition.all.put_Edge (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6884,12 +8044,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PointAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointAnimation, IPointAnimation_Ptr);
    begin
       if this.m_IPointAnimation /= null then
          if this.m_IPointAnimation.all /= null then
-            RefCount := this.m_IPointAnimation.all.Release;
+            temp := this.m_IPointAnimation.all.Release;
             Free (this.m_IPointAnimation);
          end if;
       end if;
@@ -6900,7 +8060,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PointAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPointAnimation;
    begin
       return RetVal : PointAnimation do
@@ -6909,7 +8070,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPointAnimation := new Windows.UI.Xaml.Media.Animation.IPointAnimation;
             Retval.m_IPointAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6919,100 +8080,120 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_FromProperty_PointAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ToProperty_PointAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ToProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ByProperty_PointAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ByProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EasingFunctionProperty_PointAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EasingFunctionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_EnableDependentAnimationProperty_PointAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7025,13 +8206,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_IPointAnimation.all.get_From (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7041,9 +8226,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointAnimation.all.put_From (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_To
@@ -7052,13 +8241,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_IPointAnimation.all.get_To (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7068,9 +8261,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointAnimation.all.put_To (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_By
@@ -7079,13 +8276,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return IReference_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_IPointAnimation.all.get_By (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7095,9 +8296,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointAnimation.all.put_By (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EasingFunction
@@ -7106,11 +8311,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase do
          Hr := this.m_IPointAnimation.all.get_EasingFunction (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEasingFunctionBase := new Windows.UI.Xaml.Media.Animation.IEasingFunctionBase;
          Retval.m_IEasingFunctionBase.all := m_ComRetVal;
       end return;
@@ -7122,9 +8331,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointAnimation.all.put_EasingFunction (value.m_IEasingFunctionBase.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EnableDependentAnimation
@@ -7133,10 +8346,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPointAnimation.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7146,9 +8363,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointAnimation.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7160,12 +8381,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PointAnimationUsingKeyFrames) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointAnimationUsingKeyFrames, IPointAnimationUsingKeyFrames_Ptr);
    begin
       if this.m_IPointAnimationUsingKeyFrames /= null then
          if this.m_IPointAnimationUsingKeyFrames.all /= null then
-            RefCount := this.m_IPointAnimationUsingKeyFrames.all.Release;
+            temp := this.m_IPointAnimationUsingKeyFrames.all.Release;
             Free (this.m_IPointAnimationUsingKeyFrames);
          end if;
       end if;
@@ -7176,7 +8397,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PointAnimationUsingKeyFrames is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimationUsingKeyFrames");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimationUsingKeyFrames");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPointAnimationUsingKeyFrames;
    begin
       return RetVal : PointAnimationUsingKeyFrames do
@@ -7185,7 +8407,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPointAnimationUsingKeyFrames := new Windows.UI.Xaml.Media.Animation.IPointAnimationUsingKeyFrames;
             Retval.m_IPointAnimationUsingKeyFrames.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7195,20 +8417,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EnableDependentAnimationProperty_PointAnimationUsingKeyFrames
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimationUsingKeyFrames");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointAnimationUsingKeyFrames");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointAnimationUsingKeyFramesStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointAnimationUsingKeyFramesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnableDependentAnimationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7221,11 +8447,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrameCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrameCollection do
          Hr := this.m_IPointAnimationUsingKeyFrames.all.get_KeyFrames (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -7237,10 +8467,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPointAnimationUsingKeyFrames.all.get_EnableDependentAnimation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7250,9 +8484,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointAnimationUsingKeyFrames.all.put_EnableDependentAnimation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7273,7 +8511,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PointKeyFrameCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrameCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointKeyFrameCollection");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : PointKeyFrameCollection do
@@ -7282,7 +8521,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7297,8 +8536,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -7306,7 +8546,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPointKeyFrame := new Windows.UI.Xaml.Media.Animation.IPointKeyFrame;
          Retval.m_IPointKeyFrame.all := m_ComRetVal;
       end return;
@@ -7318,15 +8561,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7336,15 +8583,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7356,15 +8607,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IPointKeyFrame.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7375,14 +8630,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_IPointKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -7392,14 +8651,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_IPointKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -7408,14 +8671,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -7424,14 +8691,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_IPointKeyFrame.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -7439,14 +8710,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out PointKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -7454,14 +8729,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out PointKeyFrameCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -7472,8 +8751,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
@@ -7481,7 +8761,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7491,15 +8774,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       items : Windows.UI.Xaml.Media.Animation.IPointKeyFrame_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (2977834718, 40151, 21590, (190, 224, 73, 136, 42, 135, 249, 69 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.PointKeyFrame>
@@ -7509,15 +8796,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPointKeyFrame.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3101576649, 35945, 22003, (175, 88, 4, 15, 19, 25, 100, 156 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPointKeyFrame.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7530,12 +8821,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PointerDownThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointerDownThemeAnimation, IPointerDownThemeAnimation_Ptr);
    begin
       if this.m_IPointerDownThemeAnimation /= null then
          if this.m_IPointerDownThemeAnimation.all /= null then
-            RefCount := this.m_IPointerDownThemeAnimation.all.Release;
+            temp := this.m_IPointerDownThemeAnimation.all.Release;
             Free (this.m_IPointerDownThemeAnimation);
          end if;
       end if;
@@ -7546,7 +8837,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PointerDownThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerDownThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerDownThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPointerDownThemeAnimation;
    begin
       return RetVal : PointerDownThemeAnimation do
@@ -7555,7 +8847,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPointerDownThemeAnimation := new Windows.UI.Xaml.Media.Animation.IPointerDownThemeAnimation;
             Retval.m_IPointerDownThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7565,20 +8857,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_PointerDownThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerDownThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerDownThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointerDownThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointerDownThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7591,13 +8887,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPointerDownThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7607,11 +8907,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPointerDownThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -7623,12 +8927,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PointerUpThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointerUpThemeAnimation, IPointerUpThemeAnimation_Ptr);
    begin
       if this.m_IPointerUpThemeAnimation /= null then
          if this.m_IPointerUpThemeAnimation.all /= null then
-            RefCount := this.m_IPointerUpThemeAnimation.all.Release;
+            temp := this.m_IPointerUpThemeAnimation.all.Release;
             Free (this.m_IPointerUpThemeAnimation);
          end if;
       end if;
@@ -7639,7 +8943,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PointerUpThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerUpThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerUpThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPointerUpThemeAnimation;
    begin
       return RetVal : PointerUpThemeAnimation do
@@ -7648,7 +8953,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPointerUpThemeAnimation := new Windows.UI.Xaml.Media.Animation.IPointerUpThemeAnimation;
             Retval.m_IPointerUpThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7658,20 +8963,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_PointerUpThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerUpThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PointerUpThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPointerUpThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPointerUpThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7684,13 +8993,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPointerUpThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7700,11 +9013,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPointerUpThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -7716,12 +9033,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PopInThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPopInThemeAnimation, IPopInThemeAnimation_Ptr);
    begin
       if this.m_IPopInThemeAnimation /= null then
          if this.m_IPopInThemeAnimation.all /= null then
-            RefCount := this.m_IPopInThemeAnimation.all.Release;
+            temp := this.m_IPopInThemeAnimation.all.Release;
             Free (this.m_IPopInThemeAnimation);
          end if;
       end if;
@@ -7732,7 +9049,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PopInThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPopInThemeAnimation;
    begin
       return RetVal : PopInThemeAnimation do
@@ -7741,7 +9059,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPopInThemeAnimation := new Windows.UI.Xaml.Media.Animation.IPopInThemeAnimation;
             Retval.m_IPopInThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7751,60 +9069,72 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_PopInThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPopInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromHorizontalOffsetProperty_PopInThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPopInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromVerticalOffsetProperty_PopInThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopInThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPopInThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopInThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7817,13 +9147,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPopInThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7833,11 +9167,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPopInThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FromHorizontalOffset
@@ -7846,10 +9184,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPopInThemeAnimation.all.get_FromHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7859,9 +9201,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopInThemeAnimation.all.put_FromHorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FromVerticalOffset
@@ -7870,10 +9216,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPopInThemeAnimation.all.get_FromVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7883,9 +9233,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopInThemeAnimation.all.put_FromVerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7897,12 +9251,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PopOutThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPopOutThemeAnimation, IPopOutThemeAnimation_Ptr);
    begin
       if this.m_IPopOutThemeAnimation /= null then
          if this.m_IPopOutThemeAnimation.all /= null then
-            RefCount := this.m_IPopOutThemeAnimation.all.Release;
+            temp := this.m_IPopOutThemeAnimation.all.Release;
             Free (this.m_IPopOutThemeAnimation);
          end if;
       end if;
@@ -7913,7 +9267,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PopOutThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopOutThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopOutThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPopOutThemeAnimation;
    begin
       return RetVal : PopOutThemeAnimation do
@@ -7922,7 +9277,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPopOutThemeAnimation := new Windows.UI.Xaml.Media.Animation.IPopOutThemeAnimation;
             Retval.m_IPopOutThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7932,20 +9287,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_PopOutThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopOutThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopOutThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPopOutThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopOutThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7958,13 +9317,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPopOutThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7974,11 +9337,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPopOutThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -7990,12 +9357,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PopupThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPopupThemeTransition, IPopupThemeTransition_Ptr);
    begin
       if this.m_IPopupThemeTransition /= null then
          if this.m_IPopupThemeTransition.all /= null then
-            RefCount := this.m_IPopupThemeTransition.all.Release;
+            temp := this.m_IPopupThemeTransition.all.Release;
             Free (this.m_IPopupThemeTransition);
          end if;
       end if;
@@ -8006,7 +9373,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PopupThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopupThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopupThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPopupThemeTransition;
    begin
       return RetVal : PopupThemeTransition do
@@ -8015,7 +9383,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPopupThemeTransition := new Windows.UI.Xaml.Media.Animation.IPopupThemeTransition;
             Retval.m_IPopupThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8025,40 +9393,48 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_FromHorizontalOffsetProperty_PopupThemeTransition
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopupThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopupThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPopupThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromVerticalOffsetProperty_PopupThemeTransition
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopupThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PopupThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPopupThemeTransitionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupThemeTransitionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8071,10 +9447,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPopupThemeTransition.all.get_FromHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8084,9 +9464,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopupThemeTransition.all.put_FromHorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FromVerticalOffset
@@ -8095,10 +9479,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPopupThemeTransition.all.get_FromVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8108,9 +9496,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopupThemeTransition.all.put_FromVerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8122,12 +9514,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out PowerEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPowerEase, IPowerEase_Ptr);
    begin
       if this.m_IPowerEase /= null then
          if this.m_IPowerEase.all /= null then
-            RefCount := this.m_IPowerEase.all.Release;
+            temp := this.m_IPowerEase.all.Release;
             Free (this.m_IPowerEase);
          end if;
       end if;
@@ -8138,7 +9530,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return PowerEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PowerEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PowerEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IPowerEase;
    begin
       return RetVal : PowerEase do
@@ -8147,7 +9540,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IPowerEase := new Windows.UI.Xaml.Media.Animation.IPowerEase;
             Retval.m_IPowerEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8157,20 +9550,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_PowerProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PowerEase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.PowerEase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IPowerEaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPowerEaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PowerProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8183,10 +9580,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPowerEase.all.get_Power (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8196,9 +9597,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPowerEase.all.put_Power (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8210,12 +9615,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out QuadraticEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IQuadraticEase, IQuadraticEase_Ptr);
    begin
       if this.m_IQuadraticEase /= null then
          if this.m_IQuadraticEase.all /= null then
-            RefCount := this.m_IQuadraticEase.all.Release;
+            temp := this.m_IQuadraticEase.all.Release;
             Free (this.m_IQuadraticEase);
          end if;
       end if;
@@ -8226,7 +9631,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return QuadraticEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.QuadraticEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.QuadraticEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IQuadraticEase;
    begin
       return RetVal : QuadraticEase do
@@ -8235,7 +9641,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IQuadraticEase := new Windows.UI.Xaml.Media.Animation.IQuadraticEase;
             Retval.m_IQuadraticEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8251,12 +9657,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out QuarticEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IQuarticEase, IQuarticEase_Ptr);
    begin
       if this.m_IQuarticEase /= null then
          if this.m_IQuarticEase.all /= null then
-            RefCount := this.m_IQuarticEase.all.Release;
+            temp := this.m_IQuarticEase.all.Release;
             Free (this.m_IQuarticEase);
          end if;
       end if;
@@ -8267,7 +9673,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return QuarticEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.QuarticEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.QuarticEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IQuarticEase;
    begin
       return RetVal : QuarticEase do
@@ -8276,7 +9683,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IQuarticEase := new Windows.UI.Xaml.Media.Animation.IQuarticEase;
             Retval.m_IQuarticEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8292,12 +9699,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out QuinticEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IQuinticEase, IQuinticEase_Ptr);
    begin
       if this.m_IQuinticEase /= null then
          if this.m_IQuinticEase.all /= null then
-            RefCount := this.m_IQuinticEase.all.Release;
+            temp := this.m_IQuinticEase.all.Release;
             Free (this.m_IQuinticEase);
          end if;
       end if;
@@ -8308,7 +9715,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return QuinticEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.QuinticEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.QuinticEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IQuinticEase;
    begin
       return RetVal : QuinticEase do
@@ -8317,7 +9725,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IQuinticEase := new Windows.UI.Xaml.Media.Animation.IQuinticEase;
             Retval.m_IQuinticEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8333,12 +9741,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out ReorderThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IReorderThemeTransition, IReorderThemeTransition_Ptr);
    begin
       if this.m_IReorderThemeTransition /= null then
          if this.m_IReorderThemeTransition.all /= null then
-            RefCount := this.m_IReorderThemeTransition.all.Release;
+            temp := this.m_IReorderThemeTransition.all.Release;
             Free (this.m_IReorderThemeTransition);
          end if;
       end if;
@@ -8349,7 +9757,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return ReorderThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ReorderThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.ReorderThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IReorderThemeTransition;
    begin
       return RetVal : ReorderThemeTransition do
@@ -8358,7 +9767,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IReorderThemeTransition := new Windows.UI.Xaml.Media.Animation.IReorderThemeTransition;
             Retval.m_IReorderThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8374,12 +9783,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out RepeatBehaviorHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRepeatBehaviorHelper, IRepeatBehaviorHelper_Ptr);
    begin
       if this.m_IRepeatBehaviorHelper /= null then
          if this.m_IRepeatBehaviorHelper.all /= null then
-            RefCount := this.m_IRepeatBehaviorHelper.all.Release;
+            temp := this.m_IRepeatBehaviorHelper.all.Release;
             Free (this.m_IRepeatBehaviorHelper);
          end if;
       end if;
@@ -8391,17 +9800,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_Forever
    return WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepeatBehaviorHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.RepeatBehavior;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRepeatBehaviorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_Forever (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8411,17 +9824,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepeatBehaviorHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.RepeatBehavior;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRepeatBehaviorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FromCount (count, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8431,17 +9848,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepeatBehaviorHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.RepeatBehavior;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRepeatBehaviorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FromDuration (duration, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8451,17 +9872,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepeatBehaviorHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRepeatBehaviorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetHasCount (target, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8471,17 +9896,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepeatBehaviorHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRepeatBehaviorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetHasDuration (target, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8492,17 +9921,21 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepeatBehaviorHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepeatBehaviorHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRepeatBehaviorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.Equals (target, value, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -8518,12 +9951,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out RepositionThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRepositionThemeAnimation, IRepositionThemeAnimation_Ptr);
    begin
       if this.m_IRepositionThemeAnimation /= null then
          if this.m_IRepositionThemeAnimation.all /= null then
-            RefCount := this.m_IRepositionThemeAnimation.all.Release;
+            temp := this.m_IRepositionThemeAnimation.all.Release;
             Free (this.m_IRepositionThemeAnimation);
          end if;
       end if;
@@ -8534,7 +9967,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return RepositionThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IRepositionThemeAnimation;
    begin
       return RetVal : RepositionThemeAnimation do
@@ -8543,7 +9977,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IRepositionThemeAnimation := new Windows.UI.Xaml.Media.Animation.IRepositionThemeAnimation;
             Retval.m_IRepositionThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8553,60 +9987,72 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_RepositionThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRepositionThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromHorizontalOffsetProperty_RepositionThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRepositionThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromVerticalOffsetProperty_RepositionThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRepositionThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8619,13 +10065,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IRepositionThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -8635,11 +10085,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IRepositionThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FromHorizontalOffset
@@ -8648,10 +10102,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRepositionThemeAnimation.all.get_FromHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8661,9 +10119,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRepositionThemeAnimation.all.put_FromHorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FromVerticalOffset
@@ -8672,10 +10134,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRepositionThemeAnimation.all.get_FromVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8685,9 +10151,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRepositionThemeAnimation.all.put_FromVerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8699,12 +10169,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out RepositionThemeTransition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRepositionThemeTransition, IRepositionThemeTransition_Ptr);
    begin
       if this.m_IRepositionThemeTransition /= null then
          if this.m_IRepositionThemeTransition.all /= null then
-            RefCount := this.m_IRepositionThemeTransition.all.Release;
+            temp := this.m_IRepositionThemeTransition.all.Release;
             Free (this.m_IRepositionThemeTransition);
          end if;
       end if;
@@ -8715,7 +10185,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return RepositionThemeTransition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeTransition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeTransition");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition;
    begin
       return RetVal : RepositionThemeTransition do
@@ -8724,7 +10195,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IRepositionThemeTransition := new Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition;
             Retval.m_IRepositionThemeTransition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8734,20 +10205,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_IsStaggeringEnabledProperty_RepositionThemeTransition
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeTransition");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.RepositionThemeTransition");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransitionStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRepositionThemeTransitionStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsStaggeringEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8760,14 +10235,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IRepositionThemeTransition2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRepositionThemeTransition.all);
       Hr := m_Interface.get_IsStaggeringEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8777,13 +10256,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition_Interface, WinRt.Windows.UI.Xaml.Media.Animation.IRepositionThemeTransition2, WinRt.Windows.UI.Xaml.Media.Animation.IID_IRepositionThemeTransition2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRepositionThemeTransition.all);
       Hr := m_Interface.put_IsStaggeringEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8795,12 +10278,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SineEase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISineEase, ISineEase_Ptr);
    begin
       if this.m_ISineEase /= null then
          if this.m_ISineEase.all /= null then
-            RefCount := this.m_ISineEase.all.Release;
+            temp := this.m_ISineEase.all.Release;
             Free (this.m_ISineEase);
          end if;
       end if;
@@ -8811,7 +10294,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SineEase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SineEase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SineEase");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISineEase;
    begin
       return RetVal : SineEase do
@@ -8820,7 +10304,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISineEase := new Windows.UI.Xaml.Media.Animation.ISineEase;
             Retval.m_ISineEase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8836,12 +10320,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SlideNavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISlideNavigationTransitionInfo, ISlideNavigationTransitionInfo_Ptr);
    begin
       if this.m_ISlideNavigationTransitionInfo /= null then
          if this.m_ISlideNavigationTransitionInfo.all /= null then
-            RefCount := this.m_ISlideNavigationTransitionInfo.all.Release;
+            temp := this.m_ISlideNavigationTransitionInfo.all.Release;
             Free (this.m_ISlideNavigationTransitionInfo);
          end if;
       end if;
@@ -8852,7 +10336,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SlideNavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionInfo");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo;
    begin
       return RetVal : SlideNavigationTransitionInfo do
@@ -8861,7 +10346,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISlideNavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo;
             Retval.m_ISlideNavigationTransitionInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8871,20 +10356,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_EffectProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionInfo");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfoStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISlideNavigationTransitionInfoStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EffectProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8897,14 +10386,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo_Interface, WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo2, WinRt.Windows.UI.Xaml.Media.Animation.IID_ISlideNavigationTransitionInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlideNavigationTransitionInfo.all);
       Hr := m_Interface.get_Effect (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8914,13 +10407,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo_Interface, WinRt.Windows.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo2, WinRt.Windows.UI.Xaml.Media.Animation.IID_ISlideNavigationTransitionInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlideNavigationTransitionInfo.all);
       Hr := m_Interface.put_Effect (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8932,12 +10429,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SplineColorKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISplineColorKeyFrame, ISplineColorKeyFrame_Ptr);
    begin
       if this.m_ISplineColorKeyFrame /= null then
          if this.m_ISplineColorKeyFrame.all /= null then
-            RefCount := this.m_ISplineColorKeyFrame.all.Release;
+            temp := this.m_ISplineColorKeyFrame.all.Release;
             Free (this.m_ISplineColorKeyFrame);
          end if;
       end if;
@@ -8948,7 +10445,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SplineColorKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineColorKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineColorKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISplineColorKeyFrame;
    begin
       return RetVal : SplineColorKeyFrame do
@@ -8957,7 +10455,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISplineColorKeyFrame := new Windows.UI.Xaml.Media.Animation.ISplineColorKeyFrame;
             Retval.m_ISplineColorKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8967,20 +10465,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_KeySplineProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineColorKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineColorKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplineColorKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplineColorKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeySplineProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8993,11 +10495,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeySpline'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IKeySpline;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.KeySpline do
          Hr := this.m_ISplineColorKeyFrame.all.get_KeySpline (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IKeySpline := new Windows.UI.Xaml.Media.Animation.IKeySpline;
          Retval.m_IKeySpline.all := m_ComRetVal;
       end return;
@@ -9009,9 +10515,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeySpline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplineColorKeyFrame.all.put_KeySpline (value.m_IKeySpline.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9023,12 +10533,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SplineDoubleKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISplineDoubleKeyFrame, ISplineDoubleKeyFrame_Ptr);
    begin
       if this.m_ISplineDoubleKeyFrame /= null then
          if this.m_ISplineDoubleKeyFrame.all /= null then
-            RefCount := this.m_ISplineDoubleKeyFrame.all.Release;
+            temp := this.m_ISplineDoubleKeyFrame.all.Release;
             Free (this.m_ISplineDoubleKeyFrame);
          end if;
       end if;
@@ -9039,7 +10549,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SplineDoubleKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineDoubleKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineDoubleKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISplineDoubleKeyFrame;
    begin
       return RetVal : SplineDoubleKeyFrame do
@@ -9048,7 +10559,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISplineDoubleKeyFrame := new Windows.UI.Xaml.Media.Animation.ISplineDoubleKeyFrame;
             Retval.m_ISplineDoubleKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9058,20 +10569,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_KeySplineProperty_SplineDoubleKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineDoubleKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplineDoubleKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplineDoubleKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplineDoubleKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeySplineProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9084,11 +10599,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeySpline'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IKeySpline;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.KeySpline do
          Hr := this.m_ISplineDoubleKeyFrame.all.get_KeySpline (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IKeySpline := new Windows.UI.Xaml.Media.Animation.IKeySpline;
          Retval.m_IKeySpline.all := m_ComRetVal;
       end return;
@@ -9100,9 +10619,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeySpline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplineDoubleKeyFrame.all.put_KeySpline (value.m_IKeySpline.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9114,12 +10637,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SplinePointKeyFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISplinePointKeyFrame, ISplinePointKeyFrame_Ptr);
    begin
       if this.m_ISplinePointKeyFrame /= null then
          if this.m_ISplinePointKeyFrame.all /= null then
-            RefCount := this.m_ISplinePointKeyFrame.all.Release;
+            temp := this.m_ISplinePointKeyFrame.all.Release;
             Free (this.m_ISplinePointKeyFrame);
          end if;
       end if;
@@ -9130,7 +10653,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SplinePointKeyFrame is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplinePointKeyFrame");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplinePointKeyFrame");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISplinePointKeyFrame;
    begin
       return RetVal : SplinePointKeyFrame do
@@ -9139,7 +10663,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISplinePointKeyFrame := new Windows.UI.Xaml.Media.Animation.ISplinePointKeyFrame;
             Retval.m_ISplinePointKeyFrame.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9149,20 +10673,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_KeySplineProperty_SplinePointKeyFrame
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplinePointKeyFrame");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplinePointKeyFrame");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplinePointKeyFrameStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplinePointKeyFrameStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeySplineProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9175,11 +10703,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeySpline'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.IKeySpline;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.KeySpline do
          Hr := this.m_ISplinePointKeyFrame.all.get_KeySpline (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IKeySpline := new Windows.UI.Xaml.Media.Animation.IKeySpline;
          Retval.m_IKeySpline.all := m_ComRetVal;
       end return;
@@ -9191,9 +10723,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.KeySpline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplinePointKeyFrame.all.put_KeySpline (value.m_IKeySpline.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9205,12 +10741,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SplitCloseThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISplitCloseThemeAnimation, ISplitCloseThemeAnimation_Ptr);
    begin
       if this.m_ISplitCloseThemeAnimation /= null then
          if this.m_ISplitCloseThemeAnimation.all /= null then
-            RefCount := this.m_ISplitCloseThemeAnimation.all.Release;
+            temp := this.m_ISplitCloseThemeAnimation.all.Release;
             Free (this.m_ISplitCloseThemeAnimation);
          end if;
       end if;
@@ -9221,7 +10757,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SplitCloseThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimation;
    begin
       return RetVal : SplitCloseThemeAnimation do
@@ -9230,7 +10767,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISplitCloseThemeAnimation := new Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimation;
             Retval.m_ISplitCloseThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9240,220 +10777,264 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_OpenedTargetNameProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OpenedTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OpenedTargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OpenedTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ClosedTargetNameProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClosedTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ClosedTargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClosedTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTargetNameProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OpenedLengthProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OpenedLengthProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ClosedLengthProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClosedLengthProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OffsetFromCenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OffsetFromCenterProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTranslationDirectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTranslationDirectionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTranslationOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitCloseThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitCloseThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTranslationOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9466,13 +11047,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_OpenedTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9482,11 +11067,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_OpenedTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_OpenedTarget
@@ -9495,11 +11084,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ISplitCloseThemeAnimation.all.get_OpenedTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -9511,9 +11104,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_OpenedTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClosedTargetName
@@ -9522,13 +11119,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_ClosedTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9538,11 +11139,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ClosedTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ClosedTarget
@@ -9551,11 +11156,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ISplitCloseThemeAnimation.all.get_ClosedTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -9567,9 +11176,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ClosedTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentTargetName
@@ -9578,13 +11191,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_ContentTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -9594,11 +11211,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ContentTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContentTarget
@@ -9607,11 +11228,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ISplitCloseThemeAnimation.all.get_ContentTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -9623,9 +11248,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ContentTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OpenedLength
@@ -9634,10 +11263,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_OpenedLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9647,9 +11280,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_OpenedLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClosedLength
@@ -9658,10 +11295,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_ClosedLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9671,9 +11312,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ClosedLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OffsetFromCenter
@@ -9682,10 +11327,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_OffsetFromCenter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9695,9 +11344,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_OffsetFromCenter (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentTranslationDirection
@@ -9706,10 +11359,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.AnimationDirection;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_ContentTranslationDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9719,9 +11376,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ContentTranslationDirection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentTranslationOffset
@@ -9730,10 +11391,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.get_ContentTranslationOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9743,9 +11408,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitCloseThemeAnimation.all.put_ContentTranslationOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9757,12 +11426,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SplitOpenThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISplitOpenThemeAnimation, ISplitOpenThemeAnimation_Ptr);
    begin
       if this.m_ISplitOpenThemeAnimation /= null then
          if this.m_ISplitOpenThemeAnimation.all /= null then
-            RefCount := this.m_ISplitOpenThemeAnimation.all.Release;
+            temp := this.m_ISplitOpenThemeAnimation.all.Release;
             Free (this.m_ISplitOpenThemeAnimation);
          end if;
       end if;
@@ -9773,7 +11442,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SplitOpenThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimation;
    begin
       return RetVal : SplitOpenThemeAnimation do
@@ -9782,7 +11452,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISplitOpenThemeAnimation := new Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimation;
             Retval.m_ISplitOpenThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9792,220 +11462,264 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_OpenedTargetNameProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OpenedTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OpenedTargetProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OpenedTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ClosedTargetNameProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClosedTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ClosedTargetProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClosedTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTargetNameProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTargetProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OpenedLengthProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OpenedLengthProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ClosedLengthProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClosedLengthProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OffsetFromCenterProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OffsetFromCenterProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTranslationDirectionProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTranslationDirectionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentTranslationOffsetProperty_SplitOpenThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISplitOpenThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISplitOpenThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentTranslationOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10018,13 +11732,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_OpenedTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10034,11 +11752,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_OpenedTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_OpenedTarget
@@ -10047,11 +11769,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ISplitOpenThemeAnimation.all.get_OpenedTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -10063,9 +11789,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_OpenedTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClosedTargetName
@@ -10074,13 +11804,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_ClosedTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10090,11 +11824,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ClosedTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ClosedTarget
@@ -10103,11 +11841,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ISplitOpenThemeAnimation.all.get_ClosedTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -10119,9 +11861,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ClosedTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentTargetName
@@ -10130,13 +11876,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_ContentTargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10146,11 +11896,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ContentTargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContentTarget
@@ -10159,11 +11913,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ISplitOpenThemeAnimation.all.get_ContentTarget (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -10175,9 +11933,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ContentTarget (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OpenedLength
@@ -10186,10 +11948,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_OpenedLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10199,9 +11965,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_OpenedLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClosedLength
@@ -10210,10 +11980,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_ClosedLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10223,9 +11997,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ClosedLength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OffsetFromCenter
@@ -10234,10 +12012,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_OffsetFromCenter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10247,9 +12029,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_OffsetFromCenter (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentTranslationDirection
@@ -10258,10 +12044,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.AnimationDirection;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_ContentTranslationDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10271,9 +12061,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ContentTranslationDirection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentTranslationOffset
@@ -10282,10 +12076,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.get_ContentTranslationOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10295,9 +12093,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISplitOpenThemeAnimation.all.put_ContentTranslationOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10309,12 +12111,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out Storyboard) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStoryboard, IStoryboard_Ptr);
    begin
       if this.m_IStoryboard /= null then
          if this.m_IStoryboard.all /= null then
-            RefCount := this.m_IStoryboard.all.Release;
+            temp := this.m_IStoryboard.all.Release;
             Free (this.m_IStoryboard);
          end if;
       end if;
@@ -10325,7 +12127,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return Storyboard is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.IStoryboard;
    begin
       return RetVal : Storyboard do
@@ -10334,7 +12137,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_IStoryboard := new Windows.UI.Xaml.Media.Animation.IStoryboard;
             Retval.m_IStoryboard.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10344,20 +12147,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetPropertyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetPropertyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10367,20 +12174,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetTargetProperty (element.m_ITimeline.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10390,37 +12201,45 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       path : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_path : WinRt.HString := To_HString (path);
+      temp             : WinRt.UInt32 := 0;
+      HStr_path : constant WinRt.HString := To_HString (path);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetTargetProperty (element.m_ITimeline.all, HStr_path);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_path);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_path);
    end;
 
    function get_TargetNameProperty_Storyboard
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10430,20 +12249,24 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetTargetName (element.m_ITimeline.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10453,18 +12276,22 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       name : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetTargetName (element.m_ITimeline.all, HStr_name);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure SetTarget
@@ -10473,16 +12300,20 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       target : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.Storyboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IStoryboardStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetTarget (timeline_p.m_ITimeline.all, target.m_IDependencyObject.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -10494,11 +12325,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.TimelineCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.TimelineCollection do
          Hr := this.m_IStoryboard.all.get_Children (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -10510,9 +12345,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       offset : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.Seek (offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -10520,9 +12359,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out Storyboard
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Begin_x
@@ -10530,9 +12373,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out Storyboard
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.Begin_x;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Pause
@@ -10540,9 +12387,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out Storyboard
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.Pause;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Resume
@@ -10550,9 +12401,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out Storyboard
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.Resume;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentState
@@ -10561,10 +12416,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ClockState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ClockState;
    begin
       Hr := this.m_IStoryboard.all.GetCurrentState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10574,10 +12433,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IStoryboard.all.GetCurrentTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10587,9 +12450,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       offset : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.SeekAlignedToLastTick (offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SkipToFill
@@ -10597,9 +12464,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out Storyboard
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStoryboard.all.SkipToFill;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10611,12 +12482,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SuppressNavigationTransitionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISuppressNavigationTransitionInfo, ISuppressNavigationTransitionInfo_Ptr);
    begin
       if this.m_ISuppressNavigationTransitionInfo /= null then
          if this.m_ISuppressNavigationTransitionInfo.all /= null then
-            RefCount := this.m_ISuppressNavigationTransitionInfo.all.Release;
+            temp := this.m_ISuppressNavigationTransitionInfo.all.Release;
             Free (this.m_ISuppressNavigationTransitionInfo);
          end if;
       end if;
@@ -10627,7 +12498,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SuppressNavigationTransitionInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SuppressNavigationTransitionInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SuppressNavigationTransitionInfo");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISuppressNavigationTransitionInfo;
    begin
       return RetVal : SuppressNavigationTransitionInfo do
@@ -10636,7 +12508,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISuppressNavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.ISuppressNavigationTransitionInfo;
             Retval.m_ISuppressNavigationTransitionInfo.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10652,12 +12524,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SwipeBackThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISwipeBackThemeAnimation, ISwipeBackThemeAnimation_Ptr);
    begin
       if this.m_ISwipeBackThemeAnimation /= null then
          if this.m_ISwipeBackThemeAnimation.all /= null then
-            RefCount := this.m_ISwipeBackThemeAnimation.all.Release;
+            temp := this.m_ISwipeBackThemeAnimation.all.Release;
             Free (this.m_ISwipeBackThemeAnimation);
          end if;
       end if;
@@ -10668,7 +12540,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SwipeBackThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISwipeBackThemeAnimation;
    begin
       return RetVal : SwipeBackThemeAnimation do
@@ -10677,7 +12550,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISwipeBackThemeAnimation := new Windows.UI.Xaml.Media.Animation.ISwipeBackThemeAnimation;
             Retval.m_ISwipeBackThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10687,60 +12560,72 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_SwipeBackThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISwipeBackThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISwipeBackThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromHorizontalOffsetProperty_SwipeBackThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISwipeBackThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISwipeBackThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FromVerticalOffsetProperty_SwipeBackThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISwipeBackThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISwipeBackThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FromVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10753,13 +12638,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISwipeBackThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10769,11 +12658,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISwipeBackThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_FromHorizontalOffset
@@ -10782,10 +12675,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISwipeBackThemeAnimation.all.get_FromHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10795,9 +12692,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISwipeBackThemeAnimation.all.put_FromHorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FromVerticalOffset
@@ -10806,10 +12707,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISwipeBackThemeAnimation.all.get_FromVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10819,9 +12724,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISwipeBackThemeAnimation.all.put_FromVerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10833,12 +12742,12 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    end;
 
    procedure Finalize (this : in out SwipeHintThemeAnimation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISwipeHintThemeAnimation, ISwipeHintThemeAnimation_Ptr);
    begin
       if this.m_ISwipeHintThemeAnimation /= null then
          if this.m_ISwipeHintThemeAnimation.all /= null then
-            RefCount := this.m_ISwipeHintThemeAnimation.all.Release;
+            temp := this.m_ISwipeHintThemeAnimation.all.Release;
             Free (this.m_ISwipeHintThemeAnimation);
          end if;
       end if;
@@ -10849,7 +12758,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return SwipeHintThemeAnimation is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
       m_ComRetVal  : aliased Windows.UI.Xaml.Media.Animation.ISwipeHintThemeAnimation;
    begin
       return RetVal : SwipeHintThemeAnimation do
@@ -10858,7 +12768,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_ISwipeHintThemeAnimation := new Windows.UI.Xaml.Media.Animation.ISwipeHintThemeAnimation;
             Retval.m_ISwipeHintThemeAnimation.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10868,60 +12778,72 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    function get_TargetNameProperty_SwipeHintThemeAnimation
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISwipeHintThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISwipeHintThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetNameProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ToHorizontalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISwipeHintThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISwipeHintThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ToHorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ToVerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Animation.ISwipeHintThemeAnimationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISwipeHintThemeAnimationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ToVerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10934,13 +12856,17 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISwipeHintThemeAnimation.all.get_TargetName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -10950,11 +12876,15 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISwipeHintThemeAnimation.all.put_TargetName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ToHorizontalOffset
@@ -10963,10 +12893,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISwipeHintThemeAnimation.all.get_ToHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10976,9 +12910,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISwipeHintThemeAnimation.all.put_ToHorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ToVerticalOffset
@@ -10987,10 +12925,14 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISwipeHintThemeAnimation.all.get_ToVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11000,9 +12942,13 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISwipeHintThemeAnimation.all.put_ToVerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11023,7 +12969,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return TimelineCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.TimelineCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.TimelineCollection");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : TimelineCollection do
@@ -11032,7 +12979,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11047,8 +12994,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ITimeline;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
@@ -11056,7 +13004,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Timeline do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITimeline := new Windows.UI.Xaml.Media.Animation.ITimeline;
          Retval.m_ITimeline.all := m_ComRetVal;
       end return;
@@ -11068,15 +13019,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11086,15 +13041,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11106,15 +13065,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_ITimeline.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11125,14 +13088,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Timeline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_ITimeline.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -11142,14 +13109,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Timeline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_ITimeline.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -11158,14 +13129,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -11174,14 +13149,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Timeline'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_ITimeline.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -11189,14 +13168,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out TimelineCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -11204,14 +13187,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out TimelineCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -11222,8 +13209,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
@@ -11231,7 +13219,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11241,15 +13232,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       items : Windows.UI.Xaml.Media.Animation.ITimeline_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (537249785, 51159, 21019, (168, 28, 44, 157, 173, 119, 169, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimeline.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.Timeline>
@@ -11259,15 +13254,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITimeline.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2703401798, 59093, 23636, (133, 125, 3, 142, 96, 245, 217, 193 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITimeline.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11289,7 +13288,8 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
 
    function Constructor return TransitionCollection is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.TransitionCollection");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Animation.TransitionCollection");
       m_ComRetVal  : aliased GenericObject;
    begin
       return RetVal : TransitionCollection do
@@ -11298,7 +13298,7 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
             Retval.m_GenericObject := new GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11313,8 +13313,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.ITransition;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
@@ -11322,7 +13323,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.Transition do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ITransition := new Windows.UI.Xaml.Media.Animation.ITransition;
          Retval.m_ITransition.all := m_ComRetVal;
       end return;
@@ -11334,15 +13338,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11352,15 +13360,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11372,15 +13384,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_ITransition.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11391,14 +13407,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Transition'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_ITransition.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -11408,14 +13428,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Transition'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_ITransition.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -11424,14 +13448,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -11440,14 +13468,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       value : Windows.UI.Xaml.Media.Animation.Transition'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_ITransition.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -11455,14 +13487,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out TransitionCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -11470,14 +13506,18 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       this : in out TransitionCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -11488,8 +13528,9 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
@@ -11497,7 +13538,10 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11507,15 +13551,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
       items : Windows.UI.Xaml.Media.Animation.ITransition_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3885520671, 32318, 24090, (170, 85, 203, 201, 59, 131, 248, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransition.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.Transition>
@@ -11525,15 +13573,19 @@ package body WinRt.Windows.UI.Xaml.Media.Animation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITransition.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4273279896, 20443, 20754, (138, 155, 106, 135, 134, 202, 1, 206 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITransition.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

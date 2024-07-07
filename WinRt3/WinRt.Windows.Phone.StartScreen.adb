@@ -46,12 +46,12 @@ package body WinRt.Windows.Phone.StartScreen is
    end;
 
    procedure Finalize (this : in out DualSimTile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDualSimTile, IDualSimTile_Ptr);
    begin
       if this.m_IDualSimTile /= null then
          if this.m_IDualSimTile.all /= null then
-            RefCount := this.m_IDualSimTile.all.Release;
+            temp := this.m_IDualSimTile.all.Release;
             Free (this.m_IDualSimTile);
          end if;
       end if;
@@ -62,7 +62,8 @@ package body WinRt.Windows.Phone.StartScreen is
 
    function Constructor return DualSimTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_ComRetVal  : aliased Windows.Phone.StartScreen.IDualSimTile;
    begin
       return RetVal : DualSimTile do
@@ -71,7 +72,7 @@ package body WinRt.Windows.Phone.StartScreen is
             Retval.m_IDualSimTile := new Windows.Phone.StartScreen.IDualSimTile;
             Retval.m_IDualSimTile.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -81,20 +82,24 @@ package body WinRt.Windows.Phone.StartScreen is
    function GetTileForSim2
    return WinRt.Windows.Phone.StartScreen.DualSimTile is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.StartScreen.IDualSimTile;
    begin
       return RetVal : WinRt.Windows.Phone.StartScreen.DualSimTile do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetTileForSim2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDualSimTile := new Windows.Phone.StartScreen.IDualSimTile;
             Retval.m_IDualSimTile.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -104,16 +109,16 @@ package body WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -131,7 +136,7 @@ package body WinRt.Windows.Phone.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -144,10 +149,10 @@ package body WinRt.Windows.Phone.StartScreen is
       Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.UpdateDisplayNameForSim1Async (HStr_name, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -157,136 +162,160 @@ package body WinRt.Windows.Phone.StartScreen is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_name);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_name);
       return m_RetVal;
    end;
 
    function CreateTileUpdaterForSim1
    return WinRt.Windows.UI.Notifications.TileUpdater is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateTileUpdaterForSim1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
             Retval.m_ITileUpdater.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function CreateTileUpdaterForSim2
    return WinRt.Windows.UI.Notifications.TileUpdater is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateTileUpdaterForSim2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
             Retval.m_ITileUpdater.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function CreateBadgeUpdaterForSim1
    return WinRt.Windows.UI.Notifications.BadgeUpdater is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateBadgeUpdaterForSim1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
             Retval.m_IBadgeUpdater.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function CreateBadgeUpdaterForSim2
    return WinRt.Windows.UI.Notifications.BadgeUpdater is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateBadgeUpdaterForSim2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
             Retval.m_IBadgeUpdater.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function CreateToastNotifierForSim1
    return WinRt.Windows.UI.Notifications.ToastNotifier is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotifier;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotifier do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateToastNotifierForSim1 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
             Retval.m_IToastNotifier.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function CreateToastNotifierForSim2
    return WinRt.Windows.UI.Notifications.ToastNotifier is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.StartScreen.DualSimTile");
       m_Factory        : access WinRt.Windows.Phone.StartScreen.IDualSimTileStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotifier;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotifier do
          Hr := RoGetActivationFactory (m_hString, IID_IDualSimTileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateToastNotifierForSim2 (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
             Retval.m_IToastNotifier.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -299,11 +328,15 @@ package body WinRt.Windows.Phone.StartScreen is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDualSimTile.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayName
@@ -312,13 +345,17 @@ package body WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDualSimTile.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -328,10 +365,14 @@ package body WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDualSimTile.all.get_IsPinnedToStart (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -341,13 +382,13 @@ package body WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -365,7 +406,7 @@ package body WinRt.Windows.Phone.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -378,7 +419,7 @@ package body WinRt.Windows.Phone.StartScreen is
       Hr := this.m_IDualSimTile.all.CreateAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -388,9 +429,9 @@ package body WinRt.Windows.Phone.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -404,13 +445,13 @@ package body WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -428,7 +469,7 @@ package body WinRt.Windows.Phone.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -441,7 +482,7 @@ package body WinRt.Windows.Phone.StartScreen is
       Hr := this.m_IDualSimTile.all.UpdateAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -451,9 +492,9 @@ package body WinRt.Windows.Phone.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -467,13 +508,13 @@ package body WinRt.Windows.Phone.StartScreen is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -491,7 +532,7 @@ package body WinRt.Windows.Phone.StartScreen is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -504,7 +545,7 @@ package body WinRt.Windows.Phone.StartScreen is
       Hr := this.m_IDualSimTile.all.DeleteAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -514,9 +555,9 @@ package body WinRt.Windows.Phone.StartScreen is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;

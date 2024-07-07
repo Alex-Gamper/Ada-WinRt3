@@ -83,12 +83,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ActivitySensorTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IActivitySensorTrigger, IActivitySensorTrigger_Ptr);
    begin
       if this.m_IActivitySensorTrigger /= null then
          if this.m_IActivitySensorTrigger.all /= null then
-            RefCount := this.m_IActivitySensorTrigger.all.Release;
+            temp := this.m_IActivitySensorTrigger.all.Release;
             Free (this.m_IActivitySensorTrigger);
          end if;
       end if;
@@ -103,9 +103,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return ActivitySensorTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ActivitySensorTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ActivitySensorTrigger");
       m_Factory    : access IActivitySensorTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IActivitySensorTrigger;
    begin
       return RetVal : ActivitySensorTrigger do
@@ -114,9 +115,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (reportIntervalInMilliseconds, m_ComRetVal'Access);
             Retval.m_IActivitySensorTrigger := new Windows.ApplicationModel.Background.IActivitySensorTrigger;
             Retval.m_IActivitySensorTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -129,10 +130,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IActivitySensorTrigger.all.get_SubscribedActivities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -142,10 +147,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IActivitySensorTrigger.all.get_ReportInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -155,10 +164,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IActivitySensorTrigger.all.get_SupportedActivities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -168,10 +181,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IActivitySensorTrigger.all.get_MinimumReportInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -182,15 +199,15 @@ package body WinRt.Windows.ApplicationModel.Background is
       function RequestAccessAsync
       return WinRt.Windows.ApplicationModel.Background.AlarmAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AlarmApplicationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AlarmApplicationManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IAlarmApplicationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_AlarmAccessStatus.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -208,7 +225,7 @@ package body WinRt.Windows.ApplicationModel.Background is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_AlarmAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_AlarmAccessStatus.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -221,10 +238,10 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IAlarmApplicationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -234,32 +251,36 @@ package body WinRt.Windows.ApplicationModel.Background is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function GetAccessStatus
       return WinRt.Windows.ApplicationModel.Background.AlarmAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AlarmApplicationManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AlarmApplicationManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IAlarmApplicationManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Background.AlarmAccessStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAlarmApplicationManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAccessStatus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -274,12 +295,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out AppBroadcastTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBroadcastTrigger, IAppBroadcastTrigger_Ptr);
    begin
       if this.m_IAppBroadcastTrigger /= null then
          if this.m_IAppBroadcastTrigger.all /= null then
-            RefCount := this.m_IAppBroadcastTrigger.all.Release;
+            temp := this.m_IAppBroadcastTrigger.all.Release;
             Free (this.m_IAppBroadcastTrigger);
          end if;
       end if;
@@ -294,11 +315,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return AppBroadcastTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AppBroadcastTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AppBroadcastTrigger");
       m_Factory    : access IAppBroadcastTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IAppBroadcastTrigger;
-      HStr_providerKey : WinRt.HString := To_HString (providerKey);
+      HStr_providerKey : constant WinRt.HString := To_HString (providerKey);
    begin
       return RetVal : AppBroadcastTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastTriggerFactory'Access , m_Factory'Address);
@@ -306,10 +328,10 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.CreateAppBroadcastTrigger (HStr_providerKey, m_ComRetVal'Access);
             Retval.m_IAppBroadcastTrigger := new Windows.ApplicationModel.Background.IAppBroadcastTrigger;
             Retval.m_IAppBroadcastTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_providerKey);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_providerKey);
       end return;
    end;
 
@@ -322,9 +344,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.ApplicationModel.Background.AppBroadcastTriggerProviderInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastTrigger.all.put_ProviderInfo (value.m_IAppBroadcastTriggerProviderInfo.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProviderInfo
@@ -333,11 +359,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.AppBroadcastTriggerProviderInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.AppBroadcastTriggerProviderInfo do
          Hr := this.m_IAppBroadcastTrigger.all.get_ProviderInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppBroadcastTriggerProviderInfo := new Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo;
          Retval.m_IAppBroadcastTriggerProviderInfo.all := m_ComRetVal;
       end return;
@@ -352,12 +382,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out AppBroadcastTriggerProviderInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBroadcastTriggerProviderInfo, IAppBroadcastTriggerProviderInfo_Ptr);
    begin
       if this.m_IAppBroadcastTriggerProviderInfo /= null then
          if this.m_IAppBroadcastTriggerProviderInfo.all /= null then
-            RefCount := this.m_IAppBroadcastTriggerProviderInfo.all.Release;
+            temp := this.m_IAppBroadcastTriggerProviderInfo.all.Release;
             Free (this.m_IAppBroadcastTriggerProviderInfo);
          end if;
       end if;
@@ -372,11 +402,15 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.put_DisplayNameResource (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayNameResource
@@ -385,13 +419,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.get_DisplayNameResource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -401,11 +439,15 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.put_LogoResource (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_LogoResource
@@ -414,13 +456,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.get_LogoResource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -430,9 +476,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.put_VideoKeyFrameInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VideoKeyFrameInterval
@@ -441,10 +491,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.get_VideoKeyFrameInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -454,9 +508,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.put_MaxVideoBitrate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxVideoBitrate
@@ -465,10 +523,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.get_MaxVideoBitrate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -478,9 +540,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.put_MaxVideoWidth (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxVideoWidth
@@ -489,10 +555,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.get_MaxVideoWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -502,9 +572,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.put_MaxVideoHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxVideoHeight
@@ -513,10 +587,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IAppBroadcastTriggerProviderInfo.all.get_MaxVideoHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -529,12 +607,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ApplicationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationTrigger, IApplicationTrigger_Ptr);
    begin
       if this.m_IApplicationTrigger /= null then
          if this.m_IApplicationTrigger.all /= null then
-            RefCount := this.m_IApplicationTrigger.all.Release;
+            temp := this.m_IApplicationTrigger.all.Release;
             Free (this.m_IApplicationTrigger);
          end if;
       end if;
@@ -545,7 +623,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return ApplicationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ApplicationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ApplicationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IApplicationTrigger;
    begin
       return RetVal : ApplicationTrigger do
@@ -554,7 +633,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IApplicationTrigger := new Windows.ApplicationModel.Background.IApplicationTrigger;
             Retval.m_IApplicationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -567,13 +646,13 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.ApplicationTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ApplicationTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -591,7 +670,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ApplicationTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_ApplicationTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -604,7 +683,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IApplicationTrigger.all.RequestAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -614,9 +693,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -631,13 +710,13 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.ApplicationTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_ApplicationTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -655,7 +734,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_ApplicationTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_ApplicationTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -668,7 +747,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IApplicationTrigger.all.RequestAsync (arguments.m_IPropertySet.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -678,9 +757,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -697,12 +776,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ApplicationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationTriggerDetails, IApplicationTriggerDetails_Ptr);
    begin
       if this.m_IApplicationTriggerDetails /= null then
          if this.m_IApplicationTriggerDetails.all /= null then
-            RefCount := this.m_IApplicationTriggerDetails.all.Release;
+            temp := this.m_IApplicationTriggerDetails.all.Release;
             Free (this.m_IApplicationTriggerDetails);
          end if;
       end if;
@@ -717,11 +796,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IApplicationTriggerDetails.all.get_Arguments (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
@@ -736,12 +819,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out AppointmentStoreNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppointmentStoreNotificationTrigger, IAppointmentStoreNotificationTrigger_Ptr);
    begin
       if this.m_IAppointmentStoreNotificationTrigger /= null then
          if this.m_IAppointmentStoreNotificationTrigger.all /= null then
-            RefCount := this.m_IAppointmentStoreNotificationTrigger.all.Release;
+            temp := this.m_IAppointmentStoreNotificationTrigger.all.Release;
             Free (this.m_IAppointmentStoreNotificationTrigger);
          end if;
       end if;
@@ -752,7 +835,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return AppointmentStoreNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AppointmentStoreNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AppointmentStoreNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IAppointmentStoreNotificationTrigger;
    begin
       return RetVal : AppointmentStoreNotificationTrigger do
@@ -761,7 +845,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IAppointmentStoreNotificationTrigger := new Windows.ApplicationModel.Background.IAppointmentStoreNotificationTrigger;
             Retval.m_IAppointmentStoreNotificationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -775,15 +859,15 @@ package body WinRt.Windows.ApplicationModel.Background is
       function RequestAccessAsync_BackgroundExecutionManager
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_BackgroundAccessStatus.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -801,7 +885,7 @@ package body WinRt.Windows.ApplicationModel.Background is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BackgroundAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_BackgroundAccessStatus.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -814,10 +898,10 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -827,15 +911,15 @@ package body WinRt.Windows.ApplicationModel.Background is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -845,16 +929,16 @@ package body WinRt.Windows.ApplicationModel.Background is
       )
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_applicationId : WinRt.HString := To_HString (applicationId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_BackgroundAccessStatus.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -872,7 +956,7 @@ package body WinRt.Windows.ApplicationModel.Background is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BackgroundAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_BackgroundAccessStatus.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -885,10 +969,10 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAccessAsync (HStr_applicationId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -898,31 +982,35 @@ package body WinRt.Windows.ApplicationModel.Background is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_applicationId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
          return m_RetVal;
       end;
 
       procedure RemoveAccess is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RemoveAccess;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure RemoveAccess
@@ -930,34 +1018,42 @@ package body WinRt.Windows.ApplicationModel.Background is
          applicationId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_applicationId : WinRt.HString := To_HString (applicationId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RemoveAccess (HStr_applicationId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_applicationId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
       end;
 
       function GetAccessStatus
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Background.BackgroundAccessStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAccessStatus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -967,19 +1063,23 @@ package body WinRt.Windows.ApplicationModel.Background is
       )
       return WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Background.BackgroundAccessStatus;
-         HStr_applicationId : WinRt.HString := To_HString (applicationId);
+         HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAccessStatus (HStr_applicationId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_applicationId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
          return m_ComRetVal;
       end;
 
@@ -990,16 +1090,16 @@ package body WinRt.Windows.ApplicationModel.Background is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundExecutionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundExecutionManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_reason : WinRt.HString := To_HString (reason);
+         temp             : WinRt.UInt32 := 0;
+         HStr_reason : constant WinRt.HString := To_HString (reason);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1017,7 +1117,7 @@ package body WinRt.Windows.ApplicationModel.Background is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1030,10 +1130,10 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundExecutionManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestAccessKindAsync (requestedAccess, HStr_reason, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1043,16 +1143,16 @@ package body WinRt.Windows.ApplicationModel.Background is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_reason);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_reason);
          return m_RetVal;
       end;
 
@@ -1067,12 +1167,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BackgroundTaskBuilder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTaskBuilder, IBackgroundTaskBuilder_Ptr);
    begin
       if this.m_IBackgroundTaskBuilder /= null then
          if this.m_IBackgroundTaskBuilder.all /= null then
-            RefCount := this.m_IBackgroundTaskBuilder.all.Release;
+            temp := this.m_IBackgroundTaskBuilder.all.Release;
             Free (this.m_IBackgroundTaskBuilder);
          end if;
       end if;
@@ -1083,7 +1183,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return BackgroundTaskBuilder is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskBuilder");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskBuilder");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTaskBuilder;
    begin
       return RetVal : BackgroundTaskBuilder do
@@ -1092,7 +1193,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTaskBuilder := new Windows.ApplicationModel.Background.IBackgroundTaskBuilder;
             Retval.m_IBackgroundTaskBuilder.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1105,11 +1206,15 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IBackgroundTaskBuilder.all.put_TaskEntryPoint (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TaskEntryPoint
@@ -1118,13 +1223,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBackgroundTaskBuilder.all.get_TaskEntryPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1134,9 +1243,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       trigger : Windows.ApplicationModel.Background.IBackgroundTrigger
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskBuilder.all.SetTrigger (trigger);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure AddCondition
@@ -1145,9 +1258,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       condition : Windows.ApplicationModel.Background.IBackgroundCondition
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskBuilder.all.AddCondition (condition);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Name
@@ -1156,11 +1273,15 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IBackgroundTaskBuilder.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Name
@@ -1169,13 +1290,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBackgroundTaskBuilder.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1185,11 +1310,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistration do
          Hr := this.m_IBackgroundTaskBuilder.all.Register (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBackgroundTaskRegistration := new Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
          Retval.m_IBackgroundTaskRegistration.all := m_ComRetVal;
       end return;
@@ -1201,13 +1330,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder2, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
       Hr := m_Interface.put_CancelOnConditionLoss (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CancelOnConditionLoss
@@ -1216,14 +1349,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder2, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
       Hr := m_Interface.get_CancelOnConditionLoss (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1233,13 +1370,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder3, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
       Hr := m_Interface.put_IsNetworkRequested (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsNetworkRequested
@@ -1248,14 +1389,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder3, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
       Hr := m_Interface.get_IsNetworkRequested (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1265,15 +1410,19 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder4, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup do
          m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
          Hr := m_Interface.get_TaskGroup (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBackgroundTaskRegistrationGroup := new Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
          Retval.m_IBackgroundTaskRegistrationGroup.all := m_ComRetVal;
       end return;
@@ -1285,13 +1434,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder4, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
       Hr := m_Interface.put_TaskGroup (value.m_IBackgroundTaskRegistrationGroup.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetTaskEntryPointClsid
@@ -1300,13 +1453,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       TaskEntryPoint : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder5, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskBuilder5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskBuilder.all);
       Hr := m_Interface.SetTaskEntryPointClsid (TaskEntryPoint);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1319,7 +1476,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       reason : Windows.ApplicationModel.Background.BackgroundTaskCancellationReason
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, reason);
       return Hr;
@@ -1334,12 +1491,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BackgroundTaskCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTaskCompletedEventArgs, IBackgroundTaskCompletedEventArgs_Ptr);
    begin
       if this.m_IBackgroundTaskCompletedEventArgs /= null then
          if this.m_IBackgroundTaskCompletedEventArgs.all /= null then
-            RefCount := this.m_IBackgroundTaskCompletedEventArgs.all.Release;
+            temp := this.m_IBackgroundTaskCompletedEventArgs.all.Release;
             Free (this.m_IBackgroundTaskCompletedEventArgs);
          end if;
       end if;
@@ -1354,10 +1511,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IBackgroundTaskCompletedEventArgs.all.get_InstanceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1366,9 +1527,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       this : in out BackgroundTaskCompletedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskCompletedEventArgs.all.CheckResult;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1381,7 +1546,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       args : Windows.ApplicationModel.Background.IBackgroundTaskCompletedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, args);
       return Hr;
@@ -1396,12 +1561,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BackgroundTaskDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTaskDeferral, IBackgroundTaskDeferral_Ptr);
    begin
       if this.m_IBackgroundTaskDeferral /= null then
          if this.m_IBackgroundTaskDeferral.all /= null then
-            RefCount := this.m_IBackgroundTaskDeferral.all.Release;
+            temp := this.m_IBackgroundTaskDeferral.all.Release;
             Free (this.m_IBackgroundTaskDeferral);
          end if;
       end if;
@@ -1415,9 +1580,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       this : in out BackgroundTaskDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1429,12 +1598,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BackgroundTaskProgressEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTaskProgressEventArgs, IBackgroundTaskProgressEventArgs_Ptr);
    begin
       if this.m_IBackgroundTaskProgressEventArgs /= null then
          if this.m_IBackgroundTaskProgressEventArgs.all /= null then
-            RefCount := this.m_IBackgroundTaskProgressEventArgs.all.Release;
+            temp := this.m_IBackgroundTaskProgressEventArgs.all.Release;
             Free (this.m_IBackgroundTaskProgressEventArgs);
          end if;
       end if;
@@ -1449,10 +1618,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IBackgroundTaskProgressEventArgs.all.get_InstanceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1462,10 +1635,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBackgroundTaskProgressEventArgs.all.get_Progress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1479,7 +1656,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       args : Windows.ApplicationModel.Background.IBackgroundTaskProgressEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, args);
       return Hr;
@@ -1494,12 +1671,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BackgroundTaskRegistration) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTaskRegistration, IBackgroundTaskRegistration_Ptr);
    begin
       if this.m_IBackgroundTaskRegistration /= null then
          if this.m_IBackgroundTaskRegistration.all /= null then
-            RefCount := this.m_IBackgroundTaskRegistration.all.Release;
+            temp := this.m_IBackgroundTaskRegistration.all.Release;
             Free (this.m_IBackgroundTaskRegistration);
          end if;
       end if;
@@ -1511,34 +1688,42 @@ package body WinRt.Windows.ApplicationModel.Background is
    function get_AllTasks
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AllTasks (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_AllTaskGroups
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AllTaskGroups (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1548,22 +1733,26 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistration");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
-      HStr_groupId : WinRt.HString := To_HString (groupId);
+      HStr_groupId : constant WinRt.HString := To_HString (groupId);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetTaskGroup (HStr_groupId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IBackgroundTaskRegistrationGroup := new Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
             Retval.m_IBackgroundTaskRegistrationGroup.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_groupId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_groupId);
       end return;
    end;
 
@@ -1576,10 +1765,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.get_TaskId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1589,13 +1782,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1606,10 +1803,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.add_Progress (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1619,9 +1820,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.remove_Progress (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Completed
@@ -1631,10 +1836,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.add_Completed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1644,9 +1853,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       cookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.remove_Completed (cookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Unregister
@@ -1655,9 +1868,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       cancelTask : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskRegistration.all.Unregister (cancelTask);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Trigger
@@ -1666,14 +1883,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration2, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskRegistration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTaskRegistration.all);
       Hr := m_Interface.get_Trigger (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1683,15 +1904,19 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration_Interface, WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration3, WinRt.Windows.ApplicationModel.Background.IID_IBackgroundTaskRegistration3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup do
          m_Interface := QInterface (this.m_IBackgroundTaskRegistration.all);
          Hr := m_Interface.get_TaskGroup (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBackgroundTaskRegistrationGroup := new Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
          Retval.m_IBackgroundTaskRegistrationGroup.all := m_ComRetVal;
       end return;
@@ -1706,12 +1931,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BackgroundTaskRegistrationGroup) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTaskRegistrationGroup, IBackgroundTaskRegistrationGroup_Ptr);
    begin
       if this.m_IBackgroundTaskRegistrationGroup /= null then
          if this.m_IBackgroundTaskRegistrationGroup.all /= null then
-            RefCount := this.m_IBackgroundTaskRegistrationGroup.all.Release;
+            temp := this.m_IBackgroundTaskRegistrationGroup.all.Release;
             Free (this.m_IBackgroundTaskRegistrationGroup);
          end if;
       end if;
@@ -1726,11 +1951,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return BackgroundTaskRegistrationGroup is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup");
       m_Factory    : access IBackgroundTaskRegistrationGroupFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
-      HStr_id : WinRt.HString := To_HString (id);
+      HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : BackgroundTaskRegistrationGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationGroupFactory'Access , m_Factory'Address);
@@ -1738,10 +1964,10 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_id, m_ComRetVal'Access);
             Retval.m_IBackgroundTaskRegistrationGroup := new Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
             Retval.m_IBackgroundTaskRegistrationGroup.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -1752,12 +1978,13 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return BackgroundTaskRegistrationGroup is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup");
       m_Factory    : access IBackgroundTaskRegistrationGroupFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
-      HStr_id : WinRt.HString := To_HString (id);
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_id : constant WinRt.HString := To_HString (id);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : BackgroundTaskRegistrationGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTaskRegistrationGroupFactory'Access , m_Factory'Address);
@@ -1765,11 +1992,11 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.CreateWithName (HStr_id, HStr_name, m_ComRetVal'Access);
             Retval.m_IBackgroundTaskRegistrationGroup := new Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
             Retval.m_IBackgroundTaskRegistrationGroup.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
@@ -1782,13 +2009,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBackgroundTaskRegistrationGroup.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1798,13 +2029,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBackgroundTaskRegistrationGroup.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1815,10 +2050,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBackgroundTaskRegistrationGroup.all.add_BackgroundActivated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1828,9 +2067,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBackgroundTaskRegistrationGroup.all.remove_BackgroundActivated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllTasks
@@ -1839,13 +2082,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return IMapView_Guid_IBackgroundTaskRegistration.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IBackgroundTaskRegistration.Kind;
    begin
       Hr := this.m_IBackgroundTaskRegistrationGroup.all.get_AllTasks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_Guid_IBackgroundTaskRegistration (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1856,17 +2103,21 @@ package body WinRt.Windows.ApplicationModel.Background is
       function get_CurrentBackgroundWorkCost
       return WinRt.Windows.ApplicationModel.Background.BackgroundWorkCostValue is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundWorkCost");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundWorkCost");
          m_Factory        : access WinRt.Windows.ApplicationModel.Background.IBackgroundWorkCostStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.ApplicationModel.Background.BackgroundWorkCostValue;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundWorkCostStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CurrentBackgroundWorkCost (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1881,12 +2132,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BluetoothLEAdvertisementPublisherTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEAdvertisementPublisherTrigger, IBluetoothLEAdvertisementPublisherTrigger_Ptr);
    begin
       if this.m_IBluetoothLEAdvertisementPublisherTrigger /= null then
          if this.m_IBluetoothLEAdvertisementPublisherTrigger.all /= null then
-            RefCount := this.m_IBluetoothLEAdvertisementPublisherTrigger.all.Release;
+            temp := this.m_IBluetoothLEAdvertisementPublisherTrigger.all.Release;
             Free (this.m_IBluetoothLEAdvertisementPublisherTrigger);
          end if;
       end if;
@@ -1897,7 +2148,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return BluetoothLEAdvertisementPublisherTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BluetoothLEAdvertisementPublisherTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BluetoothLEAdvertisementPublisherTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger;
    begin
       return RetVal : BluetoothLEAdvertisementPublisherTrigger do
@@ -1906,7 +2158,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBluetoothLEAdvertisementPublisherTrigger := new Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger;
             Retval.m_IBluetoothLEAdvertisementPublisherTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1919,11 +2171,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement do
          Hr := this.m_IBluetoothLEAdvertisementPublisherTrigger.all.get_Advertisement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBluetoothLEAdvertisement := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement;
          Retval.m_IBluetoothLEAdvertisement.all := m_ComRetVal;
       end return;
@@ -1935,17 +2191,21 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return IReference_Int16.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Int16.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.get_PreferredTransmitPowerLevelInDBm (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Int16 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1955,13 +2215,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.put_PreferredTransmitPowerLevelInDBm (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UseExtendedFormat
@@ -1970,14 +2234,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.get_UseExtendedFormat (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1987,13 +2255,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.put_UseExtendedFormat (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsAnonymous
@@ -2002,14 +2274,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.get_IsAnonymous (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2019,13 +2295,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.put_IsAnonymous (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IncludeTransmitPowerLevel
@@ -2034,14 +2314,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.get_IncludeTransmitPowerLevel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2051,13 +2335,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementPublisherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementPublisherTrigger.all);
       Hr := m_Interface.put_IncludeTransmitPowerLevel (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2069,12 +2357,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out BluetoothLEAdvertisementWatcherTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBluetoothLEAdvertisementWatcherTrigger, IBluetoothLEAdvertisementWatcherTrigger_Ptr);
    begin
       if this.m_IBluetoothLEAdvertisementWatcherTrigger /= null then
          if this.m_IBluetoothLEAdvertisementWatcherTrigger.all /= null then
-            RefCount := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.Release;
+            temp := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.Release;
             Free (this.m_IBluetoothLEAdvertisementWatcherTrigger);
          end if;
       end if;
@@ -2085,7 +2373,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return BluetoothLEAdvertisementWatcherTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BluetoothLEAdvertisementWatcherTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BluetoothLEAdvertisementWatcherTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger;
    begin
       return RetVal : BluetoothLEAdvertisementWatcherTrigger do
@@ -2094,7 +2383,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBluetoothLEAdvertisementWatcherTrigger := new Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger;
             Retval.m_IBluetoothLEAdvertisementWatcherTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2107,10 +2396,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.get_MinSamplingInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2120,10 +2413,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.get_MaxSamplingInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2133,10 +2430,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.get_MinOutOfRangeTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2146,10 +2447,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.get_MaxOutOfRangeTimeout (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2159,11 +2464,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter do
          Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.get_SignalStrengthFilter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBluetoothSignalStrengthFilter := new Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
          Retval.m_IBluetoothSignalStrengthFilter.all := m_ComRetVal;
       end return;
@@ -2175,9 +2484,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.put_SignalStrengthFilter (value.m_IBluetoothSignalStrengthFilter.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AdvertisementFilter
@@ -2186,11 +2499,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter do
          Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.get_AdvertisementFilter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBluetoothLEAdvertisementFilter := new Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter;
          Retval.m_IBluetoothLEAdvertisementFilter.all := m_ComRetVal;
       end return;
@@ -2202,9 +2519,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.put_AdvertisementFilter (value.m_IBluetoothLEAdvertisementFilter.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowExtendedAdvertisements
@@ -2213,14 +2534,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
       Hr := m_Interface.get_AllowExtendedAdvertisements (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2230,13 +2555,17 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IBluetoothLEAdvertisementWatcherTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBluetoothLEAdvertisementWatcherTrigger.all);
       Hr := m_Interface.put_AllowExtendedAdvertisements (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2248,12 +2577,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out CachedFileUpdaterTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICachedFileUpdaterTrigger, ICachedFileUpdaterTrigger_Ptr);
    begin
       if this.m_ICachedFileUpdaterTrigger /= null then
          if this.m_ICachedFileUpdaterTrigger.all /= null then
-            RefCount := this.m_ICachedFileUpdaterTrigger.all.Release;
+            temp := this.m_ICachedFileUpdaterTrigger.all.Release;
             Free (this.m_ICachedFileUpdaterTrigger);
          end if;
       end if;
@@ -2264,7 +2593,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return CachedFileUpdaterTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CachedFileUpdaterTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CachedFileUpdaterTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ICachedFileUpdaterTrigger;
    begin
       return RetVal : CachedFileUpdaterTrigger do
@@ -2273,7 +2603,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_ICachedFileUpdaterTrigger := new Windows.ApplicationModel.Background.ICachedFileUpdaterTrigger;
             Retval.m_ICachedFileUpdaterTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2289,12 +2619,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out CachedFileUpdaterTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICachedFileUpdaterTriggerDetails, ICachedFileUpdaterTriggerDetails_Ptr);
    begin
       if this.m_ICachedFileUpdaterTriggerDetails /= null then
          if this.m_ICachedFileUpdaterTriggerDetails.all /= null then
-            RefCount := this.m_ICachedFileUpdaterTriggerDetails.all.Release;
+            temp := this.m_ICachedFileUpdaterTriggerDetails.all.Release;
             Free (this.m_ICachedFileUpdaterTriggerDetails);
          end if;
       end if;
@@ -2309,10 +2639,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Storage.Provider.CachedFileTarget is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Provider.CachedFileTarget;
    begin
       Hr := this.m_ICachedFileUpdaterTriggerDetails.all.get_UpdateTarget (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2322,11 +2656,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Storage.Provider.FileUpdateRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Provider.IFileUpdateRequest;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.FileUpdateRequest do
          Hr := this.m_ICachedFileUpdaterTriggerDetails.all.get_UpdateRequest (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFileUpdateRequest := new Windows.Storage.Provider.IFileUpdateRequest;
          Retval.m_IFileUpdateRequest.all := m_ComRetVal;
       end return;
@@ -2338,10 +2676,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICachedFileUpdaterTriggerDetails.all.get_CanRequestUserInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2354,12 +2696,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ChatMessageNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IChatMessageNotificationTrigger, IChatMessageNotificationTrigger_Ptr);
    begin
       if this.m_IChatMessageNotificationTrigger /= null then
          if this.m_IChatMessageNotificationTrigger.all /= null then
-            RefCount := this.m_IChatMessageNotificationTrigger.all.Release;
+            temp := this.m_IChatMessageNotificationTrigger.all.Release;
             Free (this.m_IChatMessageNotificationTrigger);
          end if;
       end if;
@@ -2370,7 +2712,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return ChatMessageNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ChatMessageNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ChatMessageNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IChatMessageNotificationTrigger;
    begin
       return RetVal : ChatMessageNotificationTrigger do
@@ -2379,7 +2722,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IChatMessageNotificationTrigger := new Windows.ApplicationModel.Background.IChatMessageNotificationTrigger;
             Retval.m_IChatMessageNotificationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2395,12 +2738,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ChatMessageReceivedNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IChatMessageReceivedNotificationTrigger, IChatMessageReceivedNotificationTrigger_Ptr);
    begin
       if this.m_IChatMessageReceivedNotificationTrigger /= null then
          if this.m_IChatMessageReceivedNotificationTrigger.all /= null then
-            RefCount := this.m_IChatMessageReceivedNotificationTrigger.all.Release;
+            temp := this.m_IChatMessageReceivedNotificationTrigger.all.Release;
             Free (this.m_IChatMessageReceivedNotificationTrigger);
          end if;
       end if;
@@ -2411,7 +2754,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return ChatMessageReceivedNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ChatMessageReceivedNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ChatMessageReceivedNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IChatMessageReceivedNotificationTrigger;
    begin
       return RetVal : ChatMessageReceivedNotificationTrigger do
@@ -2420,7 +2764,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IChatMessageReceivedNotificationTrigger := new Windows.ApplicationModel.Background.IChatMessageReceivedNotificationTrigger;
             Retval.m_IChatMessageReceivedNotificationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2436,12 +2780,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out CommunicationBlockingAppSetAsActiveTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICommunicationBlockingAppSetAsActiveTrigger, ICommunicationBlockingAppSetAsActiveTrigger_Ptr);
    begin
       if this.m_ICommunicationBlockingAppSetAsActiveTrigger /= null then
          if this.m_ICommunicationBlockingAppSetAsActiveTrigger.all /= null then
-            RefCount := this.m_ICommunicationBlockingAppSetAsActiveTrigger.all.Release;
+            temp := this.m_ICommunicationBlockingAppSetAsActiveTrigger.all.Release;
             Free (this.m_ICommunicationBlockingAppSetAsActiveTrigger);
          end if;
       end if;
@@ -2452,7 +2796,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return CommunicationBlockingAppSetAsActiveTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CommunicationBlockingAppSetAsActiveTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CommunicationBlockingAppSetAsActiveTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ICommunicationBlockingAppSetAsActiveTrigger;
    begin
       return RetVal : CommunicationBlockingAppSetAsActiveTrigger do
@@ -2461,7 +2806,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_ICommunicationBlockingAppSetAsActiveTrigger := new Windows.ApplicationModel.Background.ICommunicationBlockingAppSetAsActiveTrigger;
             Retval.m_ICommunicationBlockingAppSetAsActiveTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2477,12 +2822,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ContactStoreNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactStoreNotificationTrigger, IContactStoreNotificationTrigger_Ptr);
    begin
       if this.m_IContactStoreNotificationTrigger /= null then
          if this.m_IContactStoreNotificationTrigger.all /= null then
-            RefCount := this.m_IContactStoreNotificationTrigger.all.Release;
+            temp := this.m_IContactStoreNotificationTrigger.all.Release;
             Free (this.m_IContactStoreNotificationTrigger);
          end if;
       end if;
@@ -2493,7 +2838,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return ContactStoreNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContactStoreNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContactStoreNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IContactStoreNotificationTrigger;
    begin
       return RetVal : ContactStoreNotificationTrigger do
@@ -2502,7 +2848,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IContactStoreNotificationTrigger := new Windows.ApplicationModel.Background.IContactStoreNotificationTrigger;
             Retval.m_IContactStoreNotificationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2518,12 +2864,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ContentPrefetchTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContentPrefetchTrigger, IContentPrefetchTrigger_Ptr);
    begin
       if this.m_IContentPrefetchTrigger /= null then
          if this.m_IContentPrefetchTrigger.all /= null then
-            RefCount := this.m_IContentPrefetchTrigger.all.Release;
+            temp := this.m_IContentPrefetchTrigger.all.Release;
             Free (this.m_IContentPrefetchTrigger);
          end if;
       end if;
@@ -2538,9 +2884,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return ContentPrefetchTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
       m_Factory    : access IContentPrefetchTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IContentPrefetchTrigger;
    begin
       return RetVal : ContentPrefetchTrigger do
@@ -2549,15 +2896,16 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (waitInterval, m_ComRetVal'Access);
             Retval.m_IContentPrefetchTrigger := new Windows.ApplicationModel.Background.IContentPrefetchTrigger;
             Retval.m_IContentPrefetchTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return ContentPrefetchTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IContentPrefetchTrigger;
    begin
       return RetVal : ContentPrefetchTrigger do
@@ -2566,7 +2914,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IContentPrefetchTrigger := new Windows.ApplicationModel.Background.IContentPrefetchTrigger;
             Retval.m_IContentPrefetchTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2579,10 +2927,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IContentPrefetchTrigger.all.get_WaitInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2595,12 +2947,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ConversationalAgentTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -2611,7 +2963,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return ConversationalAgentTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ConversationalAgentTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ConversationalAgentTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : ConversationalAgentTrigger do
@@ -2620,7 +2973,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2636,12 +2989,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out CustomSystemEventTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICustomSystemEventTrigger, ICustomSystemEventTrigger_Ptr);
    begin
       if this.m_ICustomSystemEventTrigger /= null then
          if this.m_ICustomSystemEventTrigger.all /= null then
-            RefCount := this.m_ICustomSystemEventTrigger.all.Release;
+            temp := this.m_ICustomSystemEventTrigger.all.Release;
             Free (this.m_ICustomSystemEventTrigger);
          end if;
       end if;
@@ -2657,11 +3010,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return CustomSystemEventTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CustomSystemEventTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CustomSystemEventTrigger");
       m_Factory    : access ICustomSystemEventTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ICustomSystemEventTrigger;
-      HStr_triggerId : WinRt.HString := To_HString (triggerId);
+      HStr_triggerId : constant WinRt.HString := To_HString (triggerId);
    begin
       return RetVal : CustomSystemEventTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_ICustomSystemEventTriggerFactory'Access , m_Factory'Address);
@@ -2669,10 +3023,10 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_triggerId, recurrence, m_ComRetVal'Access);
             Retval.m_ICustomSystemEventTrigger := new Windows.ApplicationModel.Background.ICustomSystemEventTrigger;
             Retval.m_ICustomSystemEventTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_triggerId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_triggerId);
       end return;
    end;
 
@@ -2685,13 +3039,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICustomSystemEventTrigger.all.get_TriggerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2701,10 +3059,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence;
    begin
       Hr := this.m_ICustomSystemEventTrigger.all.get_Recurrence (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2717,12 +3079,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out DeviceConnectionChangeTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceConnectionChangeTrigger, IDeviceConnectionChangeTrigger_Ptr);
    begin
       if this.m_IDeviceConnectionChangeTrigger /= null then
          if this.m_IDeviceConnectionChangeTrigger.all /= null then
-            RefCount := this.m_IDeviceConnectionChangeTrigger.all.Release;
+            temp := this.m_IDeviceConnectionChangeTrigger.all.Release;
             Free (this.m_IDeviceConnectionChangeTrigger);
          end if;
       end if;
@@ -2737,16 +3099,16 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceConnectionChangeTrigger is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceConnectionChangeTrigger");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceConnectionChangeTrigger");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IDeviceConnectionChangeTriggerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceConnectionChangeTrigger.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2764,7 +3126,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceConnectionChangeTrigger.Kind_Delegate, AsyncOperationCompletedHandler_DeviceConnectionChangeTrigger.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2778,10 +3140,10 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceConnectionChangeTriggerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_deviceId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -2793,16 +3155,16 @@ package body WinRt.Windows.ApplicationModel.Background is
                      Retval.m_IDeviceConnectionChangeTrigger := new Windows.ApplicationModel.Background.IDeviceConnectionChangeTrigger;
                      Retval.m_IDeviceConnectionChangeTrigger.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_deviceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_deviceId);
       end return;
    end;
 
@@ -2815,13 +3177,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceConnectionChangeTrigger.all.get_DeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2831,10 +3197,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceConnectionChangeTrigger.all.get_CanMaintainConnection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2844,10 +3214,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceConnectionChangeTrigger.all.get_MaintainConnection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2857,9 +3231,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDeviceConnectionChangeTrigger.all.put_MaintainConnection (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2871,12 +3249,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out DeviceManufacturerNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceManufacturerNotificationTrigger, IDeviceManufacturerNotificationTrigger_Ptr);
    begin
       if this.m_IDeviceManufacturerNotificationTrigger /= null then
          if this.m_IDeviceManufacturerNotificationTrigger.all /= null then
-            RefCount := this.m_IDeviceManufacturerNotificationTrigger.all.Release;
+            temp := this.m_IDeviceManufacturerNotificationTrigger.all.Release;
             Free (this.m_IDeviceManufacturerNotificationTrigger);
          end if;
       end if;
@@ -2892,11 +3270,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return DeviceManufacturerNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceManufacturerNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceManufacturerNotificationTrigger");
       m_Factory    : access IDeviceManufacturerNotificationTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IDeviceManufacturerNotificationTrigger;
-      HStr_triggerQualifier : WinRt.HString := To_HString (triggerQualifier);
+      HStr_triggerQualifier : constant WinRt.HString := To_HString (triggerQualifier);
    begin
       return RetVal : DeviceManufacturerNotificationTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceManufacturerNotificationTriggerFactory'Access , m_Factory'Address);
@@ -2904,10 +3283,10 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_triggerQualifier, oneShot, m_ComRetVal'Access);
             Retval.m_IDeviceManufacturerNotificationTrigger := new Windows.ApplicationModel.Background.IDeviceManufacturerNotificationTrigger;
             Retval.m_IDeviceManufacturerNotificationTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_triggerQualifier);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_triggerQualifier);
       end return;
    end;
 
@@ -2920,13 +3299,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceManufacturerNotificationTrigger.all.get_TriggerQualifier (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2936,10 +3319,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDeviceManufacturerNotificationTrigger.all.get_OneShot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2952,12 +3339,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out DeviceServicingTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceServicingTrigger, IDeviceServicingTrigger_Ptr);
    begin
       if this.m_IDeviceServicingTrigger /= null then
          if this.m_IDeviceServicingTrigger.all /= null then
-            RefCount := this.m_IDeviceServicingTrigger.all.Release;
+            temp := this.m_IDeviceServicingTrigger.all.Release;
             Free (this.m_IDeviceServicingTrigger);
          end if;
       end if;
@@ -2968,7 +3355,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return DeviceServicingTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceServicingTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceServicingTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IDeviceServicingTrigger;
    begin
       return RetVal : DeviceServicingTrigger do
@@ -2977,7 +3365,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IDeviceServicingTrigger := new Windows.ApplicationModel.Background.IDeviceServicingTrigger;
             Retval.m_IDeviceServicingTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2992,14 +3380,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3017,7 +3405,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_DeviceTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3030,7 +3418,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IDeviceServicingTrigger.all.RequestAsync (HStr_deviceId, expectedDuration, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3040,14 +3428,14 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_deviceId);
+      tmp := WindowsDeleteString (HStr_deviceId);
       return m_RetVal;
    end;
 
@@ -3060,15 +3448,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3086,7 +3474,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_DeviceTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3099,7 +3487,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IDeviceServicingTrigger.all.RequestAsync (HStr_deviceId, expectedDuration, HStr_arguments, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3109,15 +3497,15 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_deviceId);
-      Hr := WindowsDeleteString (HStr_arguments);
+      tmp := WindowsDeleteString (HStr_deviceId);
+      tmp := WindowsDeleteString (HStr_arguments);
       return m_RetVal;
    end;
 
@@ -3130,12 +3518,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out DeviceUseTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceUseTrigger, IDeviceUseTrigger_Ptr);
    begin
       if this.m_IDeviceUseTrigger /= null then
          if this.m_IDeviceUseTrigger.all /= null then
-            RefCount := this.m_IDeviceUseTrigger.all.Release;
+            temp := this.m_IDeviceUseTrigger.all.Release;
             Free (this.m_IDeviceUseTrigger);
          end if;
       end if;
@@ -3146,7 +3534,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return DeviceUseTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceUseTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceUseTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IDeviceUseTrigger;
    begin
       return RetVal : DeviceUseTrigger do
@@ -3155,7 +3544,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IDeviceUseTrigger := new Windows.ApplicationModel.Background.IDeviceUseTrigger;
             Retval.m_IDeviceUseTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3169,14 +3558,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3194,7 +3583,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_DeviceTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3207,7 +3596,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IDeviceUseTrigger.all.RequestAsync (HStr_deviceId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3217,14 +3606,14 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_deviceId);
+      tmp := WindowsDeleteString (HStr_deviceId);
       return m_RetVal;
    end;
 
@@ -3236,15 +3625,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_deviceId : WinRt.HString := To_HString (deviceId);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DeviceTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3262,7 +3651,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DeviceTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_DeviceTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3275,7 +3664,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IDeviceUseTrigger.all.RequestAsync (HStr_deviceId, HStr_arguments, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3285,15 +3674,15 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_deviceId);
-      Hr := WindowsDeleteString (HStr_arguments);
+      tmp := WindowsDeleteString (HStr_deviceId);
+      tmp := WindowsDeleteString (HStr_arguments);
       return m_RetVal;
    end;
 
@@ -3306,12 +3695,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out DeviceWatcherTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceWatcherTrigger, IDeviceWatcherTrigger_Ptr);
    begin
       if this.m_IDeviceWatcherTrigger /= null then
          if this.m_IDeviceWatcherTrigger.all /= null then
-            RefCount := this.m_IDeviceWatcherTrigger.all.Release;
+            temp := this.m_IDeviceWatcherTrigger.all.Release;
             Free (this.m_IDeviceWatcherTrigger);
          end if;
       end if;
@@ -3329,12 +3718,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out EmailStoreNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailStoreNotificationTrigger, IEmailStoreNotificationTrigger_Ptr);
    begin
       if this.m_IEmailStoreNotificationTrigger /= null then
          if this.m_IEmailStoreNotificationTrigger.all /= null then
-            RefCount := this.m_IEmailStoreNotificationTrigger.all.Release;
+            temp := this.m_IEmailStoreNotificationTrigger.all.Release;
             Free (this.m_IEmailStoreNotificationTrigger);
          end if;
       end if;
@@ -3345,7 +3734,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return EmailStoreNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.EmailStoreNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.EmailStoreNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IEmailStoreNotificationTrigger;
    begin
       return RetVal : EmailStoreNotificationTrigger do
@@ -3354,7 +3744,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IEmailStoreNotificationTrigger := new Windows.ApplicationModel.Background.IEmailStoreNotificationTrigger;
             Retval.m_IEmailStoreNotificationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3370,12 +3760,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out GattCharacteristicNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGattCharacteristicNotificationTrigger, IGattCharacteristicNotificationTrigger_Ptr);
    begin
       if this.m_IGattCharacteristicNotificationTrigger /= null then
          if this.m_IGattCharacteristicNotificationTrigger.all /= null then
-            RefCount := this.m_IGattCharacteristicNotificationTrigger.all.Release;
+            temp := this.m_IGattCharacteristicNotificationTrigger.all.Release;
             Free (this.m_IGattCharacteristicNotificationTrigger);
          end if;
       end if;
@@ -3391,9 +3781,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return GattCharacteristicNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
       m_Factory    : access IGattCharacteristicNotificationTriggerFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
    begin
       return RetVal : GattCharacteristicNotificationTrigger do
@@ -3402,9 +3793,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (characteristic.m_IGattCharacteristic.all, eventTriggeringMode, m_ComRetVal'Access);
             Retval.m_IGattCharacteristicNotificationTrigger := new Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
             Retval.m_IGattCharacteristicNotificationTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3414,9 +3805,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return GattCharacteristicNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
       m_Factory    : access IGattCharacteristicNotificationTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
    begin
       return RetVal : GattCharacteristicNotificationTrigger do
@@ -3425,9 +3817,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (characteristic.m_IGattCharacteristic.all, m_ComRetVal'Access);
             Retval.m_IGattCharacteristicNotificationTrigger := new Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
             Retval.m_IGattCharacteristicNotificationTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3440,11 +3832,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic do
          Hr := this.m_IGattCharacteristicNotificationTrigger.all.get_Characteristic (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGattCharacteristic := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
          Retval.m_IGattCharacteristic.all := m_ComRetVal;
       end return;
@@ -3456,14 +3852,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger_Interface, WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger2, WinRt.Windows.ApplicationModel.Background.IID_IGattCharacteristicNotificationTrigger2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGattCharacteristicNotificationTrigger.all);
       Hr := m_Interface.get_EventTriggeringMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3476,12 +3876,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out GattServiceProviderTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGattServiceProviderTrigger, IGattServiceProviderTrigger_Ptr);
    begin
       if this.m_IGattServiceProviderTrigger /= null then
          if this.m_IGattServiceProviderTrigger.all /= null then
-            RefCount := this.m_IGattServiceProviderTrigger.all.Release;
+            temp := this.m_IGattServiceProviderTrigger.all.Release;
             Free (this.m_IGattServiceProviderTrigger);
          end if;
       end if;
@@ -3497,16 +3897,16 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.GattServiceProviderTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattServiceProviderTrigger");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattServiceProviderTrigger");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IGattServiceProviderTriggerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_triggerId : WinRt.HString := To_HString (triggerId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_triggerId : constant WinRt.HString := To_HString (triggerId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GattServiceProviderTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3524,7 +3924,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GattServiceProviderTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_GattServiceProviderTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3538,10 +3938,10 @@ package body WinRt.Windows.ApplicationModel.Background is
          Hr := RoGetActivationFactory (m_hString, IID_IGattServiceProviderTriggerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (HStr_triggerId, serviceUuid, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -3553,16 +3953,16 @@ package body WinRt.Windows.ApplicationModel.Background is
                      Retval.m_IGattServiceProviderTriggerResult := new Windows.ApplicationModel.Background.IGattServiceProviderTriggerResult;
                      Retval.m_IGattServiceProviderTriggerResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_triggerId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_triggerId);
       end return;
    end;
 
@@ -3575,13 +3975,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGattServiceProviderTrigger.all.get_TriggerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3591,11 +3995,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalService'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalService do
          Hr := this.m_IGattServiceProviderTrigger.all.get_Service (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGattLocalService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
          Retval.m_IGattLocalService.all := m_ComRetVal;
       end return;
@@ -3607,9 +4015,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGattServiceProviderTrigger.all.put_AdvertisingParameters (value.m_IGattServiceProviderAdvertisingParameters.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AdvertisingParameters
@@ -3618,11 +4030,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters do
          Hr := this.m_IGattServiceProviderTrigger.all.get_AdvertisingParameters (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGattServiceProviderAdvertisingParameters := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
          Retval.m_IGattServiceProviderAdvertisingParameters.all := m_ComRetVal;
       end return;
@@ -3637,12 +4053,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out GattServiceProviderTriggerResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGattServiceProviderTriggerResult, IGattServiceProviderTriggerResult_Ptr);
    begin
       if this.m_IGattServiceProviderTriggerResult /= null then
          if this.m_IGattServiceProviderTriggerResult.all /= null then
-            RefCount := this.m_IGattServiceProviderTriggerResult.all.Release;
+            temp := this.m_IGattServiceProviderTriggerResult.all.Release;
             Free (this.m_IGattServiceProviderTriggerResult);
          end if;
       end if;
@@ -3657,11 +4073,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.GattServiceProviderTrigger'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IGattServiceProviderTrigger;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.GattServiceProviderTrigger do
          Hr := this.m_IGattServiceProviderTriggerResult.all.get_Trigger (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGattServiceProviderTrigger := new Windows.ApplicationModel.Background.IGattServiceProviderTrigger;
          Retval.m_IGattServiceProviderTrigger.all := m_ComRetVal;
       end return;
@@ -3673,10 +4093,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothError is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattServiceProviderTriggerResult.all.get_Error (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3689,12 +4113,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out GeovisitTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGeovisitTrigger, IGeovisitTrigger_Ptr);
    begin
       if this.m_IGeovisitTrigger /= null then
          if this.m_IGeovisitTrigger.all /= null then
-            RefCount := this.m_IGeovisitTrigger.all.Release;
+            temp := this.m_IGeovisitTrigger.all.Release;
             Free (this.m_IGeovisitTrigger);
          end if;
       end if;
@@ -3705,7 +4129,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return GeovisitTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GeovisitTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GeovisitTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IGeovisitTrigger;
    begin
       return RetVal : GeovisitTrigger do
@@ -3714,7 +4139,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IGeovisitTrigger := new Windows.ApplicationModel.Background.IGeovisitTrigger;
             Retval.m_IGeovisitTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3727,10 +4152,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Geolocation.VisitMonitoringScope is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.VisitMonitoringScope;
    begin
       Hr := this.m_IGeovisitTrigger.all.get_MonitoringScope (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3740,9 +4169,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Devices.Geolocation.VisitMonitoringScope
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGeovisitTrigger.all.put_MonitoringScope (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3754,12 +4187,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out LocationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILocationTrigger, ILocationTrigger_Ptr);
    begin
       if this.m_ILocationTrigger /= null then
          if this.m_ILocationTrigger.all /= null then
-            RefCount := this.m_ILocationTrigger.all.Release;
+            temp := this.m_ILocationTrigger.all.Release;
             Free (this.m_ILocationTrigger);
          end if;
       end if;
@@ -3774,9 +4207,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return LocationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.LocationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.LocationTrigger");
       m_Factory    : access ILocationTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ILocationTrigger;
    begin
       return RetVal : LocationTrigger do
@@ -3785,9 +4219,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (triggerType, m_ComRetVal'Access);
             Retval.m_ILocationTrigger := new Windows.ApplicationModel.Background.ILocationTrigger;
             Retval.m_ILocationTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3800,10 +4234,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.LocationTriggerType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.LocationTriggerType;
    begin
       Hr := this.m_ILocationTrigger.all.get_TriggerType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3816,12 +4254,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MaintenanceTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMaintenanceTrigger, IMaintenanceTrigger_Ptr);
    begin
       if this.m_IMaintenanceTrigger /= null then
          if this.m_IMaintenanceTrigger.all /= null then
-            RefCount := this.m_IMaintenanceTrigger.all.Release;
+            temp := this.m_IMaintenanceTrigger.all.Release;
             Free (this.m_IMaintenanceTrigger);
          end if;
       end if;
@@ -3837,9 +4275,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return MaintenanceTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MaintenanceTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MaintenanceTrigger");
       m_Factory    : access IMaintenanceTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IMaintenanceTrigger;
    begin
       return RetVal : MaintenanceTrigger do
@@ -3848,9 +4287,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (freshnessTime, oneShot, m_ComRetVal'Access);
             Retval.m_IMaintenanceTrigger := new Windows.ApplicationModel.Background.IMaintenanceTrigger;
             Retval.m_IMaintenanceTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3863,10 +4302,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMaintenanceTrigger.all.get_FreshnessTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3876,10 +4319,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMaintenanceTrigger.all.get_OneShot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3892,12 +4339,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MediaProcessingTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaProcessingTrigger, IMediaProcessingTrigger_Ptr);
    begin
       if this.m_IMediaProcessingTrigger /= null then
          if this.m_IMediaProcessingTrigger.all /= null then
-            RefCount := this.m_IMediaProcessingTrigger.all.Release;
+            temp := this.m_IMediaProcessingTrigger.all.Release;
             Free (this.m_IMediaProcessingTrigger);
          end if;
       end if;
@@ -3908,7 +4355,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return MediaProcessingTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MediaProcessingTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MediaProcessingTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IMediaProcessingTrigger;
    begin
       return RetVal : MediaProcessingTrigger do
@@ -3917,7 +4365,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IMediaProcessingTrigger := new Windows.ApplicationModel.Background.IMediaProcessingTrigger;
             Retval.m_IMediaProcessingTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3930,13 +4378,13 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.MediaProcessingTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MediaProcessingTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3954,7 +4402,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MediaProcessingTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_MediaProcessingTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3967,7 +4415,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IMediaProcessingTrigger.all.RequestAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3977,9 +4425,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3994,13 +4442,13 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.MediaProcessingTriggerResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MediaProcessingTriggerResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4018,7 +4466,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MediaProcessingTriggerResult.Kind_Delegate, AsyncOperationCompletedHandler_MediaProcessingTriggerResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4031,7 +4479,7 @@ package body WinRt.Windows.ApplicationModel.Background is
       Hr := this.m_IMediaProcessingTrigger.all.RequestAsync (arguments.m_IPropertySet.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4041,9 +4489,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4060,12 +4508,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MobileBroadbandDeviceServiceNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4076,7 +4524,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return MobileBroadbandDeviceServiceNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandDeviceServiceNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandDeviceServiceNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandDeviceServiceNotificationTrigger do
@@ -4085,7 +4534,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4101,12 +4550,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPcoDataChangeTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4117,7 +4566,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return MobileBroadbandPcoDataChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandPcoDataChangeTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandPcoDataChangeTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandPcoDataChangeTrigger do
@@ -4126,7 +4576,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4142,12 +4592,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MobileBroadbandPinLockStateChangeTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4158,7 +4608,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return MobileBroadbandPinLockStateChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandPinLockStateChangeTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandPinLockStateChangeTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandPinLockStateChangeTrigger do
@@ -4167,7 +4618,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4183,12 +4634,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MobileBroadbandRadioStateChangeTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4199,7 +4650,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return MobileBroadbandRadioStateChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandRadioStateChangeTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandRadioStateChangeTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandRadioStateChangeTrigger do
@@ -4208,7 +4660,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4224,12 +4676,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out MobileBroadbandRegistrationStateChangeTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4240,7 +4692,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return MobileBroadbandRegistrationStateChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandRegistrationStateChangeTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandRegistrationStateChangeTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandRegistrationStateChangeTrigger do
@@ -4249,7 +4702,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4265,12 +4718,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out NetworkOperatorDataUsageTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4281,7 +4734,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return NetworkOperatorDataUsageTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorDataUsageTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorDataUsageTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : NetworkOperatorDataUsageTrigger do
@@ -4290,7 +4744,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4306,12 +4760,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out NetworkOperatorHotspotAuthenticationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorHotspotAuthenticationTrigger, INetworkOperatorHotspotAuthenticationTrigger_Ptr);
    begin
       if this.m_INetworkOperatorHotspotAuthenticationTrigger /= null then
          if this.m_INetworkOperatorHotspotAuthenticationTrigger.all /= null then
-            RefCount := this.m_INetworkOperatorHotspotAuthenticationTrigger.all.Release;
+            temp := this.m_INetworkOperatorHotspotAuthenticationTrigger.all.Release;
             Free (this.m_INetworkOperatorHotspotAuthenticationTrigger);
          end if;
       end if;
@@ -4322,7 +4776,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return NetworkOperatorHotspotAuthenticationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorHotspotAuthenticationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorHotspotAuthenticationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.INetworkOperatorHotspotAuthenticationTrigger;
    begin
       return RetVal : NetworkOperatorHotspotAuthenticationTrigger do
@@ -4331,7 +4786,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_INetworkOperatorHotspotAuthenticationTrigger := new Windows.ApplicationModel.Background.INetworkOperatorHotspotAuthenticationTrigger;
             Retval.m_INetworkOperatorHotspotAuthenticationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4347,12 +4802,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out NetworkOperatorNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INetworkOperatorNotificationTrigger, INetworkOperatorNotificationTrigger_Ptr);
    begin
       if this.m_INetworkOperatorNotificationTrigger /= null then
          if this.m_INetworkOperatorNotificationTrigger.all /= null then
-            RefCount := this.m_INetworkOperatorNotificationTrigger.all.Release;
+            temp := this.m_INetworkOperatorNotificationTrigger.all.Release;
             Free (this.m_INetworkOperatorNotificationTrigger);
          end if;
       end if;
@@ -4367,11 +4822,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return NetworkOperatorNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorNotificationTrigger");
       m_Factory    : access INetworkOperatorNotificationTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.INetworkOperatorNotificationTrigger;
-      HStr_networkAccountId : WinRt.HString := To_HString (networkAccountId);
+      HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : NetworkOperatorNotificationTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorNotificationTriggerFactory'Access , m_Factory'Address);
@@ -4379,10 +4835,10 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_networkAccountId, m_ComRetVal'Access);
             Retval.m_INetworkOperatorNotificationTrigger := new Windows.ApplicationModel.Background.INetworkOperatorNotificationTrigger;
             Retval.m_INetworkOperatorNotificationTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_networkAccountId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_networkAccountId);
       end return;
    end;
 
@@ -4395,13 +4851,17 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_INetworkOperatorNotificationTrigger.all.get_NetworkAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4414,12 +4874,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out PaymentAppCanMakePaymentTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4430,7 +4890,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return PaymentAppCanMakePaymentTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PaymentAppCanMakePaymentTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PaymentAppCanMakePaymentTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : PaymentAppCanMakePaymentTrigger do
@@ -4439,7 +4900,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4455,12 +4916,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out PhoneTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneTrigger, IPhoneTrigger_Ptr);
    begin
       if this.m_IPhoneTrigger /= null then
          if this.m_IPhoneTrigger.all /= null then
-            RefCount := this.m_IPhoneTrigger.all.Release;
+            temp := this.m_IPhoneTrigger.all.Release;
             Free (this.m_IPhoneTrigger);
          end if;
       end if;
@@ -4476,9 +4937,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return PhoneTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PhoneTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PhoneTrigger");
       m_Factory    : access IPhoneTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IPhoneTrigger;
    begin
       return RetVal : PhoneTrigger do
@@ -4487,9 +4949,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (type_x, oneShot, m_ComRetVal'Access);
             Retval.m_IPhoneTrigger := new Windows.ApplicationModel.Background.IPhoneTrigger;
             Retval.m_IPhoneTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4502,10 +4964,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPhoneTrigger.all.get_OneShot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4515,10 +4981,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Calls.Background.PhoneTriggerType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneTriggerType;
    begin
       Hr := this.m_IPhoneTrigger.all.get_TriggerType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4531,12 +5001,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out PushNotificationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4551,11 +5021,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return PushNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
       m_Factory    : access IPushNotificationTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-      HStr_applicationId : WinRt.HString := To_HString (applicationId);
+      HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
    begin
       return RetVal : PushNotificationTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationTriggerFactory'Access , m_Factory'Address);
@@ -4563,16 +5034,17 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_applicationId, m_ComRetVal'Access);
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_applicationId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
       end return;
    end;
 
    function Constructor return PushNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : PushNotificationTrigger do
@@ -4581,7 +5053,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4597,12 +5069,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out RcsEndUserMessageAvailableTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRcsEndUserMessageAvailableTrigger, IRcsEndUserMessageAvailableTrigger_Ptr);
    begin
       if this.m_IRcsEndUserMessageAvailableTrigger /= null then
          if this.m_IRcsEndUserMessageAvailableTrigger.all /= null then
-            RefCount := this.m_IRcsEndUserMessageAvailableTrigger.all.Release;
+            temp := this.m_IRcsEndUserMessageAvailableTrigger.all.Release;
             Free (this.m_IRcsEndUserMessageAvailableTrigger);
          end if;
       end if;
@@ -4613,7 +5085,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return RcsEndUserMessageAvailableTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.RcsEndUserMessageAvailableTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.RcsEndUserMessageAvailableTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IRcsEndUserMessageAvailableTrigger;
    begin
       return RetVal : RcsEndUserMessageAvailableTrigger do
@@ -4622,7 +5095,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IRcsEndUserMessageAvailableTrigger := new Windows.ApplicationModel.Background.IRcsEndUserMessageAvailableTrigger;
             Retval.m_IRcsEndUserMessageAvailableTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4638,12 +5111,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out RfcommConnectionTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRfcommConnectionTrigger, IRfcommConnectionTrigger_Ptr);
    begin
       if this.m_IRfcommConnectionTrigger /= null then
          if this.m_IRfcommConnectionTrigger.all /= null then
-            RefCount := this.m_IRfcommConnectionTrigger.all.Release;
+            temp := this.m_IRfcommConnectionTrigger.all.Release;
             Free (this.m_IRfcommConnectionTrigger);
          end if;
       end if;
@@ -4654,7 +5127,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return RfcommConnectionTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.RfcommConnectionTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.RfcommConnectionTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IRfcommConnectionTrigger;
    begin
       return RetVal : RfcommConnectionTrigger do
@@ -4663,7 +5137,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IRfcommConnectionTrigger := new Windows.ApplicationModel.Background.IRfcommConnectionTrigger;
             Retval.m_IRfcommConnectionTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4676,11 +5150,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Background.IRfcommInboundConnectionInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation do
          Hr := this.m_IRfcommConnectionTrigger.all.get_InboundConnection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRfcommInboundConnectionInformation := new Windows.Devices.Bluetooth.Background.IRfcommInboundConnectionInformation;
          Retval.m_IRfcommInboundConnectionInformation.all := m_ComRetVal;
       end return;
@@ -4692,11 +5170,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Bluetooth.Background.IRfcommOutboundConnectionInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation do
          Hr := this.m_IRfcommConnectionTrigger.all.get_OutboundConnection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IRfcommOutboundConnectionInformation := new Windows.Devices.Bluetooth.Background.IRfcommOutboundConnectionInformation;
          Retval.m_IRfcommOutboundConnectionInformation.all := m_ComRetVal;
       end return;
@@ -4708,10 +5190,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IRfcommConnectionTrigger.all.get_AllowMultipleConnections (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4721,9 +5207,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRfcommConnectionTrigger.all.put_AllowMultipleConnections (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProtectionLevel
@@ -4732,10 +5222,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Networking.Sockets.SocketProtectionLevel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.Sockets.SocketProtectionLevel;
    begin
       Hr := this.m_IRfcommConnectionTrigger.all.get_ProtectionLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4745,9 +5239,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Networking.Sockets.SocketProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRfcommConnectionTrigger.all.put_ProtectionLevel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RemoteHostName
@@ -4756,11 +5254,15 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IRfcommConnectionTrigger.all.get_RemoteHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -4772,9 +5274,13 @@ package body WinRt.Windows.ApplicationModel.Background is
       value : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRfcommConnectionTrigger.all.put_RemoteHostName (value.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4786,12 +5292,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SecondaryAuthenticationFactorAuthenticationTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISecondaryAuthenticationFactorAuthenticationTrigger, ISecondaryAuthenticationFactorAuthenticationTrigger_Ptr);
    begin
       if this.m_ISecondaryAuthenticationFactorAuthenticationTrigger /= null then
          if this.m_ISecondaryAuthenticationFactorAuthenticationTrigger.all /= null then
-            RefCount := this.m_ISecondaryAuthenticationFactorAuthenticationTrigger.all.Release;
+            temp := this.m_ISecondaryAuthenticationFactorAuthenticationTrigger.all.Release;
             Free (this.m_ISecondaryAuthenticationFactorAuthenticationTrigger);
          end if;
       end if;
@@ -4802,7 +5308,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return SecondaryAuthenticationFactorAuthenticationTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SecondaryAuthenticationFactorAuthenticationTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SecondaryAuthenticationFactorAuthenticationTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ISecondaryAuthenticationFactorAuthenticationTrigger;
    begin
       return RetVal : SecondaryAuthenticationFactorAuthenticationTrigger do
@@ -4811,7 +5318,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_ISecondaryAuthenticationFactorAuthenticationTrigger := new Windows.ApplicationModel.Background.ISecondaryAuthenticationFactorAuthenticationTrigger;
             Retval.m_ISecondaryAuthenticationFactorAuthenticationTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4827,12 +5334,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SensorDataThresholdTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISensorDataThresholdTrigger, ISensorDataThresholdTrigger_Ptr);
    begin
       if this.m_ISensorDataThresholdTrigger /= null then
          if this.m_ISensorDataThresholdTrigger.all /= null then
-            RefCount := this.m_ISensorDataThresholdTrigger.all.Release;
+            temp := this.m_ISensorDataThresholdTrigger.all.Release;
             Free (this.m_ISensorDataThresholdTrigger);
          end if;
       end if;
@@ -4847,9 +5354,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return SensorDataThresholdTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SensorDataThresholdTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SensorDataThresholdTrigger");
       m_Factory    : access ISensorDataThresholdTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ISensorDataThresholdTrigger;
    begin
       return RetVal : SensorDataThresholdTrigger do
@@ -4858,9 +5366,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (threshold, m_ComRetVal'Access);
             Retval.m_ISensorDataThresholdTrigger := new Windows.ApplicationModel.Background.ISensorDataThresholdTrigger;
             Retval.m_ISensorDataThresholdTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4876,12 +5384,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SmartCardTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISmartCardTrigger, ISmartCardTrigger_Ptr);
    begin
       if this.m_ISmartCardTrigger /= null then
          if this.m_ISmartCardTrigger.all /= null then
-            RefCount := this.m_ISmartCardTrigger.all.Release;
+            temp := this.m_ISmartCardTrigger.all.Release;
             Free (this.m_ISmartCardTrigger);
          end if;
       end if;
@@ -4896,9 +5404,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return SmartCardTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SmartCardTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SmartCardTrigger");
       m_Factory    : access ISmartCardTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ISmartCardTrigger;
    begin
       return RetVal : SmartCardTrigger do
@@ -4907,9 +5416,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (triggerType, m_ComRetVal'Access);
             Retval.m_ISmartCardTrigger := new Windows.ApplicationModel.Background.ISmartCardTrigger;
             Retval.m_ISmartCardTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4922,10 +5431,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardTriggerType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardTriggerType;
    begin
       Hr := this.m_ISmartCardTrigger.all.get_TriggerType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4938,12 +5451,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SmsMessageReceivedTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -4958,9 +5471,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return SmsMessageReceivedTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SmsMessageReceivedTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SmsMessageReceivedTrigger");
       m_Factory    : access ISmsMessageReceivedTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : SmsMessageReceivedTrigger do
@@ -4969,9 +5483,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (filterRules.m_ISmsFilterRules.all, m_ComRetVal'Access);
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4987,12 +5501,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SocketActivityTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -5003,7 +5517,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return SocketActivityTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SocketActivityTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SocketActivityTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : SocketActivityTrigger do
@@ -5012,7 +5527,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5025,14 +5540,18 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Background.ISocketActivityTrigger := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger_Interface, WinRt.Windows.ApplicationModel.Background.ISocketActivityTrigger, WinRt.Windows.ApplicationModel.Background.IID_ISocketActivityTrigger'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundTrigger.all);
       Hr := m_Interface.get_IsWakeFromLowPowerSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5045,12 +5564,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out StorageLibraryChangeTrackerTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -5065,9 +5584,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return StorageLibraryChangeTrackerTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryChangeTrackerTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryChangeTrackerTrigger");
       m_Factory    : access IStorageLibraryChangeTrackerTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : StorageLibraryChangeTrackerTrigger do
@@ -5076,9 +5596,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (tracker.m_IStorageLibraryChangeTracker.all, m_ComRetVal'Access);
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5094,12 +5614,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out StorageLibraryContentChangedTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStorageLibraryContentChangedTrigger, IStorageLibraryContentChangedTrigger_Ptr);
    begin
       if this.m_IStorageLibraryContentChangedTrigger /= null then
          if this.m_IStorageLibraryContentChangedTrigger.all /= null then
-            RefCount := this.m_IStorageLibraryContentChangedTrigger.all.Release;
+            temp := this.m_IStorageLibraryContentChangedTrigger.all.Release;
             Free (this.m_IStorageLibraryContentChangedTrigger);
          end if;
       end if;
@@ -5114,20 +5634,24 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IStorageLibraryContentChangedTriggerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IStorageLibraryContentChangedTriggerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (storageLibrary.m_IStorageLibrary.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IStorageLibraryContentChangedTrigger := new Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger;
             Retval.m_IStorageLibraryContentChangedTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5137,20 +5661,24 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger");
       m_Factory        : access WinRt.Windows.ApplicationModel.Background.IStorageLibraryContentChangedTriggerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IStorageLibraryContentChangedTriggerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLibraries (storageLibraries, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IStorageLibraryContentChangedTrigger := new Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger;
             Retval.m_IStorageLibraryContentChangedTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5166,12 +5694,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SystemCondition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemCondition, ISystemCondition_Ptr);
    begin
       if this.m_ISystemCondition /= null then
          if this.m_ISystemCondition.all /= null then
-            RefCount := this.m_ISystemCondition.all.Release;
+            temp := this.m_ISystemCondition.all.Release;
             Free (this.m_ISystemCondition);
          end if;
       end if;
@@ -5186,9 +5714,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return SystemCondition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SystemCondition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SystemCondition");
       m_Factory    : access ISystemConditionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ISystemCondition;
    begin
       return RetVal : SystemCondition do
@@ -5197,9 +5726,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (conditionType, m_ComRetVal'Access);
             Retval.m_ISystemCondition := new Windows.ApplicationModel.Background.ISystemCondition;
             Retval.m_ISystemCondition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5212,10 +5741,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.SystemConditionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.SystemConditionType;
    begin
       Hr := this.m_ISystemCondition.all.get_ConditionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5228,12 +5761,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out SystemTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemTrigger, ISystemTrigger_Ptr);
    begin
       if this.m_ISystemTrigger /= null then
          if this.m_ISystemTrigger.all /= null then
-            RefCount := this.m_ISystemTrigger.all.Release;
+            temp := this.m_ISystemTrigger.all.Release;
             Free (this.m_ISystemTrigger);
          end if;
       end if;
@@ -5249,9 +5782,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return SystemTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SystemTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SystemTrigger");
       m_Factory    : access ISystemTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ISystemTrigger;
    begin
       return RetVal : SystemTrigger do
@@ -5260,9 +5794,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (triggerType, oneShot, m_ComRetVal'Access);
             Retval.m_ISystemTrigger := new Windows.ApplicationModel.Background.ISystemTrigger;
             Retval.m_ISystemTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5275,10 +5809,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISystemTrigger.all.get_OneShot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5288,10 +5826,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Windows.ApplicationModel.Background.SystemTriggerType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Background.SystemTriggerType;
    begin
       Hr := this.m_ISystemTrigger.all.get_TriggerType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5304,12 +5846,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out TetheringEntitlementCheckTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -5320,7 +5862,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return TetheringEntitlementCheckTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.TetheringEntitlementCheckTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.TetheringEntitlementCheckTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : TetheringEntitlementCheckTrigger do
@@ -5329,7 +5872,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5345,12 +5888,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out TimeTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITimeTrigger, ITimeTrigger_Ptr);
    begin
       if this.m_ITimeTrigger /= null then
          if this.m_ITimeTrigger.all /= null then
-            RefCount := this.m_ITimeTrigger.all.Release;
+            temp := this.m_ITimeTrigger.all.Release;
             Free (this.m_ITimeTrigger);
          end if;
       end if;
@@ -5366,9 +5909,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return TimeTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.TimeTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.TimeTrigger");
       m_Factory    : access ITimeTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.ITimeTrigger;
    begin
       return RetVal : TimeTrigger do
@@ -5377,9 +5921,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (freshnessTime, oneShot, m_ComRetVal'Access);
             Retval.m_ITimeTrigger := new Windows.ApplicationModel.Background.ITimeTrigger;
             Retval.m_ITimeTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5392,10 +5936,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ITimeTrigger.all.get_FreshnessTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5405,10 +5953,14 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITimeTrigger.all.get_OneShot (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5421,12 +5973,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ToastNotificationActionTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -5437,7 +5989,8 @@ package body WinRt.Windows.ApplicationModel.Background is
 
    function Constructor return ToastNotificationActionTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : ToastNotificationActionTrigger do
@@ -5446,7 +5999,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5456,11 +6009,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return ToastNotificationActionTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
       m_Factory    : access IToastNotificationActionTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-      HStr_applicationId : WinRt.HString := To_HString (applicationId);
+      HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
    begin
       return RetVal : ToastNotificationActionTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationActionTriggerFactory'Access , m_Factory'Address);
@@ -5468,10 +6022,10 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_applicationId, m_ComRetVal'Access);
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_applicationId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
       end return;
    end;
 
@@ -5487,12 +6041,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out ToastNotificationHistoryChangedTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -5507,11 +6061,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return ToastNotificationHistoryChangedTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger");
       m_Factory    : access IToastNotificationHistoryChangedTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
-      HStr_applicationId : WinRt.HString := To_HString (applicationId);
+      HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
    begin
       return RetVal : ToastNotificationHistoryChangedTrigger do
          Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationHistoryChangedTriggerFactory'Access , m_Factory'Address);
@@ -5519,16 +6074,17 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (HStr_applicationId, m_ComRetVal'Access);
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_applicationId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_applicationId);
       end return;
    end;
 
    function Constructor return ToastNotificationHistoryChangedTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger");
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : ToastNotificationHistoryChangedTrigger do
@@ -5537,7 +6093,7 @@ package body WinRt.Windows.ApplicationModel.Background is
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5553,12 +6109,12 @@ package body WinRt.Windows.ApplicationModel.Background is
    end;
 
    procedure Finalize (this : in out UserNotificationChangedTrigger) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBackgroundTrigger, IBackgroundTrigger_Ptr);
    begin
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
-            RefCount := this.m_IBackgroundTrigger.all.Release;
+            temp := this.m_IBackgroundTrigger.all.Release;
             Free (this.m_IBackgroundTrigger);
          end if;
       end if;
@@ -5573,9 +6129,10 @@ package body WinRt.Windows.ApplicationModel.Background is
    )
    return UserNotificationChangedTrigger is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Background.UserNotificationChangedTrigger");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.UserNotificationChangedTrigger");
       m_Factory    : access IUserNotificationChangedTriggerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : UserNotificationChangedTrigger do
@@ -5584,9 +6141,9 @@ package body WinRt.Windows.ApplicationModel.Background is
             Hr := m_Factory.Create (notificationKinds, m_ComRetVal'Access);
             Retval.m_IBackgroundTrigger := new Windows.ApplicationModel.Background.IBackgroundTrigger;
             Retval.m_IBackgroundTrigger.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

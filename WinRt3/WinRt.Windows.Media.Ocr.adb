@@ -48,12 +48,12 @@ package body WinRt.Windows.Media.Ocr is
    end;
 
    procedure Finalize (this : in out OcrEngine) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOcrEngine, IOcrEngine_Ptr);
    begin
       if this.m_IOcrEngine /= null then
          if this.m_IOcrEngine.all /= null then
-            RefCount := this.m_IOcrEngine.all.Release;
+            temp := this.m_IOcrEngine.all.Release;
             Free (this.m_IOcrEngine);
          end if;
       end if;
@@ -65,34 +65,42 @@ package body WinRt.Windows.Media.Ocr is
    function get_MaxImageDimension
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxImageDimension (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_AvailableRecognizerLanguages
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AvailableRecognizerLanguages (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -102,17 +110,21 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsLanguageSupported (language.m_ILanguage.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -122,40 +134,48 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.Windows.Media.Ocr.OcrEngine is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Ocr.IOcrEngine;
    begin
       return RetVal : WinRt.Windows.Media.Ocr.OcrEngine do
          Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateFromLanguage (language.m_ILanguage.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IOcrEngine := new Windows.Media.Ocr.IOcrEngine;
             Retval.m_IOcrEngine.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function TryCreateFromUserProfileLanguages
    return WinRt.Windows.Media.Ocr.OcrEngine is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Ocr.IOcrEngine;
    begin
       return RetVal : WinRt.Windows.Media.Ocr.OcrEngine do
          Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryCreateFromUserProfileLanguages (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IOcrEngine := new Windows.Media.Ocr.IOcrEngine;
             Retval.m_IOcrEngine.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -169,13 +189,13 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.Windows.Media.Ocr.OcrResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_OcrResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -193,7 +213,7 @@ package body WinRt.Windows.Media.Ocr is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_OcrResult.Kind_Delegate, AsyncOperationCompletedHandler_OcrResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -207,7 +227,7 @@ package body WinRt.Windows.Media.Ocr is
          Hr := this.m_IOcrEngine.all.RecognizeAsync (bitmap.m_ISoftwareBitmap.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -219,9 +239,9 @@ package body WinRt.Windows.Media.Ocr is
                   Retval.m_IOcrResult := new Windows.Media.Ocr.IOcrResult;
                   Retval.m_IOcrResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -235,11 +255,15 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.Windows.Globalization.Language'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_IOcrEngine.all.get_RecognizerLanguage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILanguage := new Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
@@ -254,12 +278,12 @@ package body WinRt.Windows.Media.Ocr is
    end;
 
    procedure Finalize (this : in out OcrLine) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOcrLine, IOcrLine_Ptr);
    begin
       if this.m_IOcrLine /= null then
          if this.m_IOcrLine.all /= null then
-            RefCount := this.m_IOcrLine.all.Release;
+            temp := this.m_IOcrLine.all.Release;
             Free (this.m_IOcrLine);
          end if;
       end if;
@@ -274,13 +298,17 @@ package body WinRt.Windows.Media.Ocr is
    )
    return IVectorView_IOcrWord.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IOcrWord.Kind;
    begin
       Hr := this.m_IOcrLine.all.get_Words (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IOcrWord (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -290,13 +318,17 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IOcrLine.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -309,12 +341,12 @@ package body WinRt.Windows.Media.Ocr is
    end;
 
    procedure Finalize (this : in out OcrResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOcrResult, IOcrResult_Ptr);
    begin
       if this.m_IOcrResult /= null then
          if this.m_IOcrResult.all /= null then
-            RefCount := this.m_IOcrResult.all.Release;
+            temp := this.m_IOcrResult.all.Release;
             Free (this.m_IOcrResult);
          end if;
       end if;
@@ -329,13 +361,17 @@ package body WinRt.Windows.Media.Ocr is
    )
    return IVectorView_IOcrLine.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IOcrLine.Kind;
    begin
       Hr := this.m_IOcrResult.all.get_Lines (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IOcrLine (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -345,13 +381,17 @@ package body WinRt.Windows.Media.Ocr is
    )
    return IReference_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IOcrResult.all.get_TextAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -361,13 +401,17 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IOcrResult.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -380,12 +424,12 @@ package body WinRt.Windows.Media.Ocr is
    end;
 
    procedure Finalize (this : in out OcrWord) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOcrWord, IOcrWord_Ptr);
    begin
       if this.m_IOcrWord /= null then
          if this.m_IOcrWord.all /= null then
-            RefCount := this.m_IOcrWord.all.Release;
+            temp := this.m_IOcrWord.all.Release;
             Free (this.m_IOcrWord);
          end if;
       end if;
@@ -400,10 +444,14 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IOcrWord.all.get_BoundingRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -413,13 +461,17 @@ package body WinRt.Windows.Media.Ocr is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IOcrWord.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

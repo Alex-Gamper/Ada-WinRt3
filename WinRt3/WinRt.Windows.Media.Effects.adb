@@ -53,12 +53,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out AudioCaptureEffectsManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioCaptureEffectsManager, IAudioCaptureEffectsManager_Ptr);
    begin
       if this.m_IAudioCaptureEffectsManager /= null then
          if this.m_IAudioCaptureEffectsManager.all /= null then
-            RefCount := this.m_IAudioCaptureEffectsManager.all.Release;
+            temp := this.m_IAudioCaptureEffectsManager.all.Release;
             Free (this.m_IAudioCaptureEffectsManager);
          end if;
       end if;
@@ -74,10 +74,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioCaptureEffectsManager.all.add_AudioCaptureEffectsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -87,9 +91,13 @@ package body WinRt.Windows.Media.Effects is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAudioCaptureEffectsManager.all.remove_AudioCaptureEffectsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetAudioCaptureEffects
@@ -98,13 +106,17 @@ package body WinRt.Windows.Media.Effects is
    )
    return IVectorView_IAudioEffect.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioEffect.Kind;
    begin
       Hr := this.m_IAudioCaptureEffectsManager.all.GetAudioCaptureEffects (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAudioEffect (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -117,12 +129,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out AudioEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioEffect, IAudioEffect_Ptr);
    begin
       if this.m_IAudioEffect /= null then
          if this.m_IAudioEffect.all /= null then
-            RefCount := this.m_IAudioEffect.all.Release;
+            temp := this.m_IAudioEffect.all.Release;
             Free (this.m_IAudioEffect);
          end if;
       end if;
@@ -137,10 +149,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.Effects.AudioEffectType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Effects.AudioEffectType;
    begin
       Hr := this.m_IAudioEffect.all.get_AudioEffectType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -153,12 +169,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out AudioEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioEffectDefinition, IAudioEffectDefinition_Ptr);
    begin
       if this.m_IAudioEffectDefinition /= null then
          if this.m_IAudioEffectDefinition.all /= null then
-            RefCount := this.m_IAudioEffectDefinition.all.Release;
+            temp := this.m_IAudioEffectDefinition.all.Release;
             Free (this.m_IAudioEffectDefinition);
          end if;
       end if;
@@ -173,11 +189,12 @@ package body WinRt.Windows.Media.Effects is
    )
    return AudioEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectDefinition");
       m_Factory    : access IAudioEffectDefinitionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Effects.IAudioEffectDefinition;
-      HStr_activatableClassId : WinRt.HString := To_HString (activatableClassId);
+      HStr_activatableClassId : constant WinRt.HString := To_HString (activatableClassId);
    begin
       return RetVal : AudioEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectDefinitionFactory'Access , m_Factory'Address);
@@ -185,10 +202,10 @@ package body WinRt.Windows.Media.Effects is
             Hr := m_Factory.Create (HStr_activatableClassId, m_ComRetVal'Access);
             Retval.m_IAudioEffectDefinition := new Windows.Media.Effects.IAudioEffectDefinition;
             Retval.m_IAudioEffectDefinition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activatableClassId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activatableClassId);
       end return;
    end;
 
@@ -199,11 +216,12 @@ package body WinRt.Windows.Media.Effects is
    )
    return AudioEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectDefinition");
       m_Factory    : access IAudioEffectDefinitionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Effects.IAudioEffectDefinition;
-      HStr_activatableClassId : WinRt.HString := To_HString (activatableClassId);
+      HStr_activatableClassId : constant WinRt.HString := To_HString (activatableClassId);
    begin
       return RetVal : AudioEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectDefinitionFactory'Access , m_Factory'Address);
@@ -211,10 +229,10 @@ package body WinRt.Windows.Media.Effects is
             Hr := m_Factory.CreateWithProperties (HStr_activatableClassId, props, m_ComRetVal'Access);
             Retval.m_IAudioEffectDefinition := new Windows.Media.Effects.IAudioEffectDefinition;
             Retval.m_IAudioEffectDefinition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activatableClassId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activatableClassId);
       end return;
    end;
 
@@ -227,13 +245,17 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAudioEffectDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -243,10 +265,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IAudioEffectDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -261,22 +287,26 @@ package body WinRt.Windows.Media.Effects is
       )
       return WinRt.Windows.Media.Effects.AudioRenderEffectsManager is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
          m_Factory        : access WinRt.Windows.Media.Effects.IAudioEffectsManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Media.Effects.IAudioRenderEffectsManager;
-         HStr_deviceId : WinRt.HString := To_HString (deviceId);
+         HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       begin
          return RetVal : WinRt.Windows.Media.Effects.AudioRenderEffectsManager do
             Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectsManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateAudioRenderEffectsManager (HStr_deviceId, category, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IAudioRenderEffectsManager := new Windows.Media.Effects.IAudioRenderEffectsManager;
                Retval.m_IAudioRenderEffectsManager.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_deviceId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_deviceId);
          end return;
       end;
 
@@ -288,22 +318,26 @@ package body WinRt.Windows.Media.Effects is
       )
       return WinRt.Windows.Media.Effects.AudioRenderEffectsManager is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
          m_Factory        : access WinRt.Windows.Media.Effects.IAudioEffectsManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Media.Effects.IAudioRenderEffectsManager;
-         HStr_deviceId : WinRt.HString := To_HString (deviceId);
+         HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       begin
          return RetVal : WinRt.Windows.Media.Effects.AudioRenderEffectsManager do
             Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectsManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateAudioRenderEffectsManager (HStr_deviceId, category, mode, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IAudioRenderEffectsManager := new Windows.Media.Effects.IAudioRenderEffectsManager;
                Retval.m_IAudioRenderEffectsManager.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_deviceId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_deviceId);
          end return;
       end;
 
@@ -314,22 +348,26 @@ package body WinRt.Windows.Media.Effects is
       )
       return WinRt.Windows.Media.Effects.AudioCaptureEffectsManager is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
          m_Factory        : access WinRt.Windows.Media.Effects.IAudioEffectsManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Media.Effects.IAudioCaptureEffectsManager;
-         HStr_deviceId : WinRt.HString := To_HString (deviceId);
+         HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       begin
          return RetVal : WinRt.Windows.Media.Effects.AudioCaptureEffectsManager do
             Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectsManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateAudioCaptureEffectsManager (HStr_deviceId, category, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IAudioCaptureEffectsManager := new Windows.Media.Effects.IAudioCaptureEffectsManager;
                Retval.m_IAudioCaptureEffectsManager.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_deviceId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_deviceId);
          end return;
       end;
 
@@ -341,22 +379,26 @@ package body WinRt.Windows.Media.Effects is
       )
       return WinRt.Windows.Media.Effects.AudioCaptureEffectsManager is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Effects.AudioEffectsManager");
          m_Factory        : access WinRt.Windows.Media.Effects.IAudioEffectsManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Media.Effects.IAudioCaptureEffectsManager;
-         HStr_deviceId : WinRt.HString := To_HString (deviceId);
+         HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       begin
          return RetVal : WinRt.Windows.Media.Effects.AudioCaptureEffectsManager do
             Hr := RoGetActivationFactory (m_hString, IID_IAudioEffectsManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.CreateAudioCaptureEffectsManager (HStr_deviceId, category, mode, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IAudioCaptureEffectsManager := new Windows.Media.Effects.IAudioCaptureEffectsManager;
                Retval.m_IAudioCaptureEffectsManager.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_deviceId);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_deviceId);
          end return;
       end;
 
@@ -371,12 +413,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out AudioRenderEffectsManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAudioRenderEffectsManager, IAudioRenderEffectsManager_Ptr);
    begin
       if this.m_IAudioRenderEffectsManager /= null then
          if this.m_IAudioRenderEffectsManager.all /= null then
-            RefCount := this.m_IAudioRenderEffectsManager.all.Release;
+            temp := this.m_IAudioRenderEffectsManager.all.Release;
             Free (this.m_IAudioRenderEffectsManager);
          end if;
       end if;
@@ -392,10 +434,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioRenderEffectsManager.all.add_AudioRenderEffectsChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -405,9 +451,13 @@ package body WinRt.Windows.Media.Effects is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAudioRenderEffectsManager.all.remove_AudioRenderEffectsChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetAudioRenderEffects
@@ -416,13 +466,17 @@ package body WinRt.Windows.Media.Effects is
    )
    return IVectorView_IAudioEffect.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioEffect.Kind;
    begin
       Hr := this.m_IAudioRenderEffectsManager.all.GetAudioRenderEffects (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAudioEffect (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -432,14 +486,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioRenderEffectsManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioRenderEffectsManager_Interface, WinRt.Windows.Media.Effects.IAudioRenderEffectsManager2, WinRt.Windows.Media.Effects.IID_IAudioRenderEffectsManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioRenderEffectsManager.all);
       Hr := m_Interface.get_EffectsProviderThumbnail (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -449,17 +507,21 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioRenderEffectsManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioRenderEffectsManager_Interface, WinRt.Windows.Media.Effects.IAudioRenderEffectsManager2, WinRt.Windows.Media.Effects.IID_IAudioRenderEffectsManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioRenderEffectsManager.all);
       Hr := m_Interface.get_EffectsProviderSettingsLabel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -468,13 +530,17 @@ package body WinRt.Windows.Media.Effects is
       this : in out AudioRenderEffectsManager
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioRenderEffectsManager2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IAudioRenderEffectsManager_Interface, WinRt.Windows.Media.Effects.IAudioRenderEffectsManager2, WinRt.Windows.Media.Effects.IID_IAudioRenderEffectsManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioRenderEffectsManager.all);
       Hr := m_Interface.ShowSettingsUI;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -486,12 +552,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out CompositeVideoFrameContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositeVideoFrameContext, ICompositeVideoFrameContext_Ptr);
    begin
       if this.m_ICompositeVideoFrameContext /= null then
          if this.m_ICompositeVideoFrameContext.all /= null then
-            RefCount := this.m_ICompositeVideoFrameContext.all.Release;
+            temp := this.m_ICompositeVideoFrameContext.all.Release;
             Free (this.m_ICompositeVideoFrameContext);
          end if;
       end if;
@@ -506,10 +572,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_ICompositeVideoFrameContext.all.get_SurfacesToOverlay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -519,11 +589,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_ICompositeVideoFrameContext.all.get_BackgroundFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -535,11 +609,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_ICompositeVideoFrameContext.all.get_OutputFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -552,11 +630,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.Editing.MediaOverlay'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Editing.IMediaOverlay;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaOverlay do
          Hr := this.m_ICompositeVideoFrameContext.all.GetOverlayForSurface (surfaceToOverlay, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaOverlay := new Windows.Media.Editing.IMediaOverlay;
          Retval.m_IMediaOverlay.all := m_ComRetVal;
       end return;
@@ -571,12 +653,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out ProcessAudioFrameContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessAudioFrameContext, IProcessAudioFrameContext_Ptr);
    begin
       if this.m_IProcessAudioFrameContext /= null then
          if this.m_IProcessAudioFrameContext.all /= null then
-            RefCount := this.m_IProcessAudioFrameContext.all.Release;
+            temp := this.m_IProcessAudioFrameContext.all.Release;
             Free (this.m_IProcessAudioFrameContext);
          end if;
       end if;
@@ -591,11 +673,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.AudioFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IAudioFrame;
    begin
       return RetVal : WinRt.Windows.Media.AudioFrame do
          Hr := this.m_IProcessAudioFrameContext.all.get_InputFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioFrame := new Windows.Media.IAudioFrame;
          Retval.m_IAudioFrame.all := m_ComRetVal;
       end return;
@@ -607,11 +693,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.AudioFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IAudioFrame;
    begin
       return RetVal : WinRt.Windows.Media.AudioFrame do
          Hr := this.m_IProcessAudioFrameContext.all.get_OutputFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAudioFrame := new Windows.Media.IAudioFrame;
          Retval.m_IAudioFrame.all := m_ComRetVal;
       end return;
@@ -626,12 +716,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out ProcessVideoFrameContext) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessVideoFrameContext, IProcessVideoFrameContext_Ptr);
    begin
       if this.m_IProcessVideoFrameContext /= null then
          if this.m_IProcessVideoFrameContext.all /= null then
-            RefCount := this.m_IProcessVideoFrameContext.all.Release;
+            temp := this.m_IProcessVideoFrameContext.all.Release;
             Free (this.m_IProcessVideoFrameContext);
          end if;
       end if;
@@ -646,11 +736,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IProcessVideoFrameContext.all.get_InputFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -662,11 +756,15 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IProcessVideoFrameContext.all.get_OutputFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -681,12 +779,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out SlowMotionEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISlowMotionEffectDefinition, ISlowMotionEffectDefinition_Ptr);
    begin
       if this.m_ISlowMotionEffectDefinition /= null then
          if this.m_ISlowMotionEffectDefinition.all /= null then
-            RefCount := this.m_ISlowMotionEffectDefinition.all.Release;
+            temp := this.m_ISlowMotionEffectDefinition.all.Release;
             Free (this.m_ISlowMotionEffectDefinition);
          end if;
       end if;
@@ -697,7 +795,8 @@ package body WinRt.Windows.Media.Effects is
 
    function Constructor return SlowMotionEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.SlowMotionEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.SlowMotionEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.ISlowMotionEffectDefinition;
    begin
       return RetVal : SlowMotionEffectDefinition do
@@ -706,7 +805,7 @@ package body WinRt.Windows.Media.Effects is
             Retval.m_ISlowMotionEffectDefinition := new Windows.Media.Effects.ISlowMotionEffectDefinition;
             Retval.m_ISlowMotionEffectDefinition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -719,10 +818,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISlowMotionEffectDefinition.all.get_TimeStretchRate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -732,9 +835,13 @@ package body WinRt.Windows.Media.Effects is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISlowMotionEffectDefinition.all.put_TimeStretchRate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActivatableClassId
@@ -743,17 +850,21 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.ISlowMotionEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlowMotionEffectDefinition.all);
       Hr := m_Interface.get_ActivatableClassId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -763,14 +874,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.ISlowMotionEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISlowMotionEffectDefinition.all);
       Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -783,12 +898,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out VideoCompositorDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoCompositorDefinition, IVideoCompositorDefinition_Ptr);
    begin
       if this.m_IVideoCompositorDefinition /= null then
          if this.m_IVideoCompositorDefinition.all /= null then
-            RefCount := this.m_IVideoCompositorDefinition.all.Release;
+            temp := this.m_IVideoCompositorDefinition.all.Release;
             Free (this.m_IVideoCompositorDefinition);
          end if;
       end if;
@@ -803,11 +918,12 @@ package body WinRt.Windows.Media.Effects is
    )
    return VideoCompositorDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.VideoCompositorDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.VideoCompositorDefinition");
       m_Factory    : access IVideoCompositorDefinitionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoCompositorDefinition;
-      HStr_activatableClassId : WinRt.HString := To_HString (activatableClassId);
+      HStr_activatableClassId : constant WinRt.HString := To_HString (activatableClassId);
    begin
       return RetVal : VideoCompositorDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoCompositorDefinitionFactory'Access , m_Factory'Address);
@@ -815,10 +931,10 @@ package body WinRt.Windows.Media.Effects is
             Hr := m_Factory.Create (HStr_activatableClassId, m_ComRetVal'Access);
             Retval.m_IVideoCompositorDefinition := new Windows.Media.Effects.IVideoCompositorDefinition;
             Retval.m_IVideoCompositorDefinition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activatableClassId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activatableClassId);
       end return;
    end;
 
@@ -829,11 +945,12 @@ package body WinRt.Windows.Media.Effects is
    )
    return VideoCompositorDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.VideoCompositorDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.VideoCompositorDefinition");
       m_Factory    : access IVideoCompositorDefinitionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoCompositorDefinition;
-      HStr_activatableClassId : WinRt.HString := To_HString (activatableClassId);
+      HStr_activatableClassId : constant WinRt.HString := To_HString (activatableClassId);
    begin
       return RetVal : VideoCompositorDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoCompositorDefinitionFactory'Access , m_Factory'Address);
@@ -841,10 +958,10 @@ package body WinRt.Windows.Media.Effects is
             Hr := m_Factory.CreateWithProperties (HStr_activatableClassId, props, m_ComRetVal'Access);
             Retval.m_IVideoCompositorDefinition := new Windows.Media.Effects.IVideoCompositorDefinition;
             Retval.m_IVideoCompositorDefinition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activatableClassId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activatableClassId);
       end return;
    end;
 
@@ -857,13 +974,17 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVideoCompositorDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -873,10 +994,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IVideoCompositorDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -889,12 +1014,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out VideoEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoEffectDefinition, IVideoEffectDefinition_Ptr);
    begin
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
-            RefCount := this.m_IVideoEffectDefinition.all.Release;
+            temp := this.m_IVideoEffectDefinition.all.Release;
             Free (this.m_IVideoEffectDefinition);
          end if;
       end if;
@@ -909,11 +1034,12 @@ package body WinRt.Windows.Media.Effects is
    )
    return VideoEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.VideoEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.VideoEffectDefinition");
       m_Factory    : access IVideoEffectDefinitionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
-      HStr_activatableClassId : WinRt.HString := To_HString (activatableClassId);
+      HStr_activatableClassId : constant WinRt.HString := To_HString (activatableClassId);
    begin
       return RetVal : VideoEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEffectDefinitionFactory'Access , m_Factory'Address);
@@ -921,10 +1047,10 @@ package body WinRt.Windows.Media.Effects is
             Hr := m_Factory.Create (HStr_activatableClassId, m_ComRetVal'Access);
             Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activatableClassId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activatableClassId);
       end return;
    end;
 
@@ -935,11 +1061,12 @@ package body WinRt.Windows.Media.Effects is
    )
    return VideoEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.VideoEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.VideoEffectDefinition");
       m_Factory    : access IVideoEffectDefinitionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
-      HStr_activatableClassId : WinRt.HString := To_HString (activatableClassId);
+      HStr_activatableClassId : constant WinRt.HString := To_HString (activatableClassId);
    begin
       return RetVal : VideoEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEffectDefinitionFactory'Access , m_Factory'Address);
@@ -947,10 +1074,10 @@ package body WinRt.Windows.Media.Effects is
             Hr := m_Factory.CreateWithProperties (HStr_activatableClassId, props, m_ComRetVal'Access);
             Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_activatableClassId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_activatableClassId);
       end return;
    end;
 
@@ -963,13 +1090,17 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -979,10 +1110,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -995,12 +1130,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out VideoTransformEffectDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoEffectDefinition, IVideoEffectDefinition_Ptr);
    begin
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
-            RefCount := this.m_IVideoEffectDefinition.all.Release;
+            temp := this.m_IVideoEffectDefinition.all.Release;
             Free (this.m_IVideoEffectDefinition);
          end if;
       end if;
@@ -1011,7 +1146,8 @@ package body WinRt.Windows.Media.Effects is
 
    function Constructor return VideoTransformEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Effects.VideoTransformEffectDefinition");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Effects.VideoTransformEffectDefinition");
       m_ComRetVal  : aliased Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : VideoTransformEffectDefinition do
@@ -1020,7 +1156,7 @@ package body WinRt.Windows.Media.Effects is
             Retval.m_IVideoEffectDefinition := new Windows.Media.Effects.IVideoEffectDefinition;
             Retval.m_IVideoEffectDefinition.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1033,13 +1169,17 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_ActivatableClassId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1049,10 +1189,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IVideoEffectDefinition.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1062,14 +1206,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_PaddingColor (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1079,13 +1227,17 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_PaddingColor (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutputSize
@@ -1094,14 +1246,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_OutputSize (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1111,13 +1267,17 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_OutputSize (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CropRectangle
@@ -1126,14 +1286,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_CropRectangle (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1143,13 +1307,17 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_CropRectangle (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Rotation
@@ -1158,14 +1326,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.MediaProperties.MediaRotation is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.MediaRotation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_Rotation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1175,13 +1347,17 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Media.MediaProperties.MediaRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_Rotation (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Mirror
@@ -1190,14 +1366,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.MediaProperties.MediaMirroringOptions is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.MediaMirroringOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_Mirror (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1207,13 +1387,17 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Media.MediaProperties.MediaMirroringOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_Mirror (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_ProcessingAlgorithm
@@ -1222,13 +1406,17 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.put_ProcessingAlgorithm (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProcessingAlgorithm
@@ -1237,14 +1425,18 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Transcoding.MediaVideoProcessingAlgorithm;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
       Hr := m_Interface.get_ProcessingAlgorithm (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1254,15 +1446,19 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.Effects.VideoTransformSphericalProjection'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Effects.IVideoTransformSphericalProjection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Effects.IVideoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IVideoTransformEffectDefinition2, WinRt.Windows.Media.Effects.IID_IVideoTransformEffectDefinition2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Effects.VideoTransformSphericalProjection do
          m_Interface := QInterface (this.m_IVideoEffectDefinition.all);
          Hr := m_Interface.get_SphericalProjection (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoTransformSphericalProjection := new Windows.Media.Effects.IVideoTransformSphericalProjection;
          Retval.m_IVideoTransformSphericalProjection.all := m_ComRetVal;
       end return;
@@ -1277,12 +1473,12 @@ package body WinRt.Windows.Media.Effects is
    end;
 
    procedure Finalize (this : in out VideoTransformSphericalProjection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVideoTransformSphericalProjection, IVideoTransformSphericalProjection_Ptr);
    begin
       if this.m_IVideoTransformSphericalProjection /= null then
          if this.m_IVideoTransformSphericalProjection.all /= null then
-            RefCount := this.m_IVideoTransformSphericalProjection.all.Release;
+            temp := this.m_IVideoTransformSphericalProjection.all.Release;
             Free (this.m_IVideoTransformSphericalProjection);
          end if;
       end if;
@@ -1297,10 +1493,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1310,9 +1510,13 @@ package body WinRt.Windows.Media.Effects is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FrameFormat
@@ -1321,10 +1525,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.SphericalVideoFrameFormat;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.get_FrameFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1334,9 +1542,13 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Media.MediaProperties.SphericalVideoFrameFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.put_FrameFormat (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ProjectionMode
@@ -1345,10 +1557,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Media.Playback.SphericalVideoProjectionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Playback.SphericalVideoProjectionMode;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.get_ProjectionMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1358,9 +1574,13 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Media.Playback.SphericalVideoProjectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.put_ProjectionMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HorizontalFieldOfViewInDegrees
@@ -1369,10 +1589,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.get_HorizontalFieldOfViewInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1382,9 +1606,13 @@ package body WinRt.Windows.Media.Effects is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.put_HorizontalFieldOfViewInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ViewOrientation
@@ -1393,10 +1621,14 @@ package body WinRt.Windows.Media.Effects is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.get_ViewOrientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1406,9 +1638,13 @@ package body WinRt.Windows.Media.Effects is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVideoTransformSphericalProjection.all.put_ViewOrientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Media.Effects;

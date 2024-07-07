@@ -46,12 +46,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    end;
 
    procedure Finalize (this : in out IndexedResourceCandidate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIndexedResourceCandidate, IIndexedResourceCandidate_Ptr);
    begin
       if this.m_IIndexedResourceCandidate /= null then
          if this.m_IIndexedResourceCandidate.all /= null then
-            RefCount := this.m_IIndexedResourceCandidate.all.Release;
+            temp := this.m_IIndexedResourceCandidate.all.Release;
             Free (this.m_IIndexedResourceCandidate);
          end if;
       end if;
@@ -66,10 +66,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Management.IndexedResourceType;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -79,11 +83,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IIndexedResourceCandidate.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -95,13 +103,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return IMapView_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_Metadata (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -111,13 +123,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return IVectorView_IIndexedResourceQualifier.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IIndexedResourceQualifier.Kind;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_Qualifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IIndexedResourceQualifier (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -127,13 +143,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_ValueAsString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -144,15 +164,19 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_qualifierName : WinRt.HString := To_HString (qualifierName);
+      HStr_qualifierName : constant WinRt.HString := To_HString (qualifierName);
    begin
       Hr := this.m_IIndexedResourceCandidate.all.GetQualifierValue (HStr_qualifierName, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_qualifierName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_qualifierName);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -165,12 +189,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    end;
 
    procedure Finalize (this : in out IndexedResourceQualifier) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIndexedResourceQualifier, IIndexedResourceQualifier_Ptr);
    begin
       if this.m_IIndexedResourceQualifier /= null then
          if this.m_IIndexedResourceQualifier.all /= null then
-            RefCount := this.m_IIndexedResourceQualifier.all.Release;
+            temp := this.m_IIndexedResourceQualifier.all.Release;
             Free (this.m_IIndexedResourceQualifier);
          end if;
       end if;
@@ -185,13 +209,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIndexedResourceQualifier.all.get_QualifierName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -201,13 +229,17 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIndexedResourceQualifier.all.get_QualifierValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -220,12 +252,12 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    end;
 
    procedure Finalize (this : in out ResourceIndexer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IResourceIndexer, IResourceIndexer_Ptr);
    begin
       if this.m_IResourceIndexer /= null then
          if this.m_IResourceIndexer.all /= null then
-            RefCount := this.m_IResourceIndexer.all.Release;
+            temp := this.m_IResourceIndexer.all.Release;
             Free (this.m_IResourceIndexer);
          end if;
       end if;
@@ -240,9 +272,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return ResourceIndexer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
       m_Factory    : access IResourceIndexerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Management.IResourceIndexer;
    begin
       return RetVal : ResourceIndexer do
@@ -251,9 +284,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
             Hr := m_Factory.CreateResourceIndexer (projectRoot.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
             Retval.m_IResourceIndexer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -264,9 +297,10 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return ResourceIndexer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
       m_Factory    : access IResourceIndexerFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Management.IResourceIndexer;
    begin
       return RetVal : ResourceIndexer do
@@ -275,9 +309,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
             Hr := m_Factory.CreateResourceIndexerWithExtension (projectRoot.m_IUriRuntimeClass.all, extensionDllPath.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
             Retval.m_IResourceIndexer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -291,11 +325,15 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate do
          Hr := this.m_IResourceIndexer.all.IndexFilePath (filePath.m_IUriRuntimeClass.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIndexedResourceCandidate := new Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
          Retval.m_IIndexedResourceCandidate.all := m_ComRetVal;
       end return;
@@ -308,13 +346,13 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -332,7 +370,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -345,7 +383,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       Hr := this.m_IResourceIndexer.all.IndexFileContentsAsync (file.m_IUriRuntimeClass.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -355,9 +393,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;

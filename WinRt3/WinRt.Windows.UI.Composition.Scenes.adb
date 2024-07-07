@@ -50,12 +50,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneObject) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneObject, ISceneObject_Ptr);
    begin
       if this.m_ISceneObject /= null then
          if this.m_ISceneObject.all /= null then
-            RefCount := this.m_ISceneObject.all.Release;
+            temp := this.m_ISceneObject.all.Release;
             Free (this.m_ISceneObject);
          end if;
       end if;
@@ -76,12 +76,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneBoundingBox) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneBoundingBox, ISceneBoundingBox_Ptr);
    begin
       if this.m_ISceneBoundingBox /= null then
          if this.m_ISceneBoundingBox.all /= null then
-            RefCount := this.m_ISceneBoundingBox.all.Release;
+            temp := this.m_ISceneBoundingBox.all.Release;
             Free (this.m_ISceneBoundingBox);
          end if;
       end if;
@@ -96,10 +96,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneBoundingBox.all.get_Center (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -109,10 +113,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneBoundingBox.all.get_Extents (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -122,10 +130,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneBoundingBox.all.get_Max (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -135,10 +147,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneBoundingBox.all.get_Min (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -148,10 +164,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneBoundingBox.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -164,12 +184,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneComponent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneComponent, ISceneComponent_Ptr);
    begin
       if this.m_ISceneComponent /= null then
          if this.m_ISceneComponent.all /= null then
-            RefCount := this.m_ISceneComponent.all.Release;
+            temp := this.m_ISceneComponent.all.Release;
             Free (this.m_ISceneComponent);
          end if;
       end if;
@@ -187,10 +207,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneComponentType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.SceneComponentType;
    begin
       Hr := this.m_ISceneComponent.all.get_ComponentType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -218,8 +242,9 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneComponent;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
@@ -227,7 +252,10 @@ package body WinRt.Windows.UI.Composition.Scenes is
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneComponent do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneComponent := new Windows.UI.Composition.Scenes.ISceneComponent;
          Retval.m_ISceneComponent.all := m_ComRetVal;
       end return;
@@ -239,15 +267,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -257,15 +289,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -277,15 +313,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_ISceneComponent.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -296,14 +336,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneComponent'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_ISceneComponent.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -313,14 +357,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneComponent'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_ISceneComponent.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -329,14 +377,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -345,14 +397,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneComponent'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_ISceneComponent.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -360,14 +416,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       this : in out SceneComponentCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -375,14 +435,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       this : in out SceneComponentCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -393,8 +457,9 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
@@ -402,7 +467,10 @@ package body WinRt.Windows.UI.Composition.Scenes is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -412,15 +480,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
       items : Windows.UI.Composition.Scenes.ISceneComponent_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3668774705, 50256, 20576, (151, 50, 240, 44, 136, 94, 155, 63 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Scenes.SceneComponent>
@@ -430,15 +502,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ISceneComponent.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (2622572763, 1445, 20570, (187, 20, 160, 229, 223, 187, 44, 212 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ISceneComponent.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -451,12 +527,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneMaterial) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneMaterial, ISceneMaterial_Ptr);
    begin
       if this.m_ISceneMaterial /= null then
          if this.m_ISceneMaterial.all /= null then
-            RefCount := this.m_ISceneMaterial.all.Release;
+            temp := this.m_ISceneMaterial.all.Release;
             Free (this.m_ISceneMaterial);
          end if;
       end if;
@@ -477,12 +553,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneMaterialInput) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneMaterialInput, ISceneMaterialInput_Ptr);
    begin
       if this.m_ISceneMaterialInput /= null then
          if this.m_ISceneMaterialInput.all /= null then
-            RefCount := this.m_ISceneMaterialInput.all.Release;
+            temp := this.m_ISceneMaterialInput.all.Release;
             Free (this.m_ISceneMaterialInput);
          end if;
       end if;
@@ -503,12 +579,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneMesh) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneMesh, ISceneMesh_Ptr);
    begin
       if this.m_ISceneMesh /= null then
          if this.m_ISceneMesh.all /= null then
-            RefCount := this.m_ISceneMesh.all.Release;
+            temp := this.m_ISceneMesh.all.Release;
             Free (this.m_ISceneMesh);
          end if;
       end if;
@@ -523,20 +599,24 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMesh is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneMesh");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneMesh");
       m_Factory        : access WinRt.Windows.UI.Composition.Scenes.ISceneMeshStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMesh;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMesh do
          Hr := RoGetActivationFactory (m_hString, IID_ISceneMeshStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISceneMesh := new Windows.UI.Composition.Scenes.ISceneMesh;
             Retval.m_ISceneMesh.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -549,11 +629,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneBoundingBox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneBoundingBox;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneBoundingBox do
          Hr := this.m_ISceneMesh.all.get_Bounds (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneBoundingBox := new Windows.UI.Composition.Scenes.ISceneBoundingBox;
          Retval.m_ISceneBoundingBox.all := m_ComRetVal;
       end return;
@@ -565,10 +649,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPrimitiveTopology is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPrimitiveTopology;
    begin
       Hr := this.m_ISceneMesh.all.get_PrimitiveTopology (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -578,9 +666,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Graphics.DirectX.DirectXPrimitiveTopology
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMesh.all.put_PrimitiveTopology (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure FillMeshAttribute
@@ -591,9 +683,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       memory : Windows.Foundation.MemoryBuffer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMesh.all.FillMeshAttribute (semantic, format, memory.m_IMemoryBuffer.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -605,12 +701,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneMeshMaterialAttributeMap) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneMeshMaterialAttributeMap, ISceneMeshMaterialAttributeMap_Ptr);
    begin
       if this.m_ISceneMeshMaterialAttributeMap /= null then
          if this.m_ISceneMeshMaterialAttributeMap.all /= null then
-            RefCount := this.m_ISceneMeshMaterialAttributeMap.all.Release;
+            temp := this.m_ISceneMeshMaterialAttributeMap.all.Release;
             Free (this.m_ISceneMeshMaterialAttributeMap);
          end if;
       end if;
@@ -627,17 +723,21 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneAttributeSemantic is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.SceneAttributeSemantic;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -647,15 +747,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -666,17 +770,21 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -686,15 +794,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -706,17 +818,21 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.Insert (HStr_key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -726,16 +842,20 @@ package body WinRt.Windows.UI.Composition.Scenes is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -743,14 +863,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       this : in out SceneMeshMaterialAttributeMap
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_SceneAttributeSemantic.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1106579220, 39484, 21056, (176, 66, 27, 255, 2, 229, 112, 40 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap_Interface, IMap_HString_SceneAttributeSemantic.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneMeshMaterialAttributeMap.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -762,12 +886,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneRendererComponent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneRendererComponent, ISceneRendererComponent_Ptr);
    begin
       if this.m_ISceneRendererComponent /= null then
          if this.m_ISceneRendererComponent.all /= null then
-            RefCount := this.m_ISceneRendererComponent.all.Release;
+            temp := this.m_ISceneRendererComponent.all.Release;
             Free (this.m_ISceneRendererComponent);
          end if;
       end if;
@@ -788,12 +912,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneMeshRendererComponent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneMeshRendererComponent, ISceneMeshRendererComponent_Ptr);
    begin
       if this.m_ISceneMeshRendererComponent /= null then
          if this.m_ISceneMeshRendererComponent.all /= null then
-            RefCount := this.m_ISceneMeshRendererComponent.all.Release;
+            temp := this.m_ISceneMeshRendererComponent.all.Release;
             Free (this.m_ISceneMeshRendererComponent);
          end if;
       end if;
@@ -808,20 +932,24 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMeshRendererComponent is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneMeshRendererComponent");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneMeshRendererComponent");
       m_Factory        : access WinRt.Windows.UI.Composition.Scenes.ISceneMeshRendererComponentStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMeshRendererComponent;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMeshRendererComponent do
          Hr := RoGetActivationFactory (m_hString, IID_ISceneMeshRendererComponentStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISceneMeshRendererComponent := new Windows.UI.Composition.Scenes.ISceneMeshRendererComponent;
             Retval.m_ISceneMeshRendererComponent.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -834,11 +962,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMaterial'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMaterial;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMaterial do
          Hr := this.m_ISceneMeshRendererComponent.all.get_Material (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMaterial := new Windows.UI.Composition.Scenes.ISceneMaterial;
          Retval.m_ISceneMaterial.all := m_ComRetVal;
       end return;
@@ -850,9 +982,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMaterial'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMeshRendererComponent.all.put_Material (value.m_ISceneMaterial.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Mesh
@@ -861,11 +997,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMesh'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMesh;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMesh do
          Hr := this.m_ISceneMeshRendererComponent.all.get_Mesh (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMesh := new Windows.UI.Composition.Scenes.ISceneMesh;
          Retval.m_ISceneMesh.all := m_ComRetVal;
       end return;
@@ -877,9 +1017,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMesh'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMeshRendererComponent.all.put_Mesh (value.m_ISceneMesh.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UVMappings
@@ -888,11 +1032,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMeshMaterialAttributeMap'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMeshMaterialAttributeMap do
          Hr := this.m_ISceneMeshRendererComponent.all.get_UVMappings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMeshMaterialAttributeMap := new Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap;
          Retval.m_ISceneMeshMaterialAttributeMap.all := m_ComRetVal;
       end return;
@@ -907,12 +1055,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out ScenePbrMaterial) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScenePbrMaterial, IScenePbrMaterial_Ptr);
    begin
       if this.m_IScenePbrMaterial /= null then
          if this.m_IScenePbrMaterial.all /= null then
-            RefCount := this.m_IScenePbrMaterial.all.Release;
+            temp := this.m_IScenePbrMaterial.all.Release;
             Free (this.m_IScenePbrMaterial);
          end if;
       end if;
@@ -930,10 +1078,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IScenePbrMaterial.all.get_AlphaCutoff (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -943,9 +1095,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_AlphaCutoff (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AlphaMode
@@ -954,10 +1110,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.SceneAlphaMode;
    begin
       Hr := this.m_IScenePbrMaterial.all.get_AlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -967,9 +1127,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneAlphaMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_AlphaMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EmissiveInput
@@ -978,11 +1142,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMaterialInput;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput do
          Hr := this.m_IScenePbrMaterial.all.get_EmissiveInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMaterialInput := new Windows.UI.Composition.Scenes.ISceneMaterialInput;
          Retval.m_ISceneMaterialInput.all := m_ComRetVal;
       end return;
@@ -994,9 +1162,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_EmissiveInput (value.m_ISceneMaterialInput.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EmissiveFactor
@@ -1005,10 +1177,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IScenePbrMaterial.all.get_EmissiveFactor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1018,9 +1194,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_EmissiveFactor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDoubleSided
@@ -1029,10 +1209,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IScenePbrMaterial.all.get_IsDoubleSided (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1042,9 +1226,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_IsDoubleSided (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NormalInput
@@ -1053,11 +1241,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMaterialInput;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput do
          Hr := this.m_IScenePbrMaterial.all.get_NormalInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMaterialInput := new Windows.UI.Composition.Scenes.ISceneMaterialInput;
          Retval.m_ISceneMaterialInput.all := m_ComRetVal;
       end return;
@@ -1069,9 +1261,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_NormalInput (value.m_ISceneMaterialInput.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NormalScale
@@ -1080,10 +1276,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IScenePbrMaterial.all.get_NormalScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1093,9 +1293,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_NormalScale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OcclusionInput
@@ -1104,11 +1308,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMaterialInput;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput do
          Hr := this.m_IScenePbrMaterial.all.get_OcclusionInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMaterialInput := new Windows.UI.Composition.Scenes.ISceneMaterialInput;
          Retval.m_ISceneMaterialInput.all := m_ComRetVal;
       end return;
@@ -1120,9 +1328,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_OcclusionInput (value.m_ISceneMaterialInput.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OcclusionStrength
@@ -1131,10 +1343,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IScenePbrMaterial.all.get_OcclusionStrength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1144,9 +1360,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScenePbrMaterial.all.put_OcclusionStrength (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1158,12 +1378,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneMetallicRoughnessMaterial) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneMetallicRoughnessMaterial, ISceneMetallicRoughnessMaterial_Ptr);
    begin
       if this.m_ISceneMetallicRoughnessMaterial /= null then
          if this.m_ISceneMetallicRoughnessMaterial.all /= null then
-            RefCount := this.m_ISceneMetallicRoughnessMaterial.all.Release;
+            temp := this.m_ISceneMetallicRoughnessMaterial.all.Release;
             Free (this.m_ISceneMetallicRoughnessMaterial);
          end if;
       end if;
@@ -1178,20 +1398,24 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMetallicRoughnessMaterial is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneMetallicRoughnessMaterial");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneMetallicRoughnessMaterial");
       m_Factory        : access WinRt.Windows.UI.Composition.Scenes.ISceneMetallicRoughnessMaterialStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMetallicRoughnessMaterial;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMetallicRoughnessMaterial do
          Hr := RoGetActivationFactory (m_hString, IID_ISceneMetallicRoughnessMaterialStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISceneMetallicRoughnessMaterial := new Windows.UI.Composition.Scenes.ISceneMetallicRoughnessMaterial;
             Retval.m_ISceneMetallicRoughnessMaterial.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1204,11 +1428,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMaterialInput;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput do
          Hr := this.m_ISceneMetallicRoughnessMaterial.all.get_BaseColorInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMaterialInput := new Windows.UI.Composition.Scenes.ISceneMaterialInput;
          Retval.m_ISceneMaterialInput.all := m_ComRetVal;
       end return;
@@ -1220,9 +1448,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.put_BaseColorInput (value.m_ISceneMaterialInput.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BaseColorFactor
@@ -1231,10 +1463,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector4 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector4;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.get_BaseColorFactor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1244,9 +1480,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.put_BaseColorFactor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MetallicFactor
@@ -1255,10 +1495,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.get_MetallicFactor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1268,9 +1512,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.put_MetallicFactor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MetallicRoughnessInput
@@ -1279,11 +1527,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneMaterialInput;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput do
          Hr := this.m_ISceneMetallicRoughnessMaterial.all.get_MetallicRoughnessInput (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneMaterialInput := new Windows.UI.Composition.Scenes.ISceneMaterialInput;
          Retval.m_ISceneMaterialInput.all := m_ComRetVal;
       end return;
@@ -1295,9 +1547,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.put_MetallicRoughnessInput (value.m_ISceneMaterialInput.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RoughnessFactor
@@ -1306,10 +1562,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.get_RoughnessFactor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1319,9 +1579,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneMetallicRoughnessMaterial.all.put_RoughnessFactor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1333,12 +1597,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneModelTransform) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneModelTransform, ISceneModelTransform_Ptr);
    begin
       if this.m_ISceneModelTransform /= null then
          if this.m_ISceneModelTransform.all /= null then
-            RefCount := this.m_ISceneModelTransform.all.Release;
+            temp := this.m_ISceneModelTransform.all.Release;
             Free (this.m_ISceneModelTransform);
          end if;
       end if;
@@ -1353,10 +1617,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Quaternion is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_ISceneModelTransform.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1366,9 +1634,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneModelTransform.all.put_Orientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngle
@@ -1377,10 +1649,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneModelTransform.all.get_RotationAngle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1390,9 +1666,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneModelTransform.all.put_RotationAngle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAngleInDegrees
@@ -1401,10 +1681,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_ISceneModelTransform.all.get_RotationAngleInDegrees (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1414,9 +1698,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneModelTransform.all.put_RotationAngleInDegrees (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationAxis
@@ -1425,10 +1713,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneModelTransform.all.get_RotationAxis (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1438,9 +1730,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneModelTransform.all.put_RotationAxis (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -1449,10 +1745,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneModelTransform.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1462,9 +1762,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneModelTransform.all.put_Scale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Translation
@@ -1473,10 +1777,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISceneModelTransform.all.get_Translation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1486,9 +1794,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneModelTransform.all.put_Translation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1500,12 +1812,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneNode) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneNode, ISceneNode_Ptr);
    begin
       if this.m_ISceneNode /= null then
          if this.m_ISceneNode.all /= null then
-            RefCount := this.m_ISceneNode.all.Release;
+            temp := this.m_ISceneNode.all.Release;
             Free (this.m_ISceneNode);
          end if;
       end if;
@@ -1520,20 +1832,24 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneNode is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneNode");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneNode");
       m_Factory        : access WinRt.Windows.UI.Composition.Scenes.ISceneNodeStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneNode;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNode do
          Hr := RoGetActivationFactory (m_hString, IID_ISceneNodeStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISceneNode := new Windows.UI.Composition.Scenes.ISceneNode;
             Retval.m_ISceneNode.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1546,11 +1862,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneNodeCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNodeCollection do
          Hr := this.m_ISceneNode.all.get_Children (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1562,11 +1882,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneComponentCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneComponentCollection do
          Hr := this.m_ISceneNode.all.get_Components (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -1578,11 +1902,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneNode;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNode do
          Hr := this.m_ISceneNode.all.get_Parent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneNode := new Windows.UI.Composition.Scenes.ISceneNode;
          Retval.m_ISceneNode.all := m_ComRetVal;
       end return;
@@ -1594,11 +1922,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneModelTransform'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneModelTransform;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneModelTransform do
          Hr := this.m_ISceneNode.all.get_Transform (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneModelTransform := new Windows.UI.Composition.Scenes.ISceneModelTransform;
          Retval.m_ISceneModelTransform.all := m_ComRetVal;
       end return;
@@ -1611,11 +1943,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneComponent;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneComponent do
          Hr := this.m_ISceneNode.all.FindFirstComponentOfType (value, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneComponent := new Windows.UI.Composition.Scenes.ISceneComponent;
          Retval.m_ISceneComponent.all := m_ComRetVal;
       end return;
@@ -1645,8 +1981,9 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneNode;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
@@ -1654,7 +1991,10 @@ package body WinRt.Windows.UI.Composition.Scenes is
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNode do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneNode := new Windows.UI.Composition.Scenes.ISceneNode;
          Retval.m_ISceneNode.all := m_ComRetVal;
       end return;
@@ -1666,15 +2006,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1684,15 +2028,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1704,15 +2052,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_ISceneNode.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1723,14 +2075,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneNode'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.SetAt (index, value.m_ISceneNode.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure InsertAt
@@ -1740,14 +2096,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneNode'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.InsertAt (index, value.m_ISceneNode.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAt
@@ -1756,14 +2116,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAt (index);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Append
@@ -1772,14 +2136,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneNode'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Append (value.m_ISceneNode.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveAtEnd
@@ -1787,14 +2155,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       this : in out SceneNodeCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.RemoveAtEnd;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Clear
@@ -1802,14 +2174,18 @@ package body WinRt.Windows.UI.Composition.Scenes is
       this : in out SceneNodeCollection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetMany
@@ -1820,8 +2196,9 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
@@ -1829,7 +2206,10 @@ package body WinRt.Windows.UI.Composition.Scenes is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1839,15 +2219,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
       items : Windows.UI.Composition.Scenes.ISceneNode_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (1931843232, 27958, 23129, (138, 11, 143, 241, 97, 66, 184, 147 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
       function Convert_items is new Ada.Unchecked_Conversion (Address, WinRt.GenericObject_Ptr);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.ReplaceAll (WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Scenes.SceneNode>
@@ -1857,15 +2241,19 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ISceneNode.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (3678875876, 62308, 22379, (135, 142, 89, 167, 196, 89, 167, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ISceneNode.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1878,12 +2266,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneSurfaceMaterialInput) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneSurfaceMaterialInput, ISceneSurfaceMaterialInput_Ptr);
    begin
       if this.m_ISceneSurfaceMaterialInput /= null then
          if this.m_ISceneSurfaceMaterialInput.all /= null then
-            RefCount := this.m_ISceneSurfaceMaterialInput.all.Release;
+            temp := this.m_ISceneSurfaceMaterialInput.all.Release;
             Free (this.m_ISceneSurfaceMaterialInput);
          end if;
       end if;
@@ -1898,20 +2286,24 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput");
       m_Factory        : access WinRt.Windows.UI.Composition.Scenes.ISceneSurfaceMaterialInputStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneSurfaceMaterialInput;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput do
          Hr := RoGetActivationFactory (m_hString, IID_ISceneSurfaceMaterialInputStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISceneSurfaceMaterialInput := new Windows.UI.Composition.Scenes.ISceneSurfaceMaterialInput;
             Retval.m_ISceneSurfaceMaterialInput.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1924,10 +2316,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.CompositionBitmapInterpolationMode;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.get_BitmapInterpolationMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1937,9 +2333,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.CompositionBitmapInterpolationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.put_BitmapInterpolationMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Surface
@@ -1948,10 +2348,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.ICompositionSurface is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurface;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.get_Surface (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1961,9 +2365,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.ICompositionSurface
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.put_Surface (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_WrappingUMode
@@ -1972,10 +2380,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.SceneWrappingMode;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.get_WrappingUMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1985,9 +2397,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneWrappingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.put_WrappingUMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_WrappingVMode
@@ -1996,10 +2412,14 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.SceneWrappingMode;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.get_WrappingVMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2009,9 +2429,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneWrappingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneSurfaceMaterialInput.all.put_WrappingVMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2023,12 +2447,12 @@ package body WinRt.Windows.UI.Composition.Scenes is
    end;
 
    procedure Finalize (this : in out SceneVisual) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISceneVisual, ISceneVisual_Ptr);
    begin
       if this.m_ISceneVisual /= null then
          if this.m_ISceneVisual.all /= null then
-            RefCount := this.m_ISceneVisual.all.Release;
+            temp := this.m_ISceneVisual.all.Release;
             Free (this.m_ISceneVisual);
          end if;
       end if;
@@ -2043,20 +2467,24 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneVisual is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneVisual");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.Scenes.SceneVisual");
       m_Factory        : access WinRt.Windows.UI.Composition.Scenes.ISceneVisualStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneVisual do
          Hr := RoGetActivationFactory (m_hString, IID_ISceneVisualStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (compositor.m_ICompositor.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ISceneVisual := new Windows.UI.Composition.Scenes.ISceneVisual;
             Retval.m_ISceneVisual.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2069,11 +2497,15 @@ package body WinRt.Windows.UI.Composition.Scenes is
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneNode'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.Scenes.ISceneNode;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Scenes.SceneNode do
          Hr := this.m_ISceneVisual.all.get_Root (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISceneNode := new Windows.UI.Composition.Scenes.ISceneNode;
          Retval.m_ISceneNode.all := m_ComRetVal;
       end return;
@@ -2085,9 +2517,13 @@ package body WinRt.Windows.UI.Composition.Scenes is
       value : Windows.UI.Composition.Scenes.SceneNode'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISceneVisual.all.put_Root (value.m_ISceneNode.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Composition.Scenes;

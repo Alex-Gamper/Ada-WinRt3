@@ -42,12 +42,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactDataProviderConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactDataProviderConnection, IContactDataProviderConnection_Ptr);
    begin
       if this.m_IContactDataProviderConnection /= null then
          if this.m_IContactDataProviderConnection.all /= null then
-            RefCount := this.m_IContactDataProviderConnection.all.Release;
+            temp := this.m_IContactDataProviderConnection.all.Release;
             Free (this.m_IContactDataProviderConnection);
          end if;
       end if;
@@ -63,10 +63,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContactDataProviderConnection.all.add_SyncRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -76,9 +80,13 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContactDataProviderConnection.all.remove_SyncRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ServerSearchReadBatchRequested
@@ -88,10 +96,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContactDataProviderConnection.all.add_ServerSearchReadBatchRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -101,9 +113,13 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContactDataProviderConnection.all.remove_ServerSearchReadBatchRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -111,9 +127,13 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactDataProviderConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContactDataProviderConnection.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CreateOrUpdateContactRequested
@@ -123,14 +143,18 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection_Interface, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IID_IContactDataProviderConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactDataProviderConnection.all);
       Hr := m_Interface.add_CreateOrUpdateContactRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -140,13 +164,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection_Interface, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IID_IContactDataProviderConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactDataProviderConnection.all);
       Hr := m_Interface.remove_CreateOrUpdateContactRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DeleteContactRequested
@@ -156,14 +184,18 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection_Interface, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IID_IContactDataProviderConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactDataProviderConnection.all);
       Hr := m_Interface.add_DeleteContactRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -173,13 +205,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection_Interface, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IID_IContactDataProviderConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactDataProviderConnection.all);
       Hr := m_Interface.remove_DeleteContactRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -191,12 +227,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactDataProviderTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactDataProviderTriggerDetails, IContactDataProviderTriggerDetails_Ptr);
    begin
       if this.m_IContactDataProviderTriggerDetails /= null then
          if this.m_IContactDataProviderTriggerDetails.all /= null then
-            RefCount := this.m_IContactDataProviderTriggerDetails.all.Release;
+            temp := this.m_IContactDataProviderTriggerDetails.all.Release;
             Free (this.m_IContactDataProviderTriggerDetails);
          end if;
       end if;
@@ -211,11 +247,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactDataProviderConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactDataProviderConnection do
          Hr := this.m_IContactDataProviderTriggerDetails.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactDataProviderConnection := new Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection;
          Retval.m_IContactDataProviderConnection.all := m_ComRetVal;
       end return;
@@ -230,12 +270,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListCreateOrUpdateContactRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListCreateOrUpdateContactRequest, IContactListCreateOrUpdateContactRequest_Ptr);
    begin
       if this.m_IContactListCreateOrUpdateContactRequest /= null then
          if this.m_IContactListCreateOrUpdateContactRequest.all /= null then
-            RefCount := this.m_IContactListCreateOrUpdateContactRequest.all.Release;
+            temp := this.m_IContactListCreateOrUpdateContactRequest.all.Release;
             Free (this.m_IContactListCreateOrUpdateContactRequest);
          end if;
       end if;
@@ -250,13 +290,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactListCreateOrUpdateContactRequest.all.get_ContactListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -266,11 +310,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactListCreateOrUpdateContactRequest.all.get_Contact (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
@@ -282,7 +330,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       createdOrUpdatedContact : Windows.ApplicationModel.Contacts.Contact'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -290,7 +339,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -311,9 +359,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -324,7 +372,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactListCreateOrUpdateContactRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -332,7 +381,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -353,9 +401,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -370,12 +418,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListCreateOrUpdateContactRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListCreateOrUpdateContactRequestEventArgs, IContactListCreateOrUpdateContactRequestEventArgs_Ptr);
    begin
       if this.m_IContactListCreateOrUpdateContactRequestEventArgs /= null then
          if this.m_IContactListCreateOrUpdateContactRequestEventArgs.all /= null then
-            RefCount := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.Release;
+            temp := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.Release;
             Free (this.m_IContactListCreateOrUpdateContactRequestEventArgs);
          end if;
       end if;
@@ -390,11 +438,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListCreateOrUpdateContactRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListCreateOrUpdateContactRequest do
          Hr := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactListCreateOrUpdateContactRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest;
          Retval.m_IContactListCreateOrUpdateContactRequest.all := m_ComRetVal;
       end return;
@@ -406,11 +458,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -425,12 +481,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListDeleteContactRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListDeleteContactRequest, IContactListDeleteContactRequest_Ptr);
    begin
       if this.m_IContactListDeleteContactRequest /= null then
          if this.m_IContactListDeleteContactRequest.all /= null then
-            RefCount := this.m_IContactListDeleteContactRequest.all.Release;
+            temp := this.m_IContactListDeleteContactRequest.all.Release;
             Free (this.m_IContactListDeleteContactRequest);
          end if;
       end if;
@@ -445,13 +501,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactListDeleteContactRequest.all.get_ContactListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -461,13 +521,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactListDeleteContactRequest.all.get_ContactId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -476,7 +540,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactListDeleteContactRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -484,7 +549,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -505,9 +569,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -518,7 +582,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactListDeleteContactRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -526,7 +591,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -547,9 +611,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -564,12 +628,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListDeleteContactRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListDeleteContactRequestEventArgs, IContactListDeleteContactRequestEventArgs_Ptr);
    begin
       if this.m_IContactListDeleteContactRequestEventArgs /= null then
          if this.m_IContactListDeleteContactRequestEventArgs.all /= null then
-            RefCount := this.m_IContactListDeleteContactRequestEventArgs.all.Release;
+            temp := this.m_IContactListDeleteContactRequestEventArgs.all.Release;
             Free (this.m_IContactListDeleteContactRequestEventArgs);
          end if;
       end if;
@@ -584,11 +648,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListDeleteContactRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListDeleteContactRequest do
          Hr := this.m_IContactListDeleteContactRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactListDeleteContactRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest;
          Retval.m_IContactListDeleteContactRequest.all := m_ComRetVal;
       end return;
@@ -600,11 +668,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListDeleteContactRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -619,12 +691,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListServerSearchReadBatchRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListServerSearchReadBatchRequest, IContactListServerSearchReadBatchRequest_Ptr);
    begin
       if this.m_IContactListServerSearchReadBatchRequest /= null then
          if this.m_IContactListServerSearchReadBatchRequest.all /= null then
-            RefCount := this.m_IContactListServerSearchReadBatchRequest.all.Release;
+            temp := this.m_IContactListServerSearchReadBatchRequest.all.Release;
             Free (this.m_IContactListServerSearchReadBatchRequest);
          end if;
       end if;
@@ -639,13 +711,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactListServerSearchReadBatchRequest.all.get_SessionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -655,13 +731,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactListServerSearchReadBatchRequest.all.get_ContactListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -671,11 +751,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactQueryOptions'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactQueryOptions;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactQueryOptions do
          Hr := this.m_IContactListServerSearchReadBatchRequest.all.get_Options (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactQueryOptions := new Windows.ApplicationModel.Contacts.IContactQueryOptions;
          Retval.m_IContactQueryOptions.all := m_ComRetVal;
       end return;
@@ -687,10 +771,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IContactListServerSearchReadBatchRequest.all.get_SuggestedBatchSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -700,7 +788,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       contact : Windows.ApplicationModel.Contacts.Contact'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -708,7 +797,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -729,9 +817,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -742,7 +830,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactListServerSearchReadBatchRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -750,7 +839,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -771,9 +859,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -785,7 +873,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       batchStatus : Windows.ApplicationModel.Contacts.ContactBatchStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -793,7 +882,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -814,9 +902,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -831,12 +919,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListServerSearchReadBatchRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListServerSearchReadBatchRequestEventArgs, IContactListServerSearchReadBatchRequestEventArgs_Ptr);
    begin
       if this.m_IContactListServerSearchReadBatchRequestEventArgs /= null then
          if this.m_IContactListServerSearchReadBatchRequestEventArgs.all /= null then
-            RefCount := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.Release;
+            temp := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.Release;
             Free (this.m_IContactListServerSearchReadBatchRequestEventArgs);
          end if;
       end if;
@@ -851,11 +939,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListServerSearchReadBatchRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListServerSearchReadBatchRequest do
          Hr := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactListServerSearchReadBatchRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest;
          Retval.m_IContactListServerSearchReadBatchRequest.all := m_ComRetVal;
       end return;
@@ -867,11 +959,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -886,12 +982,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListSyncManagerSyncRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListSyncManagerSyncRequest, IContactListSyncManagerSyncRequest_Ptr);
    begin
       if this.m_IContactListSyncManagerSyncRequest /= null then
          if this.m_IContactListSyncManagerSyncRequest.all /= null then
-            RefCount := this.m_IContactListSyncManagerSyncRequest.all.Release;
+            temp := this.m_IContactListSyncManagerSyncRequest.all.Release;
             Free (this.m_IContactListSyncManagerSyncRequest);
          end if;
       end if;
@@ -906,13 +1002,17 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IContactListSyncManagerSyncRequest.all.get_ContactListId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -921,7 +1021,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactListSyncManagerSyncRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -929,7 +1030,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -950,9 +1050,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -963,7 +1063,8 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       this : in out ContactListSyncManagerSyncRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -971,7 +1072,6 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -992,9 +1092,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1009,12 +1109,12 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    end;
 
    procedure Finalize (this : in out ContactListSyncManagerSyncRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContactListSyncManagerSyncRequestEventArgs, IContactListSyncManagerSyncRequestEventArgs_Ptr);
    begin
       if this.m_IContactListSyncManagerSyncRequestEventArgs /= null then
          if this.m_IContactListSyncManagerSyncRequestEventArgs.all /= null then
-            RefCount := this.m_IContactListSyncManagerSyncRequestEventArgs.all.Release;
+            temp := this.m_IContactListSyncManagerSyncRequestEventArgs.all.Release;
             Free (this.m_IContactListSyncManagerSyncRequestEventArgs);
          end if;
       end if;
@@ -1029,11 +1129,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListSyncManagerSyncRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListSyncManagerSyncRequest do
          Hr := this.m_IContactListSyncManagerSyncRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IContactListSyncManagerSyncRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest;
          Retval.m_IContactListSyncManagerSyncRequest.all := m_ComRetVal;
       end return;
@@ -1045,11 +1149,15 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListSyncManagerSyncRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;

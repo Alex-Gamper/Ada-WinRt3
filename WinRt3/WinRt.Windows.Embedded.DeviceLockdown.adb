@@ -41,34 +41,42 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
       function GetSupportedLockdownProfiles
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
          m_Factory        : access WinRt.Windows.Embedded.DeviceLockdown.IDeviceLockdownProfileStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceLockdownProfileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetSupportedLockdownProfiles (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function GetCurrentLockdownProfile
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
          m_Factory        : access WinRt.Windows.Embedded.DeviceLockdown.IDeviceLockdownProfileStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceLockdownProfileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCurrentLockdownProfile (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -77,9 +85,10 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
          profileID : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
          m_Factory        : access WinRt.Windows.Embedded.DeviceLockdown.IDeviceLockdownProfileStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -87,7 +96,6 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -103,7 +111,7 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
          Hr := RoGetActivationFactory (m_hString, IID_IDeviceLockdownProfileStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ApplyLockdownProfileAsync (profileID, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -111,14 +119,14 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetLockdownProfileInformation
@@ -127,20 +135,24 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
       )
       return WinRt.Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Embedded.DeviceLockdown.DeviceLockdownProfile");
          m_Factory        : access WinRt.Windows.Embedded.DeviceLockdown.IDeviceLockdownProfileStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Embedded.DeviceLockdown.IDeviceLockdownProfileInformation;
       begin
          return RetVal : WinRt.Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation do
             Hr := RoGetActivationFactory (m_hString, IID_IDeviceLockdownProfileStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetLockdownProfileInformation (profileID, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IDeviceLockdownProfileInformation := new Windows.Embedded.DeviceLockdown.IDeviceLockdownProfileInformation;
                Retval.m_IDeviceLockdownProfileInformation.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -155,12 +167,12 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
    end;
 
    procedure Finalize (this : in out DeviceLockdownProfileInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDeviceLockdownProfileInformation, IDeviceLockdownProfileInformation_Ptr);
    begin
       if this.m_IDeviceLockdownProfileInformation /= null then
          if this.m_IDeviceLockdownProfileInformation.all /= null then
-            RefCount := this.m_IDeviceLockdownProfileInformation.all.Release;
+            temp := this.m_IDeviceLockdownProfileInformation.all.Release;
             Free (this.m_IDeviceLockdownProfileInformation);
          end if;
       end if;
@@ -175,13 +187,17 @@ package body WinRt.Windows.Embedded.DeviceLockdown is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDeviceLockdownProfileInformation.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

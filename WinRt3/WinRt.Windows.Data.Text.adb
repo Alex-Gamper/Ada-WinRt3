@@ -50,12 +50,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out AlternateWordForm) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAlternateWordForm, IAlternateWordForm_Ptr);
    begin
       if this.m_IAlternateWordForm /= null then
          if this.m_IAlternateWordForm.all /= null then
-            RefCount := this.m_IAlternateWordForm.all.Release;
+            temp := this.m_IAlternateWordForm.all.Release;
             Free (this.m_IAlternateWordForm);
          end if;
       end if;
@@ -70,10 +70,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.Data.Text.TextSegment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Text.TextSegment;
    begin
       Hr := this.m_IAlternateWordForm.all.get_SourceTextSegment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -83,13 +87,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAlternateWordForm.all.get_AlternateText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -99,10 +107,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.Data.Text.AlternateNormalizationFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Text.AlternateNormalizationFormat;
    begin
       Hr := this.m_IAlternateWordForm.all.get_NormalizationFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -115,12 +127,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out SelectableWordSegment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISelectableWordSegment, ISelectableWordSegment_Ptr);
    begin
       if this.m_ISelectableWordSegment /= null then
          if this.m_ISelectableWordSegment.all /= null then
-            RefCount := this.m_ISelectableWordSegment.all.Release;
+            temp := this.m_ISelectableWordSegment.all.Release;
             Free (this.m_ISelectableWordSegment);
          end if;
       end if;
@@ -135,13 +147,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISelectableWordSegment.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -151,10 +167,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.Data.Text.TextSegment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Text.TextSegment;
    begin
       Hr := this.m_ISelectableWordSegment.all.get_SourceTextSegment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -168,7 +188,7 @@ package body WinRt.Windows.Data.Text is
       words : GenericObject
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (precedingWords, words);
       return Hr;
@@ -183,12 +203,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out SelectableWordsSegmenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISelectableWordsSegmenter, ISelectableWordsSegmenter_Ptr);
    begin
       if this.m_ISelectableWordsSegmenter /= null then
          if this.m_ISelectableWordsSegmenter.all /= null then
-            RefCount := this.m_ISelectableWordsSegmenter.all.Release;
+            temp := this.m_ISelectableWordsSegmenter.all.Release;
             Free (this.m_ISelectableWordsSegmenter);
          end if;
       end if;
@@ -203,11 +223,12 @@ package body WinRt.Windows.Data.Text is
    )
    return SelectableWordsSegmenter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.SelectableWordsSegmenter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SelectableWordsSegmenter");
       m_Factory    : access ISelectableWordsSegmenterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.ISelectableWordsSegmenter;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
    begin
       return RetVal : SelectableWordsSegmenter do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectableWordsSegmenterFactory'Access , m_Factory'Address);
@@ -215,10 +236,10 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.CreateWithLanguage (HStr_language, m_ComRetVal'Access);
             Retval.m_ISelectableWordsSegmenter := new Windows.Data.Text.ISelectableWordsSegmenter;
             Retval.m_ISelectableWordsSegmenter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_language);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_language);
       end return;
    end;
 
@@ -231,13 +252,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISelectableWordsSegmenter.all.get_ResolvedLanguage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -249,15 +274,19 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.Data.Text.SelectableWordSegment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Text.ISelectableWordSegment;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : WinRt.Windows.Data.Text.SelectableWordSegment do
          Hr := this.m_ISelectableWordsSegmenter.all.GetTokenAt (HStr_text, startIndex, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISelectableWordSegment := new Windows.Data.Text.ISelectableWordSegment;
          Retval.m_ISelectableWordSegment.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_text);
+         tmp := WindowsDeleteString (HStr_text);
       end return;
    end;
 
@@ -268,15 +297,19 @@ package body WinRt.Windows.Data.Text is
    )
    return IVectorView_ISelectableWordSegment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ISelectableWordSegment.Kind;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       Hr := this.m_ISelectableWordsSegmenter.all.GetTokens (HStr_text, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_text);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
       m_GenericRetVal := QInterface_IVectorView_ISelectableWordSegment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -288,11 +321,15 @@ package body WinRt.Windows.Data.Text is
       handler : Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       Hr := this.m_ISelectableWordsSegmenter.all.Tokenize (HStr_text, startIndex, handler);
-      Hr := WindowsDeleteString (HStr_text);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
    end;
 
    -----------------------------------------------------------------------------
@@ -304,12 +341,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out SemanticTextQuery) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISemanticTextQuery, ISemanticTextQuery_Ptr);
    begin
       if this.m_ISemanticTextQuery /= null then
          if this.m_ISemanticTextQuery.all /= null then
-            RefCount := this.m_ISemanticTextQuery.all.Release;
+            temp := this.m_ISemanticTextQuery.all.Release;
             Free (this.m_ISemanticTextQuery);
          end if;
       end if;
@@ -324,11 +361,12 @@ package body WinRt.Windows.Data.Text is
    )
    return SemanticTextQuery is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.ISemanticTextQuery;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
    begin
       return RetVal : SemanticTextQuery do
          Hr := RoGetActivationFactory (m_hString, IID_ISemanticTextQueryFactory'Access , m_Factory'Address);
@@ -336,10 +374,10 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.Create (HStr_aqsFilter, m_ComRetVal'Access);
             Retval.m_ISemanticTextQuery := new Windows.Data.Text.ISemanticTextQuery;
             Retval.m_ISemanticTextQuery.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -350,12 +388,13 @@ package body WinRt.Windows.Data.Text is
    )
    return SemanticTextQuery is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.ISemanticTextQuery;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
-      HStr_filterLanguage : WinRt.HString := To_HString (filterLanguage);
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
+      HStr_filterLanguage : constant WinRt.HString := To_HString (filterLanguage);
    begin
       return RetVal : SemanticTextQuery do
          Hr := RoGetActivationFactory (m_hString, IID_ISemanticTextQueryFactory'Access , m_Factory'Address);
@@ -363,11 +402,11 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.CreateWithLanguage (HStr_aqsFilter, HStr_filterLanguage, m_ComRetVal'Access);
             Retval.m_ISemanticTextQuery := new Windows.Data.Text.ISemanticTextQuery;
             Retval.m_ISemanticTextQuery.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
-         Hr := WindowsDeleteString (HStr_filterLanguage);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (HStr_filterLanguage);
       end return;
    end;
 
@@ -381,15 +420,19 @@ package body WinRt.Windows.Data.Text is
    )
    return IVectorView_TextSegment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_TextSegment.Kind;
-      HStr_content : WinRt.HString := To_HString (content);
+      HStr_content : constant WinRt.HString := To_HString (content);
    begin
       Hr := this.m_ISemanticTextQuery.all.Find (HStr_content, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_content);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_content);
       m_GenericRetVal := QInterface_IVectorView_TextSegment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -401,17 +444,21 @@ package body WinRt.Windows.Data.Text is
    )
    return IVectorView_TextSegment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_TextSegment.Kind;
-      HStr_propertyContent : WinRt.HString := To_HString (propertyContent);
-      HStr_propertyName : WinRt.HString := To_HString (propertyName);
+      HStr_propertyContent : constant WinRt.HString := To_HString (propertyContent);
+      HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ISemanticTextQuery.all.FindInProperty (HStr_propertyContent, HStr_propertyName, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_propertyContent);
-      Hr := WindowsDeleteString (HStr_propertyName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_propertyContent);
+      tmp := WindowsDeleteString (HStr_propertyName);
       m_GenericRetVal := QInterface_IVectorView_TextSegment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -424,12 +471,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out TextConversionGenerator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextConversionGenerator, ITextConversionGenerator_Ptr);
    begin
       if this.m_ITextConversionGenerator /= null then
          if this.m_ITextConversionGenerator.all /= null then
-            RefCount := this.m_ITextConversionGenerator.all.Release;
+            temp := this.m_ITextConversionGenerator.all.Release;
             Free (this.m_ITextConversionGenerator);
          end if;
       end if;
@@ -444,11 +491,12 @@ package body WinRt.Windows.Data.Text is
    )
    return TextConversionGenerator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.TextConversionGenerator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextConversionGenerator");
       m_Factory    : access ITextConversionGeneratorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.ITextConversionGenerator;
-      HStr_languageTag : WinRt.HString := To_HString (languageTag);
+      HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : TextConversionGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ITextConversionGeneratorFactory'Access , m_Factory'Address);
@@ -456,10 +504,10 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.Create (HStr_languageTag, m_ComRetVal'Access);
             Retval.m_ITextConversionGenerator := new Windows.Data.Text.ITextConversionGenerator;
             Retval.m_ITextConversionGenerator.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_languageTag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_languageTag);
       end return;
    end;
 
@@ -472,13 +520,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextConversionGenerator.all.get_ResolvedLanguage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -488,10 +540,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITextConversionGenerator.all.get_LanguageAvailableButNotInstalled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -502,14 +558,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -527,7 +583,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -540,7 +596,7 @@ package body WinRt.Windows.Data.Text is
       Hr := this.m_ITextConversionGenerator.all.GetCandidatesAsync (HStr_input, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -550,14 +606,14 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       return m_RetVal;
    end;
 
@@ -569,14 +625,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -594,7 +650,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -607,7 +663,7 @@ package body WinRt.Windows.Data.Text is
       Hr := this.m_ITextConversionGenerator.all.GetCandidatesAsync (HStr_input, maxCandidates, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -617,14 +673,14 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       return m_RetVal;
    end;
 
@@ -637,12 +693,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out TextPhoneme) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextPhoneme, ITextPhoneme_Ptr);
    begin
       if this.m_ITextPhoneme /= null then
          if this.m_ITextPhoneme.all /= null then
-            RefCount := this.m_ITextPhoneme.all.Release;
+            temp := this.m_ITextPhoneme.all.Release;
             Free (this.m_ITextPhoneme);
          end if;
       end if;
@@ -657,13 +713,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextPhoneme.all.get_DisplayText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -673,13 +733,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextPhoneme.all.get_ReadingText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -692,12 +756,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out TextPredictionGenerator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextPredictionGenerator, ITextPredictionGenerator_Ptr);
    begin
       if this.m_ITextPredictionGenerator /= null then
          if this.m_ITextPredictionGenerator.all /= null then
-            RefCount := this.m_ITextPredictionGenerator.all.Release;
+            temp := this.m_ITextPredictionGenerator.all.Release;
             Free (this.m_ITextPredictionGenerator);
          end if;
       end if;
@@ -712,11 +776,12 @@ package body WinRt.Windows.Data.Text is
    )
    return TextPredictionGenerator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.TextPredictionGenerator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextPredictionGenerator");
       m_Factory    : access ITextPredictionGeneratorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.ITextPredictionGenerator;
-      HStr_languageTag : WinRt.HString := To_HString (languageTag);
+      HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : TextPredictionGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ITextPredictionGeneratorFactory'Access , m_Factory'Address);
@@ -724,10 +789,10 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.Create (HStr_languageTag, m_ComRetVal'Access);
             Retval.m_ITextPredictionGenerator := new Windows.Data.Text.ITextPredictionGenerator;
             Retval.m_ITextPredictionGenerator.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_languageTag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_languageTag);
       end return;
    end;
 
@@ -740,13 +805,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextPredictionGenerator.all.get_ResolvedLanguage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -756,10 +825,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITextPredictionGenerator.all.get_LanguageAvailableButNotInstalled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -770,14 +843,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -795,7 +868,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -808,7 +881,7 @@ package body WinRt.Windows.Data.Text is
       Hr := this.m_ITextPredictionGenerator.all.GetCandidatesAsync (HStr_input, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -818,14 +891,14 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       return m_RetVal;
    end;
 
@@ -837,14 +910,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -862,7 +935,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -875,7 +948,7 @@ package body WinRt.Windows.Data.Text is
       Hr := this.m_ITextPredictionGenerator.all.GetCandidatesAsync (HStr_input, maxCandidates, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -885,14 +958,14 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       return m_RetVal;
    end;
 
@@ -906,15 +979,15 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Text.ITextPredictionGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -932,7 +1005,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -945,10 +1018,10 @@ package body WinRt.Windows.Data.Text is
    begin
       m_Interface := QInterface (this.m_ITextPredictionGenerator.all);
       Hr := m_Interface.GetCandidatesAsync (HStr_input, maxCandidates, predictionOptions, previousStrings, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -958,14 +1031,14 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       return m_RetVal;
    end;
 
@@ -977,14 +1050,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Text.ITextPredictionGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1002,7 +1075,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1015,10 +1088,10 @@ package body WinRt.Windows.Data.Text is
    begin
       m_Interface := QInterface (this.m_ITextPredictionGenerator.all);
       Hr := m_Interface.GetNextWordCandidatesAsync (maxCandidates, previousStrings, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1028,9 +1101,9 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1044,14 +1117,18 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.UI.Text.Core.CoreTextInputScope is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Text.ITextPredictionGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextInputScope;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Text.ITextPredictionGenerator_Interface, WinRt.Windows.Data.Text.ITextPredictionGenerator2, WinRt.Windows.Data.Text.IID_ITextPredictionGenerator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextPredictionGenerator.all);
       Hr := m_Interface.get_InputScope (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1061,13 +1138,17 @@ package body WinRt.Windows.Data.Text is
       value : Windows.UI.Text.Core.CoreTextInputScope
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Text.ITextPredictionGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Text.ITextPredictionGenerator_Interface, WinRt.Windows.Data.Text.ITextPredictionGenerator2, WinRt.Windows.Data.Text.IID_ITextPredictionGenerator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextPredictionGenerator.all);
       Hr := m_Interface.put_InputScope (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1079,12 +1160,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out TextReverseConversionGenerator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextReverseConversionGenerator, ITextReverseConversionGenerator_Ptr);
    begin
       if this.m_ITextReverseConversionGenerator /= null then
          if this.m_ITextReverseConversionGenerator.all /= null then
-            RefCount := this.m_ITextReverseConversionGenerator.all.Release;
+            temp := this.m_ITextReverseConversionGenerator.all.Release;
             Free (this.m_ITextReverseConversionGenerator);
          end if;
       end if;
@@ -1099,11 +1180,12 @@ package body WinRt.Windows.Data.Text is
    )
    return TextReverseConversionGenerator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.TextReverseConversionGenerator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextReverseConversionGenerator");
       m_Factory    : access ITextReverseConversionGeneratorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.ITextReverseConversionGenerator;
-      HStr_languageTag : WinRt.HString := To_HString (languageTag);
+      HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : TextReverseConversionGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ITextReverseConversionGeneratorFactory'Access , m_Factory'Address);
@@ -1111,10 +1193,10 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.Create (HStr_languageTag, m_ComRetVal'Access);
             Retval.m_ITextReverseConversionGenerator := new Windows.Data.Text.ITextReverseConversionGenerator;
             Retval.m_ITextReverseConversionGenerator.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_languageTag);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_languageTag);
       end return;
    end;
 
@@ -1127,13 +1209,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextReverseConversionGenerator.all.get_ResolvedLanguage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1143,10 +1229,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITextReverseConversionGenerator.all.get_LanguageAvailableButNotInstalled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1157,14 +1247,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1183,7 +1273,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1196,7 +1286,7 @@ package body WinRt.Windows.Data.Text is
       Hr := this.m_ITextReverseConversionGenerator.all.ConvertBackAsync (HStr_input, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1206,16 +1296,16 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 
@@ -1226,15 +1316,15 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Text.ITextReverseConversionGenerator2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_input : WinRt.HString := To_HString (input);
+      temp             : WinRt.UInt32 := 0;
+      HStr_input : constant WinRt.HString := To_HString (input);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1252,7 +1342,7 @@ package body WinRt.Windows.Data.Text is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1265,10 +1355,10 @@ package body WinRt.Windows.Data.Text is
    begin
       m_Interface := QInterface (this.m_ITextReverseConversionGenerator.all);
       Hr := m_Interface.GetPhonemesAsync (HStr_input, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1278,14 +1368,14 @@ package body WinRt.Windows.Data.Text is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_input);
       return m_RetVal;
    end;
 
@@ -1300,17 +1390,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.UInt32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.UInt32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetCodepointFromSurrogatePair (highSurrogate, lowSurrogate, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1321,16 +1415,20 @@ package body WinRt.Windows.Data.Text is
          lowSurrogate : WinRt.Wide_Char_Ptr
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetSurrogatePairFromCodepoint (codepoint, highSurrogate, lowSurrogate);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function IsHighSurrogate
@@ -1339,17 +1437,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsHighSurrogate (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1359,17 +1461,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsLowSurrogate (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1379,17 +1485,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsSupplementary (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1399,17 +1509,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsNoncharacter (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1419,17 +1533,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsWhitespace (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1439,17 +1557,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsAlphabetic (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1459,17 +1581,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsCased (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1479,17 +1605,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsUppercase (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1499,17 +1629,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsLowercase (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1519,17 +1653,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsIdStart (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1539,17 +1677,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsIdContinue (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1559,17 +1701,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsGraphemeBase (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1579,17 +1725,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsGraphemeExtend (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1599,17 +1749,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Windows.Data.Text.UnicodeNumericType is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Data.Text.UnicodeNumericType;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetNumericType (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1619,17 +1773,21 @@ package body WinRt.Windows.Data.Text is
       )
       return WinRt.Windows.Data.Text.UnicodeGeneralCategory is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Data.Text.UnicodeGeneralCategory;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetGeneralCategory (codepoint, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1644,12 +1802,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out WordSegment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWordSegment, IWordSegment_Ptr);
    begin
       if this.m_IWordSegment /= null then
          if this.m_IWordSegment.all /= null then
-            RefCount := this.m_IWordSegment.all.Release;
+            temp := this.m_IWordSegment.all.Release;
             Free (this.m_IWordSegment);
          end if;
       end if;
@@ -1664,13 +1822,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWordSegment.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1680,10 +1842,14 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.Data.Text.TextSegment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Text.TextSegment;
    begin
       Hr := this.m_IWordSegment.all.get_SourceTextSegment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1693,13 +1859,17 @@ package body WinRt.Windows.Data.Text is
    )
    return IVectorView_IAlternateWordForm.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IAlternateWordForm.Kind;
    begin
       Hr := this.m_IWordSegment.all.get_AlternateForms (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IAlternateWordForm (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1713,7 +1883,7 @@ package body WinRt.Windows.Data.Text is
       words : GenericObject
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (precedingWords, words);
       return Hr;
@@ -1728,12 +1898,12 @@ package body WinRt.Windows.Data.Text is
    end;
 
    procedure Finalize (this : in out WordsSegmenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWordsSegmenter, IWordsSegmenter_Ptr);
    begin
       if this.m_IWordsSegmenter /= null then
          if this.m_IWordsSegmenter.all /= null then
-            RefCount := this.m_IWordsSegmenter.all.Release;
+            temp := this.m_IWordsSegmenter.all.Release;
             Free (this.m_IWordsSegmenter);
          end if;
       end if;
@@ -1748,11 +1918,12 @@ package body WinRt.Windows.Data.Text is
    )
    return WordsSegmenter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Data.Text.WordsSegmenter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.WordsSegmenter");
       m_Factory    : access IWordsSegmenterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Data.Text.IWordsSegmenter;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
    begin
       return RetVal : WordsSegmenter do
          Hr := RoGetActivationFactory (m_hString, IID_IWordsSegmenterFactory'Access , m_Factory'Address);
@@ -1760,10 +1931,10 @@ package body WinRt.Windows.Data.Text is
             Hr := m_Factory.CreateWithLanguage (HStr_language, m_ComRetVal'Access);
             Retval.m_IWordsSegmenter := new Windows.Data.Text.IWordsSegmenter;
             Retval.m_IWordsSegmenter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_language);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_language);
       end return;
    end;
 
@@ -1776,13 +1947,17 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWordsSegmenter.all.get_ResolvedLanguage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1794,15 +1969,19 @@ package body WinRt.Windows.Data.Text is
    )
    return WinRt.Windows.Data.Text.WordSegment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Data.Text.IWordSegment;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : WinRt.Windows.Data.Text.WordSegment do
          Hr := this.m_IWordsSegmenter.all.GetTokenAt (HStr_text, startIndex, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWordSegment := new Windows.Data.Text.IWordSegment;
          Retval.m_IWordSegment.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_text);
+         tmp := WindowsDeleteString (HStr_text);
       end return;
    end;
 
@@ -1813,15 +1992,19 @@ package body WinRt.Windows.Data.Text is
    )
    return IVectorView_IWordSegment.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IWordSegment.Kind;
-      HStr_text : WinRt.HString := To_HString (text);
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       Hr := this.m_IWordsSegmenter.all.GetTokens (HStr_text, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_text);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
       m_GenericRetVal := QInterface_IVectorView_IWordSegment (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1833,11 +2016,15 @@ package body WinRt.Windows.Data.Text is
       handler : Windows.Data.Text.WordSegmentsTokenizingHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_text : WinRt.HString := To_HString (text);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_text : constant WinRt.HString := To_HString (text);
    begin
       Hr := this.m_IWordsSegmenter.all.Tokenize (HStr_text, startIndex, handler);
-      Hr := WindowsDeleteString (HStr_text);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_text);
    end;
 
 end WinRt.Windows.Data.Text;

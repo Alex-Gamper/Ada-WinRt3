@@ -60,20 +60,24 @@ package body WinRt.Windows.System.UserProfile is
       function get_AdvertisingId
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.AdvertisingManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.AdvertisingManager");
          m_Factory        : access WinRt.Windows.System.UserProfile.IAdvertisingManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAdvertisingManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AdvertisingId (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -83,20 +87,24 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.AdvertisingManagerForUser is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.AdvertisingManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.AdvertisingManager");
          m_Factory        : access WinRt.Windows.System.UserProfile.IAdvertisingManagerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.UserProfile.IAdvertisingManagerForUser;
       begin
          return RetVal : WinRt.Windows.System.UserProfile.AdvertisingManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IAdvertisingManagerStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IAdvertisingManagerForUser := new Windows.System.UserProfile.IAdvertisingManagerForUser;
                Retval.m_IAdvertisingManagerForUser.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -111,12 +119,12 @@ package body WinRt.Windows.System.UserProfile is
    end;
 
    procedure Finalize (this : in out AdvertisingManagerForUser) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAdvertisingManagerForUser, IAdvertisingManagerForUser_Ptr);
    begin
       if this.m_IAdvertisingManagerForUser /= null then
          if this.m_IAdvertisingManagerForUser.all /= null then
-            RefCount := this.m_IAdvertisingManagerForUser.all.Release;
+            temp := this.m_IAdvertisingManagerForUser.all.Release;
             Free (this.m_IAdvertisingManagerForUser);
          end if;
       end if;
@@ -131,13 +139,17 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAdvertisingManagerForUser.all.get_AdvertisingId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -147,11 +159,15 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAdvertisingManagerForUser.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -166,12 +182,12 @@ package body WinRt.Windows.System.UserProfile is
    end;
 
    procedure Finalize (this : in out AssignedAccessSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAssignedAccessSettings, IAssignedAccessSettings_Ptr);
    begin
       if this.m_IAssignedAccessSettings /= null then
          if this.m_IAssignedAccessSettings.all /= null then
-            RefCount := this.m_IAssignedAccessSettings.all.Release;
+            temp := this.m_IAssignedAccessSettings.all.Release;
             Free (this.m_IAssignedAccessSettings);
          end if;
       end if;
@@ -183,20 +199,24 @@ package body WinRt.Windows.System.UserProfile is
    function GetDefault
    return WinRt.Windows.System.UserProfile.AssignedAccessSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.AssignedAccessSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.AssignedAccessSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IAssignedAccessSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.UserProfile.IAssignedAccessSettings;
    begin
       return RetVal : WinRt.Windows.System.UserProfile.AssignedAccessSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IAssignedAccessSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAssignedAccessSettings := new Windows.System.UserProfile.IAssignedAccessSettings;
             Retval.m_IAssignedAccessSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -206,20 +226,24 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.System.UserProfile.AssignedAccessSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.AssignedAccessSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.AssignedAccessSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IAssignedAccessSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.UserProfile.IAssignedAccessSettings;
    begin
       return RetVal : WinRt.Windows.System.UserProfile.AssignedAccessSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IAssignedAccessSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IAssignedAccessSettings := new Windows.System.UserProfile.IAssignedAccessSettings;
             Retval.m_IAssignedAccessSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -232,10 +256,14 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAssignedAccessSettings.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -245,10 +273,14 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAssignedAccessSettings.all.get_IsSingleAppKioskMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -258,11 +290,15 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAssignedAccessSettings.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -277,12 +313,12 @@ package body WinRt.Windows.System.UserProfile is
    end;
 
    procedure Finalize (this : in out DiagnosticsSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDiagnosticsSettings, IDiagnosticsSettings_Ptr);
    begin
       if this.m_IDiagnosticsSettings /= null then
          if this.m_IDiagnosticsSettings.all /= null then
-            RefCount := this.m_IDiagnosticsSettings.all.Release;
+            temp := this.m_IDiagnosticsSettings.all.Release;
             Free (this.m_IDiagnosticsSettings);
          end if;
       end if;
@@ -294,20 +330,24 @@ package body WinRt.Windows.System.UserProfile is
    function GetDefault
    return WinRt.Windows.System.UserProfile.DiagnosticsSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.DiagnosticsSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.DiagnosticsSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IDiagnosticsSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.UserProfile.IDiagnosticsSettings;
    begin
       return RetVal : WinRt.Windows.System.UserProfile.DiagnosticsSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticsSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDiagnosticsSettings := new Windows.System.UserProfile.IDiagnosticsSettings;
             Retval.m_IDiagnosticsSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -317,20 +357,24 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.System.UserProfile.DiagnosticsSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.DiagnosticsSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.DiagnosticsSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IDiagnosticsSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.UserProfile.IDiagnosticsSettings;
    begin
       return RetVal : WinRt.Windows.System.UserProfile.DiagnosticsSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticsSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDiagnosticsSettings := new Windows.System.UserProfile.IDiagnosticsSettings;
             Retval.m_IDiagnosticsSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -343,10 +387,14 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDiagnosticsSettings.all.get_CanUseDiagnosticsToTailorExperiences (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -356,11 +404,15 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IDiagnosticsSettings.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -375,12 +427,12 @@ package body WinRt.Windows.System.UserProfile is
    end;
 
    procedure Finalize (this : in out FirstSignInSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFirstSignInSettings, IFirstSignInSettings_Ptr);
    begin
       if this.m_IFirstSignInSettings /= null then
          if this.m_IFirstSignInSettings.all /= null then
-            RefCount := this.m_IFirstSignInSettings.all.Release;
+            temp := this.m_IFirstSignInSettings.all.Release;
             Free (this.m_IFirstSignInSettings);
          end if;
       end if;
@@ -392,20 +444,24 @@ package body WinRt.Windows.System.UserProfile is
    function GetDefault
    return WinRt.Windows.System.UserProfile.FirstSignInSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.FirstSignInSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.FirstSignInSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IFirstSignInSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.UserProfile.IFirstSignInSettings;
    begin
       return RetVal : WinRt.Windows.System.UserProfile.FirstSignInSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IFirstSignInSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IFirstSignInSettings := new Windows.System.UserProfile.IFirstSignInSettings;
             Retval.m_IFirstSignInSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -420,17 +476,21 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.UserProfile.IFirstSignInSettings_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFirstSignInSettings.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -440,15 +500,19 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.UserProfile.IFirstSignInSettings_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFirstSignInSettings.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -459,17 +523,21 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.UserProfile.IFirstSignInSettings_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFirstSignInSettings.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -480,14 +548,18 @@ package body WinRt.Windows.System.UserProfile is
       second : access GenericObject_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.UserProfile.IFirstSignInSettings_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFirstSignInSettings.all);
       Hr := m_Interface.Split (first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -497,117 +569,141 @@ package body WinRt.Windows.System.UserProfile is
       function get_Calendars
       return IVectorView_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Calendars (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Clocks
       return IVectorView_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Clocks (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Currencies
       return IVectorView_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Currencies (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_Languages
       return IVectorView_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Languages (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          return m_GenericRetVal;
       end;
 
       function get_HomeGeographicRegion
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HomeGeographicRegion (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_WeekStartsOn
       return WinRt.Windows.Globalization.DayOfWeek is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Globalization.DayOfWeek;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_WeekStartsOn (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -617,20 +713,24 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.UserProfile.IGlobalizationPreferencesForUser;
       begin
          return RetVal : WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics3'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetForUser (user.m_IUser.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IGlobalizationPreferencesForUser := new Windows.System.UserProfile.IGlobalizationPreferencesForUser;
                Retval.m_IGlobalizationPreferencesForUser.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -640,19 +740,23 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
-         HStr_region : WinRt.HString := To_HString (region);
+         HStr_region : constant WinRt.HString := To_HString (region);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TrySetHomeGeographicRegion (HStr_region, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_region);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_region);
          return m_ComRetVal;
       end;
 
@@ -662,17 +766,21 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.GlobalizationPreferences");
          m_Factory        : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGlobalizationPreferencesStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TrySetLanguages (languageTags, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -687,12 +795,12 @@ package body WinRt.Windows.System.UserProfile is
    end;
 
    procedure Finalize (this : in out GlobalizationPreferencesForUser) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGlobalizationPreferencesForUser, IGlobalizationPreferencesForUser_Ptr);
    begin
       if this.m_IGlobalizationPreferencesForUser /= null then
          if this.m_IGlobalizationPreferencesForUser.all /= null then
-            RefCount := this.m_IGlobalizationPreferencesForUser.all.Release;
+            temp := this.m_IGlobalizationPreferencesForUser.all.Release;
             Free (this.m_IGlobalizationPreferencesForUser);
          end if;
       end if;
@@ -707,11 +815,15 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IGlobalizationPreferencesForUser.all.get_User (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -723,13 +835,17 @@ package body WinRt.Windows.System.UserProfile is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGlobalizationPreferencesForUser.all.get_Calendars (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -739,13 +855,17 @@ package body WinRt.Windows.System.UserProfile is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGlobalizationPreferencesForUser.all.get_Clocks (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -755,13 +875,17 @@ package body WinRt.Windows.System.UserProfile is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGlobalizationPreferencesForUser.all.get_Currencies (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -771,13 +895,17 @@ package body WinRt.Windows.System.UserProfile is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGlobalizationPreferencesForUser.all.get_Languages (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -787,13 +915,17 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGlobalizationPreferencesForUser.all.get_HomeGeographicRegion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -803,10 +935,14 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Windows.Globalization.DayOfWeek is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.DayOfWeek;
    begin
       Hr := this.m_IGlobalizationPreferencesForUser.all.get_WeekStartsOn (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -817,37 +953,45 @@ package body WinRt.Windows.System.UserProfile is
       function get_OriginalImageFile
       return WinRt.Windows.Foundation.Uri is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
          m_Factory        : access WinRt.Windows.System.UserProfile.ILockScreenStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
       begin
          return RetVal : WinRt.Windows.Foundation.Uri do
             Hr := RoGetActivationFactory (m_hString, IID_ILockScreenStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_OriginalImageFile (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
                Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function GetImageStream
       return WinRt.Windows.Storage.Streams.IRandomAccessStream is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
          m_Factory        : access WinRt.Windows.System.UserProfile.ILockScreenStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILockScreenStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetImageStream (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -856,9 +1000,10 @@ package body WinRt.Windows.System.UserProfile is
          value : Windows.Storage.IStorageFile
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
          m_Factory        : access WinRt.Windows.System.UserProfile.ILockScreenStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -866,7 +1011,6 @@ package body WinRt.Windows.System.UserProfile is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -882,7 +1026,7 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_ILockScreenStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetImageFileAsync (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -890,14 +1034,14 @@ package body WinRt.Windows.System.UserProfile is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SetImageStreamAsync
@@ -905,9 +1049,10 @@ package body WinRt.Windows.System.UserProfile is
          value : Windows.Storage.Streams.IRandomAccessStream
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
          m_Factory        : access WinRt.Windows.System.UserProfile.ILockScreenStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -915,7 +1060,6 @@ package body WinRt.Windows.System.UserProfile is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -931,7 +1075,7 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_ILockScreenStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetImageStreamAsync (value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -939,14 +1083,14 @@ package body WinRt.Windows.System.UserProfile is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RequestSetImageFeedAsync
@@ -955,15 +1099,15 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.SetImageFeedResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
          m_Factory        : access WinRt.Windows.System.UserProfile.ILockScreenImageFeedStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SetImageFeedResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -981,7 +1125,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SetImageFeedResult.Kind_Delegate, AsyncOperationCompletedHandler_SetImageFeedResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -994,10 +1138,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_ILockScreenImageFeedStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RequestSetImageFeedAsync (syndicationFeedUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1007,32 +1151,36 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       function TryRemoveImageFeed
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.LockScreen");
          m_Factory        : access WinRt.Windows.System.UserProfile.ILockScreenImageFeedStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ILockScreenImageFeedStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryRemoveImageFeed (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1045,34 +1193,42 @@ package body WinRt.Windows.System.UserProfile is
       function get_AccountPictureChangeEnabled
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AccountPictureChangeEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_NameAccessAllowed
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NameAccessAllowed (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1082,17 +1238,21 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.Storage.IStorageFile is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.IStorageFile;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAccountPicture (kind, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1102,15 +1262,15 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SetAccountPictureResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1128,7 +1288,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SetAccountPictureResult.Kind_Delegate, AsyncOperationCompletedHandler_SetAccountPictureResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1141,10 +1301,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetAccountPictureAsync (image, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1154,15 +1314,15 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1174,15 +1334,15 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SetAccountPictureResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1200,7 +1360,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SetAccountPictureResult.Kind_Delegate, AsyncOperationCompletedHandler_SetAccountPictureResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1213,10 +1373,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetAccountPicturesAsync (smallImage, largeImage, video, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1226,15 +1386,15 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1244,15 +1404,15 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SetAccountPictureResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1270,7 +1430,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SetAccountPictureResult.Kind_Delegate, AsyncOperationCompletedHandler_SetAccountPictureResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1283,10 +1443,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetAccountPictureFromStreamAsync (image, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1296,15 +1456,15 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1316,15 +1476,15 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_SetAccountPictureResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1342,7 +1502,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SetAccountPictureResult.Kind_Delegate, AsyncOperationCompletedHandler_SetAccountPictureResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1355,10 +1515,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetAccountPicturesFromStreamsAsync (smallImage, largeImage, video, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1368,15 +1528,15 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
@@ -1386,17 +1546,21 @@ package body WinRt.Windows.System.UserProfile is
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.add_AccountPictureChanged (changeHandler, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1405,30 +1569,34 @@ package body WinRt.Windows.System.UserProfile is
          token : Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.remove_AccountPictureChanged (token);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetDisplayNameAsync
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1447,7 +1615,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1460,10 +1628,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDisplayNameAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1473,32 +1641,32 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
       function GetFirstNameAsync
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1517,7 +1685,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1530,10 +1698,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFirstNameAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1543,32 +1711,32 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
       function GetLastNameAsync
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1587,7 +1755,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1600,10 +1768,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetLastNameAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1613,32 +1781,32 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
       function GetPrincipalNameAsync
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1657,7 +1825,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1670,10 +1838,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetPrincipalNameAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1683,32 +1851,32 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
       function GetSessionInitiationProtocolUriAsync
       return WinRt.Windows.Foundation.Uri is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Uri.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1726,7 +1894,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Uri.Kind_Delegate, AsyncOperationCompletedHandler_Uri.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1740,10 +1908,10 @@ package body WinRt.Windows.System.UserProfile is
             Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetSessionInitiationProtocolUriAsync (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -1755,30 +1923,30 @@ package body WinRt.Windows.System.UserProfile is
                         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
                         Retval.m_IUriRuntimeClass.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function GetDomainNameAsync
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserInformation");
          m_Factory        : access WinRt.Windows.System.UserProfile.IUserInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_HString.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1797,7 +1965,7 @@ package body WinRt.Windows.System.UserProfile is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -1810,10 +1978,10 @@ package body WinRt.Windows.System.UserProfile is
          Hr := RoGetActivationFactory (m_hString, IID_IUserInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDomainNameAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1823,17 +1991,17 @@ package body WinRt.Windows.System.UserProfile is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_RetVal);
-         Hr := WindowsDeleteString (m_RetVal);
+         tmp := WindowsDeleteString (m_RetVal);
          return AdaRetVal;
       end;
 
@@ -1848,12 +2016,12 @@ package body WinRt.Windows.System.UserProfile is
    end;
 
    procedure Finalize (this : in out UserProfilePersonalizationSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserProfilePersonalizationSettings, IUserProfilePersonalizationSettings_Ptr);
    begin
       if this.m_IUserProfilePersonalizationSettings /= null then
          if this.m_IUserProfilePersonalizationSettings.all /= null then
-            RefCount := this.m_IUserProfilePersonalizationSettings.all.Release;
+            temp := this.m_IUserProfilePersonalizationSettings.all.Release;
             Free (this.m_IUserProfilePersonalizationSettings);
          end if;
       end if;
@@ -1865,37 +2033,45 @@ package body WinRt.Windows.System.UserProfile is
    function get_Current
    return WinRt.Windows.System.UserProfile.UserProfilePersonalizationSettings is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserProfilePersonalizationSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserProfilePersonalizationSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IUserProfilePersonalizationSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.UserProfile.IUserProfilePersonalizationSettings;
    begin
       return RetVal : WinRt.Windows.System.UserProfile.UserProfilePersonalizationSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IUserProfilePersonalizationSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUserProfilePersonalizationSettings := new Windows.System.UserProfile.IUserProfilePersonalizationSettings;
             Retval.m_IUserProfilePersonalizationSettings.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.System.UserProfile.UserProfilePersonalizationSettings");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserProfile.UserProfilePersonalizationSettings");
       m_Factory        : access WinRt.Windows.System.UserProfile.IUserProfilePersonalizationSettingsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IUserProfilePersonalizationSettingsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1909,13 +2085,13 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1933,7 +2109,7 @@ package body WinRt.Windows.System.UserProfile is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1946,7 +2122,7 @@ package body WinRt.Windows.System.UserProfile is
       Hr := this.m_IUserProfilePersonalizationSettings.all.TrySetLockScreenImageAsync (imageFile.m_IStorageFile.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1956,9 +2132,9 @@ package body WinRt.Windows.System.UserProfile is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1973,13 +2149,13 @@ package body WinRt.Windows.System.UserProfile is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1997,7 +2173,7 @@ package body WinRt.Windows.System.UserProfile is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2010,7 +2186,7 @@ package body WinRt.Windows.System.UserProfile is
       Hr := this.m_IUserProfilePersonalizationSettings.all.TrySetWallpaperImageAsync (imageFile.m_IStorageFile.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -2020,9 +2196,9 @@ package body WinRt.Windows.System.UserProfile is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;

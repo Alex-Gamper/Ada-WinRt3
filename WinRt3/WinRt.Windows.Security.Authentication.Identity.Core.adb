@@ -55,12 +55,12 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    end;
 
    procedure Finalize (this : in out MicrosoftAccountMultiFactorAuthenticationManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMicrosoftAccountMultiFactorAuthenticationManager, IMicrosoftAccountMultiFactorAuthenticationManager_Ptr);
    begin
       if this.m_IMicrosoftAccountMultiFactorAuthenticationManager /= null then
          if this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all /= null then
-            RefCount := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.Release;
+            temp := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.Release;
             Free (this.m_IMicrosoftAccountMultiFactorAuthenticationManager);
          end if;
       end if;
@@ -72,20 +72,24 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    function get_Current
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationManager is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationManager");
       m_Factory        : access WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationManager do
          Hr := RoGetActivationFactory (m_hString, IID_IMicrosoftAccountMultiFactorAuthenticatorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMicrosoftAccountMultiFactorAuthenticationManager := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager;
             Retval.m_IMicrosoftAccountMultiFactorAuthenticationManager.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -100,14 +104,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorOneTimeCodedInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userAccountId : WinRt.HString := To_HString (userAccountId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userAccountId : constant WinRt.HString := To_HString (userAccountId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorOneTimeCodedInfo.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -125,7 +129,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorOneTimeCodedInfo.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorOneTimeCodedInfo.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -139,7 +143,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
          Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.GetOneTimePassCodeAsync (HStr_userAccountId, codeLength, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -151,14 +155,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
                   Retval.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorOneTimeCodedInfo;
                   Retval.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_userAccountId);
+         tmp := WindowsDeleteString (HStr_userAccountId);
       end return;
    end;
 
@@ -171,16 +175,16 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userAccountId : WinRt.HString := To_HString (userAccountId);
-      HStr_authenticationToken : WinRt.HString := To_HString (authenticationToken);
-      HStr_wnsChannelId : WinRt.HString := To_HString (wnsChannelId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userAccountId : constant WinRt.HString := To_HString (userAccountId);
+      HStr_authenticationToken : constant WinRt.HString := To_HString (authenticationToken);
+      HStr_wnsChannelId : constant WinRt.HString := To_HString (wnsChannelId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -198,7 +202,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -211,7 +215,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.AddDeviceAsync (HStr_userAccountId, HStr_authenticationToken, HStr_wnsChannelId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -221,16 +225,16 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_userAccountId);
-      Hr := WindowsDeleteString (HStr_authenticationToken);
-      Hr := WindowsDeleteString (HStr_wnsChannelId);
+      tmp := WindowsDeleteString (HStr_userAccountId);
+      tmp := WindowsDeleteString (HStr_authenticationToken);
+      tmp := WindowsDeleteString (HStr_wnsChannelId);
       return m_RetVal;
    end;
 
@@ -241,14 +245,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userAccountId : WinRt.HString := To_HString (userAccountId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userAccountId : constant WinRt.HString := To_HString (userAccountId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -266,7 +270,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -279,7 +283,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.RemoveDeviceAsync (HStr_userAccountId, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -289,14 +293,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_userAccountId);
+      tmp := WindowsDeleteString (HStr_userAccountId);
       return m_RetVal;
    end;
 
@@ -308,15 +312,15 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userAccountId : WinRt.HString := To_HString (userAccountId);
-      HStr_channelUri : WinRt.HString := To_HString (channelUri);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userAccountId : constant WinRt.HString := To_HString (userAccountId);
+      HStr_channelUri : constant WinRt.HString := To_HString (channelUri);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -334,7 +338,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -347,7 +351,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.UpdateWnsChannelAsync (HStr_userAccountId, HStr_channelUri, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -357,15 +361,15 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_userAccountId);
-      Hr := WindowsDeleteString (HStr_channelUri);
+      tmp := WindowsDeleteString (HStr_userAccountId);
+      tmp := WindowsDeleteString (HStr_channelUri);
       return m_RetVal;
    end;
 
@@ -376,13 +380,13 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorGetSessionsResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorGetSessionsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -400,7 +404,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorGetSessionsResult.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorGetSessionsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -414,7 +418,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
          Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.GetSessionsAsync (userAccountIdList, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -426,9 +430,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
                   Retval.m_IMicrosoftAccountMultiFactorGetSessionsResult := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorGetSessionsResult;
                   Retval.m_IMicrosoftAccountMultiFactorGetSessionsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -443,13 +447,13 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -467,7 +471,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -481,7 +485,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
          Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.GetSessionsAndUnregisteredAccountsAsync (userAccountIdList, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -493,9 +497,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
                   Retval.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo;
                   Retval.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -511,13 +515,13 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -535,7 +539,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -548,7 +552,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.ApproveSessionAsync (sessionAuthentictionStatus, authenticationSessionInfo.m_IMicrosoftAccountMultiFactorSessionInfo.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -558,9 +562,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -578,15 +582,15 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userAccountId : WinRt.HString := To_HString (userAccountId);
-      HStr_sessionId : WinRt.HString := To_HString (sessionId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userAccountId : constant WinRt.HString := To_HString (userAccountId);
+      HStr_sessionId : constant WinRt.HString := To_HString (sessionId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -604,7 +608,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -617,7 +621,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.ApproveSessionAsync (sessionAuthentictionStatus, HStr_userAccountId, HStr_sessionId, sessionAuthenticationType, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -627,15 +631,15 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_userAccountId);
-      Hr := WindowsDeleteString (HStr_sessionId);
+      tmp := WindowsDeleteString (HStr_userAccountId);
+      tmp := WindowsDeleteString (HStr_sessionId);
       return m_RetVal;
    end;
 
@@ -646,13 +650,13 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -670,7 +674,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -683,7 +687,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.DenySessionAsync (authenticationSessionInfo.m_IMicrosoftAccountMultiFactorSessionInfo.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -693,9 +697,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -712,15 +716,15 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userAccountId : WinRt.HString := To_HString (userAccountId);
-      HStr_sessionId : WinRt.HString := To_HString (sessionId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userAccountId : constant WinRt.HString := To_HString (userAccountId);
+      HStr_sessionId : constant WinRt.HString := To_HString (sessionId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MicrosoftAccountMultiFactorServiceResponse.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -738,7 +742,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind_Delegate, AsyncOperationCompletedHandler_MicrosoftAccountMultiFactorServiceResponse.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -751,7 +755,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.DenySessionAsync (HStr_userAccountId, HStr_sessionId, sessionAuthenticationType, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -761,15 +765,15 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_userAccountId);
-      Hr := WindowsDeleteString (HStr_sessionId);
+      tmp := WindowsDeleteString (HStr_userAccountId);
+      tmp := WindowsDeleteString (HStr_sessionId);
       return m_RetVal;
    end;
 
@@ -782,12 +786,12 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    end;
 
    procedure Finalize (this : in out MicrosoftAccountMultiFactorGetSessionsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMicrosoftAccountMultiFactorGetSessionsResult, IMicrosoftAccountMultiFactorGetSessionsResult_Ptr);
    begin
       if this.m_IMicrosoftAccountMultiFactorGetSessionsResult /= null then
          if this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all /= null then
-            RefCount := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.Release;
+            temp := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.Release;
             Free (this.m_IMicrosoftAccountMultiFactorGetSessionsResult);
          end if;
       end if;
@@ -802,13 +806,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.get_Sessions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMicrosoftAccountMultiFactorSessionInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -818,10 +826,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.get_ServiceResponse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -834,12 +846,12 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    end;
 
    procedure Finalize (this : in out MicrosoftAccountMultiFactorOneTimeCodedInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMicrosoftAccountMultiFactorOneTimeCodedInfo, IMicrosoftAccountMultiFactorOneTimeCodedInfo_Ptr);
    begin
       if this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo /= null then
          if this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all /= null then
-            RefCount := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.Release;
+            temp := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.Release;
             Free (this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo);
          end if;
       end if;
@@ -854,13 +866,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_Code (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -870,10 +886,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_TimeInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -883,10 +903,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_TimeToLive (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -896,10 +920,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_ServiceResponse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -912,12 +940,12 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    end;
 
    procedure Finalize (this : in out MicrosoftAccountMultiFactorSessionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMicrosoftAccountMultiFactorSessionInfo, IMicrosoftAccountMultiFactorSessionInfo_Ptr);
    begin
       if this.m_IMicrosoftAccountMultiFactorSessionInfo /= null then
          if this.m_IMicrosoftAccountMultiFactorSessionInfo.all /= null then
-            RefCount := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.Release;
+            temp := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.Release;
             Free (this.m_IMicrosoftAccountMultiFactorSessionInfo);
          end if;
       end if;
@@ -932,13 +960,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_UserAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -948,13 +980,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_SessionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -964,13 +1000,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_DisplaySessionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -980,10 +1020,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionApprovalStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionApprovalStatus;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_ApprovalStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -993,10 +1037,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_AuthenticationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1006,10 +1054,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_RequestTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1019,10 +1071,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_ExpirationTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1035,12 +1091,12 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    end;
 
    procedure Finalize (this : in out MicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo, IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo_Ptr);
    begin
       if this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo /= null then
          if this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all /= null then
-            RefCount := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.Release;
+            temp := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.Release;
             Free (this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo);
          end if;
       end if;
@@ -1055,13 +1111,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.get_Sessions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMicrosoftAccountMultiFactorSessionInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1071,13 +1131,17 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.get_UnregisteredAccounts (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1087,10 +1151,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.get_ServiceResponse (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

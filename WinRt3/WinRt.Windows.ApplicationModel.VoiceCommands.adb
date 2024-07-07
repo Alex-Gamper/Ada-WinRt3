@@ -56,12 +56,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommand, IVoiceCommand_Ptr);
    begin
       if this.m_IVoiceCommand /= null then
          if this.m_IVoiceCommand.all /= null then
-            RefCount := this.m_IVoiceCommand.all.Release;
+            temp := this.m_IVoiceCommand.all.Release;
             Free (this.m_IVoiceCommand);
          end if;
       end if;
@@ -76,13 +76,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommand.all.get_CommandName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -92,10 +96,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IVoiceCommand.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -105,11 +113,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult do
          Hr := this.m_IVoiceCommand.all.get_SpeechRecognitionResult (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpeechRecognitionResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
          Retval.m_ISpeechRecognitionResult.all := m_ComRetVal;
       end return;
@@ -124,12 +136,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandCompletedEventArgs, IVoiceCommandCompletedEventArgs_Ptr);
    begin
       if this.m_IVoiceCommandCompletedEventArgs /= null then
          if this.m_IVoiceCommandCompletedEventArgs.all /= null then
-            RefCount := this.m_IVoiceCommandCompletedEventArgs.all.Release;
+            temp := this.m_IVoiceCommandCompletedEventArgs.all.Release;
             Free (this.m_IVoiceCommandCompletedEventArgs);
          end if;
       end if;
@@ -144,10 +156,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason;
    begin
       Hr := this.m_IVoiceCommandCompletedEventArgs.all.get_Reason (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -160,12 +176,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandConfirmationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandConfirmationResult, IVoiceCommandConfirmationResult_Ptr);
    begin
       if this.m_IVoiceCommandConfirmationResult /= null then
          if this.m_IVoiceCommandConfirmationResult.all /= null then
-            RefCount := this.m_IVoiceCommandConfirmationResult.all.Release;
+            temp := this.m_IVoiceCommandConfirmationResult.all.Release;
             Free (this.m_IVoiceCommandConfirmationResult);
          end if;
       end if;
@@ -180,10 +196,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVoiceCommandConfirmationResult.all.get_Confirmed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -196,12 +216,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandContentTile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandContentTile, IVoiceCommandContentTile_Ptr);
    begin
       if this.m_IVoiceCommandContentTile /= null then
          if this.m_IVoiceCommandContentTile.all /= null then
-            RefCount := this.m_IVoiceCommandContentTile.all.Release;
+            temp := this.m_IVoiceCommandContentTile.all.Release;
             Free (this.m_IVoiceCommandContentTile);
          end if;
       end if;
@@ -212,7 +232,8 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
 
    function Constructor return VoiceCommandContentTile is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile");
       m_ComRetVal  : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile;
    begin
       return RetVal : VoiceCommandContentTile do
@@ -221,7 +242,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             Retval.m_IVoiceCommandContentTile := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile;
             Retval.m_IVoiceCommandContentTile.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -234,13 +255,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -250,11 +275,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TextLine1
@@ -263,13 +292,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_TextLine1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -279,11 +312,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_TextLine1 (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TextLine2
@@ -292,13 +329,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_TextLine2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -308,11 +349,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_TextLine2 (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TextLine3
@@ -321,13 +366,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_TextLine3 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -337,11 +386,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_TextLine3 (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Image
@@ -350,10 +403,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.Storage.IStorageFile is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IStorageFile;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_Image (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -363,9 +420,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_Image (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppContext
@@ -374,10 +435,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_AppContext (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -387,9 +452,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_AppContext (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppLaunchArgument
@@ -398,13 +467,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_AppLaunchArgument (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -414,11 +487,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_AppLaunchArgument (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ContentTileType
@@ -427,10 +504,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.get_ContentTileType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -440,9 +521,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVoiceCommandContentTile.all.put_ContentTileType (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -454,12 +539,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandDefinition) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandDefinition, IVoiceCommandDefinition_Ptr);
    begin
       if this.m_IVoiceCommandDefinition /= null then
          if this.m_IVoiceCommandDefinition.all /= null then
-            RefCount := this.m_IVoiceCommandDefinition.all.Release;
+            temp := this.m_IVoiceCommandDefinition.all.Release;
             Free (this.m_IVoiceCommandDefinition);
          end if;
       end if;
@@ -474,13 +559,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandDefinition.all.get_Language (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -490,13 +579,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandDefinition.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -507,8 +600,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       phraseList : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_phraseListName : WinRt.HString := To_HString (phraseListName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_phraseListName : constant WinRt.HString := To_HString (phraseListName);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -516,7 +610,6 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -537,13 +630,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_phraseListName);
+      tmp := WindowsDeleteString (HStr_phraseListName);
    end;
 
    -----------------------------------------------------------------------------
@@ -555,9 +648,10 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
          file : Windows.Storage.StorageFile'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandDefinitionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -565,7 +659,6 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -581,7 +674,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandDefinitionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.InstallCommandDefinitionsFromStorageFileAsync (file.m_IStorageFile.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -589,30 +682,34 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_InstalledCommandDefinitions
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandDefinitionManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandDefinitionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InstalledCommandDefinitions (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -627,12 +724,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandDisambiguationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandDisambiguationResult, IVoiceCommandDisambiguationResult_Ptr);
    begin
       if this.m_IVoiceCommandDisambiguationResult /= null then
          if this.m_IVoiceCommandDisambiguationResult.all /= null then
-            RefCount := this.m_IVoiceCommandDisambiguationResult.all.Release;
+            temp := this.m_IVoiceCommandDisambiguationResult.all.Release;
             Free (this.m_IVoiceCommandDisambiguationResult);
          end if;
       end if;
@@ -647,11 +744,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile do
          Hr := this.m_IVoiceCommandDisambiguationResult.all.get_SelectedItem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVoiceCommandContentTile := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile;
          Retval.m_IVoiceCommandContentTile.all := m_ComRetVal;
       end return;
@@ -666,12 +767,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandResponse) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandResponse, IVoiceCommandResponse_Ptr);
    begin
       if this.m_IVoiceCommandResponse /= null then
          if this.m_IVoiceCommandResponse.all /= null then
-            RefCount := this.m_IVoiceCommandResponse.all.Release;
+            temp := this.m_IVoiceCommandResponse.all.Release;
             Free (this.m_IVoiceCommandResponse);
          end if;
       end if;
@@ -683,17 +784,21 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    function get_MaxSupportedVoiceCommandContentTiles
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
       m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandResponseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxSupportedVoiceCommandContentTiles (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -703,20 +808,24 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
       m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse do
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandResponseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResponse (userMessage.m_IVoiceCommandUserMessage.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVoiceCommandResponse := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
             Retval.m_IVoiceCommandResponse.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -727,20 +836,24 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
       m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse do
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandResponseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResponse (message.m_IVoiceCommandUserMessage.all, contentTiles, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVoiceCommandResponse := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
             Retval.m_IVoiceCommandResponse.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -751,20 +864,24 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
       m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse do
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandResponseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResponseForPrompt (message.m_IVoiceCommandUserMessage.all, repeatMessage.m_IVoiceCommandUserMessage.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVoiceCommandResponse := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
             Retval.m_IVoiceCommandResponse.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -776,20 +893,24 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse");
       m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse do
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandResponseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResponseForPrompt (message.m_IVoiceCommandUserMessage.all, repeatMessage.m_IVoiceCommandUserMessage.all, contentTiles, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVoiceCommandResponse := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
             Retval.m_IVoiceCommandResponse.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -802,11 +923,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage do
          Hr := this.m_IVoiceCommandResponse.all.get_Message (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVoiceCommandUserMessage := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
          Retval.m_IVoiceCommandUserMessage.all := m_ComRetVal;
       end return;
@@ -818,9 +943,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVoiceCommandResponse.all.put_Message (value.m_IVoiceCommandUserMessage.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RepeatMessage
@@ -829,11 +958,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage do
          Hr := this.m_IVoiceCommandResponse.all.get_RepeatMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVoiceCommandUserMessage := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
          Retval.m_IVoiceCommandUserMessage.all := m_ComRetVal;
       end return;
@@ -845,9 +978,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVoiceCommandResponse.all.put_RepeatMessage (value.m_IVoiceCommandUserMessage.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AppLaunchArgument
@@ -856,13 +993,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandResponse.all.get_AppLaunchArgument (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -872,11 +1013,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandResponse.all.put_AppLaunchArgument (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_VoiceCommandContentTiles
@@ -885,13 +1030,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return IVector_IVoiceCommandContentTile.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IVoiceCommandContentTile.Kind;
    begin
       Hr := this.m_IVoiceCommandResponse.all.get_VoiceCommandContentTiles (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IVoiceCommandContentTile (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -904,12 +1053,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandServiceConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandServiceConnection, IVoiceCommandServiceConnection_Ptr);
    begin
       if this.m_IVoiceCommandServiceConnection /= null then
          if this.m_IVoiceCommandServiceConnection.all /= null then
-            RefCount := this.m_IVoiceCommandServiceConnection.all.Release;
+            temp := this.m_IVoiceCommandServiceConnection.all.Release;
             Free (this.m_IVoiceCommandServiceConnection);
          end if;
       end if;
@@ -924,20 +1073,24 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection");
       m_Factory        : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandServiceConnectionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandServiceConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection do
          Hr := RoGetActivationFactory (m_hString, IID_IVoiceCommandServiceConnectionStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromAppServiceTriggerDetails (triggerDetails.m_IAppServiceTriggerDetails.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVoiceCommandServiceConnection := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandServiceConnection;
             Retval.m_IVoiceCommandServiceConnection.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -950,13 +1103,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommand'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_VoiceCommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -974,7 +1127,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VoiceCommand.Kind_Delegate, AsyncOperationCompletedHandler_VoiceCommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -988,7 +1141,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
          Hr := this.m_IVoiceCommandServiceConnection.all.GetVoiceCommandAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1000,9 +1153,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
                   Retval.m_IVoiceCommand := new Windows.ApplicationModel.VoiceCommands.IVoiceCommand;
                   Retval.m_IVoiceCommand.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1017,13 +1170,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_VoiceCommandConfirmationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1041,7 +1194,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VoiceCommandConfirmationResult.Kind_Delegate, AsyncOperationCompletedHandler_VoiceCommandConfirmationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1055,7 +1208,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
          Hr := this.m_IVoiceCommandServiceConnection.all.RequestConfirmationAsync (response.m_IVoiceCommandResponse.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1067,9 +1220,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
                   Retval.m_IVoiceCommandConfirmationResult := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandConfirmationResult;
                   Retval.m_IVoiceCommandConfirmationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1084,13 +1237,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_VoiceCommandDisambiguationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1108,7 +1261,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_VoiceCommandDisambiguationResult.Kind_Delegate, AsyncOperationCompletedHandler_VoiceCommandDisambiguationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1122,7 +1275,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
          Hr := this.m_IVoiceCommandServiceConnection.all.RequestDisambiguationAsync (response.m_IVoiceCommandResponse.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1134,9 +1287,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
                   Retval.m_IVoiceCommandDisambiguationResult := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandDisambiguationResult;
                   Retval.m_IVoiceCommandDisambiguationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1150,7 +1303,8 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1158,7 +1312,6 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1179,9 +1332,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1193,7 +1346,8 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1201,7 +1355,6 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1222,9 +1375,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1236,7 +1389,8 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1244,7 +1398,6 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1265,9 +1418,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1279,7 +1432,8 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1287,7 +1441,6 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1308,9 +1461,9 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1322,11 +1475,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.Globalization.Language'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_IVoiceCommandServiceConnection.all.get_Language (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILanguage := new Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
@@ -1339,10 +1496,14 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVoiceCommandServiceConnection.all.add_VoiceCommandCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1352,9 +1513,13 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVoiceCommandServiceConnection.all.remove_VoiceCommandCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1366,12 +1531,12 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    end;
 
    procedure Finalize (this : in out VoiceCommandUserMessage) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVoiceCommandUserMessage, IVoiceCommandUserMessage_Ptr);
    begin
       if this.m_IVoiceCommandUserMessage /= null then
          if this.m_IVoiceCommandUserMessage.all /= null then
-            RefCount := this.m_IVoiceCommandUserMessage.all.Release;
+            temp := this.m_IVoiceCommandUserMessage.all.Release;
             Free (this.m_IVoiceCommandUserMessage);
          end if;
       end if;
@@ -1382,7 +1547,8 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
 
    function Constructor return VoiceCommandUserMessage is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage");
       m_ComRetVal  : aliased Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
    begin
       return RetVal : VoiceCommandUserMessage do
@@ -1391,7 +1557,7 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
             Retval.m_IVoiceCommandUserMessage := new Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
             Retval.m_IVoiceCommandUserMessage.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1404,13 +1570,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandUserMessage.all.get_DisplayMessage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1420,11 +1590,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandUserMessage.all.put_DisplayMessage (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_SpokenMessage
@@ -1433,13 +1607,17 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IVoiceCommandUserMessage.all.get_SpokenMessage (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1449,11 +1627,15 @@ package body WinRt.Windows.ApplicationModel.VoiceCommands is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IVoiceCommandUserMessage.all.put_SpokenMessage (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
 end WinRt.Windows.ApplicationModel.VoiceCommands;

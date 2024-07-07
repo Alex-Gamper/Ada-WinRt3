@@ -54,12 +54,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerDisableScannerRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerDisableScannerRequest, IBarcodeScannerDisableScannerRequest_Ptr);
    begin
       if this.m_IBarcodeScannerDisableScannerRequest /= null then
          if this.m_IBarcodeScannerDisableScannerRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerDisableScannerRequest.all.Release;
+            temp := this.m_IBarcodeScannerDisableScannerRequest.all.Release;
             Free (this.m_IBarcodeScannerDisableScannerRequest);
          end if;
       end if;
@@ -73,7 +73,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerDisableScannerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -81,7 +82,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -102,9 +102,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -115,7 +115,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerDisableScannerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -123,7 +124,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -144,9 +144,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -158,8 +158,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerDisableScannerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -167,7 +168,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -183,7 +183,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerDisableScannerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -191,9 +191,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -206,9 +206,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerDisableScannerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -216,7 +217,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -232,7 +232,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerDisableScannerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -240,13 +240,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -258,12 +258,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerDisableScannerRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerDisableScannerRequestEventArgs, IBarcodeScannerDisableScannerRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerDisableScannerRequestEventArgs /= null then
          if this.m_IBarcodeScannerDisableScannerRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerDisableScannerRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerDisableScannerRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerDisableScannerRequestEventArgs);
          end if;
       end if;
@@ -278,11 +278,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerDisableScannerRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerDisableScannerRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerDisableScannerRequest do
          Hr := this.m_IBarcodeScannerDisableScannerRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerDisableScannerRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerDisableScannerRequest;
          Retval.m_IBarcodeScannerDisableScannerRequest.all := m_ComRetVal;
       end return;
@@ -294,11 +298,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerDisableScannerRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -313,12 +321,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerEnableScannerRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerEnableScannerRequest, IBarcodeScannerEnableScannerRequest_Ptr);
    begin
       if this.m_IBarcodeScannerEnableScannerRequest /= null then
          if this.m_IBarcodeScannerEnableScannerRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerEnableScannerRequest.all.Release;
+            temp := this.m_IBarcodeScannerEnableScannerRequest.all.Release;
             Free (this.m_IBarcodeScannerEnableScannerRequest);
          end if;
       end if;
@@ -332,7 +340,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerEnableScannerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -340,7 +349,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -361,9 +369,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -374,7 +382,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerEnableScannerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -382,7 +391,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -403,9 +411,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -417,8 +425,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerEnableScannerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -426,7 +435,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -442,7 +450,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerEnableScannerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -450,9 +458,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -465,9 +473,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerEnableScannerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -475,7 +484,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -491,7 +499,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerEnableScannerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -499,13 +507,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -517,12 +525,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerEnableScannerRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerEnableScannerRequestEventArgs, IBarcodeScannerEnableScannerRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerEnableScannerRequestEventArgs /= null then
          if this.m_IBarcodeScannerEnableScannerRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerEnableScannerRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerEnableScannerRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerEnableScannerRequestEventArgs);
          end if;
       end if;
@@ -537,11 +545,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerEnableScannerRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerEnableScannerRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerEnableScannerRequest do
          Hr := this.m_IBarcodeScannerEnableScannerRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerEnableScannerRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerEnableScannerRequest;
          Retval.m_IBarcodeScannerEnableScannerRequest.all := m_ComRetVal;
       end return;
@@ -553,11 +565,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerEnableScannerRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -572,12 +588,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerFrameReader) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerFrameReader, IBarcodeScannerFrameReader_Ptr);
    begin
       if this.m_IBarcodeScannerFrameReader /= null then
          if this.m_IBarcodeScannerFrameReader.all /= null then
-            RefCount := this.m_IBarcodeScannerFrameReader.all.Release;
+            temp := this.m_IBarcodeScannerFrameReader.all.Release;
             Free (this.m_IBarcodeScannerFrameReader);
          end if;
       end if;
@@ -592,13 +608,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -616,7 +632,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -629,7 +645,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       Hr := this.m_IBarcodeScannerFrameReader.all.StartAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -639,9 +655,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -654,7 +670,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerFrameReader
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -662,7 +679,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -683,9 +699,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -697,13 +713,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerVideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeScannerVideoFrame.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -721,7 +737,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeScannerVideoFrame.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeScannerVideoFrame.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -735,7 +751,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
          Hr := this.m_IBarcodeScannerFrameReader.all.TryAcquireLatestFrameAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -747,9 +763,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
                   Retval.m_IBarcodeScannerVideoFrame := new Windows.Devices.PointOfService.Provider.IBarcodeScannerVideoFrame;
                   Retval.m_IBarcodeScannerVideoFrame.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -763,11 +779,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerProviderConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerProviderConnection do
          Hr := this.m_IBarcodeScannerFrameReader.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerProviderConnection := new Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection;
          Retval.m_IBarcodeScannerProviderConnection.all := m_ComRetVal;
       end return;
@@ -780,10 +800,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerFrameReader.all.add_FrameArrived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -793,9 +817,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerFrameReader.all.remove_FrameArrived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -803,13 +831,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerFrameReader
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerFrameReader_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerFrameReader.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -821,12 +853,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerFrameReaderFrameArrivedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerFrameReaderFrameArrivedEventArgs, IBarcodeScannerFrameReaderFrameArrivedEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs /= null then
          if this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs.all.Release;
             Free (this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs);
          end if;
       end if;
@@ -841,11 +873,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -860,12 +896,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerGetSymbologyAttributesRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerGetSymbologyAttributesRequest, IBarcodeScannerGetSymbologyAttributesRequest_Ptr);
    begin
       if this.m_IBarcodeScannerGetSymbologyAttributesRequest /= null then
          if this.m_IBarcodeScannerGetSymbologyAttributesRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerGetSymbologyAttributesRequest.all.Release;
+            temp := this.m_IBarcodeScannerGetSymbologyAttributesRequest.all.Release;
             Free (this.m_IBarcodeScannerGetSymbologyAttributesRequest);
          end if;
       end if;
@@ -880,10 +916,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeScannerGetSymbologyAttributesRequest.all.get_Symbology (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -893,7 +933,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       attributes : Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -901,7 +942,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -922,9 +962,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -935,7 +975,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerGetSymbologyAttributesRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -943,7 +984,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -964,9 +1004,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -978,8 +1018,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerGetSymbologyAttributesRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -987,7 +1028,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1003,7 +1043,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerGetSymbologyAttributesRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1011,9 +1051,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1026,9 +1066,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerGetSymbologyAttributesRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1036,7 +1077,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1052,7 +1092,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerGetSymbologyAttributesRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1060,13 +1100,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -1078,12 +1118,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerGetSymbologyAttributesRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerGetSymbologyAttributesRequestEventArgs, IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs /= null then
          if this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs);
          end if;
       end if;
@@ -1098,11 +1138,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerGetSymbologyAttributesRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerGetSymbologyAttributesRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerGetSymbologyAttributesRequest do
          Hr := this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerGetSymbologyAttributesRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerGetSymbologyAttributesRequest;
          Retval.m_IBarcodeScannerGetSymbologyAttributesRequest.all := m_ComRetVal;
       end return;
@@ -1114,11 +1158,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -1133,12 +1181,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerHideVideoPreviewRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerHideVideoPreviewRequest, IBarcodeScannerHideVideoPreviewRequest_Ptr);
    begin
       if this.m_IBarcodeScannerHideVideoPreviewRequest /= null then
          if this.m_IBarcodeScannerHideVideoPreviewRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerHideVideoPreviewRequest.all.Release;
+            temp := this.m_IBarcodeScannerHideVideoPreviewRequest.all.Release;
             Free (this.m_IBarcodeScannerHideVideoPreviewRequest);
          end if;
       end if;
@@ -1152,7 +1200,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerHideVideoPreviewRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1160,7 +1209,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1181,9 +1229,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1194,7 +1242,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerHideVideoPreviewRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1202,7 +1251,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1223,9 +1271,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1237,8 +1285,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerHideVideoPreviewRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1246,7 +1295,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1262,7 +1310,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerHideVideoPreviewRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1270,9 +1318,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1285,9 +1333,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerHideVideoPreviewRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1295,7 +1344,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1311,7 +1359,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerHideVideoPreviewRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1319,13 +1367,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -1337,12 +1385,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerHideVideoPreviewRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerHideVideoPreviewRequestEventArgs, IBarcodeScannerHideVideoPreviewRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs /= null then
          if this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs);
          end if;
       end if;
@@ -1357,11 +1405,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerHideVideoPreviewRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerHideVideoPreviewRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerHideVideoPreviewRequest do
          Hr := this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerHideVideoPreviewRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerHideVideoPreviewRequest;
          Retval.m_IBarcodeScannerHideVideoPreviewRequest.all := m_ComRetVal;
       end return;
@@ -1373,11 +1425,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -1392,12 +1448,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerProviderConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerProviderConnection, IBarcodeScannerProviderConnection_Ptr);
    begin
       if this.m_IBarcodeScannerProviderConnection /= null then
          if this.m_IBarcodeScannerProviderConnection.all /= null then
-            RefCount := this.m_IBarcodeScannerProviderConnection.all.Release;
+            temp := this.m_IBarcodeScannerProviderConnection.all.Release;
             Free (this.m_IBarcodeScannerProviderConnection);
          end if;
       end if;
@@ -1412,13 +1468,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1428,13 +1488,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.get_VideoDeviceId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1444,13 +1508,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return IVector_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_UInt32.Kind;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.get_SupportedSymbologies (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1460,13 +1528,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.get_CompanyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1476,11 +1548,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.put_CompanyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Name
@@ -1489,13 +1565,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1505,11 +1585,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Version
@@ -1518,13 +1602,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.get_Version (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1534,11 +1622,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.put_Version (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    procedure Start
@@ -1546,9 +1638,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerProviderConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ReportScannedDataAsync
@@ -1557,7 +1653,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       report : Windows.Devices.PointOfService.BarcodeScannerReport'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1565,7 +1662,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1586,9 +1682,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1600,7 +1696,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       state : Windows.Devices.PointOfService.Provider.BarcodeScannerTriggerState
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1608,7 +1705,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1629,9 +1725,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1643,7 +1739,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       errorData : Windows.Devices.PointOfService.UnifiedPosErrorData'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1651,7 +1748,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1672,9 +1768,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1688,7 +1784,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       scanReport : Windows.Devices.PointOfService.BarcodeScannerReport'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1696,7 +1793,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1717,9 +1813,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1732,10 +1828,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_EnableScannerRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1745,9 +1845,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_EnableScannerRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DisableScannerRequested
@@ -1757,10 +1861,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_DisableScannerRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1770,9 +1878,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_DisableScannerRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SetActiveSymbologiesRequested
@@ -1782,10 +1894,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_SetActiveSymbologiesRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1795,9 +1911,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_SetActiveSymbologiesRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StartSoftwareTriggerRequested
@@ -1807,10 +1927,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_StartSoftwareTriggerRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1820,9 +1944,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_StartSoftwareTriggerRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_StopSoftwareTriggerRequested
@@ -1832,10 +1960,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_StopSoftwareTriggerRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1845,9 +1977,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_StopSoftwareTriggerRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_GetBarcodeSymbologyAttributesRequested
@@ -1857,10 +1993,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_GetBarcodeSymbologyAttributesRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1870,9 +2010,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_GetBarcodeSymbologyAttributesRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SetBarcodeSymbologyAttributesRequested
@@ -1882,10 +2026,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_SetBarcodeSymbologyAttributesRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1895,9 +2043,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_SetBarcodeSymbologyAttributesRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HideVideoPreviewRequested
@@ -1907,10 +2059,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.add_HideVideoPreviewRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1920,9 +2076,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeScannerProviderConnection.all.remove_HideVideoPreviewRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateFrameReaderAsync
@@ -1931,14 +2091,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeScannerFrameReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1956,7 +2116,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeScannerFrameReader.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeScannerFrameReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1970,10 +2130,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader do
          m_Interface := QInterface (this.m_IBarcodeScannerProviderConnection.all);
          Hr := m_Interface.CreateFrameReaderAsync (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1985,9 +2145,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
                   Retval.m_IBarcodeScannerFrameReader := new Windows.Devices.PointOfService.Provider.IBarcodeScannerFrameReader;
                   Retval.m_IBarcodeScannerFrameReader.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2002,14 +2162,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeScannerFrameReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2027,7 +2187,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeScannerFrameReader.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeScannerFrameReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2041,10 +2201,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader do
          m_Interface := QInterface (this.m_IBarcodeScannerProviderConnection.all);
          Hr := m_Interface.CreateFrameReaderAsync (preferredFormat, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2056,9 +2216,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
                   Retval.m_IBarcodeScannerFrameReader := new Windows.Devices.PointOfService.Provider.IBarcodeScannerFrameReader;
                   Retval.m_IBarcodeScannerFrameReader.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2074,14 +2234,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_BarcodeScannerFrameReader.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2099,7 +2259,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_BarcodeScannerFrameReader.Kind_Delegate, AsyncOperationCompletedHandler_BarcodeScannerFrameReader.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2113,10 +2273,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader do
          m_Interface := QInterface (this.m_IBarcodeScannerProviderConnection.all);
          Hr := m_Interface.CreateFrameReaderAsync (preferredFormat, preferredSize, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2128,9 +2288,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
                   Retval.m_IBarcodeScannerFrameReader := new Windows.Devices.PointOfService.Provider.IBarcodeScannerFrameReader;
                   Retval.m_IBarcodeScannerFrameReader.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2143,13 +2303,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerProviderConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerProviderConnection.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2161,12 +2325,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerProviderTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerProviderTriggerDetails, IBarcodeScannerProviderTriggerDetails_Ptr);
    begin
       if this.m_IBarcodeScannerProviderTriggerDetails /= null then
          if this.m_IBarcodeScannerProviderTriggerDetails.all /= null then
-            RefCount := this.m_IBarcodeScannerProviderTriggerDetails.all.Release;
+            temp := this.m_IBarcodeScannerProviderTriggerDetails.all.Release;
             Free (this.m_IBarcodeScannerProviderTriggerDetails);
          end if;
       end if;
@@ -2181,11 +2345,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerProviderConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerProviderConnection do
          Hr := this.m_IBarcodeScannerProviderTriggerDetails.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerProviderConnection := new Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection;
          Retval.m_IBarcodeScannerProviderConnection.all := m_ComRetVal;
       end return;
@@ -2200,12 +2368,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerSetActiveSymbologiesRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerSetActiveSymbologiesRequest, IBarcodeScannerSetActiveSymbologiesRequest_Ptr);
    begin
       if this.m_IBarcodeScannerSetActiveSymbologiesRequest /= null then
          if this.m_IBarcodeScannerSetActiveSymbologiesRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerSetActiveSymbologiesRequest.all.Release;
+            temp := this.m_IBarcodeScannerSetActiveSymbologiesRequest.all.Release;
             Free (this.m_IBarcodeScannerSetActiveSymbologiesRequest);
          end if;
       end if;
@@ -2220,13 +2388,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IBarcodeScannerSetActiveSymbologiesRequest.all.get_Symbologies (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2235,7 +2407,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerSetActiveSymbologiesRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2243,7 +2416,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2264,9 +2436,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2277,7 +2449,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerSetActiveSymbologiesRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2285,7 +2458,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2306,9 +2478,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2320,8 +2492,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerSetActiveSymbologiesRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2329,7 +2502,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2345,7 +2517,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerSetActiveSymbologiesRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2353,9 +2525,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2368,9 +2540,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerSetActiveSymbologiesRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2378,7 +2551,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2394,7 +2566,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerSetActiveSymbologiesRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2402,13 +2574,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -2420,12 +2592,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerSetActiveSymbologiesRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerSetActiveSymbologiesRequestEventArgs, IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs /= null then
          if this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs);
          end if;
       end if;
@@ -2440,11 +2612,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerSetActiveSymbologiesRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerSetActiveSymbologiesRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerSetActiveSymbologiesRequest do
          Hr := this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerSetActiveSymbologiesRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerSetActiveSymbologiesRequest;
          Retval.m_IBarcodeScannerSetActiveSymbologiesRequest.all := m_ComRetVal;
       end return;
@@ -2456,11 +2632,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -2475,12 +2655,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerSetSymbologyAttributesRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerSetSymbologyAttributesRequest, IBarcodeScannerSetSymbologyAttributesRequest_Ptr);
    begin
       if this.m_IBarcodeScannerSetSymbologyAttributesRequest /= null then
          if this.m_IBarcodeScannerSetSymbologyAttributesRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerSetSymbologyAttributesRequest.all.Release;
+            temp := this.m_IBarcodeScannerSetSymbologyAttributesRequest.all.Release;
             Free (this.m_IBarcodeScannerSetSymbologyAttributesRequest);
          end if;
       end if;
@@ -2495,10 +2675,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeScannerSetSymbologyAttributesRequest.all.get_Symbology (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2508,11 +2692,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes do
          Hr := this.m_IBarcodeScannerSetSymbologyAttributesRequest.all.get_Attributes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeSymbologyAttributes := new Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
          Retval.m_IBarcodeSymbologyAttributes.all := m_ComRetVal;
       end return;
@@ -2523,7 +2711,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerSetSymbologyAttributesRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2531,7 +2720,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2552,9 +2740,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2565,7 +2753,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerSetSymbologyAttributesRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2573,7 +2762,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2594,9 +2782,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2608,8 +2796,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerSetSymbologyAttributesRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2617,7 +2806,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2633,7 +2821,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerSetSymbologyAttributesRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2641,9 +2829,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2656,9 +2844,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerSetSymbologyAttributesRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2666,7 +2855,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2682,7 +2870,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerSetSymbologyAttributesRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2690,13 +2878,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -2708,12 +2896,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerSetSymbologyAttributesRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerSetSymbologyAttributesRequestEventArgs, IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs /= null then
          if this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs);
          end if;
       end if;
@@ -2728,11 +2916,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerSetSymbologyAttributesRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerSetSymbologyAttributesRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerSetSymbologyAttributesRequest do
          Hr := this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerSetSymbologyAttributesRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerSetSymbologyAttributesRequest;
          Retval.m_IBarcodeScannerSetSymbologyAttributesRequest.all := m_ComRetVal;
       end return;
@@ -2744,11 +2936,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -2763,12 +2959,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerStartSoftwareTriggerRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerStartSoftwareTriggerRequest, IBarcodeScannerStartSoftwareTriggerRequest_Ptr);
    begin
       if this.m_IBarcodeScannerStartSoftwareTriggerRequest /= null then
          if this.m_IBarcodeScannerStartSoftwareTriggerRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerStartSoftwareTriggerRequest.all.Release;
+            temp := this.m_IBarcodeScannerStartSoftwareTriggerRequest.all.Release;
             Free (this.m_IBarcodeScannerStartSoftwareTriggerRequest);
          end if;
       end if;
@@ -2782,7 +2978,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerStartSoftwareTriggerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2790,7 +2987,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2811,9 +3007,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2824,7 +3020,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerStartSoftwareTriggerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2832,7 +3029,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2853,9 +3049,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2867,8 +3063,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerStartSoftwareTriggerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2876,7 +3073,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2892,7 +3088,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerStartSoftwareTriggerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2900,9 +3096,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2915,9 +3111,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerStartSoftwareTriggerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2925,7 +3122,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2941,7 +3137,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerStartSoftwareTriggerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -2949,13 +3145,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -2967,12 +3163,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerStartSoftwareTriggerRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerStartSoftwareTriggerRequestEventArgs, IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs /= null then
          if this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs);
          end if;
       end if;
@@ -2987,11 +3183,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerStartSoftwareTriggerRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerStartSoftwareTriggerRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerStartSoftwareTriggerRequest do
          Hr := this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerStartSoftwareTriggerRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerStartSoftwareTriggerRequest;
          Retval.m_IBarcodeScannerStartSoftwareTriggerRequest.all := m_ComRetVal;
       end return;
@@ -3003,11 +3203,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -3022,12 +3226,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerStopSoftwareTriggerRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerStopSoftwareTriggerRequest, IBarcodeScannerStopSoftwareTriggerRequest_Ptr);
    begin
       if this.m_IBarcodeScannerStopSoftwareTriggerRequest /= null then
          if this.m_IBarcodeScannerStopSoftwareTriggerRequest.all /= null then
-            RefCount := this.m_IBarcodeScannerStopSoftwareTriggerRequest.all.Release;
+            temp := this.m_IBarcodeScannerStopSoftwareTriggerRequest.all.Release;
             Free (this.m_IBarcodeScannerStopSoftwareTriggerRequest);
          end if;
       end if;
@@ -3041,7 +3245,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerStopSoftwareTriggerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3049,7 +3254,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3070,9 +3274,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3083,7 +3287,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerStopSoftwareTriggerRequest
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3091,7 +3296,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3112,9 +3316,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3126,8 +3330,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       reason : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerStopSoftwareTriggerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3135,7 +3340,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3151,7 +3355,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerStopSoftwareTriggerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3159,9 +3363,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -3174,9 +3378,10 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       failedReasonDescription : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerStopSoftwareTriggerRequest2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_failedReasonDescription : WinRt.HString := To_HString (failedReasonDescription);
+      temp             : WinRt.UInt32 := 0;
+      HStr_failedReasonDescription : constant WinRt.HString := To_HString (failedReasonDescription);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -3184,7 +3389,6 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -3200,7 +3404,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerStopSoftwareTriggerRequest.all);
       Hr := m_Interface.ReportFailedAsync (reason, HStr_failedReasonDescription, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -3208,13 +3412,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_failedReasonDescription);
+      tmp := WindowsDeleteString (HStr_failedReasonDescription);
    end;
 
    -----------------------------------------------------------------------------
@@ -3226,12 +3430,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerStopSoftwareTriggerRequestEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerStopSoftwareTriggerRequestEventArgs, IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Ptr);
    begin
       if this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs /= null then
          if this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all /= null then
-            RefCount := this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all.Release;
+            temp := this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all.Release;
             Free (this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs);
          end if;
       end if;
@@ -3246,11 +3450,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerStopSoftwareTriggerRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.Provider.IBarcodeScannerStopSoftwareTriggerRequest;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerStopSoftwareTriggerRequest do
          Hr := this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeScannerStopSoftwareTriggerRequest := new Windows.Devices.PointOfService.Provider.IBarcodeScannerStopSoftwareTriggerRequest;
          Retval.m_IBarcodeScannerStopSoftwareTriggerRequest.all := m_ComRetVal;
       end return;
@@ -3262,11 +3470,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -3281,12 +3493,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeScannerVideoFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeScannerVideoFrame, IBarcodeScannerVideoFrame_Ptr);
    begin
       if this.m_IBarcodeScannerVideoFrame /= null then
          if this.m_IBarcodeScannerVideoFrame.all /= null then
-            RefCount := this.m_IBarcodeScannerVideoFrame.all.Release;
+            temp := this.m_IBarcodeScannerVideoFrame.all.Release;
             Free (this.m_IBarcodeScannerVideoFrame);
          end if;
       end if;
@@ -3301,10 +3513,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_IBarcodeScannerVideoFrame.all.get_Format (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3314,10 +3530,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeScannerVideoFrame.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3327,10 +3547,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBarcodeScannerVideoFrame.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3340,10 +3564,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IBarcodeScannerVideoFrame.all.get_PixelData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3352,13 +3580,17 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       this : in out BarcodeScannerVideoFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerVideoFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerVideoFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3370,12 +3602,12 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    end;
 
    procedure Finalize (this : in out BarcodeSymbologyAttributesBuilder) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBarcodeSymbologyAttributesBuilder, IBarcodeSymbologyAttributesBuilder_Ptr);
    begin
       if this.m_IBarcodeSymbologyAttributesBuilder /= null then
          if this.m_IBarcodeSymbologyAttributesBuilder.all /= null then
-            RefCount := this.m_IBarcodeSymbologyAttributesBuilder.all.Release;
+            temp := this.m_IBarcodeSymbologyAttributesBuilder.all.Release;
             Free (this.m_IBarcodeSymbologyAttributesBuilder);
          end if;
       end if;
@@ -3386,7 +3618,8 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
 
    function Constructor return BarcodeSymbologyAttributesBuilder is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.PointOfService.Provider.BarcodeSymbologyAttributesBuilder");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.Provider.BarcodeSymbologyAttributesBuilder");
       m_ComRetVal  : aliased Windows.Devices.PointOfService.Provider.IBarcodeSymbologyAttributesBuilder;
    begin
       return RetVal : BarcodeSymbologyAttributesBuilder do
@@ -3395,7 +3628,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
             Retval.m_IBarcodeSymbologyAttributesBuilder := new Windows.Devices.PointOfService.Provider.IBarcodeSymbologyAttributesBuilder;
             Retval.m_IBarcodeSymbologyAttributesBuilder.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3408,10 +3641,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.get_IsCheckDigitValidationSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3421,9 +3658,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.put_IsCheckDigitValidationSupported (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCheckDigitTransmissionSupported
@@ -3432,10 +3673,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.get_IsCheckDigitTransmissionSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3445,9 +3690,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.put_IsCheckDigitTransmissionSupported (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsDecodeLengthSupported
@@ -3456,10 +3705,14 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.get_IsDecodeLengthSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3469,9 +3722,13 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.put_IsDecodeLengthSupported (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateAttributes
@@ -3480,11 +3737,15 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    )
    return WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
    begin
       return RetVal : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes do
          Hr := this.m_IBarcodeSymbologyAttributesBuilder.all.CreateAttributes (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBarcodeSymbologyAttributes := new Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
          Retval.m_IBarcodeSymbologyAttributes.all := m_ComRetVal;
       end return;

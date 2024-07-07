@@ -52,12 +52,12 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    end;
 
    procedure Finalize (this : in out SpatialSurfaceInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialSurfaceInfo, ISpatialSurfaceInfo_Ptr);
    begin
       if this.m_ISpatialSurfaceInfo /= null then
          if this.m_ISpatialSurfaceInfo.all /= null then
-            RefCount := this.m_ISpatialSurfaceInfo.all.Release;
+            temp := this.m_ISpatialSurfaceInfo.all.Release;
             Free (this.m_ISpatialSurfaceInfo);
          end if;
       end if;
@@ -72,10 +72,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_ISpatialSurfaceInfo.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -85,10 +89,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISpatialSurfaceInfo.all.get_UpdateTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -99,13 +107,17 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return IReference_SpatialBoundingOrientedBox.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_SpatialBoundingOrientedBox.Kind;
    begin
       Hr := this.m_ISpatialSurfaceInfo.all.TryGetBounds (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_SpatialBoundingOrientedBox (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -116,13 +128,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMesh'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpatialSurfaceMesh.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -140,7 +152,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialSurfaceMesh.Kind_Delegate, AsyncOperationCompletedHandler_SpatialSurfaceMesh.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -154,7 +166,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
          Hr := this.m_ISpatialSurfaceInfo.all.TryComputeLatestMeshAsync (maxTrianglesPerCubicMeter, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -166,9 +178,9 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
                   Retval.m_ISpatialSurfaceMesh := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMesh;
                   Retval.m_ISpatialSurfaceMesh.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -184,13 +196,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMesh'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpatialSurfaceMesh.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -208,7 +220,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialSurfaceMesh.Kind_Delegate, AsyncOperationCompletedHandler_SpatialSurfaceMesh.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -222,7 +234,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
          Hr := this.m_ISpatialSurfaceInfo.all.TryComputeLatestMeshAsync (maxTrianglesPerCubicMeter, options.m_ISpatialSurfaceMeshOptions.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -234,9 +246,9 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
                   Retval.m_ISpatialSurfaceMesh := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMesh;
                   Retval.m_ISpatialSurfaceMesh.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -253,12 +265,12 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    end;
 
    procedure Finalize (this : in out SpatialSurfaceMesh) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialSurfaceMesh, ISpatialSurfaceMesh_Ptr);
    begin
       if this.m_ISpatialSurfaceMesh /= null then
          if this.m_ISpatialSurfaceMesh.all /= null then
-            RefCount := this.m_ISpatialSurfaceMesh.all.Release;
+            temp := this.m_ISpatialSurfaceMesh.all.Release;
             Free (this.m_ISpatialSurfaceMesh);
          end if;
       end if;
@@ -273,11 +285,15 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.Surfaces.ISpatialSurfaceInfo;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceInfo do
          Hr := this.m_ISpatialSurfaceMesh.all.get_SurfaceInfo (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialSurfaceInfo := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceInfo;
          Retval.m_ISpatialSurfaceInfo.all := m_ComRetVal;
       end return;
@@ -289,11 +305,15 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_ISpatialSurfaceMesh.all.get_CoordinateSystem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
@@ -305,11 +325,15 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshBuffer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshBuffer do
          Hr := this.m_ISpatialSurfaceMesh.all.get_TriangleIndices (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialSurfaceMeshBuffer := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer;
          Retval.m_ISpatialSurfaceMeshBuffer.all := m_ComRetVal;
       end return;
@@ -321,11 +345,15 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshBuffer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshBuffer do
          Hr := this.m_ISpatialSurfaceMesh.all.get_VertexPositions (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialSurfaceMeshBuffer := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer;
          Retval.m_ISpatialSurfaceMeshBuffer.all := m_ComRetVal;
       end return;
@@ -337,10 +365,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialSurfaceMesh.all.get_VertexPositionScale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -350,11 +382,15 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshBuffer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshBuffer do
          Hr := this.m_ISpatialSurfaceMesh.all.get_VertexNormals (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISpatialSurfaceMeshBuffer := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer;
          Retval.m_ISpatialSurfaceMeshBuffer.all := m_ComRetVal;
       end return;
@@ -369,12 +405,12 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    end;
 
    procedure Finalize (this : in out SpatialSurfaceMeshBuffer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialSurfaceMeshBuffer, ISpatialSurfaceMeshBuffer_Ptr);
    begin
       if this.m_ISpatialSurfaceMeshBuffer /= null then
          if this.m_ISpatialSurfaceMeshBuffer.all /= null then
-            RefCount := this.m_ISpatialSurfaceMeshBuffer.all.Release;
+            temp := this.m_ISpatialSurfaceMeshBuffer.all.Release;
             Free (this.m_ISpatialSurfaceMeshBuffer);
          end if;
       end if;
@@ -389,10 +425,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ISpatialSurfaceMeshBuffer.all.get_Format (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -402,10 +442,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ISpatialSurfaceMeshBuffer.all.get_Stride (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -415,10 +459,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ISpatialSurfaceMeshBuffer.all.get_ElementCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -428,10 +476,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISpatialSurfaceMeshBuffer.all.get_Data (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -444,12 +496,12 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    end;
 
    procedure Finalize (this : in out SpatialSurfaceMeshOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialSurfaceMeshOptions, ISpatialSurfaceMeshOptions_Ptr);
    begin
       if this.m_ISpatialSurfaceMeshOptions /= null then
          if this.m_ISpatialSurfaceMeshOptions.all /= null then
-            RefCount := this.m_ISpatialSurfaceMeshOptions.all.Release;
+            temp := this.m_ISpatialSurfaceMeshOptions.all.Release;
             Free (this.m_ISpatialSurfaceMeshOptions);
          end if;
       end if;
@@ -460,7 +512,8 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
 
    function Constructor return SpatialSurfaceMeshOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
       m_ComRetVal  : aliased Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptions;
    begin
       return RetVal : SpatialSurfaceMeshOptions do
@@ -469,7 +522,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
             Retval.m_ISpatialSurfaceMeshOptions := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptions;
             Retval.m_ISpatialSurfaceMeshOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -479,51 +532,63 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    function get_SupportedVertexPositionFormats
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
       m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptionsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceMeshOptionsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_SupportedVertexPositionFormats (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_SupportedTriangleIndexFormats
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
       m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptionsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceMeshOptionsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_SupportedTriangleIndexFormats (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function get_SupportedVertexNormalFormats
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
       m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptionsStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceMeshOptionsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_SupportedVertexNormalFormats (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -536,10 +601,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.get_VertexPositionFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -549,9 +618,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       value : Windows.Graphics.DirectX.DirectXPixelFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.put_VertexPositionFormat (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TriangleIndexFormat
@@ -560,10 +633,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.get_TriangleIndexFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -573,9 +650,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       value : Windows.Graphics.DirectX.DirectXPixelFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.put_TriangleIndexFormat (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VertexNormalFormat
@@ -584,10 +665,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Graphics.DirectX.DirectXPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.get_VertexNormalFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -597,9 +682,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       value : Windows.Graphics.DirectX.DirectXPixelFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.put_VertexNormalFormat (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IncludeVertexNormals
@@ -608,10 +697,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.get_IncludeVertexNormals (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -621,9 +714,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceMeshOptions.all.put_IncludeVertexNormals (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -635,12 +732,12 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    end;
 
    procedure Finalize (this : in out SpatialSurfaceObserver) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpatialSurfaceObserver, ISpatialSurfaceObserver_Ptr);
    begin
       if this.m_ISpatialSurfaceObserver /= null then
          if this.m_ISpatialSurfaceObserver.all /= null then
-            RefCount := this.m_ISpatialSurfaceObserver.all.Release;
+            temp := this.m_ISpatialSurfaceObserver.all.Release;
             Free (this.m_ISpatialSurfaceObserver);
          end if;
       end if;
@@ -651,7 +748,8 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
 
    function Constructor return SpatialSurfaceObserver is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
       m_ComRetVal  : aliased Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserver;
    begin
       return RetVal : SpatialSurfaceObserver do
@@ -660,7 +758,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
             Retval.m_ISpatialSurfaceObserver := new Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserver;
             Retval.m_ISpatialSurfaceObserver.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -670,15 +768,15 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    function RequestAccessAsync
    return WinRt.Windows.Perception.Spatial.SpatialPerceptionAccessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
       m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserverStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_SpatialPerceptionAccessStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -696,7 +794,7 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_SpatialPerceptionAccessStatus.Kind_Delegate, AsyncOperationCompletedHandler_SpatialPerceptionAccessStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -709,10 +807,10 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceObserverStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.RequestAccessAsync (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -722,32 +820,36 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
       m_Factory        : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserverStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISpatialSurfaceObserverStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -760,13 +862,17 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return IMapView_Guid_ISpatialSurfaceInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_ISpatialSurfaceInfo.Kind;
    begin
       Hr := this.m_ISpatialSurfaceObserver.all.GetObservedSurfaces (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_Guid_ISpatialSurfaceInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -776,9 +882,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       bounds : Windows.Perception.Spatial.SpatialBoundingVolume'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceObserver.all.SetBoundingVolume (bounds.m_ISpatialBoundingVolume.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetBoundingVolumes
@@ -787,9 +897,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       bounds : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceObserver.all.SetBoundingVolumes (bounds);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ObservedSurfacesChanged
@@ -799,10 +913,14 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialSurfaceObserver.all.add_ObservedSurfacesChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -812,9 +930,13 @@ package body WinRt.Windows.Perception.Spatial.Surfaces is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISpatialSurfaceObserver.all.remove_ObservedSurfacesChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Perception.Spatial.Surfaces;

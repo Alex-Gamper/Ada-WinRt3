@@ -46,12 +46,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out CameraIntrinsics) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICameraIntrinsics, ICameraIntrinsics_Ptr);
    begin
       if this.m_ICameraIntrinsics /= null then
          if this.m_ICameraIntrinsics.all /= null then
-            RefCount := this.m_ICameraIntrinsics.all.Release;
+            temp := this.m_ICameraIntrinsics.all.Release;
             Free (this.m_ICameraIntrinsics);
          end if;
       end if;
@@ -71,9 +71,10 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return CameraIntrinsics is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Devices.Core.CameraIntrinsics");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.Core.CameraIntrinsics");
       m_Factory    : access ICameraIntrinsicsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Media.Devices.Core.ICameraIntrinsics;
    begin
       return RetVal : CameraIntrinsics do
@@ -82,9 +83,9 @@ package body WinRt.Windows.Media.Devices.Core is
             Hr := m_Factory.Create (focalLength, principalPoint, radialDistortion, tangentialDistortion, imageWidth, imageHeight, m_ComRetVal'Access);
             Retval.m_ICameraIntrinsics := new Windows.Media.Devices.Core.ICameraIntrinsics;
             Retval.m_ICameraIntrinsics.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -97,10 +98,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICameraIntrinsics.all.get_FocalLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -110,10 +115,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICameraIntrinsics.all.get_PrincipalPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -123,10 +132,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ICameraIntrinsics.all.get_RadialDistortion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -136,10 +149,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICameraIntrinsics.all.get_TangentialDistortion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -149,10 +166,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICameraIntrinsics.all.get_ImageWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -162,10 +183,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ICameraIntrinsics.all.get_ImageHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -176,10 +201,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_ICameraIntrinsics.all.ProjectOntoFrame (coordinate, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -190,10 +219,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Vector2 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICameraIntrinsics.all.UnprojectAtUnitDepth (pixelCoordinate, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -204,11 +237,15 @@ package body WinRt.Windows.Media.Devices.Core is
       results : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_coordinates is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Numerics.Vector3_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_ICameraIntrinsics.all.ProjectManyOntoFrame (WinRt.UInt32(coordinates'Length), Convert_coordinates (coordinates (coordinates'First)'Address), WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UnprojectPixelsAtUnitDepth
@@ -218,11 +255,15 @@ package body WinRt.Windows.Media.Devices.Core is
       results : Windows.Foundation.Numerics.Vector2_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_pixelCoordinates is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Numerics.Vector2_Ptr);
    begin
       Hr := this.m_ICameraIntrinsics.all.UnprojectPixelsAtUnitDepth (WinRt.UInt32(pixelCoordinates'Length), Convert_pixelCoordinates (pixelCoordinates (pixelCoordinates'First)'Address), WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UndistortedProjectionTransform
@@ -231,14 +272,18 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Matrix4x4 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix4x4;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.ICameraIntrinsics_Interface, WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2, WinRt.Windows.Media.Devices.Core.IID_ICameraIntrinsics2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraIntrinsics.all);
       Hr := m_Interface.get_UndistortedProjectionTransform (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -249,14 +294,18 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.ICameraIntrinsics_Interface, WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2, WinRt.Windows.Media.Devices.Core.IID_ICameraIntrinsics2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraIntrinsics.all);
       Hr := m_Interface.DistortPoint (input, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -267,15 +316,19 @@ package body WinRt.Windows.Media.Devices.Core is
       results : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.ICameraIntrinsics_Interface, WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2, WinRt.Windows.Media.Devices.Core.IID_ICameraIntrinsics2'Unchecked_Access);
       function Convert_inputs is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       m_Interface := QInterface (this.m_ICameraIntrinsics.all);
       Hr := m_Interface.DistortPoints (WinRt.UInt32(inputs'Length), Convert_inputs (inputs (inputs'First)'Address), WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function UndistortPoint
@@ -285,14 +338,18 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.ICameraIntrinsics_Interface, WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2, WinRt.Windows.Media.Devices.Core.IID_ICameraIntrinsics2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraIntrinsics.all);
       Hr := m_Interface.UndistortPoint (input, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -303,15 +360,19 @@ package body WinRt.Windows.Media.Devices.Core is
       results : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.ICameraIntrinsics_Interface, WinRt.Windows.Media.Devices.Core.ICameraIntrinsics2, WinRt.Windows.Media.Devices.Core.IID_ICameraIntrinsics2'Unchecked_Access);
       function Convert_inputs is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       m_Interface := QInterface (this.m_ICameraIntrinsics.all);
       Hr := m_Interface.UndistortPoints (WinRt.UInt32(inputs'Length), Convert_inputs (inputs (inputs'First)'Address), WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -323,12 +384,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out DepthCorrelatedCoordinateMapper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDepthCorrelatedCoordinateMapper, IDepthCorrelatedCoordinateMapper_Ptr);
    begin
       if this.m_IDepthCorrelatedCoordinateMapper /= null then
          if this.m_IDepthCorrelatedCoordinateMapper.all /= null then
-            RefCount := this.m_IDepthCorrelatedCoordinateMapper.all.Release;
+            temp := this.m_IDepthCorrelatedCoordinateMapper.all.Release;
             Free (this.m_IDepthCorrelatedCoordinateMapper);
          end if;
       end if;
@@ -345,10 +406,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IDepthCorrelatedCoordinateMapper.all.UnprojectPoint (sourcePoint, targetCoordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -360,11 +425,15 @@ package body WinRt.Windows.Media.Devices.Core is
       results : Windows.Foundation.Numerics.Vector3_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_sourcePoints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Numerics.Vector3_Ptr);
    begin
       Hr := this.m_IDepthCorrelatedCoordinateMapper.all.UnprojectPoints (WinRt.UInt32(sourcePoints'Length), Convert_sourcePoints (sourcePoints (sourcePoints'First)'Address), targetCoordinateSystem.m_ISpatialCoordinateSystem.all, WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function MapPoint
@@ -376,10 +445,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IDepthCorrelatedCoordinateMapper.all.MapPoint (sourcePoint, targetCoordinateSystem.m_ISpatialCoordinateSystem.all, targetCameraIntrinsics.m_ICameraIntrinsics.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -392,11 +465,15 @@ package body WinRt.Windows.Media.Devices.Core is
       results : Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_sourcePoints is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Foundation.Point_Ptr);
    begin
       Hr := this.m_IDepthCorrelatedCoordinateMapper.all.MapPoints (WinRt.UInt32(sourcePoints'Length), Convert_sourcePoints (sourcePoints (sourcePoints'First)'Address), targetCoordinateSystem.m_ISpatialCoordinateSystem.all, targetCameraIntrinsics.m_ICameraIntrinsics.all, WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -404,13 +481,17 @@ package body WinRt.Windows.Media.Devices.Core is
       this : in out DepthCorrelatedCoordinateMapper
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDepthCorrelatedCoordinateMapper.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -422,12 +503,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameControlCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameControlCapabilities, IFrameControlCapabilities_Ptr);
    begin
       if this.m_IFrameControlCapabilities /= null then
          if this.m_IFrameControlCapabilities.all /= null then
-            RefCount := this.m_IFrameControlCapabilities.all.Release;
+            temp := this.m_IFrameControlCapabilities.all.Release;
             Free (this.m_IFrameControlCapabilities);
          end if;
       end if;
@@ -442,11 +523,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameExposureCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameExposureCapabilities;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameExposureCapabilities do
          Hr := this.m_IFrameControlCapabilities.all.get_Exposure (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameExposureCapabilities := new Windows.Media.Devices.Core.IFrameExposureCapabilities;
          Retval.m_IFrameExposureCapabilities.all := m_ComRetVal;
       end return;
@@ -458,11 +543,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameExposureCompensationCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameExposureCompensationCapabilities;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameExposureCompensationCapabilities do
          Hr := this.m_IFrameControlCapabilities.all.get_ExposureCompensation (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameExposureCompensationCapabilities := new Windows.Media.Devices.Core.IFrameExposureCompensationCapabilities;
          Retval.m_IFrameExposureCompensationCapabilities.all := m_ComRetVal;
       end return;
@@ -474,11 +563,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameIsoSpeedCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameIsoSpeedCapabilities;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameIsoSpeedCapabilities do
          Hr := this.m_IFrameControlCapabilities.all.get_IsoSpeed (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameIsoSpeedCapabilities := new Windows.Media.Devices.Core.IFrameIsoSpeedCapabilities;
          Retval.m_IFrameIsoSpeedCapabilities.all := m_ComRetVal;
       end return;
@@ -490,11 +583,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameFocusCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameFocusCapabilities;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameFocusCapabilities do
          Hr := this.m_IFrameControlCapabilities.all.get_Focus (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameFocusCapabilities := new Windows.Media.Devices.Core.IFrameFocusCapabilities;
          Retval.m_IFrameFocusCapabilities.all := m_ComRetVal;
       end return;
@@ -506,10 +603,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameControlCapabilities.all.get_PhotoConfirmationSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -519,15 +620,19 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameFlashCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.IFrameControlCapabilities2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameFlashCapabilities;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.IFrameControlCapabilities_Interface, WinRt.Windows.Media.Devices.Core.IFrameControlCapabilities2, WinRt.Windows.Media.Devices.Core.IID_IFrameControlCapabilities2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameFlashCapabilities do
          m_Interface := QInterface (this.m_IFrameControlCapabilities.all);
          Hr := m_Interface.get_Flash (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameFlashCapabilities := new Windows.Media.Devices.Core.IFrameFlashCapabilities;
          Retval.m_IFrameFlashCapabilities.all := m_ComRetVal;
       end return;
@@ -542,12 +647,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameController, IFrameController_Ptr);
    begin
       if this.m_IFrameController /= null then
          if this.m_IFrameController.all /= null then
-            RefCount := this.m_IFrameController.all.Release;
+            temp := this.m_IFrameController.all.Release;
             Free (this.m_IFrameController);
          end if;
       end if;
@@ -558,7 +663,8 @@ package body WinRt.Windows.Media.Devices.Core is
 
    function Constructor return FrameController is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Devices.Core.FrameController");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.Core.FrameController");
       m_ComRetVal  : aliased Windows.Media.Devices.Core.IFrameController;
    begin
       return RetVal : FrameController do
@@ -567,7 +673,7 @@ package body WinRt.Windows.Media.Devices.Core is
             Retval.m_IFrameController := new Windows.Media.Devices.Core.IFrameController;
             Retval.m_IFrameController.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -580,11 +686,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameExposureControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameExposureControl;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameExposureControl do
          Hr := this.m_IFrameController.all.get_ExposureControl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameExposureControl := new Windows.Media.Devices.Core.IFrameExposureControl;
          Retval.m_IFrameExposureControl.all := m_ComRetVal;
       end return;
@@ -596,11 +706,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameExposureCompensationControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameExposureCompensationControl;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameExposureCompensationControl do
          Hr := this.m_IFrameController.all.get_ExposureCompensationControl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameExposureCompensationControl := new Windows.Media.Devices.Core.IFrameExposureCompensationControl;
          Retval.m_IFrameExposureCompensationControl.all := m_ComRetVal;
       end return;
@@ -612,11 +726,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameIsoSpeedControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameIsoSpeedControl;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameIsoSpeedControl do
          Hr := this.m_IFrameController.all.get_IsoSpeedControl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameIsoSpeedControl := new Windows.Media.Devices.Core.IFrameIsoSpeedControl;
          Retval.m_IFrameIsoSpeedControl.all := m_ComRetVal;
       end return;
@@ -628,11 +746,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameFocusControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameFocusControl;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameFocusControl do
          Hr := this.m_IFrameController.all.get_FocusControl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameFocusControl := new Windows.Media.Devices.Core.IFrameFocusControl;
          Retval.m_IFrameFocusControl.all := m_ComRetVal;
       end return;
@@ -644,13 +766,17 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return IReference_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_IFrameController.all.get_PhotoConfirmationEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -660,9 +786,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameController.all.put_PhotoConfirmationEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FlashControl
@@ -671,15 +801,19 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameFlashControl'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Devices.Core.IFrameController2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameFlashControl;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Devices.Core.IFrameController_Interface, WinRt.Windows.Media.Devices.Core.IFrameController2, WinRt.Windows.Media.Devices.Core.IID_IFrameController2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameFlashControl do
          m_Interface := QInterface (this.m_IFrameController.all);
          Hr := m_Interface.get_FlashControl (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameFlashControl := new Windows.Media.Devices.Core.IFrameFlashControl;
          Retval.m_IFrameFlashControl.all := m_ComRetVal;
       end return;
@@ -694,12 +828,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameExposureCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameExposureCapabilities, IFrameExposureCapabilities_Ptr);
    begin
       if this.m_IFrameExposureCapabilities /= null then
          if this.m_IFrameExposureCapabilities.all /= null then
-            RefCount := this.m_IFrameExposureCapabilities.all.Release;
+            temp := this.m_IFrameExposureCapabilities.all.Release;
             Free (this.m_IFrameExposureCapabilities);
          end if;
       end if;
@@ -714,10 +848,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameExposureCapabilities.all.get_Supported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -727,10 +865,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IFrameExposureCapabilities.all.get_Min (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -740,10 +882,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IFrameExposureCapabilities.all.get_Max (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -753,10 +899,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IFrameExposureCapabilities.all.get_Step (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -769,12 +919,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameExposureCompensationCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameExposureCompensationCapabilities, IFrameExposureCompensationCapabilities_Ptr);
    begin
       if this.m_IFrameExposureCompensationCapabilities /= null then
          if this.m_IFrameExposureCompensationCapabilities.all /= null then
-            RefCount := this.m_IFrameExposureCompensationCapabilities.all.Release;
+            temp := this.m_IFrameExposureCompensationCapabilities.all.Release;
             Free (this.m_IFrameExposureCompensationCapabilities);
          end if;
       end if;
@@ -789,10 +939,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameExposureCompensationCapabilities.all.get_Supported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -802,10 +956,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IFrameExposureCompensationCapabilities.all.get_Min (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -815,10 +973,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IFrameExposureCompensationCapabilities.all.get_Max (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -828,10 +990,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IFrameExposureCompensationCapabilities.all.get_Step (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -844,12 +1010,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameExposureCompensationControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameExposureCompensationControl, IFrameExposureCompensationControl_Ptr);
    begin
       if this.m_IFrameExposureCompensationControl /= null then
          if this.m_IFrameExposureCompensationControl.all /= null then
-            RefCount := this.m_IFrameExposureCompensationControl.all.Release;
+            temp := this.m_IFrameExposureCompensationControl.all.Release;
             Free (this.m_IFrameExposureCompensationControl);
          end if;
       end if;
@@ -864,13 +1030,17 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return IReference_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IFrameExposureCompensationControl.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -880,9 +1050,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameExposureCompensationControl.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -894,12 +1068,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameExposureControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameExposureControl, IFrameExposureControl_Ptr);
    begin
       if this.m_IFrameExposureControl /= null then
          if this.m_IFrameExposureControl.all /= null then
-            RefCount := this.m_IFrameExposureControl.all.Release;
+            temp := this.m_IFrameExposureControl.all.Release;
             Free (this.m_IFrameExposureControl);
          end if;
       end if;
@@ -914,10 +1088,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameExposureControl.all.get_Auto (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -927,9 +1105,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameExposureControl.all.put_Auto (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Value
@@ -938,13 +1120,17 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return IReference_TimeSpan.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IFrameExposureControl.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_TimeSpan (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -954,9 +1140,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameExposureControl.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -968,12 +1158,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameFlashCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameFlashCapabilities, IFrameFlashCapabilities_Ptr);
    begin
       if this.m_IFrameFlashCapabilities /= null then
          if this.m_IFrameFlashCapabilities.all /= null then
-            RefCount := this.m_IFrameFlashCapabilities.all.Release;
+            temp := this.m_IFrameFlashCapabilities.all.Release;
             Free (this.m_IFrameFlashCapabilities);
          end if;
       end if;
@@ -988,10 +1178,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameFlashCapabilities.all.get_Supported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1001,10 +1195,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameFlashCapabilities.all.get_RedEyeReductionSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1014,10 +1212,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameFlashCapabilities.all.get_PowerSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1030,12 +1232,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameFlashControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameFlashControl, IFrameFlashControl_Ptr);
    begin
       if this.m_IFrameFlashControl /= null then
          if this.m_IFrameFlashControl.all /= null then
-            RefCount := this.m_IFrameFlashControl.all.Release;
+            temp := this.m_IFrameFlashControl.all.Release;
             Free (this.m_IFrameFlashControl);
          end if;
       end if;
@@ -1050,10 +1252,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameFlashMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.FrameFlashMode;
    begin
       Hr := this.m_IFrameFlashControl.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1063,9 +1269,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : Windows.Media.Devices.Core.FrameFlashMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameFlashControl.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Auto
@@ -1074,10 +1284,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameFlashControl.all.get_Auto (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1087,9 +1301,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameFlashControl.all.put_Auto (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RedEyeReduction
@@ -1098,10 +1316,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameFlashControl.all.get_RedEyeReduction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1111,9 +1333,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameFlashControl.all.put_RedEyeReduction (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PowerPercent
@@ -1122,10 +1348,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IFrameFlashControl.all.get_PowerPercent (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1135,9 +1365,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameFlashControl.all.put_PowerPercent (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1149,12 +1383,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameFocusCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameFocusCapabilities, IFrameFocusCapabilities_Ptr);
    begin
       if this.m_IFrameFocusCapabilities /= null then
          if this.m_IFrameFocusCapabilities.all /= null then
-            RefCount := this.m_IFrameFocusCapabilities.all.Release;
+            temp := this.m_IFrameFocusCapabilities.all.Release;
             Free (this.m_IFrameFocusCapabilities);
          end if;
       end if;
@@ -1169,10 +1403,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameFocusCapabilities.all.get_Supported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1182,10 +1420,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFrameFocusCapabilities.all.get_Min (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1195,10 +1437,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFrameFocusCapabilities.all.get_Max (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1208,10 +1454,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFrameFocusCapabilities.all.get_Step (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1224,12 +1474,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameFocusControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameFocusControl, IFrameFocusControl_Ptr);
    begin
       if this.m_IFrameFocusControl /= null then
          if this.m_IFrameFocusControl.all /= null then
-            RefCount := this.m_IFrameFocusControl.all.Release;
+            temp := this.m_IFrameFocusControl.all.Release;
             Free (this.m_IFrameFocusControl);
          end if;
       end if;
@@ -1244,13 +1494,17 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IFrameFocusControl.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1260,9 +1514,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameFocusControl.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1274,12 +1532,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameIsoSpeedCapabilities) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameIsoSpeedCapabilities, IFrameIsoSpeedCapabilities_Ptr);
    begin
       if this.m_IFrameIsoSpeedCapabilities /= null then
          if this.m_IFrameIsoSpeedCapabilities.all /= null then
-            RefCount := this.m_IFrameIsoSpeedCapabilities.all.Release;
+            temp := this.m_IFrameIsoSpeedCapabilities.all.Release;
             Free (this.m_IFrameIsoSpeedCapabilities);
          end if;
       end if;
@@ -1294,10 +1552,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameIsoSpeedCapabilities.all.get_Supported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1307,10 +1569,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFrameIsoSpeedCapabilities.all.get_Min (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1320,10 +1586,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFrameIsoSpeedCapabilities.all.get_Max (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1333,10 +1603,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IFrameIsoSpeedCapabilities.all.get_Step (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1349,12 +1623,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out FrameIsoSpeedControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFrameIsoSpeedControl, IFrameIsoSpeedControl_Ptr);
    begin
       if this.m_IFrameIsoSpeedControl /= null then
          if this.m_IFrameIsoSpeedControl.all /= null then
-            RefCount := this.m_IFrameIsoSpeedControl.all.Release;
+            temp := this.m_IFrameIsoSpeedControl.all.Release;
             Free (this.m_IFrameIsoSpeedControl);
          end if;
       end if;
@@ -1369,10 +1643,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFrameIsoSpeedControl.all.get_Auto (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1382,9 +1660,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameIsoSpeedControl.all.put_Auto (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Value
@@ -1393,13 +1675,17 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IFrameIsoSpeedControl.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1409,9 +1695,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFrameIsoSpeedControl.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1423,12 +1713,12 @@ package body WinRt.Windows.Media.Devices.Core is
    end;
 
    procedure Finalize (this : in out VariablePhotoSequenceController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVariablePhotoSequenceController, IVariablePhotoSequenceController_Ptr);
    begin
       if this.m_IVariablePhotoSequenceController /= null then
          if this.m_IVariablePhotoSequenceController.all /= null then
-            RefCount := this.m_IVariablePhotoSequenceController.all.Release;
+            temp := this.m_IVariablePhotoSequenceController.all.Release;
             Free (this.m_IVariablePhotoSequenceController);
          end if;
       end if;
@@ -1443,10 +1733,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVariablePhotoSequenceController.all.get_Supported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1456,10 +1750,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IVariablePhotoSequenceController.all.get_MaxPhotosPerSecond (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1469,10 +1767,14 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
    begin
       Hr := this.m_IVariablePhotoSequenceController.all.get_PhotosPerSecondLimit (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1482,9 +1784,13 @@ package body WinRt.Windows.Media.Devices.Core is
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVariablePhotoSequenceController.all.put_PhotosPerSecondLimit (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetHighestConcurrentFrameRate
@@ -1494,11 +1800,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.MediaProperties.MediaRatio'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaRatio;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaRatio do
          Hr := this.m_IVariablePhotoSequenceController.all.GetHighestConcurrentFrameRate (captureProperties, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaRatio := new Windows.Media.MediaProperties.IMediaRatio;
          Retval.m_IMediaRatio.all := m_ComRetVal;
       end return;
@@ -1510,11 +1820,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.MediaProperties.MediaRatio'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaRatio;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaRatio do
          Hr := this.m_IVariablePhotoSequenceController.all.GetCurrentFrameRate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaRatio := new Windows.Media.MediaProperties.IMediaRatio;
          Retval.m_IMediaRatio.all := m_ComRetVal;
       end return;
@@ -1526,11 +1840,15 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return WinRt.Windows.Media.Devices.Core.FrameControlCapabilities'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Devices.Core.IFrameControlCapabilities;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.FrameControlCapabilities do
          Hr := this.m_IVariablePhotoSequenceController.all.get_FrameCapabilities (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameControlCapabilities := new Windows.Media.Devices.Core.IFrameControlCapabilities;
          Retval.m_IFrameControlCapabilities.all := m_ComRetVal;
       end return;
@@ -1542,13 +1860,17 @@ package body WinRt.Windows.Media.Devices.Core is
    )
    return IVector_IFrameController.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IFrameController.Kind;
    begin
       Hr := this.m_IVariablePhotoSequenceController.all.get_DesiredFrameControllers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IFrameController (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 

@@ -42,12 +42,12 @@ package body WinRt.Windows.UI.Composition.Core is
    end;
 
    procedure Finalize (this : in out CompositorController) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICompositorController, ICompositorController_Ptr);
    begin
       if this.m_ICompositorController /= null then
          if this.m_ICompositorController.all /= null then
-            RefCount := this.m_ICompositorController.all.Release;
+            temp := this.m_ICompositorController.all.Release;
             Free (this.m_ICompositorController);
          end if;
       end if;
@@ -58,7 +58,8 @@ package body WinRt.Windows.UI.Composition.Core is
 
    function Constructor return CompositorController is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Composition.Core.CompositorController");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Core.CompositorController");
       m_ComRetVal  : aliased Windows.UI.Composition.Core.ICompositorController;
    begin
       return RetVal : CompositorController do
@@ -67,7 +68,7 @@ package body WinRt.Windows.UI.Composition.Core is
             Retval.m_ICompositorController := new Windows.UI.Composition.Core.ICompositorController;
             Retval.m_ICompositorController.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -80,11 +81,15 @@ package body WinRt.Windows.UI.Composition.Core is
    )
    return WinRt.Windows.UI.Composition.Compositor'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Composition.ICompositor;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Compositor do
          Hr := this.m_ICompositorController.all.get_Compositor (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
          Retval.m_ICompositor.all := m_ComRetVal;
       end return;
@@ -95,9 +100,13 @@ package body WinRt.Windows.UI.Composition.Core is
       this : in out CompositorController
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositorController.all.Commit;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure EnsurePreviousCommitCompletedAsync
@@ -105,7 +114,8 @@ package body WinRt.Windows.UI.Composition.Core is
       this : in out CompositorController
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -113,7 +123,6 @@ package body WinRt.Windows.UI.Composition.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -134,9 +143,9 @@ package body WinRt.Windows.UI.Composition.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -149,10 +158,14 @@ package body WinRt.Windows.UI.Composition.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositorController.all.add_CommitNeeded (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -162,9 +175,13 @@ package body WinRt.Windows.UI.Composition.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICompositorController.all.remove_CommitNeeded (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -172,13 +189,17 @@ package body WinRt.Windows.UI.Composition.Core is
       this : in out CompositorController
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Core.ICompositorController_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositorController.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Composition.Core;

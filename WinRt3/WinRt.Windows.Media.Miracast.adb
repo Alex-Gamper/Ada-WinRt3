@@ -65,12 +65,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiver) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiver, IMiracastReceiver_Ptr);
    begin
       if this.m_IMiracastReceiver /= null then
          if this.m_IMiracastReceiver.all /= null then
-            RefCount := this.m_IMiracastReceiver.all.Release;
+            temp := this.m_IMiracastReceiver.all.Release;
             Free (this.m_IMiracastReceiver);
          end if;
       end if;
@@ -81,7 +81,8 @@ package body WinRt.Windows.Media.Miracast is
 
    function Constructor return MiracastReceiver is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.Miracast.MiracastReceiver");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Miracast.MiracastReceiver");
       m_ComRetVal  : aliased Windows.Media.Miracast.IMiracastReceiver;
    begin
       return RetVal : MiracastReceiver do
@@ -90,7 +91,7 @@ package body WinRt.Windows.Media.Miracast is
             Retval.m_IMiracastReceiver := new Windows.Media.Miracast.IMiracastReceiver;
             Retval.m_IMiracastReceiver.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -103,11 +104,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverSettings;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverSettings do
          Hr := this.m_IMiracastReceiver.all.GetDefaultSettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverSettings := new Windows.Media.Miracast.IMiracastReceiverSettings;
          Retval.m_IMiracastReceiverSettings.all := m_ComRetVal;
       end return;
@@ -119,11 +124,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverSettings;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverSettings do
          Hr := this.m_IMiracastReceiver.all.GetCurrentSettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverSettings := new Windows.Media.Miracast.IMiracastReceiverSettings;
          Retval.m_IMiracastReceiverSettings.all := m_ComRetVal;
       end return;
@@ -135,13 +144,13 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MiracastReceiverSettings.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -159,7 +168,7 @@ package body WinRt.Windows.Media.Miracast is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MiracastReceiverSettings.Kind_Delegate, AsyncOperationCompletedHandler_MiracastReceiverSettings.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -173,7 +182,7 @@ package body WinRt.Windows.Media.Miracast is
          Hr := this.m_IMiracastReceiver.all.GetCurrentSettingsAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -185,9 +194,9 @@ package body WinRt.Windows.Media.Miracast is
                   Retval.m_IMiracastReceiverSettings := new Windows.Media.Miracast.IMiracastReceiverSettings;
                   Retval.m_IMiracastReceiverSettings.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -202,11 +211,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverApplySettingsResult;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsResult do
          Hr := this.m_IMiracastReceiver.all.DisconnectAllAndApplySettings (settings.m_IMiracastReceiverSettings.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverApplySettingsResult := new Windows.Media.Miracast.IMiracastReceiverApplySettingsResult;
          Retval.m_IMiracastReceiverApplySettingsResult.all := m_ComRetVal;
       end return;
@@ -219,13 +232,13 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MiracastReceiverApplySettingsResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -243,7 +256,7 @@ package body WinRt.Windows.Media.Miracast is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MiracastReceiverApplySettingsResult.Kind_Delegate, AsyncOperationCompletedHandler_MiracastReceiverApplySettingsResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -257,7 +270,7 @@ package body WinRt.Windows.Media.Miracast is
          Hr := this.m_IMiracastReceiver.all.DisconnectAllAndApplySettingsAsync (settings.m_IMiracastReceiverSettings.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -269,9 +282,9 @@ package body WinRt.Windows.Media.Miracast is
                   Retval.m_IMiracastReceiverApplySettingsResult := new Windows.Media.Miracast.IMiracastReceiverApplySettingsResult;
                   Retval.m_IMiracastReceiverApplySettingsResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -285,11 +298,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverStatus;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverStatus do
          Hr := this.m_IMiracastReceiver.all.GetStatus (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverStatus := new Windows.Media.Miracast.IMiracastReceiverStatus;
          Retval.m_IMiracastReceiverStatus.all := m_ComRetVal;
       end return;
@@ -301,13 +318,13 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverStatus'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MiracastReceiverStatus.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -325,7 +342,7 @@ package body WinRt.Windows.Media.Miracast is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MiracastReceiverStatus.Kind_Delegate, AsyncOperationCompletedHandler_MiracastReceiverStatus.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -339,7 +356,7 @@ package body WinRt.Windows.Media.Miracast is
          Hr := this.m_IMiracastReceiver.all.GetStatusAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -351,9 +368,9 @@ package body WinRt.Windows.Media.Miracast is
                   Retval.m_IMiracastReceiverStatus := new Windows.Media.Miracast.IMiracastReceiverStatus;
                   Retval.m_IMiracastReceiverStatus.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -368,10 +385,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiver.all.add_StatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -381,9 +402,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiver.all.remove_StatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateSession
@@ -393,11 +418,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverSession;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverSession do
          Hr := this.m_IMiracastReceiver.all.CreateSession (view.m_ICoreApplicationView.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverSession := new Windows.Media.Miracast.IMiracastReceiverSession;
          Retval.m_IMiracastReceiverSession.all := m_ComRetVal;
       end return;
@@ -410,13 +439,13 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MiracastReceiverSession.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -434,7 +463,7 @@ package body WinRt.Windows.Media.Miracast is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MiracastReceiverSession.Kind_Delegate, AsyncOperationCompletedHandler_MiracastReceiverSession.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -448,7 +477,7 @@ package body WinRt.Windows.Media.Miracast is
          Hr := this.m_IMiracastReceiver.all.CreateSessionAsync (view.m_ICoreApplicationView.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -460,9 +489,9 @@ package body WinRt.Windows.Media.Miracast is
                   Retval.m_IMiracastReceiverSession := new Windows.Media.Miracast.IMiracastReceiverSession;
                   Retval.m_IMiracastReceiverSession.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -475,9 +504,13 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiver
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiver.all.ClearKnownTransmitters;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure RemoveKnownTransmitter
@@ -486,9 +519,13 @@ package body WinRt.Windows.Media.Miracast is
       transmitter : Windows.Media.Miracast.MiracastTransmitter'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiver.all.RemoveKnownTransmitter (transmitter.m_IMiracastTransmitter.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -500,12 +537,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverApplySettingsResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverApplySettingsResult, IMiracastReceiverApplySettingsResult_Ptr);
    begin
       if this.m_IMiracastReceiverApplySettingsResult /= null then
          if this.m_IMiracastReceiverApplySettingsResult.all /= null then
-            RefCount := this.m_IMiracastReceiverApplySettingsResult.all.Release;
+            temp := this.m_IMiracastReceiverApplySettingsResult.all.Release;
             Free (this.m_IMiracastReceiverApplySettingsResult);
          end if;
       end if;
@@ -520,10 +557,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastReceiverApplySettingsStatus;
    begin
       Hr := this.m_IMiracastReceiverApplySettingsResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -533,10 +574,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IMiracastReceiverApplySettingsResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -549,12 +594,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverConnection) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverConnection, IMiracastReceiverConnection_Ptr);
    begin
       if this.m_IMiracastReceiverConnection /= null then
          if this.m_IMiracastReceiverConnection.all /= null then
-            RefCount := this.m_IMiracastReceiverConnection.all.Release;
+            temp := this.m_IMiracastReceiverConnection.all.Release;
             Free (this.m_IMiracastReceiverConnection);
          end if;
       end if;
@@ -569,9 +614,13 @@ package body WinRt.Windows.Media.Miracast is
       reason : Windows.Media.Miracast.MiracastReceiverDisconnectReason
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverConnection.all.Disconnect (reason);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Disconnect
@@ -581,11 +630,15 @@ package body WinRt.Windows.Media.Miracast is
       message : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_message : WinRt.HString := To_HString (message);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_message : constant WinRt.HString := To_HString (message);
    begin
       Hr := this.m_IMiracastReceiverConnection.all.Disconnect (reason, HStr_message);
-      Hr := WindowsDeleteString (HStr_message);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_message);
    end;
 
    procedure Pause
@@ -593,9 +646,13 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiverConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverConnection.all.Pause;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PauseAsync
@@ -603,7 +660,8 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiverConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -611,7 +669,6 @@ package body WinRt.Windows.Media.Miracast is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -632,9 +689,9 @@ package body WinRt.Windows.Media.Miracast is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -645,9 +702,13 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiverConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverConnection.all.Resume;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ResumeAsync
@@ -655,7 +716,8 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiverConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -663,7 +725,6 @@ package body WinRt.Windows.Media.Miracast is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -684,9 +745,9 @@ package body WinRt.Windows.Media.Miracast is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -698,11 +759,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastTransmitter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastTransmitter;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastTransmitter do
          Hr := this.m_IMiracastReceiverConnection.all.get_Transmitter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastTransmitter := new Windows.Media.Miracast.IMiracastTransmitter;
          Retval.m_IMiracastTransmitter.all := m_ComRetVal;
       end return;
@@ -714,11 +779,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverInputDevices'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverInputDevices;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverInputDevices do
          Hr := this.m_IMiracastReceiverConnection.all.get_InputDevices (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverInputDevices := new Windows.Media.Miracast.IMiracastReceiverInputDevices;
          Retval.m_IMiracastReceiverInputDevices.all := m_ComRetVal;
       end return;
@@ -730,11 +799,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverCursorImageChannel'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverCursorImageChannel;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverCursorImageChannel do
          Hr := this.m_IMiracastReceiverConnection.all.get_CursorImageChannel (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverCursorImageChannel := new Windows.Media.Miracast.IMiracastReceiverCursorImageChannel;
          Retval.m_IMiracastReceiverCursorImageChannel.all := m_ComRetVal;
       end return;
@@ -746,11 +819,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverStreamControl'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverStreamControl;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverStreamControl do
          Hr := this.m_IMiracastReceiverConnection.all.get_StreamControl (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverStreamControl := new Windows.Media.Miracast.IMiracastReceiverStreamControl;
          Retval.m_IMiracastReceiverStreamControl.all := m_ComRetVal;
       end return;
@@ -761,13 +838,17 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiverConnection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Miracast.IMiracastReceiverConnection_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMiracastReceiverConnection.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -779,12 +860,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverConnectionCreatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverConnectionCreatedEventArgs, IMiracastReceiverConnectionCreatedEventArgs_Ptr);
    begin
       if this.m_IMiracastReceiverConnectionCreatedEventArgs /= null then
          if this.m_IMiracastReceiverConnectionCreatedEventArgs.all /= null then
-            RefCount := this.m_IMiracastReceiverConnectionCreatedEventArgs.all.Release;
+            temp := this.m_IMiracastReceiverConnectionCreatedEventArgs.all.Release;
             Free (this.m_IMiracastReceiverConnectionCreatedEventArgs);
          end if;
       end if;
@@ -799,11 +880,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverConnection;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverConnection do
          Hr := this.m_IMiracastReceiverConnectionCreatedEventArgs.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverConnection := new Windows.Media.Miracast.IMiracastReceiverConnection;
          Retval.m_IMiracastReceiverConnection.all := m_ComRetVal;
       end return;
@@ -815,13 +900,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMiracastReceiverConnectionCreatedEventArgs.all.get_Pin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -831,11 +920,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMiracastReceiverConnectionCreatedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -850,12 +943,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverCursorImageChannel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverCursorImageChannel, IMiracastReceiverCursorImageChannel_Ptr);
    begin
       if this.m_IMiracastReceiverCursorImageChannel /= null then
          if this.m_IMiracastReceiverCursorImageChannel.all /= null then
-            RefCount := this.m_IMiracastReceiverCursorImageChannel.all.Release;
+            temp := this.m_IMiracastReceiverCursorImageChannel.all.Release;
             Free (this.m_IMiracastReceiverCursorImageChannel);
          end if;
       end if;
@@ -870,10 +963,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -883,10 +980,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.get_MaxImageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -896,10 +997,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Graphics.PointInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.PointInt32;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -909,10 +1014,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.get_ImageStream (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -923,10 +1032,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.add_ImageStreamChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -936,9 +1049,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.remove_ImageStreamChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PositionChanged
@@ -948,10 +1065,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.add_PositionChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -961,9 +1082,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannel.all.remove_PositionChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -975,12 +1100,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverCursorImageChannelSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverCursorImageChannelSettings, IMiracastReceiverCursorImageChannelSettings_Ptr);
    begin
       if this.m_IMiracastReceiverCursorImageChannelSettings /= null then
          if this.m_IMiracastReceiverCursorImageChannelSettings.all /= null then
-            RefCount := this.m_IMiracastReceiverCursorImageChannelSettings.all.Release;
+            temp := this.m_IMiracastReceiverCursorImageChannelSettings.all.Release;
             Free (this.m_IMiracastReceiverCursorImageChannelSettings);
          end if;
       end if;
@@ -995,10 +1120,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannelSettings.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1008,9 +1137,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannelSettings.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxImageSize
@@ -1019,10 +1152,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannelSettings.all.get_MaxImageSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1032,9 +1169,13 @@ package body WinRt.Windows.Media.Miracast is
       value : Windows.Graphics.SizeInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverCursorImageChannelSettings.all.put_MaxImageSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1046,12 +1187,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverDisconnectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverDisconnectedEventArgs, IMiracastReceiverDisconnectedEventArgs_Ptr);
    begin
       if this.m_IMiracastReceiverDisconnectedEventArgs /= null then
          if this.m_IMiracastReceiverDisconnectedEventArgs.all /= null then
-            RefCount := this.m_IMiracastReceiverDisconnectedEventArgs.all.Release;
+            temp := this.m_IMiracastReceiverDisconnectedEventArgs.all.Release;
             Free (this.m_IMiracastReceiverDisconnectedEventArgs);
          end if;
       end if;
@@ -1066,11 +1207,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverConnection;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverConnection do
          Hr := this.m_IMiracastReceiverDisconnectedEventArgs.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverConnection := new Windows.Media.Miracast.IMiracastReceiverConnection;
          Retval.m_IMiracastReceiverConnection.all := m_ComRetVal;
       end return;
@@ -1085,12 +1230,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverGameControllerDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverGameControllerDevice, IMiracastReceiverGameControllerDevice_Ptr);
    begin
       if this.m_IMiracastReceiverGameControllerDevice /= null then
          if this.m_IMiracastReceiverGameControllerDevice.all /= null then
-            RefCount := this.m_IMiracastReceiverGameControllerDevice.all.Release;
+            temp := this.m_IMiracastReceiverGameControllerDevice.all.Release;
             Free (this.m_IMiracastReceiverGameControllerDevice);
          end if;
       end if;
@@ -1105,10 +1250,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.get_TransmitInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1118,9 +1267,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.put_TransmitInput (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsRequestedByTransmitter
@@ -1129,10 +1282,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.get_IsRequestedByTransmitter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1142,10 +1299,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.get_IsTransmittingInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1155,10 +1316,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1168,9 +1333,13 @@ package body WinRt.Windows.Media.Miracast is
       value : Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Changed
@@ -1180,10 +1349,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.add_Changed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1193,9 +1366,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverGameControllerDevice.all.remove_Changed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1207,12 +1384,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverInputDevices) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverInputDevices, IMiracastReceiverInputDevices_Ptr);
    begin
       if this.m_IMiracastReceiverInputDevices /= null then
          if this.m_IMiracastReceiverInputDevices.all /= null then
-            RefCount := this.m_IMiracastReceiverInputDevices.all.Release;
+            temp := this.m_IMiracastReceiverInputDevices.all.Release;
             Free (this.m_IMiracastReceiverInputDevices);
          end if;
       end if;
@@ -1227,11 +1404,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverKeyboardDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverKeyboardDevice;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverKeyboardDevice do
          Hr := this.m_IMiracastReceiverInputDevices.all.get_Keyboard (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverKeyboardDevice := new Windows.Media.Miracast.IMiracastReceiverKeyboardDevice;
          Retval.m_IMiracastReceiverKeyboardDevice.all := m_ComRetVal;
       end return;
@@ -1243,11 +1424,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverGameControllerDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverGameControllerDevice;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverGameControllerDevice do
          Hr := this.m_IMiracastReceiverInputDevices.all.get_GameController (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverGameControllerDevice := new Windows.Media.Miracast.IMiracastReceiverGameControllerDevice;
          Retval.m_IMiracastReceiverGameControllerDevice.all := m_ComRetVal;
       end return;
@@ -1262,12 +1447,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverKeyboardDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverKeyboardDevice, IMiracastReceiverKeyboardDevice_Ptr);
    begin
       if this.m_IMiracastReceiverKeyboardDevice /= null then
          if this.m_IMiracastReceiverKeyboardDevice.all /= null then
-            RefCount := this.m_IMiracastReceiverKeyboardDevice.all.Release;
+            temp := this.m_IMiracastReceiverKeyboardDevice.all.Release;
             Free (this.m_IMiracastReceiverKeyboardDevice);
          end if;
       end if;
@@ -1282,10 +1467,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverKeyboardDevice.all.get_TransmitInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1295,9 +1484,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverKeyboardDevice.all.put_TransmitInput (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsRequestedByTransmitter
@@ -1306,10 +1499,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverKeyboardDevice.all.get_IsRequestedByTransmitter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1319,10 +1516,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverKeyboardDevice.all.get_IsTransmittingInput (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1333,10 +1534,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverKeyboardDevice.all.add_Changed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1346,9 +1551,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverKeyboardDevice.all.remove_Changed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1360,12 +1569,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverMediaSourceCreatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverMediaSourceCreatedEventArgs, IMiracastReceiverMediaSourceCreatedEventArgs_Ptr);
    begin
       if this.m_IMiracastReceiverMediaSourceCreatedEventArgs /= null then
          if this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all /= null then
-            RefCount := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.Release;
+            temp := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.Release;
             Free (this.m_IMiracastReceiverMediaSourceCreatedEventArgs);
          end if;
       end if;
@@ -1380,11 +1589,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverConnection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverConnection;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverConnection do
          Hr := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.get_Connection (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverConnection := new Windows.Media.Miracast.IMiracastReceiverConnection;
          Retval.m_IMiracastReceiverConnection.all := m_ComRetVal;
       end return;
@@ -1396,11 +1609,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Core.MediaSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.get_MediaSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
          Retval.m_IMediaSource2.all := m_ComRetVal;
       end return;
@@ -1412,11 +1629,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverCursorImageChannelSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverCursorImageChannelSettings;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverCursorImageChannelSettings do
          Hr := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.get_CursorImageChannelSettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverCursorImageChannelSettings := new Windows.Media.Miracast.IMiracastReceiverCursorImageChannelSettings;
          Retval.m_IMiracastReceiverCursorImageChannelSettings.all := m_ComRetVal;
       end return;
@@ -1428,11 +1649,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.Deferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDeferral := new Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
@@ -1447,12 +1672,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverSession, IMiracastReceiverSession_Ptr);
    begin
       if this.m_IMiracastReceiverSession /= null then
          if this.m_IMiracastReceiverSession.all /= null then
-            RefCount := this.m_IMiracastReceiverSession.all.Release;
+            temp := this.m_IMiracastReceiverSession.all.Release;
             Free (this.m_IMiracastReceiverSession);
          end if;
       end if;
@@ -1468,10 +1693,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverSession.all.add_ConnectionCreated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1481,9 +1710,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSession.all.remove_ConnectionCreated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MediaSourceCreated
@@ -1493,10 +1726,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverSession.all.add_MediaSourceCreated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1506,9 +1743,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSession.all.remove_MediaSourceCreated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Disconnected
@@ -1518,10 +1759,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMiracastReceiverSession.all.add_Disconnected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1531,9 +1776,13 @@ package body WinRt.Windows.Media.Miracast is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSession.all.remove_Disconnected (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowConnectionTakeover
@@ -1542,10 +1791,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverSession.all.get_AllowConnectionTakeover (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1555,9 +1808,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSession.all.put_AllowConnectionTakeover (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxSimultaneousConnections
@@ -1566,10 +1823,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMiracastReceiverSession.all.get_MaxSimultaneousConnections (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1579,9 +1840,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSession.all.put_MaxSimultaneousConnections (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Start
@@ -1590,11 +1855,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSessionStartResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverSessionStartResult;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverSessionStartResult do
          Hr := this.m_IMiracastReceiverSession.all.Start (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverSessionStartResult := new Windows.Media.Miracast.IMiracastReceiverSessionStartResult;
          Retval.m_IMiracastReceiverSessionStartResult.all := m_ComRetVal;
       end return;
@@ -1606,13 +1875,13 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSessionStartResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MiracastReceiverSessionStartResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1630,7 +1899,7 @@ package body WinRt.Windows.Media.Miracast is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MiracastReceiverSessionStartResult.Kind_Delegate, AsyncOperationCompletedHandler_MiracastReceiverSessionStartResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1644,7 +1913,7 @@ package body WinRt.Windows.Media.Miracast is
          Hr := this.m_IMiracastReceiverSession.all.StartAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1656,9 +1925,9 @@ package body WinRt.Windows.Media.Miracast is
                   Retval.m_IMiracastReceiverSessionStartResult := new Windows.Media.Miracast.IMiracastReceiverSessionStartResult;
                   Retval.m_IMiracastReceiverSessionStartResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1671,13 +1940,17 @@ package body WinRt.Windows.Media.Miracast is
       this : in out MiracastReceiverSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Miracast.IMiracastReceiverSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMiracastReceiverSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1689,12 +1962,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverSessionStartResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverSessionStartResult, IMiracastReceiverSessionStartResult_Ptr);
    begin
       if this.m_IMiracastReceiverSessionStartResult /= null then
          if this.m_IMiracastReceiverSessionStartResult.all /= null then
-            RefCount := this.m_IMiracastReceiverSessionStartResult.all.Release;
+            temp := this.m_IMiracastReceiverSessionStartResult.all.Release;
             Free (this.m_IMiracastReceiverSessionStartResult);
          end if;
       end if;
@@ -1709,10 +1982,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSessionStartStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastReceiverSessionStartStatus;
    begin
       Hr := this.m_IMiracastReceiverSessionStartResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1722,10 +1999,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IMiracastReceiverSessionStartResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1738,12 +2019,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverSettings, IMiracastReceiverSettings_Ptr);
    begin
       if this.m_IMiracastReceiverSettings /= null then
          if this.m_IMiracastReceiverSettings.all /= null then
-            RefCount := this.m_IMiracastReceiverSettings.all.Release;
+            temp := this.m_IMiracastReceiverSettings.all.Release;
             Free (this.m_IMiracastReceiverSettings);
          end if;
       end if;
@@ -1758,13 +2039,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1774,11 +2059,15 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMiracastReceiverSettings.all.put_FriendlyName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ModelName
@@ -1787,13 +2076,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.get_ModelName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1803,11 +2096,15 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMiracastReceiverSettings.all.put_ModelName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ModelNumber
@@ -1816,13 +2113,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.get_ModelNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1832,11 +2133,15 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMiracastReceiverSettings.all.put_ModelNumber (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AuthorizationMethod
@@ -1845,10 +2150,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverAuthorizationMethod is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastReceiverAuthorizationMethod;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.get_AuthorizationMethod (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1858,9 +2167,13 @@ package body WinRt.Windows.Media.Miracast is
       value : Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.put_AuthorizationMethod (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RequireAuthorizationFromKnownTransmitters
@@ -1869,10 +2182,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.get_RequireAuthorizationFromKnownTransmitters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1882,9 +2199,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverSettings.all.put_RequireAuthorizationFromKnownTransmitters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1896,12 +2217,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverStatus) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverStatus, IMiracastReceiverStatus_Ptr);
    begin
       if this.m_IMiracastReceiverStatus /= null then
          if this.m_IMiracastReceiverStatus.all /= null then
-            RefCount := this.m_IMiracastReceiverStatus.all.Release;
+            temp := this.m_IMiracastReceiverStatus.all.Release;
             Free (this.m_IMiracastReceiverStatus);
          end if;
       end if;
@@ -1916,10 +2237,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverListeningStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastReceiverListeningStatus;
    begin
       Hr := this.m_IMiracastReceiverStatus.all.get_ListeningStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1929,10 +2254,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverWiFiStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastReceiverWiFiStatus;
    begin
       Hr := this.m_IMiracastReceiverStatus.all.get_WiFiStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1942,10 +2271,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverStatus.all.get_IsConnectionTakeoverSupported (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1955,10 +2288,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMiracastReceiverStatus.all.get_MaxSimultaneousConnections (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1968,13 +2305,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return IVectorView_IMiracastTransmitter.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMiracastTransmitter.Kind;
    begin
       Hr := this.m_IMiracastReceiverStatus.all.get_KnownTransmitters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMiracastTransmitter (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1987,12 +2328,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverStreamControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverStreamControl, IMiracastReceiverStreamControl_Ptr);
    begin
       if this.m_IMiracastReceiverStreamControl /= null then
          if this.m_IMiracastReceiverStreamControl.all /= null then
-            RefCount := this.m_IMiracastReceiverStreamControl.all.Release;
+            temp := this.m_IMiracastReceiverStreamControl.all.Release;
             Free (this.m_IMiracastReceiverStreamControl);
          end if;
       end if;
@@ -2007,11 +2348,15 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings;
    begin
       return RetVal : WinRt.Windows.Media.Miracast.MiracastReceiverVideoStreamSettings do
          Hr := this.m_IMiracastReceiverStreamControl.all.GetVideoStreamSettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMiracastReceiverVideoStreamSettings := new Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings;
          Retval.m_IMiracastReceiverVideoStreamSettings.all := m_ComRetVal;
       end return;
@@ -2023,13 +2368,13 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MiracastReceiverVideoStreamSettings.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -2047,7 +2392,7 @@ package body WinRt.Windows.Media.Miracast is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MiracastReceiverVideoStreamSettings.Kind_Delegate, AsyncOperationCompletedHandler_MiracastReceiverVideoStreamSettings.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -2061,7 +2406,7 @@ package body WinRt.Windows.Media.Miracast is
          Hr := this.m_IMiracastReceiverStreamControl.all.GetVideoStreamSettingsAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -2073,9 +2418,9 @@ package body WinRt.Windows.Media.Miracast is
                   Retval.m_IMiracastReceiverVideoStreamSettings := new Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings;
                   Retval.m_IMiracastReceiverVideoStreamSettings.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -2089,9 +2434,13 @@ package body WinRt.Windows.Media.Miracast is
       settings : Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverStreamControl.all.SuggestVideoStreamSettings (settings.m_IMiracastReceiverVideoStreamSettings.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SuggestVideoStreamSettingsAsync
@@ -2100,7 +2449,8 @@ package body WinRt.Windows.Media.Miracast is
       settings : Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -2108,7 +2458,6 @@ package body WinRt.Windows.Media.Miracast is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -2129,9 +2478,9 @@ package body WinRt.Windows.Media.Miracast is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -2143,10 +2492,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMiracastReceiverStreamControl.all.get_MuteAudio (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2156,9 +2509,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverStreamControl.all.put_MuteAudio (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2170,12 +2527,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastReceiverVideoStreamSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastReceiverVideoStreamSettings, IMiracastReceiverVideoStreamSettings_Ptr);
    begin
       if this.m_IMiracastReceiverVideoStreamSettings /= null then
          if this.m_IMiracastReceiverVideoStreamSettings.all /= null then
-            RefCount := this.m_IMiracastReceiverVideoStreamSettings.all.Release;
+            temp := this.m_IMiracastReceiverVideoStreamSettings.all.Release;
             Free (this.m_IMiracastReceiverVideoStreamSettings);
          end if;
       end if;
@@ -2190,10 +2547,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IMiracastReceiverVideoStreamSettings.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2203,9 +2564,13 @@ package body WinRt.Windows.Media.Miracast is
       value : Windows.Graphics.SizeInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverVideoStreamSettings.all.put_Size (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bitrate
@@ -2214,10 +2579,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMiracastReceiverVideoStreamSettings.all.get_Bitrate (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2227,9 +2596,13 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastReceiverVideoStreamSettings.all.put_Bitrate (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2241,12 +2614,12 @@ package body WinRt.Windows.Media.Miracast is
    end;
 
    procedure Finalize (this : in out MiracastTransmitter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMiracastTransmitter, IMiracastTransmitter_Ptr);
    begin
       if this.m_IMiracastTransmitter /= null then
          if this.m_IMiracastTransmitter.all /= null then
-            RefCount := this.m_IMiracastTransmitter.all.Release;
+            temp := this.m_IMiracastTransmitter.all.Release;
             Free (this.m_IMiracastTransmitter);
          end if;
       end if;
@@ -2261,13 +2634,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMiracastTransmitter.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2277,11 +2654,15 @@ package body WinRt.Windows.Media.Miracast is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMiracastTransmitter.all.put_Name (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AuthorizationStatus
@@ -2290,10 +2671,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus;
    begin
       Hr := this.m_IMiracastTransmitter.all.get_AuthorizationStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2303,9 +2688,13 @@ package body WinRt.Windows.Media.Miracast is
       value : Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMiracastTransmitter.all.put_AuthorizationStatus (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetConnections
@@ -2314,13 +2703,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return IVectorView_IMiracastReceiverConnection.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMiracastReceiverConnection.Kind;
    begin
       Hr := this.m_IMiracastTransmitter.all.GetConnections (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMiracastReceiverConnection (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2330,13 +2723,17 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMiracastTransmitter.all.get_MacAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2346,10 +2743,14 @@ package body WinRt.Windows.Media.Miracast is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IMiracastTransmitter.all.get_LastConnectionTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

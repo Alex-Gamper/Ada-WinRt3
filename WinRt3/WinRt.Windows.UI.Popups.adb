@@ -46,12 +46,12 @@ package body WinRt.Windows.UI.Popups is
    end;
 
    procedure Finalize (this : in out MessageDialog) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMessageDialog, IMessageDialog_Ptr);
    begin
       if this.m_IMessageDialog /= null then
          if this.m_IMessageDialog.all /= null then
-            RefCount := this.m_IMessageDialog.all.Release;
+            temp := this.m_IMessageDialog.all.Release;
             Free (this.m_IMessageDialog);
          end if;
       end if;
@@ -66,11 +66,12 @@ package body WinRt.Windows.UI.Popups is
    )
    return MessageDialog is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.MessageDialog");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.MessageDialog");
       m_Factory    : access IMessageDialogFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IMessageDialog;
-      HStr_content : WinRt.HString := To_HString (content);
+      HStr_content : constant WinRt.HString := To_HString (content);
    begin
       return RetVal : MessageDialog do
          Hr := RoGetActivationFactory (m_hString, IID_IMessageDialogFactory'Access , m_Factory'Address);
@@ -78,10 +79,10 @@ package body WinRt.Windows.UI.Popups is
             Hr := m_Factory.Create (HStr_content, m_ComRetVal'Access);
             Retval.m_IMessageDialog := new Windows.UI.Popups.IMessageDialog;
             Retval.m_IMessageDialog.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_content);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_content);
       end return;
    end;
 
@@ -92,12 +93,13 @@ package body WinRt.Windows.UI.Popups is
    )
    return MessageDialog is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.MessageDialog");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.MessageDialog");
       m_Factory    : access IMessageDialogFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IMessageDialog;
-      HStr_content : WinRt.HString := To_HString (content);
-      HStr_title : WinRt.HString := To_HString (title);
+      HStr_content : constant WinRt.HString := To_HString (content);
+      HStr_title : constant WinRt.HString := To_HString (title);
    begin
       return RetVal : MessageDialog do
          Hr := RoGetActivationFactory (m_hString, IID_IMessageDialogFactory'Access , m_Factory'Address);
@@ -105,11 +107,11 @@ package body WinRt.Windows.UI.Popups is
             Hr := m_Factory.CreateWithTitle (HStr_content, HStr_title, m_ComRetVal'Access);
             Retval.m_IMessageDialog := new Windows.UI.Popups.IMessageDialog;
             Retval.m_IMessageDialog.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_content);
-         Hr := WindowsDeleteString (HStr_title);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_content);
+         tmp := WindowsDeleteString (HStr_title);
       end return;
    end;
 
@@ -122,13 +124,17 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMessageDialog.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -138,11 +144,15 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMessageDialog.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Commands
@@ -151,13 +161,17 @@ package body WinRt.Windows.UI.Popups is
    )
    return IVector_IUICommand.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IUICommand.Kind;
    begin
       Hr := this.m_IMessageDialog.all.get_Commands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IUICommand (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -167,10 +181,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMessageDialog.all.get_DefaultCommandIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -180,9 +198,13 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMessageDialog.all.put_DefaultCommandIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CancelCommandIndex
@@ -191,10 +213,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMessageDialog.all.get_CancelCommandIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -204,9 +230,13 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMessageDialog.all.put_CancelCommandIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Content
@@ -215,13 +245,17 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMessageDialog.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -231,11 +265,15 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMessageDialog.all.put_Content (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function ShowAsync
@@ -244,13 +282,13 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.IUICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IUICommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -268,7 +306,7 @@ package body WinRt.Windows.UI.Popups is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IUICommand.Kind_Delegate, AsyncOperationCompletedHandler_IUICommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -281,7 +319,7 @@ package body WinRt.Windows.UI.Popups is
       Hr := this.m_IMessageDialog.all.ShowAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -291,9 +329,9 @@ package body WinRt.Windows.UI.Popups is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -307,10 +345,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.MessageDialogOptions is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.MessageDialogOptions;
    begin
       Hr := this.m_IMessageDialog.all.get_Options (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -320,9 +362,13 @@ package body WinRt.Windows.UI.Popups is
       value : Windows.UI.Popups.MessageDialogOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMessageDialog.all.put_Options (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -334,12 +380,12 @@ package body WinRt.Windows.UI.Popups is
    end;
 
    procedure Finalize (this : in out PopupMenu) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPopupMenu, IPopupMenu_Ptr);
    begin
       if this.m_IPopupMenu /= null then
          if this.m_IPopupMenu.all /= null then
-            RefCount := this.m_IPopupMenu.all.Release;
+            temp := this.m_IPopupMenu.all.Release;
             Free (this.m_IPopupMenu);
          end if;
       end if;
@@ -350,7 +396,8 @@ package body WinRt.Windows.UI.Popups is
 
    function Constructor return PopupMenu is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.PopupMenu");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.PopupMenu");
       m_ComRetVal  : aliased Windows.UI.Popups.IPopupMenu;
    begin
       return RetVal : PopupMenu do
@@ -359,7 +406,7 @@ package body WinRt.Windows.UI.Popups is
             Retval.m_IPopupMenu := new Windows.UI.Popups.IPopupMenu;
             Retval.m_IPopupMenu.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -372,13 +419,17 @@ package body WinRt.Windows.UI.Popups is
    )
    return IVector_IUICommand.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IUICommand.Kind;
    begin
       Hr := this.m_IPopupMenu.all.get_Commands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IUICommand (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -389,13 +440,13 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.IUICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IUICommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -413,7 +464,7 @@ package body WinRt.Windows.UI.Popups is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IUICommand.Kind_Delegate, AsyncOperationCompletedHandler_IUICommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -426,7 +477,7 @@ package body WinRt.Windows.UI.Popups is
       Hr := this.m_IPopupMenu.all.ShowAsync (invocationPoint, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -436,9 +487,9 @@ package body WinRt.Windows.UI.Popups is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -453,13 +504,13 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.IUICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IUICommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -477,7 +528,7 @@ package body WinRt.Windows.UI.Popups is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IUICommand.Kind_Delegate, AsyncOperationCompletedHandler_IUICommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -490,7 +541,7 @@ package body WinRt.Windows.UI.Popups is
       Hr := this.m_IPopupMenu.all.ShowForSelectionAsync (selection, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -500,9 +551,9 @@ package body WinRt.Windows.UI.Popups is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -518,13 +569,13 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.IUICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IUICommand.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -542,7 +593,7 @@ package body WinRt.Windows.UI.Popups is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IUICommand.Kind_Delegate, AsyncOperationCompletedHandler_IUICommand.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -555,7 +606,7 @@ package body WinRt.Windows.UI.Popups is
       Hr := this.m_IPopupMenu.all.ShowForSelectionAsync (selection, preferredPlacement, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -565,9 +616,9 @@ package body WinRt.Windows.UI.Popups is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -584,12 +635,12 @@ package body WinRt.Windows.UI.Popups is
    end;
 
    procedure Finalize (this : in out UICommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUICommand, IUICommand_Ptr);
    begin
       if this.m_IUICommand /= null then
          if this.m_IUICommand.all /= null then
-            RefCount := this.m_IUICommand.all.Release;
+            temp := this.m_IUICommand.all.Release;
             Free (this.m_IUICommand);
          end if;
       end if;
@@ -600,7 +651,8 @@ package body WinRt.Windows.UI.Popups is
 
    function Constructor return UICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
    begin
       return RetVal : UICommand do
@@ -609,7 +661,7 @@ package body WinRt.Windows.UI.Popups is
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -619,11 +671,12 @@ package body WinRt.Windows.UI.Popups is
    )
    return UICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_Factory    : access IUICommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : UICommand do
          Hr := RoGetActivationFactory (m_hString, IID_IUICommandFactory'Access , m_Factory'Address);
@@ -631,10 +684,10 @@ package body WinRt.Windows.UI.Popups is
             Hr := m_Factory.Create (HStr_label, m_ComRetVal'Access);
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -645,11 +698,12 @@ package body WinRt.Windows.UI.Popups is
    )
    return UICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_Factory    : access IUICommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : UICommand do
          Hr := RoGetActivationFactory (m_hString, IID_IUICommandFactory'Access , m_Factory'Address);
@@ -657,10 +711,10 @@ package body WinRt.Windows.UI.Popups is
             Hr := m_Factory.CreateWithHandler (HStr_label, action, m_ComRetVal'Access);
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -672,11 +726,12 @@ package body WinRt.Windows.UI.Popups is
    )
    return UICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_Factory    : access IUICommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
-      HStr_label : WinRt.HString := To_HString (label);
+      HStr_label : constant WinRt.HString := To_HString (label);
    begin
       return RetVal : UICommand do
          Hr := RoGetActivationFactory (m_hString, IID_IUICommandFactory'Access , m_Factory'Address);
@@ -684,10 +739,10 @@ package body WinRt.Windows.UI.Popups is
             Hr := m_Factory.CreateWithHandlerAndId (HStr_label, action, commandId, m_ComRetVal'Access);
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_label);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_label);
       end return;
    end;
 
@@ -700,13 +755,17 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUICommand.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -716,11 +775,15 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUICommand.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Invoked
@@ -729,10 +792,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.UICommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.UICommandInvokedHandler;
    begin
       Hr := this.m_IUICommand.all.get_Invoked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -742,9 +809,13 @@ package body WinRt.Windows.UI.Popups is
       value : Windows.UI.Popups.UICommandInvokedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUICommand.all.put_Invoked (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -753,10 +824,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IUICommand.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -766,9 +841,13 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUICommand.all.put_Id (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -780,7 +859,7 @@ package body WinRt.Windows.UI.Popups is
       command : Windows.UI.Popups.IUICommand
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (command);
       return Hr;
@@ -795,12 +874,12 @@ package body WinRt.Windows.UI.Popups is
    end;
 
    procedure Finalize (this : in out UICommandSeparator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUICommand, IUICommand_Ptr);
    begin
       if this.m_IUICommand /= null then
          if this.m_IUICommand.all /= null then
-            RefCount := this.m_IUICommand.all.Release;
+            temp := this.m_IUICommand.all.Release;
             Free (this.m_IUICommand);
          end if;
       end if;
@@ -811,7 +890,8 @@ package body WinRt.Windows.UI.Popups is
 
    function Constructor return UICommandSeparator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Popups.UICommandSeparator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Popups.UICommandSeparator");
       m_ComRetVal  : aliased Windows.UI.Popups.IUICommand;
    begin
       return RetVal : UICommandSeparator do
@@ -820,7 +900,7 @@ package body WinRt.Windows.UI.Popups is
             Retval.m_IUICommand := new Windows.UI.Popups.IUICommand;
             Retval.m_IUICommand.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -833,13 +913,17 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUICommand.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -849,11 +933,15 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IUICommand.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Invoked
@@ -862,10 +950,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.Windows.UI.Popups.UICommandInvokedHandler is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Popups.UICommandInvokedHandler;
    begin
       Hr := this.m_IUICommand.all.get_Invoked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -875,9 +967,13 @@ package body WinRt.Windows.UI.Popups is
       value : Windows.UI.Popups.UICommandInvokedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUICommand.all.put_Invoked (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Id
@@ -886,10 +982,14 @@ package body WinRt.Windows.UI.Popups is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IUICommand.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -899,9 +999,13 @@ package body WinRt.Windows.UI.Popups is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUICommand.all.put_Id (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.UI.Popups;

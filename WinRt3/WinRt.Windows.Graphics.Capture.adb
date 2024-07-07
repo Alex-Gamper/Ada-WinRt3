@@ -49,12 +49,12 @@ package body WinRt.Windows.Graphics.Capture is
    end;
 
    procedure Finalize (this : in out Direct3D11CaptureFrame) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDirect3D11CaptureFrame, IDirect3D11CaptureFrame_Ptr);
    begin
       if this.m_IDirect3D11CaptureFrame /= null then
          if this.m_IDirect3D11CaptureFrame.all /= null then
-            RefCount := this.m_IDirect3D11CaptureFrame.all.Release;
+            temp := this.m_IDirect3D11CaptureFrame.all.Release;
             Free (this.m_IDirect3D11CaptureFrame);
          end if;
       end if;
@@ -69,10 +69,14 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
    begin
       Hr := this.m_IDirect3D11CaptureFrame.all.get_Surface (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -82,10 +86,14 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IDirect3D11CaptureFrame.all.get_SystemRelativeTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -95,10 +103,14 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IDirect3D11CaptureFrame.all.get_ContentSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -107,13 +119,17 @@ package body WinRt.Windows.Graphics.Capture is
       this : in out Direct3D11CaptureFrame
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDirect3D11CaptureFrame.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -125,12 +141,12 @@ package body WinRt.Windows.Graphics.Capture is
    end;
 
    procedure Finalize (this : in out Direct3D11CaptureFramePool) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDirect3D11CaptureFramePool, IDirect3D11CaptureFramePool_Ptr);
    begin
       if this.m_IDirect3D11CaptureFramePool /= null then
          if this.m_IDirect3D11CaptureFramePool.all /= null then
-            RefCount := this.m_IDirect3D11CaptureFramePool.all.Release;
+            temp := this.m_IDirect3D11CaptureFramePool.all.Release;
             Free (this.m_IDirect3D11CaptureFramePool);
          end if;
       end if;
@@ -148,20 +164,24 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.Capture.Direct3D11CaptureFramePool is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Capture.Direct3D11CaptureFramePool");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.Direct3D11CaptureFramePool");
       m_Factory        : access WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFramePoolStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Capture.IDirect3D11CaptureFramePool;
    begin
       return RetVal : WinRt.Windows.Graphics.Capture.Direct3D11CaptureFramePool do
          Hr := RoGetActivationFactory (m_hString, IID_IDirect3D11CaptureFramePoolStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFreeThreaded (device, pixelFormat, numberOfBuffers, size, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDirect3D11CaptureFramePool := new Windows.Graphics.Capture.IDirect3D11CaptureFramePool;
             Retval.m_IDirect3D11CaptureFramePool.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -174,20 +194,24 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.Capture.Direct3D11CaptureFramePool is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Capture.Direct3D11CaptureFramePool");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.Direct3D11CaptureFramePool");
       m_Factory        : access WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFramePoolStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Capture.IDirect3D11CaptureFramePool;
    begin
       return RetVal : WinRt.Windows.Graphics.Capture.Direct3D11CaptureFramePool do
          Hr := RoGetActivationFactory (m_hString, IID_IDirect3D11CaptureFramePoolStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (device, pixelFormat, numberOfBuffers, size, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDirect3D11CaptureFramePool := new Windows.Graphics.Capture.IDirect3D11CaptureFramePool;
             Retval.m_IDirect3D11CaptureFramePool.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -203,9 +227,13 @@ package body WinRt.Windows.Graphics.Capture is
       size : Windows.Graphics.SizeInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDirect3D11CaptureFramePool.all.Recreate (device, pixelFormat, numberOfBuffers, size);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryGetNextFrame
@@ -214,11 +242,15 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.Capture.Direct3D11CaptureFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Capture.IDirect3D11CaptureFrame;
    begin
       return RetVal : WinRt.Windows.Graphics.Capture.Direct3D11CaptureFrame do
          Hr := this.m_IDirect3D11CaptureFramePool.all.TryGetNextFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDirect3D11CaptureFrame := new Windows.Graphics.Capture.IDirect3D11CaptureFrame;
          Retval.m_IDirect3D11CaptureFrame.all := m_ComRetVal;
       end return;
@@ -231,10 +263,14 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDirect3D11CaptureFramePool.all.add_FrameArrived (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -244,9 +280,13 @@ package body WinRt.Windows.Graphics.Capture is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDirect3D11CaptureFramePool.all.remove_FrameArrived (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateCaptureSession
@@ -256,11 +296,15 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureSession'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Capture.IGraphicsCaptureSession;
    begin
       return RetVal : WinRt.Windows.Graphics.Capture.GraphicsCaptureSession do
          Hr := this.m_IDirect3D11CaptureFramePool.all.CreateCaptureSession (item.m_IGraphicsCaptureItem.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGraphicsCaptureSession := new Windows.Graphics.Capture.IGraphicsCaptureSession;
          Retval.m_IGraphicsCaptureSession.all := m_ComRetVal;
       end return;
@@ -272,11 +316,15 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.System.DispatcherQueue'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          Hr := this.m_IDirect3D11CaptureFramePool.all.get_DispatcherQueue (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
@@ -287,13 +335,17 @@ package body WinRt.Windows.Graphics.Capture is
       this : in out Direct3D11CaptureFramePool
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFramePool_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDirect3D11CaptureFramePool.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -305,12 +357,12 @@ package body WinRt.Windows.Graphics.Capture is
    end;
 
    procedure Finalize (this : in out GraphicsCaptureItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGraphicsCaptureItem, IGraphicsCaptureItem_Ptr);
    begin
       if this.m_IGraphicsCaptureItem /= null then
          if this.m_IGraphicsCaptureItem.all /= null then
-            RefCount := this.m_IGraphicsCaptureItem.all.Release;
+            temp := this.m_IGraphicsCaptureItem.all.Release;
             Free (this.m_IGraphicsCaptureItem);
          end if;
       end if;
@@ -325,20 +377,24 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureItem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureItem");
       m_Factory        : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureItemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Capture.IGraphicsCaptureItem;
    begin
       return RetVal : WinRt.Windows.Graphics.Capture.GraphicsCaptureItem do
          Hr := RoGetActivationFactory (m_hString, IID_IGraphicsCaptureItemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromVisual (visual.m_IVisual.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGraphicsCaptureItem := new Windows.Graphics.Capture.IGraphicsCaptureItem;
             Retval.m_IGraphicsCaptureItem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -351,13 +407,17 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IGraphicsCaptureItem.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -367,10 +427,14 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.SizeInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IGraphicsCaptureItem.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -381,10 +445,14 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGraphicsCaptureItem.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -394,9 +462,13 @@ package body WinRt.Windows.Graphics.Capture is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGraphicsCaptureItem.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -408,12 +480,12 @@ package body WinRt.Windows.Graphics.Capture is
    end;
 
    procedure Finalize (this : in out GraphicsCapturePicker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGraphicsCapturePicker, IGraphicsCapturePicker_Ptr);
    begin
       if this.m_IGraphicsCapturePicker /= null then
          if this.m_IGraphicsCapturePicker.all /= null then
-            RefCount := this.m_IGraphicsCapturePicker.all.Release;
+            temp := this.m_IGraphicsCapturePicker.all.Release;
             Free (this.m_IGraphicsCapturePicker);
          end if;
       end if;
@@ -424,7 +496,8 @@ package body WinRt.Windows.Graphics.Capture is
 
    function Constructor return GraphicsCapturePicker is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCapturePicker");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCapturePicker");
       m_ComRetVal  : aliased Windows.Graphics.Capture.IGraphicsCapturePicker;
    begin
       return RetVal : GraphicsCapturePicker do
@@ -433,7 +506,7 @@ package body WinRt.Windows.Graphics.Capture is
             Retval.m_IGraphicsCapturePicker := new Windows.Graphics.Capture.IGraphicsCapturePicker;
             Retval.m_IGraphicsCapturePicker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -446,13 +519,13 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GraphicsCaptureItem.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -470,7 +543,7 @@ package body WinRt.Windows.Graphics.Capture is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GraphicsCaptureItem.Kind_Delegate, AsyncOperationCompletedHandler_GraphicsCaptureItem.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -484,7 +557,7 @@ package body WinRt.Windows.Graphics.Capture is
          Hr := this.m_IGraphicsCapturePicker.all.PickSingleItemAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -496,9 +569,9 @@ package body WinRt.Windows.Graphics.Capture is
                   Retval.m_IGraphicsCaptureItem := new Windows.Graphics.Capture.IGraphicsCaptureItem;
                   Retval.m_IGraphicsCaptureItem.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -515,12 +588,12 @@ package body WinRt.Windows.Graphics.Capture is
    end;
 
    procedure Finalize (this : in out GraphicsCaptureSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGraphicsCaptureSession, IGraphicsCaptureSession_Ptr);
    begin
       if this.m_IGraphicsCaptureSession /= null then
          if this.m_IGraphicsCaptureSession.all /= null then
-            RefCount := this.m_IGraphicsCaptureSession.all.Release;
+            temp := this.m_IGraphicsCaptureSession.all.Release;
             Free (this.m_IGraphicsCaptureSession);
          end if;
       end if;
@@ -532,17 +605,21 @@ package body WinRt.Windows.Graphics.Capture is
    function IsSupported
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureSession");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCaptureSession");
       m_Factory        : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureSessionStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGraphicsCaptureSessionStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -554,9 +631,13 @@ package body WinRt.Windows.Graphics.Capture is
       this : in out GraphicsCaptureSession
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGraphicsCaptureSession.all.StartCapture;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsCursorCaptureEnabled
@@ -565,14 +646,18 @@ package body WinRt.Windows.Graphics.Capture is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession2, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
       Hr := m_Interface.get_IsCursorCaptureEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -582,13 +667,17 @@ package body WinRt.Windows.Graphics.Capture is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession2, WinRt.Windows.Graphics.Capture.IID_IGraphicsCaptureSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
       Hr := m_Interface.put_IsCursorCaptureEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Close
@@ -596,13 +685,17 @@ package body WinRt.Windows.Graphics.Capture is
       this : in out GraphicsCaptureSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGraphicsCaptureSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Graphics.Capture;

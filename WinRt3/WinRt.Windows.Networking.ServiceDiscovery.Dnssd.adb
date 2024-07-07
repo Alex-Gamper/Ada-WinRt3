@@ -50,12 +50,12 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    end;
 
    procedure Finalize (this : in out DnssdRegistrationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDnssdRegistrationResult, IDnssdRegistrationResult_Ptr);
    begin
       if this.m_IDnssdRegistrationResult /= null then
          if this.m_IDnssdRegistrationResult.all /= null then
-            RefCount := this.m_IDnssdRegistrationResult.all.Release;
+            temp := this.m_IDnssdRegistrationResult.all.Release;
             Free (this.m_IDnssdRegistrationResult);
          end if;
       end if;
@@ -66,7 +66,8 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
 
    function Constructor return DnssdRegistrationResult is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult");
       m_ComRetVal  : aliased Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
    begin
       return RetVal : DnssdRegistrationResult do
@@ -75,7 +76,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
             Retval.m_IDnssdRegistrationResult := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
             Retval.m_IDnssdRegistrationResult.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -88,10 +89,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus;
    begin
       Hr := this.m_IDnssdRegistrationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -101,11 +106,15 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IDnssdRegistrationResult.all.get_IPAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -117,10 +126,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDnssdRegistrationResult.all.get_HasInstanceNameChanged (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -130,17 +143,21 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDnssdRegistrationResult.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -153,12 +170,12 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    end;
 
    procedure Finalize (this : in out DnssdServiceInstance) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDnssdServiceInstance, IDnssdServiceInstance_Ptr);
    begin
       if this.m_IDnssdServiceInstance /= null then
          if this.m_IDnssdServiceInstance.all /= null then
-            RefCount := this.m_IDnssdServiceInstance.all.Release;
+            temp := this.m_IDnssdServiceInstance.all.Release;
             Free (this.m_IDnssdServiceInstance);
          end if;
       end if;
@@ -175,11 +192,12 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return DnssdServiceInstance is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance");
       m_Factory    : access IDnssdServiceInstanceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;
-      HStr_dnssdServiceInstanceName : WinRt.HString := To_HString (dnssdServiceInstanceName);
+      HStr_dnssdServiceInstanceName : constant WinRt.HString := To_HString (dnssdServiceInstanceName);
    begin
       return RetVal : DnssdServiceInstance do
          Hr := RoGetActivationFactory (m_hString, IID_IDnssdServiceInstanceFactory'Access , m_Factory'Address);
@@ -187,10 +205,10 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
             Hr := m_Factory.Create (HStr_dnssdServiceInstanceName, hostName.m_IHostName.all, port, m_ComRetVal'Access);
             Retval.m_IDnssdServiceInstance := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;
             Retval.m_IDnssdServiceInstance.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_dnssdServiceInstanceName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_dnssdServiceInstanceName);
       end return;
    end;
 
@@ -203,13 +221,17 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDnssdServiceInstance.all.get_DnssdServiceInstanceName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -219,11 +241,15 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IDnssdServiceInstance.all.put_DnssdServiceInstanceName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_HostName
@@ -232,11 +258,15 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IDnssdServiceInstance.all.get_HostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -248,9 +278,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       value : Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceInstance.all.put_HostName (value.m_IHostName.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Port
@@ -259,10 +293,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IDnssdServiceInstance.all.get_Port (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -272,9 +310,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       value : WinRt.UInt16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceInstance.all.put_Port (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Priority
@@ -283,10 +325,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IDnssdServiceInstance.all.get_Priority (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -296,9 +342,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       value : WinRt.UInt16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceInstance.all.put_Priority (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Weight
@@ -307,10 +357,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IDnssdServiceInstance.all.get_Weight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -320,9 +374,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       value : WinRt.UInt16
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceInstance.all.put_Weight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TextAttributes
@@ -331,13 +389,17 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return IMap_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IDnssdServiceInstance.all.get_TextAttributes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMap_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -348,13 +410,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DnssdRegistrationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -372,7 +434,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind_Delegate, AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -386,7 +448,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
          Hr := this.m_IDnssdServiceInstance.all.RegisterStreamSocketListenerAsync (socket.m_IStreamSocketListener.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -398,9 +460,9 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
                   Retval.m_IDnssdRegistrationResult := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
                   Retval.m_IDnssdRegistrationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -416,13 +478,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DnssdRegistrationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -440,7 +502,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind_Delegate, AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -454,7 +516,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
          Hr := this.m_IDnssdServiceInstance.all.RegisterStreamSocketListenerAsync (socket.m_IStreamSocketListener.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -466,9 +528,9 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
                   Retval.m_IDnssdRegistrationResult := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
                   Retval.m_IDnssdRegistrationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -483,13 +545,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DnssdRegistrationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -507,7 +569,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind_Delegate, AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -521,7 +583,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
          Hr := this.m_IDnssdServiceInstance.all.RegisterDatagramSocketAsync (socket.m_IDatagramSocket.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -533,9 +595,9 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
                   Retval.m_IDnssdRegistrationResult := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
                   Retval.m_IDnssdRegistrationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -551,13 +613,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DnssdRegistrationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -575,7 +637,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind_Delegate, AsyncOperationCompletedHandler_DnssdRegistrationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -589,7 +651,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
          Hr := this.m_IDnssdServiceInstance.all.RegisterDatagramSocketAsync (socket.m_IDatagramSocket.all, adapter.m_INetworkAdapter.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -601,9 +663,9 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
                   Retval.m_IDnssdRegistrationResult := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
                   Retval.m_IDnssdRegistrationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -617,17 +679,21 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDnssdServiceInstance.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -655,8 +721,9 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDnssdServiceInstance.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;
       m_GenericIID     : aliased WinRt.IID := (4150261802, 32272, 23798, (128, 100, 106, 229, 133, 224, 189, 141 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDnssdServiceInstance.Kind, m_GenericIID'Unchecked_Access);
@@ -664,7 +731,10 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       return RetVal : WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDnssdServiceInstance := new Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;
          Retval.m_IDnssdServiceInstance.all := m_ComRetVal;
       end return;
@@ -676,15 +746,19 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDnssdServiceInstance.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4150261802, 32272, 23798, (128, 100, 106, 229, 133, 224, 189, 141 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDnssdServiceInstance.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -696,15 +770,19 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDnssdServiceInstance.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (4150261802, 32272, 23798, (128, 100, 106, 229, 133, 224, 189, 141 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDnssdServiceInstance.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IDnssdServiceInstance.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -716,8 +794,9 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IDnssdServiceInstance.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4150261802, 32272, 23798, (128, 100, 106, 229, 133, 224, 189, 141 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IDnssdServiceInstance.Kind, m_GenericIID'Unchecked_Access);
@@ -725,7 +804,10 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -736,15 +818,19 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IDnssdServiceInstance.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (501457893, 14462, 21288, (184, 100, 63, 14, 52, 117, 211, 67 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IDnssdServiceInstance.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -757,12 +843,12 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    end;
 
    procedure Finalize (this : in out DnssdServiceWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDnssdServiceWatcher, IDnssdServiceWatcher_Ptr);
    begin
       if this.m_IDnssdServiceWatcher /= null then
          if this.m_IDnssdServiceWatcher.all /= null then
-            RefCount := this.m_IDnssdServiceWatcher.all.Release;
+            temp := this.m_IDnssdServiceWatcher.all.Release;
             Free (this.m_IDnssdServiceWatcher);
          end if;
       end if;
@@ -778,10 +864,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.add_Added (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -791,9 +881,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.remove_Added (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -803,10 +897,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -816,9 +914,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -828,10 +930,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -841,9 +947,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -852,10 +962,14 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -864,9 +978,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       this : in out DnssdServiceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -874,9 +992,13 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       this : in out DnssdServiceWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDnssdServiceWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Networking.ServiceDiscovery.Dnssd;

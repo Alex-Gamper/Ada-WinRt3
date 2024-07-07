@@ -42,12 +42,12 @@ package body WinRt.Windows.Media.Capture.Core is
    end;
 
    procedure Finalize (this : in out VariablePhotoCapturedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVariablePhotoCapturedEventArgs, IVariablePhotoCapturedEventArgs_Ptr);
    begin
       if this.m_IVariablePhotoCapturedEventArgs /= null then
          if this.m_IVariablePhotoCapturedEventArgs.all /= null then
-            RefCount := this.m_IVariablePhotoCapturedEventArgs.all.Release;
+            temp := this.m_IVariablePhotoCapturedEventArgs.all.Release;
             Free (this.m_IVariablePhotoCapturedEventArgs);
          end if;
       end if;
@@ -62,11 +62,15 @@ package body WinRt.Windows.Media.Capture.Core is
    )
    return WinRt.Windows.Media.Capture.CapturedFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_Frame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
@@ -78,10 +82,14 @@ package body WinRt.Windows.Media.Capture.Core is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_CaptureTimeOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -91,13 +99,17 @@ package body WinRt.Windows.Media.Capture.Core is
    )
    return IReference_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_UsedFrameControllerIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -107,11 +119,15 @@ package body WinRt.Windows.Media.Capture.Core is
    )
    return WinRt.Windows.Media.Capture.CapturedFrameControlValues'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrameControlValues;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrameControlValues do
          Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_CapturedFrameControlValues (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICapturedFrameControlValues := new Windows.Media.Capture.ICapturedFrameControlValues;
          Retval.m_ICapturedFrameControlValues.all := m_ComRetVal;
       end return;
@@ -126,12 +142,12 @@ package body WinRt.Windows.Media.Capture.Core is
    end;
 
    procedure Finalize (this : in out VariablePhotoSequenceCapture) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVariablePhotoSequenceCapture, IVariablePhotoSequenceCapture_Ptr);
    begin
       if this.m_IVariablePhotoSequenceCapture /= null then
          if this.m_IVariablePhotoSequenceCapture.all /= null then
-            RefCount := this.m_IVariablePhotoSequenceCapture.all.Release;
+            temp := this.m_IVariablePhotoSequenceCapture.all.Release;
             Free (this.m_IVariablePhotoSequenceCapture);
          end if;
       end if;
@@ -145,7 +161,8 @@ package body WinRt.Windows.Media.Capture.Core is
       this : in out VariablePhotoSequenceCapture
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -153,7 +170,6 @@ package body WinRt.Windows.Media.Capture.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -174,9 +190,9 @@ package body WinRt.Windows.Media.Capture.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -187,7 +203,8 @@ package body WinRt.Windows.Media.Capture.Core is
       this : in out VariablePhotoSequenceCapture
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -195,7 +212,6 @@ package body WinRt.Windows.Media.Capture.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -216,9 +232,9 @@ package body WinRt.Windows.Media.Capture.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -229,7 +245,8 @@ package body WinRt.Windows.Media.Capture.Core is
       this : in out VariablePhotoSequenceCapture
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -237,7 +254,6 @@ package body WinRt.Windows.Media.Capture.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -258,9 +274,9 @@ package body WinRt.Windows.Media.Capture.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -273,10 +289,14 @@ package body WinRt.Windows.Media.Capture.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVariablePhotoSequenceCapture.all.add_PhotoCaptured (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,9 +306,13 @@ package body WinRt.Windows.Media.Capture.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVariablePhotoSequenceCapture.all.remove_PhotoCaptured (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -298,10 +322,14 @@ package body WinRt.Windows.Media.Capture.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVariablePhotoSequenceCapture.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -311,9 +339,13 @@ package body WinRt.Windows.Media.Capture.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVariablePhotoSequenceCapture.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UpdateSettingsAsync
@@ -321,8 +353,9 @@ package body WinRt.Windows.Media.Capture.Core is
       this : in out VariablePhotoSequenceCapture
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Core.IVariablePhotoSequenceCapture2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -330,7 +363,6 @@ package body WinRt.Windows.Media.Capture.Core is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -346,7 +378,7 @@ package body WinRt.Windows.Media.Capture.Core is
    begin
       m_Interface := QInterface (this.m_IVariablePhotoSequenceCapture.all);
       Hr := m_Interface.UpdateSettingsAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -354,9 +386,9 @@ package body WinRt.Windows.Media.Capture.Core is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;

@@ -47,12 +47,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveDeviceAddress) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveDeviceAddress, IXboxLiveDeviceAddress_Ptr);
    begin
       if this.m_IXboxLiveDeviceAddress /= null then
          if this.m_IXboxLiveDeviceAddress.all /= null then
-            RefCount := this.m_IXboxLiveDeviceAddress.all.Release;
+            temp := this.m_IXboxLiveDeviceAddress.all.Release;
             Free (this.m_IXboxLiveDeviceAddress);
          end if;
       end if;
@@ -67,22 +67,26 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddressStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
-      HStr_base64 : WinRt.HString := To_HString (base64);
+      HStr_base64 : constant WinRt.HString := To_HString (base64);
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveDeviceAddressStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromSnapshotBase64 (HStr_base64, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
             Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_base64);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_base64);
       end return;
    end;
 
@@ -92,20 +96,24 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddressStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveDeviceAddressStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromSnapshotBuffer (buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
             Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -115,9 +123,10 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddressStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
       function Convert_buffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -125,48 +134,59 @@ package body WinRt.Windows.Networking.XboxLive is
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveDeviceAddressStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromSnapshotBytes (WinRt.UInt32(buffer'Length), Convert_buffer (buffer (buffer'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
             Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function GetLocal
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddressStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveDeviceAddressStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetLocal (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
             Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MaxSnapshotBytesSize
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveDeviceAddress");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddressStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveDeviceAddressStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxSnapshotBytesSize (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -180,10 +200,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.add_SnapshotChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -193,9 +217,13 @@ package body WinRt.Windows.Networking.XboxLive is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.remove_SnapshotChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetSnapshotAsBase64
@@ -204,13 +232,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.GetSnapshotAsBase64 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -220,10 +252,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.GetSnapshotAsBuffer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -234,10 +270,14 @@ package body WinRt.Windows.Networking.XboxLive is
       bytesWritten : WinRt.UInt32_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_buffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.GetSnapshotAsBytes (WinRt.UInt32(buffer'Length), Convert_buffer (buffer (buffer'First)'Address), bytesWritten);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Compare
@@ -247,10 +287,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.Compare (otherDeviceAddress.m_IXboxLiveDeviceAddress.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -260,10 +304,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.get_IsValid (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -273,10 +321,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.get_IsLocal (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,10 +338,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveNetworkAccessKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveNetworkAccessKind;
    begin
       Hr := this.m_IXboxLiveDeviceAddress.all.get_NetworkAccessKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -302,12 +358,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveEndpointPair) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveEndpointPair, IXboxLiveEndpointPair_Ptr);
    begin
       if this.m_IXboxLiveEndpointPair /= null then
          if this.m_IXboxLiveEndpointPair.all /= null then
-            RefCount := this.m_IXboxLiveEndpointPair.all.Release;
+            temp := this.m_IXboxLiveEndpointPair.all.Release;
             Free (this.m_IXboxLiveEndpointPair);
          end if;
       end if;
@@ -323,9 +379,10 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPair");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPair");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPairStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveEndpointPair;
       function Convert_localSocketAddress is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       function Convert_remoteSocketAddress is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
@@ -334,11 +391,14 @@ package body WinRt.Windows.Networking.XboxLive is
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveEndpointPairStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindEndpointPairBySocketAddressBytes (WinRt.UInt32(localSocketAddress'Length), Convert_localSocketAddress (localSocketAddress (localSocketAddress'First)'Address), WinRt.UInt32(remoteSocketAddress'Length), Convert_remoteSocketAddress (remoteSocketAddress (remoteSocketAddress'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveEndpointPair := new Windows.Networking.XboxLive.IXboxLiveEndpointPair;
             Retval.m_IXboxLiveEndpointPair.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -351,24 +411,28 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPair");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPair");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPairStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveEndpointPair;
-      HStr_localPort : WinRt.HString := To_HString (localPort);
-      HStr_remotePort : WinRt.HString := To_HString (remotePort);
+      HStr_localPort : constant WinRt.HString := To_HString (localPort);
+      HStr_remotePort : constant WinRt.HString := To_HString (remotePort);
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair do
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveEndpointPairStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindEndpointPairByHostNamesAndPorts (localHostName.m_IHostName.all, HStr_localPort, remoteHostName.m_IHostName.all, HStr_remotePort, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveEndpointPair := new Windows.Networking.XboxLive.IXboxLiveEndpointPair;
             Retval.m_IXboxLiveEndpointPair.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_localPort);
-         Hr := WindowsDeleteString (HStr_remotePort);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_localPort);
+         tmp := WindowsDeleteString (HStr_remotePort);
       end return;
    end;
 
@@ -382,10 +446,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.add_StateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -395,9 +463,13 @@ package body WinRt.Windows.Networking.XboxLive is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.remove_StateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure DeleteAsync
@@ -405,7 +477,8 @@ package body WinRt.Windows.Networking.XboxLive is
       this : in out XboxLiveEndpointPair
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -413,7 +486,6 @@ package body WinRt.Windows.Networking.XboxLive is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -434,9 +506,9 @@ package body WinRt.Windows.Networking.XboxLive is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -448,10 +520,14 @@ package body WinRt.Windows.Networking.XboxLive is
       socketAddress : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_socketAddress is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.GetRemoteSocketAddressBytes (WinRt.UInt32(socketAddress'Length), Convert_socketAddress (socketAddress (socketAddress'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GetLocalSocketAddressBytes
@@ -460,10 +536,14 @@ package body WinRt.Windows.Networking.XboxLive is
       socketAddress : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_socketAddress is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.GetLocalSocketAddressBytes (WinRt.UInt32(socketAddress'Length), Convert_socketAddress (socketAddress (socketAddress'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -472,10 +552,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveEndpointPairState;
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -485,11 +569,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate do
          Hr := this.m_IXboxLiveEndpointPair.all.get_Template (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveEndpointPairTemplate := new Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate;
          Retval.m_IXboxLiveEndpointPairTemplate.all := m_ComRetVal;
       end return;
@@ -501,11 +589,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := this.m_IXboxLiveEndpointPair.all.get_RemoteDeviceAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
       end return;
@@ -517,11 +609,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IXboxLiveEndpointPair.all.get_RemoteHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -533,13 +629,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.get_RemotePort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -549,11 +649,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.HostName'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IXboxLiveEndpointPair.all.get_LocalHostName (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IHostName := new Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
@@ -565,13 +669,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXboxLiveEndpointPair.all.get_LocalPort (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -584,12 +692,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveEndpointPairCreationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveEndpointPairCreationResult, IXboxLiveEndpointPairCreationResult_Ptr);
    begin
       if this.m_IXboxLiveEndpointPairCreationResult /= null then
          if this.m_IXboxLiveEndpointPairCreationResult.all /= null then
-            RefCount := this.m_IXboxLiveEndpointPairCreationResult.all.Release;
+            temp := this.m_IXboxLiveEndpointPairCreationResult.all.Release;
             Free (this.m_IXboxLiveEndpointPairCreationResult);
          end if;
       end if;
@@ -604,11 +712,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := this.m_IXboxLiveEndpointPairCreationResult.all.get_DeviceAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
       end return;
@@ -620,10 +732,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveEndpointPairCreationStatus;
    begin
       Hr := this.m_IXboxLiveEndpointPairCreationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -633,10 +749,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXboxLiveEndpointPairCreationResult.all.get_IsExistingPathEvaluation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -646,11 +766,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveEndpointPair;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair do
          Hr := this.m_IXboxLiveEndpointPairCreationResult.all.get_EndpointPair (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveEndpointPair := new Windows.Networking.XboxLive.IXboxLiveEndpointPair;
          Retval.m_IXboxLiveEndpointPair.all := m_ComRetVal;
       end return;
@@ -665,12 +789,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveEndpointPairStateChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveEndpointPairStateChangedEventArgs, IXboxLiveEndpointPairStateChangedEventArgs_Ptr);
    begin
       if this.m_IXboxLiveEndpointPairStateChangedEventArgs /= null then
          if this.m_IXboxLiveEndpointPairStateChangedEventArgs.all /= null then
-            RefCount := this.m_IXboxLiveEndpointPairStateChangedEventArgs.all.Release;
+            temp := this.m_IXboxLiveEndpointPairStateChangedEventArgs.all.Release;
             Free (this.m_IXboxLiveEndpointPairStateChangedEventArgs);
          end if;
       end if;
@@ -685,10 +809,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveEndpointPairState;
    begin
       Hr := this.m_IXboxLiveEndpointPairStateChangedEventArgs.all.get_OldState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -698,10 +826,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveEndpointPairState;
    begin
       Hr := this.m_IXboxLiveEndpointPairStateChangedEventArgs.all.get_NewState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -714,12 +846,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveEndpointPairTemplate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveEndpointPairTemplate, IXboxLiveEndpointPairTemplate_Ptr);
    begin
       if this.m_IXboxLiveEndpointPairTemplate /= null then
          if this.m_IXboxLiveEndpointPairTemplate.all /= null then
-            RefCount := this.m_IXboxLiveEndpointPairTemplate.all.Release;
+            temp := this.m_IXboxLiveEndpointPairTemplate.all.Release;
             Free (this.m_IXboxLiveEndpointPairTemplate);
          end if;
       end if;
@@ -734,39 +866,47 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplateStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate;
-      HStr_name : WinRt.HString := To_HString (name);
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate do
          Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveEndpointPairTemplateStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetTemplateByName (HStr_name, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IXboxLiveEndpointPairTemplate := new Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate;
             Retval.m_IXboxLiveEndpointPairTemplate.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end return;
    end;
 
    function get_Templates
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveEndpointPairTemplate");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplateStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveEndpointPairTemplateStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_Templates (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -780,10 +920,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.add_InboundEndpointPairCreated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -793,9 +937,13 @@ package body WinRt.Windows.Networking.XboxLive is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.remove_InboundEndpointPairCreated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreateEndpointPairAsync
@@ -805,13 +953,13 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XboxLiveEndpointPairCreationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -829,7 +977,7 @@ package body WinRt.Windows.Networking.XboxLive is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind_Delegate, AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -843,7 +991,7 @@ package body WinRt.Windows.Networking.XboxLive is
          Hr := this.m_IXboxLiveEndpointPairTemplate.all.CreateEndpointPairAsync (deviceAddress.m_IXboxLiveDeviceAddress.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -855,9 +1003,9 @@ package body WinRt.Windows.Networking.XboxLive is
                   Retval.m_IXboxLiveEndpointPairCreationResult := new Windows.Networking.XboxLive.IXboxLiveEndpointPairCreationResult;
                   Retval.m_IXboxLiveEndpointPairCreationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -873,13 +1021,13 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XboxLiveEndpointPairCreationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -897,7 +1045,7 @@ package body WinRt.Windows.Networking.XboxLive is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind_Delegate, AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -911,7 +1059,7 @@ package body WinRt.Windows.Networking.XboxLive is
          Hr := this.m_IXboxLiveEndpointPairTemplate.all.CreateEndpointPairAsync (deviceAddress.m_IXboxLiveDeviceAddress.all, behaviors, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -923,9 +1071,9 @@ package body WinRt.Windows.Networking.XboxLive is
                   Retval.m_IXboxLiveEndpointPairCreationResult := new Windows.Networking.XboxLive.IXboxLiveEndpointPairCreationResult;
                   Retval.m_IXboxLiveEndpointPairCreationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -942,15 +1090,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_initiatorPort : WinRt.HString := To_HString (initiatorPort);
-      HStr_acceptorPort : WinRt.HString := To_HString (acceptorPort);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_initiatorPort : constant WinRt.HString := To_HString (initiatorPort);
+      HStr_acceptorPort : constant WinRt.HString := To_HString (acceptorPort);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XboxLiveEndpointPairCreationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -968,7 +1116,7 @@ package body WinRt.Windows.Networking.XboxLive is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind_Delegate, AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -982,7 +1130,7 @@ package body WinRt.Windows.Networking.XboxLive is
          Hr := this.m_IXboxLiveEndpointPairTemplate.all.CreateEndpointPairForPortsAsync (deviceAddress.m_IXboxLiveDeviceAddress.all, HStr_initiatorPort, HStr_acceptorPort, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -994,15 +1142,15 @@ package body WinRt.Windows.Networking.XboxLive is
                   Retval.m_IXboxLiveEndpointPairCreationResult := new Windows.Networking.XboxLive.IXboxLiveEndpointPairCreationResult;
                   Retval.m_IXboxLiveEndpointPairCreationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_initiatorPort);
-         Hr := WindowsDeleteString (HStr_acceptorPort);
+         tmp := WindowsDeleteString (HStr_initiatorPort);
+         tmp := WindowsDeleteString (HStr_acceptorPort);
       end return;
    end;
 
@@ -1016,15 +1164,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_initiatorPort : WinRt.HString := To_HString (initiatorPort);
-      HStr_acceptorPort : WinRt.HString := To_HString (acceptorPort);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_initiatorPort : constant WinRt.HString := To_HString (initiatorPort);
+      HStr_acceptorPort : constant WinRt.HString := To_HString (acceptorPort);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_XboxLiveEndpointPairCreationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1042,7 +1190,7 @@ package body WinRt.Windows.Networking.XboxLive is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind_Delegate, AsyncOperationCompletedHandler_XboxLiveEndpointPairCreationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1056,7 +1204,7 @@ package body WinRt.Windows.Networking.XboxLive is
          Hr := this.m_IXboxLiveEndpointPairTemplate.all.CreateEndpointPairForPortsAsync (deviceAddress.m_IXboxLiveDeviceAddress.all, HStr_initiatorPort, HStr_acceptorPort, behaviors, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1068,15 +1216,15 @@ package body WinRt.Windows.Networking.XboxLive is
                   Retval.m_IXboxLiveEndpointPairCreationResult := new Windows.Networking.XboxLive.IXboxLiveEndpointPairCreationResult;
                   Retval.m_IXboxLiveEndpointPairCreationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_initiatorPort);
-         Hr := WindowsDeleteString (HStr_acceptorPort);
+         tmp := WindowsDeleteString (HStr_initiatorPort);
+         tmp := WindowsDeleteString (HStr_acceptorPort);
       end return;
    end;
 
@@ -1086,13 +1234,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1102,10 +1254,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveSocketKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveSocketKind;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_SocketKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1115,10 +1271,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_InitiatorBoundPortRangeLower (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1128,10 +1288,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_InitiatorBoundPortRangeUpper (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1141,10 +1305,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_AcceptorBoundPortRangeLower (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1154,10 +1322,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt16 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt16;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_AcceptorBoundPortRangeUpper (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1167,13 +1339,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVectorView_IXboxLiveEndpointPair.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IXboxLiveEndpointPair.Kind;
    begin
       Hr := this.m_IXboxLiveEndpointPairTemplate.all.get_EndpointPairs (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IXboxLiveEndpointPair (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1186,12 +1362,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveInboundEndpointPairCreatedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveInboundEndpointPairCreatedEventArgs, IXboxLiveInboundEndpointPairCreatedEventArgs_Ptr);
    begin
       if this.m_IXboxLiveInboundEndpointPairCreatedEventArgs /= null then
          if this.m_IXboxLiveInboundEndpointPairCreatedEventArgs.all /= null then
-            RefCount := this.m_IXboxLiveInboundEndpointPairCreatedEventArgs.all.Release;
+            temp := this.m_IXboxLiveInboundEndpointPairCreatedEventArgs.all.Release;
             Free (this.m_IXboxLiveInboundEndpointPairCreatedEventArgs);
          end if;
       end if;
@@ -1206,11 +1382,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveEndpointPair;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair do
          Hr := this.m_IXboxLiveInboundEndpointPairCreatedEventArgs.all.get_EndpointPair (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveEndpointPair := new Windows.Networking.XboxLive.IXboxLiveEndpointPair;
          Retval.m_IXboxLiveEndpointPair.all := m_ComRetVal;
       end return;
@@ -1225,12 +1405,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveQualityOfServiceMeasurement) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveQualityOfServiceMeasurement, IXboxLiveQualityOfServiceMeasurement_Ptr);
    begin
       if this.m_IXboxLiveQualityOfServiceMeasurement /= null then
          if this.m_IXboxLiveQualityOfServiceMeasurement.all /= null then
-            RefCount := this.m_IXboxLiveQualityOfServiceMeasurement.all.Release;
+            temp := this.m_IXboxLiveQualityOfServiceMeasurement.all.Release;
             Free (this.m_IXboxLiveQualityOfServiceMeasurement);
          end if;
       end if;
@@ -1241,7 +1421,8 @@ package body WinRt.Windows.Networking.XboxLive is
 
    function Constructor return XboxLiveQualityOfServiceMeasurement is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_ComRetVal  : aliased Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurement;
    begin
       return RetVal : XboxLiveQualityOfServiceMeasurement do
@@ -1250,7 +1431,7 @@ package body WinRt.Windows.Networking.XboxLive is
             Retval.m_IXboxLiveQualityOfServiceMeasurement := new Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurement;
             Retval.m_IXboxLiveQualityOfServiceMeasurement.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1262,47 +1443,59 @@ package body WinRt.Windows.Networking.XboxLive is
       payload : WinRt.Byte_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function Convert_payload is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.PublishPrivatePayloadBytes (WinRt.UInt32(payload'Length), Convert_payload (payload (payload'First)'Address));
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ClearPrivatePayload is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ClearPrivatePayload;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_MaxSimultaneousProbeConnections
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxSimultaneousProbeConnections (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1311,32 +1504,40 @@ package body WinRt.Windows.Networking.XboxLive is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_MaxSimultaneousProbeConnections (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_IsSystemOutboundBandwidthConstrained
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_IsSystemOutboundBandwidthConstrained (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1345,32 +1546,40 @@ package body WinRt.Windows.Networking.XboxLive is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_IsSystemOutboundBandwidthConstrained (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_IsSystemInboundBandwidthConstrained
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_IsSystemInboundBandwidthConstrained (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1379,32 +1588,40 @@ package body WinRt.Windows.Networking.XboxLive is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_IsSystemInboundBandwidthConstrained (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_PublishedPrivatePayload
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_PublishedPrivatePayload (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1413,32 +1630,40 @@ package body WinRt.Windows.Networking.XboxLive is
       value : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_PublishedPrivatePayload (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_MaxPrivatePayloadSize
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_Factory        : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXboxLiveQualityOfServiceMeasurementStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_MaxPrivatePayloadSize (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1450,7 +1675,8 @@ package body WinRt.Windows.Networking.XboxLive is
       this : in out XboxLiveQualityOfServiceMeasurement
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1458,7 +1684,6 @@ package body WinRt.Windows.Networking.XboxLive is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1479,9 +1704,9 @@ package body WinRt.Windows.Networking.XboxLive is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1494,13 +1719,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.GetMetricResultsForDevice (deviceAddress.m_IXboxLiveDeviceAddress.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IXboxLiveQualityOfServiceMetricResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1511,13 +1740,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.GetMetricResultsForMetric (metric, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IXboxLiveQualityOfServiceMetricResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1529,11 +1762,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetricResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMetricResult;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetricResult do
          Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.GetMetricResult (deviceAddress.m_IXboxLiveDeviceAddress.all, metric, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveQualityOfServiceMetricResult := new Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMetricResult;
          Retval.m_IXboxLiveQualityOfServiceMetricResult.all := m_ComRetVal;
       end return;
@@ -1546,11 +1783,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServicePrivatePayloadResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveQualityOfServicePrivatePayloadResult;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServicePrivatePayloadResult do
          Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.GetPrivatePayloadResult (deviceAddress.m_IXboxLiveDeviceAddress.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveQualityOfServicePrivatePayloadResult := new Windows.Networking.XboxLive.IXboxLiveQualityOfServicePrivatePayloadResult;
          Retval.m_IXboxLiveQualityOfServicePrivatePayloadResult.all := m_ComRetVal;
       end return;
@@ -1562,13 +1803,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVector_XboxLiveQualityOfServiceMetric.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_XboxLiveQualityOfServiceMetric.Kind;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_Metrics (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_XboxLiveQualityOfServiceMetric (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1578,13 +1823,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVector_IXboxLiveDeviceAddress.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IXboxLiveDeviceAddress.Kind;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_DeviceAddresses (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IXboxLiveDeviceAddress (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1594,10 +1843,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_ShouldRequestPrivatePayloads (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1607,9 +1860,13 @@ package body WinRt.Windows.Networking.XboxLive is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.put_ShouldRequestPrivatePayloads (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TimeoutInMilliseconds
@@ -1618,10 +1875,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_TimeoutInMilliseconds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1631,9 +1892,13 @@ package body WinRt.Windows.Networking.XboxLive is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.put_TimeoutInMilliseconds (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NumberOfProbesToAttempt
@@ -1642,10 +1907,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_NumberOfProbesToAttempt (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1655,9 +1924,13 @@ package body WinRt.Windows.Networking.XboxLive is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.put_NumberOfProbesToAttempt (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NumberOfResultsPending
@@ -1666,10 +1939,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_NumberOfResultsPending (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1679,13 +1956,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_MetricResults (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IXboxLiveQualityOfServiceMetricResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1695,13 +1976,17 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult.Kind;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMeasurement.all.get_PrivatePayloadResults (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IXboxLiveQualityOfServicePrivatePayloadResult (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1714,12 +1999,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveQualityOfServiceMetricResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveQualityOfServiceMetricResult, IXboxLiveQualityOfServiceMetricResult_Ptr);
    begin
       if this.m_IXboxLiveQualityOfServiceMetricResult /= null then
          if this.m_IXboxLiveQualityOfServiceMetricResult.all /= null then
-            RefCount := this.m_IXboxLiveQualityOfServiceMetricResult.all.Release;
+            temp := this.m_IXboxLiveQualityOfServiceMetricResult.all.Release;
             Free (this.m_IXboxLiveQualityOfServiceMetricResult);
          end if;
       end if;
@@ -1734,10 +2019,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMetricResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1747,11 +2036,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := this.m_IXboxLiveQualityOfServiceMetricResult.all.get_DeviceAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
       end return;
@@ -1763,10 +2056,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMetricResult.all.get_Metric (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1776,10 +2073,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.UInt64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt64;
    begin
       Hr := this.m_IXboxLiveQualityOfServiceMetricResult.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1792,12 +2093,12 @@ package body WinRt.Windows.Networking.XboxLive is
    end;
 
    procedure Finalize (this : in out XboxLiveQualityOfServicePrivatePayloadResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXboxLiveQualityOfServicePrivatePayloadResult, IXboxLiveQualityOfServicePrivatePayloadResult_Ptr);
    begin
       if this.m_IXboxLiveQualityOfServicePrivatePayloadResult /= null then
          if this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all /= null then
-            RefCount := this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all.Release;
+            temp := this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all.Release;
             Free (this.m_IXboxLiveQualityOfServicePrivatePayloadResult);
          end if;
       end if;
@@ -1812,10 +2113,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus;
    begin
       Hr := this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1825,11 +2130,15 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
    begin
       return RetVal : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress do
          Hr := this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all.get_DeviceAddress (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXboxLiveDeviceAddress := new Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          Retval.m_IXboxLiveDeviceAddress.all := m_ComRetVal;
       end return;
@@ -1841,10 +2150,14 @@ package body WinRt.Windows.Networking.XboxLive is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

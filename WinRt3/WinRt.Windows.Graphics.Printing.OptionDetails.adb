@@ -44,12 +44,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintBindingOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -64,13 +64,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -80,10 +84,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -93,11 +101,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -106,13 +118,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -122,9 +138,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -133,10 +153,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -146,10 +170,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -160,10 +188,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -173,17 +205,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -193,15 +229,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBindingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -210,17 +250,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBindingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -230,15 +274,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBindingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -247,17 +295,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBindingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBindingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -270,12 +322,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintBorderingOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -290,13 +342,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -306,10 +362,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -319,11 +379,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -332,13 +396,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -348,9 +416,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -359,10 +431,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -372,10 +448,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -386,10 +466,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -399,17 +483,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -419,15 +507,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBorderingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -436,17 +528,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBorderingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -456,15 +552,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBorderingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -473,17 +573,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintBorderingOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintBorderingOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -496,12 +600,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintCollationOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -516,13 +620,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -532,10 +640,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -545,11 +657,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -558,13 +674,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -574,9 +694,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -585,10 +709,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -598,10 +726,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -612,10 +744,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -625,17 +761,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -645,15 +785,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCollationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -662,17 +806,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCollationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -682,15 +830,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCollationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -699,17 +851,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCollationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCollationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -722,12 +878,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintColorModeOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -742,13 +898,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -758,10 +918,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -771,11 +935,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -784,13 +952,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -800,9 +972,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -811,10 +987,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -824,10 +1004,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -838,10 +1022,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -851,17 +1039,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -871,15 +1063,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintColorModeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -888,17 +1084,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintColorModeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -908,15 +1108,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintColorModeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -925,17 +1129,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintColorModeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintColorModeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -948,12 +1156,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintCopiesOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -968,13 +1176,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -984,10 +1196,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -997,11 +1213,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -1010,13 +1230,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1026,9 +1250,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -1037,10 +1265,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1050,10 +1282,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1064,10 +1300,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1077,14 +1317,18 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintNumberOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintNumberOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintNumberOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_MinValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1094,14 +1338,18 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintNumberOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintNumberOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintNumberOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_MaxValue (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1111,15 +1359,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCopiesOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -1128,17 +1380,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCopiesOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1148,15 +1404,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCopiesOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -1165,17 +1425,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCopiesOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCopiesOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1188,12 +1452,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintCustomItemDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintCustomItemDetails, IPrintCustomItemDetails_Ptr);
    begin
       if this.m_IPrintCustomItemDetails /= null then
          if this.m_IPrintCustomItemDetails.all /= null then
-            RefCount := this.m_IPrintCustomItemDetails.all.Release;
+            temp := this.m_IPrintCustomItemDetails.all.Release;
             Free (this.m_IPrintCustomItemDetails);
          end if;
       end if;
@@ -1208,13 +1472,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintCustomItemDetails.all.get_ItemId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1224,11 +1492,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintCustomItemDetails.all.put_ItemDisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ItemDisplayName
@@ -1237,13 +1509,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintCustomItemDetails.all.get_ItemDisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1256,12 +1532,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintCustomItemListOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -1276,13 +1552,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1292,10 +1572,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1305,11 +1589,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -1318,13 +1606,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1334,9 +1626,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -1345,10 +1641,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1358,10 +1658,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1372,10 +1676,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1385,15 +1693,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_DisplayName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayName
@@ -1402,17 +1714,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1422,17 +1738,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1443,17 +1763,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       displayName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_itemId : WinRt.HString := To_HString (itemId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      temp             : WinRt.UInt32 := 0;
+      HStr_itemId : constant WinRt.HString := To_HString (itemId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.AddItem (HStr_itemId, HStr_displayName);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_itemId);
-      Hr := WindowsDeleteString (HStr_displayName);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_itemId);
+      tmp := WindowsDeleteString (HStr_displayName);
    end;
 
    procedure AddItem
@@ -1465,19 +1789,23 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       icon : Windows.Storage.Streams.IRandomAccessStreamWithContentType
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_itemId : WinRt.HString := To_HString (itemId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
-      HStr_description : WinRt.HString := To_HString (description);
+      temp             : WinRt.UInt32 := 0;
+      HStr_itemId : constant WinRt.HString := To_HString (itemId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
+      HStr_description : constant WinRt.HString := To_HString (description);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomItemListOptionDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.AddItem (HStr_itemId, HStr_displayName, HStr_description, icon);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_itemId);
-      Hr := WindowsDeleteString (HStr_displayName);
-      Hr := WindowsDeleteString (HStr_description);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_itemId);
+      tmp := WindowsDeleteString (HStr_displayName);
+      tmp := WindowsDeleteString (HStr_description);
    end;
 
    procedure put_WarningText
@@ -1486,15 +1814,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomItemListOptionDetails3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -1503,17 +1835,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomItemListOptionDetails3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1523,15 +1859,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomItemListOptionDetails3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -1540,17 +1880,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomItemListOptionDetails3, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomItemListOptionDetails3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1563,12 +1907,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintCustomTextOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -1583,13 +1927,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1599,10 +1947,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1612,11 +1964,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -1625,13 +1981,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1641,9 +2001,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -1652,10 +2016,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1665,10 +2033,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1679,10 +2051,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1692,15 +2068,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_DisplayName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayName
@@ -1709,17 +2089,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1729,13 +2113,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomTextOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_MaxCharacters (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxCharacters
@@ -1744,14 +2132,18 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomTextOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_MaxCharacters (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1761,15 +2153,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomTextOptionDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -1778,17 +2174,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomTextOptionDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1798,15 +2198,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomTextOptionDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -1815,17 +2219,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomTextOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomTextOptionDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1838,12 +2246,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintCustomToggleOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -1858,13 +2266,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1874,10 +2286,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1887,11 +2303,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -1900,13 +2320,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1916,9 +2340,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -1927,10 +2355,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1940,10 +2372,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1954,10 +2390,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1967,15 +2407,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_DisplayName (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_DisplayName
@@ -1984,17 +2428,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_DisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2004,15 +2452,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomToggleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -2021,17 +2473,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomToggleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2041,15 +2497,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomToggleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -2058,17 +2518,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintCustomToggleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintCustomToggleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2081,12 +2545,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintDuplexOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -2101,13 +2565,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2117,10 +2585,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2130,11 +2602,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -2143,13 +2619,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2159,9 +2639,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -2170,10 +2654,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2183,10 +2671,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2197,10 +2689,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2210,17 +2706,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2230,15 +2730,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintDuplexOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -2247,17 +2751,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintDuplexOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2267,15 +2775,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintDuplexOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -2284,17 +2796,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintDuplexOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintDuplexOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2307,12 +2823,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintHolePunchOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -2327,13 +2843,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2343,10 +2863,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2356,11 +2880,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -2369,13 +2897,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2385,9 +2917,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -2396,10 +2932,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2409,10 +2949,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2423,10 +2967,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2436,17 +2984,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2456,15 +3008,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintHolePunchOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -2473,17 +3029,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintHolePunchOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2493,15 +3053,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintHolePunchOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -2510,17 +3074,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintHolePunchOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintHolePunchOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2533,12 +3101,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintMediaSizeOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -2553,13 +3121,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2569,10 +3141,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2582,11 +3158,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -2595,13 +3175,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2611,9 +3195,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -2622,10 +3210,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2635,10 +3227,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2649,10 +3245,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2662,17 +3262,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2682,15 +3286,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaSizeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -2699,17 +3307,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaSizeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2719,15 +3331,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaSizeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -2736,17 +3352,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaSizeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaSizeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2759,12 +3379,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintMediaTypeOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -2779,13 +3399,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2795,10 +3419,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2808,11 +3436,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -2821,13 +3453,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2837,9 +3473,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -2848,10 +3488,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2861,10 +3505,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2875,10 +3523,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2888,17 +3540,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2908,15 +3564,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaTypeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -2925,17 +3585,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaTypeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2945,15 +3609,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaTypeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -2962,17 +3630,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintMediaTypeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintMediaTypeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2985,12 +3657,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintOrientationOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -3005,13 +3677,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3021,10 +3697,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3034,11 +3714,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -3047,13 +3731,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3063,9 +3751,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -3074,10 +3766,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3087,10 +3783,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3101,10 +3801,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3114,17 +3818,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3134,15 +3842,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintOrientationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -3151,17 +3863,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintOrientationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3171,15 +3887,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintOrientationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -3188,17 +3908,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOrientationOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintOrientationOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3211,12 +3935,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintPageRangeOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -3231,13 +3955,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3247,10 +3975,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3260,11 +3992,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -3273,13 +4009,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3289,9 +4029,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -3300,10 +4044,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3313,10 +4061,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3327,10 +4079,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3340,15 +4096,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintPageRangeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -3357,17 +4117,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintPageRangeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3377,15 +4141,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintPageRangeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -3394,17 +4162,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintPageRangeOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintPageRangeOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3417,12 +4189,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintQualityOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -3437,13 +4209,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3453,10 +4229,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3466,11 +4246,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -3479,13 +4263,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3495,9 +4283,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -3506,10 +4298,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3519,10 +4315,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3533,10 +4333,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3546,17 +4350,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3566,15 +4374,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintQualityOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -3583,17 +4395,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintQualityOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3603,15 +4419,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintQualityOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -3620,17 +4440,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintQualityOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintQualityOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3643,12 +4467,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintStapleOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintOptionDetails, IPrintOptionDetails_Ptr);
    begin
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
-            RefCount := this.m_IPrintOptionDetails.all.Release;
+            temp := this.m_IPrintOptionDetails.all.Release;
             Free (this.m_IPrintOptionDetails);
          end if;
       end if;
@@ -3663,13 +4487,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3679,10 +4507,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3692,11 +4524,15 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IPrintOptionDetails.all.put_ErrorText (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ErrorText
@@ -3705,13 +4541,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_ErrorText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3721,9 +4561,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintOptionDetails.all.put_State (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_State
@@ -3732,10 +4576,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3745,10 +4593,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3759,10 +4611,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPrintOptionDetails.all.TrySetValue (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3772,17 +4628,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVectorView_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Items (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3792,15 +4652,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintStapleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_WarningText (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_WarningText
@@ -3809,17 +4673,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintStapleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_WarningText (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3829,15 +4697,19 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintStapleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.put_Description (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -3846,17 +4718,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintStapleOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintStapleOptionDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintOptionDetails.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3869,12 +4745,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintTaskOptionChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskOptionChangedEventArgs, IPrintTaskOptionChangedEventArgs_Ptr);
    begin
       if this.m_IPrintTaskOptionChangedEventArgs /= null then
          if this.m_IPrintTaskOptionChangedEventArgs.all /= null then
-            RefCount := this.m_IPrintTaskOptionChangedEventArgs.all.Release;
+            temp := this.m_IPrintTaskOptionChangedEventArgs.all.Release;
             Free (this.m_IPrintTaskOptionChangedEventArgs);
          end if;
       end if;
@@ -3889,10 +4765,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IPrintTaskOptionChangedEventArgs.all.get_OptionId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3905,12 +4785,12 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    end;
 
    procedure Finalize (this : in out PrintTaskOptionDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPrintTaskOptionDetails, IPrintTaskOptionDetails_Ptr);
    begin
       if this.m_IPrintTaskOptionDetails /= null then
          if this.m_IPrintTaskOptionDetails.all /= null then
-            RefCount := this.m_IPrintTaskOptionDetails.all.Release;
+            temp := this.m_IPrintTaskOptionDetails.all.Release;
             Free (this.m_IPrintTaskOptionDetails);
          end if;
       end if;
@@ -3925,20 +4805,24 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails");
       m_Factory        : access WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetailsStatic_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintTaskOptionDetailsStatic'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFromPrintTaskOptions (printTaskOptions.m_IPrintTaskOptionsCore.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPrintTaskOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails;
             Retval.m_IPrintTaskOptionDetails.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3951,13 +4835,17 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IMapView_HString_IPrintOptionDetails.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IPrintOptionDetails.Kind;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.get_Options (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IPrintOptionDetails (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3969,17 +4857,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomItemListOptionDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
-      HStr_optionId : WinRt.HString := To_HString (optionId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      HStr_optionId : constant WinRt.HString := To_HString (optionId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomItemListOptionDetails do
          Hr := this.m_IPrintTaskOptionDetails.all.CreateItemListOption (HStr_optionId, HStr_displayName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
          Retval.m_IPrintOptionDetails.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_optionId);
-         Hr := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_optionId);
+         tmp := WindowsDeleteString (HStr_displayName);
       end return;
    end;
 
@@ -3991,17 +4883,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomTextOptionDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
-      HStr_optionId : WinRt.HString := To_HString (optionId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      HStr_optionId : constant WinRt.HString := To_HString (optionId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomTextOptionDetails do
          Hr := this.m_IPrintTaskOptionDetails.all.CreateTextOption (HStr_optionId, HStr_displayName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
          Retval.m_IPrintOptionDetails.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_optionId);
-         Hr := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_optionId);
+         tmp := WindowsDeleteString (HStr_displayName);
       end return;
    end;
 
@@ -4012,10 +4908,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.add_OptionChanged (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4025,9 +4925,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.remove_OptionChanged (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_BeginValidation
@@ -4037,10 +4941,14 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.add_BeginValidation (eventHandler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4050,9 +4958,13 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       eventCookie : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.remove_BeginValidation (eventCookie);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPageDescription
@@ -4062,14 +4974,18 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.PrintPageDescription is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.PrintPageDescription;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCore'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionDetails.all);
       Hr := m_Interface.GetPageDescription (jobPageNumber, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4079,17 +4995,21 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreUIConfiguration := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreUIConfiguration, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreUIConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionDetails.all);
       Hr := m_Interface.get_DisplayedOptions (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4101,21 +5021,25 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomToggleOptionDetails'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
-      HStr_optionId : WinRt.HString := To_HString (optionId);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      HStr_optionId : constant WinRt.HString := To_HString (optionId);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintTaskOptionDetails2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.OptionDetails.PrintCustomToggleOptionDetails do
          m_Interface := QInterface (this.m_IPrintTaskOptionDetails.all);
          Hr := m_Interface.CreateToggleOption (HStr_optionId, HStr_displayName, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPrintOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
          Retval.m_IPrintOptionDetails.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_optionId);
-         Hr := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (HStr_optionId);
+         tmp := WindowsDeleteString (HStr_displayName);
       end return;
    end;
 

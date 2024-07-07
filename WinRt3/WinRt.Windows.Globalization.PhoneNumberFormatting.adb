@@ -42,12 +42,12 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    end;
 
    procedure Finalize (this : in out PhoneNumberFormatter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneNumberFormatter, IPhoneNumberFormatter_Ptr);
    begin
       if this.m_IPhoneNumberFormatter /= null then
          if this.m_IPhoneNumberFormatter.all /= null then
-            RefCount := this.m_IPhoneNumberFormatter.all.Release;
+            temp := this.m_IPhoneNumberFormatter.all.Release;
             Free (this.m_IPhoneNumberFormatter);
          end if;
       end if;
@@ -58,7 +58,8 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
 
    function Constructor return PhoneNumberFormatter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
       m_ComRetVal  : aliased Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter;
    begin
       return RetVal : PhoneNumberFormatter do
@@ -67,7 +68,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
             Retval.m_IPhoneNumberFormatter := new Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter;
             Retval.m_IPhoneNumberFormatter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -80,18 +81,22 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
       phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_regionCode : WinRt.HString := To_HString (regionCode);
+      temp             : WinRt.UInt32 := 0;
+      HStr_regionCode : constant WinRt.HString := To_HString (regionCode);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberFormatterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryCreate (HStr_regionCode, phoneNumber);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_regionCode);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_regionCode);
    end;
 
    function GetCountryCodeForRegion
@@ -100,19 +105,23 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
-      HStr_regionCode : WinRt.HString := To_HString (regionCode);
+      HStr_regionCode : constant WinRt.HString := To_HString (regionCode);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberFormatterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetCountryCodeForRegion (HStr_regionCode, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_regionCode);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_regionCode);
       return m_ComRetVal;
    end;
 
@@ -123,22 +132,26 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_regionCode : WinRt.HString := To_HString (regionCode);
+      HStr_regionCode : constant WinRt.HString := To_HString (regionCode);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberFormatterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetNationalDirectDialingPrefixForRegion (HStr_regionCode, stripNonDigit, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_regionCode);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_regionCode);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -148,22 +161,26 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_number : WinRt.HString := To_HString (number);
+      HStr_number : constant WinRt.HString := To_HString (number);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberFormatterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.WrapWithLeftToRightMarkers (HStr_number, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_number);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_number);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -177,13 +194,17 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneNumberFormatter.all.Format (number.m_IPhoneNumberInfo.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -195,13 +216,17 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneNumberFormatter.all.Format (number.m_IPhoneNumberInfo.all, numberFormat, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -212,15 +237,19 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_number : WinRt.HString := To_HString (number);
+      HStr_number : constant WinRt.HString := To_HString (number);
    begin
       Hr := this.m_IPhoneNumberFormatter.all.FormatPartialString (HStr_number, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_number);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_number);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -231,15 +260,19 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_number : WinRt.HString := To_HString (number);
+      HStr_number : constant WinRt.HString := To_HString (number);
    begin
       Hr := this.m_IPhoneNumberFormatter.all.FormatString (HStr_number, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_number);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_number);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -250,15 +283,19 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_number : WinRt.HString := To_HString (number);
+      HStr_number : constant WinRt.HString := To_HString (number);
    begin
       Hr := this.m_IPhoneNumberFormatter.all.FormatStringWithLeftToRightMarkers (HStr_number, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_number);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_number);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -271,12 +308,12 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    end;
 
    procedure Finalize (this : in out PhoneNumberInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneNumberInfo, IPhoneNumberInfo_Ptr);
    begin
       if this.m_IPhoneNumberInfo /= null then
          if this.m_IPhoneNumberInfo.all /= null then
-            RefCount := this.m_IPhoneNumberInfo.all.Release;
+            temp := this.m_IPhoneNumberInfo.all.Release;
             Free (this.m_IPhoneNumberInfo);
          end if;
       end if;
@@ -291,11 +328,12 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return PhoneNumberInfo is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
       m_Factory    : access IPhoneNumberInfoFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
-      HStr_number : WinRt.HString := To_HString (number);
+      HStr_number : constant WinRt.HString := To_HString (number);
    begin
       return RetVal : PhoneNumberInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberInfoFactory'Access , m_Factory'Address);
@@ -303,10 +341,10 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
             Hr := m_Factory.Create (HStr_number, m_ComRetVal'Access);
             Retval.m_IPhoneNumberInfo := new Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
             Retval.m_IPhoneNumberInfo.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_number);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_number);
       end return;
    end;
 
@@ -320,19 +358,23 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
-      HStr_input : WinRt.HString := To_HString (input);
+      HStr_input : constant WinRt.HString := To_HString (input);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParse (HStr_input, phoneNumber, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_input);
       return m_ComRetVal;
    end;
 
@@ -344,21 +386,25 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfoStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
-      HStr_input : WinRt.HString := To_HString (input);
-      HStr_regionCode : WinRt.HString := To_HString (regionCode);
+      HStr_input : constant WinRt.HString := To_HString (input);
+      HStr_regionCode : constant WinRt.HString := To_HString (regionCode);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParse (HStr_input, HStr_regionCode, phoneNumber, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_input);
-      Hr := WindowsDeleteString (HStr_regionCode);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_input);
+      tmp := WindowsDeleteString (HStr_regionCode);
       return m_ComRetVal;
    end;
 
@@ -371,10 +417,14 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPhoneNumberInfo.all.get_CountryCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -384,13 +434,17 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneNumberInfo.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -400,10 +454,14 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPhoneNumberInfo.all.GetLengthOfGeographicalAreaCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -413,13 +471,17 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneNumberInfo.all.GetNationalSignificantNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -429,10 +491,14 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IPhoneNumberInfo.all.GetLengthOfNationalDestinationCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -442,10 +508,14 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind;
    begin
       Hr := this.m_IPhoneNumberInfo.all.PredictNumberKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -455,13 +525,17 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneNumberInfo.all.GetGeographicRegionCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -472,10 +546,14 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult;
    begin
       Hr := this.m_IPhoneNumberInfo.all.CheckNumberMatch (otherNumber.m_IPhoneNumberInfo.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -485,17 +563,21 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IStringable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo_Interface, WinRt.Windows.Foundation.IStringable, WinRt.Windows.Foundation.IID_IStringable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNumberInfo.all);
       Hr := m_Interface.ToString (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 

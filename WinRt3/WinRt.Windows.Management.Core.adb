@@ -42,12 +42,12 @@ package body WinRt.Windows.Management.Core is
    end;
 
    procedure Finalize (this : in out ApplicationDataManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IApplicationDataManager, IApplicationDataManager_Ptr);
    begin
       if this.m_IApplicationDataManager /= null then
          if this.m_IApplicationDataManager.all /= null then
-            RefCount := this.m_IApplicationDataManager.all.Release;
+            temp := this.m_IApplicationDataManager.all.Release;
             Free (this.m_IApplicationDataManager);
          end if;
       end if;
@@ -62,22 +62,26 @@ package body WinRt.Windows.Management.Core is
    )
    return WinRt.Windows.Storage.ApplicationData is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Management.Core.ApplicationDataManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Core.ApplicationDataManager");
       m_Factory        : access WinRt.Windows.Management.Core.IApplicationDataManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.IApplicationData;
-      HStr_packageFamilyName : WinRt.HString := To_HString (packageFamilyName);
+      HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
    begin
       return RetVal : WinRt.Windows.Storage.ApplicationData do
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationDataManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateForPackageFamily (HStr_packageFamilyName, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IApplicationData := new Windows.Storage.IApplicationData;
             Retval.m_IApplicationData.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_packageFamilyName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_packageFamilyName);
       end return;
    end;
 

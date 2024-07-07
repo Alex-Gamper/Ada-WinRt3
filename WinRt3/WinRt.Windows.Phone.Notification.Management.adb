@@ -43,32 +43,40 @@ package body WinRt.Windows.Phone.Notification.Management is
 
       procedure RingDevice is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RingDevice;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_SpeedDialList
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SpeedDialList (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -77,34 +85,42 @@ package body WinRt.Windows.Phone.Notification.Management is
          instanceId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_instanceId : WinRt.HString := To_HString (instanceId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ClearToast (HStr_instanceId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_instanceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
       end;
 
       function get_IsPhonePinLocked
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsPhonePinLocked (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -113,16 +129,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          step : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IncreaseVolume (step);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure DecreaseVolume
@@ -130,16 +150,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          step : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DecreaseVolume (step);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SetMute
@@ -147,16 +171,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          mute : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetMute (mute);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SetRingerVibrate
@@ -165,52 +193,64 @@ package body WinRt.Windows.Phone.Notification.Management is
          vibrate : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SetRingerVibrate (ringer, vibrate);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_VolumeInfo
       return WinRt.Windows.Phone.Notification.Management.VolumeInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.IVolumeInfo;
       begin
          return RetVal : WinRt.Windows.Phone.Notification.Management.VolumeInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_VolumeInfo (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IVolumeInfo := new Windows.Phone.Notification.Management.IVolumeInfo;
                Retval.m_IVolumeInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function GetAllEmailAccounts
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAllEmailAccounts (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -220,19 +260,23 @@ package body WinRt.Windows.Phone.Notification.Management is
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
-         HStr_emailAccount : WinRt.HString := To_HString (emailAccount);
+         HStr_emailAccount : constant WinRt.HString := To_HString (emailAccount);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFolders (HStr_emailAccount, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_emailAccount);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_emailAccount);
          return m_ComRetVal;
       end;
 
@@ -241,18 +285,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          emailAccount : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_emailAccount : WinRt.HString := To_HString (emailAccount);
+         temp             : WinRt.UInt32 := 0;
+         HStr_emailAccount : constant WinRt.HString := To_HString (emailAccount);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.EnableEmailNotificationEmailAccount (HStr_emailAccount);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_emailAccount);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_emailAccount);
       end;
 
       procedure DisableEmailNotificationEmailAccount
@@ -260,18 +308,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          emailAccount : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_emailAccount : WinRt.HString := To_HString (emailAccount);
+         temp             : WinRt.UInt32 := 0;
+         HStr_emailAccount : constant WinRt.HString := To_HString (emailAccount);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DisableEmailNotificationEmailAccount (HStr_emailAccount);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_emailAccount);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_emailAccount);
       end;
 
       procedure EnableEmailNotificationFolderFilter
@@ -280,18 +332,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          folders : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_emailAccount : WinRt.HString := To_HString (emailAccount);
+         temp             : WinRt.UInt32 := 0;
+         HStr_emailAccount : constant WinRt.HString := To_HString (emailAccount);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.EnableEmailNotificationFolderFilter (HStr_emailAccount, folders);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_emailAccount);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_emailAccount);
       end;
 
       procedure UpdateEmailReadStatus
@@ -300,52 +356,64 @@ package body WinRt.Windows.Phone.Notification.Management is
          isRead : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.UpdateEmailReadStatus (messageEntryId.m_IBinaryId.all, isRead);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RegisterAccessoryApp
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RegisterAccessoryApp (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function GetNextTriggerDetails
       return WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetNextTriggerDetails (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -354,32 +422,40 @@ package body WinRt.Windows.Phone.Notification.Management is
          pDetails : Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ProcessTriggerDetails (pDetails);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_PhoneLineDetails
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PhoneLineDetails (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -389,20 +465,24 @@ package body WinRt.Windows.Phone.Notification.Management is
       )
       return WinRt.Windows.Phone.Notification.Management.PhoneLineDetails is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.IPhoneLineDetails;
       begin
          return RetVal : WinRt.Windows.Phone.Notification.Management.PhoneLineDetails do
             Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetPhoneLineDetails (phoneLine, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IPhoneLineDetails := new Windows.Phone.Notification.Management.IPhoneLineDetails;
                Retval.m_IPhoneLineDetails.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
@@ -411,16 +491,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneCallId : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AcceptPhoneCall (phoneCallId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure AcceptPhoneCall
@@ -429,16 +513,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          endPoint : Windows.Phone.Notification.Management.PhoneCallAudioEndpoint
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AcceptPhoneCall (phoneCallId, endPoint);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure AcceptPhoneCallWithVideo
@@ -446,16 +534,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneCallId : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AcceptPhoneCallWithVideo (phoneCallId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure AcceptPhoneCallWithVideo
@@ -464,16 +556,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          endPoint : Windows.Phone.Notification.Management.PhoneCallAudioEndpoint
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AcceptPhoneCallWithVideo (phoneCallId, endPoint);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure RejectPhoneCall
@@ -481,16 +577,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneCallId : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RejectPhoneCall (phoneCallId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure RejectPhoneCall
@@ -499,16 +599,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          textResponseID : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RejectPhoneCall (phoneCallId, textResponseID);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure MakePhoneCall
@@ -517,18 +621,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneNumber : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_phoneNumber : WinRt.HString := To_HString (phoneNumber);
+         temp             : WinRt.UInt32 := 0;
+         HStr_phoneNumber : constant WinRt.HString := To_HString (phoneNumber);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.MakePhoneCall (phoneLine, HStr_phoneNumber);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_phoneNumber);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_phoneNumber);
       end;
 
       procedure MakePhoneCall
@@ -538,18 +646,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          endPoint : Windows.Phone.Notification.Management.PhoneCallAudioEndpoint
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_phoneNumber : WinRt.HString := To_HString (phoneNumber);
+         temp             : WinRt.UInt32 := 0;
+         HStr_phoneNumber : constant WinRt.HString := To_HString (phoneNumber);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.MakePhoneCall (phoneLine, HStr_phoneNumber, endPoint);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_phoneNumber);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_phoneNumber);
       end;
 
       procedure MakePhoneCallWithVideo
@@ -558,18 +670,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneNumber : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_phoneNumber : WinRt.HString := To_HString (phoneNumber);
+         temp             : WinRt.UInt32 := 0;
+         HStr_phoneNumber : constant WinRt.HString := To_HString (phoneNumber);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.MakePhoneCallWithVideo (phoneLine, HStr_phoneNumber);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_phoneNumber);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_phoneNumber);
       end;
 
       procedure MakePhoneCallWithVideo
@@ -579,18 +695,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          endPoint : Windows.Phone.Notification.Management.PhoneCallAudioEndpoint
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_phoneNumber : WinRt.HString := To_HString (phoneNumber);
+         temp             : WinRt.UInt32 := 0;
+         HStr_phoneNumber : constant WinRt.HString := To_HString (phoneNumber);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.MakePhoneCallWithVideo (phoneLine, HStr_phoneNumber, endPoint);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_phoneNumber);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_phoneNumber);
       end;
 
       procedure SwapPhoneCalls
@@ -599,16 +719,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneCallIdOnHold : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SwapPhoneCalls (phoneCallIdToHold, phoneCallIdOnHold);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure HoldPhoneCall
@@ -617,16 +741,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          holdCall : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.HoldPhoneCall (phoneCallId, holdCall);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure EndPhoneCall
@@ -634,16 +762,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          phoneCallId : WinRt.UInt32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.EndPhoneCall (phoneCallId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure put_PhoneMute
@@ -651,32 +783,40 @@ package body WinRt.Windows.Phone.Notification.Management is
          value : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.put_PhoneMute (value);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_PhoneMute
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PhoneMute (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -685,32 +825,40 @@ package body WinRt.Windows.Phone.Notification.Management is
          value : Windows.Phone.Notification.Management.PhoneCallAudioEndpoint
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.put_PhoneCallAudioEndpoint (value);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_PhoneCallAudioEndpoint
       return WinRt.Windows.Phone.Notification.Management.PhoneCallAudioEndpoint is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneCallAudioEndpoint;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PhoneCallAudioEndpoint (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -719,16 +867,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          alarmId : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SnoozeAlarm (alarmId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SnoozeAlarm
@@ -737,16 +889,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          timeSpan : Windows.Foundation.TimeSpan
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SnoozeAlarm (alarmId, timeSpan);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure DismissAlarm
@@ -754,16 +910,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          alarmId : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DismissAlarm (alarmId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SnoozeReminder
@@ -771,16 +931,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          reminderId : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SnoozeReminder (reminderId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure SnoozeReminder
@@ -789,16 +953,20 @@ package body WinRt.Windows.Phone.Notification.Management is
          timeSpan : Windows.Foundation.TimeSpan
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SnoozeReminder (reminderId, timeSpan);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure DismissReminder
@@ -806,69 +974,85 @@ package body WinRt.Windows.Phone.Notification.Management is
          reminderId : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DismissReminder (reminderId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetMediaMetadata
       return WinRt.Windows.Phone.Notification.Management.MediaMetadata is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.IMediaMetadata;
       begin
          return RetVal : WinRt.Windows.Phone.Notification.Management.MediaMetadata do
             Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.GetMediaMetadata (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IMediaMetadata := new Windows.Phone.Notification.Management.IMediaMetadata;
                Retval.m_IMediaMetadata.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function get_MediaPlaybackCapabilities
       return WinRt.Windows.Phone.Notification.Management.PlaybackCapability is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.PlaybackCapability;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MediaPlaybackCapabilities (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_MediaPlaybackStatus
       return WinRt.Windows.Phone.Notification.Management.PlaybackStatus is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Phone.Notification.Management.PlaybackStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MediaPlaybackStatus (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -877,83 +1061,103 @@ package body WinRt.Windows.Phone.Notification.Management is
          command : Windows.Phone.Notification.Management.PlaybackCommand
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.PerformMediaPlaybackCommand (command);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function get_DoNotDisturbEnabled
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DoNotDisturbEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_DrivingModeEnabled
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DrivingModeEnabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_BatterySaverState
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BatterySaverState (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function GetApps
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetApps (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -962,18 +1166,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          appId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appId : WinRt.HString := To_HString (appId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appId : constant WinRt.HString := To_HString (appId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.EnableNotificationsForApplication (HStr_appId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appId);
       end;
 
       procedure DisableNotificationsForApplication
@@ -981,18 +1189,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          appId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_appId : WinRt.HString := To_HString (appId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_appId : constant WinRt.HString := To_HString (appId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DisableNotificationsForApplication (HStr_appId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appId);
       end;
 
       function IsNotificationEnabledForApplication
@@ -1001,36 +1213,44 @@ package body WinRt.Windows.Phone.Notification.Management is
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
-         HStr_appId : WinRt.HString := To_HString (appId);
+         HStr_appId : constant WinRt.HString := To_HString (appId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsNotificationEnabledForApplication (HStr_appId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appId);
          return m_ComRetVal;
       end;
 
       function GetEnabledAccessoryNotificationTypes
       return WinRt.Int32 is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Int32;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetEnabledAccessoryNotificationTypes (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1039,46 +1259,58 @@ package body WinRt.Windows.Phone.Notification.Management is
          accessoryNotificationTypes : WinRt.Int32
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.EnableAccessoryNotificationTypes (accessoryNotificationTypes);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure DisableAllAccessoryNotificationTypes is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DisableAllAccessoryNotificationTypes;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetUserConsent
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetUserConsent (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1088,19 +1320,23 @@ package body WinRt.Windows.Phone.Notification.Management is
       )
       return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
-         HStr_appId : WinRt.HString := To_HString (appId);
+         HStr_appId : constant WinRt.HString := To_HString (appId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAppIcon (HStr_appId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_appId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_appId);
          return m_ComRetVal;
       end;
 
@@ -1109,18 +1345,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          instanceId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_instanceId : WinRt.HString := To_HString (instanceId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SnoozeAlarmByInstanceId (HStr_instanceId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_instanceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
       end;
 
       procedure DismissAlarmByInstanceId
@@ -1128,18 +1368,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          instanceId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_instanceId : WinRt.HString := To_HString (instanceId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DismissAlarmByInstanceId (HStr_instanceId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_instanceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
       end;
 
       procedure SnoozeReminderByInstanceId
@@ -1147,18 +1391,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          instanceId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_instanceId : WinRt.HString := To_HString (instanceId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.SnoozeReminderByInstanceId (HStr_instanceId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_instanceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
       end;
 
       procedure DismissReminderByInstanceId
@@ -1166,18 +1414,22 @@ package body WinRt.Windows.Phone.Notification.Management is
          instanceId : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Notification.Management.AccessoryManager");
          m_Factory        : access WinRt.Windows.Phone.Notification.Management.IAccessoryManager3_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_instanceId : WinRt.HString := To_HString (instanceId);
+         temp             : WinRt.UInt32 := 0;
+         HStr_instanceId : constant WinRt.HString := To_HString (instanceId);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAccessoryManager3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DismissReminderByInstanceId (HStr_instanceId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_instanceId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_instanceId);
       end;
 
    end AccessoryManager;
@@ -1191,12 +1443,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out AlarmNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAlarmNotificationTriggerDetails, IAlarmNotificationTriggerDetails_Ptr);
    begin
       if this.m_IAlarmNotificationTriggerDetails /= null then
          if this.m_IAlarmNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IAlarmNotificationTriggerDetails.all.Release;
+            temp := this.m_IAlarmNotificationTriggerDetails.all.Release;
             Free (this.m_IAlarmNotificationTriggerDetails);
          end if;
       end if;
@@ -1211,10 +1463,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IAlarmNotificationTriggerDetails.all.get_AlarmId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1224,13 +1480,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAlarmNotificationTriggerDetails.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1240,10 +1500,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAlarmNotificationTriggerDetails.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1253,10 +1517,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.ReminderState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.ReminderState;
    begin
       Hr := this.m_IAlarmNotificationTriggerDetails.all.get_ReminderState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1266,14 +1534,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1283,17 +1555,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1303,17 +1579,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1323,14 +1603,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1340,14 +1624,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1357,13 +1645,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstanceId
@@ -1372,17 +1664,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAlarmNotificationTriggerDetails2, WinRt.Windows.Phone.Notification.Management.IID_IAlarmNotificationTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAlarmNotificationTriggerDetails.all);
       Hr := m_Interface.get_InstanceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1395,12 +1691,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out AppNotificationInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppNotificationInfo, IAppNotificationInfo_Ptr);
    begin
       if this.m_IAppNotificationInfo /= null then
          if this.m_IAppNotificationInfo.all /= null then
-            RefCount := this.m_IAppNotificationInfo.all.Release;
+            temp := this.m_IAppNotificationInfo.all.Release;
             Free (this.m_IAppNotificationInfo);
          end if;
       end if;
@@ -1415,13 +1711,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppNotificationInfo.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1431,13 +1731,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAppNotificationInfo.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1450,12 +1754,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out BinaryId) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IBinaryId, IBinaryId_Ptr);
    begin
       if this.m_IBinaryId /= null then
          if this.m_IBinaryId.all /= null then
-            RefCount := this.m_IBinaryId.all.Release;
+            temp := this.m_IBinaryId.all.Release;
             Free (this.m_IBinaryId);
          end if;
       end if;
@@ -1470,10 +1774,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Byte is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Byte;
    begin
       Hr := this.m_IBinaryId.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1483,10 +1791,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IBinaryId.all.get_Length (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1499,12 +1811,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out CalendarChangedNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICalendarChangedNotificationTriggerDetails, ICalendarChangedNotificationTriggerDetails_Ptr);
    begin
       if this.m_ICalendarChangedNotificationTriggerDetails /= null then
          if this.m_ICalendarChangedNotificationTriggerDetails.all /= null then
-            RefCount := this.m_ICalendarChangedNotificationTriggerDetails.all.Release;
+            temp := this.m_ICalendarChangedNotificationTriggerDetails.all.Release;
             Free (this.m_ICalendarChangedNotificationTriggerDetails);
          end if;
       end if;
@@ -1519,10 +1831,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.CalendarChangedEvent is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.CalendarChangedEvent;
    begin
       Hr := this.m_ICalendarChangedNotificationTriggerDetails.all.get_EventType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1532,13 +1848,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarChangedNotificationTriggerDetails.all.get_ItemId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1548,14 +1868,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICalendarChangedNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarChangedNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1565,17 +1889,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICalendarChangedNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarChangedNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1585,17 +1913,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICalendarChangedNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarChangedNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1605,14 +1937,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICalendarChangedNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarChangedNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1622,14 +1958,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICalendarChangedNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarChangedNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1639,13 +1979,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICalendarChangedNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICalendarChangedNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1657,12 +2001,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out CortanaTileNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICortanaTileNotificationTriggerDetails, ICortanaTileNotificationTriggerDetails_Ptr);
    begin
       if this.m_ICortanaTileNotificationTriggerDetails /= null then
          if this.m_ICortanaTileNotificationTriggerDetails.all /= null then
-            RefCount := this.m_ICortanaTileNotificationTriggerDetails.all.Release;
+            temp := this.m_ICortanaTileNotificationTriggerDetails.all.Release;
             Free (this.m_ICortanaTileNotificationTriggerDetails);
          end if;
       end if;
@@ -1677,13 +2021,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_TileId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1693,13 +2041,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1709,13 +2061,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_LargeContent1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1725,13 +2081,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_LargeContent2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1741,13 +2101,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_EmphasizedText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1757,13 +2121,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_NonWrappedSmallContent1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1773,13 +2141,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_NonWrappedSmallContent2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1789,13 +2161,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_NonWrappedSmallContent3 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1805,13 +2181,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_NonWrappedSmallContent4 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1821,13 +2201,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICortanaTileNotificationTriggerDetails.all.get_Source (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1837,14 +2221,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICortanaTileNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICortanaTileNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1854,17 +2242,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICortanaTileNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICortanaTileNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1874,17 +2266,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICortanaTileNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICortanaTileNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1894,14 +2290,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICortanaTileNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICortanaTileNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1911,14 +2311,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICortanaTileNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICortanaTileNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1928,13 +2332,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.ICortanaTileNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICortanaTileNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1946,12 +2354,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out EmailAccountInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailAccountInfo, IEmailAccountInfo_Ptr);
    begin
       if this.m_IEmailAccountInfo /= null then
          if this.m_IEmailAccountInfo.all /= null then
-            RefCount := this.m_IEmailAccountInfo.all.Release;
+            temp := this.m_IEmailAccountInfo.all.Release;
             Free (this.m_IEmailAccountInfo);
          end if;
       end if;
@@ -1966,13 +2374,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailAccountInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1982,10 +2394,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailAccountInfo.all.get_IsNotificationEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1998,12 +2414,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out EmailFolderInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailFolderInfo, IEmailFolderInfo_Ptr);
    begin
       if this.m_IEmailFolderInfo /= null then
          if this.m_IEmailFolderInfo.all /= null then
-            RefCount := this.m_IEmailFolderInfo.all.Release;
+            temp := this.m_IEmailFolderInfo.all.Release;
             Free (this.m_IEmailFolderInfo);
          end if;
       end if;
@@ -2018,13 +2434,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailFolderInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2034,10 +2454,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailFolderInfo.all.get_IsNotificationEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2050,12 +2474,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out EmailNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailNotificationTriggerDetails, IEmailNotificationTriggerDetails_Ptr);
    begin
       if this.m_IEmailNotificationTriggerDetails /= null then
          if this.m_IEmailNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IEmailNotificationTriggerDetails.all.Release;
+            temp := this.m_IEmailNotificationTriggerDetails.all.Release;
             Free (this.m_IEmailNotificationTriggerDetails);
          end if;
       end if;
@@ -2070,13 +2494,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailNotificationTriggerDetails.all.get_AccountName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2086,13 +2514,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailNotificationTriggerDetails.all.get_ParentFolderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2102,13 +2534,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailNotificationTriggerDetails.all.get_SenderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2118,13 +2554,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailNotificationTriggerDetails.all.get_SenderAddress (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2134,11 +2574,15 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Email.IEmailMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Email.EmailMessage do
          Hr := this.m_IEmailNotificationTriggerDetails.all.get_EmailMessage (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IEmailMessage := new Windows.ApplicationModel.Email.IEmailMessage;
          Retval.m_IEmailMessage.all := m_ComRetVal;
       end return;
@@ -2150,10 +2594,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IEmailNotificationTriggerDetails.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2163,14 +2611,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2180,17 +2632,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2200,17 +2656,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2220,14 +2680,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2237,14 +2701,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2254,13 +2722,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MessageEntryId
@@ -2269,15 +2741,19 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.BinaryId'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.IBinaryId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IEmailNotificationTriggerDetails2, WinRt.Windows.Phone.Notification.Management.IID_IEmailNotificationTriggerDetails2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Phone.Notification.Management.BinaryId do
          m_Interface := QInterface (this.m_IEmailNotificationTriggerDetails.all);
          Hr := m_Interface.get_MessageEntryId (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBinaryId := new Windows.Phone.Notification.Management.IBinaryId;
          Retval.m_IBinaryId.all := m_ComRetVal;
       end return;
@@ -2292,12 +2768,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out EmailReadNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IEmailReadNotificationTriggerDetails, IEmailReadNotificationTriggerDetails_Ptr);
    begin
       if this.m_IEmailReadNotificationTriggerDetails /= null then
          if this.m_IEmailReadNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IEmailReadNotificationTriggerDetails.all.Release;
+            temp := this.m_IEmailReadNotificationTriggerDetails.all.Release;
             Free (this.m_IEmailReadNotificationTriggerDetails);
          end if;
       end if;
@@ -2312,13 +2788,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailReadNotificationTriggerDetails.all.get_AccountName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2328,13 +2808,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IEmailReadNotificationTriggerDetails.all.get_ParentFolderName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2344,11 +2828,15 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.BinaryId'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.IBinaryId;
    begin
       return RetVal : WinRt.Windows.Phone.Notification.Management.BinaryId do
          Hr := this.m_IEmailReadNotificationTriggerDetails.all.get_MessageEntryId (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBinaryId := new Windows.Phone.Notification.Management.IBinaryId;
          Retval.m_IBinaryId.all := m_ComRetVal;
       end return;
@@ -2360,10 +2848,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IEmailReadNotificationTriggerDetails.all.get_IsRead (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2373,14 +2865,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailReadNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailReadNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2390,17 +2886,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailReadNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailReadNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2410,17 +2910,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailReadNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailReadNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2430,14 +2934,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailReadNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailReadNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2447,14 +2955,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailReadNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailReadNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2464,13 +2976,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IEmailReadNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEmailReadNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2482,12 +2998,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out MediaControlsTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaControlsTriggerDetails, IMediaControlsTriggerDetails_Ptr);
    begin
       if this.m_IMediaControlsTriggerDetails /= null then
          if this.m_IMediaControlsTriggerDetails.all /= null then
-            RefCount := this.m_IMediaControlsTriggerDetails.all.Release;
+            temp := this.m_IMediaControlsTriggerDetails.all.Release;
             Free (this.m_IMediaControlsTriggerDetails);
          end if;
       end if;
@@ -2502,10 +3018,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PlaybackStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PlaybackStatus;
    begin
       Hr := this.m_IMediaControlsTriggerDetails.all.get_PlaybackStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2515,11 +3035,15 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.MediaMetadata'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.IMediaMetadata;
    begin
       return RetVal : WinRt.Windows.Phone.Notification.Management.MediaMetadata do
          Hr := this.m_IMediaControlsTriggerDetails.all.get_MediaMetadata (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMediaMetadata := new Windows.Phone.Notification.Management.IMediaMetadata;
          Retval.m_IMediaMetadata.all := m_ComRetVal;
       end return;
@@ -2531,14 +3055,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IMediaControlsTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaControlsTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2548,17 +3076,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IMediaControlsTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaControlsTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2568,17 +3100,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IMediaControlsTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaControlsTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2588,14 +3124,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IMediaControlsTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaControlsTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2605,14 +3145,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IMediaControlsTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaControlsTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2622,13 +3166,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IMediaControlsTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaControlsTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2640,12 +3188,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out MediaMetadata) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMediaMetadata, IMediaMetadata_Ptr);
    begin
       if this.m_IMediaMetadata /= null then
          if this.m_IMediaMetadata.all /= null then
-            RefCount := this.m_IMediaMetadata.all.Release;
+            temp := this.m_IMediaMetadata.all.Release;
             Free (this.m_IMediaMetadata);
          end if;
       end if;
@@ -2660,13 +3208,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaMetadata.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2676,13 +3228,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaMetadata.all.get_Subtitle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2692,13 +3248,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaMetadata.all.get_Artist (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2708,13 +3268,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMediaMetadata.all.get_Album (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2724,10 +3288,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IMediaMetadata.all.get_Track (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2737,10 +3305,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaMetadata.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2750,10 +3322,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IMediaMetadata.all.get_Thumbnail (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2766,12 +3342,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out PhoneCallDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneCallDetails, IPhoneCallDetails_Ptr);
    begin
       if this.m_IPhoneCallDetails /= null then
          if this.m_IPhoneCallDetails.all /= null then
-            RefCount := this.m_IPhoneCallDetails.all.Release;
+            temp := this.m_IPhoneCallDetails.all.Release;
             Free (this.m_IPhoneCallDetails);
          end if;
       end if;
@@ -2786,10 +3362,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_PhoneLine (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2799,10 +3379,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_CallId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2812,10 +3396,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneCallTransport is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneCallTransport;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_CallTransport (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2825,10 +3413,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneMediaType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneMediaType;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_CallMediaType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2838,10 +3430,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneCallDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneCallDirection;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_CallDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2851,10 +3447,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneCallState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneCallState;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2864,10 +3464,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_ConferenceCallId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2877,10 +3481,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_StartTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2890,10 +3498,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_EndTime (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2903,13 +3515,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2919,13 +3535,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_ContactName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2935,13 +3555,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return IVectorView_ITextResponse.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ITextResponse.Kind;
    begin
       Hr := this.m_IPhoneCallDetails.all.get_PresetTextResponses (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ITextResponse (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2954,12 +3578,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out PhoneLineDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneLineDetails, IPhoneLineDetails_Ptr);
    begin
       if this.m_IPhoneLineDetails /= null then
          if this.m_IPhoneLineDetails.all /= null then
-            RefCount := this.m_IPhoneLineDetails.all.Release;
+            temp := this.m_IPhoneLineDetails.all.Release;
             Free (this.m_IPhoneLineDetails);
          end if;
       end if;
@@ -2974,10 +3598,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneLineDetails.all.get_LineId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2987,13 +3615,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneLineDetails.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3003,13 +3635,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPhoneLineDetails.all.get_LineNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3019,10 +3655,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPhoneLineDetails.all.get_DefaultOutgoingLine (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3032,10 +3672,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPhoneLineDetails.all.get_VoicemailCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3045,10 +3689,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneLineRegistrationState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneLineRegistrationState;
    begin
       Hr := this.m_IPhoneLineDetails.all.get_RegistrationState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3058,14 +3706,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IPhoneLineDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneLineDetails_Interface, WinRt.Windows.Phone.Notification.Management.IPhoneLineDetails2, WinRt.Windows.Phone.Notification.Management.IID_IPhoneLineDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneLineDetails.all);
       Hr := m_Interface.get_MissedCallCount (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3078,12 +3730,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out PhoneNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPhoneNotificationTriggerDetails, IPhoneNotificationTriggerDetails_Ptr);
    begin
       if this.m_IPhoneNotificationTriggerDetails /= null then
          if this.m_IPhoneNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IPhoneNotificationTriggerDetails.all.Release;
+            temp := this.m_IPhoneNotificationTriggerDetails.all.Release;
             Free (this.m_IPhoneNotificationTriggerDetails);
          end if;
       end if;
@@ -3098,10 +3750,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneNotificationType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.PhoneNotificationType;
    begin
       Hr := this.m_IPhoneNotificationTriggerDetails.all.get_PhoneNotificationType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3111,11 +3767,15 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.PhoneCallDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.IPhoneCallDetails;
    begin
       return RetVal : WinRt.Windows.Phone.Notification.Management.PhoneCallDetails do
          Hr := this.m_IPhoneNotificationTriggerDetails.all.get_CallDetails (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPhoneCallDetails := new Windows.Phone.Notification.Management.IPhoneCallDetails;
          Retval.m_IPhoneCallDetails.all := m_ComRetVal;
       end return;
@@ -3127,10 +3787,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IPhoneNotificationTriggerDetails.all.get_PhoneLineChangedId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3140,14 +3804,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3157,17 +3825,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3177,17 +3849,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3197,14 +3873,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3214,14 +3894,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3231,13 +3915,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IPhoneNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3249,12 +3937,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out ReminderNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IReminderNotificationTriggerDetails, IReminderNotificationTriggerDetails_Ptr);
    begin
       if this.m_IReminderNotificationTriggerDetails /= null then
          if this.m_IReminderNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IReminderNotificationTriggerDetails.all.Release;
+            temp := this.m_IReminderNotificationTriggerDetails.all.Release;
             Free (this.m_IReminderNotificationTriggerDetails);
          end if;
       end if;
@@ -3269,10 +3957,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IReminderNotificationTriggerDetails.all.get_ReminderId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3282,13 +3974,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IReminderNotificationTriggerDetails.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3298,13 +3994,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IReminderNotificationTriggerDetails.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3314,13 +4014,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IReminderNotificationTriggerDetails.all.get_Details (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3330,10 +4034,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_IReminderNotificationTriggerDetails.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3343,11 +4051,15 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IReminderNotificationTriggerDetails.all.get_Appointment (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
@@ -3359,10 +4071,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.ReminderState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.ReminderState;
    begin
       Hr := this.m_IReminderNotificationTriggerDetails.all.get_ReminderState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3372,14 +4088,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3389,17 +4109,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3409,17 +4133,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3429,14 +4157,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3446,14 +4178,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3463,13 +4199,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstanceId
@@ -3478,17 +4218,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IReminderNotificationTriggerDetails2, WinRt.Windows.Phone.Notification.Management.IID_IReminderNotificationTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReminderNotificationTriggerDetails.all);
       Hr := m_Interface.get_InstanceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3501,12 +4245,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out SpeedDialEntry) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISpeedDialEntry, ISpeedDialEntry_Ptr);
    begin
       if this.m_ISpeedDialEntry /= null then
          if this.m_ISpeedDialEntry.all /= null then
-            RefCount := this.m_ISpeedDialEntry.all.Release;
+            temp := this.m_ISpeedDialEntry.all.Release;
             Free (this.m_ISpeedDialEntry);
          end if;
       end if;
@@ -3521,13 +4265,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeedDialEntry.all.get_PhoneNumber (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3537,13 +4285,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeedDialEntry.all.get_NumberType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3553,13 +4305,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISpeedDialEntry.all.get_ContactName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3572,12 +4328,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out TextResponse) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITextResponse, ITextResponse_Ptr);
    begin
       if this.m_ITextResponse /= null then
          if this.m_ITextResponse.all /= null then
-            RefCount := this.m_ITextResponse.all.Release;
+            temp := this.m_ITextResponse.all.Release;
             Free (this.m_ITextResponse);
          end if;
       end if;
@@ -3592,10 +4348,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ITextResponse.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3605,13 +4365,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ITextResponse.all.get_Content (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3624,12 +4388,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out ToastNotificationTriggerDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToastNotificationTriggerDetails, IToastNotificationTriggerDetails_Ptr);
    begin
       if this.m_IToastNotificationTriggerDetails /= null then
          if this.m_IToastNotificationTriggerDetails.all /= null then
-            RefCount := this.m_IToastNotificationTriggerDetails.all.Release;
+            temp := this.m_IToastNotificationTriggerDetails.all.Release;
             Free (this.m_IToastNotificationTriggerDetails);
          end if;
       end if;
@@ -3644,13 +4408,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IToastNotificationTriggerDetails.all.get_Text1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3660,13 +4428,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IToastNotificationTriggerDetails.all.get_Text2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3676,13 +4448,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IToastNotificationTriggerDetails.all.get_Text3 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3692,13 +4468,17 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IToastNotificationTriggerDetails.all.get_Text4 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3708,10 +4488,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IToastNotificationTriggerDetails.all.get_SuppressPopup (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3721,14 +4505,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.get_TimeCreated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3738,17 +4526,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppDisplayName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3758,17 +4550,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.get_AppId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3778,14 +4574,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.AccessoryNotificationType is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.AccessoryNotificationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.get_AccessoryNotificationType (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3795,14 +4595,18 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.get_StartedProcessing (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3812,13 +4616,17 @@ package body WinRt.Windows.Phone.Notification.Management is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IAccessoryNotificationTriggerDetails, WinRt.Windows.Phone.Notification.Management.IID_IAccessoryNotificationTriggerDetails'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.put_StartedProcessing (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InstanceId
@@ -3827,17 +4635,21 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails_Interface, WinRt.Windows.Phone.Notification.Management.IToastNotificationTriggerDetails2, WinRt.Windows.Phone.Notification.Management.IID_IToastNotificationTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationTriggerDetails.all);
       Hr := m_Interface.get_InstanceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -3850,12 +4662,12 @@ package body WinRt.Windows.Phone.Notification.Management is
    end;
 
    procedure Finalize (this : in out VolumeInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVolumeInfo, IVolumeInfo_Ptr);
    begin
       if this.m_IVolumeInfo /= null then
          if this.m_IVolumeInfo.all /= null then
-            RefCount := this.m_IVolumeInfo.all.Release;
+            temp := this.m_IVolumeInfo.all.Release;
             Free (this.m_IVolumeInfo);
          end if;
       end if;
@@ -3870,10 +4682,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IVolumeInfo.all.get_SystemVolume (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3883,10 +4699,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IVolumeInfo.all.get_CallVolume (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3896,10 +4716,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IVolumeInfo.all.get_MediaVolume (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3909,10 +4733,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IVolumeInfo.all.get_IsMuted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3922,10 +4750,14 @@ package body WinRt.Windows.Phone.Notification.Management is
    )
    return WinRt.Windows.Phone.Notification.Management.VibrateState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Notification.Management.VibrateState;
    begin
       Hr := this.m_IVolumeInfo.all.get_IsVibrateEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

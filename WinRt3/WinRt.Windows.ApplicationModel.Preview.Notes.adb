@@ -44,12 +44,12 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    end;
 
    procedure Finalize (this : in out NotePlacementChangedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INotePlacementChangedPreviewEventArgs, INotePlacementChangedPreviewEventArgs_Ptr);
    begin
       if this.m_INotePlacementChangedPreviewEventArgs /= null then
          if this.m_INotePlacementChangedPreviewEventArgs.all /= null then
-            RefCount := this.m_INotePlacementChangedPreviewEventArgs.all.Release;
+            temp := this.m_INotePlacementChangedPreviewEventArgs.all.Release;
             Free (this.m_INotePlacementChangedPreviewEventArgs);
          end if;
       end if;
@@ -64,10 +64,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_INotePlacementChangedPreviewEventArgs.all.get_ViewId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -80,12 +84,12 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    end;
 
    procedure Finalize (this : in out NoteVisibilityChangedPreviewEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INoteVisibilityChangedPreviewEventArgs, INoteVisibilityChangedPreviewEventArgs_Ptr);
    begin
       if this.m_INoteVisibilityChangedPreviewEventArgs /= null then
          if this.m_INoteVisibilityChangedPreviewEventArgs.all /= null then
-            RefCount := this.m_INoteVisibilityChangedPreviewEventArgs.all.Release;
+            temp := this.m_INoteVisibilityChangedPreviewEventArgs.all.Release;
             Free (this.m_INoteVisibilityChangedPreviewEventArgs);
          end if;
       end if;
@@ -100,10 +104,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_INoteVisibilityChangedPreviewEventArgs.all.get_ViewId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -113,10 +121,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INoteVisibilityChangedPreviewEventArgs.all.get_IsVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -129,12 +141,12 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    end;
 
    procedure Finalize (this : in out NotesWindowManagerPreview) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INotesWindowManagerPreview, INotesWindowManagerPreview_Ptr);
    begin
       if this.m_INotesWindowManagerPreview /= null then
          if this.m_INotesWindowManagerPreview.all /= null then
-            RefCount := this.m_INotesWindowManagerPreview.all.Release;
+            temp := this.m_INotesWindowManagerPreview.all.Release;
             Free (this.m_INotesWindowManagerPreview);
          end if;
       end if;
@@ -146,20 +158,24 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    function GetForCurrentApp
    return WinRt.Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreview is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreview");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreview");
       m_Factory        : access WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreviewStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreview do
          Hr := RoGetActivationFactory (m_hString, IID_INotesWindowManagerPreviewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentApp (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_INotesWindowManagerPreview := new Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview;
             Retval.m_INotesWindowManagerPreview.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -172,10 +188,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.get_IsScreenLocked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -185,9 +205,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       noteViewId : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.ShowNote (noteViewId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowNoteRelativeTo
@@ -197,9 +221,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       anchorNoteViewId : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.ShowNoteRelativeTo (noteViewId, anchorNoteViewId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowNoteWithPlacement
@@ -209,9 +237,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       data : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.ShowNoteWithPlacement (noteViewId, data);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure HideNote
@@ -220,9 +252,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       noteViewId : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.HideNote (noteViewId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetNotePlacement
@@ -232,10 +268,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.GetNotePlacement (noteViewId, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -247,10 +287,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.TrySetNoteSize (noteViewId, size, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -259,9 +303,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       this : in out NotesWindowManagerPreview
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.SetFocusToNextView;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetNotesThumbnailAsync
@@ -270,7 +318,8 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       thumbnail : Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -278,7 +327,6 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -299,9 +347,9 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -314,10 +362,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.add_SystemLockStateChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -327,9 +379,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.remove_SystemLockStateChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NotePlacementChanged
@@ -339,10 +395,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.add_NotePlacementChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -352,9 +412,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.remove_NotePlacementChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_NoteVisibilityChanged
@@ -364,10 +428,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.add_NoteVisibilityChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -377,9 +445,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreview.all.remove_NoteVisibilityChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowNoteRelativeTo
@@ -390,13 +462,17 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       options : Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreviewShowNoteOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview_Interface, WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2, WinRt.Windows.ApplicationModel.Preview.Notes.IID_INotesWindowManagerPreview2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INotesWindowManagerPreview.all);
       Hr := m_Interface.ShowNoteRelativeTo (noteViewId, anchorNoteViewId, options.m_INotesWindowManagerPreviewShowNoteOptions.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowNoteWithPlacement
@@ -407,13 +483,17 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       options : Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreviewShowNoteOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview_Interface, WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2, WinRt.Windows.ApplicationModel.Preview.Notes.IID_INotesWindowManagerPreview2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INotesWindowManagerPreview.all);
       Hr := m_Interface.ShowNoteWithPlacement (noteViewId, data, options.m_INotesWindowManagerPreviewShowNoteOptions.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetFocusToPreviousView
@@ -421,13 +501,17 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       this : in out NotesWindowManagerPreview
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview_Interface, WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2, WinRt.Windows.ApplicationModel.Preview.Notes.IID_INotesWindowManagerPreview2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INotesWindowManagerPreview.all);
       Hr := m_Interface.SetFocusToPreviousView;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetThumbnailImageForTaskSwitcherAsync
@@ -436,8 +520,9 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreview2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -445,7 +530,6 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -461,7 +545,7 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    begin
       m_Interface := QInterface (this.m_INotesWindowManagerPreview.all);
       Hr := m_Interface.SetThumbnailImageForTaskSwitcherAsync (bitmap.m_ISoftwareBitmap.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -469,9 +553,9 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -486,12 +570,12 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    end;
 
    procedure Finalize (this : in out NotesWindowManagerPreviewShowNoteOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INotesWindowManagerPreviewShowNoteOptions, INotesWindowManagerPreviewShowNoteOptions_Ptr);
    begin
       if this.m_INotesWindowManagerPreviewShowNoteOptions /= null then
          if this.m_INotesWindowManagerPreviewShowNoteOptions.all /= null then
-            RefCount := this.m_INotesWindowManagerPreviewShowNoteOptions.all.Release;
+            temp := this.m_INotesWindowManagerPreviewShowNoteOptions.all.Release;
             Free (this.m_INotesWindowManagerPreviewShowNoteOptions);
          end if;
       end if;
@@ -502,7 +586,8 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
 
    function Constructor return NotesWindowManagerPreviewShowNoteOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreviewShowNoteOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Preview.Notes.NotesWindowManagerPreviewShowNoteOptions");
       m_ComRetVal  : aliased Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreviewShowNoteOptions;
    begin
       return RetVal : NotesWindowManagerPreviewShowNoteOptions do
@@ -511,7 +596,7 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
             Retval.m_INotesWindowManagerPreviewShowNoteOptions := new Windows.ApplicationModel.Preview.Notes.INotesWindowManagerPreviewShowNoteOptions;
             Retval.m_INotesWindowManagerPreviewShowNoteOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -524,10 +609,14 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INotesWindowManagerPreviewShowNoteOptions.all.get_ShowWithFocus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -537,9 +626,13 @@ package body WinRt.Windows.ApplicationModel.Preview.Notes is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INotesWindowManagerPreviewShowNoteOptions.all.put_ShowWithFocus (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.ApplicationModel.Preview.Notes;

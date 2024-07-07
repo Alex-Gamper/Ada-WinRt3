@@ -59,7 +59,7 @@ package body WinRt.Windows.Security.Isolation is
       message : GenericObject
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (receiverId, message);
       return Hr;
@@ -74,12 +74,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironment) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironment, IIsolatedWindowsEnvironment_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironment /= null then
          if this.m_IIsolatedWindowsEnvironment.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironment.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironment.all.Release;
             Free (this.m_IIsolatedWindowsEnvironment);
          end if;
       end if;
@@ -94,15 +94,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
       m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFactory_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentCreateResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -120,7 +120,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentCreateResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentCreateResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -134,10 +134,10 @@ package body WinRt.Windows.Security.Isolation is
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (options.m_IIsolatedWindowsEnvironmentOptions.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -149,15 +149,15 @@ package body WinRt.Windows.Security.Isolation is
                      Retval.m_IIsolatedWindowsEnvironmentCreateResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult;
                      Retval.m_IIsolatedWindowsEnvironmentCreateResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -168,15 +168,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
       m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFactory_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentCreateResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -194,7 +194,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentCreateResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentCreateResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -208,10 +208,10 @@ package body WinRt.Windows.Security.Isolation is
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAsync (options.m_IIsolatedWindowsEnvironmentOptions.all, telemetryParameters.m_IIsolatedWindowsEnvironmentTelemetryParameters.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -223,15 +223,15 @@ package body WinRt.Windows.Security.Isolation is
                      Retval.m_IIsolatedWindowsEnvironmentCreateResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentCreateResult;
                      Retval.m_IIsolatedWindowsEnvironmentCreateResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -241,22 +241,26 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironment is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
       m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFactory_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironment;
-      HStr_environmentId : WinRt.HString := To_HString (environmentId);
+      HStr_environmentId : constant WinRt.HString := To_HString (environmentId);
    begin
       return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironment do
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetById (HStr_environmentId, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IIsolatedWindowsEnvironment := new Windows.Security.Isolation.IIsolatedWindowsEnvironment;
             Retval.m_IIsolatedWindowsEnvironment.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_environmentId);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_environmentId);
       end return;
    end;
 
@@ -266,19 +270,23 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironment");
       m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFactory_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
-      HStr_environmentOwnerId : WinRt.HString := To_HString (environmentOwnerId);
+      HStr_environmentOwnerId : constant WinRt.HString := To_HString (environmentOwnerId);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentFactory'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FindByOwnerId (HStr_environmentOwnerId, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_environmentOwnerId);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_environmentOwnerId);
       return m_ComRetVal;
    end;
 
@@ -291,13 +299,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIsolatedWindowsEnvironment.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -310,15 +322,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_hostExePath : WinRt.HString := To_HString (hostExePath);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_hostExePath : constant WinRt.HString := To_HString (hostExePath);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentStartProcessResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -336,7 +348,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentStartProcessResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentStartProcessResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -350,7 +362,7 @@ package body WinRt.Windows.Security.Isolation is
          Hr := this.m_IIsolatedWindowsEnvironment.all.StartProcessSilentlyAsync (HStr_hostExePath, HStr_arguments, activator, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -362,15 +374,15 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentStartProcessResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentStartProcessResult;
                   Retval.m_IIsolatedWindowsEnvironmentStartProcessResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_hostExePath);
-         Hr := WindowsDeleteString (HStr_arguments);
+         tmp := WindowsDeleteString (HStr_hostExePath);
+         tmp := WindowsDeleteString (HStr_arguments);
       end return;
    end;
 
@@ -384,15 +396,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_hostExePath : WinRt.HString := To_HString (hostExePath);
-      HStr_arguments : WinRt.HString := To_HString (arguments);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_hostExePath : constant WinRt.HString := To_HString (hostExePath);
+      HStr_arguments : constant WinRt.HString := To_HString (arguments);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentStartProcessResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -410,7 +422,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentStartProcessResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentStartProcessResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -424,7 +436,7 @@ package body WinRt.Windows.Security.Isolation is
          Hr := this.m_IIsolatedWindowsEnvironment.all.StartProcessSilentlyAsync (HStr_hostExePath, HStr_arguments, activator, telemetryParameters.m_IIsolatedWindowsEnvironmentTelemetryParameters.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -436,15 +448,15 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentStartProcessResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentStartProcessResult;
                   Retval.m_IIsolatedWindowsEnvironmentStartProcessResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_hostExePath);
-         Hr := WindowsDeleteString (HStr_arguments);
+         tmp := WindowsDeleteString (HStr_hostExePath);
+         tmp := WindowsDeleteString (HStr_arguments);
       end return;
    end;
 
@@ -456,14 +468,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_hostFolder : WinRt.HString := To_HString (hostFolder);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_hostFolder : constant WinRt.HString := To_HString (hostFolder);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentShareFolderResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -481,7 +493,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFolderResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFolderResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -495,7 +507,7 @@ package body WinRt.Windows.Security.Isolation is
          Hr := this.m_IIsolatedWindowsEnvironment.all.ShareFolderAsync (HStr_hostFolder, requestOptions.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -507,14 +519,14 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentShareFolderResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderResult;
                   Retval.m_IIsolatedWindowsEnvironmentShareFolderResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_hostFolder);
+         tmp := WindowsDeleteString (HStr_hostFolder);
       end return;
    end;
 
@@ -527,14 +539,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_hostFolder : WinRt.HString := To_HString (hostFolder);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_hostFolder : constant WinRt.HString := To_HString (hostFolder);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentShareFolderResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -552,7 +564,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFolderResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentShareFolderResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -566,7 +578,7 @@ package body WinRt.Windows.Security.Isolation is
          Hr := this.m_IIsolatedWindowsEnvironment.all.ShareFolderAsync (HStr_hostFolder, requestOptions.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all, telemetryParameters.m_IIsolatedWindowsEnvironmentTelemetryParameters.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -578,14 +590,14 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentShareFolderResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderResult;
                   Retval.m_IIsolatedWindowsEnvironmentShareFolderResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_hostFolder);
+         tmp := WindowsDeleteString (HStr_hostFolder);
       end return;
    end;
 
@@ -598,16 +610,16 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appExePath : WinRt.HString := To_HString (appExePath);
-      HStr_argumentsTemplate : WinRt.HString := To_HString (argumentsTemplate);
-      HStr_filePath : WinRt.HString := To_HString (filePath);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appExePath : constant WinRt.HString := To_HString (appExePath);
+      HStr_argumentsTemplate : constant WinRt.HString := To_HString (argumentsTemplate);
+      HStr_filePath : constant WinRt.HString := To_HString (filePath);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentLaunchFileResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -625,7 +637,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentLaunchFileResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentLaunchFileResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -639,7 +651,7 @@ package body WinRt.Windows.Security.Isolation is
          Hr := this.m_IIsolatedWindowsEnvironment.all.LaunchFileWithUIAsync (HStr_appExePath, HStr_argumentsTemplate, HStr_filePath, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -651,16 +663,16 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentLaunchFileResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentLaunchFileResult;
                   Retval.m_IIsolatedWindowsEnvironmentLaunchFileResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_appExePath);
-         Hr := WindowsDeleteString (HStr_argumentsTemplate);
-         Hr := WindowsDeleteString (HStr_filePath);
+         tmp := WindowsDeleteString (HStr_appExePath);
+         tmp := WindowsDeleteString (HStr_argumentsTemplate);
+         tmp := WindowsDeleteString (HStr_filePath);
       end return;
    end;
 
@@ -674,16 +686,16 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appExePath : WinRt.HString := To_HString (appExePath);
-      HStr_argumentsTemplate : WinRt.HString := To_HString (argumentsTemplate);
-      HStr_filePath : WinRt.HString := To_HString (filePath);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appExePath : constant WinRt.HString := To_HString (appExePath);
+      HStr_argumentsTemplate : constant WinRt.HString := To_HString (argumentsTemplate);
+      HStr_filePath : constant WinRt.HString := To_HString (filePath);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentLaunchFileResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -701,7 +713,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentLaunchFileResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentLaunchFileResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -715,7 +727,7 @@ package body WinRt.Windows.Security.Isolation is
          Hr := this.m_IIsolatedWindowsEnvironment.all.LaunchFileWithUIAsync (HStr_appExePath, HStr_argumentsTemplate, HStr_filePath, telemetryParameters.m_IIsolatedWindowsEnvironmentTelemetryParameters.all, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -727,16 +739,16 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentLaunchFileResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentLaunchFileResult;
                   Retval.m_IIsolatedWindowsEnvironmentLaunchFileResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_appExePath);
-         Hr := WindowsDeleteString (HStr_argumentsTemplate);
-         Hr := WindowsDeleteString (HStr_filePath);
+         tmp := WindowsDeleteString (HStr_appExePath);
+         tmp := WindowsDeleteString (HStr_argumentsTemplate);
+         tmp := WindowsDeleteString (HStr_filePath);
       end return;
    end;
 
@@ -745,7 +757,8 @@ package body WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -753,7 +766,6 @@ package body WinRt.Windows.Security.Isolation is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -774,9 +786,9 @@ package body WinRt.Windows.Security.Isolation is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -788,7 +800,8 @@ package body WinRt.Windows.Security.Isolation is
       telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -796,7 +809,6 @@ package body WinRt.Windows.Security.Isolation is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -817,9 +829,9 @@ package body WinRt.Windows.Security.Isolation is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -832,9 +844,13 @@ package body WinRt.Windows.Security.Isolation is
       messageReceivedCallback : Windows.Security.Isolation.MessageReceivedCallback
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironment.all.RegisterMessageReceiver (receiverId, messageReceivedCallback);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure UnregisterMessageReceiver
@@ -843,9 +859,13 @@ package body WinRt.Windows.Security.Isolation is
       receiverId : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironment.all.UnregisterMessageReceiver (receiverId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function PostMessageToReceiverAsync
@@ -856,14 +876,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentPostMessageResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -881,7 +901,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentPostMessageResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentPostMessageResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -895,10 +915,10 @@ package body WinRt.Windows.Security.Isolation is
       return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageResult do
          m_Interface := QInterface (this.m_IIsolatedWindowsEnvironment.all);
          Hr := m_Interface.PostMessageToReceiverAsync (receiverId, message, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -910,9 +930,9 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentPostMessageResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentPostMessageResult;
                   Retval.m_IIsolatedWindowsEnvironmentPostMessageResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -929,14 +949,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageResult'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IsolatedWindowsEnvironmentPostMessageResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -954,7 +974,7 @@ package body WinRt.Windows.Security.Isolation is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentPostMessageResult.Kind_Delegate, AsyncOperationCompletedHandler_IsolatedWindowsEnvironmentPostMessageResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -968,10 +988,10 @@ package body WinRt.Windows.Security.Isolation is
       return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageResult do
          m_Interface := QInterface (this.m_IIsolatedWindowsEnvironment.all);
          Hr := m_Interface.PostMessageToReceiverAsync (receiverId, message, telemetryParameters.m_IIsolatedWindowsEnvironmentTelemetryParameters.all, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -983,9 +1003,9 @@ package body WinRt.Windows.Security.Isolation is
                   Retval.m_IIsolatedWindowsEnvironmentPostMessageResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentPostMessageResult;
                   Retval.m_IIsolatedWindowsEnvironmentPostMessageResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -1002,12 +1022,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentCreateResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentCreateResult, IIsolatedWindowsEnvironmentCreateResult_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentCreateResult /= null then
          if this.m_IIsolatedWindowsEnvironmentCreateResult.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentCreateResult.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentCreateResult.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentCreateResult);
          end if;
       end if;
@@ -1022,10 +1042,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateStatus;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentCreateResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1035,10 +1059,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentCreateResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1048,11 +1076,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironment'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironment;
    begin
       return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironment do
          Hr := this.m_IIsolatedWindowsEnvironmentCreateResult.all.get_Environment (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIsolatedWindowsEnvironment := new Windows.Security.Isolation.IIsolatedWindowsEnvironment;
          Retval.m_IIsolatedWindowsEnvironment.all := m_ComRetVal;
       end return;
@@ -1067,12 +1099,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentFile) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentFile, IIsolatedWindowsEnvironmentFile_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentFile /= null then
          if this.m_IIsolatedWindowsEnvironmentFile.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentFile.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentFile.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentFile);
          end if;
       end if;
@@ -1087,10 +1119,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentFile.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1100,13 +1136,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentFile.all.get_HostPath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1115,9 +1155,13 @@ package body WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironmentFile
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentFile.all.Close;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1127,34 +1171,42 @@ package body WinRt.Windows.Security.Isolation is
       function get_IsReady
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentHost");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentHost");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentHostStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Boolean;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentHostStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsReady (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
       function get_HostErrors
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentHost");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentHost");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentHostStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentHostStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HostErrors (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_ComRetVal;
       end;
 
@@ -1169,12 +1221,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentLaunchFileResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentLaunchFileResult, IIsolatedWindowsEnvironmentLaunchFileResult_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentLaunchFileResult /= null then
          if this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentLaunchFileResult);
          end if;
       end if;
@@ -1189,10 +1241,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileStatus;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1202,10 +1258,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1215,11 +1275,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentFile'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile;
    begin
       return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentFile do
          Hr := this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all.get_File (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIsolatedWindowsEnvironmentFile := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile;
          Retval.m_IIsolatedWindowsEnvironmentFile.all := m_ComRetVal;
       end return;
@@ -1234,12 +1298,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentOptions, IIsolatedWindowsEnvironmentOptions_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentOptions /= null then
          if this.m_IIsolatedWindowsEnvironmentOptions.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentOptions.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentOptions.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentOptions);
          end if;
       end if;
@@ -1250,7 +1314,8 @@ package body WinRt.Windows.Security.Isolation is
 
    function Constructor return IsolatedWindowsEnvironmentOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions");
       m_ComRetVal  : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
    begin
       return RetVal : IsolatedWindowsEnvironmentOptions do
@@ -1259,7 +1324,7 @@ package body WinRt.Windows.Security.Isolation is
             Retval.m_IIsolatedWindowsEnvironmentOptions := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
             Retval.m_IIsolatedWindowsEnvironmentOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1272,13 +1337,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_EnvironmentOwnerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1288,11 +1357,15 @@ package body WinRt.Windows.Security.Isolation is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_EnvironmentOwnerId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AllowedClipboardFormats
@@ -1301,10 +1374,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_AllowedClipboardFormats (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1314,9 +1391,13 @@ package body WinRt.Windows.Security.Isolation is
       value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_AllowedClipboardFormats (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClipboardCopyPasteDirections
@@ -1325,10 +1406,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_ClipboardCopyPasteDirections (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1338,9 +1423,13 @@ package body WinRt.Windows.Security.Isolation is
       value : Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_ClipboardCopyPasteDirections (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AvailablePrinters
@@ -1349,10 +1438,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_AvailablePrinters (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1362,9 +1455,13 @@ package body WinRt.Windows.Security.Isolation is
       value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_AvailablePrinters (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SharedHostFolderPath
@@ -1373,13 +1470,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_SharedHostFolderPath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1389,13 +1490,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_SharedFolderNameInEnvironment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1406,13 +1511,17 @@ package body WinRt.Windows.Security.Isolation is
       ShareFolderNameInEnvironment : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_SharedHostFolderPath : WinRt.HString := To_HString (SharedHostFolderPath);
-      HStr_ShareFolderNameInEnvironment : WinRt.HString := To_HString (ShareFolderNameInEnvironment);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_SharedHostFolderPath : constant WinRt.HString := To_HString (SharedHostFolderPath);
+      HStr_ShareFolderNameInEnvironment : constant WinRt.HString := To_HString (ShareFolderNameInEnvironment);
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.ShareHostFolderForUntrustedItems (HStr_SharedHostFolderPath, HStr_ShareFolderNameInEnvironment);
-      Hr := WindowsDeleteString (HStr_SharedHostFolderPath);
-      Hr := WindowsDeleteString (HStr_ShareFolderNameInEnvironment);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_SharedHostFolderPath);
+      tmp := WindowsDeleteString (HStr_ShareFolderNameInEnvironment);
    end;
 
    function get_PersistUserProfile
@@ -1421,10 +1530,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_PersistUserProfile (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1434,9 +1547,13 @@ package body WinRt.Windows.Security.Isolation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_PersistUserProfile (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowGraphicsHardwareAcceleration
@@ -1445,10 +1562,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_AllowGraphicsHardwareAcceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1458,9 +1579,13 @@ package body WinRt.Windows.Security.Isolation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_AllowGraphicsHardwareAcceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowCameraAndMicrophoneAccess
@@ -1469,10 +1594,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.get_AllowCameraAndMicrophoneAccess (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1482,9 +1611,13 @@ package body WinRt.Windows.Security.Isolation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOptions.all.put_AllowCameraAndMicrophoneAccess (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1498,22 +1631,26 @@ package body WinRt.Windows.Security.Isolation is
       )
       return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistration");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationResult;
-         HStr_ownerName : WinRt.HString := To_HString (ownerName);
+         HStr_ownerName : constant WinRt.HString := To_HString (ownerName);
       begin
          return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationResult do
             Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentOwnerRegistrationStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.Register (HStr_ownerName, ownerRegistrationData.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationResult;
                Retval.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_ownerName);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_ownerName);
          end return;
       end;
 
@@ -1522,18 +1659,22 @@ package body WinRt.Windows.Security.Isolation is
          ownerName : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistration");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistration");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_ownerName : WinRt.HString := To_HString (ownerName);
+         temp             : WinRt.UInt32 := 0;
+         HStr_ownerName : constant WinRt.HString := To_HString (ownerName);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsEnvironmentOwnerRegistrationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Unregister (HStr_ownerName);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_ownerName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_ownerName);
       end;
 
    end IsolatedWindowsEnvironmentOwnerRegistration;
@@ -1547,12 +1688,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentOwnerRegistrationData) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentOwnerRegistrationData, IIsolatedWindowsEnvironmentOwnerRegistrationData_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData /= null then
          if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData);
          end if;
       end if;
@@ -1563,7 +1704,8 @@ package body WinRt.Windows.Security.Isolation is
 
    function Constructor return IsolatedWindowsEnvironmentOwnerRegistrationData is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationData");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationData");
       m_ComRetVal  : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationData;
    begin
       return RetVal : IsolatedWindowsEnvironmentOwnerRegistrationData do
@@ -1572,7 +1714,7 @@ package body WinRt.Windows.Security.Isolation is
             Retval.m_IIsolatedWindowsEnvironmentOwnerRegistrationData := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationData;
             Retval.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1585,13 +1727,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.get_ShareableFolders (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1601,13 +1747,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.get_ProcessesRunnableAsSystem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1617,13 +1767,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.get_ProcessesRunnableAsUser (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1633,13 +1787,17 @@ package body WinRt.Windows.Security.Isolation is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.get_ActivationFileExtensions (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1652,12 +1810,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentOwnerRegistrationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentOwnerRegistrationResult, IIsolatedWindowsEnvironmentOwnerRegistrationResult_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult /= null then
          if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult);
          end if;
       end if;
@@ -1672,10 +1830,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationStatus;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1685,10 +1847,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1701,12 +1867,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentPostMessageResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentPostMessageResult, IIsolatedWindowsEnvironmentPostMessageResult_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentPostMessageResult /= null then
          if this.m_IIsolatedWindowsEnvironmentPostMessageResult.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentPostMessageResult.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentPostMessageResult.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentPostMessageResult);
          end if;
       end if;
@@ -1721,10 +1887,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageStatus;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentPostMessageResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1734,10 +1904,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentPostMessageResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1750,12 +1924,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentProcess) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentProcess, IIsolatedWindowsEnvironmentProcess_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentProcess /= null then
          if this.m_IIsolatedWindowsEnvironmentProcess.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentProcess.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentProcess.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentProcess);
          end if;
       end if;
@@ -1770,10 +1944,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentProcessState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentProcessState;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentProcess.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1783,10 +1961,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentProcess.all.get_ExitCode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1795,9 +1977,13 @@ package body WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironmentProcess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentProcess.all.WaitForExit;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure WaitForExitWithTimeout
@@ -1806,9 +1992,13 @@ package body WinRt.Windows.Security.Isolation is
       timeoutMilliseconds : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentProcess.all.WaitForExitWithTimeout (timeoutMilliseconds);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure WaitForExitAsync
@@ -1816,7 +2006,8 @@ package body WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironmentProcess
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1824,7 +2015,6 @@ package body WinRt.Windows.Security.Isolation is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1845,9 +2035,9 @@ package body WinRt.Windows.Security.Isolation is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1862,12 +2052,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentShareFolderRequestOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentShareFolderRequestOptions, IIsolatedWindowsEnvironmentShareFolderRequestOptions_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions /= null then
          if this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions);
          end if;
       end if;
@@ -1878,7 +2068,8 @@ package body WinRt.Windows.Security.Isolation is
 
    function Constructor return IsolatedWindowsEnvironmentShareFolderRequestOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions");
       m_ComRetVal  : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
    begin
       return RetVal : IsolatedWindowsEnvironmentShareFolderRequestOptions do
@@ -1887,7 +2078,7 @@ package body WinRt.Windows.Security.Isolation is
             Retval.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
             Retval.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1900,10 +2091,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all.get_AllowWrite (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1913,9 +2108,13 @@ package body WinRt.Windows.Security.Isolation is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all.put_AllowWrite (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1927,12 +2126,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentShareFolderResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentShareFolderResult, IIsolatedWindowsEnvironmentShareFolderResult_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentShareFolderResult /= null then
          if this.m_IIsolatedWindowsEnvironmentShareFolderResult.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentShareFolderResult.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentShareFolderResult.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentShareFolderResult);
          end if;
       end if;
@@ -1947,10 +2146,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderStatus;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentShareFolderResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1960,10 +2163,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentShareFolderResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1976,12 +2183,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentStartProcessResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentStartProcessResult, IIsolatedWindowsEnvironmentStartProcessResult_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentStartProcessResult /= null then
          if this.m_IIsolatedWindowsEnvironmentStartProcessResult.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentStartProcessResult.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentStartProcessResult.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentStartProcessResult);
          end if;
       end if;
@@ -1996,10 +2203,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessStatus;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentStartProcessResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2009,10 +2220,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Foundation.HResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.HResult;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentStartProcessResult.all.get_ExtendedError (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2022,11 +2237,15 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentProcess'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentProcess;
    begin
       return RetVal : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentProcess do
          Hr := this.m_IIsolatedWindowsEnvironmentStartProcessResult.all.get_Process (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIsolatedWindowsEnvironmentProcess := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentProcess;
          Retval.m_IIsolatedWindowsEnvironmentProcess.all := m_ComRetVal;
       end return;
@@ -2041,12 +2260,12 @@ package body WinRt.Windows.Security.Isolation is
    end;
 
    procedure Finalize (this : in out IsolatedWindowsEnvironmentTelemetryParameters) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IIsolatedWindowsEnvironmentTelemetryParameters, IIsolatedWindowsEnvironmentTelemetryParameters_Ptr);
    begin
       if this.m_IIsolatedWindowsEnvironmentTelemetryParameters /= null then
          if this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all /= null then
-            RefCount := this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all.Release;
+            temp := this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all.Release;
             Free (this.m_IIsolatedWindowsEnvironmentTelemetryParameters);
          end if;
       end if;
@@ -2057,7 +2276,8 @@ package body WinRt.Windows.Security.Isolation is
 
    function Constructor return IsolatedWindowsEnvironmentTelemetryParameters is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters");
       m_ComRetVal  : aliased Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
    begin
       return RetVal : IsolatedWindowsEnvironmentTelemetryParameters do
@@ -2066,7 +2286,7 @@ package body WinRt.Windows.Security.Isolation is
             Retval.m_IIsolatedWindowsEnvironmentTelemetryParameters := new Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
             Retval.m_IIsolatedWindowsEnvironmentTelemetryParameters.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2079,10 +2299,14 @@ package body WinRt.Windows.Security.Isolation is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all.get_CorrelationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2092,9 +2316,13 @@ package body WinRt.Windows.Security.Isolation is
       value : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all.put_CorrelationId (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2107,16 +2335,20 @@ package body WinRt.Windows.Security.Isolation is
          hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RegisterHostMessageReceiver (receiverId, hostMessageReceivedCallback);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure UnregisterHostMessageReceiver
@@ -2124,16 +2356,20 @@ package body WinRt.Windows.Security.Isolation is
          receiverId : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.UnregisterHostMessageReceiver (receiverId);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       procedure PostMessageToReceiver
@@ -2142,16 +2378,20 @@ package body WinRt.Windows.Security.Isolation is
          message : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.PostMessageToReceiver (receiverId, message);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function GetFileId
@@ -2160,19 +2400,23 @@ package body WinRt.Windows.Security.Isolation is
       )
       return WinRt.Guid is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsHostMessenger");
          m_Factory        : access WinRt.Windows.Security.Isolation.IIsolatedWindowsHostMessengerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.Guid;
-         HStr_filePath : WinRt.HString := To_HString (filePath);
+         HStr_filePath : constant WinRt.HString := To_HString (filePath);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IIsolatedWindowsHostMessengerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFileId (HStr_filePath, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_filePath);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_filePath);
          return m_ComRetVal;
       end;
 
@@ -2188,7 +2432,7 @@ package body WinRt.Windows.Security.Isolation is
       message : GenericObject
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (receiverId, message);
       return Hr;

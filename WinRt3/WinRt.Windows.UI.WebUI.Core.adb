@@ -42,7 +42,7 @@ package body WinRt.Windows.UI.WebUI.Core is
       this : access MenuClosedEventHandler_Delegate
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback.all;
       return Hr;
@@ -56,7 +56,7 @@ package body WinRt.Windows.UI.WebUI.Core is
       this : access MenuOpenedEventHandler_Delegate
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback.all;
       return Hr;
@@ -71,7 +71,7 @@ package body WinRt.Windows.UI.WebUI.Core is
       eventArgs : Windows.UI.WebUI.Core.IWebUICommandBarSizeChangedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (eventArgs);
       return Hr;
@@ -86,12 +86,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBar, IWebUICommandBar_Ptr);
    begin
       if this.m_IWebUICommandBar /= null then
          if this.m_IWebUICommandBar.all /= null then
-            RefCount := this.m_IWebUICommandBar.all.Release;
+            temp := this.m_IWebUICommandBar.all.Release;
             Free (this.m_IWebUICommandBar);
          end if;
       end if;
@@ -103,20 +103,24 @@ package body WinRt.Windows.UI.WebUI.Core is
    function GetForCurrentView
    return WinRt.Windows.UI.WebUI.Core.WebUICommandBar is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBar");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBar");
       m_Factory        : access WinRt.Windows.UI.WebUI.Core.IWebUICommandBarStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.Core.IWebUICommandBar;
    begin
       return RetVal : WinRt.Windows.UI.WebUI.Core.WebUICommandBar do
          Hr := RoGetActivationFactory (m_hString, IID_IWebUICommandBarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentView (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IWebUICommandBar := new Windows.UI.WebUI.Core.IWebUICommandBar;
             Retval.m_IWebUICommandBar.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -129,10 +133,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUICommandBar.all.get_Visible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -142,9 +150,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.put_Visible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Opacity
@@ -153,10 +165,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IWebUICommandBar.all.get_Opacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -166,9 +182,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.put_Opacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ForegroundColor
@@ -177,10 +197,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IWebUICommandBar.all.get_ForegroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -190,9 +214,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.put_ForegroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BackgroundColor
@@ -201,10 +229,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IWebUICommandBar.all.get_BackgroundColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -214,9 +246,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.put_BackgroundColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ClosedDisplayMode
@@ -225,10 +261,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode;
    begin
       Hr := this.m_IWebUICommandBar.all.get_ClosedDisplayMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -238,9 +278,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.put_ClosedDisplayMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOpen
@@ -249,10 +293,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUICommandBar.all.get_IsOpen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -262,9 +310,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.put_IsOpen (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Size
@@ -273,10 +325,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IWebUICommandBar.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,13 +342,17 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return IObservableVector_IWebUICommandBarElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IObservableVector_IWebUICommandBarElement.Kind;
    begin
       Hr := this.m_IWebUICommandBar.all.get_PrimaryCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IObservableVector_IWebUICommandBarElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -302,13 +362,17 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return IObservableVector_IWebUICommandBarElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IObservableVector_IWebUICommandBarElement.Kind;
    begin
       Hr := this.m_IWebUICommandBar.all.get_SecondaryCommands (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IObservableVector_IWebUICommandBarElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -319,10 +383,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUICommandBar.all.add_MenuOpened (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -332,9 +400,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.remove_MenuOpened (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MenuClosed
@@ -344,10 +416,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUICommandBar.all.add_MenuClosed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -357,9 +433,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.remove_MenuClosed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SizeChanged
@@ -369,10 +449,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUICommandBar.all.add_SizeChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -382,9 +466,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBar.all.remove_SizeChanged (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -396,12 +484,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBarBitmapIcon) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBarBitmapIcon, IWebUICommandBarBitmapIcon_Ptr);
    begin
       if this.m_IWebUICommandBarBitmapIcon /= null then
          if this.m_IWebUICommandBarBitmapIcon.all /= null then
-            RefCount := this.m_IWebUICommandBarBitmapIcon.all.Release;
+            temp := this.m_IWebUICommandBarBitmapIcon.all.Release;
             Free (this.m_IWebUICommandBarBitmapIcon);
          end if;
       end if;
@@ -416,9 +504,10 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WebUICommandBarBitmapIcon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon");
       m_Factory    : access IWebUICommandBarBitmapIconFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarBitmapIcon;
    begin
       return RetVal : WebUICommandBarBitmapIcon do
@@ -427,15 +516,16 @@ package body WinRt.Windows.UI.WebUI.Core is
             Hr := m_Factory.Create (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IWebUICommandBarBitmapIcon := new Windows.UI.WebUI.Core.IWebUICommandBarBitmapIcon;
             Retval.m_IWebUICommandBarBitmapIcon.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return WebUICommandBarBitmapIcon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon");
       m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarBitmapIcon;
    begin
       return RetVal : WebUICommandBarBitmapIcon do
@@ -444,7 +534,7 @@ package body WinRt.Windows.UI.WebUI.Core is
             Retval.m_IWebUICommandBarBitmapIcon := new Windows.UI.WebUI.Core.IWebUICommandBarBitmapIcon;
             Retval.m_IWebUICommandBarBitmapIcon.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -457,11 +547,15 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebUICommandBarBitmapIcon.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -473,9 +567,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarBitmapIcon.all.put_Uri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -487,12 +585,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBarConfirmationButton) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBarConfirmationButton, IWebUICommandBarConfirmationButton_Ptr);
    begin
       if this.m_IWebUICommandBarConfirmationButton /= null then
          if this.m_IWebUICommandBarConfirmationButton.all /= null then
-            RefCount := this.m_IWebUICommandBarConfirmationButton.all.Release;
+            temp := this.m_IWebUICommandBarConfirmationButton.all.Release;
             Free (this.m_IWebUICommandBarConfirmationButton);
          end if;
       end if;
@@ -503,7 +601,8 @@ package body WinRt.Windows.UI.WebUI.Core is
 
    function Constructor return WebUICommandBarConfirmationButton is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton");
       m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarConfirmationButton;
    begin
       return RetVal : WebUICommandBarConfirmationButton do
@@ -512,7 +611,7 @@ package body WinRt.Windows.UI.WebUI.Core is
             Retval.m_IWebUICommandBarConfirmationButton := new Windows.UI.WebUI.Core.IWebUICommandBarConfirmationButton;
             Retval.m_IWebUICommandBarConfirmationButton.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -525,13 +624,17 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebUICommandBarConfirmationButton.all.get_Text (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -541,11 +644,15 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IWebUICommandBarConfirmationButton.all.put_Text (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function add_ItemInvoked
@@ -555,10 +662,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUICommandBarConfirmationButton.all.add_ItemInvoked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -568,9 +679,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarConfirmationButton.all.remove_ItemInvoked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -582,12 +697,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBarIconButton) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBarIconButton, IWebUICommandBarIconButton_Ptr);
    begin
       if this.m_IWebUICommandBarIconButton /= null then
          if this.m_IWebUICommandBarIconButton.all /= null then
-            RefCount := this.m_IWebUICommandBarIconButton.all.Release;
+            temp := this.m_IWebUICommandBarIconButton.all.Release;
             Free (this.m_IWebUICommandBarIconButton);
          end if;
       end if;
@@ -598,7 +713,8 @@ package body WinRt.Windows.UI.WebUI.Core is
 
    function Constructor return WebUICommandBarIconButton is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarIconButton");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarIconButton");
       m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarIconButton;
    begin
       return RetVal : WebUICommandBarIconButton do
@@ -607,7 +723,7 @@ package body WinRt.Windows.UI.WebUI.Core is
             Retval.m_IWebUICommandBarIconButton := new Windows.UI.WebUI.Core.IWebUICommandBarIconButton;
             Retval.m_IWebUICommandBarIconButton.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -620,10 +736,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.get_Enabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -633,9 +753,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.put_Enabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Label
@@ -644,13 +768,17 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -660,11 +788,15 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsToggleButton
@@ -673,10 +805,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.get_IsToggleButton (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -686,9 +822,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.put_IsToggleButton (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsChecked
@@ -697,10 +837,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.get_IsChecked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -710,9 +854,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.put_IsChecked (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Icon
@@ -721,10 +869,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.UI.WebUI.Core.IWebUICommandBarIcon is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.WebUI.Core.IWebUICommandBarIcon;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.get_Icon (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -734,9 +886,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : Windows.UI.WebUI.Core.IWebUICommandBarIcon
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.put_Icon (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ItemInvoked
@@ -746,10 +902,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.add_ItemInvoked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -759,9 +919,13 @@ package body WinRt.Windows.UI.WebUI.Core is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IWebUICommandBarIconButton.all.remove_ItemInvoked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -773,12 +937,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBarItemInvokedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBarItemInvokedEventArgs, IWebUICommandBarItemInvokedEventArgs_Ptr);
    begin
       if this.m_IWebUICommandBarItemInvokedEventArgs /= null then
          if this.m_IWebUICommandBarItemInvokedEventArgs.all /= null then
-            RefCount := this.m_IWebUICommandBarItemInvokedEventArgs.all.Release;
+            temp := this.m_IWebUICommandBarItemInvokedEventArgs.all.Release;
             Free (this.m_IWebUICommandBarItemInvokedEventArgs);
          end if;
       end if;
@@ -793,10 +957,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IWebUICommandBarItemInvokedEventArgs.all.get_IsPrimaryCommand (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -809,12 +977,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBarSizeChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBarSizeChangedEventArgs, IWebUICommandBarSizeChangedEventArgs_Ptr);
    begin
       if this.m_IWebUICommandBarSizeChangedEventArgs /= null then
          if this.m_IWebUICommandBarSizeChangedEventArgs.all /= null then
-            RefCount := this.m_IWebUICommandBarSizeChangedEventArgs.all.Release;
+            temp := this.m_IWebUICommandBarSizeChangedEventArgs.all.Release;
             Free (this.m_IWebUICommandBarSizeChangedEventArgs);
          end if;
       end if;
@@ -829,10 +997,14 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_IWebUICommandBarSizeChangedEventArgs.all.get_Size (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -845,12 +1017,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    end;
 
    procedure Finalize (this : in out WebUICommandBarSymbolIcon) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebUICommandBarSymbolIcon, IWebUICommandBarSymbolIcon_Ptr);
    begin
       if this.m_IWebUICommandBarSymbolIcon /= null then
          if this.m_IWebUICommandBarSymbolIcon.all /= null then
-            RefCount := this.m_IWebUICommandBarSymbolIcon.all.Release;
+            temp := this.m_IWebUICommandBarSymbolIcon.all.Release;
             Free (this.m_IWebUICommandBarSymbolIcon);
          end if;
       end if;
@@ -861,7 +1033,8 @@ package body WinRt.Windows.UI.WebUI.Core is
 
    function Constructor return WebUICommandBarSymbolIcon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon");
       m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
    begin
       return RetVal : WebUICommandBarSymbolIcon do
@@ -870,7 +1043,7 @@ package body WinRt.Windows.UI.WebUI.Core is
             Retval.m_IWebUICommandBarSymbolIcon := new Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
             Retval.m_IWebUICommandBarSymbolIcon.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -880,11 +1053,12 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WebUICommandBarSymbolIcon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon");
       m_Factory    : access IWebUICommandBarSymbolIconFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
-      HStr_symbol : WinRt.HString := To_HString (symbol);
+      HStr_symbol : constant WinRt.HString := To_HString (symbol);
    begin
       return RetVal : WebUICommandBarSymbolIcon do
          Hr := RoGetActivationFactory (m_hString, IID_IWebUICommandBarSymbolIconFactory'Access , m_Factory'Address);
@@ -892,10 +1066,10 @@ package body WinRt.Windows.UI.WebUI.Core is
             Hr := m_Factory.Create (HStr_symbol, m_ComRetVal'Access);
             Retval.m_IWebUICommandBarSymbolIcon := new Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon;
             Retval.m_IWebUICommandBarSymbolIcon.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_symbol);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_symbol);
       end return;
    end;
 
@@ -908,13 +1082,17 @@ package body WinRt.Windows.UI.WebUI.Core is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebUICommandBarSymbolIcon.all.get_Symbol (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -924,11 +1102,15 @@ package body WinRt.Windows.UI.WebUI.Core is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IWebUICommandBarSymbolIcon.all.put_Symbol (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
 end WinRt.Windows.UI.WebUI.Core;

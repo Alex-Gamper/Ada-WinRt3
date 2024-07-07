@@ -57,12 +57,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileDataSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileDataSource, IMapTileDataSource_Ptr);
    begin
       if this.m_IMapTileDataSource /= null then
          if this.m_IMapTileDataSource.all /= null then
-            RefCount := this.m_IMapTileDataSource.all.Release;
+            temp := this.m_IMapTileDataSource.all.Release;
             Free (this.m_IMapTileDataSource);
          end if;
       end if;
@@ -78,9 +78,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapTileDataSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileDataSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileDataSource");
       m_Factory    : access IMapTileDataSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
    begin
       return RetVal : MapTileDataSource do
@@ -89,9 +90,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
             Retval.m_IMapTileDataSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -107,12 +108,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out CustomMapTileDataSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICustomMapTileDataSource, ICustomMapTileDataSource_Ptr);
    begin
       if this.m_ICustomMapTileDataSource /= null then
          if this.m_ICustomMapTileDataSource.all /= null then
-            RefCount := this.m_ICustomMapTileDataSource.all.Release;
+            temp := this.m_ICustomMapTileDataSource.all.Release;
             Free (this.m_ICustomMapTileDataSource);
          end if;
       end if;
@@ -128,9 +129,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return CustomMapTileDataSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.CustomMapTileDataSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.CustomMapTileDataSource");
       m_Factory    : access ICustomMapTileDataSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.ICustomMapTileDataSource;
    begin
       return RetVal : CustomMapTileDataSource do
@@ -139,9 +141,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICustomMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.ICustomMapTileDataSource;
             Retval.m_ICustomMapTileDataSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -155,10 +157,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICustomMapTileDataSource.all.add_BitmapRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -168,9 +174,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICustomMapTileDataSource.all.remove_BitmapRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -182,12 +192,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out HttpMapTileDataSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHttpMapTileDataSource, IHttpMapTileDataSource_Ptr);
    begin
       if this.m_IHttpMapTileDataSource /= null then
          if this.m_IHttpMapTileDataSource.all /= null then
-            RefCount := this.m_IHttpMapTileDataSource.all.Release;
+            temp := this.m_IHttpMapTileDataSource.all.Release;
             Free (this.m_IHttpMapTileDataSource);
          end if;
       end if;
@@ -203,9 +213,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return HttpMapTileDataSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource");
       m_Factory    : access IHttpMapTileDataSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource;
    begin
       return RetVal : HttpMapTileDataSource do
@@ -214,9 +225,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IHttpMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource;
             Retval.m_IHttpMapTileDataSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -228,11 +239,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return HttpMapTileDataSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource");
       m_Factory    : access IHttpMapTileDataSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource;
-      HStr_uriFormatString : WinRt.HString := To_HString (uriFormatString);
+      HStr_uriFormatString : constant WinRt.HString := To_HString (uriFormatString);
    begin
       return RetVal : HttpMapTileDataSource do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMapTileDataSourceFactory'Access , m_Factory'Address);
@@ -240,10 +252,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithUriFormatString (HStr_uriFormatString, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IHttpMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource;
             Retval.m_IHttpMapTileDataSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uriFormatString);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uriFormatString);
       end return;
    end;
 
@@ -256,13 +268,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IHttpMapTileDataSource.all.get_UriFormatString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -272,11 +288,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IHttpMapTileDataSource.all.put_UriFormatString (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_AdditionalRequestHeaders
@@ -285,13 +305,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IMap_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IHttpMapTileDataSource.all.get_AdditionalRequestHeaders (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMap_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -301,10 +325,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHttpMapTileDataSource.all.get_AllowCaching (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -314,9 +342,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpMapTileDataSource.all.put_AllowCaching (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UriRequested
@@ -326,10 +358,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHttpMapTileDataSource.all.add_UriRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -339,9 +375,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHttpMapTileDataSource.all.remove_UriRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -353,12 +393,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out LocalMapTileDataSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILocalMapTileDataSource, ILocalMapTileDataSource_Ptr);
    begin
       if this.m_ILocalMapTileDataSource /= null then
          if this.m_ILocalMapTileDataSource.all /= null then
-            RefCount := this.m_ILocalMapTileDataSource.all.Release;
+            temp := this.m_ILocalMapTileDataSource.all.Release;
             Free (this.m_ILocalMapTileDataSource);
          end if;
       end if;
@@ -374,9 +414,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return LocalMapTileDataSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource");
       m_Factory    : access ILocalMapTileDataSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource;
    begin
       return RetVal : LocalMapTileDataSource do
@@ -385,9 +426,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ILocalMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource;
             Retval.m_ILocalMapTileDataSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -399,11 +440,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return LocalMapTileDataSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource");
       m_Factory    : access ILocalMapTileDataSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource;
-      HStr_uriFormatString : WinRt.HString := To_HString (uriFormatString);
+      HStr_uriFormatString : constant WinRt.HString := To_HString (uriFormatString);
    begin
       return RetVal : LocalMapTileDataSource do
          Hr := RoGetActivationFactory (m_hString, IID_ILocalMapTileDataSourceFactory'Access , m_Factory'Address);
@@ -411,10 +453,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithUriFormatString (HStr_uriFormatString, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ILocalMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource;
             Retval.m_ILocalMapTileDataSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_uriFormatString);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_uriFormatString);
       end return;
    end;
 
@@ -427,13 +469,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILocalMapTileDataSource.all.get_UriFormatString (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -443,11 +489,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ILocalMapTileDataSource.all.put_UriFormatString (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function add_UriRequested
@@ -457,10 +507,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILocalMapTileDataSource.all.add_UriRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -470,9 +524,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILocalMapTileDataSource.all.remove_UriRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -484,12 +542,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapActualCameraChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapActualCameraChangedEventArgs, IMapActualCameraChangedEventArgs_Ptr);
    begin
       if this.m_IMapActualCameraChangedEventArgs /= null then
          if this.m_IMapActualCameraChangedEventArgs.all /= null then
-            RefCount := this.m_IMapActualCameraChangedEventArgs.all.Release;
+            temp := this.m_IMapActualCameraChangedEventArgs.all.Release;
             Free (this.m_IMapActualCameraChangedEventArgs);
          end if;
       end if;
@@ -500,7 +558,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapActualCameraChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapActualCameraChangedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapActualCameraChangedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs;
    begin
       return RetVal : MapActualCameraChangedEventArgs do
@@ -509,7 +568,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapActualCameraChangedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs;
             Retval.m_IMapActualCameraChangedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -522,11 +581,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          Hr := this.m_IMapActualCameraChangedEventArgs.all.get_Camera (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -538,14 +601,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapActualCameraChangedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapActualCameraChangedEventArgs.all);
       Hr := m_Interface.get_ChangeReason (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -558,12 +625,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapActualCameraChangingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapActualCameraChangingEventArgs, IMapActualCameraChangingEventArgs_Ptr);
    begin
       if this.m_IMapActualCameraChangingEventArgs /= null then
          if this.m_IMapActualCameraChangingEventArgs.all /= null then
-            RefCount := this.m_IMapActualCameraChangingEventArgs.all.Release;
+            temp := this.m_IMapActualCameraChangingEventArgs.all.Release;
             Free (this.m_IMapActualCameraChangingEventArgs);
          end if;
       end if;
@@ -574,7 +641,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapActualCameraChangingEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapActualCameraChangingEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapActualCameraChangingEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs;
    begin
       return RetVal : MapActualCameraChangingEventArgs do
@@ -583,7 +651,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapActualCameraChangingEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs;
             Retval.m_IMapActualCameraChangingEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -596,11 +664,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          Hr := this.m_IMapActualCameraChangingEventArgs.all.get_Camera (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -612,14 +684,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapActualCameraChangingEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapActualCameraChangingEventArgs.all);
       Hr := m_Interface.get_ChangeReason (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -632,12 +708,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElement) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElement, IMapElement_Ptr);
    begin
       if this.m_IMapElement /= null then
          if this.m_IMapElement.all /= null then
-            RefCount := this.m_IMapElement.all.Release;
+            temp := this.m_IMapElement.all.Release;
             Free (this.m_IMapElement);
          end if;
       end if;
@@ -653,9 +729,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapElement is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory    : access IMapElementFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElement;
    begin
       return RetVal : MapElement do
@@ -664,9 +741,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapElement := new Windows.UI.Xaml.Controls.Maps.IMapElement;
             Retval.m_IMapElement.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -676,140 +753,168 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_MapStyleSheetEntryProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapStyleSheetEntryProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MapStyleSheetEntryStateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapStyleSheetEntryStateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TagProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TagProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MapTabIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapTabIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ZIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ZIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_VisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -822,10 +927,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapElement.all.get_ZIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -835,9 +944,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement.all.put_ZIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Visible
@@ -846,10 +959,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapElement.all.get_Visible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -859,9 +976,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement.all.put_Visible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MapTabIndex
@@ -870,14 +991,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.get_MapTabIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -887,13 +1012,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.put_MapTabIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MapStyleSheetEntry
@@ -902,17 +1031,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.get_MapStyleSheetEntry (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -922,15 +1055,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.put_MapStyleSheetEntry (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_MapStyleSheetEntryState
@@ -939,17 +1076,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.get_MapStyleSheetEntryState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -959,15 +1100,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.put_MapStyleSheetEntryState (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Tag
@@ -976,14 +1121,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.get_Tag (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -993,13 +1142,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.put_Tag (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsEnabled
@@ -1008,14 +1161,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.get_IsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1025,13 +1182,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapElement4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapElement.all);
       Hr := m_Interface.put_IsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1043,12 +1204,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapBillboard) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapBillboard, IMapBillboard_Ptr);
    begin
       if this.m_IMapBillboard /= null then
          if this.m_IMapBillboard.all /= null then
-            RefCount := this.m_IMapBillboard.all.Release;
+            temp := this.m_IMapBillboard.all.Release;
             Free (this.m_IMapBillboard);
          end if;
       end if;
@@ -1063,9 +1224,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapBillboard is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
       m_Factory    : access IMapBillboardFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapBillboard;
    begin
       return RetVal : MapBillboard do
@@ -1074,9 +1236,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceFromCamera (camera.m_IMapCamera.all, m_ComRetVal'Access);
             Retval.m_IMapBillboard := new Windows.UI.Xaml.Controls.Maps.IMapBillboard;
             Retval.m_IMapBillboard.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1086,60 +1248,72 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_LocationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapBillboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapBillboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LocationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_NormalizedAnchorPointProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapBillboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapBillboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NormalizedAnchorPointProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CollisionBehaviorDesiredProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapBillboardStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapBillboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CollisionBehaviorDesiredProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1152,11 +1326,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapBillboard.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -1168,9 +1346,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapBillboard.all.put_Location (value.m_IGeopoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_NormalizedAnchorPoint
@@ -1179,10 +1361,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapBillboard.all.get_NormalizedAnchorPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1192,9 +1378,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapBillboard.all.put_NormalizedAnchorPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Image
@@ -1203,10 +1393,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IMapBillboard.all.get_Image (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1216,9 +1410,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapBillboard.all.put_Image (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CollisionBehaviorDesired
@@ -1227,10 +1425,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior;
    begin
       Hr := this.m_IMapBillboard.all.get_CollisionBehaviorDesired (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1240,9 +1442,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapBillboard.all.put_CollisionBehaviorDesired (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReferenceCamera
@@ -1251,11 +1457,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          Hr := this.m_IMapBillboard.all.get_ReferenceCamera (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -1270,12 +1480,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapCamera) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapCamera, IMapCamera_Ptr);
    begin
       if this.m_IMapCamera /= null then
          if this.m_IMapCamera.all /= null then
-            RefCount := this.m_IMapCamera.all.Release;
+            temp := this.m_IMapCamera.all.Release;
             Free (this.m_IMapCamera);
          end if;
       end if;
@@ -1290,9 +1500,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapCamera is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : MapCamera do
@@ -1301,9 +1512,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithLocation (location.m_IGeopoint.all, m_ComRetVal'Access);
             Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
             Retval.m_IMapCamera.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1314,9 +1525,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapCamera is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : MapCamera do
@@ -1325,9 +1537,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithLocationAndHeading (location.m_IGeopoint.all, headingInDegrees, m_ComRetVal'Access);
             Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
             Retval.m_IMapCamera.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1339,9 +1551,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapCamera is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : MapCamera do
@@ -1350,9 +1563,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithLocationHeadingAndPitch (location.m_IGeopoint.all, headingInDegrees, pitchInDegrees, m_ComRetVal'Access);
             Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
             Retval.m_IMapCamera.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1366,9 +1579,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapCamera is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : MapCamera do
@@ -1377,9 +1591,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithLocationHeadingPitchRollAndFieldOfView (location.m_IGeopoint.all, headingInDegrees, pitchInDegrees, rollInDegrees, fieldOfViewInDegrees, m_ComRetVal'Access);
             Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
             Retval.m_IMapCamera.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1392,11 +1606,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapCamera.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -1408,9 +1626,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapCamera.all.put_Location (value.m_IGeopoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Heading
@@ -1419,10 +1641,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapCamera.all.get_Heading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1432,9 +1658,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapCamera.all.put_Heading (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pitch
@@ -1443,10 +1673,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapCamera.all.get_Pitch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1456,9 +1690,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapCamera.all.put_Pitch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Roll
@@ -1467,10 +1705,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapCamera.all.get_Roll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1480,9 +1722,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapCamera.all.put_Roll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FieldOfView
@@ -1491,10 +1737,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapCamera.all.get_FieldOfView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1504,9 +1754,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapCamera.all.put_FieldOfView (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1518,12 +1772,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapContextRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapContextRequestedEventArgs, IMapContextRequestedEventArgs_Ptr);
    begin
       if this.m_IMapContextRequestedEventArgs /= null then
          if this.m_IMapContextRequestedEventArgs.all /= null then
-            RefCount := this.m_IMapContextRequestedEventArgs.all.Release;
+            temp := this.m_IMapContextRequestedEventArgs.all.Release;
             Free (this.m_IMapContextRequestedEventArgs);
          end if;
       end if;
@@ -1534,7 +1788,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapContextRequestedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapContextRequestedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapContextRequestedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapContextRequestedEventArgs;
    begin
       return RetVal : MapContextRequestedEventArgs do
@@ -1543,7 +1798,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapContextRequestedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapContextRequestedEventArgs;
             Retval.m_IMapContextRequestedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1556,10 +1811,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapContextRequestedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1569,11 +1828,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapContextRequestedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -1585,13 +1848,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVectorView_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapElement.Kind;
    begin
       Hr := this.m_IMapContextRequestedEventArgs.all.get_MapElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1604,12 +1871,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControl, IMapControl_Ptr);
    begin
       if this.m_IMapControl /= null then
          if this.m_IMapControl.all /= null then
-            RefCount := this.m_IMapControl.all.Release;
+            temp := this.m_IMapControl.all.Release;
             Free (this.m_IMapControl);
          end if;
       end if;
@@ -1620,7 +1887,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControl is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControl;
    begin
       return RetVal : MapControl do
@@ -1629,7 +1897,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControl := new Windows.UI.Xaml.Controls.Maps.IMapControl;
             Retval.m_IMapControl.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1639,680 +1907,816 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_CanTiltDownProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CanTiltDownProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CanTiltUpProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CanTiltUpProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CanZoomInProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CanZoomInProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CanZoomOutProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics8_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics8'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CanZoomOutProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_BusinessLandmarksVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BusinessLandmarksVisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TransitFeaturesVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TransitFeaturesVisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PanInteractionModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PanInteractionModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RotateInteractionModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RotateInteractionModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TiltInteractionModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TiltInteractionModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ZoomInteractionModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ZoomInteractionModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_Is3DSupportedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Is3DSupportedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsStreetsideSupportedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsStreetsideSupportedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SceneProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SceneProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_BusinessLandmarksEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BusinessLandmarksEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TransitFeaturesEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TransitFeaturesEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CenterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CenterProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ChildrenProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ChildrenProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ColorSchemeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ColorSchemeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DesiredPitchProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesiredPitchProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_HeadingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HeadingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LandmarksVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LandmarksVisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LoadingStatusProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LoadingStatusProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MapServiceTokenProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapServiceTokenProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PedestrianFeaturesVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PedestrianFeaturesVisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PitchProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PitchProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StyleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StyleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TrafficFlowVisibleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TrafficFlowVisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TransformOriginProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TransformOriginProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_WatermarkModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_WatermarkModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ZoomLevelProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ZoomLevelProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MapElementsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapElementsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RoutesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RoutesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TileSourcesProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TileSourcesProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LocationProperty_MapControl
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LocationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2322,20 +2726,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetLocation (element.m_IDependencyObject.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
             Retval.m_IGeopoint.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2345,35 +2753,43 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetLocation (element.m_IDependencyObject.all, value.m_IGeopoint.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_NormalizedAnchorPointProperty_MapControl
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NormalizedAnchorPointProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2383,17 +2799,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetNormalizedAnchorPoint (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -2403,115 +2823,139 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetNormalizedAnchorPoint (element.m_IDependencyObject.all, value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_RegionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics7_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics7'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RegionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MapProjectionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapProjectionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StyleSheetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StyleSheetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ViewPaddingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ViewPaddingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LayersProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlStatics6'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LayersProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2524,11 +2968,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapControl.all.get_Center (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -2540,9 +2988,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_Center (value.m_IGeopoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Children
@@ -2551,13 +3003,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IDependencyObject.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IDependencyObject.Kind;
    begin
       Hr := this.m_IMapControl.all.get_Children (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IDependencyObject (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2567,10 +3023,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapColorScheme is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapColorScheme;
    begin
       Hr := this.m_IMapControl.all.get_ColorScheme (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2580,9 +3040,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapColorScheme
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_ColorScheme (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DesiredPitch
@@ -2591,10 +3055,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapControl.all.get_DesiredPitch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2604,9 +3072,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_DesiredPitch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Heading
@@ -2615,10 +3087,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapControl.all.get_Heading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2628,9 +3104,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_Heading (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LandmarksVisible
@@ -2639,10 +3119,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapControl.all.get_LandmarksVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2652,9 +3136,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_LandmarksVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LoadingStatus
@@ -2663,10 +3151,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapLoadingStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapLoadingStatus;
    begin
       Hr := this.m_IMapControl.all.get_LoadingStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2676,13 +3168,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMapControl.all.get_MapServiceToken (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2692,11 +3188,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMapControl.all.put_MapServiceToken (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_MaxZoomLevel
@@ -2705,10 +3205,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapControl.all.get_MaxZoomLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2718,10 +3222,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapControl.all.get_MinZoomLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2731,10 +3239,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapControl.all.get_PedestrianFeaturesVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2744,9 +3256,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_PedestrianFeaturesVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pitch
@@ -2755,10 +3271,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapControl.all.get_Pitch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2768,10 +3288,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyle is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapStyle;
    begin
       Hr := this.m_IMapControl.all.get_Style (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2781,9 +3305,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_Style (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TrafficFlowVisible
@@ -2792,10 +3320,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapControl.all.get_TrafficFlowVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2805,9 +3337,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_TrafficFlowVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransformOrigin
@@ -2816,10 +3352,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapControl.all.get_TransformOrigin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2829,9 +3369,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_TransformOrigin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_WatermarkMode
@@ -2840,10 +3384,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapWatermarkMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapWatermarkMode;
    begin
       Hr := this.m_IMapControl.all.get_WatermarkMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2853,9 +3401,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_WatermarkMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZoomLevel
@@ -2864,10 +3416,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapControl.all.get_ZoomLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2877,9 +3433,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.put_ZoomLevel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MapElements
@@ -2888,13 +3448,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapElement.Kind;
    begin
       Hr := this.m_IMapControl.all.get_MapElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2904,13 +3468,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapRouteView.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapRouteView.Kind;
    begin
       Hr := this.m_IMapControl.all.get_Routes (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapRouteView (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2920,13 +3488,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapTileSource.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapTileSource.Kind;
    begin
       Hr := this.m_IMapControl.all.get_TileSources (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapTileSource (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2937,10 +3509,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_CenterChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2950,9 +3526,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_CenterChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_HeadingChanged
@@ -2962,10 +3542,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_HeadingChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2975,9 +3559,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_HeadingChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_LoadingStatusChanged
@@ -2987,10 +3575,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_LoadingStatusChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3000,9 +3592,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_LoadingStatusChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapDoubleTapped
@@ -3012,10 +3608,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_MapDoubleTapped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3025,9 +3625,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_MapDoubleTapped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapHolding
@@ -3037,10 +3641,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_MapHolding (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3050,9 +3658,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_MapHolding (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapTapped
@@ -3062,10 +3674,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_MapTapped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3075,9 +3691,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_MapTapped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_PitchChanged
@@ -3087,10 +3707,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_PitchChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3100,9 +3724,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_PitchChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TransformOriginChanged
@@ -3112,10 +3740,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_TransformOriginChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3125,9 +3757,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_TransformOriginChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ZoomLevelChanged
@@ -3137,10 +3773,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControl.all.add_ZoomLevelChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3150,9 +3790,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.remove_ZoomLevelChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function FindMapElementsAtOffset
@@ -3162,13 +3806,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVectorView_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapElement.Kind;
    begin
       Hr := this.m_IMapControl.all.FindMapElementsAtOffset (offset, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3179,9 +3827,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       location : access Windows.Devices.Geolocation.IGeopoint
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.GetLocationFromOffset (offset, location);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure GetOffsetFromLocation
@@ -3191,9 +3843,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       offset : Windows.Foundation.Point_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.GetOffsetFromLocation (location.m_IGeopoint.all, offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure IsLocationInView
@@ -3203,9 +3859,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       isInView : WinRt.Boolean_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControl.all.IsLocationInView (location.m_IGeopoint.all, isInView);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TrySetViewBoundsAsync
@@ -3217,13 +3877,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3241,7 +3901,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3254,7 +3914,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       Hr := this.m_IMapControl.all.TrySetViewBoundsAsync (bounds.m_IGeoboundingBox.all, margin, animation, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3264,9 +3924,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3281,13 +3941,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3305,7 +3965,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3318,7 +3978,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       Hr := this.m_IMapControl.all.TrySetViewAsync (center.m_IGeopoint.all, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3328,9 +3988,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3346,13 +4006,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3370,7 +4030,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3383,7 +4043,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       Hr := this.m_IMapControl.all.TrySetViewAsync (center.m_IGeopoint.all, zoomLevel, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3393,9 +4053,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3413,13 +4073,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3437,7 +4097,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3450,7 +4110,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       Hr := this.m_IMapControl.all.TrySetViewAsync (center.m_IGeopoint.all, zoomLevel, heading, desiredPitch, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3460,9 +4120,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3481,13 +4141,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -3505,7 +4165,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -3518,7 +4178,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       Hr := this.m_IMapControl.all.TrySetViewAsync (center.m_IGeopoint.all, zoomLevel, heading, desiredPitch, animation, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -3528,9 +4188,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -3544,14 +4204,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_BusinessLandmarksVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3561,13 +4225,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_BusinessLandmarksVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransitFeaturesVisible
@@ -3576,14 +4244,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_TransitFeaturesVisible (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3593,13 +4265,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_TransitFeaturesVisible (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PanInteractionMode
@@ -3608,14 +4284,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_PanInteractionMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3625,13 +4305,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_PanInteractionMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotateInteractionMode
@@ -3640,14 +4324,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapInteractionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_RotateInteractionMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3657,13 +4345,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_RotateInteractionMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TiltInteractionMode
@@ -3672,14 +4364,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapInteractionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_TiltInteractionMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3689,13 +4385,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_TiltInteractionMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZoomInteractionMode
@@ -3704,14 +4404,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapInteractionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_ZoomInteractionMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3721,13 +4425,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_ZoomInteractionMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Is3DSupported
@@ -3736,14 +4444,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_Is3DSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3753,14 +4465,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_IsStreetsideSupported (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3770,15 +4486,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          m_Interface := QInterface (this.m_IMapControl.all);
          Hr := m_Interface.get_Scene (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
          Retval.m_IMapScene.all := m_ComRetVal;
       end return;
@@ -3790,13 +4510,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapScene'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_Scene (value.m_IMapScene.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ActualCamera
@@ -3805,15 +4529,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          m_Interface := QInterface (this.m_IMapControl.all);
          Hr := m_Interface.get_ActualCamera (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -3825,15 +4553,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          m_Interface := QInterface (this.m_IMapControl.all);
          Hr := m_Interface.get_TargetCamera (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -3845,15 +4577,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCustomExperience'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCustomExperience;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCustomExperience do
          m_Interface := QInterface (this.m_IMapControl.all);
          Hr := m_Interface.get_CustomExperience (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCustomExperience := new Windows.UI.Xaml.Controls.Maps.IMapCustomExperience;
          Retval.m_IMapCustomExperience.all := m_ComRetVal;
       end return;
@@ -3865,13 +4601,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapCustomExperience'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_CustomExperience (value.m_IMapCustomExperience.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapElementClick
@@ -3881,14 +4621,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_MapElementClick (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3898,13 +4642,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_MapElementClick (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapElementPointerEntered
@@ -3914,14 +4662,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_MapElementPointerEntered (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3931,13 +4683,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_MapElementPointerEntered (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapElementPointerExited
@@ -3947,14 +4703,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_MapElementPointerExited (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3964,13 +4724,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_MapElementPointerExited (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ActualCameraChanged
@@ -3980,14 +4744,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_ActualCameraChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3997,13 +4765,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_ActualCameraChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ActualCameraChanging
@@ -4013,14 +4785,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_ActualCameraChanging (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4030,13 +4806,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_ActualCameraChanging (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TargetCameraChanged
@@ -4046,14 +4826,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_TargetCameraChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4063,13 +4847,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_TargetCameraChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CustomExperienceChanged
@@ -4079,14 +4867,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_CustomExperienceChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4096,13 +4888,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_CustomExperienceChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartContinuousRotate
@@ -4111,13 +4907,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       rateInDegreesPerSecond : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StartContinuousRotate (rateInDegreesPerSecond);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopContinuousRotate
@@ -4125,13 +4925,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapControl
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StopContinuousRotate;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartContinuousTilt
@@ -4140,13 +4944,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       rateInDegreesPerSecond : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StartContinuousTilt (rateInDegreesPerSecond);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopContinuousTilt
@@ -4154,13 +4962,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapControl
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StopContinuousTilt;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartContinuousZoom
@@ -4169,13 +4981,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       rateOfChangePerSecond : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StartContinuousZoom (rateOfChangePerSecond);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopContinuousZoom
@@ -4183,13 +4999,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapControl
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StopContinuousZoom;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryRotateAsync
@@ -4199,14 +5019,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4224,7 +5044,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4237,10 +5057,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryRotateAsync (degrees, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4250,9 +5070,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4267,14 +5087,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4292,7 +5112,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4305,10 +5125,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryRotateToAsync (angleInDegrees, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4318,9 +5138,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4335,14 +5155,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4360,7 +5180,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4373,10 +5193,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryTiltAsync (degrees, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4386,9 +5206,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4403,14 +5223,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4428,7 +5248,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4441,10 +5261,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryTiltToAsync (angleInDegrees, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4454,9 +5274,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4470,14 +5290,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4495,7 +5315,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4508,10 +5328,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryZoomInAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4521,9 +5341,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4537,14 +5357,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4562,7 +5382,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4575,10 +5395,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryZoomOutAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4588,9 +5408,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4605,14 +5425,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4630,7 +5450,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4643,10 +5463,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryZoomToAsync (zoomLevel, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4656,9 +5476,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4673,14 +5493,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4698,7 +5518,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4711,10 +5531,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TrySetSceneAsync (scene.m_IMapScene.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4724,9 +5544,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4742,14 +5562,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -4767,7 +5587,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -4780,10 +5600,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TrySetSceneAsync (scene.m_IMapScene.all, animationKind, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -4793,9 +5613,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -4810,14 +5630,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_MapRightTapped (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4827,13 +5651,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl3, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_MapRightTapped (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BusinessLandmarksEnabled
@@ -4842,14 +5670,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_BusinessLandmarksEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4859,13 +5691,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_BusinessLandmarksEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TransitFeaturesEnabled
@@ -4874,14 +5710,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_TransitFeaturesEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4891,13 +5731,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_TransitFeaturesEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetVisibleRegion
@@ -4907,15 +5751,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopath'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl4, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          m_Interface := QInterface (this.m_IMapControl.all);
          Hr := m_Interface.GetVisibleRegion (region, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
@@ -4927,14 +5775,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapProjection is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapProjection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_MapProjection (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4944,13 +5796,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapProjection
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_MapProjection (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StyleSheet
@@ -4959,15 +5815,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          m_Interface := QInterface (this.m_IMapControl.all);
          Hr := m_Interface.get_StyleSheet (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
          Retval.m_IMapStyleSheet.all := m_ComRetVal;
       end return;
@@ -4979,13 +5839,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapStyleSheet'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_StyleSheet (value.m_IMapStyleSheet.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ViewPadding
@@ -4994,14 +5858,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_ViewPadding (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5011,13 +5879,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_ViewPadding (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapContextRequested
@@ -5027,14 +5899,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.add_MapContextRequested (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5044,13 +5920,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.remove_MapContextRequested (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function FindMapElementsAtOffset
@@ -5061,17 +5941,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVectorView_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapElement.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.FindMapElementsAtOffset (offset, radius, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5083,13 +5967,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       location : access Windows.Devices.Geolocation.IGeopoint
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.GetLocationFromOffset (offset, desiredReferenceSystem, location);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StartContinuousPan
@@ -5099,13 +5987,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       verticalPixelsPerSecond : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StartContinuousPan (horizontalPixelsPerSecond, verticalPixelsPerSecond);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure StopContinuousPan
@@ -5113,13 +6005,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapControl
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.StopContinuousPan;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryPanAsync
@@ -5130,14 +6026,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5155,7 +6051,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5168,10 +6064,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryPanAsync (horizontalPixels, verticalPixels, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5181,9 +6077,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5198,14 +6094,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -5223,7 +6119,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -5236,10 +6132,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryPanToAsync (location.m_IGeopoint.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -5249,9 +6145,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -5265,17 +6161,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapLayer.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapLayer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_Layers (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapLayer (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5285,13 +6185,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_Layers (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryGetLocationFromOffset
@@ -5302,14 +6206,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryGetLocationFromOffset (offset, location, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5322,14 +6230,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl6, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.TryGetLocationFromOffset (offset, desiredReferenceSystem, location, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5339,17 +6251,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl7 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl7, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl7'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_Region (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -5359,15 +6275,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl7 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl7, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl7'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.put_Region (HStr_value);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_value);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_CanTiltDown
@@ -5376,14 +6296,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_CanTiltDown (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5393,14 +6317,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_CanTiltUp (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5410,14 +6338,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_CanZoomIn (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5427,14 +6359,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl8, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControl8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControl.all);
       Hr := m_Interface.get_CanZoomOut (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5447,12 +6383,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlBusinessLandmarkClickEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlBusinessLandmarkClickEventArgs, IMapControlBusinessLandmarkClickEventArgs_Ptr);
    begin
       if this.m_IMapControlBusinessLandmarkClickEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkClickEventArgs.all /= null then
-            RefCount := this.m_IMapControlBusinessLandmarkClickEventArgs.all.Release;
+            temp := this.m_IMapControlBusinessLandmarkClickEventArgs.all.Release;
             Free (this.m_IMapControlBusinessLandmarkClickEventArgs);
          end if;
       end if;
@@ -5463,7 +6399,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlBusinessLandmarkClickEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkClickEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkClickEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkClickEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkClickEventArgs do
@@ -5472,7 +6409,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlBusinessLandmarkClickEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkClickEventArgs;
             Retval.m_IMapControlBusinessLandmarkClickEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5485,10 +6422,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IMapControlBusinessLandmarkClickEventArgs.all.get_LocalLocations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5501,12 +6442,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlBusinessLandmarkPointerEnteredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlBusinessLandmarkPointerEnteredEventArgs, IMapControlBusinessLandmarkPointerEnteredEventArgs_Ptr);
    begin
       if this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all /= null then
-            RefCount := this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all.Release;
+            temp := this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all.Release;
             Free (this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs);
          end if;
       end if;
@@ -5517,7 +6458,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlBusinessLandmarkPointerEnteredEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkPointerEnteredEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkPointerEnteredEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerEnteredEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkPointerEnteredEventArgs do
@@ -5526,7 +6468,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlBusinessLandmarkPointerEnteredEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerEnteredEventArgs;
             Retval.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5539,10 +6481,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all.get_LocalLocations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5555,12 +6501,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlBusinessLandmarkPointerExitedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlBusinessLandmarkPointerExitedEventArgs, IMapControlBusinessLandmarkPointerExitedEventArgs_Ptr);
    begin
       if this.m_IMapControlBusinessLandmarkPointerExitedEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all /= null then
-            RefCount := this.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all.Release;
+            temp := this.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all.Release;
             Free (this.m_IMapControlBusinessLandmarkPointerExitedEventArgs);
          end if;
       end if;
@@ -5571,7 +6517,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlBusinessLandmarkPointerExitedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkPointerExitedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkPointerExitedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerExitedEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkPointerExitedEventArgs do
@@ -5580,7 +6527,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlBusinessLandmarkPointerExitedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerExitedEventArgs;
             Retval.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5593,10 +6540,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all.get_LocalLocations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5609,12 +6560,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlBusinessLandmarkRightTappedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlBusinessLandmarkRightTappedEventArgs, IMapControlBusinessLandmarkRightTappedEventArgs_Ptr);
    begin
       if this.m_IMapControlBusinessLandmarkRightTappedEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkRightTappedEventArgs.all /= null then
-            RefCount := this.m_IMapControlBusinessLandmarkRightTappedEventArgs.all.Release;
+            temp := this.m_IMapControlBusinessLandmarkRightTappedEventArgs.all.Release;
             Free (this.m_IMapControlBusinessLandmarkRightTappedEventArgs);
          end if;
       end if;
@@ -5625,7 +6576,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlBusinessLandmarkRightTappedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkRightTappedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkRightTappedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkRightTappedEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkRightTappedEventArgs do
@@ -5634,7 +6586,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlBusinessLandmarkRightTappedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkRightTappedEventArgs;
             Retval.m_IMapControlBusinessLandmarkRightTappedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5647,10 +6599,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IMapControlBusinessLandmarkRightTappedEventArgs.all.get_LocalLocations (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5663,12 +6619,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlDataHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlDataHelper, IMapControlDataHelper_Ptr);
    begin
       if this.m_IMapControlDataHelper /= null then
          if this.m_IMapControlDataHelper.all /= null then
-            RefCount := this.m_IMapControlDataHelper.all.Release;
+            temp := this.m_IMapControlDataHelper.all.Release;
             Free (this.m_IMapControlDataHelper);
          end if;
       end if;
@@ -5683,9 +6639,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapControlDataHelper is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlDataHelper");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlDataHelper");
       m_Factory    : access IMapControlDataHelperFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper;
    begin
       return RetVal : MapControlDataHelper do
@@ -5694,9 +6651,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (map.m_IMapControl.all, m_ComRetVal'Access);
             Retval.m_IMapControlDataHelper := new Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper;
             Retval.m_IMapControlDataHelper.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5709,20 +6666,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapControl is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlDataHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlDataHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapControl;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapControl do
          Hr := RoGetActivationFactory (m_hString, IID_IMapControlDataHelperStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateMapControl (rasterRenderMode, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapControl := new Windows.UI.Xaml.Controls.Maps.IMapControl;
             Retval.m_IMapControl.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5736,10 +6697,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControlDataHelper.all.add_BusinessLandmarkClick (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5749,9 +6714,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControlDataHelper.all.remove_BusinessLandmarkClick (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TransitFeatureClick
@@ -5761,10 +6730,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControlDataHelper.all.add_TransitFeatureClick (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5774,9 +6747,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControlDataHelper.all.remove_TransitFeatureClick (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_BusinessLandmarkRightTapped
@@ -5786,10 +6763,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControlDataHelper.all.add_BusinessLandmarkRightTapped (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5799,9 +6780,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControlDataHelper.all.remove_BusinessLandmarkRightTapped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TransitFeatureRightTapped
@@ -5811,10 +6796,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapControlDataHelper.all.add_TransitFeatureRightTapped (value, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5824,9 +6813,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapControlDataHelper.all.remove_TransitFeatureRightTapped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_BusinessLandmarkPointerEntered
@@ -5836,14 +6829,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.add_BusinessLandmarkPointerEntered (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5853,13 +6850,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.remove_BusinessLandmarkPointerEntered (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TransitFeaturePointerEntered
@@ -5869,14 +6870,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.add_TransitFeaturePointerEntered (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5886,13 +6891,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.remove_TransitFeaturePointerEntered (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_BusinessLandmarkPointerExited
@@ -5902,14 +6911,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.add_BusinessLandmarkPointerExited (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5919,13 +6932,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.remove_BusinessLandmarkPointerExited (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_TransitFeaturePointerExited
@@ -5935,14 +6952,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.add_TransitFeaturePointerExited (value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5952,13 +6973,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapControlDataHelper2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapControlDataHelper.all);
       Hr := m_Interface.remove_TransitFeaturePointerExited (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5970,12 +6995,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlTransitFeatureClickEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlTransitFeatureClickEventArgs, IMapControlTransitFeatureClickEventArgs_Ptr);
    begin
       if this.m_IMapControlTransitFeatureClickEventArgs /= null then
          if this.m_IMapControlTransitFeatureClickEventArgs.all /= null then
-            RefCount := this.m_IMapControlTransitFeatureClickEventArgs.all.Release;
+            temp := this.m_IMapControlTransitFeatureClickEventArgs.all.Release;
             Free (this.m_IMapControlTransitFeatureClickEventArgs);
          end if;
       end if;
@@ -5986,7 +7011,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlTransitFeatureClickEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeatureClickEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeatureClickEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureClickEventArgs;
    begin
       return RetVal : MapControlTransitFeatureClickEventArgs do
@@ -5995,7 +7021,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlTransitFeatureClickEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureClickEventArgs;
             Retval.m_IMapControlTransitFeatureClickEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6008,13 +7034,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMapControlTransitFeatureClickEventArgs.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6024,11 +7054,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapControlTransitFeatureClickEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6040,13 +7074,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IMapControlTransitFeatureClickEventArgs.all.get_TransitProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6059,12 +7097,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlTransitFeaturePointerEnteredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlTransitFeaturePointerEnteredEventArgs, IMapControlTransitFeaturePointerEnteredEventArgs_Ptr);
    begin
       if this.m_IMapControlTransitFeaturePointerEnteredEventArgs /= null then
          if this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all /= null then
-            RefCount := this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all.Release;
+            temp := this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all.Release;
             Free (this.m_IMapControlTransitFeaturePointerEnteredEventArgs);
          end if;
       end if;
@@ -6075,7 +7113,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlTransitFeaturePointerEnteredEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeaturePointerEnteredEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeaturePointerEnteredEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerEnteredEventArgs;
    begin
       return RetVal : MapControlTransitFeaturePointerEnteredEventArgs do
@@ -6084,7 +7123,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlTransitFeaturePointerEnteredEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerEnteredEventArgs;
             Retval.m_IMapControlTransitFeaturePointerEnteredEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6097,13 +7136,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6113,11 +7156,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6129,13 +7176,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all.get_TransitProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6148,12 +7199,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlTransitFeaturePointerExitedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlTransitFeaturePointerExitedEventArgs, IMapControlTransitFeaturePointerExitedEventArgs_Ptr);
    begin
       if this.m_IMapControlTransitFeaturePointerExitedEventArgs /= null then
          if this.m_IMapControlTransitFeaturePointerExitedEventArgs.all /= null then
-            RefCount := this.m_IMapControlTransitFeaturePointerExitedEventArgs.all.Release;
+            temp := this.m_IMapControlTransitFeaturePointerExitedEventArgs.all.Release;
             Free (this.m_IMapControlTransitFeaturePointerExitedEventArgs);
          end if;
       end if;
@@ -6164,7 +7215,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlTransitFeaturePointerExitedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeaturePointerExitedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeaturePointerExitedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerExitedEventArgs;
    begin
       return RetVal : MapControlTransitFeaturePointerExitedEventArgs do
@@ -6173,7 +7225,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlTransitFeaturePointerExitedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerExitedEventArgs;
             Retval.m_IMapControlTransitFeaturePointerExitedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6186,13 +7238,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMapControlTransitFeaturePointerExitedEventArgs.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6202,11 +7258,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapControlTransitFeaturePointerExitedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6218,13 +7278,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IMapControlTransitFeaturePointerExitedEventArgs.all.get_TransitProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6237,12 +7301,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapControlTransitFeatureRightTappedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapControlTransitFeatureRightTappedEventArgs, IMapControlTransitFeatureRightTappedEventArgs_Ptr);
    begin
       if this.m_IMapControlTransitFeatureRightTappedEventArgs /= null then
          if this.m_IMapControlTransitFeatureRightTappedEventArgs.all /= null then
-            RefCount := this.m_IMapControlTransitFeatureRightTappedEventArgs.all.Release;
+            temp := this.m_IMapControlTransitFeatureRightTappedEventArgs.all.Release;
             Free (this.m_IMapControlTransitFeatureRightTappedEventArgs);
          end if;
       end if;
@@ -6253,7 +7317,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapControlTransitFeatureRightTappedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeatureRightTappedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeatureRightTappedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureRightTappedEventArgs;
    begin
       return RetVal : MapControlTransitFeatureRightTappedEventArgs do
@@ -6262,7 +7327,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapControlTransitFeatureRightTappedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureRightTappedEventArgs;
             Retval.m_IMapControlTransitFeatureRightTappedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6275,13 +7340,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMapControlTransitFeatureRightTappedEventArgs.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -6291,11 +7360,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapControlTransitFeatureRightTappedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6307,13 +7380,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IMapControlTransitFeatureRightTappedEventArgs.all.get_TransitProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6326,12 +7403,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapCustomExperience) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapCustomExperience, IMapCustomExperience_Ptr);
    begin
       if this.m_IMapCustomExperience /= null then
          if this.m_IMapCustomExperience.all /= null then
-            RefCount := this.m_IMapCustomExperience.all.Release;
+            temp := this.m_IMapCustomExperience.all.Release;
             Free (this.m_IMapCustomExperience);
          end if;
       end if;
@@ -6347,9 +7424,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapCustomExperience is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCustomExperience");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCustomExperience");
       m_Factory    : access IMapCustomExperienceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapCustomExperience;
    begin
       return RetVal : MapCustomExperience do
@@ -6358,9 +7436,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapCustomExperience := new Windows.UI.Xaml.Controls.Maps.IMapCustomExperience;
             Retval.m_IMapCustomExperience.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6376,12 +7454,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapCustomExperienceChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapCustomExperienceChangedEventArgs, IMapCustomExperienceChangedEventArgs_Ptr);
    begin
       if this.m_IMapCustomExperienceChangedEventArgs /= null then
          if this.m_IMapCustomExperienceChangedEventArgs.all /= null then
-            RefCount := this.m_IMapCustomExperienceChangedEventArgs.all.Release;
+            temp := this.m_IMapCustomExperienceChangedEventArgs.all.Release;
             Free (this.m_IMapCustomExperienceChangedEventArgs);
          end if;
       end if;
@@ -6392,7 +7470,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapCustomExperienceChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCustomExperienceChangedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCustomExperienceChangedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapCustomExperienceChangedEventArgs;
    begin
       return RetVal : MapCustomExperienceChangedEventArgs do
@@ -6401,7 +7480,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapCustomExperienceChangedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapCustomExperienceChangedEventArgs;
             Retval.m_IMapCustomExperienceChangedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6417,12 +7496,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElement3D) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElement3D, IMapElement3D_Ptr);
    begin
       if this.m_IMapElement3D /= null then
          if this.m_IMapElement3D.all /= null then
-            RefCount := this.m_IMapElement3D.all.Release;
+            temp := this.m_IMapElement3D.all.Release;
             Free (this.m_IMapElement3D);
          end if;
       end if;
@@ -6433,7 +7512,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElement3D is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElement3D;
    begin
       return RetVal : MapElement3D do
@@ -6442,7 +7522,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElement3D := new Windows.UI.Xaml.Controls.Maps.IMapElement3D;
             Retval.m_IMapElement3D.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6452,100 +7532,120 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_LocationProperty_MapElement3D
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElement3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LocationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_HeadingProperty_MapElement3D
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElement3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HeadingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PitchProperty_MapElement3D
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElement3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PitchProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RollProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElement3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RollProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ScaleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElement3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ScaleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6558,11 +7658,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElement3D.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6574,9 +7678,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement3D.all.put_Location (value.m_IGeopoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Model
@@ -6585,11 +7693,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapModel3D;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D do
          Hr := this.m_IMapElement3D.all.get_Model (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapModel3D := new Windows.UI.Xaml.Controls.Maps.IMapModel3D;
          Retval.m_IMapModel3D.all := m_ComRetVal;
       end return;
@@ -6601,9 +7713,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapModel3D'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement3D.all.put_Model (value.m_IMapModel3D.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Heading
@@ -6612,10 +7728,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapElement3D.all.get_Heading (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6625,9 +7745,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement3D.all.put_Heading (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pitch
@@ -6636,10 +7760,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapElement3D.all.get_Pitch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6649,9 +7777,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement3D.all.put_Pitch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Roll
@@ -6660,10 +7792,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapElement3D.all.get_Roll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6673,9 +7809,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement3D.all.put_Roll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Scale
@@ -6684,10 +7824,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Numerics.Vector3 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IMapElement3D.all.get_Scale (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6697,9 +7841,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElement3D.all.put_Scale (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6711,12 +7859,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementClickEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementClickEventArgs, IMapElementClickEventArgs_Ptr);
    begin
       if this.m_IMapElementClickEventArgs /= null then
          if this.m_IMapElementClickEventArgs.all /= null then
-            RefCount := this.m_IMapElementClickEventArgs.all.Release;
+            temp := this.m_IMapElementClickEventArgs.all.Release;
             Free (this.m_IMapElementClickEventArgs);
          end if;
       end if;
@@ -6727,7 +7875,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementClickEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementClickEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementClickEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementClickEventArgs;
    begin
       return RetVal : MapElementClickEventArgs do
@@ -6736,7 +7885,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementClickEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementClickEventArgs;
             Retval.m_IMapElementClickEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6749,10 +7898,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementClickEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6762,11 +7915,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementClickEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6778,13 +7935,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapElement.Kind;
    begin
       Hr := this.m_IMapElementClickEventArgs.all.get_MapElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -6797,12 +7958,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementPointerEnteredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementPointerEnteredEventArgs, IMapElementPointerEnteredEventArgs_Ptr);
    begin
       if this.m_IMapElementPointerEnteredEventArgs /= null then
          if this.m_IMapElementPointerEnteredEventArgs.all /= null then
-            RefCount := this.m_IMapElementPointerEnteredEventArgs.all.Release;
+            temp := this.m_IMapElementPointerEnteredEventArgs.all.Release;
             Free (this.m_IMapElementPointerEnteredEventArgs);
          end if;
       end if;
@@ -6813,7 +7974,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementPointerEnteredEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementPointerEnteredEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementPointerEnteredEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementPointerEnteredEventArgs;
    begin
       return RetVal : MapElementPointerEnteredEventArgs do
@@ -6822,7 +7984,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementPointerEnteredEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementPointerEnteredEventArgs;
             Retval.m_IMapElementPointerEnteredEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6835,10 +7997,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementPointerEnteredEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6848,11 +8014,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementPointerEnteredEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6864,11 +8034,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapElement do
          Hr := this.m_IMapElementPointerEnteredEventArgs.all.get_MapElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapElement := new Windows.UI.Xaml.Controls.Maps.IMapElement;
          Retval.m_IMapElement.all := m_ComRetVal;
       end return;
@@ -6883,12 +8057,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementPointerExitedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementPointerExitedEventArgs, IMapElementPointerExitedEventArgs_Ptr);
    begin
       if this.m_IMapElementPointerExitedEventArgs /= null then
          if this.m_IMapElementPointerExitedEventArgs.all /= null then
-            RefCount := this.m_IMapElementPointerExitedEventArgs.all.Release;
+            temp := this.m_IMapElementPointerExitedEventArgs.all.Release;
             Free (this.m_IMapElementPointerExitedEventArgs);
          end if;
       end if;
@@ -6899,7 +8073,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementPointerExitedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementPointerExitedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementPointerExitedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementPointerExitedEventArgs;
    begin
       return RetVal : MapElementPointerExitedEventArgs do
@@ -6908,7 +8083,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementPointerExitedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementPointerExitedEventArgs;
             Retval.m_IMapElementPointerExitedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6921,10 +8096,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementPointerExitedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6934,11 +8113,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementPointerExitedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -6950,11 +8133,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapElement do
          Hr := this.m_IMapElementPointerExitedEventArgs.all.get_MapElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapElement := new Windows.UI.Xaml.Controls.Maps.IMapElement;
          Retval.m_IMapElement.all := m_ComRetVal;
       end return;
@@ -6969,12 +8156,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapLayer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapLayer, IMapLayer_Ptr);
    begin
       if this.m_IMapLayer /= null then
          if this.m_IMapLayer.all /= null then
-            RefCount := this.m_IMapLayer.all.Release;
+            temp := this.m_IMapLayer.all.Release;
             Free (this.m_IMapLayer);
          end if;
       end if;
@@ -6990,9 +8177,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapLayer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
       m_Factory    : access IMapLayerFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapLayer;
    begin
       return RetVal : MapLayer do
@@ -7001,9 +8189,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapLayer := new Windows.UI.Xaml.Controls.Maps.IMapLayer;
             Retval.m_IMapLayer.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7013,60 +8201,72 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_MapTabIndexProperty_MapLayer
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapLayerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapLayerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapTabIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_VisibleProperty_MapLayer
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapLayerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapLayerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ZIndexProperty_MapLayer
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapLayerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapLayerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ZIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7079,10 +8279,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapLayer.all.get_MapTabIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7092,9 +8296,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapLayer.all.put_MapTabIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Visible
@@ -7103,10 +8311,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapLayer.all.get_Visible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7116,9 +8328,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapLayer.all.put_Visible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -7127,10 +8343,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapLayer.all.get_ZIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7140,9 +8360,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapLayer.all.put_ZIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7154,12 +8378,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementsLayer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementsLayer, IMapElementsLayer_Ptr);
    begin
       if this.m_IMapElementsLayer /= null then
          if this.m_IMapElementsLayer.all /= null then
-            RefCount := this.m_IMapElementsLayer.all.Release;
+            temp := this.m_IMapElementsLayer.all.Release;
             Free (this.m_IMapElementsLayer);
          end if;
       end if;
@@ -7170,7 +8394,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementsLayer is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayer");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayer");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementsLayer;
    begin
       return RetVal : MapElementsLayer do
@@ -7179,7 +8404,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementsLayer := new Windows.UI.Xaml.Controls.Maps.IMapElementsLayer;
             Retval.m_IMapElementsLayer.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7189,20 +8414,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_MapElementsProperty_MapElementsLayer
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayer");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElementsLayerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapElementsLayerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MapElementsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7215,13 +8444,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapElement.Kind;
    begin
       Hr := this.m_IMapElementsLayer.all.get_MapElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7231,9 +8464,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElementsLayer.all.put_MapElements (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapElementClick
@@ -7243,10 +8480,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapElementsLayer.all.add_MapElementClick (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7256,9 +8497,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElementsLayer.all.remove_MapElementClick (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapElementPointerEntered
@@ -7268,10 +8513,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapElementsLayer.all.add_MapElementPointerEntered (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7281,9 +8530,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElementsLayer.all.remove_MapElementPointerEntered (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapElementPointerExited
@@ -7293,10 +8546,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapElementsLayer.all.add_MapElementPointerExited (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7306,9 +8563,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElementsLayer.all.remove_MapElementPointerExited (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_MapContextRequested
@@ -7318,10 +8579,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapElementsLayer.all.add_MapContextRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7331,9 +8596,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapElementsLayer.all.remove_MapContextRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7345,12 +8614,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementsLayerClickEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementsLayerClickEventArgs, IMapElementsLayerClickEventArgs_Ptr);
    begin
       if this.m_IMapElementsLayerClickEventArgs /= null then
          if this.m_IMapElementsLayerClickEventArgs.all /= null then
-            RefCount := this.m_IMapElementsLayerClickEventArgs.all.Release;
+            temp := this.m_IMapElementsLayerClickEventArgs.all.Release;
             Free (this.m_IMapElementsLayerClickEventArgs);
          end if;
       end if;
@@ -7361,7 +8630,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementsLayerClickEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerClickEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerClickEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementsLayerClickEventArgs;
    begin
       return RetVal : MapElementsLayerClickEventArgs do
@@ -7370,7 +8640,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementsLayerClickEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementsLayerClickEventArgs;
             Retval.m_IMapElementsLayerClickEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7383,10 +8653,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementsLayerClickEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7396,11 +8670,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementsLayerClickEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -7412,13 +8690,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IMapElement.Kind;
    begin
       Hr := this.m_IMapElementsLayerClickEventArgs.all.get_MapElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7431,12 +8713,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementsLayerContextRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementsLayerContextRequestedEventArgs, IMapElementsLayerContextRequestedEventArgs_Ptr);
    begin
       if this.m_IMapElementsLayerContextRequestedEventArgs /= null then
          if this.m_IMapElementsLayerContextRequestedEventArgs.all /= null then
-            RefCount := this.m_IMapElementsLayerContextRequestedEventArgs.all.Release;
+            temp := this.m_IMapElementsLayerContextRequestedEventArgs.all.Release;
             Free (this.m_IMapElementsLayerContextRequestedEventArgs);
          end if;
       end if;
@@ -7447,7 +8729,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementsLayerContextRequestedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerContextRequestedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerContextRequestedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementsLayerContextRequestedEventArgs;
    begin
       return RetVal : MapElementsLayerContextRequestedEventArgs do
@@ -7456,7 +8739,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementsLayerContextRequestedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementsLayerContextRequestedEventArgs;
             Retval.m_IMapElementsLayerContextRequestedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7469,10 +8752,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementsLayerContextRequestedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7482,11 +8769,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementsLayerContextRequestedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -7498,13 +8789,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVectorView_IMapElement.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapElement.Kind;
    begin
       Hr := this.m_IMapElementsLayerContextRequestedEventArgs.all.get_MapElements (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IMapElement (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -7517,12 +8812,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementsLayerPointerEnteredEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementsLayerPointerEnteredEventArgs, IMapElementsLayerPointerEnteredEventArgs_Ptr);
    begin
       if this.m_IMapElementsLayerPointerEnteredEventArgs /= null then
          if this.m_IMapElementsLayerPointerEnteredEventArgs.all /= null then
-            RefCount := this.m_IMapElementsLayerPointerEnteredEventArgs.all.Release;
+            temp := this.m_IMapElementsLayerPointerEnteredEventArgs.all.Release;
             Free (this.m_IMapElementsLayerPointerEnteredEventArgs);
          end if;
       end if;
@@ -7533,7 +8828,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementsLayerPointerEnteredEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerPointerEnteredEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerPointerEnteredEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerEnteredEventArgs;
    begin
       return RetVal : MapElementsLayerPointerEnteredEventArgs do
@@ -7542,7 +8838,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementsLayerPointerEnteredEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerEnteredEventArgs;
             Retval.m_IMapElementsLayerPointerEnteredEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7555,10 +8851,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementsLayerPointerEnteredEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7568,11 +8868,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementsLayerPointerEnteredEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -7584,11 +8888,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapElement do
          Hr := this.m_IMapElementsLayerPointerEnteredEventArgs.all.get_MapElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapElement := new Windows.UI.Xaml.Controls.Maps.IMapElement;
          Retval.m_IMapElement.all := m_ComRetVal;
       end return;
@@ -7603,12 +8911,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapElementsLayerPointerExitedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapElementsLayerPointerExitedEventArgs, IMapElementsLayerPointerExitedEventArgs_Ptr);
    begin
       if this.m_IMapElementsLayerPointerExitedEventArgs /= null then
          if this.m_IMapElementsLayerPointerExitedEventArgs.all /= null then
-            RefCount := this.m_IMapElementsLayerPointerExitedEventArgs.all.Release;
+            temp := this.m_IMapElementsLayerPointerExitedEventArgs.all.Release;
             Free (this.m_IMapElementsLayerPointerExitedEventArgs);
          end if;
       end if;
@@ -7619,7 +8927,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapElementsLayerPointerExitedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerPointerExitedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerPointerExitedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerExitedEventArgs;
    begin
       return RetVal : MapElementsLayerPointerExitedEventArgs do
@@ -7628,7 +8937,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapElementsLayerPointerExitedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerExitedEventArgs;
             Retval.m_IMapElementsLayerPointerExitedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7641,10 +8950,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapElementsLayerPointerExitedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7654,11 +8967,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapElementsLayerPointerExitedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -7670,11 +8987,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapElement do
          Hr := this.m_IMapElementsLayerPointerExitedEventArgs.all.get_MapElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapElement := new Windows.UI.Xaml.Controls.Maps.IMapElement;
          Retval.m_IMapElement.all := m_ComRetVal;
       end return;
@@ -7689,12 +9010,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapIcon) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapIcon, IMapIcon_Ptr);
    begin
       if this.m_IMapIcon /= null then
          if this.m_IMapIcon.all /= null then
-            RefCount := this.m_IMapIcon.all.Release;
+            temp := this.m_IMapIcon.all.Release;
             Free (this.m_IMapIcon);
          end if;
       end if;
@@ -7705,7 +9026,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapIcon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapIcon;
    begin
       return RetVal : MapIcon do
@@ -7714,7 +9036,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapIcon := new Windows.UI.Xaml.Controls.Maps.IMapIcon;
             Retval.m_IMapIcon.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7724,80 +9046,96 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_LocationProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapIconStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LocationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TitleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapIconStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TitleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_NormalizedAnchorPointProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapIconStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NormalizedAnchorPointProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CollisionBehaviorDesiredProperty_MapIcon
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapIconStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapIconStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CollisionBehaviorDesiredProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7810,11 +9148,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapIcon.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -7826,9 +9168,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapIcon.all.put_Location (value.m_IGeopoint.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Title
@@ -7837,13 +9183,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IMapIcon.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -7853,11 +9203,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IMapIcon.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_NormalizedAnchorPoint
@@ -7866,10 +9220,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapIcon.all.get_NormalizedAnchorPoint (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7879,9 +9237,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapIcon.all.put_NormalizedAnchorPoint (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Image
@@ -7890,10 +9252,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IMapIcon.all.get_Image (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7903,9 +9269,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapIcon.all.put_Image (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CollisionBehaviorDesired
@@ -7914,14 +9284,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapIcon2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapIcon_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapIcon2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapIcon2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapIcon.all);
       Hr := m_Interface.get_CollisionBehaviorDesired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7931,13 +9305,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapIcon2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapIcon_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapIcon2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapIcon2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapIcon.all);
       Hr := m_Interface.put_CollisionBehaviorDesired (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -7949,12 +9327,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapInputEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapInputEventArgs, IMapInputEventArgs_Ptr);
    begin
       if this.m_IMapInputEventArgs /= null then
          if this.m_IMapInputEventArgs.all /= null then
-            RefCount := this.m_IMapInputEventArgs.all.Release;
+            temp := this.m_IMapInputEventArgs.all.Release;
             Free (this.m_IMapInputEventArgs);
          end if;
       end if;
@@ -7965,7 +9343,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapInputEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapInputEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapInputEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapInputEventArgs;
    begin
       return RetVal : MapInputEventArgs do
@@ -7974,7 +9353,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapInputEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapInputEventArgs;
             Retval.m_IMapInputEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7987,10 +9366,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapInputEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8000,11 +9383,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapInputEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -8019,12 +9406,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapItemsControl) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapItemsControl, IMapItemsControl_Ptr);
    begin
       if this.m_IMapItemsControl /= null then
          if this.m_IMapItemsControl.all /= null then
-            RefCount := this.m_IMapItemsControl.all.Release;
+            temp := this.m_IMapItemsControl.all.Release;
             Free (this.m_IMapItemsControl);
          end if;
       end if;
@@ -8035,7 +9422,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapItemsControl is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapItemsControl;
    begin
       return RetVal : MapItemsControl do
@@ -8044,7 +9432,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapItemsControl := new Windows.UI.Xaml.Controls.Maps.IMapItemsControl;
             Retval.m_IMapItemsControl.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8054,60 +9442,72 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_ItemsSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapItemsControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapItemsControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemsSourceProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ItemsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapItemsControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapItemsControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ItemTemplateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapItemsControlStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapItemsControlStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemTemplateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8120,10 +9520,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IMapItemsControl.all.get_ItemsSource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8133,9 +9537,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapItemsControl.all.put_ItemsSource (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Items
@@ -8144,13 +9552,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return IVector_IDependencyObject.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IDependencyObject.Kind;
    begin
       Hr := this.m_IMapItemsControl.all.get_Items (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IDependencyObject (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8160,11 +9572,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.DataTemplate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDataTemplate;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DataTemplate do
          Hr := this.m_IMapItemsControl.all.get_ItemTemplate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataTemplate := new Windows.UI.Xaml.IDataTemplate;
          Retval.m_IDataTemplate.all := m_ComRetVal;
       end return;
@@ -8176,9 +9592,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.DataTemplate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapItemsControl.all.put_ItemTemplate (value.m_IDataTemplate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8190,12 +9610,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapModel3D) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapModel3D, IMapModel3D_Ptr);
    begin
       if this.m_IMapModel3D /= null then
          if this.m_IMapModel3D.all /= null then
-            RefCount := this.m_IMapModel3D.all.Release;
+            temp := this.m_IMapModel3D.all.Release;
             Free (this.m_IMapModel3D);
          end if;
       end if;
@@ -8211,9 +9631,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapModel3D is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
       m_Factory    : access IMapModel3DFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapModel3D;
    begin
       return RetVal : MapModel3D do
@@ -8222,9 +9643,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapModel3D := new Windows.UI.Xaml.Controls.Maps.IMapModel3D;
             Retval.m_IMapModel3D.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8237,15 +9658,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapModel3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MapModel3D.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8263,7 +9684,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapModel3D.Kind_Delegate, AsyncOperationCompletedHandler_MapModel3D.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8277,10 +9698,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IMapModel3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFrom3MFAsync (source, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -8292,15 +9713,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
                      Retval.m_IMapModel3D := new Windows.UI.Xaml.Controls.Maps.IMapModel3D;
                      Retval.m_IMapModel3D.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8311,15 +9732,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapModel3DStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_MapModel3D.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -8337,7 +9758,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_MapModel3D.Kind_Delegate, AsyncOperationCompletedHandler_MapModel3D.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -8351,10 +9772,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IMapModel3DStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFrom3MFAsync (source, shadingOption, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -8366,15 +9787,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
                      Retval.m_IMapModel3D := new Windows.UI.Xaml.Controls.Maps.IMapModel3D;
                      Retval.m_IMapModel3D.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8390,12 +9811,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapPolygon) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapPolygon, IMapPolygon_Ptr);
    begin
       if this.m_IMapPolygon /= null then
          if this.m_IMapPolygon.all /= null then
-            RefCount := this.m_IMapPolygon.all.Release;
+            temp := this.m_IMapPolygon.all.Release;
             Free (this.m_IMapPolygon);
          end if;
       end if;
@@ -8406,7 +9827,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapPolygon is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapPolygon;
    begin
       return RetVal : MapPolygon do
@@ -8415,7 +9837,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapPolygon := new Windows.UI.Xaml.Controls.Maps.IMapPolygon;
             Retval.m_IMapPolygon.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8425,60 +9847,72 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_PathProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolygonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapPolygonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PathProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeThicknessProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolygonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapPolygonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeThicknessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeDashedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolygonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapPolygonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeDashedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8491,11 +9925,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopath'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          Hr := this.m_IMapPolygon.all.get_Path (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
@@ -8507,9 +9945,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolygon.all.put_Path (value.m_IGeopath.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeColor
@@ -8518,10 +9960,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IMapPolygon.all.get_StrokeColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8531,9 +9977,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolygon.all.put_StrokeColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeThickness
@@ -8542,10 +9992,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapPolygon.all.get_StrokeThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8555,9 +10009,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolygon.all.put_StrokeThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashed
@@ -8566,10 +10024,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapPolygon.all.get_StrokeDashed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8579,9 +10041,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolygon.all.put_StrokeDashed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FillColor
@@ -8590,10 +10056,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IMapPolygon.all.get_FillColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8603,9 +10073,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolygon.all.put_FillColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Paths
@@ -8614,14 +10088,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolygon2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolygon_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolygon2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapPolygon2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapPolygon.all);
       Hr := m_Interface.get_Paths (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8634,12 +10112,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapPolyline) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapPolyline, IMapPolyline_Ptr);
    begin
       if this.m_IMapPolyline /= null then
          if this.m_IMapPolyline.all /= null then
-            RefCount := this.m_IMapPolyline.all.Release;
+            temp := this.m_IMapPolyline.all.Release;
             Free (this.m_IMapPolyline);
          end if;
       end if;
@@ -8650,7 +10128,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapPolyline is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapPolyline;
    begin
       return RetVal : MapPolyline do
@@ -8659,7 +10138,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapPolyline := new Windows.UI.Xaml.Controls.Maps.IMapPolyline;
             Retval.m_IMapPolyline.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8669,40 +10148,48 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_PathProperty_MapPolyline
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolylineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapPolylineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PathProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_StrokeDashedProperty_MapPolyline
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapPolylineStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapPolylineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_StrokeDashedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8715,11 +10202,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopath'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          Hr := this.m_IMapPolyline.all.get_Path (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
@@ -8731,9 +10222,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.Geopath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolyline.all.put_Path (value.m_IGeopath.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeColor
@@ -8742,10 +10237,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IMapPolyline.all.get_StrokeColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8755,9 +10254,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolyline.all.put_StrokeColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeThickness
@@ -8766,10 +10269,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMapPolyline.all.get_StrokeThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8779,9 +10286,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolyline.all.put_StrokeThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StrokeDashed
@@ -8790,10 +10301,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapPolyline.all.get_StrokeDashed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8803,9 +10318,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapPolyline.all.put_StrokeDashed (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8817,12 +10336,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapRightTappedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapRightTappedEventArgs, IMapRightTappedEventArgs_Ptr);
    begin
       if this.m_IMapRightTappedEventArgs /= null then
          if this.m_IMapRightTappedEventArgs.all /= null then
-            RefCount := this.m_IMapRightTappedEventArgs.all.Release;
+            temp := this.m_IMapRightTappedEventArgs.all.Release;
             Free (this.m_IMapRightTappedEventArgs);
          end if;
       end if;
@@ -8833,7 +10352,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapRightTappedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapRightTappedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapRightTappedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapRightTappedEventArgs;
    begin
       return RetVal : MapRightTappedEventArgs do
@@ -8842,7 +10362,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapRightTappedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapRightTappedEventArgs;
             Retval.m_IMapRightTappedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8855,10 +10375,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IMapRightTappedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8868,11 +10392,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapRightTappedEventArgs.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
@@ -8887,12 +10415,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapRouteView) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapRouteView, IMapRouteView_Ptr);
    begin
       if this.m_IMapRouteView /= null then
          if this.m_IMapRouteView.all /= null then
-            RefCount := this.m_IMapRouteView.all.Release;
+            temp := this.m_IMapRouteView.all.Release;
             Free (this.m_IMapRouteView);
          end if;
       end if;
@@ -8909,9 +10437,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapRouteView is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapRouteView");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapRouteView");
       m_Factory    : access IMapRouteViewFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapRouteView;
    begin
       return RetVal : MapRouteView do
@@ -8920,9 +10449,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithMapRoute (route.m_IMapRoute.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapRouteView := new Windows.UI.Xaml.Controls.Maps.IMapRouteView;
             Retval.m_IMapRouteView.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8935,10 +10464,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IMapRouteView.all.get_RouteColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8948,9 +10481,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapRouteView.all.put_RouteColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OutlineColor
@@ -8959,10 +10496,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IMapRouteView.all.get_OutlineColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8972,9 +10513,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapRouteView.all.put_OutlineColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Route
@@ -8983,11 +10528,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Services.Maps.MapRoute'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Services.Maps.IMapRoute;
    begin
       return RetVal : WinRt.Windows.Services.Maps.MapRoute do
          Hr := this.m_IMapRouteView.all.get_Route (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapRoute := new Windows.Services.Maps.IMapRoute;
          Retval.m_IMapRoute.all := m_ComRetVal;
       end return;
@@ -9002,12 +10551,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapScene) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapScene, IMapScene_Ptr);
    begin
       if this.m_IMapScene /= null then
          if this.m_IMapScene.all /= null then
-            RefCount := this.m_IMapScene.all.Release;
+            temp := this.m_IMapScene.all.Release;
             Free (this.m_IMapScene);
          end if;
       end if;
@@ -9022,20 +10571,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBoundingBox (bounds.m_IGeoboundingBox.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9047,20 +10600,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBoundingBox (bounds.m_IGeoboundingBox.all, headingInDegrees, pitchInDegrees, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9070,20 +10627,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromCamera (camera.m_IMapCamera.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9093,20 +10654,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLocation (location.m_IGeopoint.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9118,20 +10683,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLocation (location.m_IGeopoint.all, headingInDegrees, pitchInDegrees, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9142,20 +10711,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLocationAndRadius (location.m_IGeopoint.all, radiusInMeters, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9168,20 +10741,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLocationAndRadius (location.m_IGeopoint.all, radiusInMeters, headingInDegrees, pitchInDegrees, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9191,20 +10768,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLocations (locations, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9216,20 +10797,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapScene");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapSceneStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapScene;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene do
          Hr := RoGetActivationFactory (m_hString, IID_IMapSceneStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLocations (locations, headingInDegrees, pitchInDegrees, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapScene := new Windows.UI.Xaml.Controls.Maps.IMapScene;
             Retval.m_IMapScene.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9242,11 +10827,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          Hr := this.m_IMapScene.all.get_TargetCamera (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -9259,10 +10848,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMapScene.all.add_TargetCameraChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9272,9 +10865,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapScene.all.remove_TargetCameraChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9286,12 +10883,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapStyleSheet) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapStyleSheet, IMapStyleSheet_Ptr);
    begin
       if this.m_IMapStyleSheet /= null then
          if this.m_IMapStyleSheet.all /= null then
-            RefCount := this.m_IMapStyleSheet.all.Release;
+            temp := this.m_IMapStyleSheet.all.Release;
             Free (this.m_IMapStyleSheet);
          end if;
       end if;
@@ -9303,120 +10900,144 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function Aerial
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Aerial (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function AerialWithOverlay
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.AerialWithOverlay (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function RoadLight
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RoadLight (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function RoadDark
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RoadDark (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function RoadHighContrastLight
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RoadHighContrastLight (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function RoadHighContrastDark
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RoadHighContrastDark (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9426,20 +11047,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Combine (styleSheets, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9449,22 +11074,26 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
-      HStr_styleAsJson : WinRt.HString := To_HString (styleAsJson);
+      HStr_styleAsJson : constant WinRt.HString := To_HString (styleAsJson);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet do
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.ParseFromJson (HStr_styleAsJson, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IMapStyleSheet := new Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
             Retval.m_IMapStyleSheet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_styleAsJson);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_styleAsJson);
       end return;
    end;
 
@@ -9475,19 +11104,23 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheet");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_styleAsJson : WinRt.HString := To_HString (styleAsJson);
+      HStr_styleAsJson : constant WinRt.HString := To_HString (styleAsJson);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryParseFromJson (HStr_styleAsJson, styleSheet, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_styleAsJson);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_styleAsJson);
       return m_ComRetVal;
    end;
 
@@ -9501,1280 +11134,1536 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Area
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Area (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Airport
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Airport (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Cemetery
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Cemetery (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Continent
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Continent (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Education
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Education (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_IndigenousPeoplesReserve
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IndigenousPeoplesReserve (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Island
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Island (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Medical
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Medical (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Military
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Military (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Nautical
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Nautical (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Neighborhood
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Neighborhood (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Runway
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Runway (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Sand
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Sand (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ShoppingCenter
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShoppingCenter (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Stadium
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Stadium (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Vegetation
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Vegetation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Forest
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Forest (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_GolfCourse
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_GolfCourse (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Park
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Park (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PlayingField
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlayingField (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Reserve
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Reserve (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Point
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Point (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_NaturalPoint
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NaturalPoint (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Peak
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Peak (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_VolcanicPeak
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VolcanicPeak (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_WaterPoint
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_WaterPoint (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PointOfInterest
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointOfInterest (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Business
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Business (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_FoodPoint
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FoodPoint (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_PopulatedPlace
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PopulatedPlace (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Capital
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Capital (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AdminDistrictCapital
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AdminDistrictCapital (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CountryRegionCapital
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CountryRegionCapital (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RoadShield
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RoadShield (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RoadExit
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RoadExit (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Transit
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Transit (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Political
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Political (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_CountryRegion
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CountryRegion (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_AdminDistrict
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AdminDistrict (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_District
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_District (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Structure
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Structure (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Building
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Building (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_EducationBuilding
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EducationBuilding (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_MedicalBuilding
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MedicalBuilding (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TransitBuilding
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TransitBuilding (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Transportation
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Transportation (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Road
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Road (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ControlledAccessHighway
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ControlledAccessHighway (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_HighSpeedRamp
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HighSpeedRamp (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Highway
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Highway (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_MajorRoad
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MajorRoad (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_ArterialRoad
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ArterialRoad (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Street
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Street (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Ramp
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Ramp (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_UnpavedStreet
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_UnpavedStreet (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_TollRoad
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TollRoad (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Railway
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Railway (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Trail
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Trail (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_WaterRoute
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_WaterRoute (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Water
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Water (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_River
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_River (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_RouteLine
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RouteLine (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_WalkingRoute
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_WalkingRoute (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_DrivingRoute
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntries");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntriesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntriesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DrivingRoute (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -10787,60 +12676,72 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Disabled
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntryStates");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntryStates");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntryStatesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntryStatesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Disabled (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Hover
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntryStates");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntryStates");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntryStatesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntryStatesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Hover (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_Selected
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntryStates");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapStyleSheetEntryStates");
          m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheetEntryStatesStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapStyleSheetEntryStatesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Selected (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -10855,12 +12756,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTargetCameraChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTargetCameraChangedEventArgs, IMapTargetCameraChangedEventArgs_Ptr);
    begin
       if this.m_IMapTargetCameraChangedEventArgs /= null then
          if this.m_IMapTargetCameraChangedEventArgs.all /= null then
-            RefCount := this.m_IMapTargetCameraChangedEventArgs.all.Release;
+            temp := this.m_IMapTargetCameraChangedEventArgs.all.Release;
             Free (this.m_IMapTargetCameraChangedEventArgs);
          end if;
       end if;
@@ -10871,7 +12772,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTargetCameraChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTargetCameraChangedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTargetCameraChangedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs;
    begin
       return RetVal : MapTargetCameraChangedEventArgs do
@@ -10880,7 +12782,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTargetCameraChangedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs;
             Retval.m_IMapTargetCameraChangedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10893,11 +12795,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapCamera;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera do
          Hr := this.m_IMapTargetCameraChangedEventArgs.all.get_Camera (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapCamera := new Windows.UI.Xaml.Controls.Maps.IMapCamera;
          Retval.m_IMapCamera.all := m_ComRetVal;
       end return;
@@ -10909,14 +12815,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTargetCameraChangedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTargetCameraChangedEventArgs.all);
       Hr := m_Interface.get_ChangeReason (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10929,12 +12839,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileBitmapRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileBitmapRequest, IMapTileBitmapRequest_Ptr);
    begin
       if this.m_IMapTileBitmapRequest /= null then
          if this.m_IMapTileBitmapRequest.all /= null then
-            RefCount := this.m_IMapTileBitmapRequest.all.Release;
+            temp := this.m_IMapTileBitmapRequest.all.Release;
             Free (this.m_IMapTileBitmapRequest);
          end if;
       end if;
@@ -10945,7 +12855,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTileBitmapRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequest");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest;
    begin
       return RetVal : MapTileBitmapRequest do
@@ -10954,7 +12865,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTileBitmapRequest := new Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest;
             Retval.m_IMapTileBitmapRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10967,10 +12878,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IMapTileBitmapRequest.all.get_PixelData (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10980,9 +12895,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileBitmapRequest.all.put_PixelData (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -10991,11 +12910,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestDeferral do
          Hr := this.m_IMapTileBitmapRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapTileBitmapRequestDeferral := new Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral;
          Retval.m_IMapTileBitmapRequestDeferral.all := m_ComRetVal;
       end return;
@@ -11010,12 +12933,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileBitmapRequestDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileBitmapRequestDeferral, IMapTileBitmapRequestDeferral_Ptr);
    begin
       if this.m_IMapTileBitmapRequestDeferral /= null then
          if this.m_IMapTileBitmapRequestDeferral.all /= null then
-            RefCount := this.m_IMapTileBitmapRequestDeferral.all.Release;
+            temp := this.m_IMapTileBitmapRequestDeferral.all.Release;
             Free (this.m_IMapTileBitmapRequestDeferral);
          end if;
       end if;
@@ -11026,7 +12949,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTileBitmapRequestDeferral is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestDeferral");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestDeferral");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral;
    begin
       return RetVal : MapTileBitmapRequestDeferral do
@@ -11035,7 +12959,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTileBitmapRequestDeferral := new Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral;
             Retval.m_IMapTileBitmapRequestDeferral.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11047,9 +12971,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapTileBitmapRequestDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileBitmapRequestDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11061,12 +12989,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileBitmapRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileBitmapRequestedEventArgs, IMapTileBitmapRequestedEventArgs_Ptr);
    begin
       if this.m_IMapTileBitmapRequestedEventArgs /= null then
          if this.m_IMapTileBitmapRequestedEventArgs.all /= null then
-            RefCount := this.m_IMapTileBitmapRequestedEventArgs.all.Release;
+            temp := this.m_IMapTileBitmapRequestedEventArgs.all.Release;
             Free (this.m_IMapTileBitmapRequestedEventArgs);
          end if;
       end if;
@@ -11077,7 +13005,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTileBitmapRequestedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs;
    begin
       return RetVal : MapTileBitmapRequestedEventArgs do
@@ -11086,7 +13015,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTileBitmapRequestedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs;
             Retval.m_IMapTileBitmapRequestedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11099,10 +13028,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileBitmapRequestedEventArgs.all.get_X (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11112,10 +13045,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileBitmapRequestedEventArgs.all.get_Y (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11125,10 +13062,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileBitmapRequestedEventArgs.all.get_ZoomLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11138,11 +13079,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequest do
          Hr := this.m_IMapTileBitmapRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapTileBitmapRequest := new Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest;
          Retval.m_IMapTileBitmapRequest.all := m_ComRetVal;
       end return;
@@ -11154,14 +13099,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileBitmapRequestedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileBitmapRequestedEventArgs.all);
       Hr := m_Interface.get_FrameIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11174,12 +13123,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileSource) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileSource, IMapTileSource_Ptr);
    begin
       if this.m_IMapTileSource /= null then
          if this.m_IMapTileSource.all /= null then
-            RefCount := this.m_IMapTileSource.all.Release;
+            temp := this.m_IMapTileSource.all.Release;
             Free (this.m_IMapTileSource);
          end if;
       end if;
@@ -11195,9 +13144,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapTileSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileSource;
    begin
       return RetVal : MapTileSource do
@@ -11206,9 +13156,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapTileSource := new Windows.UI.Xaml.Controls.Maps.IMapTileSource;
             Retval.m_IMapTileSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11220,9 +13170,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapTileSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileSource;
    begin
       return RetVal : MapTileSource do
@@ -11231,9 +13182,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithDataSource (dataSource.m_IMapTileDataSource.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapTileSource := new Windows.UI.Xaml.Controls.Maps.IMapTileSource;
             Retval.m_IMapTileSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11246,9 +13197,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapTileSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileSource;
    begin
       return RetVal : MapTileSource do
@@ -11257,9 +13209,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithDataSourceAndZoomRange (dataSource.m_IMapTileDataSource.all, zoomLevelRange, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapTileSource := new Windows.UI.Xaml.Controls.Maps.IMapTileSource;
             Retval.m_IMapTileSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11273,9 +13225,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapTileSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileSource;
    begin
       return RetVal : MapTileSource do
@@ -11284,9 +13237,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithDataSourceZoomRangeAndBounds (dataSource.m_IMapTileDataSource.all, zoomLevelRange, bounds.m_IGeoboundingBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapTileSource := new Windows.UI.Xaml.Controls.Maps.IMapTileSource;
             Retval.m_IMapTileSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11301,9 +13254,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return MapTileSource is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileSource;
    begin
       return RetVal : MapTileSource do
@@ -11312,9 +13266,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithDataSourceZoomRangeBoundsAndTileSize (dataSource.m_IMapTileDataSource.all, zoomLevelRange, bounds.m_IGeoboundingBox.all, tileSizeInPixels, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IMapTileSource := new Windows.UI.Xaml.Controls.Maps.IMapTileSource;
             Retval.m_IMapTileSource.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11324,300 +13278,360 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    function get_DataSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DataSourceProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LayerProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LayerProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ZoomLevelRangeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ZoomLevelRangeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_BoundsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_BoundsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AllowOverstretchProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllowOverstretchProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsFadingEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsFadingEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsTransparencyEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsTransparencyEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsRetryEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsRetryEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ZIndexProperty_MapTileSource
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ZIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_TilePixelSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TilePixelSizeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_VisibleProperty_MapTileSource
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VisibleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AnimationStateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AnimationStateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AutoPlayProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AutoPlayProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FrameCountProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FrameCountProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FrameDurationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSourceStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMapTileSourceStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FrameDurationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11630,11 +13644,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource do
          Hr := this.m_IMapTileSource.all.get_DataSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapTileDataSource := new Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
          Retval.m_IMapTileDataSource.all := m_ComRetVal;
       end return;
@@ -11646,9 +13664,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_DataSource (value.m_IMapTileDataSource.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Layer
@@ -11657,10 +13679,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileLayer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapTileLayer;
    begin
       Hr := this.m_IMapTileSource.all.get_Layer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11670,9 +13696,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapTileLayer
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_Layer (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZoomLevelRange
@@ -11681,10 +13711,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
    begin
       Hr := this.m_IMapTileSource.all.get_ZoomLevelRange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11694,9 +13728,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_ZoomLevelRange (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Bounds
@@ -11705,11 +13743,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := this.m_IMapTileSource.all.get_Bounds (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
          Retval.m_IGeoboundingBox.all := m_ComRetVal;
       end return;
@@ -11721,9 +13763,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Devices.Geolocation.GeoboundingBox'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_Bounds (value.m_IGeoboundingBox.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowOverstretch
@@ -11732,10 +13778,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapTileSource.all.get_AllowOverstretch (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11745,9 +13795,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_AllowOverstretch (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsFadingEnabled
@@ -11756,10 +13810,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapTileSource.all.get_IsFadingEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11769,9 +13827,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_IsFadingEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsTransparencyEnabled
@@ -11780,10 +13842,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapTileSource.all.get_IsTransparencyEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11793,9 +13859,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_IsTransparencyEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsRetryEnabled
@@ -11804,10 +13874,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapTileSource.all.get_IsRetryEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11817,9 +13891,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_IsRetryEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -11828,10 +13906,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileSource.all.get_ZIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11841,9 +13923,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_ZIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TilePixelSize
@@ -11852,10 +13938,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileSource.all.get_TilePixelSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11865,9 +13955,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_TilePixelSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Visible
@@ -11876,10 +13970,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IMapTileSource.all.get_Visible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11889,9 +13987,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileSource.all.put_Visible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AnimationState
@@ -11900,14 +14002,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileAnimationState is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.MapTileAnimationState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.get_AnimationState (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11917,14 +14023,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.get_AutoPlay (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11934,13 +14044,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.put_AutoPlay (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FrameCount
@@ -11949,14 +14063,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.get_FrameCount (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11966,13 +14084,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.put_FrameCount (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FrameDuration
@@ -11981,14 +14103,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.get_FrameDuration (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11998,13 +14124,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.put_FrameDuration (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Pause
@@ -12012,13 +14142,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapTileSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.Pause;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Play
@@ -12026,13 +14160,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapTileSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.Play;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -12040,13 +14178,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapTileSource
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileSource.all);
       Hr := m_Interface.Stop;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12058,12 +14200,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileUriRequest) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileUriRequest, IMapTileUriRequest_Ptr);
    begin
       if this.m_IMapTileUriRequest /= null then
          if this.m_IMapTileUriRequest.all /= null then
-            RefCount := this.m_IMapTileUriRequest.all.Release;
+            temp := this.m_IMapTileUriRequest.all.Release;
             Free (this.m_IMapTileUriRequest);
          end if;
       end if;
@@ -12074,7 +14216,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTileUriRequest is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequest");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequest");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest;
    begin
       return RetVal : MapTileUriRequest do
@@ -12083,7 +14226,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTileUriRequest := new Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest;
             Retval.m_IMapTileUriRequest.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12096,11 +14239,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IMapTileUriRequest.all.get_Uri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -12112,9 +14259,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileUriRequest.all.put_Uri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetDeferral
@@ -12123,11 +14274,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileUriRequestDeferral'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileUriRequestDeferral do
          Hr := this.m_IMapTileUriRequest.all.GetDeferral (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapTileUriRequestDeferral := new Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral;
          Retval.m_IMapTileUriRequestDeferral.all := m_ComRetVal;
       end return;
@@ -12142,12 +14297,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileUriRequestDeferral) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileUriRequestDeferral, IMapTileUriRequestDeferral_Ptr);
    begin
       if this.m_IMapTileUriRequestDeferral /= null then
          if this.m_IMapTileUriRequestDeferral.all /= null then
-            RefCount := this.m_IMapTileUriRequestDeferral.all.Release;
+            temp := this.m_IMapTileUriRequestDeferral.all.Release;
             Free (this.m_IMapTileUriRequestDeferral);
          end if;
       end if;
@@ -12158,7 +14313,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTileUriRequestDeferral is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequestDeferral");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequestDeferral");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral;
    begin
       return RetVal : MapTileUriRequestDeferral do
@@ -12167,7 +14323,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTileUriRequestDeferral := new Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral;
             Retval.m_IMapTileUriRequestDeferral.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12179,9 +14335,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       this : in out MapTileUriRequestDeferral
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IMapTileUriRequestDeferral.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12193,12 +14353,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out MapTileUriRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapTileUriRequestedEventArgs, IMapTileUriRequestedEventArgs_Ptr);
    begin
       if this.m_IMapTileUriRequestedEventArgs /= null then
          if this.m_IMapTileUriRequestedEventArgs.all /= null then
-            RefCount := this.m_IMapTileUriRequestedEventArgs.all.Release;
+            temp := this.m_IMapTileUriRequestedEventArgs.all.Release;
             Free (this.m_IMapTileUriRequestedEventArgs);
          end if;
       end if;
@@ -12209,7 +14369,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor return MapTileUriRequestedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequestedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequestedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs;
    begin
       return RetVal : MapTileUriRequestedEventArgs do
@@ -12218,7 +14379,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Retval.m_IMapTileUriRequestedEventArgs := new Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs;
             Retval.m_IMapTileUriRequestedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12231,10 +14392,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileUriRequestedEventArgs.all.get_X (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12244,10 +14409,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileUriRequestedEventArgs.all.get_Y (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12257,10 +14426,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IMapTileUriRequestedEventArgs.all.get_ZoomLevel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12270,11 +14443,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapTileUriRequest'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileUriRequest do
          Hr := this.m_IMapTileUriRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IMapTileUriRequest := new Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest;
          Retval.m_IMapTileUriRequest.all := m_ComRetVal;
       end return;
@@ -12286,14 +14463,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs_Interface, WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs2, WinRt.Windows.UI.Xaml.Controls.Maps.IID_IMapTileUriRequestedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapTileUriRequestedEventArgs.all);
       Hr := m_Interface.get_FrameIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12306,12 +14487,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out StreetsideExperience) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreetsideExperience, IStreetsideExperience_Ptr);
    begin
       if this.m_IStreetsideExperience /= null then
          if this.m_IStreetsideExperience.all /= null then
-            RefCount := this.m_IStreetsideExperience.all.Release;
+            temp := this.m_IStreetsideExperience.all.Release;
             Free (this.m_IStreetsideExperience);
          end if;
       end if;
@@ -12326,9 +14507,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return StreetsideExperience is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsideExperience");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsideExperience");
       m_Factory    : access IStreetsideExperienceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IStreetsideExperience;
    begin
       return RetVal : StreetsideExperience do
@@ -12337,9 +14519,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithPanorama (panorama.m_IStreetsidePanorama.all, m_ComRetVal'Access);
             Retval.m_IStreetsideExperience := new Windows.UI.Xaml.Controls.Maps.IStreetsideExperience;
             Retval.m_IStreetsideExperience.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12352,9 +14534,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return StreetsideExperience is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsideExperience");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsideExperience");
       m_Factory    : access IStreetsideExperienceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Maps.IStreetsideExperience;
    begin
       return RetVal : StreetsideExperience do
@@ -12363,9 +14546,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
             Hr := m_Factory.CreateInstanceWithPanoramaHeadingPitchAndFieldOfView (panorama.m_IStreetsidePanorama.all, headingInDegrees, pitchInDegrees, fieldOfViewInDegrees, m_ComRetVal'Access);
             Retval.m_IStreetsideExperience := new Windows.UI.Xaml.Controls.Maps.IStreetsideExperience;
             Retval.m_IStreetsideExperience.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12378,10 +14561,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreetsideExperience.all.get_AddressTextVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12391,9 +14578,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreetsideExperience.all.put_AddressTextVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CursorVisible
@@ -12402,10 +14593,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreetsideExperience.all.get_CursorVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12415,9 +14610,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreetsideExperience.all.put_CursorVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OverviewMapVisible
@@ -12426,10 +14625,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreetsideExperience.all.get_OverviewMapVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12439,9 +14642,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreetsideExperience.all.put_OverviewMapVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StreetLabelsVisible
@@ -12450,10 +14657,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreetsideExperience.all.get_StreetLabelsVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12463,9 +14674,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreetsideExperience.all.put_StreetLabelsVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExitButtonVisible
@@ -12474,10 +14689,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreetsideExperience.all.get_ExitButtonVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12487,9 +14706,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreetsideExperience.all.put_ExitButtonVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZoomButtonsVisible
@@ -12498,10 +14721,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IStreetsideExperience.all.get_ZoomButtonsVisible (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -12511,9 +14738,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStreetsideExperience.all.put_ZoomButtonsVisible (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -12525,12 +14756,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    end;
 
    procedure Finalize (this : in out StreetsidePanorama) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStreetsidePanorama, IStreetsidePanorama_Ptr);
    begin
       if this.m_IStreetsidePanorama /= null then
          if this.m_IStreetsidePanorama.all /= null then
-            RefCount := this.m_IStreetsidePanorama.all.Release;
+            temp := this.m_IStreetsidePanorama.all.Release;
             Free (this.m_IStreetsidePanorama);
          end if;
       end if;
@@ -12545,15 +14776,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.StreetsidePanorama is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsidePanorama");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsidePanorama");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IStreetsidePanoramaStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StreetsidePanorama.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12571,7 +14802,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StreetsidePanorama.Kind_Delegate, AsyncOperationCompletedHandler_StreetsidePanorama.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12585,10 +14816,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IStreetsidePanoramaStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindNearbyAsync (location.m_IGeopoint.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -12600,15 +14831,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
                      Retval.m_IStreetsidePanorama := new Windows.UI.Xaml.Controls.Maps.IStreetsidePanorama;
                      Retval.m_IStreetsidePanorama.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12619,15 +14850,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.StreetsidePanorama is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsidePanorama");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsidePanorama");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Maps.IStreetsidePanoramaStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_StreetsidePanorama.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -12645,7 +14876,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_StreetsidePanorama.Kind_Delegate, AsyncOperationCompletedHandler_StreetsidePanorama.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -12659,10 +14890,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
          Hr := RoGetActivationFactory (m_hString, IID_IStreetsidePanoramaStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindNearbyAsync (location.m_IGeopoint.all, radiusInMeters, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -12674,15 +14905,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
                      Retval.m_IStreetsidePanorama := new Windows.UI.Xaml.Controls.Maps.IStreetsidePanorama;
                      Retval.m_IStreetsidePanorama.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -12695,11 +14926,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Maps is
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IStreetsidePanorama.all.get_Location (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;

@@ -42,12 +42,12 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    end;
 
    procedure Finalize (this : in out OemSupportInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOemSupportInfo, IOemSupportInfo_Ptr);
    begin
       if this.m_IOemSupportInfo /= null then
          if this.m_IOemSupportInfo.all /= null then
-            RefCount := this.m_IOemSupportInfo.all.Release;
+            temp := this.m_IOemSupportInfo.all.Release;
             Free (this.m_IOemSupportInfo);
          end if;
       end if;
@@ -62,11 +62,15 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IOemSupportInfo.all.get_SupportLink (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -78,11 +82,15 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IOemSupportInfo.all.get_SupportAppLink (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -94,13 +102,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IOemSupportInfo.all.get_SupportProvider (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -111,20 +123,24 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
       function get_SerialNumber
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SmbiosInformation");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SmbiosInformation");
          m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISmbiosInformationStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISmbiosInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SerialNumber (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
@@ -139,12 +155,12 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    end;
 
    procedure Finalize (this : in out SystemSupportDeviceInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISystemSupportDeviceInfo, ISystemSupportDeviceInfo_Ptr);
    begin
       if this.m_ISystemSupportDeviceInfo /= null then
          if this.m_ISystemSupportDeviceInfo.all /= null then
-            RefCount := this.m_ISystemSupportDeviceInfo.all.Release;
+            temp := this.m_ISystemSupportDeviceInfo.all.Release;
             Free (this.m_ISystemSupportDeviceInfo);
          end if;
       end if;
@@ -159,13 +175,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_OperatingSystem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -175,13 +195,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_FriendlyName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -191,13 +215,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_SystemManufacturer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -207,13 +235,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_SystemProductName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -223,13 +255,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_SystemSku (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -239,13 +275,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_SystemHardwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -255,13 +295,17 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISystemSupportDeviceInfo.all.get_SystemFirmwareVersion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -272,60 +316,72 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
       function get_LocalDeviceInfo
       return WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
          m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics2_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics2'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_LocalDeviceInfo (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_ISystemSupportDeviceInfo := new Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
                Retval.m_ISystemSupportDeviceInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 
       function get_LocalSystemEdition
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
          m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased WinRt.HString;
          AdaRetval        : WString;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LocalSystemEdition (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          AdaRetval := To_Ada (m_ComRetVal);
-         Hr := WindowsDeleteString (m_ComRetVal);
+         tmp := WindowsDeleteString (m_ComRetVal);
          return AdaRetVal;
       end;
 
       function get_OemSupportInfo
       return WinRt.Windows.System.Profile.SystemManufacturers.OemSupportInfo is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
          m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_ComRetVal      : aliased Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.SystemManufacturers.OemSupportInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.get_OemSupportInfo (m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
+               if Hr /= S_OK then
+                  raise Program_Error;
+               end if;
                Retval.m_IOemSupportInfo := new Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
                Retval.m_IOemSupportInfo.all := m_ComRetVal;
             end if;
-            Hr := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (m_hString);
          end return;
       end;
 

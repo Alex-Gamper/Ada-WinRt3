@@ -55,12 +55,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out ImageFeatureDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IImageFeatureDescriptor, IImageFeatureDescriptor_Ptr);
    begin
       if this.m_IImageFeatureDescriptor /= null then
          if this.m_IImageFeatureDescriptor.all /= null then
-            RefCount := this.m_IImageFeatureDescriptor.all.Release;
+            temp := this.m_IImageFeatureDescriptor.all.Release;
             Free (this.m_IImageFeatureDescriptor);
          end if;
       end if;
@@ -75,10 +75,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapPixelFormat is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_IImageFeatureDescriptor.all.get_BitmapPixelFormat (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -88,10 +92,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapAlphaMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapAlphaMode;
    begin
       Hr := this.m_IImageFeatureDescriptor.all.get_BitmapAlphaMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -101,10 +109,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IImageFeatureDescriptor.all.get_Width (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -114,10 +126,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IImageFeatureDescriptor.all.get_Height (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -127,17 +143,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageFeatureDescriptor.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -147,17 +167,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageFeatureDescriptor.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -167,14 +191,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageFeatureDescriptor.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -184,14 +212,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IImageFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageFeatureDescriptor.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -204,12 +236,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out ImageFeatureValue) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IImageFeatureValue, IImageFeatureValue_Ptr);
    begin
       if this.m_IImageFeatureValue /= null then
          if this.m_IImageFeatureValue.all /= null then
-            RefCount := this.m_IImageFeatureValue.all.Release;
+            temp := this.m_IImageFeatureValue.all.Release;
             Free (this.m_IImageFeatureValue);
          end if;
       end if;
@@ -224,20 +256,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.ImageFeatureValue is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.ImageFeatureValue");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ImageFeatureValue");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.IImageFeatureValueStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.IImageFeatureValue;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.ImageFeatureValue do
          Hr := RoGetActivationFactory (m_hString, IID_IImageFeatureValueStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromVideoFrame (image.m_IVideoFrame.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IImageFeatureValue := new Windows.AI.MachineLearning.IImageFeatureValue;
             Retval.m_IImageFeatureValue.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -250,11 +286,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IImageFeatureValue.all.get_VideoFrame (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
@@ -266,14 +306,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IImageFeatureValue_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageFeatureValue.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,12 +330,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out LearningModel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModel, ILearningModel_Ptr);
    begin
       if this.m_ILearningModel /= null then
          if this.m_ILearningModel.all /= null then
-            RefCount := this.m_ILearningModel.all.Release;
+            temp := this.m_ILearningModel.all.Release;
             Free (this.m_ILearningModel);
          end if;
       end if;
@@ -306,15 +350,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModel.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -332,7 +376,7 @@ package body WinRt.Windows.AI.MachineLearning is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModel.Kind_Delegate, AsyncOperationCompletedHandler_LearningModel.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -346,10 +390,10 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromStorageFileAsync (modelFile, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -361,15 +405,15 @@ package body WinRt.Windows.AI.MachineLearning is
                      Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
                      Retval.m_ILearningModel.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -379,15 +423,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModel.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -405,7 +449,7 @@ package body WinRt.Windows.AI.MachineLearning is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModel.Kind_Delegate, AsyncOperationCompletedHandler_LearningModel.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -419,10 +463,10 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromStreamAsync (modelStream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -434,15 +478,15 @@ package body WinRt.Windows.AI.MachineLearning is
                      Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
                      Retval.m_ILearningModel.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -452,22 +496,26 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModel;
-      HStr_filePath : WinRt.HString := To_HString (filePath);
+      HStr_filePath : constant WinRt.HString := To_HString (filePath);
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModel do
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromFilePath (HStr_filePath, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
             Retval.m_ILearningModel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_filePath);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_filePath);
       end return;
    end;
 
@@ -477,20 +525,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModel;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModel do
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromStream (modelStream, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
             Retval.m_ILearningModel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -501,15 +553,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModel.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -527,7 +579,7 @@ package body WinRt.Windows.AI.MachineLearning is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModel.Kind_Delegate, AsyncOperationCompletedHandler_LearningModel.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -541,10 +593,10 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromStorageFileAsync (modelFile, operatorProvider, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -556,15 +608,15 @@ package body WinRt.Windows.AI.MachineLearning is
                      Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
                      Retval.m_ILearningModel.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -575,15 +627,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModel.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -601,7 +653,7 @@ package body WinRt.Windows.AI.MachineLearning is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModel.Kind_Delegate, AsyncOperationCompletedHandler_LearningModel.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -615,10 +667,10 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromStreamAsync (modelStream, operatorProvider, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -630,15 +682,15 @@ package body WinRt.Windows.AI.MachineLearning is
                      Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
                      Retval.m_ILearningModel.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -649,22 +701,26 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModel;
-      HStr_filePath : WinRt.HString := To_HString (filePath);
+      HStr_filePath : constant WinRt.HString := To_HString (filePath);
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModel do
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromFilePath (HStr_filePath, operatorProvider, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
             Retval.m_ILearningModel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_filePath);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_filePath);
       end return;
    end;
 
@@ -675,20 +731,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModel");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModel;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModel do
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.LoadFromStream (modelStream, operatorProvider, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
             Retval.m_ILearningModel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -701,13 +761,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModel.all.get_Author (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -717,13 +781,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModel.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -733,13 +801,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModel.all.get_Domain (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -749,13 +821,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModel.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -765,10 +841,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int64;
    begin
       Hr := this.m_ILearningModel.all.get_Version (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -778,13 +858,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IMapView_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_ILearningModel.all.get_Metadata (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -794,13 +878,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_ILearningModelFeatureDescriptor.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ILearningModelFeatureDescriptor.Kind;
    begin
       Hr := this.m_ILearningModel.all.get_InputFeatures (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ILearningModelFeatureDescriptor (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -810,13 +898,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_ILearningModelFeatureDescriptor.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_ILearningModelFeatureDescriptor.Kind;
    begin
       Hr := this.m_ILearningModel.all.get_OutputFeatures (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_ILearningModelFeatureDescriptor (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -825,13 +917,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out LearningModel
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModel_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModel.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -843,12 +939,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out LearningModelBinding) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelBinding, ILearningModelBinding_Ptr);
    begin
       if this.m_ILearningModelBinding /= null then
          if this.m_ILearningModelBinding.all /= null then
-            RefCount := this.m_ILearningModelBinding.all.Release;
+            temp := this.m_ILearningModelBinding.all.Release;
             Free (this.m_ILearningModelBinding);
          end if;
       end if;
@@ -863,9 +959,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return LearningModelBinding is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelBinding");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelBinding");
       m_Factory    : access ILearningModelBindingFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.AI.MachineLearning.ILearningModelBinding;
    begin
       return RetVal : LearningModelBinding do
@@ -874,9 +971,9 @@ package body WinRt.Windows.AI.MachineLearning is
             Hr := m_Factory.CreateFromSession (session.m_ILearningModelSession.all, m_ComRetVal'Access);
             Retval.m_ILearningModelBinding := new Windows.AI.MachineLearning.ILearningModelBinding;
             Retval.m_ILearningModelBinding.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -890,11 +987,15 @@ package body WinRt.Windows.AI.MachineLearning is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILearningModelBinding.all.Bind (HStr_name, value);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure Bind
@@ -905,11 +1006,15 @@ package body WinRt.Windows.AI.MachineLearning is
       props : Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_name : WinRt.HString := To_HString (name);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_name : constant WinRt.HString := To_HString (name);
    begin
       Hr := this.m_ILearningModelBinding.all.Bind (HStr_name, value, props);
-      Hr := WindowsDeleteString (HStr_name);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_name);
    end;
 
    procedure Clear
@@ -917,9 +1022,13 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out LearningModelBinding
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILearningModelBinding.all.Clear;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IMapView`2<System.String,System.Object>
@@ -930,17 +1039,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelBinding_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBinding.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -950,15 +1063,19 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelBinding_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBinding.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -969,17 +1086,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelBinding_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBinding.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -990,14 +1111,18 @@ package body WinRt.Windows.AI.MachineLearning is
       second : access GenericObject_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelBinding_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelBinding.all);
       Hr := m_Interface.Split (first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1009,12 +1134,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out LearningModelDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelDevice, ILearningModelDevice_Ptr);
    begin
       if this.m_ILearningModelDevice /= null then
          if this.m_ILearningModelDevice.all /= null then
-            RefCount := this.m_ILearningModelDevice.all.Release;
+            temp := this.m_ILearningModelDevice.all.Release;
             Free (this.m_ILearningModelDevice);
          end if;
       end if;
@@ -1029,9 +1154,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return LearningModelDevice is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelDevice");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelDevice");
       m_Factory    : access ILearningModelDeviceFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.AI.MachineLearning.ILearningModelDevice;
    begin
       return RetVal : LearningModelDevice do
@@ -1040,9 +1166,9 @@ package body WinRt.Windows.AI.MachineLearning is
             Hr := m_Factory.Create (deviceKind, m_ComRetVal'Access);
             Retval.m_ILearningModelDevice := new Windows.AI.MachineLearning.ILearningModelDevice;
             Retval.m_ILearningModelDevice.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1055,20 +1181,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelDevice");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ILearningModelDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModelDevice;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModelDevice do
          Hr := RoGetActivationFactory (m_hString, IID_ILearningModelDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromDirect3D11Device (device, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ILearningModelDevice := new Windows.AI.MachineLearning.ILearningModelDevice;
             Retval.m_ILearningModelDevice.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1081,10 +1211,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Graphics.DisplayAdapterId is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DisplayAdapterId;
    begin
       Hr := this.m_ILearningModelDevice.all.get_AdapterId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1094,10 +1228,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
    begin
       Hr := this.m_ILearningModelDevice.all.get_Direct3D11Device (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1110,12 +1248,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out LearningModelEvaluationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelEvaluationResult, ILearningModelEvaluationResult_Ptr);
    begin
       if this.m_ILearningModelEvaluationResult /= null then
          if this.m_ILearningModelEvaluationResult.all /= null then
-            RefCount := this.m_ILearningModelEvaluationResult.all.Release;
+            temp := this.m_ILearningModelEvaluationResult.all.Release;
             Free (this.m_ILearningModelEvaluationResult);
          end if;
       end if;
@@ -1130,13 +1268,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ILearningModelEvaluationResult.all.get_CorrelationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1146,10 +1288,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILearningModelEvaluationResult.all.get_ErrorStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1159,10 +1305,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILearningModelEvaluationResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1172,13 +1322,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_ILearningModelEvaluationResult.all.get_Outputs (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1191,12 +1345,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out LearningModelSession) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelSession, ILearningModelSession_Ptr);
    begin
       if this.m_ILearningModelSession /= null then
          if this.m_ILearningModelSession.all /= null then
-            RefCount := this.m_ILearningModelSession.all.Release;
+            temp := this.m_ILearningModelSession.all.Release;
             Free (this.m_ILearningModelSession);
          end if;
       end if;
@@ -1213,9 +1367,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return LearningModelSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
       m_Factory    : access ILearningModelSessionFactory2_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.AI.MachineLearning.ILearningModelSession;
    begin
       return RetVal : LearningModelSession do
@@ -1224,9 +1379,9 @@ package body WinRt.Windows.AI.MachineLearning is
             Hr := m_Factory.CreateFromModelOnDeviceWithSessionOptions (model.m_ILearningModel.all, deviceToRunOn.m_ILearningModelDevice.all, learningModelSessionOptions_p.m_ILearningModelSessionOptions.all, m_ComRetVal'Access);
             Retval.m_ILearningModelSession := new Windows.AI.MachineLearning.ILearningModelSession;
             Retval.m_ILearningModelSession.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1236,9 +1391,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return LearningModelSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
       m_Factory    : access ILearningModelSessionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.AI.MachineLearning.ILearningModelSession;
    begin
       return RetVal : LearningModelSession do
@@ -1247,9 +1403,9 @@ package body WinRt.Windows.AI.MachineLearning is
             Hr := m_Factory.CreateFromModel (model.m_ILearningModel.all, m_ComRetVal'Access);
             Retval.m_ILearningModelSession := new Windows.AI.MachineLearning.ILearningModelSession;
             Retval.m_ILearningModelSession.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1260,9 +1416,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return LearningModelSession is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
       m_Factory    : access ILearningModelSessionFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.AI.MachineLearning.ILearningModelSession;
    begin
       return RetVal : LearningModelSession do
@@ -1271,9 +1428,9 @@ package body WinRt.Windows.AI.MachineLearning is
             Hr := m_Factory.CreateFromModelOnDevice (model.m_ILearningModel.all, deviceToRunOn.m_ILearningModelDevice.all, m_ComRetVal'Access);
             Retval.m_ILearningModelSession := new Windows.AI.MachineLearning.ILearningModelSession;
             Retval.m_ILearningModelSession.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1286,11 +1443,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModel;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModel do
          Hr := this.m_ILearningModelSession.all.get_Model (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILearningModel := new Windows.AI.MachineLearning.ILearningModel;
          Retval.m_ILearningModel.all := m_ComRetVal;
       end return;
@@ -1302,11 +1463,15 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModelDevice;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModelDevice do
          Hr := this.m_ILearningModelSession.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILearningModelDevice := new Windows.AI.MachineLearning.ILearningModelDevice;
          Retval.m_ILearningModelDevice.all := m_ComRetVal;
       end return;
@@ -1318,10 +1483,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_ILearningModelSession.all.get_EvaluationProperties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1333,14 +1502,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationId : WinRt.HString := To_HString (correlationId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationId : constant WinRt.HString := To_HString (correlationId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModelEvaluationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1358,7 +1527,7 @@ package body WinRt.Windows.AI.MachineLearning is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModelEvaluationResult.Kind_Delegate, AsyncOperationCompletedHandler_LearningModelEvaluationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1372,7 +1541,7 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := this.m_ILearningModelSession.all.EvaluateAsync (bindings.m_ILearningModelBinding.all, HStr_correlationId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1384,14 +1553,14 @@ package body WinRt.Windows.AI.MachineLearning is
                   Retval.m_ILearningModelEvaluationResult := new Windows.AI.MachineLearning.ILearningModelEvaluationResult;
                   Retval.m_ILearningModelEvaluationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_correlationId);
+         tmp := WindowsDeleteString (HStr_correlationId);
       end return;
    end;
 
@@ -1403,14 +1572,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_correlationId : WinRt.HString := To_HString (correlationId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_correlationId : constant WinRt.HString := To_HString (correlationId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_LearningModelEvaluationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1428,7 +1597,7 @@ package body WinRt.Windows.AI.MachineLearning is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_LearningModelEvaluationResult.Kind_Delegate, AsyncOperationCompletedHandler_LearningModelEvaluationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1442,7 +1611,7 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := this.m_ILearningModelSession.all.EvaluateFeaturesAsync (features, HStr_correlationId, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -1454,14 +1623,14 @@ package body WinRt.Windows.AI.MachineLearning is
                   Retval.m_ILearningModelEvaluationResult := new Windows.AI.MachineLearning.ILearningModelEvaluationResult;
                   Retval.m_ILearningModelEvaluationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (HStr_correlationId);
+         tmp := WindowsDeleteString (HStr_correlationId);
       end return;
    end;
 
@@ -1473,15 +1642,19 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModelEvaluationResult;
-      HStr_correlationId : WinRt.HString := To_HString (correlationId);
+      HStr_correlationId : constant WinRt.HString := To_HString (correlationId);
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult do
          Hr := this.m_ILearningModelSession.all.Evaluate (bindings.m_ILearningModelBinding.all, HStr_correlationId, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILearningModelEvaluationResult := new Windows.AI.MachineLearning.ILearningModelEvaluationResult;
          Retval.m_ILearningModelEvaluationResult.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_correlationId);
+         tmp := WindowsDeleteString (HStr_correlationId);
       end return;
    end;
 
@@ -1493,15 +1666,19 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModelEvaluationResult;
-      HStr_correlationId : WinRt.HString := To_HString (correlationId);
+      HStr_correlationId : constant WinRt.HString := To_HString (correlationId);
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult do
          Hr := this.m_ILearningModelSession.all.EvaluateFeatures (features, HStr_correlationId, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ILearningModelEvaluationResult := new Windows.AI.MachineLearning.ILearningModelEvaluationResult;
          Retval.m_ILearningModelEvaluationResult.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_correlationId);
+         tmp := WindowsDeleteString (HStr_correlationId);
       end return;
    end;
 
@@ -1510,13 +1687,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out LearningModelSession
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelSession_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelSession.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1528,12 +1709,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out LearningModelSessionOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILearningModelSessionOptions, ILearningModelSessionOptions_Ptr);
    begin
       if this.m_ILearningModelSessionOptions /= null then
          if this.m_ILearningModelSessionOptions.all /= null then
-            RefCount := this.m_ILearningModelSessionOptions.all.Release;
+            temp := this.m_ILearningModelSessionOptions.all.Release;
             Free (this.m_ILearningModelSessionOptions);
          end if;
       end if;
@@ -1544,7 +1725,8 @@ package body WinRt.Windows.AI.MachineLearning is
 
    function Constructor return LearningModelSessionOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSessionOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSessionOptions");
       m_ComRetVal  : aliased Windows.AI.MachineLearning.ILearningModelSessionOptions;
    begin
       return RetVal : LearningModelSessionOptions do
@@ -1553,7 +1735,7 @@ package body WinRt.Windows.AI.MachineLearning is
             Retval.m_ILearningModelSessionOptions := new Windows.AI.MachineLearning.ILearningModelSessionOptions;
             Retval.m_ILearningModelSessionOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1566,10 +1748,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_ILearningModelSessionOptions.all.get_BatchSizeOverride (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1579,9 +1765,13 @@ package body WinRt.Windows.AI.MachineLearning is
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILearningModelSessionOptions.all.put_BatchSizeOverride (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CloseModelOnSessionCreation
@@ -1590,14 +1780,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions2, WinRt.Windows.AI.MachineLearning.IID_ILearningModelSessionOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelSessionOptions.all);
       Hr := m_Interface.get_CloseModelOnSessionCreation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1607,13 +1801,17 @@ package body WinRt.Windows.AI.MachineLearning is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions2, WinRt.Windows.AI.MachineLearning.IID_ILearningModelSessionOptions2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILearningModelSessionOptions.all);
       Hr := m_Interface.put_CloseModelOnSessionCreation (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1625,12 +1823,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out MapFeatureDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMapFeatureDescriptor, IMapFeatureDescriptor_Ptr);
    begin
       if this.m_IMapFeatureDescriptor /= null then
          if this.m_IMapFeatureDescriptor.all /= null then
-            RefCount := this.m_IMapFeatureDescriptor.all.Release;
+            temp := this.m_IMapFeatureDescriptor.all.Release;
             Free (this.m_IMapFeatureDescriptor);
          end if;
       end if;
@@ -1645,10 +1843,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
    begin
       Hr := this.m_IMapFeatureDescriptor.all.get_KeyKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1658,10 +1860,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModelFeatureDescriptor;
    begin
       Hr := this.m_IMapFeatureDescriptor.all.get_ValueDescriptor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1671,17 +1877,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IMapFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapFeatureDescriptor.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1691,17 +1901,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IMapFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapFeatureDescriptor.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1711,14 +1925,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IMapFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapFeatureDescriptor.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1728,14 +1946,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.IMapFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapFeatureDescriptor.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1748,12 +1970,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out SequenceFeatureDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISequenceFeatureDescriptor, ISequenceFeatureDescriptor_Ptr);
    begin
       if this.m_ISequenceFeatureDescriptor /= null then
          if this.m_ISequenceFeatureDescriptor.all /= null then
-            RefCount := this.m_ISequenceFeatureDescriptor.all.Release;
+            temp := this.m_ISequenceFeatureDescriptor.all.Release;
             Free (this.m_ISequenceFeatureDescriptor);
          end if;
       end if;
@@ -1768,10 +1990,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ILearningModelFeatureDescriptor;
    begin
       Hr := this.m_ISequenceFeatureDescriptor.all.get_ElementDescriptor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1781,17 +2007,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ISequenceFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceFeatureDescriptor.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1801,17 +2031,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ISequenceFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceFeatureDescriptor.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1821,14 +2055,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ISequenceFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceFeatureDescriptor.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1838,14 +2076,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ISequenceFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISequenceFeatureDescriptor.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1858,12 +2100,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorBoolean) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorBoolean, ITensorBoolean_Ptr);
    begin
       if this.m_ITensorBoolean /= null then
          if this.m_ITensorBoolean.all /= null then
-            RefCount := this.m_ITensorBoolean.all.Release;
+            temp := this.m_ITensorBoolean.all.Release;
             Free (this.m_ITensorBoolean);
          end if;
       end if;
@@ -1875,20 +2117,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
             Retval.m_ITensorBoolean.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1898,20 +2144,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
             Retval.m_ITensorBoolean.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1922,9 +2172,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
    begin
@@ -1932,11 +2183,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
             Retval.m_ITensorBoolean.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1947,20 +2201,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorBoolean do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
             Retval.m_ITensorBoolean.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1971,9 +2229,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Boolean_Ptr);
@@ -1982,11 +2241,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
             Retval.m_ITensorBoolean.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1997,9 +2259,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorBoolean");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorBooleanStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorBoolean;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -2007,11 +2270,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorBooleanStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorBoolean := new Windows.AI.MachineLearning.ITensorBoolean;
             Retval.m_ITensorBoolean.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2024,13 +2290,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Boolean.Kind;
    begin
       Hr := this.m_ITensorBoolean.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2040,14 +2310,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorBoolean_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorBoolean.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2057,17 +2331,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorBoolean_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorBoolean.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2077,14 +2355,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorBoolean_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorBoolean.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2094,14 +2376,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorBoolean_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorBoolean.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2110,13 +2396,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorBoolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorBoolean_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorBoolean.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2128,12 +2418,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorDouble) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorDouble, ITensorDouble_Ptr);
    begin
       if this.m_ITensorDouble /= null then
          if this.m_ITensorDouble.all /= null then
-            RefCount := this.m_ITensorDouble.all.Release;
+            temp := this.m_ITensorDouble.all.Release;
             Free (this.m_ITensorDouble);
          end if;
       end if;
@@ -2145,20 +2435,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
             Retval.m_ITensorDouble.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2168,20 +2462,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
             Retval.m_ITensorDouble.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2192,9 +2490,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
    begin
@@ -2202,11 +2501,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
             Retval.m_ITensorDouble.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2217,20 +2519,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorDouble do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
             Retval.m_ITensorDouble.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2241,9 +2547,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Double_Ptr);
@@ -2252,11 +2559,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
             Retval.m_ITensorDouble.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2267,9 +2577,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorDouble");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorDoubleStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorDouble;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -2277,11 +2588,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorDoubleStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorDouble := new Windows.AI.MachineLearning.ITensorDouble;
             Retval.m_ITensorDouble.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2294,13 +2608,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Double.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Double.Kind;
    begin
       Hr := this.m_ITensorDouble.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Double (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2310,14 +2628,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorDouble_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorDouble.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2327,17 +2649,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorDouble_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorDouble.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2347,14 +2673,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorDouble_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorDouble.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2364,14 +2694,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorDouble_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorDouble.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2380,13 +2714,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorDouble
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorDouble_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorDouble.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2398,12 +2736,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorFeatureDescriptor) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorFeatureDescriptor, ITensorFeatureDescriptor_Ptr);
    begin
       if this.m_ITensorFeatureDescriptor /= null then
          if this.m_ITensorFeatureDescriptor.all /= null then
-            RefCount := this.m_ITensorFeatureDescriptor.all.Release;
+            temp := this.m_ITensorFeatureDescriptor.all.Release;
             Free (this.m_ITensorFeatureDescriptor);
          end if;
       end if;
@@ -2418,10 +2756,14 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
    begin
       Hr := this.m_ITensorFeatureDescriptor.all.get_TensorKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2431,13 +2773,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
    begin
       Hr := this.m_ITensorFeatureDescriptor.all.get_Shape (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2447,17 +2793,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFeatureDescriptor.all);
       Hr := m_Interface.get_Name (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2467,17 +2817,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFeatureDescriptor.all);
       Hr := m_Interface.get_Description (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2487,14 +2841,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFeatureDescriptor.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2504,14 +2862,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFeatureDescriptor_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureDescriptor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFeatureDescriptor.all);
       Hr := m_Interface.get_IsRequired (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2524,12 +2886,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorFloat) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorFloat, ITensorFloat_Ptr);
    begin
       if this.m_ITensorFloat /= null then
          if this.m_ITensorFloat.all /= null then
-            RefCount := this.m_ITensorFloat.all.Release;
+            temp := this.m_ITensorFloat.all.Release;
             Free (this.m_ITensorFloat);
          end if;
       end if;
@@ -2541,20 +2903,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorFloat is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloatStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloatStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat := new Windows.AI.MachineLearning.ITensorFloat;
             Retval.m_ITensorFloat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2564,20 +2930,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloatStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloatStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat := new Windows.AI.MachineLearning.ITensorFloat;
             Retval.m_ITensorFloat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2588,9 +2958,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloatStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
    begin
@@ -2598,11 +2969,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloatStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat := new Windows.AI.MachineLearning.ITensorFloat;
             Retval.m_ITensorFloat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2613,20 +2987,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloatStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloatStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat := new Windows.AI.MachineLearning.ITensorFloat;
             Retval.m_ITensorFloat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2637,9 +3015,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloatStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
@@ -2648,11 +3027,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloatStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat := new Windows.AI.MachineLearning.ITensorFloat;
             Retval.m_ITensorFloat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2663,9 +3045,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloatStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -2673,11 +3056,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloatStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat := new Windows.AI.MachineLearning.ITensorFloat;
             Retval.m_ITensorFloat.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2690,13 +3076,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Single.Kind;
    begin
       Hr := this.m_ITensorFloat.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2706,14 +3096,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2723,17 +3117,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2743,14 +3141,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2760,14 +3162,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2776,13 +3182,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorFloat
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2794,12 +3204,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorFloat16Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorFloat16Bit, ITensorFloat16Bit_Ptr);
    begin
       if this.m_ITensorFloat16Bit /= null then
          if this.m_ITensorFloat16Bit.all /= null then
-            RefCount := this.m_ITensorFloat16Bit.all.Release;
+            temp := this.m_ITensorFloat16Bit.all.Release;
             Free (this.m_ITensorFloat16Bit);
          end if;
       end if;
@@ -2811,20 +3221,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
             Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2834,20 +3248,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
             Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2858,9 +3276,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
    begin
@@ -2868,11 +3287,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
             Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2883,20 +3305,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorFloat16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
             Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2907,9 +3333,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Single_Ptr);
@@ -2918,11 +3345,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
             Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2933,9 +3363,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorFloat16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorFloat16BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorFloat16Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -2943,11 +3374,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorFloat16BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorFloat16Bit := new Windows.AI.MachineLearning.ITensorFloat16Bit;
             Retval.m_ITensorFloat16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2960,13 +3394,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Single.Kind;
    begin
       Hr := this.m_ITensorFloat16Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2976,14 +3414,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat16Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2993,17 +3435,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat16Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3013,14 +3459,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat16Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3030,14 +3480,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat16Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3046,13 +3500,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorFloat16Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorFloat16Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3064,12 +3522,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorInt16Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorInt16Bit, ITensorInt16Bit_Ptr);
    begin
       if this.m_ITensorInt16Bit /= null then
          if this.m_ITensorInt16Bit.all /= null then
-            RefCount := this.m_ITensorInt16Bit.all.Release;
+            temp := this.m_ITensorInt16Bit.all.Release;
             Free (this.m_ITensorInt16Bit);
          end if;
       end if;
@@ -3081,20 +3539,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt16Bit := new Windows.AI.MachineLearning.ITensorInt16Bit;
             Retval.m_ITensorInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3104,20 +3566,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt16Bit := new Windows.AI.MachineLearning.ITensorInt16Bit;
             Retval.m_ITensorInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3128,9 +3594,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt16Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Int16_Ptr);
    begin
@@ -3138,11 +3605,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt16Bit := new Windows.AI.MachineLearning.ITensorInt16Bit;
             Retval.m_ITensorInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3153,20 +3623,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt16Bit := new Windows.AI.MachineLearning.ITensorInt16Bit;
             Retval.m_ITensorInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3177,9 +3651,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt16BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt16Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Int16_Ptr);
@@ -3188,11 +3663,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt16BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt16Bit := new Windows.AI.MachineLearning.ITensorInt16Bit;
             Retval.m_ITensorInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3203,9 +3681,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt16BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt16Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -3213,11 +3692,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt16BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt16Bit := new Windows.AI.MachineLearning.ITensorInt16Bit;
             Retval.m_ITensorInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3230,13 +3712,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int16.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int16.Kind;
    begin
       Hr := this.m_ITensorInt16Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int16 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3246,14 +3732,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt16Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt16Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3263,17 +3753,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt16Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt16Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3283,14 +3777,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt16Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt16Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3300,14 +3798,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt16Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt16Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3316,13 +3818,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorInt16Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt16Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt16Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3334,12 +3840,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorInt32Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorInt32Bit, ITensorInt32Bit_Ptr);
    begin
       if this.m_ITensorInt32Bit /= null then
          if this.m_ITensorInt32Bit.all /= null then
-            RefCount := this.m_ITensorInt32Bit.all.Release;
+            temp := this.m_ITensorInt32Bit.all.Release;
             Free (this.m_ITensorInt32Bit);
          end if;
       end if;
@@ -3351,20 +3857,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt32Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt32Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt32Bit := new Windows.AI.MachineLearning.ITensorInt32Bit;
             Retval.m_ITensorInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3374,20 +3884,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt32Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt32Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt32Bit := new Windows.AI.MachineLearning.ITensorInt32Bit;
             Retval.m_ITensorInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3398,9 +3912,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt32Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
@@ -3408,11 +3923,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt32Bit := new Windows.AI.MachineLearning.ITensorInt32Bit;
             Retval.m_ITensorInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3423,20 +3941,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt32Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt32Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt32Bit := new Windows.AI.MachineLearning.ITensorInt32Bit;
             Retval.m_ITensorInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3447,9 +3969,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt32BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt32Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
@@ -3458,11 +3981,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt32BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt32Bit := new Windows.AI.MachineLearning.ITensorInt32Bit;
             Retval.m_ITensorInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3473,9 +3999,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt32BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt32Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -3483,11 +4010,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt32BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt32Bit := new Windows.AI.MachineLearning.ITensorInt32Bit;
             Retval.m_ITensorInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3500,13 +4030,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int32.Kind;
    begin
       Hr := this.m_ITensorInt32Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3516,14 +4050,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt32Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt32Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3533,17 +4071,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt32Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt32Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3553,14 +4095,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt32Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt32Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3570,14 +4116,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt32Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt32Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3586,13 +4136,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorInt32Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt32Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt32Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3604,12 +4158,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorInt64Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorInt64Bit, ITensorInt64Bit_Ptr);
    begin
       if this.m_ITensorInt64Bit /= null then
          if this.m_ITensorInt64Bit.all /= null then
-            RefCount := this.m_ITensorInt64Bit.all.Release;
+            temp := this.m_ITensorInt64Bit.all.Release;
             Free (this.m_ITensorInt64Bit);
          end if;
       end if;
@@ -3625,9 +4179,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt64BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt64Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
@@ -3636,11 +4191,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt64BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt64Bit := new Windows.AI.MachineLearning.ITensorInt64Bit;
             Retval.m_ITensorInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3651,9 +4209,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt64BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt64Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -3661,31 +4220,38 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt64BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt64Bit := new Windows.AI.MachineLearning.ITensorInt64Bit;
             Retval.m_ITensorInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt64Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt64Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt64Bit := new Windows.AI.MachineLearning.ITensorInt64Bit;
             Retval.m_ITensorInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3695,20 +4261,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt64Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt64Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt64Bit := new Windows.AI.MachineLearning.ITensorInt64Bit;
             Retval.m_ITensorInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3719,9 +4289,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt64Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -3729,11 +4300,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt64Bit := new Windows.AI.MachineLearning.ITensorInt64Bit;
             Retval.m_ITensorInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3744,20 +4318,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt64Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt64Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt64Bit := new Windows.AI.MachineLearning.ITensorInt64Bit;
             Retval.m_ITensorInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3770,13 +4348,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
    begin
       Hr := this.m_ITensorInt64Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3786,14 +4368,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt64Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt64Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3803,17 +4389,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt64Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt64Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3823,14 +4413,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt64Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt64Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3840,14 +4434,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt64Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt64Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3856,13 +4454,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorInt64Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt64Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt64Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3874,12 +4476,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorInt8Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorInt8Bit, ITensorInt8Bit_Ptr);
    begin
       if this.m_ITensorInt8Bit /= null then
          if this.m_ITensorInt8Bit.all /= null then
-            RefCount := this.m_ITensorInt8Bit.all.Release;
+            temp := this.m_ITensorInt8Bit.all.Release;
             Free (this.m_ITensorInt8Bit);
          end if;
       end if;
@@ -3891,20 +4493,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt8Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt8Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt8Bit := new Windows.AI.MachineLearning.ITensorInt8Bit;
             Retval.m_ITensorInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3914,20 +4520,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt8Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt8Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt8Bit := new Windows.AI.MachineLearning.ITensorInt8Bit;
             Retval.m_ITensorInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3938,9 +4548,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt8Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -3948,11 +4559,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt8Bit := new Windows.AI.MachineLearning.ITensorInt8Bit;
             Retval.m_ITensorInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3963,20 +4577,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt8Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorInt8Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt8Bit := new Windows.AI.MachineLearning.ITensorInt8Bit;
             Retval.m_ITensorInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3987,9 +4605,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt8BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt8Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
@@ -3998,11 +4617,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt8BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt8Bit := new Windows.AI.MachineLearning.ITensorInt8Bit;
             Retval.m_ITensorInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4013,9 +4635,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorInt8BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorInt8Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -4023,11 +4646,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorInt8BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorInt8Bit := new Windows.AI.MachineLearning.ITensorInt8Bit;
             Retval.m_ITensorInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4040,13 +4666,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Byte.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Byte.Kind;
    begin
       Hr := this.m_ITensorInt8Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Byte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4056,14 +4686,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt8Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt8Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4073,17 +4707,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt8Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt8Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4093,14 +4731,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt8Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt8Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4110,14 +4752,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt8Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt8Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4126,13 +4772,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorInt8Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorInt8Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorInt8Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4144,12 +4794,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorString) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorString, ITensorString_Ptr);
    begin
       if this.m_ITensorString /= null then
          if this.m_ITensorString.all /= null then
-            RefCount := this.m_ITensorString.all.Release;
+            temp := this.m_ITensorString.all.Release;
             Free (this.m_ITensorString);
          end if;
       end if;
@@ -4161,20 +4811,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorString do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
             Retval.m_ITensorString.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4184,20 +4838,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorString do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
             Retval.m_ITensorString.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4208,9 +4866,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
    begin
@@ -4218,11 +4877,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
             Retval.m_ITensorString.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4233,20 +4895,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorString do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
             Retval.m_ITensorString.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4257,9 +4923,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorString");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorStringStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorString;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
@@ -4268,11 +4935,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorStringStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorString := new Windows.AI.MachineLearning.ITensorString;
             Retval.m_ITensorString.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4285,13 +4955,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ITensorString.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4301,14 +4975,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorString_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorString.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4318,17 +4996,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorString_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorString.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4338,14 +5020,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorString_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorString.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4355,14 +5041,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorString_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorString.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4371,13 +5061,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorString_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorString.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4389,12 +5083,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorUInt16Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorUInt16Bit, ITensorUInt16Bit_Ptr);
    begin
       if this.m_ITensorUInt16Bit /= null then
          if this.m_ITensorUInt16Bit.all /= null then
-            RefCount := this.m_ITensorUInt16Bit.all.Release;
+            temp := this.m_ITensorUInt16Bit.all.Release;
             Free (this.m_ITensorUInt16Bit);
          end if;
       end if;
@@ -4406,20 +5100,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt16Bit := new Windows.AI.MachineLearning.ITensorUInt16Bit;
             Retval.m_ITensorUInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4429,20 +5127,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt16Bit := new Windows.AI.MachineLearning.ITensorUInt16Bit;
             Retval.m_ITensorUInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4453,9 +5155,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt16Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
    begin
@@ -4463,11 +5166,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt16Bit := new Windows.AI.MachineLearning.ITensorUInt16Bit;
             Retval.m_ITensorUInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4478,20 +5184,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt16BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt16Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt16Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt16BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt16Bit := new Windows.AI.MachineLearning.ITensorUInt16Bit;
             Retval.m_ITensorUInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4502,9 +5212,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt16BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt16Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt16_Ptr);
@@ -4513,11 +5224,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt16BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt16Bit := new Windows.AI.MachineLearning.ITensorUInt16Bit;
             Retval.m_ITensorUInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4528,9 +5242,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt16Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt16BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt16Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -4538,11 +5253,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt16BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt16Bit := new Windows.AI.MachineLearning.ITensorUInt16Bit;
             Retval.m_ITensorUInt16Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4555,13 +5273,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_UInt16.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt16.Kind;
    begin
       Hr := this.m_ITensorUInt16Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt16 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4571,14 +5293,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt16Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4588,17 +5314,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt16Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4608,14 +5338,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt16Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4625,14 +5359,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt16Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4641,13 +5379,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorUInt16Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt16Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4659,12 +5401,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorUInt32Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorUInt32Bit, ITensorUInt32Bit_Ptr);
    begin
       if this.m_ITensorUInt32Bit /= null then
          if this.m_ITensorUInt32Bit.all /= null then
-            RefCount := this.m_ITensorUInt32Bit.all.Release;
+            temp := this.m_ITensorUInt32Bit.all.Release;
             Free (this.m_ITensorUInt32Bit);
          end if;
       end if;
@@ -4676,20 +5418,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
             Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4699,20 +5445,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
             Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4723,9 +5473,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
    begin
@@ -4733,11 +5484,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
             Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4748,20 +5502,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt32Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
             Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4772,9 +5530,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt32_Ptr);
@@ -4783,11 +5542,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
             Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4798,9 +5560,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt32Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt32BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt32Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -4808,11 +5571,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt32BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt32Bit := new Windows.AI.MachineLearning.ITensorUInt32Bit;
             Retval.m_ITensorUInt32Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4825,13 +5591,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_UInt32.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_ITensorUInt32Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt32 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4841,14 +5611,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt32Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4858,17 +5632,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt32Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4878,14 +5656,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt32Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4895,14 +5677,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt32Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4911,13 +5697,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorUInt32Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt32Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4929,12 +5719,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorUInt64Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorUInt64Bit, ITensorUInt64Bit_Ptr);
    begin
       if this.m_ITensorUInt64Bit /= null then
          if this.m_ITensorUInt64Bit.all /= null then
-            RefCount := this.m_ITensorUInt64Bit.all.Release;
+            temp := this.m_ITensorUInt64Bit.all.Release;
             Free (this.m_ITensorUInt64Bit);
          end if;
       end if;
@@ -4950,9 +5740,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt64BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt64Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt64_Ptr);
@@ -4961,11 +5752,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt64BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt64Bit := new Windows.AI.MachineLearning.ITensorUInt64Bit;
             Retval.m_ITensorUInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4976,9 +5770,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt64BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt64Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -4986,31 +5781,38 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt64BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt64Bit := new Windows.AI.MachineLearning.ITensorUInt64Bit;
             Retval.m_ITensorUInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt64Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt64Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt64Bit := new Windows.AI.MachineLearning.ITensorUInt64Bit;
             Retval.m_ITensorUInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5020,20 +5822,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt64Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt64Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt64Bit := new Windows.AI.MachineLearning.ITensorUInt64Bit;
             Retval.m_ITensorUInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5044,9 +5850,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt64Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.UInt64_Ptr);
    begin
@@ -5054,11 +5861,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt64Bit := new Windows.AI.MachineLearning.ITensorUInt64Bit;
             Retval.m_ITensorUInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5069,20 +5879,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt64Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt64BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt64Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt64Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt64BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt64Bit := new Windows.AI.MachineLearning.ITensorUInt64Bit;
             Retval.m_ITensorUInt64Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5095,13 +5909,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_UInt64.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt64.Kind;
    begin
       Hr := this.m_ITensorUInt64Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_UInt64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5111,14 +5929,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt64Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5128,17 +5950,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt64Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5148,14 +5974,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt64Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5165,14 +5995,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt64Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5181,13 +6015,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorUInt64Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt64Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5199,12 +6037,12 @@ package body WinRt.Windows.AI.MachineLearning is
    end;
 
    procedure Finalize (this : in out TensorUInt8Bit) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITensorUInt8Bit, ITensorUInt8Bit_Ptr);
    begin
       if this.m_ITensorUInt8Bit /= null then
          if this.m_ITensorUInt8Bit.all /= null then
-            RefCount := this.m_ITensorUInt8Bit.all.Release;
+            temp := this.m_ITensorUInt8Bit.all.Release;
             Free (this.m_ITensorUInt8Bit);
          end if;
       end if;
@@ -5216,20 +6054,24 @@ package body WinRt.Windows.AI.MachineLearning is
    function Create
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt8Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt8Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt8Bit := new Windows.AI.MachineLearning.ITensorUInt8Bit;
             Retval.m_ITensorUInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5239,20 +6081,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt8Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt8Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (shape, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt8Bit := new Windows.AI.MachineLearning.ITensorUInt8Bit;
             Retval.m_ITensorUInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5263,9 +6109,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt8Bit;
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -5273,11 +6120,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromArray (shape, WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt8Bit := new Windows.AI.MachineLearning.ITensorUInt8Bit;
             Retval.m_ITensorUInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5288,20 +6138,24 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt8BitStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt8Bit;
    begin
       return RetVal : WinRt.Windows.AI.MachineLearning.TensorUInt8Bit do
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt8BitStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIterable (shape, data, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt8Bit := new Windows.AI.MachineLearning.ITensorUInt8Bit;
             Retval.m_ITensorUInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5312,9 +6166,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt8BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt8Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
@@ -5323,11 +6178,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt8BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromShapeArrayAndDataArray (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), WinRt.UInt32(data'Length), Convert_data (data (data'First)'Address), m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt8Bit := new Windows.AI.MachineLearning.ITensorUInt8Bit;
             Retval.m_ITensorUInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5338,9 +6196,10 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.TensorUInt8Bit");
       m_Factory        : access WinRt.Windows.AI.MachineLearning.ITensorUInt8BitStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.ITensorUInt8Bit;
       function Convert_shape is new Ada.Unchecked_Conversion (Address, WinRt.Int64_Ptr);
    begin
@@ -5348,11 +6207,14 @@ package body WinRt.Windows.AI.MachineLearning is
          Hr := RoGetActivationFactory (m_hString, IID_ITensorUInt8BitStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromBuffer (WinRt.UInt32(shape'Length), Convert_shape (shape (shape'First)'Address), buffer, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_ITensorUInt8Bit := new Windows.AI.MachineLearning.ITensorUInt8Bit;
             Retval.m_ITensorUInt8Bit.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5365,13 +6227,17 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Byte.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Byte.Kind;
    begin
       Hr := this.m_ITensorUInt8Bit.all.GetAsVectorView (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Byte (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5381,14 +6247,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.TensorKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.TensorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt8Bit.all);
       Hr := m_Interface.get_TensorKind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5398,17 +6268,21 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return IVectorView_Int64.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ITensor := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Int64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit_Interface, WinRt.Windows.AI.MachineLearning.ITensor, WinRt.Windows.AI.MachineLearning.IID_ITensor'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt8Bit.all);
       Hr := m_Interface.get_Shape (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Int64 (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5418,14 +6292,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.AI.MachineLearning.LearningModelFeatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit_Interface, WinRt.Windows.AI.MachineLearning.ILearningModelFeatureValue, WinRt.Windows.AI.MachineLearning.IID_ILearningModelFeatureValue'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt8Bit.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5435,14 +6313,18 @@ package body WinRt.Windows.AI.MachineLearning is
    )
    return WinRt.Windows.Foundation.IMemoryBufferReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IMemoryBuffer := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit_Interface, WinRt.Windows.Foundation.IMemoryBuffer, WinRt.Windows.Foundation.IID_IMemoryBuffer'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt8Bit.all);
       Hr := m_Interface.CreateReference (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5451,13 +6333,17 @@ package body WinRt.Windows.AI.MachineLearning is
       this : in out TensorUInt8Bit
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IClosable := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit_Interface, WinRt.Windows.Foundation.IClosable, WinRt.Windows.Foundation.IID_IClosable'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITensorUInt8Bit.all);
       Hr := m_Interface.Close;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.AI.MachineLearning;

@@ -42,12 +42,12 @@ package body WinRt.Windows.Phone.Devices.Notification is
    end;
 
    procedure Finalize (this : in out VibrationDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IVibrationDevice, IVibrationDevice_Ptr);
    begin
       if this.m_IVibrationDevice /= null then
          if this.m_IVibrationDevice.all /= null then
-            RefCount := this.m_IVibrationDevice.all.Release;
+            temp := this.m_IVibrationDevice.all.Release;
             Free (this.m_IVibrationDevice);
          end if;
       end if;
@@ -59,20 +59,24 @@ package body WinRt.Windows.Phone.Devices.Notification is
    function GetDefault
    return WinRt.Windows.Phone.Devices.Notification.VibrationDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Phone.Devices.Notification.VibrationDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Phone.Devices.Notification.VibrationDevice");
       m_Factory        : access WinRt.Windows.Phone.Devices.Notification.IVibrationDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Phone.Devices.Notification.IVibrationDevice;
    begin
       return RetVal : WinRt.Windows.Phone.Devices.Notification.VibrationDevice do
          Hr := RoGetActivationFactory (m_hString, IID_IVibrationDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetDefault (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IVibrationDevice := new Windows.Phone.Devices.Notification.IVibrationDevice;
             Retval.m_IVibrationDevice.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -85,9 +89,13 @@ package body WinRt.Windows.Phone.Devices.Notification is
       duration : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVibrationDevice.all.Vibrate (duration);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Cancel
@@ -95,9 +103,13 @@ package body WinRt.Windows.Phone.Devices.Notification is
       this : in out VibrationDevice
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IVibrationDevice.all.Cancel;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Phone.Devices.Notification;

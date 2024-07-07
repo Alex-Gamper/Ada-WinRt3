@@ -51,12 +51,12 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    end;
 
    procedure Finalize (this : in out PnpObject) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPnpObject, IPnpObject_Ptr);
    begin
       if this.m_IPnpObject /= null then
          if this.m_IPnpObject.all /= null then
-            RefCount := this.m_IPnpObject.all.Release;
+            temp := this.m_IPnpObject.all.Release;
             Free (this.m_IPnpObject);
          end if;
       end if;
@@ -73,16 +73,16 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_id : WinRt.HString := To_HString (id);
+      temp             : WinRt.UInt32 := 0;
+      HStr_id : constant WinRt.HString := To_HString (id);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PnpObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -100,7 +100,7 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PnpObject.Kind_Delegate, AsyncOperationCompletedHandler_PnpObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -114,10 +114,10 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
          Hr := RoGetActivationFactory (m_hString, IID_IPnpObjectStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromIdAsync (type_x, HStr_id, requestedProperties, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -129,16 +129,16 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
                      Retval.m_IPnpObject := new Windows.Devices.Enumeration.Pnp.IPnpObject;
                      Retval.m_IPnpObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
       end return;
    end;
 
@@ -149,15 +149,15 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PnpObjectCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -175,7 +175,7 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PnpObjectCollection.Kind_Delegate, AsyncOperationCompletedHandler_PnpObjectCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -189,10 +189,10 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
          Hr := RoGetActivationFactory (m_hString, IID_IPnpObjectStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (type_x, requestedProperties, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -204,15 +204,15 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -224,16 +224,16 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectCollection is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      temp             : WinRt.UInt32 := 0;
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_PnpObjectCollection.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -251,7 +251,7 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_PnpObjectCollection.Kind_Delegate, AsyncOperationCompletedHandler_PnpObjectCollection.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -265,10 +265,10 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
          Hr := RoGetActivationFactory (m_hString, IID_IPnpObjectStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindAllAsync (type_x, requestedProperties, HStr_aqsFilter, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -280,16 +280,16 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
                      Retval.m_GenericObject := new GenericObject;
                      Retval.m_GenericObject.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -300,20 +300,24 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IPnpObjectStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (type_x, requestedProperties, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPnpObjectWatcher := new Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher;
             Retval.m_IPnpObjectWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -325,22 +329,26 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectWatcher is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.Pnp.PnpObject");
       m_Factory        : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher;
-      HStr_aqsFilter : WinRt.HString := To_HString (aqsFilter);
+      HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IPnpObjectStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWatcher (type_x, requestedProperties, HStr_aqsFilter, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IPnpObjectWatcher := new Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher;
             Retval.m_IPnpObjectWatcher.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_aqsFilter);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_aqsFilter);
       end return;
    end;
 
@@ -353,10 +361,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.Pnp.PnpObjectType;
    begin
       Hr := this.m_IPnpObject.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -366,13 +378,17 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPnpObject.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -382,13 +398,17 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IPnpObject.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -398,9 +418,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       updateInfo : Windows.Devices.Enumeration.Pnp.PnpObjectUpdate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObject.all.Update (updateInfo.m_IPnpObjectUpdate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -427,8 +451,9 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IPnpObject.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.Pnp.IPnpObject;
       m_GenericIID     : aliased WinRt.IID := (3437602712, 53865, 24526, (153, 206, 239, 10, 227, 205, 5, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IPnpObject.Kind, m_GenericIID'Unchecked_Access);
@@ -436,7 +461,10 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       return RetVal : WinRt.Windows.Devices.Enumeration.Pnp.PnpObject do
          m_Interface := QInterface (this.m_GenericObject.all);
          Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPnpObject := new Windows.Devices.Enumeration.Pnp.IPnpObject;
          Retval.m_IPnpObject.all := m_ComRetVal;
       end return;
@@ -448,15 +476,19 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IPnpObject.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3437602712, 53865, 24526, (153, 206, 239, 10, 227, 205, 5, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IPnpObject.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -468,15 +500,19 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IPnpObject.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (3437602712, 53865, 24526, (153, 206, 239, 10, 227, 205, 5, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IPnpObject.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.IndexOf (value.m_IPnpObject.all, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -488,8 +524,9 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IPnpObject.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (3437602712, 53865, 24526, (153, 206, 239, 10, 227, 205, 5, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IPnpObject.Kind, m_GenericIID'Unchecked_Access);
@@ -497,7 +534,10 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -508,15 +548,19 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPnpObject.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (817168530, 14062, 21503, (148, 80, 2, 144, 4, 67, 108, 96 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPnpObject.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -529,12 +573,12 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    end;
 
    procedure Finalize (this : in out PnpObjectUpdate) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPnpObjectUpdate, IPnpObjectUpdate_Ptr);
    begin
       if this.m_IPnpObjectUpdate /= null then
          if this.m_IPnpObjectUpdate.all /= null then
-            RefCount := this.m_IPnpObjectUpdate.all.Release;
+            temp := this.m_IPnpObjectUpdate.all.Release;
             Free (this.m_IPnpObjectUpdate);
          end if;
       end if;
@@ -549,10 +593,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.Pnp.PnpObjectType;
    begin
       Hr := this.m_IPnpObjectUpdate.all.get_Type (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -562,13 +610,17 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPnpObjectUpdate.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -578,13 +630,17 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return IMapView_HString_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IPnpObjectUpdate.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -597,12 +653,12 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    end;
 
    procedure Finalize (this : in out PnpObjectWatcher) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPnpObjectWatcher, IPnpObjectWatcher_Ptr);
    begin
       if this.m_IPnpObjectWatcher /= null then
          if this.m_IPnpObjectWatcher.all /= null then
-            RefCount := this.m_IPnpObjectWatcher.all.Release;
+            temp := this.m_IPnpObjectWatcher.all.Release;
             Free (this.m_IPnpObjectWatcher);
          end if;
       end if;
@@ -618,10 +674,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPnpObjectWatcher.all.add_Added (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -631,9 +691,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.remove_Added (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Updated
@@ -643,10 +707,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPnpObjectWatcher.all.add_Updated (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -656,9 +724,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.remove_Updated (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Removed
@@ -668,10 +740,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPnpObjectWatcher.all.add_Removed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -681,9 +757,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.remove_Removed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_EnumerationCompleted
@@ -693,10 +773,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPnpObjectWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -706,9 +790,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.remove_EnumerationCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Stopped
@@ -718,10 +806,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPnpObjectWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -731,9 +823,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.remove_Stopped (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Status
@@ -742,10 +838,14 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.DeviceWatcherStatus;
    begin
       Hr := this.m_IPnpObjectWatcher.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -754,9 +854,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       this : in out PnpObjectWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -764,9 +868,13 @@ package body WinRt.Windows.Devices.Enumeration.Pnp is
       this : in out PnpObjectWatcher
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPnpObjectWatcher.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.Enumeration.Pnp;

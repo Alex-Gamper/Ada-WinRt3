@@ -67,12 +67,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialApp) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialApp, IDialApp_Ptr);
    begin
       if this.m_IDialApp /= null then
          if this.m_IDialApp.all /= null then
-            RefCount := this.m_IDialApp.all.Release;
+            temp := this.m_IDialApp.all.Release;
             Free (this.m_IDialApp);
          end if;
       end if;
@@ -87,13 +87,17 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDialApp.all.get_AppName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -104,14 +108,14 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialAppLaunchResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_appArgument : WinRt.HString := To_HString (appArgument);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_appArgument : constant WinRt.HString := To_HString (appArgument);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DialAppLaunchResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -129,7 +133,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DialAppLaunchResult.Kind_Delegate, AsyncOperationCompletedHandler_DialAppLaunchResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -142,7 +146,7 @@ package body WinRt.Windows.Media.DialProtocol is
       Hr := this.m_IDialApp.all.RequestLaunchAsync (HStr_appArgument, m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -152,14 +156,14 @@ package body WinRt.Windows.Media.DialProtocol is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_appArgument);
+      tmp := WindowsDeleteString (HStr_appArgument);
       return m_RetVal;
    end;
 
@@ -169,13 +173,13 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialAppStopResult is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DialAppStopResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -193,7 +197,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DialAppStopResult.Kind_Delegate, AsyncOperationCompletedHandler_DialAppStopResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -206,7 +210,7 @@ package body WinRt.Windows.Media.DialProtocol is
       Hr := this.m_IDialApp.all.StopAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -216,9 +220,9 @@ package body WinRt.Windows.Media.DialProtocol is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -232,13 +236,13 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialAppStateDetails'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DialAppStateDetails.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -256,7 +260,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DialAppStateDetails.Kind_Delegate, AsyncOperationCompletedHandler_DialAppStateDetails.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -270,7 +274,7 @@ package body WinRt.Windows.Media.DialProtocol is
          Hr := this.m_IDialApp.all.GetAppStateAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -282,9 +286,9 @@ package body WinRt.Windows.Media.DialProtocol is
                   Retval.m_IDialAppStateDetails := new Windows.Media.DialProtocol.IDialAppStateDetails;
                   Retval.m_IDialAppStateDetails.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -301,12 +305,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialAppStateDetails) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialAppStateDetails, IDialAppStateDetails_Ptr);
    begin
       if this.m_IDialAppStateDetails /= null then
          if this.m_IDialAppStateDetails.all /= null then
-            RefCount := this.m_IDialAppStateDetails.all.Release;
+            temp := this.m_IDialAppStateDetails.all.Release;
             Free (this.m_IDialAppStateDetails);
          end if;
       end if;
@@ -321,10 +325,14 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialAppState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.DialProtocol.DialAppState;
    begin
       Hr := this.m_IDialAppStateDetails.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -334,13 +342,17 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDialAppStateDetails.all.get_FullXml (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -353,12 +365,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialDevice) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialDevice, IDialDevice_Ptr);
    begin
       if this.m_IDialDevice /= null then
          if this.m_IDialDevice.all /= null then
-            RefCount := this.m_IDialDevice.all.Release;
+            temp := this.m_IDialDevice.all.Release;
             Free (this.m_IDialDevice);
          end if;
       end if;
@@ -373,22 +385,26 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevice");
       m_Factory        : access WinRt.Windows.Media.DialProtocol.IDialDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
-      HStr_appName : WinRt.HString := To_HString (appName);
+      HStr_appName : constant WinRt.HString := To_HString (appName);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDialDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetDeviceSelector (HStr_appName, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_appName);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_appName);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -398,16 +414,16 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevice");
       m_Factory        : access WinRt.Windows.Media.DialProtocol.IDialDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DialDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -425,7 +441,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DialDevice.Kind_Delegate, AsyncOperationCompletedHandler_DialDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -439,10 +455,10 @@ package body WinRt.Windows.Media.DialProtocol is
          Hr := RoGetActivationFactory (m_hString, IID_IDialDeviceStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FromIdAsync (HStr_value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -454,16 +470,16 @@ package body WinRt.Windows.Media.DialProtocol is
                      Retval.m_IDialDevice := new Windows.Media.DialProtocol.IDialDevice;
                      Retval.m_IDialDevice.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_value);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_value);
       end return;
    end;
 
@@ -473,15 +489,15 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevice");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevice");
       m_Factory        : access WinRt.Windows.Media.DialProtocol.IDialDeviceStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_Boolean.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -499,7 +515,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -512,10 +528,10 @@ package body WinRt.Windows.Media.DialProtocol is
       Hr := RoGetActivationFactory (m_hString, IID_IDialDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.DeviceInfoSupportsDialAsync (device.m_IDeviceInformation.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -525,15 +541,15 @@ package body WinRt.Windows.Media.DialProtocol is
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
          end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_RetVal;
    end;
 
@@ -546,13 +562,17 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IDialDevice.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -563,15 +583,19 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialApp'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.DialProtocol.IDialApp;
-      HStr_appName : WinRt.HString := To_HString (appName);
+      HStr_appName : constant WinRt.HString := To_HString (appName);
    begin
       return RetVal : WinRt.Windows.Media.DialProtocol.DialApp do
          Hr := this.m_IDialDevice.all.GetDialApp (HStr_appName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDialApp := new Windows.Media.DialProtocol.IDialApp;
          Retval.m_IDialApp.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_appName);
+         tmp := WindowsDeleteString (HStr_appName);
       end return;
    end;
 
@@ -581,17 +605,21 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.DialProtocol.IDialDevice2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.DialProtocol.IDialDevice_Interface, WinRt.Windows.Media.DialProtocol.IDialDevice2, WinRt.Windows.Media.DialProtocol.IID_IDialDevice2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialDevice.all);
       Hr := m_Interface.get_FriendlyName (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -601,14 +629,18 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.DialProtocol.IDialDevice2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.DialProtocol.IDialDevice_Interface, WinRt.Windows.Media.DialProtocol.IDialDevice2, WinRt.Windows.Media.DialProtocol.IID_IDialDevice2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialDevice.all);
       Hr := m_Interface.get_Thumbnail (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -621,12 +653,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialDevicePicker) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialDevicePicker, IDialDevicePicker_Ptr);
    begin
       if this.m_IDialDevicePicker /= null then
          if this.m_IDialDevicePicker.all /= null then
-            RefCount := this.m_IDialDevicePicker.all.Release;
+            temp := this.m_IDialDevicePicker.all.Release;
             Free (this.m_IDialDevicePicker);
          end if;
       end if;
@@ -637,7 +669,8 @@ package body WinRt.Windows.Media.DialProtocol is
 
    function Constructor return DialDevicePicker is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevicePicker");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevicePicker");
       m_ComRetVal  : aliased Windows.Media.DialProtocol.IDialDevicePicker;
    begin
       return RetVal : DialDevicePicker do
@@ -646,7 +679,7 @@ package body WinRt.Windows.Media.DialProtocol is
             Retval.m_IDialDevicePicker := new Windows.Media.DialProtocol.IDialDevicePicker;
             Retval.m_IDialDevicePicker.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -659,11 +692,15 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialDevicePickerFilter'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.DialProtocol.IDialDevicePickerFilter;
    begin
       return RetVal : WinRt.Windows.Media.DialProtocol.DialDevicePickerFilter do
          Hr := this.m_IDialDevicePicker.all.get_Filter (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDialDevicePickerFilter := new Windows.Media.DialProtocol.IDialDevicePickerFilter;
          Retval.m_IDialDevicePickerFilter.all := m_ComRetVal;
       end return;
@@ -675,11 +712,15 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Devices.Enumeration.DevicePickerAppearance'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Enumeration.IDevicePickerAppearance;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DevicePickerAppearance do
          Hr := this.m_IDialDevicePicker.all.get_Appearance (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDevicePickerAppearance := new Windows.Devices.Enumeration.IDevicePickerAppearance;
          Retval.m_IDevicePickerAppearance.all := m_ComRetVal;
       end return;
@@ -692,10 +733,14 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDialDevicePicker.all.add_DialDeviceSelected (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -705,9 +750,13 @@ package body WinRt.Windows.Media.DialProtocol is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.remove_DialDeviceSelected (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DisconnectButtonClicked
@@ -717,10 +766,14 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDialDevicePicker.all.add_DisconnectButtonClicked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -730,9 +783,13 @@ package body WinRt.Windows.Media.DialProtocol is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.remove_DisconnectButtonClicked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DialDevicePickerDismissed
@@ -742,10 +799,14 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDialDevicePicker.all.add_DialDevicePickerDismissed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -755,9 +816,13 @@ package body WinRt.Windows.Media.DialProtocol is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.remove_DialDevicePickerDismissed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Show
@@ -766,9 +831,13 @@ package body WinRt.Windows.Media.DialProtocol is
       selection : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.Show (selection);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Show
@@ -778,9 +847,13 @@ package body WinRt.Windows.Media.DialProtocol is
       preferredPlacement : Windows.UI.Popups.Placement
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.Show (selection, preferredPlacement);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function PickSingleDialDeviceAsync
@@ -790,13 +863,13 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DialDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -814,7 +887,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DialDevice.Kind_Delegate, AsyncOperationCompletedHandler_DialDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -828,7 +901,7 @@ package body WinRt.Windows.Media.DialProtocol is
          Hr := this.m_IDialDevicePicker.all.PickSingleDialDeviceAsync (selection, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -840,9 +913,9 @@ package body WinRt.Windows.Media.DialProtocol is
                   Retval.m_IDialDevice := new Windows.Media.DialProtocol.IDialDevice;
                   Retval.m_IDialDevice.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -858,13 +931,13 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_DialDevice.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -882,7 +955,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_DialDevice.Kind_Delegate, AsyncOperationCompletedHandler_DialDevice.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -896,7 +969,7 @@ package body WinRt.Windows.Media.DialProtocol is
          Hr := this.m_IDialDevicePicker.all.PickSingleDialDeviceAsync (selection, preferredPlacement, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -908,9 +981,9 @@ package body WinRt.Windows.Media.DialProtocol is
                   Retval.m_IDialDevice := new Windows.Media.DialProtocol.IDialDevice;
                   Retval.m_IDialDevice.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -923,9 +996,13 @@ package body WinRt.Windows.Media.DialProtocol is
       this : in out DialDevicePicker
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.Hide;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetDisplayStatus
@@ -935,9 +1012,13 @@ package body WinRt.Windows.Media.DialProtocol is
       status : Windows.Media.DialProtocol.DialDeviceDisplayStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDialDevicePicker.all.SetDisplayStatus (device.m_IDialDevice.all, status);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -949,12 +1030,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialDevicePickerFilter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialDevicePickerFilter, IDialDevicePickerFilter_Ptr);
    begin
       if this.m_IDialDevicePickerFilter /= null then
          if this.m_IDialDevicePickerFilter.all /= null then
-            RefCount := this.m_IDialDevicePickerFilter.all.Release;
+            temp := this.m_IDialDevicePickerFilter.all.Release;
             Free (this.m_IDialDevicePickerFilter);
          end if;
       end if;
@@ -969,13 +1050,17 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return IVector_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IDialDevicePickerFilter.all.get_SupportedAppNames (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -988,12 +1073,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialDeviceSelectedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialDeviceSelectedEventArgs, IDialDeviceSelectedEventArgs_Ptr);
    begin
       if this.m_IDialDeviceSelectedEventArgs /= null then
          if this.m_IDialDeviceSelectedEventArgs.all /= null then
-            RefCount := this.m_IDialDeviceSelectedEventArgs.all.Release;
+            temp := this.m_IDialDeviceSelectedEventArgs.all.Release;
             Free (this.m_IDialDeviceSelectedEventArgs);
          end if;
       end if;
@@ -1008,11 +1093,15 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.DialProtocol.IDialDevice;
    begin
       return RetVal : WinRt.Windows.Media.DialProtocol.DialDevice do
          Hr := this.m_IDialDeviceSelectedEventArgs.all.get_SelectedDialDevice (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDialDevice := new Windows.Media.DialProtocol.IDialDevice;
          Retval.m_IDialDevice.all := m_ComRetVal;
       end return;
@@ -1027,12 +1116,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialDisconnectButtonClickedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialDisconnectButtonClickedEventArgs, IDialDisconnectButtonClickedEventArgs_Ptr);
    begin
       if this.m_IDialDisconnectButtonClickedEventArgs /= null then
          if this.m_IDialDisconnectButtonClickedEventArgs.all /= null then
-            RefCount := this.m_IDialDisconnectButtonClickedEventArgs.all.Release;
+            temp := this.m_IDialDisconnectButtonClickedEventArgs.all.Release;
             Free (this.m_IDialDisconnectButtonClickedEventArgs);
          end if;
       end if;
@@ -1047,11 +1136,15 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.DialProtocol.IDialDevice;
    begin
       return RetVal : WinRt.Windows.Media.DialProtocol.DialDevice do
          Hr := this.m_IDialDisconnectButtonClickedEventArgs.all.get_Device (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDialDevice := new Windows.Media.DialProtocol.IDialDevice;
          Retval.m_IDialDevice.all := m_ComRetVal;
       end return;
@@ -1066,12 +1159,12 @@ package body WinRt.Windows.Media.DialProtocol is
    end;
 
    procedure Finalize (this : in out DialReceiverApp) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDialReceiverApp, IDialReceiverApp_Ptr);
    begin
       if this.m_IDialReceiverApp /= null then
          if this.m_IDialReceiverApp.all /= null then
-            RefCount := this.m_IDialReceiverApp.all.Release;
+            temp := this.m_IDialReceiverApp.all.Release;
             Free (this.m_IDialReceiverApp);
          end if;
       end if;
@@ -1083,20 +1176,24 @@ package body WinRt.Windows.Media.DialProtocol is
    function get_Current
    return WinRt.Windows.Media.DialProtocol.DialReceiverApp is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialReceiverApp");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialReceiverApp");
       m_Factory        : access WinRt.Windows.Media.DialProtocol.IDialReceiverAppStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Media.DialProtocol.IDialReceiverApp;
    begin
       return RetVal : WinRt.Windows.Media.DialProtocol.DialReceiverApp do
          Hr := RoGetActivationFactory (m_hString, IID_IDialReceiverAppStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_Current (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDialReceiverApp := new Windows.Media.DialProtocol.IDialReceiverApp;
             Retval.m_IDialReceiverApp.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1109,13 +1206,13 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_GenericObject.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1133,7 +1230,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_GenericObject.Kind_Delegate, AsyncOperationCompletedHandler_GenericObject.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1146,7 +1243,7 @@ package body WinRt.Windows.Media.DialProtocol is
       Hr := this.m_IDialReceiverApp.all.GetAdditionalDataAsync (m_ComRetVal'Access);
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1156,9 +1253,9 @@ package body WinRt.Windows.Media.DialProtocol is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1172,7 +1269,8 @@ package body WinRt.Windows.Media.DialProtocol is
       additionalData : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1180,7 +1278,6 @@ package body WinRt.Windows.Media.DialProtocol is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1201,9 +1298,9 @@ package body WinRt.Windows.Media.DialProtocol is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1215,14 +1312,14 @@ package body WinRt.Windows.Media.DialProtocol is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.DialProtocol.IDialReceiverApp2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_HString.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1241,7 +1338,7 @@ package body WinRt.Windows.Media.DialProtocol is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_HString.Kind_Delegate, AsyncOperationCompletedHandler_HString.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1254,10 +1351,10 @@ package body WinRt.Windows.Media.DialProtocol is
    begin
       m_Interface := QInterface (this.m_IDialReceiverApp.all);
       Hr := m_Interface.GetUniqueDeviceNameAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1267,15 +1364,15 @@ package body WinRt.Windows.Media.DialProtocol is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
       end if;
       AdaRetval := To_Ada (m_RetVal);
-      Hr := WindowsDeleteString (m_RetVal);
+      tmp := WindowsDeleteString (m_RetVal);
       return AdaRetVal;
    end;
 

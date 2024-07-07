@@ -47,12 +47,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayBitmapEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayBitmapEffect, ILampArrayBitmapEffect_Ptr);
    begin
       if this.m_ILampArrayBitmapEffect /= null then
          if this.m_ILampArrayBitmapEffect.all /= null then
-            RefCount := this.m_ILampArrayBitmapEffect.all.Release;
+            temp := this.m_ILampArrayBitmapEffect.all.Release;
             Free (this.m_ILampArrayBitmapEffect);
          end if;
       end if;
@@ -68,9 +68,10 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return LampArrayBitmapEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayBitmapEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayBitmapEffect");
       m_Factory    : access ILampArrayBitmapEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Lights.Effects.ILampArrayBitmapEffect;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
@@ -80,9 +81,9 @@ package body WinRt.Windows.Devices.Lights.Effects is
             Hr := m_Factory.CreateInstance (lampArray.m_ILampArray.all, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address), m_ComRetVal'Access);
             Retval.m_ILampArrayBitmapEffect := new Windows.Devices.Lights.Effects.ILampArrayBitmapEffect;
             Retval.m_ILampArrayBitmapEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -95,10 +96,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -108,9 +113,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartDelay
@@ -119,10 +128,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.get_StartDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -132,9 +145,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.put_StartDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UpdateInterval
@@ -143,10 +160,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.get_UpdateInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -156,9 +177,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.put_UpdateInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SuggestedBitmapSize
@@ -167,10 +192,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.get_SuggestedBitmapSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -181,10 +210,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.add_BitmapRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -194,9 +227,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBitmapEffect.all.remove_BitmapRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -205,14 +242,18 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayBitmapEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayBitmapEffect.all);
       Hr := m_Interface.get_ZIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -222,13 +263,17 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayBitmapEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayBitmapEffect.all);
       Hr := m_Interface.put_ZIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -240,12 +285,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayBitmapRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayBitmapRequestedEventArgs, ILampArrayBitmapRequestedEventArgs_Ptr);
    begin
       if this.m_ILampArrayBitmapRequestedEventArgs /= null then
          if this.m_ILampArrayBitmapRequestedEventArgs.all /= null then
-            RefCount := this.m_ILampArrayBitmapRequestedEventArgs.all.Release;
+            temp := this.m_ILampArrayBitmapRequestedEventArgs.all.Release;
             Free (this.m_ILampArrayBitmapRequestedEventArgs);
          end if;
       end if;
@@ -260,10 +305,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBitmapRequestedEventArgs.all.get_SinceStarted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -273,9 +322,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBitmapRequestedEventArgs.all.UpdateBitmap (bitmap.m_ISoftwareBitmap.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -287,12 +340,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayBlinkEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayBlinkEffect, ILampArrayBlinkEffect_Ptr);
    begin
       if this.m_ILampArrayBlinkEffect /= null then
          if this.m_ILampArrayBlinkEffect.all /= null then
-            RefCount := this.m_ILampArrayBlinkEffect.all.Release;
+            temp := this.m_ILampArrayBlinkEffect.all.Release;
             Free (this.m_ILampArrayBlinkEffect);
          end if;
       end if;
@@ -308,9 +361,10 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return LampArrayBlinkEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayBlinkEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayBlinkEffect");
       m_Factory    : access ILampArrayBlinkEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Lights.Effects.ILampArrayBlinkEffect;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
@@ -320,9 +374,9 @@ package body WinRt.Windows.Devices.Lights.Effects is
             Hr := m_Factory.CreateInstance (lampArray.m_ILampArray.all, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address), m_ComRetVal'Access);
             Retval.m_ILampArrayBlinkEffect := new Windows.Devices.Lights.Effects.ILampArrayBlinkEffect;
             Retval.m_ILampArrayBlinkEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -335,10 +389,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -348,9 +406,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AttackDuration
@@ -359,10 +421,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_AttackDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -372,9 +438,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_AttackDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SustainDuration
@@ -383,10 +453,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_SustainDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -396,9 +470,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_SustainDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DecayDuration
@@ -407,10 +485,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_DecayDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -420,9 +502,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_DecayDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RepetitionDelay
@@ -431,10 +517,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_RepetitionDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -444,9 +534,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_RepetitionDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartDelay
@@ -455,10 +549,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_StartDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -468,9 +566,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_StartDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Occurrences
@@ -479,10 +581,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_Occurrences (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -492,9 +598,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_Occurrences (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RepetitionMode
@@ -503,10 +613,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.Effects.LampArrayRepetitionMode;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.get_RepetitionMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -516,9 +630,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Devices.Lights.Effects.LampArrayRepetitionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayBlinkEffect.all.put_RepetitionMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -527,14 +645,18 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayBlinkEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayBlinkEffect.all);
       Hr := m_Interface.get_ZIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -544,13 +666,17 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayBlinkEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayBlinkEffect.all);
       Hr := m_Interface.put_ZIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -562,12 +688,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayColorRampEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayColorRampEffect, ILampArrayColorRampEffect_Ptr);
    begin
       if this.m_ILampArrayColorRampEffect /= null then
          if this.m_ILampArrayColorRampEffect.all /= null then
-            RefCount := this.m_ILampArrayColorRampEffect.all.Release;
+            temp := this.m_ILampArrayColorRampEffect.all.Release;
             Free (this.m_ILampArrayColorRampEffect);
          end if;
       end if;
@@ -583,9 +709,10 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return LampArrayColorRampEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayColorRampEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayColorRampEffect");
       m_Factory    : access ILampArrayColorRampEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Lights.Effects.ILampArrayColorRampEffect;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
@@ -595,9 +722,9 @@ package body WinRt.Windows.Devices.Lights.Effects is
             Hr := m_Factory.CreateInstance (lampArray.m_ILampArray.all, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address), m_ComRetVal'Access);
             Retval.m_ILampArrayColorRampEffect := new Windows.Devices.Lights.Effects.ILampArrayColorRampEffect;
             Retval.m_ILampArrayColorRampEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -610,10 +737,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -623,9 +754,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RampDuration
@@ -634,10 +769,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.get_RampDuration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -647,9 +786,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.put_RampDuration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartDelay
@@ -658,10 +801,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.get_StartDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -671,9 +818,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.put_StartDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CompletionBehavior
@@ -682,10 +833,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.get_CompletionBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -695,9 +850,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayColorRampEffect.all.put_CompletionBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -706,14 +865,18 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayColorRampEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayColorRampEffect.all);
       Hr := m_Interface.get_ZIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -723,13 +886,17 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayColorRampEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayColorRampEffect.all);
       Hr := m_Interface.put_ZIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -741,12 +908,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayCustomEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayCustomEffect, ILampArrayCustomEffect_Ptr);
    begin
       if this.m_ILampArrayCustomEffect /= null then
          if this.m_ILampArrayCustomEffect.all /= null then
-            RefCount := this.m_ILampArrayCustomEffect.all.Release;
+            temp := this.m_ILampArrayCustomEffect.all.Release;
             Free (this.m_ILampArrayCustomEffect);
          end if;
       end if;
@@ -762,9 +929,10 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return LampArrayCustomEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayCustomEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayCustomEffect");
       m_Factory    : access ILampArrayCustomEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Lights.Effects.ILampArrayCustomEffect;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
@@ -774,9 +942,9 @@ package body WinRt.Windows.Devices.Lights.Effects is
             Hr := m_Factory.CreateInstance (lampArray.m_ILampArray.all, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address), m_ComRetVal'Access);
             Retval.m_ILampArrayCustomEffect := new Windows.Devices.Lights.Effects.ILampArrayCustomEffect;
             Retval.m_ILampArrayCustomEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -789,10 +957,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayCustomEffect.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -802,9 +974,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayCustomEffect.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_UpdateInterval
@@ -813,10 +989,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayCustomEffect.all.get_UpdateInterval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -826,9 +1006,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayCustomEffect.all.put_UpdateInterval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_UpdateRequested
@@ -838,10 +1022,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILampArrayCustomEffect.all.add_UpdateRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -851,9 +1039,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayCustomEffect.all.remove_UpdateRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -862,14 +1054,18 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayCustomEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayCustomEffect.all);
       Hr := m_Interface.get_ZIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -879,13 +1075,17 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayCustomEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayCustomEffect.all);
       Hr := m_Interface.put_ZIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -897,12 +1097,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayEffectPlaylist) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayEffectPlaylist, ILampArrayEffectPlaylist_Ptr);
    begin
       if this.m_ILampArrayEffectPlaylist /= null then
          if this.m_ILampArrayEffectPlaylist.all /= null then
-            RefCount := this.m_ILampArrayEffectPlaylist.all.Release;
+            temp := this.m_ILampArrayEffectPlaylist.all.Release;
             Free (this.m_ILampArrayEffectPlaylist);
          end if;
       end if;
@@ -913,7 +1113,8 @@ package body WinRt.Windows.Devices.Lights.Effects is
 
    function Constructor return LampArrayEffectPlaylist is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
       m_ComRetVal  : aliased Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist;
    begin
       return RetVal : LampArrayEffectPlaylist do
@@ -922,7 +1123,7 @@ package body WinRt.Windows.Devices.Lights.Effects is
             Retval.m_ILampArrayEffectPlaylist := new Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist;
             Retval.m_ILampArrayEffectPlaylist.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -934,16 +1135,20 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
       m_Factory        : access WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylistStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILampArrayEffectPlaylistStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.StartAll (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure StopAll
@@ -951,16 +1156,20 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
       m_Factory        : access WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylistStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILampArrayEffectPlaylistStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.StopAll (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure PauseAll
@@ -968,16 +1177,20 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
       m_Factory        : access WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylistStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILampArrayEffectPlaylistStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.PauseAll (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -989,9 +1202,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       effect : Windows.Devices.Lights.Effects.ILampArrayEffect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.Append (effect);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OverrideZIndex
@@ -1000,9 +1217,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       zIndex : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.OverrideZIndex (zIndex);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Start
@@ -1010,9 +1231,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       this : in out LampArrayEffectPlaylist
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.Start;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Stop
@@ -1020,9 +1245,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       this : in out LampArrayEffectPlaylist
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.Stop;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Pause
@@ -1030,9 +1259,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       this : in out LampArrayEffectPlaylist
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.Pause;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_EffectStartMode
@@ -1041,10 +1274,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Devices.Lights.Effects.LampArrayEffectStartMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.Effects.LampArrayEffectStartMode;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.get_EffectStartMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1054,9 +1291,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Devices.Lights.Effects.LampArrayEffectStartMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.put_EffectStartMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Occurrences
@@ -1065,10 +1306,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.get_Occurrences (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1078,9 +1323,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.put_Occurrences (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RepetitionMode
@@ -1089,10 +1338,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.Effects.LampArrayRepetitionMode;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.get_RepetitionMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1102,9 +1355,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Devices.Lights.Effects.LampArrayRepetitionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayEffectPlaylist.all.put_RepetitionMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IVectorView`1<Windows.Devices.Lights.Effects.ILampArrayEffect>
@@ -1115,15 +1372,19 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ILampArrayEffect.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.Effects.ILampArrayEffect;
       m_GenericIID     : aliased WinRt.IID := (2534774150, 40880, 22228, (157, 244, 140, 54, 234, 21, 16, 14 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist_Interface, IVectorView_ILampArrayEffect.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayEffectPlaylist.all);
       Hr := m_Interface.GetAt (index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1133,15 +1394,19 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ILampArrayEffect.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2534774150, 40880, 22228, (157, 244, 140, 54, 234, 21, 16, 14 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist_Interface, IVectorView_ILampArrayEffect.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayEffectPlaylist.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1153,15 +1418,19 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ILampArrayEffect.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       m_GenericIID     : aliased WinRt.IID := (2534774150, 40880, 22228, (157, 244, 140, 54, 234, 21, 16, 14 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist_Interface, IVectorView_ILampArrayEffect.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayEffectPlaylist.all);
       Hr := m_Interface.IndexOf (value, index, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1173,8 +1442,9 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ILampArrayEffect.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (2534774150, 40880, 22228, (157, 244, 140, 54, 234, 21, 16, 14 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist_Interface, IVectorView_ILampArrayEffect.Kind, m_GenericIID'Unchecked_Access);
@@ -1182,7 +1452,10 @@ package body WinRt.Windows.Devices.Lights.Effects is
    begin
       m_Interface := QInterface (this.m_ILampArrayEffectPlaylist.all);
       Hr := m_Interface.GetMany (startIndex, WinRt.UInt32(items'Length), Convert_items (items (items'First)'Address), m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1193,15 +1466,19 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ILampArrayEffect.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1058049335, 26233, 21904, (174, 210, 3, 51, 98, 251, 244, 19 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist_Interface, IIterable_ILampArrayEffect.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArrayEffectPlaylist.all);
       Hr := m_Interface.First (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1214,12 +1491,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArraySolidEffect) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArraySolidEffect, ILampArraySolidEffect_Ptr);
    begin
       if this.m_ILampArraySolidEffect /= null then
          if this.m_ILampArraySolidEffect.all /= null then
-            RefCount := this.m_ILampArraySolidEffect.all.Release;
+            temp := this.m_ILampArraySolidEffect.all.Release;
             Free (this.m_ILampArraySolidEffect);
          end if;
       end if;
@@ -1235,9 +1512,10 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return LampArraySolidEffect is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArraySolidEffect");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Lights.Effects.LampArraySolidEffect");
       m_Factory    : access ILampArraySolidEffectFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Devices.Lights.Effects.ILampArraySolidEffect;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
@@ -1247,9 +1525,9 @@ package body WinRt.Windows.Devices.Lights.Effects is
             Hr := m_Factory.CreateInstance (lampArray.m_ILampArray.all, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address), m_ComRetVal'Access);
             Retval.m_ILampArraySolidEffect := new Windows.Devices.Lights.Effects.ILampArraySolidEffect;
             Retval.m_ILampArraySolidEffect.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1262,10 +1540,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_ILampArraySolidEffect.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1275,9 +1557,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArraySolidEffect.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Duration
@@ -1286,10 +1572,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArraySolidEffect.all.get_Duration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1299,9 +1589,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArraySolidEffect.all.put_Duration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_StartDelay
@@ -1310,10 +1604,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArraySolidEffect.all.get_StartDelay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1323,9 +1621,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArraySolidEffect.all.put_StartDelay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CompletionBehavior
@@ -1334,10 +1636,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior;
    begin
       Hr := this.m_ILampArraySolidEffect.all.get_CompletionBehavior (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1347,9 +1653,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArraySolidEffect.all.put_CompletionBehavior (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ZIndex
@@ -1358,14 +1668,18 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArraySolidEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArraySolidEffect.all);
       Hr := m_Interface.get_ZIndex (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1375,13 +1689,17 @@ package body WinRt.Windows.Devices.Lights.Effects is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.Effects.ILampArraySolidEffect_Interface, WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect, WinRt.Windows.Devices.Lights.Effects.IID_ILampArrayEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArraySolidEffect.all);
       Hr := m_Interface.put_ZIndex (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1393,12 +1711,12 @@ package body WinRt.Windows.Devices.Lights.Effects is
    end;
 
    procedure Finalize (this : in out LampArrayUpdateRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILampArrayUpdateRequestedEventArgs, ILampArrayUpdateRequestedEventArgs_Ptr);
    begin
       if this.m_ILampArrayUpdateRequestedEventArgs /= null then
          if this.m_ILampArrayUpdateRequestedEventArgs.all /= null then
-            RefCount := this.m_ILampArrayUpdateRequestedEventArgs.all.Release;
+            temp := this.m_ILampArrayUpdateRequestedEventArgs.all.Release;
             Free (this.m_ILampArrayUpdateRequestedEventArgs);
          end if;
       end if;
@@ -1413,10 +1731,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArrayUpdateRequestedEventArgs.all.get_SinceStarted (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1426,9 +1748,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       desiredColor : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayUpdateRequestedEventArgs.all.SetColor (desiredColor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorForIndex
@@ -1438,9 +1764,13 @@ package body WinRt.Windows.Devices.Lights.Effects is
       desiredColor : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILampArrayUpdateRequestedEventArgs.all.SetColorForIndex (lampIndex, desiredColor);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetSingleColorForIndices
@@ -1450,10 +1780,14 @@ package body WinRt.Windows.Devices.Lights.Effects is
       lampIndexes : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILampArrayUpdateRequestedEventArgs.all.SetSingleColorForIndices (desiredColor, WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetColorsForIndices
@@ -1463,11 +1797,15 @@ package body WinRt.Windows.Devices.Lights.Effects is
       lampIndexes : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       function Convert_desiredColors is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.Color_Ptr);
       function Convert_lampIndexes is new Ada.Unchecked_Conversion (Address, WinRt.Int32_Ptr);
    begin
       Hr := this.m_ILampArrayUpdateRequestedEventArgs.all.SetColorsForIndices (WinRt.UInt32(desiredColors'Length), Convert_desiredColors (desiredColors (desiredColors'First)'Address), WinRt.UInt32(lampIndexes'Length), Convert_lampIndexes (lampIndexes (lampIndexes'First)'Address));
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.Devices.Lights.Effects;

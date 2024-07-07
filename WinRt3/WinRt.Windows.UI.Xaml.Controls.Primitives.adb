@@ -49,12 +49,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ButtonBase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IButtonBase, IButtonBase_Ptr);
    begin
       if this.m_IButtonBase /= null then
          if this.m_IButtonBase.all /= null then
-            RefCount := this.m_IButtonBase.all.Release;
+            temp := this.m_IButtonBase.all.Release;
             Free (this.m_IButtonBase);
          end if;
       end if;
@@ -70,9 +70,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return ButtonBase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory    : access IButtonBaseFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IButtonBase;
    begin
       return RetVal : ButtonBase do
@@ -81,9 +82,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IButtonBase := new Windows.UI.Xaml.Controls.Primitives.IButtonBase;
             Retval.m_IButtonBase.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -93,100 +94,120 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_ClickModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ClickModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsPointerOverProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsPointerOverProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsPressedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsPressedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CommandProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CommandProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CommandParameterProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CommandParameterProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -199,10 +220,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.ClickMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.ClickMode;
    begin
       Hr := this.m_IButtonBase.all.get_ClickMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -212,9 +237,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.ClickMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IButtonBase.all.put_ClickMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsPointerOver
@@ -223,10 +252,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IButtonBase.all.get_IsPointerOver (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -236,10 +269,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IButtonBase.all.get_IsPressed (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -249,10 +286,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Input.ICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.ICommand;
    begin
       Hr := this.m_IButtonBase.all.get_Command (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -262,9 +303,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Input.ICommand
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IButtonBase.all.put_Command (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CommandParameter
@@ -273,10 +318,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IButtonBase.all.get_CommandParameter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -286,9 +335,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IButtonBase.all.put_CommandParameter (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Click
@@ -298,10 +351,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IButtonBase.all.add_Click (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -311,9 +368,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IButtonBase.all.remove_Click (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -325,12 +386,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ToggleButton) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToggleButton, IToggleButton_Ptr);
    begin
       if this.m_IToggleButton /= null then
          if this.m_IToggleButton.all /= null then
-            RefCount := this.m_IToggleButton.all.Release;
+            temp := this.m_IToggleButton.all.Release;
             Free (this.m_IToggleButton);
          end if;
       end if;
@@ -346,9 +407,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return ToggleButton is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
       m_Factory    : access IToggleButtonFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IToggleButton;
    begin
       return RetVal : ToggleButton do
@@ -357,9 +419,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IToggleButton := new Windows.UI.Xaml.Controls.Primitives.IToggleButton;
             Retval.m_IToggleButton.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -369,40 +431,48 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_IsCheckedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButtonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IToggleButtonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsCheckedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsThreeStateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButtonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IToggleButtonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsThreeStateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -415,13 +485,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IReference_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_IToggleButton.all.get_IsChecked (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -431,9 +505,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IToggleButton.all.put_IsChecked (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsThreeState
@@ -442,10 +520,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IToggleButton.all.get_IsThreeState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -455,9 +537,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IToggleButton.all.put_IsThreeState (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Checked
@@ -467,10 +553,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IToggleButton.all.add_Checked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -480,9 +570,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IToggleButton.all.remove_Checked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Unchecked
@@ -492,10 +586,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IToggleButton.all.add_Unchecked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -505,9 +603,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IToggleButton.all.remove_Unchecked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Indeterminate
@@ -517,10 +619,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IToggleButton.all.add_Indeterminate (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -530,9 +636,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IToggleButton.all.remove_Indeterminate (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnToggle
@@ -540,13 +650,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out ToggleButton
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButtonOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButton_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButtonOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IToggleButtonOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleButton.all);
       Hr := m_Interface.OnToggle;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -558,12 +672,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out Selector) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISelector, ISelector_Ptr);
    begin
       if this.m_ISelector /= null then
          if this.m_ISelector.all /= null then
-            RefCount := this.m_ISelector.all.Release;
+            temp := this.m_ISelector.all.Release;
             Free (this.m_ISelector);
          end if;
       end if;
@@ -578,100 +692,120 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_SelectedIndexProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedItemProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedItemProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedValuePathProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedValuePathProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsSynchronizedWithCurrentItemProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsSynchronizedWithCurrentItemProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -681,17 +815,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Selector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISelectorStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetIsSelectionActive (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -704,10 +842,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISelector.all.get_SelectedIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -717,9 +859,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISelector.all.put_SelectedIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedItem
@@ -728,10 +874,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ISelector.all.get_SelectedItem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -741,9 +891,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISelector.all.put_SelectedItem (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedValue
@@ -752,10 +906,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ISelector.all.get_SelectedValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -765,9 +923,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISelector.all.put_SelectedValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedValuePath
@@ -776,13 +938,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISelector.all.get_SelectedValuePath (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -792,11 +958,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISelector.all.put_SelectedValuePath (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IsSynchronizedWithCurrentItem
@@ -805,13 +975,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IReference_Boolean.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_ISelector.all.get_IsSynchronizedWithCurrentItem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Boolean (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -821,9 +995,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISelector.all.put_IsSynchronizedWithCurrentItem (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SelectionChanged
@@ -833,10 +1011,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISelector.all.add_SelectionChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -846,9 +1028,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISelector.all.remove_SelectionChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -860,12 +1046,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out SelectorItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISelectorItem, ISelectorItem_Ptr);
    begin
       if this.m_ISelectorItem /= null then
          if this.m_ISelectorItem.all /= null then
-            RefCount := this.m_ISelectorItem.all.Release;
+            temp := this.m_ISelectorItem.all.Release;
             Free (this.m_ISelectorItem);
          end if;
       end if;
@@ -881,9 +1067,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return SelectorItem is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.SelectorItem");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.SelectorItem");
       m_Factory    : access ISelectorItemFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.ISelectorItem;
    begin
       return RetVal : SelectorItem do
@@ -892,9 +1079,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ISelectorItem := new Windows.UI.Xaml.Controls.Primitives.ISelectorItem;
             Retval.m_ISelectorItem.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -904,20 +1091,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_IsSelectedProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.SelectorItem");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.SelectorItem");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorItemStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorItemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsSelectedProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -930,10 +1121,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ISelectorItem.all.get_IsSelected (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -943,9 +1138,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISelectorItem.all.put_IsSelected (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -957,12 +1156,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out FlyoutBase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlyoutBase, IFlyoutBase_Ptr);
    begin
       if this.m_IFlyoutBase /= null then
          if this.m_IFlyoutBase.all /= null then
-            RefCount := this.m_IFlyoutBase.all.Release;
+            temp := this.m_IFlyoutBase.all.Release;
             Free (this.m_IFlyoutBase);
          end if;
       end if;
@@ -978,9 +1177,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return FlyoutBase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory    : access IFlyoutBaseFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
    begin
       return RetVal : FlyoutBase do
@@ -989,9 +1189,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFlyoutBase := new Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
             Retval.m_IFlyoutBase.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1001,140 +1201,168 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_AllowFocusOnInteractionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllowFocusOnInteractionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LightDismissOverlayModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LightDismissOverlayModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AllowFocusWhenDisabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AllowFocusWhenDisabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ElementSoundModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ElementSoundModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ShouldConstrainToRootBoundsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics6'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShouldConstrainToRootBoundsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PlacementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlacementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AttachedFlyoutProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AttachedFlyoutProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1144,20 +1372,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetAttachedFlyout (element.m_IFrameworkElement.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IFlyoutBase := new Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
             Retval.m_IFlyoutBase.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1167,16 +1399,20 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.FlyoutBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetAttachedFlyout (element.m_IFrameworkElement.all, value.m_IFlyoutBase.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ShowAttachedFlyout
@@ -1184,135 +1420,163 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       flyoutOwner : Windows.UI.Xaml.FrameworkElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ShowAttachedFlyout (flyoutOwner.m_IFrameworkElement.all);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_TargetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TargetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ShowModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShowModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_InputDevicePrefersPrimaryCommandsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_InputDevicePrefersPrimaryCommandsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AreOpenCloseAnimationsEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AreOpenCloseAnimationsEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsOpenProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsOpenProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_OverlayInputPassThroughElementProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OverlayInputPassThroughElementProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1325,10 +1589,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
    begin
       Hr := this.m_IFlyoutBase.all.get_Placement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1338,9 +1606,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBase.all.put_Placement (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Opened
@@ -1350,10 +1622,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFlyoutBase.all.add_Opened (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1363,9 +1639,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBase.all.remove_Opened (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -1375,10 +1655,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFlyoutBase.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1388,9 +1672,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBase.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Opening
@@ -1400,10 +1688,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFlyoutBase.all.add_Opening (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1413,9 +1705,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBase.all.remove_Opening (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure ShowAt
@@ -1424,9 +1720,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       placementTarget : Windows.UI.Xaml.FrameworkElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBase.all.ShowAt (placementTarget.m_IFrameworkElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Hide
@@ -1434,9 +1734,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out FlyoutBase
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBase.all.Hide;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Target
@@ -1445,15 +1749,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.FrameworkElement'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IFrameworkElement;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.FrameworkElement do
          m_Interface := QInterface (this.m_IFlyoutBase.all);
          Hr := m_Interface.get_Target (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IFrameworkElement := new Windows.UI.Xaml.IFrameworkElement;
          Retval.m_IFrameworkElement.all := m_ComRetVal;
       end return;
@@ -1465,14 +1773,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_AllowFocusOnInteraction (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1482,13 +1794,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_AllowFocusOnInteraction (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LightDismissOverlayMode
@@ -1497,14 +1813,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.LightDismissOverlayMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_LightDismissOverlayMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1514,13 +1834,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.LightDismissOverlayMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_LightDismissOverlayMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_AllowFocusWhenDisabled
@@ -1529,14 +1853,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_AllowFocusWhenDisabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1546,13 +1874,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_AllowFocusWhenDisabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ElementSoundMode
@@ -1561,14 +1893,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.ElementSoundMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.ElementSoundMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_ElementSoundMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1578,13 +1914,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.ElementSoundMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_ElementSoundMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closing
@@ -1594,14 +1934,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.add_Closing (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1611,13 +1955,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.remove_Closing (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OverlayInputPassThroughElement
@@ -1626,15 +1974,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          m_Interface := QInterface (this.m_IFlyoutBase.all);
          Hr := m_Interface.get_OverlayInputPassThroughElement (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -1646,13 +1998,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_OverlayInputPassThroughElement (value.m_IDependencyObject.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure TryInvokeKeyboardAccelerator
@@ -1661,13 +2017,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       args : Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.TryInvokeKeyboardAccelerator (args.m_IProcessKeyboardAcceleratorEventArgs.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShowMode
@@ -1676,14 +2036,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_ShowMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1693,13 +2057,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_ShowMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputDevicePrefersPrimaryCommands
@@ -1708,14 +2076,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_InputDevicePrefersPrimaryCommands (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1725,14 +2097,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_AreOpenCloseAnimationsEnabled (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1742,13 +2118,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_AreOpenCloseAnimationsEnabled (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOpen
@@ -1757,14 +2137,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_IsOpen (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1775,13 +2159,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       showOptions : Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase5, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.ShowAt (placementTarget.m_IDependencyObject.all, showOptions.m_IFlyoutShowOptions.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShouldConstrainToRootBounds
@@ -1790,14 +2178,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_ShouldConstrainToRootBounds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1807,13 +2199,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_ShouldConstrainToRootBounds (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsConstrainedToRootBounds
@@ -1822,14 +2218,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.get_IsConstrainedToRootBounds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1839,15 +2239,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.XamlRoot'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IXamlRoot;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.XamlRoot do
          m_Interface := QInterface (this.m_IFlyoutBase.all);
          Hr := m_Interface.get_XamlRoot (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IXamlRoot := new Windows.UI.Xaml.IXamlRoot;
          Retval.m_IXamlRoot.all := m_ComRetVal;
       end return;
@@ -1859,13 +2263,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.XamlRoot'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase6, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBase6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.put_XamlRoot (value.m_IXamlRoot.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CreatePresenter
@@ -1874,15 +2282,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Control'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.IControl;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBaseOverrides'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Control do
          m_Interface := QInterface (this.m_IFlyoutBase.all);
          Hr := m_Interface.CreatePresenter (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IControl := new Windows.UI.Xaml.Controls.IControl;
          Retval.m_IControl.all := m_ComRetVal;
       end return;
@@ -1894,13 +2306,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       args : Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseOverrides4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBaseOverrides4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IFlyoutBaseOverrides4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFlyoutBase.all);
       Hr := m_Interface.OnProcessKeyboardAccelerators (args.m_IProcessKeyboardAcceleratorEventArgs.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1912,12 +2328,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out PickerFlyoutBase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPickerFlyoutBase, IPickerFlyoutBase_Ptr);
    begin
       if this.m_IPickerFlyoutBase /= null then
          if this.m_IPickerFlyoutBase.all /= null then
-            RefCount := this.m_IPickerFlyoutBase.all.Release;
+            temp := this.m_IPickerFlyoutBase.all.Release;
             Free (this.m_IPickerFlyoutBase);
          end if;
       end if;
@@ -1933,9 +2349,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return PickerFlyoutBase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
       m_Factory    : access IPickerFlyoutBaseFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase;
    begin
       return RetVal : PickerFlyoutBase do
@@ -1944,9 +2361,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IPickerFlyoutBase := new Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase;
             Retval.m_IPickerFlyoutBase.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1956,20 +2373,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_TitleProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPickerFlyoutBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TitleProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1979,20 +2400,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPickerFlyoutBaseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetTitle (element.m_IDependencyObject.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2002,18 +2427,22 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPickerFlyoutBaseStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetTitle (element.m_IDependencyObject.all, HStr_value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
-      Hr := WindowsDeleteString (HStr_value);
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    -----------------------------------------------------------------------------
@@ -2024,13 +2453,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out PickerFlyoutBase
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPickerFlyoutBaseOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPickerFlyoutBase.all);
       Hr := m_Interface.OnConfirmed;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function ShouldShowConfirmationButtons
@@ -2039,14 +2472,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBaseOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPickerFlyoutBaseOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPickerFlyoutBase.all);
       Hr := m_Interface.ShouldShowConfirmationButtons (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2059,12 +2496,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out AppBarButtonTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBarButtonTemplateSettings, IAppBarButtonTemplateSettings_Ptr);
    begin
       if this.m_IAppBarButtonTemplateSettings /= null then
          if this.m_IAppBarButtonTemplateSettings.all /= null then
-            RefCount := this.m_IAppBarButtonTemplateSettings.all.Release;
+            temp := this.m_IAppBarButtonTemplateSettings.all.Release;
             Free (this.m_IAppBarButtonTemplateSettings);
          end if;
       end if;
@@ -2079,10 +2516,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IAppBarButtonTemplateSettings.all.get_KeyboardAcceleratorTextMinWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2095,12 +2536,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out AppBarTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBarTemplateSettings, IAppBarTemplateSettings_Ptr);
    begin
       if this.m_IAppBarTemplateSettings /= null then
          if this.m_IAppBarTemplateSettings.all /= null then
-            RefCount := this.m_IAppBarTemplateSettings.all.Release;
+            temp := this.m_IAppBarTemplateSettings.all.Release;
             Free (this.m_IAppBarTemplateSettings);
          end if;
       end if;
@@ -2115,10 +2556,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_ClipRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2128,10 +2573,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_CompactVerticalDelta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2141,10 +2590,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_CompactRootMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2154,10 +2607,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_MinimalVerticalDelta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2167,10 +2624,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_MinimalRootMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2180,10 +2641,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_HiddenVerticalDelta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2193,10 +2658,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IAppBarTemplateSettings.all.get_HiddenRootMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2206,14 +2675,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IAppBarTemplateSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarTemplateSettings.all);
       Hr := m_Interface.get_NegativeCompactVerticalDelta (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2223,14 +2696,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IAppBarTemplateSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarTemplateSettings.all);
       Hr := m_Interface.get_NegativeMinimalVerticalDelta (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2240,14 +2717,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IAppBarTemplateSettings2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IAppBarTemplateSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarTemplateSettings.all);
       Hr := m_Interface.get_NegativeHiddenVerticalDelta (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2260,12 +2741,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out AppBarToggleButtonTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAppBarToggleButtonTemplateSettings, IAppBarToggleButtonTemplateSettings_Ptr);
    begin
       if this.m_IAppBarToggleButtonTemplateSettings /= null then
          if this.m_IAppBarToggleButtonTemplateSettings.all /= null then
-            RefCount := this.m_IAppBarToggleButtonTemplateSettings.all.Release;
+            temp := this.m_IAppBarToggleButtonTemplateSettings.all.Release;
             Free (this.m_IAppBarToggleButtonTemplateSettings);
          end if;
       end if;
@@ -2280,10 +2761,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IAppBarToggleButtonTemplateSettings.all.get_KeyboardAcceleratorTextMinWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2296,12 +2781,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out CalendarPanel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICalendarPanel, ICalendarPanel_Ptr);
    begin
       if this.m_ICalendarPanel /= null then
          if this.m_ICalendarPanel.all /= null then
-            RefCount := this.m_ICalendarPanel.all.Release;
+            temp := this.m_ICalendarPanel.all.Release;
             Free (this.m_ICalendarPanel);
          end if;
       end if;
@@ -2312,7 +2797,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return CalendarPanel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CalendarPanel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CalendarPanel");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.ICalendarPanel;
    begin
       return RetVal : CalendarPanel do
@@ -2321,7 +2807,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_ICalendarPanel := new Windows.UI.Xaml.Controls.Primitives.ICalendarPanel;
             Retval.m_ICalendarPanel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2337,12 +2823,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out CalendarViewTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICalendarViewTemplateSettings, ICalendarViewTemplateSettings_Ptr);
    begin
       if this.m_ICalendarViewTemplateSettings /= null then
          if this.m_ICalendarViewTemplateSettings.all /= null then
-            RefCount := this.m_ICalendarViewTemplateSettings.all.Release;
+            temp := this.m_ICalendarViewTemplateSettings.all.Release;
             Free (this.m_ICalendarViewTemplateSettings);
          end if;
       end if;
@@ -2357,10 +2843,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_MinViewWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2370,13 +2860,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_HeaderText (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2386,13 +2880,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay1 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2402,13 +2900,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay2 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2418,13 +2920,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay3 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2434,13 +2940,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay4 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2450,13 +2960,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay5 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2466,13 +2980,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay6 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2482,13 +3000,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_WeekDay7 (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2498,10 +3020,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_HasMoreContentAfter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2511,10 +3037,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_HasMoreContentBefore (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2524,10 +3054,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_HasMoreViews (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2537,10 +3071,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_ClipRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2550,10 +3088,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_CenterX (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2563,10 +3105,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICalendarViewTemplateSettings.all.get_CenterY (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2579,12 +3125,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out CarouselPanel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICarouselPanel, ICarouselPanel_Ptr);
    begin
       if this.m_ICarouselPanel /= null then
          if this.m_ICarouselPanel.all /= null then
-            RefCount := this.m_ICarouselPanel.all.Release;
+            temp := this.m_ICarouselPanel.all.Release;
             Free (this.m_ICarouselPanel);
          end if;
       end if;
@@ -2600,9 +3146,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return CarouselPanel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CarouselPanel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CarouselPanel");
       m_Factory    : access ICarouselPanelFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.ICarouselPanel;
    begin
       return RetVal : CarouselPanel do
@@ -2611,9 +3158,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICarouselPanel := new Windows.UI.Xaml.Controls.Primitives.ICarouselPanel;
             Retval.m_ICarouselPanel.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2626,10 +3173,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICarouselPanel.all.get_CanVerticallyScroll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2639,9 +3190,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.put_CanVerticallyScroll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanHorizontallyScroll
@@ -2650,10 +3205,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICarouselPanel.all.get_CanHorizontallyScroll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2663,9 +3222,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.put_CanHorizontallyScroll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExtentWidth
@@ -2674,10 +3237,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICarouselPanel.all.get_ExtentWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2687,10 +3254,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICarouselPanel.all.get_ExtentHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2700,10 +3271,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICarouselPanel.all.get_ViewportWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2713,10 +3288,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICarouselPanel.all.get_ViewportHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2726,10 +3305,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICarouselPanel.all.get_HorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2739,10 +3322,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICarouselPanel.all.get_VerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2752,10 +3339,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ICarouselPanel.all.get_ScrollOwner (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2765,9 +3356,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.put_ScrollOwner (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineUp
@@ -2775,9 +3370,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.LineUp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineDown
@@ -2785,9 +3384,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.LineDown;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineLeft
@@ -2795,9 +3398,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.LineLeft;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineRight
@@ -2805,9 +3412,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.LineRight;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageUp
@@ -2815,9 +3426,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.PageUp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageDown
@@ -2825,9 +3440,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.PageDown;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageLeft
@@ -2835,9 +3454,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.PageLeft;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageRight
@@ -2845,9 +3468,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.PageRight;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelUp
@@ -2855,9 +3482,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.MouseWheelUp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelDown
@@ -2865,9 +3496,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.MouseWheelDown;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelLeft
@@ -2875,9 +3510,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.MouseWheelLeft;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelRight
@@ -2885,9 +3524,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out CarouselPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.MouseWheelRight;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetHorizontalOffset
@@ -2896,9 +3539,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       offset : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.SetHorizontalOffset (offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetVerticalOffset
@@ -2907,9 +3554,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       offset : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICarouselPanel.all.SetVerticalOffset (offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function MakeVisible
@@ -2920,10 +3571,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICarouselPanel.all.MakeVisible (visual.m_IUIElement.all, rectangle, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2933,14 +3588,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.get_AreHorizontalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2950,14 +3609,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.get_AreVerticalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2968,14 +3631,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.add_HorizontalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2985,13 +3652,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.remove_HorizontalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VerticalSnapPointsChanged
@@ -3001,14 +3672,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.add_VerticalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3018,13 +3693,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.remove_VerticalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetIrregularSnapPoints
@@ -3035,17 +3714,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IVectorView_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Single.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.GetIrregularSnapPoints (orientation, alignment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -3058,14 +3741,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICarouselPanel.all);
       Hr := m_Interface.GetRegularSnapPoints (orientation, alignment, offset, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3078,12 +3765,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out RangeBase) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRangeBase, IRangeBase_Ptr);
    begin
       if this.m_IRangeBase /= null then
          if this.m_IRangeBase.all /= null then
-            RefCount := this.m_IRangeBase.all.Release;
+            temp := this.m_IRangeBase.all.Release;
             Free (this.m_IRangeBase);
          end if;
       end if;
@@ -3099,9 +3786,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return RangeBase is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory    : access IRangeBaseFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IRangeBase;
    begin
       return RetVal : RangeBase do
@@ -3110,9 +3798,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IRangeBase := new Windows.UI.Xaml.Controls.Primitives.IRangeBase;
             Retval.m_IRangeBase.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3122,100 +3810,120 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_MinimumProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MinimumProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MaximumProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MaximumProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SmallChangeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SmallChangeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_LargeChangeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LargeChangeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeBaseStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3228,10 +3936,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBase.all.get_Minimum (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3241,9 +3953,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRangeBase.all.put_Minimum (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Maximum
@@ -3252,10 +3968,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBase.all.get_Maximum (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3265,9 +3985,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRangeBase.all.put_Maximum (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SmallChange
@@ -3276,10 +4000,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBase.all.get_SmallChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3289,9 +4017,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRangeBase.all.put_SmallChange (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LargeChange
@@ -3300,10 +4032,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBase.all.get_LargeChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3313,9 +4049,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRangeBase.all.put_LargeChange (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Value
@@ -3324,10 +4064,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBase.all.get_Value (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3337,9 +4081,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRangeBase.all.put_Value (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ValueChanged
@@ -3349,10 +4097,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRangeBase.all.add_ValueChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3362,9 +4114,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRangeBase.all.remove_ValueChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnMinimumChanged
@@ -3374,13 +4130,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       newMinimum : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IRangeBaseOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBase.all);
       Hr := m_Interface.OnMinimumChanged (oldMinimum, newMinimum);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnMaximumChanged
@@ -3390,13 +4150,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       newMaximum : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IRangeBaseOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBase.all);
       Hr := m_Interface.OnMaximumChanged (oldMaximum, newMaximum);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure OnValueChanged
@@ -3406,13 +4170,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       newValue : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseOverrides := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBase_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseOverrides, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IRangeBaseOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRangeBase.all);
       Hr := m_Interface.OnValueChanged (oldValue, newValue);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3424,12 +4192,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ColorPickerSlider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorPickerSlider, IColorPickerSlider_Ptr);
    begin
       if this.m_IColorPickerSlider /= null then
          if this.m_IColorPickerSlider.all /= null then
-            RefCount := this.m_IColorPickerSlider.all.Release;
+            temp := this.m_IColorPickerSlider.all.Release;
             Free (this.m_IColorPickerSlider);
          end if;
       end if;
@@ -3445,9 +4213,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return ColorPickerSlider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider");
       m_Factory    : access IColorPickerSliderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider;
    begin
       return RetVal : ColorPickerSlider do
@@ -3456,9 +4225,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IColorPickerSlider := new Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider;
             Retval.m_IColorPickerSlider.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3468,20 +4237,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_ColorChannelProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorPickerSliderStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorPickerSliderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ColorChannelProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3494,10 +4267,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.ColorPickerHsvChannel is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.ColorPickerHsvChannel;
    begin
       Hr := this.m_IColorPickerSlider.all.get_ColorChannel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3507,9 +4284,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.ColorPickerHsvChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorPickerSlider.all.put_ColorChannel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3521,12 +4302,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ColorSpectrum) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IColorSpectrum, IColorSpectrum_Ptr);
    begin
       if this.m_IColorSpectrum /= null then
          if this.m_IColorSpectrum.all /= null then
-            RefCount := this.m_IColorSpectrum.all.Release;
+            temp := this.m_IColorSpectrum.all.Release;
             Free (this.m_IColorSpectrum);
          end if;
       end if;
@@ -3542,9 +4323,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return ColorSpectrum is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory    : access IColorSpectrumFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IColorSpectrum;
    begin
       return RetVal : ColorSpectrum do
@@ -3553,9 +4335,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IColorSpectrum := new Windows.UI.Xaml.Controls.Primitives.IColorSpectrum;
             Retval.m_IColorSpectrum.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3565,200 +4347,240 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_ColorProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ColorProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_HsvColorProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HsvColorProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MinHueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MinHueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MaxHueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MaxHueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MinSaturationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MinSaturationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MaxSaturationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MaxSaturationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MinValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MinValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_MaxValueProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MaxValueProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ShapeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShapeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ComponentsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrumStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ComponentsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3771,10 +4593,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Color;
    begin
       Hr := this.m_IColorSpectrum.all.get_Color (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3784,9 +4610,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_Color (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HsvColor
@@ -3795,10 +4625,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Numerics.Vector4 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector4;
    begin
       Hr := this.m_IColorSpectrum.all.get_HsvColor (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3808,9 +4642,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_HsvColor (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinHue
@@ -3819,10 +4657,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IColorSpectrum.all.get_MinHue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3832,9 +4674,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_MinHue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxHue
@@ -3843,10 +4689,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IColorSpectrum.all.get_MaxHue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3856,9 +4706,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_MaxHue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinSaturation
@@ -3867,10 +4721,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IColorSpectrum.all.get_MinSaturation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3880,9 +4738,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_MinSaturation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxSaturation
@@ -3891,10 +4753,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IColorSpectrum.all.get_MaxSaturation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3904,9 +4770,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_MaxSaturation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MinValue
@@ -3915,10 +4785,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IColorSpectrum.all.get_MinValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3928,9 +4802,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_MinValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_MaxValue
@@ -3939,10 +4817,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IColorSpectrum.all.get_MaxValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3952,9 +4834,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_MaxValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Shape
@@ -3963,10 +4849,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.ColorSpectrumShape is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.ColorSpectrumShape;
    begin
       Hr := this.m_IColorSpectrum.all.get_Shape (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3976,9 +4866,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.ColorSpectrumShape
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_Shape (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Components
@@ -3987,10 +4881,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.ColorSpectrumComponents is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.ColorSpectrumComponents;
    begin
       Hr := this.m_IColorSpectrum.all.get_Components (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4000,9 +4898,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.ColorSpectrumComponents
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.put_Components (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ColorChanged
@@ -4012,10 +4914,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IColorSpectrum.all.add_ColorChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4025,9 +4931,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IColorSpectrum.all.remove_ColorChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4039,12 +4949,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ComboBoxTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IComboBoxTemplateSettings, IComboBoxTemplateSettings_Ptr);
    begin
       if this.m_IComboBoxTemplateSettings /= null then
          if this.m_IComboBoxTemplateSettings.all /= null then
-            RefCount := this.m_IComboBoxTemplateSettings.all.Release;
+            temp := this.m_IComboBoxTemplateSettings.all.Release;
             Free (this.m_IComboBoxTemplateSettings);
          end if;
       end if;
@@ -4059,10 +4969,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IComboBoxTemplateSettings.all.get_DropDownOpenedHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4072,10 +4986,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IComboBoxTemplateSettings.all.get_DropDownClosedHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4085,10 +5003,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IComboBoxTemplateSettings.all.get_DropDownOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4098,10 +5020,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.AnimationDirection;
    begin
       Hr := this.m_IComboBoxTemplateSettings.all.get_SelectedItemDirection (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4111,14 +5037,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IComboBoxTemplateSettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IComboBoxTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IComboBoxTemplateSettings2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IComboBoxTemplateSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxTemplateSettings.all);
       Hr := m_Interface.get_DropDownContentMinWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4131,12 +5061,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out CommandBarFlyoutCommandBar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICommandBarFlyoutCommandBar, ICommandBarFlyoutCommandBar_Ptr);
    begin
       if this.m_ICommandBarFlyoutCommandBar /= null then
          if this.m_ICommandBarFlyoutCommandBar.all /= null then
-            RefCount := this.m_ICommandBarFlyoutCommandBar.all.Release;
+            temp := this.m_ICommandBarFlyoutCommandBar.all.Release;
             Free (this.m_ICommandBarFlyoutCommandBar);
          end if;
       end if;
@@ -4152,9 +5082,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return CommandBarFlyoutCommandBar is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar");
       m_Factory    : access ICommandBarFlyoutCommandBarFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar;
    begin
       return RetVal : CommandBarFlyoutCommandBar do
@@ -4163,9 +5094,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_ICommandBarFlyoutCommandBar := new Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar;
             Retval.m_ICommandBarFlyoutCommandBar.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4178,11 +5109,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBarTemplateSettings'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBarTemplateSettings;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBarTemplateSettings do
          Hr := this.m_ICommandBarFlyoutCommandBar.all.get_FlyoutTemplateSettings (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ICommandBarFlyoutCommandBarTemplateSettings := new Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBarTemplateSettings;
          Retval.m_ICommandBarFlyoutCommandBarTemplateSettings.all := m_ComRetVal;
       end return;
@@ -4197,12 +5132,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out CommandBarFlyoutCommandBarTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICommandBarFlyoutCommandBarTemplateSettings, ICommandBarFlyoutCommandBarTemplateSettings_Ptr);
    begin
       if this.m_ICommandBarFlyoutCommandBarTemplateSettings /= null then
          if this.m_ICommandBarFlyoutCommandBarTemplateSettings.all /= null then
-            RefCount := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.Release;
+            temp := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.Release;
             Free (this.m_ICommandBarFlyoutCommandBarTemplateSettings);
          end if;
       end if;
@@ -4217,10 +5152,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_OpenAnimationStartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4230,10 +5169,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_OpenAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4243,10 +5186,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_CloseAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4256,10 +5203,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_CurrentWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4269,10 +5220,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandedWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4282,10 +5237,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_WidthExpansionDelta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4295,10 +5254,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_WidthExpansionAnimationStartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4308,10 +5271,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_WidthExpansionAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4321,10 +5288,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_WidthExpansionMoreButtonAnimationStartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4334,10 +5305,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_WidthExpansionMoreButtonAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4347,10 +5322,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandUpOverflowVerticalPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4360,10 +5339,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandDownOverflowVerticalPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4373,10 +5356,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandUpAnimationStartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4386,10 +5373,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandUpAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4399,10 +5390,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandUpAnimationHoldPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4412,10 +5407,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandDownAnimationStartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4425,10 +5424,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandDownAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4438,10 +5441,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ExpandDownAnimationHoldPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4451,10 +5458,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_ContentClipRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4464,10 +5475,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.get_OverflowContentClipRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4480,12 +5495,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out CommandBarTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICommandBarTemplateSettings, ICommandBarTemplateSettings_Ptr);
    begin
       if this.m_ICommandBarTemplateSettings /= null then
          if this.m_ICommandBarTemplateSettings.all /= null then
-            RefCount := this.m_ICommandBarTemplateSettings.all.Release;
+            temp := this.m_ICommandBarTemplateSettings.all.Release;
             Free (this.m_ICommandBarTemplateSettings);
          end if;
       end if;
@@ -4500,10 +5515,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_ContentHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4513,10 +5532,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_OverflowContentClipRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4526,10 +5549,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_OverflowContentMinWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4539,10 +5566,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_OverflowContentMaxHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4552,10 +5583,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_OverflowContentHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4565,10 +5600,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_OverflowContentHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4578,10 +5617,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ICommandBarTemplateSettings.all.get_NegativeOverflowContentHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4591,14 +5634,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_ICommandBarTemplateSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandBarTemplateSettings.all);
       Hr := m_Interface.get_OverflowContentMaxWidth (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4608,14 +5655,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Visibility is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Visibility;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_ICommandBarTemplateSettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandBarTemplateSettings.all);
       Hr := m_Interface.get_EffectiveOverflowButtonVisibility (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4625,14 +5676,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_ICommandBarTemplateSettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandBarTemplateSettings.all);
       Hr := m_Interface.get_OverflowContentCompactYTranslation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4642,14 +5697,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_ICommandBarTemplateSettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandBarTemplateSettings.all);
       Hr := m_Interface.get_OverflowContentMinimalYTranslation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4659,14 +5718,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarTemplateSettings4, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_ICommandBarTemplateSettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandBarTemplateSettings.all);
       Hr := m_Interface.get_OverflowContentHiddenYTranslation (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4679,12 +5742,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out DragCompletedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDragCompletedEventArgs, IDragCompletedEventArgs_Ptr);
    begin
       if this.m_IDragCompletedEventArgs /= null then
          if this.m_IDragCompletedEventArgs.all /= null then
-            RefCount := this.m_IDragCompletedEventArgs.all.Release;
+            temp := this.m_IDragCompletedEventArgs.all.Release;
             Free (this.m_IDragCompletedEventArgs);
          end if;
       end if;
@@ -4703,9 +5766,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return DragCompletedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragCompletedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragCompletedEventArgs");
       m_Factory    : access IDragCompletedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs;
    begin
       return RetVal : DragCompletedEventArgs do
@@ -4714,9 +5778,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstanceWithHorizontalChangeVerticalChangeAndCanceled (horizontalChange, verticalChange, canceled, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDragCompletedEventArgs := new Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs;
             Retval.m_IDragCompletedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4729,10 +5793,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragCompletedEventArgs.all.get_HorizontalChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4742,10 +5810,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragCompletedEventArgs.all.get_VerticalChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4755,10 +5827,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDragCompletedEventArgs.all.get_Canceled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4772,7 +5848,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       e : Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -4787,12 +5863,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out DragDeltaEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDragDeltaEventArgs, IDragDeltaEventArgs_Ptr);
    begin
       if this.m_IDragDeltaEventArgs /= null then
          if this.m_IDragDeltaEventArgs.all /= null then
-            RefCount := this.m_IDragDeltaEventArgs.all.Release;
+            temp := this.m_IDragDeltaEventArgs.all.Release;
             Free (this.m_IDragDeltaEventArgs);
          end if;
       end if;
@@ -4810,9 +5886,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return DragDeltaEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragDeltaEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragDeltaEventArgs");
       m_Factory    : access IDragDeltaEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs;
    begin
       return RetVal : DragDeltaEventArgs do
@@ -4821,9 +5898,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstanceWithHorizontalChangeAndVerticalChange (horizontalChange, verticalChange, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDragDeltaEventArgs := new Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs;
             Retval.m_IDragDeltaEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4836,10 +5913,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragDeltaEventArgs.all.get_HorizontalChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4849,10 +5930,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragDeltaEventArgs.all.get_VerticalChange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4866,7 +5951,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       e : Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -4881,12 +5966,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out DragStartedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDragStartedEventArgs, IDragStartedEventArgs_Ptr);
    begin
       if this.m_IDragStartedEventArgs /= null then
          if this.m_IDragStartedEventArgs.all /= null then
-            RefCount := this.m_IDragStartedEventArgs.all.Release;
+            temp := this.m_IDragStartedEventArgs.all.Release;
             Free (this.m_IDragStartedEventArgs);
          end if;
       end if;
@@ -4904,9 +5989,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return DragStartedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragStartedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragStartedEventArgs");
       m_Factory    : access IDragStartedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs;
    begin
       return RetVal : DragStartedEventArgs do
@@ -4915,9 +6001,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstanceWithHorizontalOffsetAndVerticalOffset (horizontalOffset, verticalOffset, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IDragStartedEventArgs := new Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs;
             Retval.m_IDragStartedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4930,10 +6016,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragStartedEventArgs.all.get_HorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4943,10 +6033,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IDragStartedEventArgs.all.get_VerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4960,7 +6054,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       e : Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -4975,12 +6069,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out FlyoutBaseClosingEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlyoutBaseClosingEventArgs, IFlyoutBaseClosingEventArgs_Ptr);
    begin
       if this.m_IFlyoutBaseClosingEventArgs /= null then
          if this.m_IFlyoutBaseClosingEventArgs.all /= null then
-            RefCount := this.m_IFlyoutBaseClosingEventArgs.all.Release;
+            temp := this.m_IFlyoutBaseClosingEventArgs.all.Release;
             Free (this.m_IFlyoutBaseClosingEventArgs);
          end if;
       end if;
@@ -4995,10 +6089,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFlyoutBaseClosingEventArgs.all.get_Cancel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5008,9 +6106,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutBaseClosingEventArgs.all.put_Cancel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5022,12 +6124,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out FlyoutShowOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFlyoutShowOptions, IFlyoutShowOptions_Ptr);
    begin
       if this.m_IFlyoutShowOptions /= null then
          if this.m_IFlyoutShowOptions.all /= null then
-            RefCount := this.m_IFlyoutShowOptions.all.Release;
+            temp := this.m_IFlyoutShowOptions.all.Release;
             Free (this.m_IFlyoutShowOptions);
          end if;
       end if;
@@ -5043,9 +6145,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return FlyoutShowOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions");
       m_Factory    : access IFlyoutShowOptionsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions;
    begin
       return RetVal : FlyoutShowOptions do
@@ -5054,9 +6157,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IFlyoutShowOptions := new Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions;
             Retval.m_IFlyoutShowOptions.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5069,13 +6172,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IReference_Point.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_IFlyoutShowOptions.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Point (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5085,9 +6192,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutShowOptions.all.put_Position (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExclusionRect
@@ -5096,13 +6207,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IReference_Rect.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IReference_Rect.Kind;
    begin
       Hr := this.m_IFlyoutShowOptions.all.get_ExclusionRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IReference_Rect (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -5112,9 +6227,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutShowOptions.all.put_ExclusionRect (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShowMode
@@ -5123,10 +6242,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode;
    begin
       Hr := this.m_IFlyoutShowOptions.all.get_ShowMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5136,9 +6259,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutShowOptions.all.put_ShowMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Placement
@@ -5147,10 +6274,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
    begin
       Hr := this.m_IFlyoutShowOptions.all.get_Placement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5160,9 +6291,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFlyoutShowOptions.all.put_Placement (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5174,12 +6309,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out GeneratorPositionHelper) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGeneratorPositionHelper, IGeneratorPositionHelper_Ptr);
    begin
       if this.m_IGeneratorPositionHelper /= null then
          if this.m_IGeneratorPositionHelper.all /= null then
-            RefCount := this.m_IGeneratorPositionHelper.all.Release;
+            temp := this.m_IGeneratorPositionHelper.all.Release;
             Free (this.m_IGeneratorPositionHelper);
          end if;
       end if;
@@ -5195,17 +6330,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.GeneratorPosition is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GeneratorPositionHelper");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GeneratorPositionHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGeneratorPositionHelperStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.GeneratorPosition;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGeneratorPositionHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.FromIndexAndOffset (index, offset, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -5221,12 +6360,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out GridViewItemPresenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGridViewItemPresenter, IGridViewItemPresenter_Ptr);
    begin
       if this.m_IGridViewItemPresenter /= null then
          if this.m_IGridViewItemPresenter.all /= null then
-            RefCount := this.m_IGridViewItemPresenter.all.Release;
+            temp := this.m_IGridViewItemPresenter.all.Release;
             Free (this.m_IGridViewItemPresenter);
          end if;
       end if;
@@ -5242,9 +6381,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return GridViewItemPresenter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory    : access IGridViewItemPresenterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenter;
    begin
       return RetVal : GridViewItemPresenter do
@@ -5253,9 +6393,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IGridViewItemPresenter := new Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenter;
             Retval.m_IGridViewItemPresenter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5265,440 +6405,528 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_SelectionCheckMarkVisualEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectionCheckMarkVisualEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckHintBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckHintBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckSelectingBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckSelectingBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DragBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DragBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DragForegroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DragForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FocusBorderBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FocusBorderBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PlaceholderBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlaceholderBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointerOverBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointerOverBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedForegroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedPointerOverBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedPointerOverBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedPointerOverBorderBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedPointerOverBorderBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedBorderThicknessProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedBorderThicknessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DisabledOpacityProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DisabledOpacityProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DragOpacityProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DragOpacityProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ReorderHintOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ReorderHintOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_GridViewItemPresenterHorizontalContentAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_GridViewItemPresenterHorizontalContentAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_GridViewItemPresenterVerticalContentAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_GridViewItemPresenterVerticalContentAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_GridViewItemPresenterPaddingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_GridViewItemPresenterPaddingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointerOverBackgroundMarginProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointerOverBackgroundMarginProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentMarginProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentMarginProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5711,10 +6939,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_SelectionCheckMarkVisualEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5724,9 +6956,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_SelectionCheckMarkVisualEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckHintBrush
@@ -5735,11 +6971,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_CheckHintBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5751,9 +6991,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_CheckHintBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckSelectingBrush
@@ -5762,11 +7006,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_CheckSelectingBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5778,9 +7026,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_CheckSelectingBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckBrush
@@ -5789,11 +7041,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_CheckBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5805,9 +7061,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_CheckBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DragBackground
@@ -5816,11 +7076,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_DragBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5832,9 +7096,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_DragBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DragForeground
@@ -5843,11 +7111,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_DragForeground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5859,9 +7131,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_DragForeground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusBorderBrush
@@ -5870,11 +7146,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_FocusBorderBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5886,9 +7166,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_FocusBorderBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PlaceholderBackground
@@ -5897,11 +7181,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_PlaceholderBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5913,9 +7201,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_PlaceholderBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerOverBackground
@@ -5924,11 +7216,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_PointerOverBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5940,9 +7236,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_PointerOverBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedBackground
@@ -5951,11 +7251,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_SelectedBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5967,9 +7271,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_SelectedBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedForeground
@@ -5978,11 +7286,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_SelectedForeground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -5994,9 +7306,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_SelectedForeground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedPointerOverBackground
@@ -6005,11 +7321,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_SelectedPointerOverBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -6021,9 +7341,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_SelectedPointerOverBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedPointerOverBorderBrush
@@ -6032,11 +7356,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IGridViewItemPresenter.all.get_SelectedPointerOverBorderBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -6048,9 +7376,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_SelectedPointerOverBorderBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedBorderThickness
@@ -6059,10 +7391,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_SelectedBorderThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6072,9 +7408,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_SelectedBorderThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DisabledOpacity
@@ -6083,10 +7423,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_DisabledOpacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6096,9 +7440,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_DisabledOpacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DragOpacity
@@ -6107,10 +7455,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_DragOpacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6120,9 +7472,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_DragOpacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReorderHintOffset
@@ -6131,10 +7487,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_ReorderHintOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6144,9 +7504,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_ReorderHintOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GridViewItemPresenterHorizontalContentAlignment
@@ -6155,10 +7519,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.HorizontalAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.HorizontalAlignment;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_GridViewItemPresenterHorizontalContentAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6168,9 +7536,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.HorizontalAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_GridViewItemPresenterHorizontalContentAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GridViewItemPresenterVerticalContentAlignment
@@ -6179,10 +7551,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.VerticalAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.VerticalAlignment;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_GridViewItemPresenterVerticalContentAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6192,9 +7568,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.VerticalAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_GridViewItemPresenterVerticalContentAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_GridViewItemPresenterPadding
@@ -6203,10 +7583,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_GridViewItemPresenterPadding (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6216,9 +7600,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_GridViewItemPresenterPadding (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerOverBackgroundMargin
@@ -6227,10 +7615,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_PointerOverBackgroundMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6240,9 +7632,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_PointerOverBackgroundMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentMargin
@@ -6251,10 +7647,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IGridViewItemPresenter.all.get_ContentMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6264,9 +7664,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGridViewItemPresenter.all.put_ContentMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -6278,12 +7682,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out GridViewItemTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGridViewItemTemplateSettings, IGridViewItemTemplateSettings_Ptr);
    begin
       if this.m_IGridViewItemTemplateSettings /= null then
          if this.m_IGridViewItemTemplateSettings.all /= null then
-            RefCount := this.m_IGridViewItemTemplateSettings.all.Release;
+            temp := this.m_IGridViewItemTemplateSettings.all.Release;
             Free (this.m_IGridViewItemTemplateSettings);
          end if;
       end if;
@@ -6298,10 +7702,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IGridViewItemTemplateSettings.all.get_DragItemsCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6314,12 +7722,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ItemsChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IItemsChangedEventArgs, IItemsChangedEventArgs_Ptr);
    begin
       if this.m_IItemsChangedEventArgs /= null then
          if this.m_IItemsChangedEventArgs.all /= null then
-            RefCount := this.m_IItemsChangedEventArgs.all.Release;
+            temp := this.m_IItemsChangedEventArgs.all.Release;
             Free (this.m_IItemsChangedEventArgs);
          end if;
       end if;
@@ -6334,10 +7742,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IItemsChangedEventArgs.all.get_Action (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6347,10 +7759,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.GeneratorPosition is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.GeneratorPosition;
    begin
       Hr := this.m_IItemsChangedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6360,10 +7776,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.GeneratorPosition is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.GeneratorPosition;
    begin
       Hr := this.m_IItemsChangedEventArgs.all.get_OldPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6373,10 +7793,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IItemsChangedEventArgs.all.get_ItemCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6386,10 +7810,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IItemsChangedEventArgs.all.get_ItemUICount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -6403,7 +7831,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       e : Windows.UI.Xaml.Controls.Primitives.IItemsChangedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -6418,12 +7846,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out JumpListItemBackgroundConverter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJumpListItemBackgroundConverter, IJumpListItemBackgroundConverter_Ptr);
    begin
       if this.m_IJumpListItemBackgroundConverter /= null then
          if this.m_IJumpListItemBackgroundConverter.all /= null then
-            RefCount := this.m_IJumpListItemBackgroundConverter.all.Release;
+            temp := this.m_IJumpListItemBackgroundConverter.all.Release;
             Free (this.m_IJumpListItemBackgroundConverter);
          end if;
       end if;
@@ -6434,7 +7862,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return JumpListItemBackgroundConverter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter;
    begin
       return RetVal : JumpListItemBackgroundConverter do
@@ -6443,7 +7872,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IJumpListItemBackgroundConverter := new Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter;
             Retval.m_IJumpListItemBackgroundConverter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6453,40 +7882,48 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_EnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListItemBackgroundConverterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DisabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListItemBackgroundConverterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DisabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6499,11 +7936,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IJumpListItemBackgroundConverter.all.get_Enabled (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -6515,9 +7956,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IJumpListItemBackgroundConverter.all.put_Enabled (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Disabled
@@ -6526,11 +7971,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IJumpListItemBackgroundConverter.all.get_Disabled (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -6542,9 +7991,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IJumpListItemBackgroundConverter.all.put_Disabled (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Convert
@@ -6557,16 +8010,20 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Data.IValueConverter := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter_Interface, WinRt.Windows.UI.Xaml.Data.IValueConverter, WinRt.Windows.UI.Xaml.Data.IID_IValueConverter'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJumpListItemBackgroundConverter.all);
       Hr := m_Interface.Convert (value, targetType, parameter, HStr_language, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_language);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_language);
       return m_ComRetVal;
    end;
 
@@ -6580,16 +8037,20 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Data.IValueConverter := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter_Interface, WinRt.Windows.UI.Xaml.Data.IValueConverter, WinRt.Windows.UI.Xaml.Data.IID_IValueConverter'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJumpListItemBackgroundConverter.all);
       Hr := m_Interface.ConvertBack (value, targetType, parameter, HStr_language, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_language);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_language);
       return m_ComRetVal;
    end;
 
@@ -6602,12 +8063,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out JumpListItemForegroundConverter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IJumpListItemForegroundConverter, IJumpListItemForegroundConverter_Ptr);
    begin
       if this.m_IJumpListItemForegroundConverter /= null then
          if this.m_IJumpListItemForegroundConverter.all /= null then
-            RefCount := this.m_IJumpListItemForegroundConverter.all.Release;
+            temp := this.m_IJumpListItemForegroundConverter.all.Release;
             Free (this.m_IJumpListItemForegroundConverter);
          end if;
       end if;
@@ -6618,7 +8079,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return JumpListItemForegroundConverter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter;
    begin
       return RetVal : JumpListItemForegroundConverter do
@@ -6627,7 +8089,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IJumpListItemForegroundConverter := new Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter;
             Retval.m_IJumpListItemForegroundConverter.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6637,40 +8099,48 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_EnabledProperty_JumpListItemForegroundConverter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListItemForegroundConverterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_EnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DisabledProperty_JumpListItemForegroundConverter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IJumpListItemForegroundConverterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DisabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6683,11 +8153,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IJumpListItemForegroundConverter.all.get_Enabled (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -6699,9 +8173,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IJumpListItemForegroundConverter.all.put_Enabled (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Disabled
@@ -6710,11 +8188,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IJumpListItemForegroundConverter.all.get_Disabled (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -6726,9 +8208,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IJumpListItemForegroundConverter.all.put_Disabled (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Convert
@@ -6741,16 +8227,20 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Data.IValueConverter := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter_Interface, WinRt.Windows.UI.Xaml.Data.IValueConverter, WinRt.Windows.UI.Xaml.Data.IID_IValueConverter'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJumpListItemForegroundConverter.all);
       Hr := m_Interface.Convert (value, targetType, parameter, HStr_language, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_language);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_language);
       return m_ComRetVal;
    end;
 
@@ -6764,16 +8254,20 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Data.IValueConverter := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
-      HStr_language : WinRt.HString := To_HString (language);
+      HStr_language : constant WinRt.HString := To_HString (language);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter_Interface, WinRt.Windows.UI.Xaml.Data.IValueConverter, WinRt.Windows.UI.Xaml.Data.IID_IValueConverter'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IJumpListItemForegroundConverter.all);
       Hr := m_Interface.ConvertBack (value, targetType, parameter, HStr_language, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_language);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_language);
       return m_ComRetVal;
    end;
 
@@ -6786,12 +8280,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out LayoutInformation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILayoutInformation, ILayoutInformation_Ptr);
    begin
       if this.m_ILayoutInformation /= null then
          if this.m_ILayoutInformation.all /= null then
-            RefCount := this.m_ILayoutInformation.all.Release;
+            temp := this.m_ILayoutInformation.all.Release;
             Free (this.m_ILayoutInformation);
          end if;
       end if;
@@ -6806,20 +8300,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.UIElement is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILayoutInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := RoGetActivationFactory (m_hString, IID_ILayoutInformationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetLayoutExceptionElement (dispatcher, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
             Retval.m_IUIElement.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6829,17 +8327,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILayoutInformationStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILayoutInformationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetLayoutSlot (element.m_IFrameworkElement.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6849,17 +8351,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LayoutInformation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILayoutInformationStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Size;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILayoutInformationStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetAvailableSize (element.m_IUIElement.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -6875,12 +8381,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ListViewItemPresenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewItemPresenter, IListViewItemPresenter_Ptr);
    begin
       if this.m_IListViewItemPresenter /= null then
          if this.m_IListViewItemPresenter.all /= null then
-            RefCount := this.m_IListViewItemPresenter.all.Release;
+            temp := this.m_IListViewItemPresenter.all.Release;
             Free (this.m_IListViewItemPresenter);
          end if;
       end if;
@@ -6896,9 +8402,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return ListViewItemPresenter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory    : access IListViewItemPresenterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter;
    begin
       return RetVal : ListViewItemPresenter do
@@ -6907,9 +8414,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IListViewItemPresenter := new Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter;
             Retval.m_IListViewItemPresenter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -6919,640 +8426,768 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_SelectionCheckMarkVisualEnabledProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectionCheckMarkVisualEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckHintBrushProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckHintBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckSelectingBrushProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckSelectingBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckBrushProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DragBackgroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DragBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DragForegroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DragForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FocusBorderBrushProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FocusBorderBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PlaceholderBackgroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PlaceholderBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointerOverBackgroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointerOverBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedBackgroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedForegroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedPointerOverBackgroundProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedPointerOverBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedPointerOverBorderBrushProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedPointerOverBorderBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedBorderThicknessProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedBorderThicknessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DisabledOpacityProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DisabledOpacityProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DragOpacityProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DragOpacityProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ReorderHintOffsetProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ReorderHintOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ListViewItemPresenterHorizontalContentAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ListViewItemPresenterHorizontalContentAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ListViewItemPresenterVerticalContentAlignmentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ListViewItemPresenterVerticalContentAlignmentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ListViewItemPresenterPaddingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ListViewItemPresenterPaddingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointerOverBackgroundMarginProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointerOverBackgroundMarginProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ContentMarginProperty_ListViewItemPresenter
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ContentMarginProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedPressedBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedPressedBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PressedBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PressedBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckBoxBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckBoxBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_FocusSecondaryBorderBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FocusSecondaryBorderBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CheckModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CheckModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_PointerOverForegroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_PointerOverForegroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RevealBackgroundProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RevealBackgroundProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RevealBorderBrushProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RevealBorderBrushProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RevealBorderThicknessProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RevealBorderThicknessProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_RevealBackgroundShowsAboveContentProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenterStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemPresenterStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_RevealBackgroundShowsAboveContentProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -7565,10 +9200,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_SelectionCheckMarkVisualEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7578,9 +9217,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_SelectionCheckMarkVisualEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckHintBrush
@@ -7589,11 +9232,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_CheckHintBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7605,9 +9252,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_CheckHintBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckSelectingBrush
@@ -7616,11 +9267,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_CheckSelectingBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7632,9 +9287,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_CheckSelectingBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckBrush
@@ -7643,11 +9302,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_CheckBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7659,9 +9322,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_CheckBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DragBackground
@@ -7670,11 +9337,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_DragBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7686,9 +9357,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_DragBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DragForeground
@@ -7697,11 +9372,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_DragForeground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7713,9 +9392,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_DragForeground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusBorderBrush
@@ -7724,11 +9407,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_FocusBorderBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7740,9 +9427,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_FocusBorderBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PlaceholderBackground
@@ -7751,11 +9442,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_PlaceholderBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7767,9 +9462,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_PlaceholderBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerOverBackground
@@ -7778,11 +9477,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_PointerOverBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7794,9 +9497,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_PointerOverBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedBackground
@@ -7805,11 +9512,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_SelectedBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7821,9 +9532,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_SelectedBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedForeground
@@ -7832,11 +9547,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_SelectedForeground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7848,9 +9567,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_SelectedForeground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedPointerOverBackground
@@ -7859,11 +9582,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_SelectedPointerOverBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7875,9 +9602,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_SelectedPointerOverBackground (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedPointerOverBorderBrush
@@ -7886,11 +9617,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_IListViewItemPresenter.all.get_SelectedPointerOverBorderBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -7902,9 +9637,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_SelectedPointerOverBorderBrush (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedBorderThickness
@@ -7913,10 +9652,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_SelectedBorderThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7926,9 +9669,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_SelectedBorderThickness (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DisabledOpacity
@@ -7937,10 +9684,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_DisabledOpacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7950,9 +9701,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_DisabledOpacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DragOpacity
@@ -7961,10 +9716,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_DragOpacity (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7974,9 +9733,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_DragOpacity (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ReorderHintOffset
@@ -7985,10 +9748,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_ReorderHintOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -7998,9 +9765,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_ReorderHintOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ListViewItemPresenterHorizontalContentAlignment
@@ -8009,10 +9780,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.HorizontalAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.HorizontalAlignment;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_ListViewItemPresenterHorizontalContentAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8022,9 +9797,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.HorizontalAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_ListViewItemPresenterHorizontalContentAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ListViewItemPresenterVerticalContentAlignment
@@ -8033,10 +9812,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.VerticalAlignment is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.VerticalAlignment;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_ListViewItemPresenterVerticalContentAlignment (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8046,9 +9829,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.VerticalAlignment
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_ListViewItemPresenterVerticalContentAlignment (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ListViewItemPresenterPadding
@@ -8057,10 +9844,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_ListViewItemPresenterPadding (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8070,9 +9861,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_ListViewItemPresenterPadding (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerOverBackgroundMargin
@@ -8081,10 +9876,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_PointerOverBackgroundMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8094,9 +9893,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_PointerOverBackgroundMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ContentMargin
@@ -8105,10 +9908,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IListViewItemPresenter.all.get_ContentMargin (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8118,9 +9925,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IListViewItemPresenter.all.put_ContentMargin (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedPressedBackground
@@ -8129,15 +9940,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_SelectedPressedBackground (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8149,13 +9964,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_SelectedPressedBackground (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PressedBackground
@@ -8164,15 +9983,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_PressedBackground (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8184,13 +10007,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_PressedBackground (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckBoxBrush
@@ -8199,15 +10026,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_CheckBoxBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8219,13 +10050,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_CheckBoxBrush (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusSecondaryBorderBrush
@@ -8234,15 +10069,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_FocusSecondaryBorderBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8254,13 +10093,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_FocusSecondaryBorderBrush (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CheckMode
@@ -8269,14 +10112,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.get_CheckMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8286,13 +10133,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_CheckMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerOverForeground
@@ -8301,15 +10152,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_PointerOverForeground (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8321,13 +10176,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_PointerOverForeground (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RevealBackground
@@ -8336,15 +10195,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_RevealBackground (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8356,13 +10219,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_RevealBackground (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RevealBorderBrush
@@ -8371,15 +10238,19 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          m_Interface := QInterface (this.m_IListViewItemPresenter.all);
          Hr := m_Interface.get_RevealBorderBrush (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -8391,13 +10262,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_RevealBorderBrush (value.m_IBrush.all);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RevealBorderThickness
@@ -8406,14 +10281,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.get_RevealBorderThickness (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8423,13 +10302,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_RevealBorderThickness (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RevealBackgroundShowsAboveContent
@@ -8438,14 +10321,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.get_RevealBackgroundShowsAboveContent (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8455,13 +10342,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IListViewItemPresenter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListViewItemPresenter.all);
       Hr := m_Interface.put_RevealBackgroundShowsAboveContent (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8473,12 +10364,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ListViewItemTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IListViewItemTemplateSettings, IListViewItemTemplateSettings_Ptr);
    begin
       if this.m_IListViewItemTemplateSettings /= null then
          if this.m_IListViewItemTemplateSettings.all /= null then
-            RefCount := this.m_IListViewItemTemplateSettings.all.Release;
+            temp := this.m_IListViewItemTemplateSettings.all.Release;
             Free (this.m_IListViewItemTemplateSettings);
          end if;
       end if;
@@ -8493,10 +10384,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IListViewItemTemplateSettings.all.get_DragItemsCount (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8509,12 +10404,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out LoopingSelector) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoopingSelector, ILoopingSelector_Ptr);
    begin
       if this.m_ILoopingSelector /= null then
          if this.m_ILoopingSelector.all /= null then
-            RefCount := this.m_ILoopingSelector.all.Release;
+            temp := this.m_ILoopingSelector.all.Release;
             Free (this.m_ILoopingSelector);
          end if;
       end if;
@@ -8526,140 +10421,168 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_ShouldLoopProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShouldLoopProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ItemsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedIndexProperty_LoopingSelector
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedIndexProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_SelectedItemProperty_LoopingSelector
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedItemProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ItemWidthProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemWidthProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ItemHeightProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemHeightProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ItemTemplateProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.LoopingSelector");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILoopingSelectorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ItemTemplateProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -8672,10 +10595,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILoopingSelector.all.get_ShouldLoop (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8685,9 +10612,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_ShouldLoop (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Items
@@ -8696,13 +10627,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IVector_IInspectable.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IInspectable.Kind;
    begin
       Hr := this.m_ILoopingSelector.all.get_Items (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IInspectable (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -8712,9 +10647,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_Items (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedIndex
@@ -8723,10 +10662,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILoopingSelector.all.get_SelectedIndex (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8736,9 +10679,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_SelectedIndex (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_SelectedItem
@@ -8747,10 +10694,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ILoopingSelector.all.get_SelectedItem (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8760,9 +10711,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_SelectedItem (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ItemWidth
@@ -8771,10 +10726,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILoopingSelector.all.get_ItemWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8784,9 +10743,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_ItemWidth (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ItemHeight
@@ -8795,10 +10758,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ILoopingSelector.all.get_ItemHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8808,9 +10775,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_ItemHeight (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ItemTemplate
@@ -8819,11 +10790,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.DataTemplate'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDataTemplate;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DataTemplate do
          Hr := this.m_ILoopingSelector.all.get_ItemTemplate (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDataTemplate := new Windows.UI.Xaml.IDataTemplate;
          Retval.m_IDataTemplate.all := m_ComRetVal;
       end return;
@@ -8835,9 +10810,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.DataTemplate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.put_ItemTemplate (value.m_IDataTemplate.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_SelectionChanged
@@ -8847,10 +10826,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILoopingSelector.all.add_SelectionChanged (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8860,9 +10843,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILoopingSelector.all.remove_SelectionChanged (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -8874,12 +10861,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out LoopingSelectorItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoopingSelectorItem, ILoopingSelectorItem_Ptr);
    begin
       if this.m_ILoopingSelectorItem /= null then
          if this.m_ILoopingSelectorItem.all /= null then
-            RefCount := this.m_ILoopingSelectorItem.all.Release;
+            temp := this.m_ILoopingSelectorItem.all.Release;
             Free (this.m_ILoopingSelectorItem);
          end if;
       end if;
@@ -8897,12 +10884,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out LoopingSelectorPanel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILoopingSelectorPanel, ILoopingSelectorPanel_Ptr);
    begin
       if this.m_ILoopingSelectorPanel /= null then
          if this.m_ILoopingSelectorPanel.all /= null then
-            RefCount := this.m_ILoopingSelectorPanel.all.Release;
+            temp := this.m_ILoopingSelectorPanel.all.Release;
             Free (this.m_ILoopingSelectorPanel);
          end if;
       end if;
@@ -8917,14 +10904,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.get_AreHorizontalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8934,14 +10925,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.get_AreVerticalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8952,14 +10947,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.add_HorizontalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -8969,13 +10968,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.remove_HorizontalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VerticalSnapPointsChanged
@@ -8985,14 +10988,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.add_VerticalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9002,13 +11009,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.remove_VerticalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetIrregularSnapPoints
@@ -9019,17 +11030,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IVectorView_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Single.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.GetIrregularSnapPoints (orientation, alignment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -9042,14 +11057,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.ILoopingSelectorPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorPanel.all);
       Hr := m_Interface.GetRegularSnapPoints (orientation, alignment, offset, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9062,12 +11081,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out MenuFlyoutItemTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMenuFlyoutItemTemplateSettings, IMenuFlyoutItemTemplateSettings_Ptr);
    begin
       if this.m_IMenuFlyoutItemTemplateSettings /= null then
          if this.m_IMenuFlyoutItemTemplateSettings.all /= null then
-            RefCount := this.m_IMenuFlyoutItemTemplateSettings.all.Release;
+            temp := this.m_IMenuFlyoutItemTemplateSettings.all.Release;
             Free (this.m_IMenuFlyoutItemTemplateSettings);
          end if;
       end if;
@@ -9082,10 +11101,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMenuFlyoutItemTemplateSettings.all.get_KeyboardAcceleratorTextMinWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9098,12 +11121,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out MenuFlyoutPresenterTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IMenuFlyoutPresenterTemplateSettings, IMenuFlyoutPresenterTemplateSettings_Ptr);
    begin
       if this.m_IMenuFlyoutPresenterTemplateSettings /= null then
          if this.m_IMenuFlyoutPresenterTemplateSettings.all /= null then
-            RefCount := this.m_IMenuFlyoutPresenterTemplateSettings.all.Release;
+            temp := this.m_IMenuFlyoutPresenterTemplateSettings.all.Release;
             Free (this.m_IMenuFlyoutPresenterTemplateSettings);
          end if;
       end if;
@@ -9118,10 +11141,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IMenuFlyoutPresenterTemplateSettings.all.get_FlyoutContentMinWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9134,12 +11161,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out NavigationViewItemPresenter) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INavigationViewItemPresenter, INavigationViewItemPresenter_Ptr);
    begin
       if this.m_INavigationViewItemPresenter /= null then
          if this.m_INavigationViewItemPresenter.all /= null then
-            RefCount := this.m_INavigationViewItemPresenter.all.Release;
+            temp := this.m_INavigationViewItemPresenter.all.Release;
             Free (this.m_INavigationViewItemPresenter);
          end if;
       end if;
@@ -9155,9 +11182,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return NavigationViewItemPresenter is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter");
       m_Factory    : access INavigationViewItemPresenterFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter;
    begin
       return RetVal : NavigationViewItemPresenter do
@@ -9166,9 +11194,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_INavigationViewItemPresenter := new Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter;
             Retval.m_INavigationViewItemPresenter.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9178,20 +11206,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_IconProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenterStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemPresenterStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IconProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9204,11 +11236,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.IconElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.IIconElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.IconElement do
          Hr := this.m_INavigationViewItemPresenter.all.get_Icon (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIconElement := new Windows.UI.Xaml.Controls.IIconElement;
          Retval.m_IIconElement.all := m_ComRetVal;
       end return;
@@ -9220,9 +11256,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.IconElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INavigationViewItemPresenter.all.put_Icon (value.m_IIconElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9234,12 +11274,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out OrientedVirtualizingPanel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IOrientedVirtualizingPanel, IOrientedVirtualizingPanel_Ptr);
    begin
       if this.m_IOrientedVirtualizingPanel /= null then
          if this.m_IOrientedVirtualizingPanel.all /= null then
-            RefCount := this.m_IOrientedVirtualizingPanel.all.Release;
+            temp := this.m_IOrientedVirtualizingPanel.all.Release;
             Free (this.m_IOrientedVirtualizingPanel);
          end if;
       end if;
@@ -9257,10 +11297,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_CanVerticallyScroll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9270,9 +11314,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.put_CanVerticallyScroll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_CanHorizontallyScroll
@@ -9281,10 +11329,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_CanHorizontallyScroll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9294,9 +11346,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.put_CanHorizontallyScroll (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExtentWidth
@@ -9305,10 +11361,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_ExtentWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9318,10 +11378,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_ExtentHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9331,10 +11395,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_ViewportWidth (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9344,10 +11412,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_ViewportHeight (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9357,10 +11429,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_HorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9370,10 +11446,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_VerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9383,10 +11463,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.get_ScrollOwner (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9396,9 +11480,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.put_ScrollOwner (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineUp
@@ -9406,9 +11494,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.LineUp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineDown
@@ -9416,9 +11508,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.LineDown;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineLeft
@@ -9426,9 +11522,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.LineLeft;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure LineRight
@@ -9436,9 +11536,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.LineRight;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageUp
@@ -9446,9 +11550,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.PageUp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageDown
@@ -9456,9 +11564,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.PageDown;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageLeft
@@ -9466,9 +11578,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.PageLeft;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure PageRight
@@ -9476,9 +11592,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.PageRight;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelUp
@@ -9486,9 +11606,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.MouseWheelUp;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelDown
@@ -9496,9 +11620,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.MouseWheelDown;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelLeft
@@ -9506,9 +11634,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.MouseWheelLeft;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure MouseWheelRight
@@ -9516,9 +11648,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out OrientedVirtualizingPanel
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.MouseWheelRight;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetHorizontalOffset
@@ -9527,9 +11663,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       offset : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.SetHorizontalOffset (offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetVerticalOffset
@@ -9538,9 +11678,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       offset : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.SetVerticalOffset (offset);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function MakeVisible
@@ -9551,10 +11695,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IOrientedVirtualizingPanel.all.MakeVisible (visual.m_IUIElement.all, rectangle, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9564,14 +11712,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.get_AreHorizontalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9581,14 +11733,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.get_AreVerticalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9599,14 +11755,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.add_HorizontalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9616,13 +11776,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.remove_HorizontalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VerticalSnapPointsChanged
@@ -9632,14 +11796,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.add_VerticalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9649,13 +11817,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.remove_VerticalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetIrregularSnapPoints
@@ -9666,17 +11838,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IVectorView_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Single.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.GetIrregularSnapPoints (orientation, alignment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -9689,14 +11865,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.GetRegularSnapPoints (orientation, alignment, offset, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9708,13 +11888,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       second : WinRt.Int32_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.IInsertionPanel := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IOrientedVirtualizingPanel_Interface, WinRt.Windows.UI.Xaml.Controls.IInsertionPanel, WinRt.Windows.UI.Xaml.Controls.IID_IInsertionPanel'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientedVirtualizingPanel.all);
       Hr := m_Interface.GetInsertionIndexes (position, first, second);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -9726,12 +11910,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out PivotHeaderItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPivotHeaderItem, IPivotHeaderItem_Ptr);
    begin
       if this.m_IPivotHeaderItem /= null then
          if this.m_IPivotHeaderItem.all /= null then
-            RefCount := this.m_IPivotHeaderItem.all.Release;
+            temp := this.m_IPivotHeaderItem.all.Release;
             Free (this.m_IPivotHeaderItem);
          end if;
       end if;
@@ -9747,9 +11931,10 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return PivotHeaderItem is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem");
       m_Factory    : access IPivotHeaderItemFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IPivotHeaderItem;
    begin
       return RetVal : PivotHeaderItem do
@@ -9758,9 +11943,9 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IPivotHeaderItem := new Windows.UI.Xaml.Controls.Primitives.IPivotHeaderItem;
             Retval.m_IPivotHeaderItem.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9776,12 +11961,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out PivotHeaderPanel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPivotHeaderPanel, IPivotHeaderPanel_Ptr);
    begin
       if this.m_IPivotHeaderPanel /= null then
          if this.m_IPivotHeaderPanel.all /= null then
-            RefCount := this.m_IPivotHeaderPanel.all.Release;
+            temp := this.m_IPivotHeaderPanel.all.Release;
             Free (this.m_IPivotHeaderPanel);
          end if;
       end if;
@@ -9792,7 +11977,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return PivotHeaderPanel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IPivotHeaderPanel;
    begin
       return RetVal : PivotHeaderPanel do
@@ -9801,7 +11987,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IPivotHeaderPanel := new Windows.UI.Xaml.Controls.Primitives.IPivotHeaderPanel;
             Retval.m_IPivotHeaderPanel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9817,12 +12003,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out PivotPanel) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPivotPanel, IPivotPanel_Ptr);
    begin
       if this.m_IPivotPanel /= null then
          if this.m_IPivotPanel.all /= null then
-            RefCount := this.m_IPivotPanel.all.Release;
+            temp := this.m_IPivotPanel.all.Release;
             Free (this.m_IPivotPanel);
          end if;
       end if;
@@ -9833,7 +12019,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return PivotPanel is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotPanel");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotPanel");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IPivotPanel;
    begin
       return RetVal : PivotPanel do
@@ -9842,7 +12029,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IPivotPanel := new Windows.UI.Xaml.Controls.Primitives.IPivotPanel;
             Retval.m_IPivotPanel.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -9855,14 +12042,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.get_AreHorizontalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9872,14 +12063,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.get_AreVerticalSnapPointsRegular (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9890,14 +12085,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.add_HorizontalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9907,13 +12106,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.remove_HorizontalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_VerticalSnapPointsChanged
@@ -9923,14 +12126,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.add_VerticalSnapPointsChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -9940,13 +12147,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.remove_VerticalSnapPointsChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetIrregularSnapPoints
@@ -9957,17 +12168,21 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return IVectorView_Single.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_Single.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.GetIrregularSnapPoints (orientation, alignment, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_Single (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -9980,14 +12195,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Single is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Single;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IScrollSnapPointsInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPivotPanel.all);
       Hr := m_Interface.GetRegularSnapPoints (orientation, alignment, offset, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10000,12 +12219,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out Popup) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPopup, IPopup_Ptr);
    begin
       if this.m_IPopup /= null then
          if this.m_IPopup.all /= null then
-            RefCount := this.m_IPopup.all.Release;
+            temp := this.m_IPopup.all.Release;
             Free (this.m_IPopup);
          end if;
       end if;
@@ -10016,7 +12235,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return Popup is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IPopup;
    begin
       return RetVal : Popup do
@@ -10025,7 +12245,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IPopup := new Windows.UI.Xaml.Controls.Primitives.IPopup;
             Retval.m_IPopup.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10035,160 +12255,192 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_LightDismissOverlayModeProperty_Popup
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LightDismissOverlayModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ShouldConstrainToRootBoundsProperty_Popup
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ShouldConstrainToRootBoundsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ChildProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ChildProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsOpenProperty_Popup
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsOpenProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_HorizontalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_HorizontalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_VerticalOffsetProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_VerticalOffsetProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ChildTransitionsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ChildTransitionsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsLightDismissEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPopupStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsLightDismissEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10201,11 +12453,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IPopup.all.get_Child (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -10217,9 +12473,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.put_Child (value.m_IUIElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsOpen
@@ -10228,10 +12488,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPopup.all.get_IsOpen (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10241,9 +12505,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.put_IsOpen (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HorizontalOffset
@@ -10252,10 +12520,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPopup.all.get_HorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10265,9 +12537,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.put_HorizontalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_VerticalOffset
@@ -10276,10 +12552,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IPopup.all.get_VerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10289,9 +12569,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.put_VerticalOffset (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ChildTransitions
@@ -10300,11 +12584,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.TransitionCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.TransitionCollection do
          Hr := this.m_IPopup.all.get_ChildTransitions (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -10316,9 +12604,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Animation.TransitionCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.put_ChildTransitions (value.m_GenericObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsLightDismissEnabled
@@ -10327,10 +12619,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPopup.all.get_IsLightDismissEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10340,9 +12636,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.put_IsLightDismissEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Opened
@@ -10352,10 +12652,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPopup.all.add_Opened (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10365,9 +12669,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.remove_Opened (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Closed
@@ -10377,10 +12685,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPopup.all.add_Closed (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10390,9 +12702,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPopup.all.remove_Closed (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_LightDismissOverlayMode
@@ -10401,14 +12717,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.LightDismissOverlayMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPopup.all);
       Hr := m_Interface.get_LightDismissOverlayMode (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10418,13 +12738,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.LightDismissOverlayMode
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup2, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPopup.all);
       Hr := m_Interface.put_LightDismissOverlayMode (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ShouldConstrainToRootBounds
@@ -10433,14 +12757,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPopup.all);
       Hr := m_Interface.get_ShouldConstrainToRootBounds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10450,13 +12778,17 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPopup.all);
       Hr := m_Interface.put_ShouldConstrainToRootBounds (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsConstrainedToRootBounds
@@ -10465,14 +12797,18 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup_Interface, WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup3, WinRt.Windows.UI.Xaml.Controls.Primitives.IID_IPopup3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPopup.all);
       Hr := m_Interface.get_IsConstrainedToRootBounds (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10485,12 +12821,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ProgressBarTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProgressBarTemplateSettings, IProgressBarTemplateSettings_Ptr);
    begin
       if this.m_IProgressBarTemplateSettings /= null then
          if this.m_IProgressBarTemplateSettings.all /= null then
-            RefCount := this.m_IProgressBarTemplateSettings.all.Release;
+            temp := this.m_IProgressBarTemplateSettings.all.Release;
             Free (this.m_IProgressBarTemplateSettings);
          end if;
       end if;
@@ -10505,10 +12841,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_EllipseDiameter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10518,10 +12858,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_EllipseOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10531,10 +12875,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_EllipseAnimationWellPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10544,10 +12892,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_EllipseAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10557,10 +12909,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_ContainerAnimationStartPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10570,10 +12926,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_ContainerAnimationEndPosition (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10583,10 +12943,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressBarTemplateSettings.all.get_IndicatorLengthDelta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10599,12 +12963,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ProgressRingTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProgressRingTemplateSettings, IProgressRingTemplateSettings_Ptr);
    begin
       if this.m_IProgressRingTemplateSettings /= null then
          if this.m_IProgressRingTemplateSettings.all /= null then
-            RefCount := this.m_IProgressRingTemplateSettings.all.Release;
+            temp := this.m_IProgressRingTemplateSettings.all.Release;
             Free (this.m_IProgressRingTemplateSettings);
          end if;
       end if;
@@ -10619,10 +12983,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressRingTemplateSettings.all.get_EllipseDiameter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10632,10 +13000,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IProgressRingTemplateSettings.all.get_EllipseOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10645,10 +13017,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IProgressRingTemplateSettings.all.get_MaxSideLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10661,12 +13037,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out RangeBaseValueChangedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRangeBaseValueChangedEventArgs, IRangeBaseValueChangedEventArgs_Ptr);
    begin
       if this.m_IRangeBaseValueChangedEventArgs /= null then
          if this.m_IRangeBaseValueChangedEventArgs.all /= null then
-            RefCount := this.m_IRangeBaseValueChangedEventArgs.all.Release;
+            temp := this.m_IRangeBaseValueChangedEventArgs.all.Release;
             Free (this.m_IRangeBaseValueChangedEventArgs);
          end if;
       end if;
@@ -10681,10 +13057,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBaseValueChangedEventArgs.all.get_OldValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10694,10 +13074,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IRangeBaseValueChangedEventArgs.all.get_NewValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10711,7 +13095,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       e : Windows.UI.Xaml.Controls.Primitives.IRangeBaseValueChangedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -10726,12 +13110,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out RepeatButton) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRepeatButton, IRepeatButton_Ptr);
    begin
       if this.m_IRepeatButton /= null then
          if this.m_IRepeatButton.all /= null then
-            RefCount := this.m_IRepeatButton.all.Release;
+            temp := this.m_IRepeatButton.all.Release;
             Free (this.m_IRepeatButton);
          end if;
       end if;
@@ -10742,7 +13126,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return RepeatButton is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IRepeatButton;
    begin
       return RetVal : RepeatButton do
@@ -10751,7 +13136,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IRepeatButton := new Windows.UI.Xaml.Controls.Primitives.IRepeatButton;
             Retval.m_IRepeatButton.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10761,40 +13146,48 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_DelayProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRepeatButtonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRepeatButtonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DelayProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IntervalProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRepeatButtonStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRepeatButtonStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IntervalProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10807,10 +13200,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IRepeatButton.all.get_Delay (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10820,9 +13217,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRepeatButton.all.put_Delay (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Interval
@@ -10831,10 +13232,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_IRepeatButton.all.get_Interval (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10844,9 +13249,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRepeatButton.all.put_Interval (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -10858,12 +13267,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ScrollBar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScrollBar, IScrollBar_Ptr);
    begin
       if this.m_IScrollBar /= null then
          if this.m_IScrollBar.all /= null then
-            RefCount := this.m_IScrollBar.all.Release;
+            temp := this.m_IScrollBar.all.Release;
             Free (this.m_IScrollBar);
          end if;
       end if;
@@ -10874,7 +13283,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return ScrollBar is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IScrollBar;
    begin
       return RetVal : ScrollBar do
@@ -10883,7 +13293,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IScrollBar := new Windows.UI.Xaml.Controls.Primitives.IScrollBar;
             Retval.m_IScrollBar.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10893,60 +13303,72 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_OrientationProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollBarStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollBarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_OrientationProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ViewportSizeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollBarStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollBarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ViewportSizeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IndicatorModeProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollBarStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollBarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IndicatorModeProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -10959,10 +13381,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Orientation is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Orientation;
    begin
       Hr := this.m_IScrollBar.all.get_Orientation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10972,9 +13398,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Orientation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScrollBar.all.put_Orientation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ViewportSize
@@ -10983,10 +13413,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IScrollBar.all.get_ViewportSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -10996,9 +13430,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScrollBar.all.put_ViewportSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IndicatorMode
@@ -11007,10 +13445,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode;
    begin
       Hr := this.m_IScrollBar.all.get_IndicatorMode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11020,9 +13462,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScrollBar.all.put_IndicatorMode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Scroll
@@ -11032,10 +13478,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IScrollBar.all.add_Scroll (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11045,9 +13495,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IScrollBar.all.remove_Scroll (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11059,12 +13513,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ScrollEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IScrollEventArgs, IScrollEventArgs_Ptr);
    begin
       if this.m_IScrollEventArgs /= null then
          if this.m_IScrollEventArgs.all /= null then
-            RefCount := this.m_IScrollEventArgs.all.Release;
+            temp := this.m_IScrollEventArgs.all.Release;
             Free (this.m_IScrollEventArgs);
          end if;
       end if;
@@ -11075,7 +13529,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return ScrollEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs;
    begin
       return RetVal : ScrollEventArgs do
@@ -11084,7 +13539,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IScrollEventArgs := new Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs;
             Retval.m_IScrollEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11097,10 +13552,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IScrollEventArgs.all.get_NewValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11110,10 +13569,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollEventType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.Primitives.ScrollEventType;
    begin
       Hr := this.m_IScrollEventArgs.all.get_ScrollEventType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11127,7 +13590,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       e : Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -11142,12 +13605,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out SettingsFlyoutTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISettingsFlyoutTemplateSettings, ISettingsFlyoutTemplateSettings_Ptr);
    begin
       if this.m_ISettingsFlyoutTemplateSettings /= null then
          if this.m_ISettingsFlyoutTemplateSettings.all /= null then
-            RefCount := this.m_ISettingsFlyoutTemplateSettings.all.Release;
+            temp := this.m_ISettingsFlyoutTemplateSettings.all.Release;
             Free (this.m_ISettingsFlyoutTemplateSettings);
          end if;
       end if;
@@ -11162,11 +13625,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ISettingsFlyoutTemplateSettings.all.get_HeaderBackground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -11178,11 +13645,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ISettingsFlyoutTemplateSettings.all.get_HeaderForeground (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -11194,11 +13665,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ISettingsFlyoutTemplateSettings.all.get_BorderBrush (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -11210,10 +13685,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_ISettingsFlyoutTemplateSettings.all.get_BorderThickness (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11223,11 +13702,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.ImageSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IImageSource;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.ImageSource do
          Hr := this.m_ISettingsFlyoutTemplateSettings.all.get_IconSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IImageSource := new Windows.UI.Xaml.Media.IImageSource;
          Retval.m_IImageSource.all := m_ComRetVal;
       end return;
@@ -11239,11 +13722,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.TransitionCollection'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.TransitionCollection do
          Hr := this.m_ISettingsFlyoutTemplateSettings.all.get_ContentTransitions (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_GenericObject := new GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
@@ -11258,12 +13745,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out SplitViewTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISplitViewTemplateSettings, ISplitViewTemplateSettings_Ptr);
    begin
       if this.m_ISplitViewTemplateSettings /= null then
          if this.m_ISplitViewTemplateSettings.all /= null then
-            RefCount := this.m_ISplitViewTemplateSettings.all.Release;
+            temp := this.m_ISplitViewTemplateSettings.all.Release;
             Free (this.m_ISplitViewTemplateSettings);
          end if;
       end if;
@@ -11278,10 +13765,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitViewTemplateSettings.all.get_OpenPaneLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11291,10 +13782,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitViewTemplateSettings.all.get_NegativeOpenPaneLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11304,10 +13799,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitViewTemplateSettings.all.get_OpenPaneLengthMinusCompactLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11317,10 +13816,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_ISplitViewTemplateSettings.all.get_NegativeOpenPaneLengthMinusCompactLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11330,10 +13833,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.GridLength is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.GridLength;
    begin
       Hr := this.m_ISplitViewTemplateSettings.all.get_OpenPaneGridLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11343,10 +13850,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.GridLength is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.GridLength;
    begin
       Hr := this.m_ISplitViewTemplateSettings.all.get_CompactPaneGridLength (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11359,12 +13870,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out Thumb) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IThumb, IThumb_Ptr);
    begin
       if this.m_IThumb /= null then
          if this.m_IThumb.all /= null then
-            RefCount := this.m_IThumb.all.Release;
+            temp := this.m_IThumb.all.Release;
             Free (this.m_IThumb);
          end if;
       end if;
@@ -11375,7 +13886,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return Thumb is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Thumb");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Thumb");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.IThumb;
    begin
       return RetVal : Thumb do
@@ -11384,7 +13896,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_IThumb := new Windows.UI.Xaml.Controls.Primitives.IThumb;
             Retval.m_IThumb.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11394,20 +13906,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_IsDraggingProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Thumb");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Thumb");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.IThumbStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IThumbStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsDraggingProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11420,10 +13936,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IThumb.all.get_IsDragging (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11434,10 +13954,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IThumb.all.add_DragStarted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11447,9 +13971,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IThumb.all.remove_DragStarted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DragDelta
@@ -11459,10 +13987,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IThumb.all.add_DragDelta (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11472,9 +14004,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IThumb.all.remove_DragDelta (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_DragCompleted
@@ -11484,10 +14020,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IThumb.all.add_DragCompleted (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11497,9 +14037,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IThumb.all.remove_DragCompleted (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure CancelDrag
@@ -11507,9 +14051,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       this : in out Thumb
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IThumb.all.CancelDrag;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11521,12 +14069,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out TickBar) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITickBar, ITickBar_Ptr);
    begin
       if this.m_ITickBar /= null then
          if this.m_ITickBar.all /= null then
-            RefCount := this.m_ITickBar.all.Release;
+            temp := this.m_ITickBar.all.Release;
             Free (this.m_ITickBar);
          end if;
       end if;
@@ -11537,7 +14085,8 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function Constructor return TickBar is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.TickBar");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.TickBar");
       m_ComRetVal  : aliased Windows.UI.Xaml.Controls.Primitives.ITickBar;
    begin
       return RetVal : TickBar do
@@ -11546,7 +14095,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
             Retval.m_ITickBar := new Windows.UI.Xaml.Controls.Primitives.ITickBar;
             Retval.m_ITickBar.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11556,20 +14105,24 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function get_FillProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.TickBar");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.TickBar");
       m_Factory        : access WinRt.Windows.UI.Xaml.Controls.Primitives.ITickBarStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITickBarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_FillProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -11582,11 +14135,15 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Windows.UI.Xaml.Media.Brush'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Brush do
          Hr := this.m_ITickBar.all.get_Fill (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
@@ -11598,9 +14155,13 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
       value : Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITickBar.all.put_Fill (value.m_IBrush.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -11612,12 +14173,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ToggleSwitchTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToggleSwitchTemplateSettings, IToggleSwitchTemplateSettings_Ptr);
    begin
       if this.m_IToggleSwitchTemplateSettings /= null then
          if this.m_IToggleSwitchTemplateSettings.all /= null then
-            RefCount := this.m_IToggleSwitchTemplateSettings.all.Release;
+            temp := this.m_IToggleSwitchTemplateSettings.all.Release;
             Free (this.m_IToggleSwitchTemplateSettings);
          end if;
       end if;
@@ -11632,10 +14193,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_KnobCurrentToOnOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11645,10 +14210,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_KnobCurrentToOffOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11658,10 +14227,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_KnobOnToOffOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11671,10 +14244,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_KnobOffToOnOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11684,10 +14261,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_CurtainCurrentToOnOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11697,10 +14278,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_CurtainCurrentToOffOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11710,10 +14295,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_CurtainOnToOffOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11723,10 +14312,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToggleSwitchTemplateSettings.all.get_CurtainOffToOnOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11739,12 +14332,12 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    end;
 
    procedure Finalize (this : in out ToolTipTemplateSettings) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IToolTipTemplateSettings, IToolTipTemplateSettings_Ptr);
    begin
       if this.m_IToolTipTemplateSettings /= null then
          if this.m_IToolTipTemplateSettings.all /= null then
-            RefCount := this.m_IToolTipTemplateSettings.all.Release;
+            temp := this.m_IToolTipTemplateSettings.all.Release;
             Free (this.m_IToolTipTemplateSettings);
          end if;
       end if;
@@ -11759,10 +14352,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToolTipTemplateSettings.all.get_FromHorizontalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -11772,10 +14369,14 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IToolTipTemplateSettings.all.get_FromVerticalOffset (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

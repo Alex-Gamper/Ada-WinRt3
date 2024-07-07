@@ -42,12 +42,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    end;
 
    procedure Finalize (this : in out UserDataAccountPartnerAccountInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountPartnerAccountInfo, IUserDataAccountPartnerAccountInfo_Ptr);
    begin
       if this.m_IUserDataAccountPartnerAccountInfo /= null then
          if this.m_IUserDataAccountPartnerAccountInfo.all /= null then
-            RefCount := this.m_IUserDataAccountPartnerAccountInfo.all.Release;
+            temp := this.m_IUserDataAccountPartnerAccountInfo.all.Release;
             Free (this.m_IUserDataAccountPartnerAccountInfo);
          end if;
       end if;
@@ -62,13 +62,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccountPartnerAccountInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -78,10 +82,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IUserDataAccountPartnerAccountInfo.all.get_Priority (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -91,10 +99,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind;
    begin
       Hr := this.m_IUserDataAccountPartnerAccountInfo.all.get_AccountKind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -107,12 +119,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    end;
 
    procedure Finalize (this : in out UserDataAccountProviderAddAccountOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountProviderAddAccountOperation, IUserDataAccountProviderAddAccountOperation_Ptr);
    begin
       if this.m_IUserDataAccountProviderAddAccountOperation /= null then
          if this.m_IUserDataAccountProviderAddAccountOperation.all /= null then
-            RefCount := this.m_IUserDataAccountProviderAddAccountOperation.all.Release;
+            temp := this.m_IUserDataAccountProviderAddAccountOperation.all.Release;
             Free (this.m_IUserDataAccountProviderAddAccountOperation);
          end if;
       end if;
@@ -127,10 +139,14 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds;
    begin
       Hr := this.m_IUserDataAccountProviderAddAccountOperation.all.get_ContentKinds (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -140,13 +156,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return IVectorView_IUserDataAccountPartnerAccountInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IUserDataAccountPartnerAccountInfo.Kind;
    begin
       Hr := this.m_IUserDataAccountProviderAddAccountOperation.all.get_PartnerAccountInfos (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IUserDataAccountPartnerAccountInfo (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -156,11 +176,15 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       userDataAccountId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userDataAccountId : WinRt.HString := To_HString (userDataAccountId);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userDataAccountId : constant WinRt.HString := To_HString (userDataAccountId);
    begin
       Hr := this.m_IUserDataAccountProviderAddAccountOperation.all.ReportCompleted (HStr_userDataAccountId);
-      Hr := WindowsDeleteString (HStr_userDataAccountId);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_userDataAccountId);
    end;
 
    function get_Kind
@@ -169,14 +193,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderAddAccountOperation_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IID_IUserDataAccountProviderOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderAddAccountOperation.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -189,12 +217,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    end;
 
    procedure Finalize (this : in out UserDataAccountProviderResolveErrorsOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountProviderResolveErrorsOperation, IUserDataAccountProviderResolveErrorsOperation_Ptr);
    begin
       if this.m_IUserDataAccountProviderResolveErrorsOperation /= null then
          if this.m_IUserDataAccountProviderResolveErrorsOperation.all /= null then
-            RefCount := this.m_IUserDataAccountProviderResolveErrorsOperation.all.Release;
+            temp := this.m_IUserDataAccountProviderResolveErrorsOperation.all.Release;
             Free (this.m_IUserDataAccountProviderResolveErrorsOperation);
          end if;
       end if;
@@ -209,13 +237,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccountProviderResolveErrorsOperation.all.get_UserDataAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -224,9 +256,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       this : in out UserDataAccountProviderResolveErrorsOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataAccountProviderResolveErrorsOperation.all.ReportCompleted;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -235,14 +271,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderResolveErrorsOperation_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IID_IUserDataAccountProviderOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderResolveErrorsOperation.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -255,12 +295,12 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    end;
 
    procedure Finalize (this : in out UserDataAccountProviderSettingsOperation) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IUserDataAccountProviderSettingsOperation, IUserDataAccountProviderSettingsOperation_Ptr);
    begin
       if this.m_IUserDataAccountProviderSettingsOperation /= null then
          if this.m_IUserDataAccountProviderSettingsOperation.all /= null then
-            RefCount := this.m_IUserDataAccountProviderSettingsOperation.all.Release;
+            temp := this.m_IUserDataAccountProviderSettingsOperation.all.Release;
             Free (this.m_IUserDataAccountProviderSettingsOperation);
          end if;
       end if;
@@ -275,13 +315,17 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IUserDataAccountProviderSettingsOperation.all.get_UserDataAccountId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -290,9 +334,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       this : in out UserDataAccountProviderSettingsOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IUserDataAccountProviderSettingsOperation.all.ReportCompleted;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Kind
@@ -301,14 +349,18 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderSettingsOperation_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IID_IUserDataAccountProviderOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderSettingsOperation.all);
       Hr := m_Interface.get_Kind (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

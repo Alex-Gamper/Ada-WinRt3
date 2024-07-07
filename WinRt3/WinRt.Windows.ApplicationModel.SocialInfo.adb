@@ -45,12 +45,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    end;
 
    procedure Finalize (this : in out SocialFeedChildItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialFeedChildItem, ISocialFeedChildItem_Ptr);
    begin
       if this.m_ISocialFeedChildItem /= null then
          if this.m_ISocialFeedChildItem.all /= null then
-            RefCount := this.m_ISocialFeedChildItem.all.Release;
+            temp := this.m_ISocialFeedChildItem.all.Release;
             Free (this.m_ISocialFeedChildItem);
          end if;
       end if;
@@ -61,7 +61,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
 
    function Constructor return SocialFeedChildItem is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedChildItem");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedChildItem");
       m_ComRetVal  : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem;
    begin
       return RetVal : SocialFeedChildItem do
@@ -70,7 +71,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
             Retval.m_ISocialFeedChildItem := new Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem;
             Retval.m_ISocialFeedChildItem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -83,11 +84,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialUserInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialUserInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialUserInfo do
          Hr := this.m_ISocialFeedChildItem.all.get_Author (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialUserInfo := new Windows.ApplicationModel.SocialInfo.ISocialUserInfo;
          Retval.m_ISocialUserInfo.all := m_ComRetVal;
       end return;
@@ -99,11 +104,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialFeedChildItem.all.get_PrimaryContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
@@ -115,11 +124,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialFeedChildItem.all.get_SecondaryContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
@@ -131,10 +144,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISocialFeedChildItem.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -144,9 +161,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedChildItem.all.put_Timestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TargetUri
@@ -155,11 +176,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialFeedChildItem.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -171,9 +196,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedChildItem.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Thumbnails
@@ -182,13 +211,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return IVector_ISocialItemThumbnail.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ISocialItemThumbnail.Kind;
    begin
       Hr := this.m_ISocialFeedChildItem.all.get_Thumbnails (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ISocialItemThumbnail (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -198,11 +231,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem do
          Hr := this.m_ISocialFeedChildItem.all.get_SharedItem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedSharedItem := new Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
          Retval.m_ISocialFeedSharedItem.all := m_ComRetVal;
       end return;
@@ -214,9 +251,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedChildItem.all.put_SharedItem (value.m_ISocialFeedSharedItem.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -228,12 +269,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    end;
 
    procedure Finalize (this : in out SocialFeedContent) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialFeedContent, ISocialFeedContent_Ptr);
    begin
       if this.m_ISocialFeedContent /= null then
          if this.m_ISocialFeedContent.all /= null then
-            RefCount := this.m_ISocialFeedContent.all.Release;
+            temp := this.m_ISocialFeedContent.all.Release;
             Free (this.m_ISocialFeedContent);
          end if;
       end if;
@@ -248,13 +289,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialFeedContent.all.get_Title (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -264,11 +309,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISocialFeedContent.all.put_Title (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Message
@@ -277,13 +326,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialFeedContent.all.get_Message (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -293,11 +346,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISocialFeedContent.all.put_Message (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TargetUri
@@ -306,11 +363,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialFeedContent.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -322,9 +383,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedContent.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -336,12 +401,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    end;
 
    procedure Finalize (this : in out SocialFeedItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialFeedItem, ISocialFeedItem_Ptr);
    begin
       if this.m_ISocialFeedItem /= null then
          if this.m_ISocialFeedItem.all /= null then
-            RefCount := this.m_ISocialFeedItem.all.Release;
+            temp := this.m_ISocialFeedItem.all.Release;
             Free (this.m_ISocialFeedItem);
          end if;
       end if;
@@ -352,7 +417,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
 
    function Constructor return SocialFeedItem is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedItem");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedItem");
       m_ComRetVal  : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedItem;
    begin
       return RetVal : SocialFeedItem do
@@ -361,7 +427,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
             Retval.m_ISocialFeedItem := new Windows.ApplicationModel.SocialInfo.ISocialFeedItem;
             Retval.m_ISocialFeedItem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -374,11 +440,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialUserInfo'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialUserInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialUserInfo do
          Hr := this.m_ISocialFeedItem.all.get_Author (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialUserInfo := new Windows.ApplicationModel.SocialInfo.ISocialUserInfo;
          Retval.m_ISocialUserInfo.all := m_ComRetVal;
       end return;
@@ -390,11 +460,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialFeedItem.all.get_PrimaryContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
@@ -406,11 +480,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialFeedItem.all.get_SecondaryContent (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
@@ -422,10 +500,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISocialFeedItem.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -435,9 +517,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_Timestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TargetUri
@@ -446,11 +532,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialFeedItem.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -462,9 +552,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Thumbnails
@@ -473,13 +567,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return IVector_ISocialItemThumbnail.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_ISocialItemThumbnail.Kind;
    begin
       Hr := this.m_ISocialFeedItem.all.get_Thumbnails (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_ISocialItemThumbnail (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -489,11 +587,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem do
          Hr := this.m_ISocialFeedItem.all.get_SharedItem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedSharedItem := new Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
          Retval.m_ISocialFeedSharedItem.all := m_ComRetVal;
       end return;
@@ -505,9 +607,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_SharedItem (value.m_ISocialFeedSharedItem.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BadgeStyle
@@ -516,10 +622,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle;
    begin
       Hr := this.m_ISocialFeedItem.all.get_BadgeStyle (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -529,9 +639,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_BadgeStyle (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BadgeCountValue
@@ -540,10 +654,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Int32;
    begin
       Hr := this.m_ISocialFeedItem.all.get_BadgeCountValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -553,9 +671,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_BadgeCountValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RemoteId
@@ -564,13 +686,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialFeedItem.all.get_RemoteId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -580,11 +706,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISocialFeedItem.all.put_RemoteId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_ChildItem
@@ -593,11 +723,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedChildItem'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedChildItem do
          Hr := this.m_ISocialFeedItem.all.get_ChildItem (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedChildItem := new Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem;
          Retval.m_ISocialFeedChildItem.all := m_ComRetVal;
       end return;
@@ -609,9 +743,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.ApplicationModel.SocialInfo.SocialFeedChildItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_ChildItem (value.m_ISocialFeedChildItem.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Style
@@ -620,10 +758,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle;
    begin
       Hr := this.m_ISocialFeedItem.all.get_Style (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -633,9 +775,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedItem.all.put_Style (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -647,12 +793,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    end;
 
    procedure Finalize (this : in out SocialFeedSharedItem) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialFeedSharedItem, ISocialFeedSharedItem_Ptr);
    begin
       if this.m_ISocialFeedSharedItem /= null then
          if this.m_ISocialFeedSharedItem.all /= null then
-            RefCount := this.m_ISocialFeedSharedItem.all.Release;
+            temp := this.m_ISocialFeedSharedItem.all.Release;
             Free (this.m_ISocialFeedSharedItem);
          end if;
       end if;
@@ -663,7 +809,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
 
    function Constructor return SocialFeedSharedItem is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem");
       m_ComRetVal  : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
    begin
       return RetVal : SocialFeedSharedItem do
@@ -672,7 +819,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
             Retval.m_ISocialFeedSharedItem := new Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
             Retval.m_ISocialFeedSharedItem.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -685,11 +832,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialFeedSharedItem.all.get_OriginalSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -701,9 +852,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedSharedItem.all.put_OriginalSource (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Content
@@ -712,11 +867,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialFeedSharedItem.all.get_Content (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
@@ -728,10 +887,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISocialFeedSharedItem.all.get_Timestamp (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -741,9 +904,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedSharedItem.all.put_Timestamp (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TargetUri
@@ -752,11 +919,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialFeedSharedItem.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -768,9 +939,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedSharedItem.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure put_Thumbnail
@@ -779,9 +954,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialFeedSharedItem.all.put_Thumbnail (value.m_ISocialItemThumbnail.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Thumbnail
@@ -790,11 +969,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail do
          Hr := this.m_ISocialFeedSharedItem.all.get_Thumbnail (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_ISocialItemThumbnail := new Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
          Retval.m_ISocialItemThumbnail.all := m_ComRetVal;
       end return;
@@ -809,12 +992,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    end;
 
    procedure Finalize (this : in out SocialItemThumbnail) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialItemThumbnail, ISocialItemThumbnail_Ptr);
    begin
       if this.m_ISocialItemThumbnail /= null then
          if this.m_ISocialItemThumbnail.all /= null then
-            RefCount := this.m_ISocialItemThumbnail.all.Release;
+            temp := this.m_ISocialItemThumbnail.all.Release;
             Free (this.m_ISocialItemThumbnail);
          end if;
       end if;
@@ -825,7 +1008,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
 
    function Constructor return SocialItemThumbnail is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialItemThumbnail");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialItemThumbnail");
       m_ComRetVal  : aliased Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
    begin
       return RetVal : SocialItemThumbnail do
@@ -834,7 +1018,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
             Retval.m_ISocialItemThumbnail := new Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
             Retval.m_ISocialItemThumbnail.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -847,11 +1031,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialItemThumbnail.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -863,9 +1051,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialItemThumbnail.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ImageUri
@@ -874,11 +1066,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialItemThumbnail.all.get_ImageUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -890,9 +1086,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialItemThumbnail.all.put_ImageUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_BitmapSize
@@ -901,10 +1101,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Graphics.Imaging.BitmapSize is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
    begin
       Hr := this.m_ISocialItemThumbnail.all.get_BitmapSize (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -914,9 +1118,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Graphics.Imaging.BitmapSize
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialItemThumbnail.all.put_BitmapSize (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure SetImageAsync
@@ -925,7 +1133,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       image : Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -933,7 +1142,6 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -954,9 +1162,9 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -971,12 +1179,12 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    end;
 
    procedure Finalize (this : in out SocialUserInfo) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ISocialUserInfo, ISocialUserInfo_Ptr);
    begin
       if this.m_ISocialUserInfo /= null then
          if this.m_ISocialUserInfo.all /= null then
-            RefCount := this.m_ISocialUserInfo.all.Release;
+            temp := this.m_ISocialUserInfo.all.Release;
             Free (this.m_ISocialUserInfo);
          end if;
       end if;
@@ -991,13 +1199,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialUserInfo.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1007,11 +1219,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISocialUserInfo.all.put_DisplayName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_UserName
@@ -1020,13 +1236,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialUserInfo.all.get_UserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1036,11 +1256,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISocialUserInfo.all.put_UserName (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_RemoteId
@@ -1049,13 +1273,17 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_ISocialUserInfo.all.get_RemoteId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1065,11 +1293,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_ISocialUserInfo.all.put_RemoteId (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_TargetUri
@@ -1078,11 +1310,15 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialUserInfo.all.get_TargetUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1094,9 +1330,13 @@ package body WinRt.Windows.ApplicationModel.SocialInfo is
       value : Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ISocialUserInfo.all.put_TargetUri (value.m_IUriRuntimeClass.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
 end WinRt.Windows.ApplicationModel.SocialInfo;

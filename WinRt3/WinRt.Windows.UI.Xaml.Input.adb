@@ -51,12 +51,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out AccessKeyDisplayDismissedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccessKeyDisplayDismissedEventArgs, IAccessKeyDisplayDismissedEventArgs_Ptr);
    begin
       if this.m_IAccessKeyDisplayDismissedEventArgs /= null then
          if this.m_IAccessKeyDisplayDismissedEventArgs.all /= null then
-            RefCount := this.m_IAccessKeyDisplayDismissedEventArgs.all.Release;
+            temp := this.m_IAccessKeyDisplayDismissedEventArgs.all.Release;
             Free (this.m_IAccessKeyDisplayDismissedEventArgs);
          end if;
       end if;
@@ -67,7 +67,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return AccessKeyDisplayDismissedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyDisplayDismissedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyDisplayDismissedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IAccessKeyDisplayDismissedEventArgs;
    begin
       return RetVal : AccessKeyDisplayDismissedEventArgs do
@@ -76,7 +77,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IAccessKeyDisplayDismissedEventArgs := new Windows.UI.Xaml.Input.IAccessKeyDisplayDismissedEventArgs;
             Retval.m_IAccessKeyDisplayDismissedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -92,12 +93,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out AccessKeyDisplayRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccessKeyDisplayRequestedEventArgs, IAccessKeyDisplayRequestedEventArgs_Ptr);
    begin
       if this.m_IAccessKeyDisplayRequestedEventArgs /= null then
          if this.m_IAccessKeyDisplayRequestedEventArgs.all /= null then
-            RefCount := this.m_IAccessKeyDisplayRequestedEventArgs.all.Release;
+            temp := this.m_IAccessKeyDisplayRequestedEventArgs.all.Release;
             Free (this.m_IAccessKeyDisplayRequestedEventArgs);
          end if;
       end if;
@@ -108,7 +109,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return AccessKeyDisplayRequestedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyDisplayRequestedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyDisplayRequestedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IAccessKeyDisplayRequestedEventArgs;
    begin
       return RetVal : AccessKeyDisplayRequestedEventArgs do
@@ -117,7 +119,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IAccessKeyDisplayRequestedEventArgs := new Windows.UI.Xaml.Input.IAccessKeyDisplayRequestedEventArgs;
             Retval.m_IAccessKeyDisplayRequestedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -130,13 +132,17 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IAccessKeyDisplayRequestedEventArgs.all.get_PressedKeys (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -149,12 +155,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out AccessKeyInvokedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccessKeyInvokedEventArgs, IAccessKeyInvokedEventArgs_Ptr);
    begin
       if this.m_IAccessKeyInvokedEventArgs /= null then
          if this.m_IAccessKeyInvokedEventArgs.all /= null then
-            RefCount := this.m_IAccessKeyInvokedEventArgs.all.Release;
+            temp := this.m_IAccessKeyInvokedEventArgs.all.Release;
             Free (this.m_IAccessKeyInvokedEventArgs);
          end if;
       end if;
@@ -165,7 +171,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return AccessKeyInvokedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyInvokedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyInvokedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IAccessKeyInvokedEventArgs;
    begin
       return RetVal : AccessKeyInvokedEventArgs do
@@ -174,7 +181,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IAccessKeyInvokedEventArgs := new Windows.UI.Xaml.Input.IAccessKeyInvokedEventArgs;
             Retval.m_IAccessKeyInvokedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -187,10 +194,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IAccessKeyInvokedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -200,9 +211,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IAccessKeyInvokedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -214,12 +229,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out AccessKeyManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IAccessKeyManager, IAccessKeyManager_Ptr);
    begin
       if this.m_IAccessKeyManager /= null then
          if this.m_IAccessKeyManager.all /= null then
-            RefCount := this.m_IAccessKeyManager.all.Release;
+            temp := this.m_IAccessKeyManager.all.Release;
             Free (this.m_IAccessKeyManager);
          end if;
       end if;
@@ -231,17 +246,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    function get_AreKeyTipsEnabled
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_AreKeyTipsEnabled (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -250,32 +269,40 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.put_AreKeyTipsEnabled (value);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function get_IsDisplayModeEnabled
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.get_IsDisplayModeEnabled (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -285,17 +312,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_IsDisplayModeEnabledChanged (handler, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -304,30 +335,38 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_IsDisplayModeEnabledChanged (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    procedure ExitDisplayMode is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.AccessKeyManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IAccessKeyManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAccessKeyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.ExitDisplayMode;
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -342,12 +381,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out CanExecuteRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICanExecuteRequestedEventArgs, ICanExecuteRequestedEventArgs_Ptr);
    begin
       if this.m_ICanExecuteRequestedEventArgs /= null then
          if this.m_ICanExecuteRequestedEventArgs.all /= null then
-            RefCount := this.m_ICanExecuteRequestedEventArgs.all.Release;
+            temp := this.m_ICanExecuteRequestedEventArgs.all.Release;
             Free (this.m_ICanExecuteRequestedEventArgs);
          end if;
       end if;
@@ -362,10 +401,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_ICanExecuteRequestedEventArgs.all.get_Parameter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -375,10 +418,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICanExecuteRequestedEventArgs.all.get_CanExecute (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -388,9 +435,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICanExecuteRequestedEventArgs.all.put_CanExecute (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -402,12 +453,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out CharacterReceivedRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ICharacterReceivedRoutedEventArgs, ICharacterReceivedRoutedEventArgs_Ptr);
    begin
       if this.m_ICharacterReceivedRoutedEventArgs /= null then
          if this.m_ICharacterReceivedRoutedEventArgs.all /= null then
-            RefCount := this.m_ICharacterReceivedRoutedEventArgs.all.Release;
+            temp := this.m_ICharacterReceivedRoutedEventArgs.all.Release;
             Free (this.m_ICharacterReceivedRoutedEventArgs);
          end if;
       end if;
@@ -422,10 +473,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Wide_Char is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Wide_Char;
    begin
       Hr := this.m_ICharacterReceivedRoutedEventArgs.all.get_Character (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -435,10 +490,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Core.CorePhysicalKeyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CorePhysicalKeyStatus;
    begin
       Hr := this.m_ICharacterReceivedRoutedEventArgs.all.get_KeyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -448,10 +507,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ICharacterReceivedRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -461,9 +524,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ICharacterReceivedRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -475,12 +542,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ContextRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IContextRequestedEventArgs, IContextRequestedEventArgs_Ptr);
    begin
       if this.m_IContextRequestedEventArgs /= null then
          if this.m_IContextRequestedEventArgs.all /= null then
-            RefCount := this.m_IContextRequestedEventArgs.all.Release;
+            temp := this.m_IContextRequestedEventArgs.all.Release;
             Free (this.m_IContextRequestedEventArgs);
          end if;
       end if;
@@ -491,7 +558,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return ContextRequestedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ContextRequestedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ContextRequestedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IContextRequestedEventArgs;
    begin
       return RetVal : ContextRequestedEventArgs do
@@ -500,7 +568,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IContextRequestedEventArgs := new Windows.UI.Xaml.Input.IContextRequestedEventArgs;
             Retval.m_IContextRequestedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -513,10 +581,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IContextRequestedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -526,9 +598,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IContextRequestedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryGetPosition
@@ -539,10 +615,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IContextRequestedEventArgs.all.TryGetPosition (relativeTo.m_IUIElement.all, point, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -556,7 +636,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -571,12 +651,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out DoubleTappedRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IDoubleTappedRoutedEventArgs, IDoubleTappedRoutedEventArgs_Ptr);
    begin
       if this.m_IDoubleTappedRoutedEventArgs /= null then
          if this.m_IDoubleTappedRoutedEventArgs.all /= null then
-            RefCount := this.m_IDoubleTappedRoutedEventArgs.all.Release;
+            temp := this.m_IDoubleTappedRoutedEventArgs.all.Release;
             Free (this.m_IDoubleTappedRoutedEventArgs);
          end if;
       end if;
@@ -587,7 +667,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return DoubleTappedRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs;
    begin
       return RetVal : DoubleTappedRoutedEventArgs do
@@ -596,7 +677,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IDoubleTappedRoutedEventArgs := new Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs;
             Retval.m_IDoubleTappedRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -609,10 +690,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IDoubleTappedRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -622,10 +707,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IDoubleTappedRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -635,9 +724,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IDoubleTappedRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPosition
@@ -647,10 +740,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IDoubleTappedRoutedEventArgs.all.GetPosition (relativeTo.m_IUIElement.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -663,12 +760,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ExecuteRequestedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IExecuteRequestedEventArgs, IExecuteRequestedEventArgs_Ptr);
    begin
       if this.m_IExecuteRequestedEventArgs /= null then
          if this.m_IExecuteRequestedEventArgs.all /= null then
-            RefCount := this.m_IExecuteRequestedEventArgs.all.Release;
+            temp := this.m_IExecuteRequestedEventArgs.all.Release;
             Free (this.m_IExecuteRequestedEventArgs);
          end if;
       end if;
@@ -683,10 +780,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := this.m_IExecuteRequestedEventArgs.all.get_Parameter (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -699,12 +800,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out FindNextElementOptions) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFindNextElementOptions, IFindNextElementOptions_Ptr);
    begin
       if this.m_IFindNextElementOptions /= null then
          if this.m_IFindNextElementOptions.all /= null then
-            RefCount := this.m_IFindNextElementOptions.all.Release;
+            temp := this.m_IFindNextElementOptions.all.Release;
             Free (this.m_IFindNextElementOptions);
          end if;
       end if;
@@ -715,7 +816,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return FindNextElementOptions is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FindNextElementOptions");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FindNextElementOptions");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IFindNextElementOptions;
    begin
       return RetVal : FindNextElementOptions do
@@ -724,7 +826,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IFindNextElementOptions := new Windows.UI.Xaml.Input.IFindNextElementOptions;
             Retval.m_IFindNextElementOptions.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -737,11 +839,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IFindNextElementOptions.all.get_SearchRoot (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -753,9 +859,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFindNextElementOptions.all.put_SearchRoot (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ExclusionRect
@@ -764,10 +874,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IFindNextElementOptions.all.get_ExclusionRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -777,9 +891,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFindNextElementOptions.all.put_ExclusionRect (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_HintRect
@@ -788,10 +906,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Rect;
    begin
       Hr := this.m_IFindNextElementOptions.all.get_HintRect (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -801,9 +923,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFindNextElementOptions.all.put_HintRect (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_XYFocusNavigationStrategyOverride
@@ -812,10 +938,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride;
    begin
       Hr := this.m_IFindNextElementOptions.all.get_XYFocusNavigationStrategyOverride (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -825,9 +955,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IFindNextElementOptions.all.put_XYFocusNavigationStrategyOverride (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -839,12 +973,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out FocusManager) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFocusManager, IFocusManager_Ptr);
    begin
       if this.m_IFocusManager /= null then
          if this.m_IFocusManager.all /= null then
-            RefCount := this.m_IFocusManager.all.Release;
+            temp := this.m_IFocusManager.all.Release;
             Free (this.m_IFocusManager);
          end if;
       end if;
@@ -860,15 +994,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_FocusMovementResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -886,7 +1020,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FocusMovementResult.Kind_Delegate, AsyncOperationCompletedHandler_FocusMovementResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -900,10 +1034,10 @@ package body WinRt.Windows.UI.Xaml.Input is
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryFocusAsync (element.m_IDependencyObject.all, value, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -915,15 +1049,15 @@ package body WinRt.Windows.UI.Xaml.Input is
                      Retval.m_IFocusMovementResult := new Windows.UI.Xaml.Input.IFocusMovementResult;
                      Retval.m_IFocusMovementResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -933,15 +1067,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_FocusMovementResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -959,7 +1093,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FocusMovementResult.Kind_Delegate, AsyncOperationCompletedHandler_FocusMovementResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -973,10 +1107,10 @@ package body WinRt.Windows.UI.Xaml.Input is
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryMoveFocusAsync (focusNavigationDirection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -988,15 +1122,15 @@ package body WinRt.Windows.UI.Xaml.Input is
                      Retval.m_IFocusMovementResult := new Windows.UI.Xaml.Input.IFocusMovementResult;
                      Retval.m_IFocusMovementResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1007,15 +1141,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics5_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_FocusMovementResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1033,7 +1167,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_FocusMovementResult.Kind_Delegate, AsyncOperationCompletedHandler_FocusMovementResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1047,10 +1181,10 @@ package body WinRt.Windows.UI.Xaml.Input is
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics5'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.TryMoveFocusAsync (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -1062,15 +1196,15 @@ package body WinRt.Windows.UI.Xaml.Input is
                      Retval.m_IFocusMovementResult := new Windows.UI.Xaml.Input.IFocusMovementResult;
                      Retval.m_IFocusMovementResult.all := m_RetVal;
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1080,34 +1214,42 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics2_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryMoveFocus (focusNavigationDirection, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
    function GetFocusedElement
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetFocusedElement (m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1117,20 +1259,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindNextFocusableElement (focusNavigationDirection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
             Retval.m_IUIElement.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1141,20 +1287,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics3_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics3'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindNextFocusableElement (focusNavigationDirection, hintRect, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
             Retval.m_IUIElement.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1165,17 +1315,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.TryMoveFocus (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1185,20 +1339,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindNextElement (focusNavigationDirection, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
             Retval.m_IDependencyObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1208,20 +1366,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindFirstFocusableElement (searchScope.m_IDependencyObject.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
             Retval.m_IDependencyObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1231,20 +1393,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindLastFocusableElement (searchScope.m_IDependencyObject.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
             Retval.m_IDependencyObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1255,20 +1421,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics4_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.FindNextElement (focusNavigationDirection, focusNavigationOptions.m_IFindNextElementOptions.all, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
             Retval.m_IDependencyObject.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1278,17 +1448,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics7_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.IInspectable;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics7'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.GetFocusedElement (xamlRoot.m_IXamlRoot.all, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1298,17 +1472,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_GotFocus (handler, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1317,16 +1495,20 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_GotFocus (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_LostFocus
@@ -1335,17 +1517,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_LostFocus (handler, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1354,16 +1540,20 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_LostFocus (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_GettingFocus
@@ -1372,17 +1562,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_GettingFocus (handler, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1391,16 +1585,20 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_GettingFocus (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    function add_LosingFocus
@@ -1409,17 +1607,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.add_LosingFocus (handler, m_ComRetVal'Access);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
    end;
 
@@ -1428,16 +1630,20 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.FocusManager");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IFocusManagerStatics6_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFocusManagerStatics6'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.remove_LosingFocus (token);
-         m_RefCount := m_Factory.Release;
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
       end if;
-      Hr := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (m_hString);
    end;
 
    -----------------------------------------------------------------------------
@@ -1452,12 +1658,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out FocusManagerGotFocusEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFocusManagerGotFocusEventArgs, IFocusManagerGotFocusEventArgs_Ptr);
    begin
       if this.m_IFocusManagerGotFocusEventArgs /= null then
          if this.m_IFocusManagerGotFocusEventArgs.all /= null then
-            RefCount := this.m_IFocusManagerGotFocusEventArgs.all.Release;
+            temp := this.m_IFocusManagerGotFocusEventArgs.all.Release;
             Free (this.m_IFocusManagerGotFocusEventArgs);
          end if;
       end if;
@@ -1472,11 +1678,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IFocusManagerGotFocusEventArgs.all.get_NewFocusedElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -1488,10 +1698,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IFocusManagerGotFocusEventArgs.all.get_CorrelationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1504,12 +1718,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out FocusManagerLostFocusEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFocusManagerLostFocusEventArgs, IFocusManagerLostFocusEventArgs_Ptr);
    begin
       if this.m_IFocusManagerLostFocusEventArgs /= null then
          if this.m_IFocusManagerLostFocusEventArgs.all /= null then
-            RefCount := this.m_IFocusManagerLostFocusEventArgs.all.Release;
+            temp := this.m_IFocusManagerLostFocusEventArgs.all.Release;
             Free (this.m_IFocusManagerLostFocusEventArgs);
          end if;
       end if;
@@ -1524,11 +1738,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IFocusManagerLostFocusEventArgs.all.get_OldFocusedElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -1540,10 +1758,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
    begin
       Hr := this.m_IFocusManagerLostFocusEventArgs.all.get_CorrelationId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1556,12 +1778,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out FocusMovementResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IFocusMovementResult, IFocusMovementResult_Ptr);
    begin
       if this.m_IFocusMovementResult /= null then
          if this.m_IFocusMovementResult.all /= null then
-            RefCount := this.m_IFocusMovementResult.all.Release;
+            temp := this.m_IFocusMovementResult.all.Release;
             Free (this.m_IFocusMovementResult);
          end if;
       end if;
@@ -1576,10 +1798,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IFocusMovementResult.all.get_Succeeded (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1592,12 +1818,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out GettingFocusEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IGettingFocusEventArgs, IGettingFocusEventArgs_Ptr);
    begin
       if this.m_IGettingFocusEventArgs /= null then
          if this.m_IGettingFocusEventArgs.all /= null then
-            RefCount := this.m_IGettingFocusEventArgs.all.Release;
+            temp := this.m_IGettingFocusEventArgs.all.Release;
             Free (this.m_IGettingFocusEventArgs);
          end if;
       end if;
@@ -1612,11 +1838,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IGettingFocusEventArgs.all.get_OldFocusedElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -1628,11 +1858,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IGettingFocusEventArgs.all.get_NewFocusedElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -1644,9 +1878,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.put_NewFocusedElement (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusState
@@ -1655,10 +1893,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.FocusState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FocusState;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.get_FocusState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1668,10 +1910,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.FocusNavigationDirection;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1681,10 +1927,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1694,9 +1944,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputDevice
@@ -1705,10 +1959,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusInputDeviceKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.FocusInputDeviceKind;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.get_InputDevice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1718,10 +1976,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.get_Cancel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1731,9 +1993,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IGettingFocusEventArgs.all.put_Cancel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryCancel
@@ -1742,14 +2008,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_IGettingFocusEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGettingFocusEventArgs.all);
       Hr := m_Interface.TryCancel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1760,14 +2030,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_IGettingFocusEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGettingFocusEventArgs.all);
       Hr := m_Interface.TrySetNewFocusedElement (element.m_IDependencyObject.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1777,14 +2051,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IGettingFocusEventArgs3, WinRt.Windows.UI.Xaml.Input.IID_IGettingFocusEventArgs3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGettingFocusEventArgs.all);
       Hr := m_Interface.get_CorrelationId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1798,7 +2076,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IHoldingRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -1813,12 +2091,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out HoldingRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IHoldingRoutedEventArgs, IHoldingRoutedEventArgs_Ptr);
    begin
       if this.m_IHoldingRoutedEventArgs /= null then
          if this.m_IHoldingRoutedEventArgs.all /= null then
-            RefCount := this.m_IHoldingRoutedEventArgs.all.Release;
+            temp := this.m_IHoldingRoutedEventArgs.all.Release;
             Free (this.m_IHoldingRoutedEventArgs);
          end if;
       end if;
@@ -1829,7 +2107,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return HoldingRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.HoldingRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.HoldingRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IHoldingRoutedEventArgs;
    begin
       return RetVal : HoldingRoutedEventArgs do
@@ -1838,7 +2117,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IHoldingRoutedEventArgs := new Windows.UI.Xaml.Input.IHoldingRoutedEventArgs;
             Retval.m_IHoldingRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1851,10 +2130,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IHoldingRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1864,10 +2147,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.HoldingState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.HoldingState;
    begin
       Hr := this.m_IHoldingRoutedEventArgs.all.get_HoldingState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1877,10 +2164,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IHoldingRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1890,9 +2181,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHoldingRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPosition
@@ -1902,10 +2197,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IHoldingRoutedEventArgs.all.GetPosition (relativeTo.m_IUIElement.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1918,12 +2217,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out InertiaExpansionBehavior) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInertiaExpansionBehavior, IInertiaExpansionBehavior_Ptr);
    begin
       if this.m_IInertiaExpansionBehavior /= null then
          if this.m_IInertiaExpansionBehavior.all /= null then
-            RefCount := this.m_IInertiaExpansionBehavior.all.Release;
+            temp := this.m_IInertiaExpansionBehavior.all.Release;
             Free (this.m_IInertiaExpansionBehavior);
          end if;
       end if;
@@ -1938,10 +2237,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInertiaExpansionBehavior.all.get_DesiredDeceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1951,9 +2254,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInertiaExpansionBehavior.all.put_DesiredDeceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DesiredExpansion
@@ -1962,10 +2269,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInertiaExpansionBehavior.all.get_DesiredExpansion (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1975,9 +2286,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInertiaExpansionBehavior.all.put_DesiredExpansion (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1989,12 +2304,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out InertiaRotationBehavior) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInertiaRotationBehavior, IInertiaRotationBehavior_Ptr);
    begin
       if this.m_IInertiaRotationBehavior /= null then
          if this.m_IInertiaRotationBehavior.all /= null then
-            RefCount := this.m_IInertiaRotationBehavior.all.Release;
+            temp := this.m_IInertiaRotationBehavior.all.Release;
             Free (this.m_IInertiaRotationBehavior);
          end if;
       end if;
@@ -2009,10 +2324,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInertiaRotationBehavior.all.get_DesiredDeceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2022,9 +2341,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInertiaRotationBehavior.all.put_DesiredDeceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DesiredRotation
@@ -2033,10 +2356,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInertiaRotationBehavior.all.get_DesiredRotation (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2046,9 +2373,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInertiaRotationBehavior.all.put_DesiredRotation (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2060,12 +2391,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out InertiaTranslationBehavior) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInertiaTranslationBehavior, IInertiaTranslationBehavior_Ptr);
    begin
       if this.m_IInertiaTranslationBehavior /= null then
          if this.m_IInertiaTranslationBehavior.all /= null then
-            RefCount := this.m_IInertiaTranslationBehavior.all.Release;
+            temp := this.m_IInertiaTranslationBehavior.all.Release;
             Free (this.m_IInertiaTranslationBehavior);
          end if;
       end if;
@@ -2080,10 +2411,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInertiaTranslationBehavior.all.get_DesiredDeceleration (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2093,9 +2428,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInertiaTranslationBehavior.all.put_DesiredDeceleration (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_DesiredDisplacement
@@ -2104,10 +2443,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IInertiaTranslationBehavior.all.get_DesiredDisplacement (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2117,9 +2460,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInertiaTranslationBehavior.all.put_DesiredDisplacement (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2131,12 +2478,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out InputScope) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInputScope, IInputScope_Ptr);
    begin
       if this.m_IInputScope /= null then
          if this.m_IInputScope.all /= null then
-            RefCount := this.m_IInputScope.all.Release;
+            temp := this.m_IInputScope.all.Release;
             Free (this.m_IInputScope);
          end if;
       end if;
@@ -2147,7 +2494,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return InputScope is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.InputScope");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.InputScope");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IInputScope;
    begin
       return RetVal : InputScope do
@@ -2156,7 +2504,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IInputScope := new Windows.UI.Xaml.Input.IInputScope;
             Retval.m_IInputScope.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2169,13 +2517,17 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return IVector_IInputScopeName.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IInputScopeName.Kind;
    begin
       Hr := this.m_IInputScope.all.get_Names (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IInputScopeName (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -2188,12 +2540,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out InputScopeName) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IInputScopeName, IInputScopeName_Ptr);
    begin
       if this.m_IInputScopeName /= null then
          if this.m_IInputScopeName.all /= null then
-            RefCount := this.m_IInputScopeName.all.Release;
+            temp := this.m_IInputScopeName.all.Release;
             Free (this.m_IInputScopeName);
          end if;
       end if;
@@ -2208,9 +2560,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return InputScopeName is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.InputScopeName");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.InputScopeName");
       m_Factory    : access IInputScopeNameFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IInputScopeName;
    begin
       return RetVal : InputScopeName do
@@ -2219,15 +2572,16 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstance (nameValue, m_ComRetVal'Access);
             Retval.m_IInputScopeName := new Windows.UI.Xaml.Input.IInputScopeName;
             Retval.m_IInputScopeName.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return InputScopeName is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.InputScopeName");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.InputScopeName");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IInputScopeName;
    begin
       return RetVal : InputScopeName do
@@ -2236,7 +2590,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IInputScopeName := new Windows.UI.Xaml.Input.IInputScopeName;
             Retval.m_IInputScopeName.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2249,10 +2603,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.InputScopeNameValue is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.InputScopeNameValue;
    begin
       Hr := this.m_IInputScopeName.all.get_NameValue (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2262,9 +2620,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.InputScopeNameValue
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IInputScopeName.all.put_NameValue (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2277,7 +2639,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IKeyRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -2292,12 +2654,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out KeyRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyRoutedEventArgs, IKeyRoutedEventArgs_Ptr);
    begin
       if this.m_IKeyRoutedEventArgs /= null then
          if this.m_IKeyRoutedEventArgs.all /= null then
-            RefCount := this.m_IKeyRoutedEventArgs.all.Release;
+            temp := this.m_IKeyRoutedEventArgs.all.Release;
             Free (this.m_IKeyRoutedEventArgs);
          end if;
       end if;
@@ -2312,10 +2674,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
    begin
       Hr := this.m_IKeyRoutedEventArgs.all.get_Key (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2325,10 +2691,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Core.CorePhysicalKeyStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Core.CorePhysicalKeyStatus;
    begin
       Hr := this.m_IKeyRoutedEventArgs.all.get_KeyStatus (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2338,10 +2708,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IKeyRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2351,9 +2725,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_OriginalKey
@@ -2362,14 +2740,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_IKeyRoutedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyRoutedEventArgs.all);
       Hr := m_Interface.get_OriginalKey (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2379,17 +2761,21 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs3, WinRt.Windows.UI.Xaml.Input.IID_IKeyRoutedEventArgs3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyRoutedEventArgs.all);
       Hr := m_Interface.get_DeviceId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -2402,12 +2788,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out KeyboardAccelerator) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyboardAccelerator, IKeyboardAccelerator_Ptr);
    begin
       if this.m_IKeyboardAccelerator /= null then
          if this.m_IKeyboardAccelerator.all /= null then
-            RefCount := this.m_IKeyboardAccelerator.all.Release;
+            temp := this.m_IKeyboardAccelerator.all.Release;
             Free (this.m_IKeyboardAccelerator);
          end if;
       end if;
@@ -2423,9 +2809,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return KeyboardAccelerator is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
       m_Factory    : access IKeyboardAcceleratorFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IKeyboardAccelerator;
    begin
       return RetVal : KeyboardAccelerator do
@@ -2434,9 +2821,9 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IKeyboardAccelerator := new Windows.UI.Xaml.Input.IKeyboardAccelerator;
             Retval.m_IKeyboardAccelerator.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2446,80 +2833,96 @@ package body WinRt.Windows.UI.Xaml.Input is
    function get_KeyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyboardAcceleratorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ModifiersProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyboardAcceleratorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ModifiersProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IsEnabledProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyboardAcceleratorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsEnabledProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_ScopeOwnerProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.KeyboardAccelerator");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyboardAcceleratorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_ScopeOwnerProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -2532,10 +2935,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
    begin
       Hr := this.m_IKeyboardAccelerator.all.get_Key (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2545,9 +2952,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyboardAccelerator.all.put_Key (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Modifiers
@@ -2556,10 +2967,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKeyModifiers is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IKeyboardAccelerator.all.get_Modifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2569,9 +2984,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyboardAccelerator.all.put_Modifiers (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_IsEnabled
@@ -2580,10 +2999,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IKeyboardAccelerator.all.get_IsEnabled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2593,9 +3016,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyboardAccelerator.all.put_IsEnabled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_ScopeOwner
@@ -2604,11 +3031,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IKeyboardAccelerator.all.get_ScopeOwner (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2620,9 +3051,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyboardAccelerator.all.put_ScopeOwner (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_Invoked
@@ -2632,10 +3067,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IKeyboardAccelerator.all.add_Invoked (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2645,9 +3084,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyboardAccelerator.all.remove_Invoked (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -2659,12 +3102,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out KeyboardAcceleratorInvokedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyboardAcceleratorInvokedEventArgs, IKeyboardAcceleratorInvokedEventArgs_Ptr);
    begin
       if this.m_IKeyboardAcceleratorInvokedEventArgs /= null then
          if this.m_IKeyboardAcceleratorInvokedEventArgs.all /= null then
-            RefCount := this.m_IKeyboardAcceleratorInvokedEventArgs.all.Release;
+            temp := this.m_IKeyboardAcceleratorInvokedEventArgs.all.Release;
             Free (this.m_IKeyboardAcceleratorInvokedEventArgs);
          end if;
       end if;
@@ -2679,10 +3122,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IKeyboardAcceleratorInvokedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2692,9 +3139,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IKeyboardAcceleratorInvokedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Element
@@ -2703,11 +3154,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_IKeyboardAcceleratorInvokedEventArgs.all.get_Element (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2719,15 +3174,19 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.KeyboardAccelerator'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorInvokedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.IKeyboardAccelerator;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorInvokedEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IKeyboardAcceleratorInvokedEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_IKeyboardAcceleratorInvokedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Input.KeyboardAccelerator do
          m_Interface := QInterface (this.m_IKeyboardAcceleratorInvokedEventArgs.all);
          Hr := m_Interface.get_KeyboardAccelerator (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IKeyboardAccelerator := new Windows.UI.Xaml.Input.IKeyboardAccelerator;
          Retval.m_IKeyboardAccelerator.all := m_ComRetVal;
       end return;
@@ -2742,12 +3201,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out LosingFocusEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ILosingFocusEventArgs, ILosingFocusEventArgs_Ptr);
    begin
       if this.m_ILosingFocusEventArgs /= null then
          if this.m_ILosingFocusEventArgs.all /= null then
-            RefCount := this.m_ILosingFocusEventArgs.all.Release;
+            temp := this.m_ILosingFocusEventArgs.all.Release;
             Free (this.m_ILosingFocusEventArgs);
          end if;
       end if;
@@ -2762,11 +3221,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ILosingFocusEventArgs.all.get_OldFocusedElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2778,11 +3241,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.DependencyObject'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := this.m_ILosingFocusEventArgs.all.get_NewFocusedElement (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
          Retval.m_IDependencyObject.all := m_ComRetVal;
       end return;
@@ -2794,9 +3261,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.put_NewFocusedElement (value.m_IDependencyObject.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_FocusState
@@ -2805,10 +3276,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.FocusState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.FocusState;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.get_FocusState (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2818,10 +3293,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.FocusNavigationDirection;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2831,10 +3310,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2844,9 +3327,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputDevice
@@ -2855,10 +3342,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusInputDeviceKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.FocusInputDeviceKind;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.get_InputDevice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2868,10 +3359,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.get_Cancel (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2881,9 +3376,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ILosingFocusEventArgs.all.put_Cancel (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function TryCancel
@@ -2892,14 +3391,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_ILosingFocusEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILosingFocusEventArgs.all);
       Hr := m_Interface.TryCancel (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2910,14 +3413,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_ILosingFocusEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILosingFocusEventArgs.all);
       Hr := m_Interface.TrySetNewFocusedElement (element.m_IDependencyObject.all, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2927,14 +3434,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Guid is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Guid;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.ILosingFocusEventArgs3, WinRt.Windows.UI.Xaml.Input.IID_ILosingFocusEventArgs3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILosingFocusEventArgs.all);
       Hr := m_Interface.get_CorrelationId (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -2948,7 +3459,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -2963,12 +3474,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ManipulationCompletedRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IManipulationCompletedRoutedEventArgs, IManipulationCompletedRoutedEventArgs_Ptr);
    begin
       if this.m_IManipulationCompletedRoutedEventArgs /= null then
          if this.m_IManipulationCompletedRoutedEventArgs.all /= null then
-            RefCount := this.m_IManipulationCompletedRoutedEventArgs.all.Release;
+            temp := this.m_IManipulationCompletedRoutedEventArgs.all.Release;
             Free (this.m_IManipulationCompletedRoutedEventArgs);
          end if;
       end if;
@@ -2979,7 +3490,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return ManipulationCompletedRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs;
    begin
       return RetVal : ManipulationCompletedRoutedEventArgs do
@@ -2988,7 +3500,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IManipulationCompletedRoutedEventArgs := new Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs;
             Retval.m_IManipulationCompletedRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3001,11 +3513,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_Container (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -3017,10 +3533,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3030,10 +3550,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_IsInertial (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3043,10 +3567,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationDelta is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3056,10 +3584,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationVelocities is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationVelocities;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_Velocities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3069,10 +3601,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3082,9 +3618,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerDeviceType
@@ -3093,10 +3633,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationCompletedRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3110,7 +3654,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -3125,12 +3669,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ManipulationDeltaRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IManipulationDeltaRoutedEventArgs, IManipulationDeltaRoutedEventArgs_Ptr);
    begin
       if this.m_IManipulationDeltaRoutedEventArgs /= null then
          if this.m_IManipulationDeltaRoutedEventArgs.all /= null then
-            RefCount := this.m_IManipulationDeltaRoutedEventArgs.all.Release;
+            temp := this.m_IManipulationDeltaRoutedEventArgs.all.Release;
             Free (this.m_IManipulationDeltaRoutedEventArgs);
          end if;
       end if;
@@ -3141,7 +3685,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return ManipulationDeltaRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs;
    begin
       return RetVal : ManipulationDeltaRoutedEventArgs do
@@ -3150,7 +3695,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IManipulationDeltaRoutedEventArgs := new Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs;
             Retval.m_IManipulationDeltaRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3163,11 +3708,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_Container (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -3179,10 +3728,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3192,10 +3745,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_IsInertial (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3205,10 +3762,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationDelta is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_Delta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3218,10 +3779,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationDelta is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3231,10 +3796,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationVelocities is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationVelocities;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_Velocities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3244,10 +3813,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3257,9 +3830,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerDeviceType
@@ -3268,10 +3845,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3280,9 +3861,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       this : in out ManipulationDeltaRoutedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationDeltaRoutedEventArgs.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3295,7 +3880,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -3310,12 +3895,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ManipulationInertiaStartingRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IManipulationInertiaStartingRoutedEventArgs, IManipulationInertiaStartingRoutedEventArgs_Ptr);
    begin
       if this.m_IManipulationInertiaStartingRoutedEventArgs /= null then
          if this.m_IManipulationInertiaStartingRoutedEventArgs.all /= null then
-            RefCount := this.m_IManipulationInertiaStartingRoutedEventArgs.all.Release;
+            temp := this.m_IManipulationInertiaStartingRoutedEventArgs.all.Release;
             Free (this.m_IManipulationInertiaStartingRoutedEventArgs);
          end if;
       end if;
@@ -3326,7 +3911,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return ManipulationInertiaStartingRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationInertiaStartingRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationInertiaStartingRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs;
    begin
       return RetVal : ManipulationInertiaStartingRoutedEventArgs do
@@ -3335,7 +3921,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IManipulationInertiaStartingRoutedEventArgs := new Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs;
             Retval.m_IManipulationInertiaStartingRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3348,11 +3934,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_Container (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -3364,11 +3954,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.InertiaExpansionBehavior'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.IInertiaExpansionBehavior;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Input.InertiaExpansionBehavior do
          Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_ExpansionBehavior (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInertiaExpansionBehavior := new Windows.UI.Xaml.Input.IInertiaExpansionBehavior;
          Retval.m_IInertiaExpansionBehavior.all := m_ComRetVal;
       end return;
@@ -3380,9 +3974,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.InertiaExpansionBehavior'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.put_ExpansionBehavior (value.m_IInertiaExpansionBehavior.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_RotationBehavior
@@ -3391,11 +3989,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.InertiaRotationBehavior'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.IInertiaRotationBehavior;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Input.InertiaRotationBehavior do
          Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_RotationBehavior (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInertiaRotationBehavior := new Windows.UI.Xaml.Input.IInertiaRotationBehavior;
          Retval.m_IInertiaRotationBehavior.all := m_ComRetVal;
       end return;
@@ -3407,9 +4009,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.InertiaRotationBehavior'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.put_RotationBehavior (value.m_IInertiaRotationBehavior.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_TranslationBehavior
@@ -3418,11 +4024,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.InertiaTranslationBehavior'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.IInertiaTranslationBehavior;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Input.InertiaTranslationBehavior do
          Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_TranslationBehavior (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IInertiaTranslationBehavior := new Windows.UI.Xaml.Input.IInertiaTranslationBehavior;
          Retval.m_IInertiaTranslationBehavior.all := m_ComRetVal;
       end return;
@@ -3434,9 +4044,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.InertiaTranslationBehavior'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.put_TranslationBehavior (value.m_IInertiaTranslationBehavior.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Handled
@@ -3445,10 +4059,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3458,9 +4076,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerDeviceType
@@ -3469,10 +4091,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3482,10 +4108,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationDelta is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_Delta (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3495,10 +4125,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationDelta is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3508,10 +4142,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationVelocities is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationVelocities;
    begin
       Hr := this.m_IManipulationInertiaStartingRoutedEventArgs.all.get_Velocities (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3524,12 +4162,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ManipulationPivot) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IManipulationPivot, IManipulationPivot_Ptr);
    begin
       if this.m_IManipulationPivot /= null then
          if this.m_IManipulationPivot.all /= null then
-            RefCount := this.m_IManipulationPivot.all.Release;
+            temp := this.m_IManipulationPivot.all.Release;
             Free (this.m_IManipulationPivot);
          end if;
       end if;
@@ -3545,9 +4183,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return ManipulationPivot is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationPivot");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationPivot");
       m_Factory    : access IManipulationPivotFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationPivot;
    begin
       return RetVal : ManipulationPivot do
@@ -3556,15 +4195,16 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstanceWithCenterAndRadius (center, radius, m_ComRetVal'Access);
             Retval.m_IManipulationPivot := new Windows.UI.Xaml.Input.IManipulationPivot;
             Retval.m_IManipulationPivot.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function Constructor return ManipulationPivot is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationPivot");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationPivot");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationPivot;
    begin
       return RetVal : ManipulationPivot do
@@ -3573,7 +4213,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IManipulationPivot := new Windows.UI.Xaml.Input.IManipulationPivot;
             Retval.m_IManipulationPivot.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3586,10 +4226,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationPivot.all.get_Center (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3599,9 +4243,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationPivot.all.put_Center (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Radius
@@ -3610,10 +4258,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Double;
    begin
       Hr := this.m_IManipulationPivot.all.get_Radius (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3623,9 +4275,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationPivot.all.put_Radius (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3638,7 +4294,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -3653,12 +4309,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ManipulationStartedRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IManipulationStartedRoutedEventArgs, IManipulationStartedRoutedEventArgs_Ptr);
    begin
       if this.m_IManipulationStartedRoutedEventArgs /= null then
          if this.m_IManipulationStartedRoutedEventArgs.all /= null then
-            RefCount := this.m_IManipulationStartedRoutedEventArgs.all.Release;
+            temp := this.m_IManipulationStartedRoutedEventArgs.all.Release;
             Free (this.m_IManipulationStartedRoutedEventArgs);
          end if;
       end if;
@@ -3674,9 +4330,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return ManipulationStartedRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs");
       m_Factory    : access IManipulationStartedRoutedEventArgsFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs;
    begin
       return RetVal : ManipulationStartedRoutedEventArgs do
@@ -3685,9 +4342,9 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IManipulationStartedRoutedEventArgs := new Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs;
             Retval.m_IManipulationStartedRoutedEventArgs.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3700,11 +4357,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IManipulationStartedRoutedEventArgs.all.get_Container (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -3716,10 +4377,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationStartedRoutedEventArgs.all.get_Position (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3729,10 +4394,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationStartedRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3742,9 +4411,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationStartedRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_PointerDeviceType
@@ -3753,10 +4426,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationStartedRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3766,10 +4443,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.ManipulationDelta is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationStartedRoutedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3778,9 +4459,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       this : in out ManipulationStartedRoutedEventArgs
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationStartedRoutedEventArgs.all.Complete;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3793,7 +4478,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -3808,12 +4493,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ManipulationStartingRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IManipulationStartingRoutedEventArgs, IManipulationStartingRoutedEventArgs_Ptr);
    begin
       if this.m_IManipulationStartingRoutedEventArgs /= null then
          if this.m_IManipulationStartingRoutedEventArgs.all /= null then
-            RefCount := this.m_IManipulationStartingRoutedEventArgs.all.Release;
+            temp := this.m_IManipulationStartingRoutedEventArgs.all.Release;
             Free (this.m_IManipulationStartingRoutedEventArgs);
          end if;
       end if;
@@ -3824,7 +4509,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return ManipulationStartingRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationStartingRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.ManipulationStartingRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs;
    begin
       return RetVal : ManipulationStartingRoutedEventArgs do
@@ -3833,7 +4519,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IManipulationStartingRoutedEventArgs := new Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs;
             Retval.m_IManipulationStartingRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -3846,10 +4532,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.ManipulationModes is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.ManipulationModes;
    begin
       Hr := this.m_IManipulationStartingRoutedEventArgs.all.get_Mode (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3859,9 +4549,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.ManipulationModes
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationStartingRoutedEventArgs.all.put_Mode (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Container
@@ -3870,11 +4564,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.UIElement'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IManipulationStartingRoutedEventArgs.all.get_Container (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
@@ -3886,9 +4584,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationStartingRoutedEventArgs.all.put_Container (value.m_IUIElement.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Pivot
@@ -3897,11 +4599,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.ManipulationPivot'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.IManipulationPivot;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Input.ManipulationPivot do
          Hr := this.m_IManipulationStartingRoutedEventArgs.all.get_Pivot (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IManipulationPivot := new Windows.UI.Xaml.Input.IManipulationPivot;
          Retval.m_IManipulationPivot.all := m_ComRetVal;
       end return;
@@ -3913,9 +4619,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.ManipulationPivot'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationStartingRoutedEventArgs.all.put_Pivot (value.m_IManipulationPivot.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Handled
@@ -3924,10 +4634,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IManipulationStartingRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3937,9 +4651,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IManipulationStartingRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -3951,12 +4669,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out NoFocusCandidateFoundEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (INoFocusCandidateFoundEventArgs, INoFocusCandidateFoundEventArgs_Ptr);
    begin
       if this.m_INoFocusCandidateFoundEventArgs /= null then
          if this.m_INoFocusCandidateFoundEventArgs.all /= null then
-            RefCount := this.m_INoFocusCandidateFoundEventArgs.all.Release;
+            temp := this.m_INoFocusCandidateFoundEventArgs.all.Release;
             Free (this.m_INoFocusCandidateFoundEventArgs);
          end if;
       end if;
@@ -3971,10 +4689,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.FocusNavigationDirection;
    begin
       Hr := this.m_INoFocusCandidateFoundEventArgs.all.get_Direction (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3984,10 +4706,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_INoFocusCandidateFoundEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -3997,9 +4723,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_INoFocusCandidateFoundEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_InputDevice
@@ -4008,10 +4738,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.FocusInputDeviceKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.FocusInputDeviceKind;
    begin
       Hr := this.m_INoFocusCandidateFoundEventArgs.all.get_InputDevice (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4024,12 +4758,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out Pointer) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointer, IPointer_Ptr);
    begin
       if this.m_IPointer /= null then
          if this.m_IPointer.all /= null then
-            RefCount := this.m_IPointer.all.Release;
+            temp := this.m_IPointer.all.Release;
             Free (this.m_IPointer);
          end if;
       end if;
@@ -4044,10 +4778,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
    begin
       Hr := this.m_IPointer.all.get_PointerId (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4057,10 +4795,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IPointer.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4070,10 +4812,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPointer.all.get_IsInContact (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4083,10 +4829,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPointer.all.get_IsInRange (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4100,7 +4850,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IPointerRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -4115,12 +4865,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out PointerRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPointerRoutedEventArgs, IPointerRoutedEventArgs_Ptr);
    begin
       if this.m_IPointerRoutedEventArgs /= null then
          if this.m_IPointerRoutedEventArgs.all /= null then
-            RefCount := this.m_IPointerRoutedEventArgs.all.Release;
+            temp := this.m_IPointerRoutedEventArgs.all.Release;
             Free (this.m_IPointerRoutedEventArgs);
          end if;
       end if;
@@ -4135,11 +4885,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.Pointer'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.IPointer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Input.Pointer do
          Hr := this.m_IPointerRoutedEventArgs.all.get_Pointer (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPointer := new Windows.UI.Xaml.Input.IPointer;
          Retval.m_IPointer.all := m_ComRetVal;
       end return;
@@ -4151,10 +4905,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKeyModifiers is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IPointerRoutedEventArgs.all.get_KeyModifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4164,10 +4922,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IPointerRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4177,9 +4939,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPointerRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetCurrentPoint
@@ -4189,11 +4955,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Input.PointerPoint'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Input.IPointerPoint;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerPoint do
          Hr := this.m_IPointerRoutedEventArgs.all.GetCurrentPoint (relativeTo.m_IUIElement.all, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPointerPoint := new Windows.UI.Input.IPointerPoint;
          Retval.m_IPointerPoint.all := m_ComRetVal;
       end return;
@@ -4206,10 +4976,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
    begin
       Hr := this.m_IPointerRoutedEventArgs.all.GetIntermediatePoints (relativeTo.m_IUIElement.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4219,14 +4993,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IPointerRoutedEventArgs2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IPointerRoutedEventArgs_Interface, WinRt.Windows.UI.Xaml.Input.IPointerRoutedEventArgs2, WinRt.Windows.UI.Xaml.Input.IID_IPointerRoutedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointerRoutedEventArgs.all);
       Hr := m_Interface.get_IsGenerated (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4239,12 +5017,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out ProcessKeyboardAcceleratorEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IProcessKeyboardAcceleratorEventArgs, IProcessKeyboardAcceleratorEventArgs_Ptr);
    begin
       if this.m_IProcessKeyboardAcceleratorEventArgs /= null then
          if this.m_IProcessKeyboardAcceleratorEventArgs.all /= null then
-            RefCount := this.m_IProcessKeyboardAcceleratorEventArgs.all.Release;
+            temp := this.m_IProcessKeyboardAcceleratorEventArgs.all.Release;
             Free (this.m_IProcessKeyboardAcceleratorEventArgs);
          end if;
       end if;
@@ -4259,10 +5037,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKey is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKey;
    begin
       Hr := this.m_IProcessKeyboardAcceleratorEventArgs.all.get_Key (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4272,10 +5054,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.System.VirtualKeyModifiers is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IProcessKeyboardAcceleratorEventArgs.all.get_Modifiers (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4285,10 +5071,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IProcessKeyboardAcceleratorEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4298,9 +5088,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IProcessKeyboardAcceleratorEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4313,7 +5107,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -4328,12 +5122,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out RightTappedRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IRightTappedRoutedEventArgs, IRightTappedRoutedEventArgs_Ptr);
    begin
       if this.m_IRightTappedRoutedEventArgs /= null then
          if this.m_IRightTappedRoutedEventArgs.all /= null then
-            RefCount := this.m_IRightTappedRoutedEventArgs.all.Release;
+            temp := this.m_IRightTappedRoutedEventArgs.all.Release;
             Free (this.m_IRightTappedRoutedEventArgs);
          end if;
       end if;
@@ -4344,7 +5138,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return RightTappedRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.RightTappedRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.RightTappedRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs;
    begin
       return RetVal : RightTappedRoutedEventArgs do
@@ -4353,7 +5148,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_IRightTappedRoutedEventArgs := new Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs;
             Retval.m_IRightTappedRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4366,10 +5161,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IRightTappedRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4379,10 +5178,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_IRightTappedRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4392,9 +5195,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IRightTappedRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPosition
@@ -4404,10 +5211,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_IRightTappedRoutedEventArgs.all.GetPosition (relativeTo.m_IUIElement.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4420,12 +5231,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out XamlUICommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IXamlUICommand, IXamlUICommand_Ptr);
    begin
       if this.m_IXamlUICommand /= null then
          if this.m_IXamlUICommand.all /= null then
-            RefCount := this.m_IXamlUICommand.all.Release;
+            temp := this.m_IXamlUICommand.all.Release;
             Free (this.m_IXamlUICommand);
          end if;
       end if;
@@ -4441,9 +5252,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return XamlUICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory    : access IXamlUICommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IXamlUICommand;
    begin
       return RetVal : XamlUICommand do
@@ -4452,9 +5264,9 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IXamlUICommand := new Windows.UI.Xaml.Input.IXamlUICommand;
             Retval.m_IXamlUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4464,120 +5276,144 @@ package body WinRt.Windows.UI.Xaml.Input is
    function get_LabelProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IXamlUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_LabelProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_IconSourceProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IXamlUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IconSourceProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_KeyboardAcceleratorsProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IXamlUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KeyboardAcceleratorsProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_AccessKeyProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IXamlUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AccessKeyProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_DescriptionProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IXamlUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DescriptionProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
    function get_CommandProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.XamlUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IXamlUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_CommandProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4590,13 +5426,17 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXamlUICommand.all.get_Label (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4606,11 +5446,15 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXamlUICommand.all.put_Label (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_IconSource
@@ -4619,11 +5463,15 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Controls.IconSource'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Controls.IIconSource;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Controls.IconSource do
          Hr := this.m_IXamlUICommand.all.get_IconSource (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IIconSource := new Windows.UI.Xaml.Controls.IIconSource;
          Retval.m_IIconSource.all := m_ComRetVal;
       end return;
@@ -4635,9 +5483,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Controls.IconSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUICommand.all.put_IconSource (value.m_IIconSource.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_KeyboardAccelerators
@@ -4646,13 +5498,17 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return IVector_IKeyboardAccelerator.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVector_IKeyboardAccelerator.Kind;
    begin
       Hr := this.m_IXamlUICommand.all.get_KeyboardAccelerators (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVector_IKeyboardAccelerator (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -4662,13 +5518,17 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXamlUICommand.all.get_AccessKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4678,11 +5538,15 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXamlUICommand.all.put_AccessKey (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Description
@@ -4691,13 +5555,17 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IXamlUICommand.all.get_Description (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -4707,11 +5575,15 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_value : WinRt.HString := To_HString (value);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IXamlUICommand.all.put_Description (HStr_value);
-      Hr := WindowsDeleteString (HStr_value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_value);
    end;
 
    function get_Command
@@ -4720,10 +5592,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.ICommand is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.ICommand;
    begin
       Hr := this.m_IXamlUICommand.all.get_Command (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4733,9 +5609,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.ICommand
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUICommand.all.put_Command (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_ExecuteRequested
@@ -4745,10 +5625,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IXamlUICommand.all.add_ExecuteRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4758,9 +5642,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUICommand.all.remove_ExecuteRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CanExecuteRequested
@@ -4770,10 +5658,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IXamlUICommand.all.add_CanExecuteRequested (handler, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4783,9 +5675,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUICommand.all.remove_CanExecuteRequested (token);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure NotifyCanExecuteChanged
@@ -4793,9 +5689,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       this : in out XamlUICommand
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IXamlUICommand.all.NotifyCanExecuteChanged;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function add_CanExecuteChanged
@@ -4805,14 +5705,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ICommand := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IXamlUICommand_Interface, WinRt.Windows.UI.Xaml.Input.ICommand, WinRt.Windows.UI.Xaml.Input.IID_ICommand'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXamlUICommand.all);
       Hr := m_Interface.add_CanExecuteChanged (handler, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4822,13 +5726,17 @@ package body WinRt.Windows.UI.Xaml.Input is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ICommand := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IXamlUICommand_Interface, WinRt.Windows.UI.Xaml.Input.ICommand, WinRt.Windows.UI.Xaml.Input.IID_ICommand'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXamlUICommand.all);
       Hr := m_Interface.remove_CanExecuteChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function CanExecute
@@ -4838,14 +5746,18 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ICommand := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IXamlUICommand_Interface, WinRt.Windows.UI.Xaml.Input.ICommand, WinRt.Windows.UI.Xaml.Input.IID_ICommand'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXamlUICommand.all);
       Hr := m_Interface.CanExecute (parameter, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4855,13 +5767,17 @@ package body WinRt.Windows.UI.Xaml.Input is
       parameter : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.ICommand := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IXamlUICommand_Interface, WinRt.Windows.UI.Xaml.Input.ICommand, WinRt.Windows.UI.Xaml.Input.IID_ICommand'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXamlUICommand.all);
       Hr := m_Interface.Execute (parameter);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -4873,12 +5789,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out StandardUICommand) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IStandardUICommand, IStandardUICommand_Ptr);
    begin
       if this.m_IStandardUICommand /= null then
          if this.m_IStandardUICommand.all /= null then
-            RefCount := this.m_IStandardUICommand.all.Release;
+            temp := this.m_IStandardUICommand.all.Release;
             Free (this.m_IStandardUICommand);
          end if;
       end if;
@@ -4894,9 +5810,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return StandardUICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.StandardUICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.StandardUICommand");
       m_Factory    : access IStandardUICommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IStandardUICommand;
    begin
       return RetVal : StandardUICommand do
@@ -4905,9 +5822,9 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IStandardUICommand := new Windows.UI.Xaml.Input.IStandardUICommand;
             Retval.m_IStandardUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4919,9 +5836,10 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return StandardUICommand is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.StandardUICommand");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.StandardUICommand");
       m_Factory    : access IStandardUICommandFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.IStandardUICommand;
    begin
       return RetVal : StandardUICommand do
@@ -4930,9 +5848,9 @@ package body WinRt.Windows.UI.Xaml.Input is
             Hr := m_Factory.CreateInstanceWithKind (kind, baseInterface, innerInterface, m_ComRetVal'Access);
             Retval.m_IStandardUICommand := new Windows.UI.Xaml.Input.IStandardUICommand;
             Retval.m_IStandardUICommand.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4942,20 +5860,24 @@ package body WinRt.Windows.UI.Xaml.Input is
    function get_KindProperty
    return WinRt.Windows.UI.Xaml.DependencyProperty is
       Hr               : WinRt.HResult := S_OK;
-      m_hString        : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.StandardUICommand");
+      tmp              : WinRt.HResult := S_OK;
+      m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.StandardUICommand");
       m_Factory        : access WinRt.Windows.UI.Xaml.Input.IStandardUICommandStatics_Interface'Class := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStandardUICommandStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_KindProperty (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
             Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -4968,10 +5890,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.UI.Xaml.Input.StandardUICommandKind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.UI.Xaml.Input.StandardUICommandKind;
    begin
       Hr := this.m_IStandardUICommand.all.get_Kind (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -4981,13 +5907,17 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : Windows.UI.Xaml.Input.StandardUICommandKind
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Input.IStandardUICommand2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Input.IStandardUICommand_Interface, WinRt.Windows.UI.Xaml.Input.IStandardUICommand2, WinRt.Windows.UI.Xaml.Input.IID_IStandardUICommand2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStandardUICommand.all);
       Hr := m_Interface.put_Kind (value);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -5000,7 +5930,7 @@ package body WinRt.Windows.UI.Xaml.Input is
       e : Windows.UI.Xaml.Input.ITappedRoutedEventArgs
    )
    return WinRt.Hresult is
-      Hr : WinRt.HResult := S_OK;
+      Hr : constant WinRt.HResult := S_OK;
    begin
       this.Callback (sender, e);
       return Hr;
@@ -5015,12 +5945,12 @@ package body WinRt.Windows.UI.Xaml.Input is
    end;
 
    procedure Finalize (this : in out TappedRoutedEventArgs) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (ITappedRoutedEventArgs, ITappedRoutedEventArgs_Ptr);
    begin
       if this.m_ITappedRoutedEventArgs /= null then
          if this.m_ITappedRoutedEventArgs.all /= null then
-            RefCount := this.m_ITappedRoutedEventArgs.all.Release;
+            temp := this.m_ITappedRoutedEventArgs.all.Release;
             Free (this.m_ITappedRoutedEventArgs);
          end if;
       end if;
@@ -5031,7 +5961,8 @@ package body WinRt.Windows.UI.Xaml.Input is
 
    function Constructor return TappedRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.UI.Xaml.Input.TappedRoutedEventArgs");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Input.TappedRoutedEventArgs");
       m_ComRetVal  : aliased Windows.UI.Xaml.Input.ITappedRoutedEventArgs;
    begin
       return RetVal : TappedRoutedEventArgs do
@@ -5040,7 +5971,7 @@ package body WinRt.Windows.UI.Xaml.Input is
             Retval.m_ITappedRoutedEventArgs := new Windows.UI.Xaml.Input.ITappedRoutedEventArgs;
             Retval.m_ITappedRoutedEventArgs.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -5053,10 +5984,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Devices.Input.PointerDeviceType is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_ITappedRoutedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5066,10 +6001,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
    begin
       Hr := this.m_ITappedRoutedEventArgs.all.get_Handled (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -5079,9 +6018,13 @@ package body WinRt.Windows.UI.Xaml.Input is
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_ITappedRoutedEventArgs.all.put_Handled (value);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function GetPosition
@@ -5091,10 +6034,14 @@ package body WinRt.Windows.UI.Xaml.Input is
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Point;
    begin
       Hr := this.m_ITappedRoutedEventArgs.all.GetPosition (relativeTo.m_IUIElement.all, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 

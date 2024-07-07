@@ -63,12 +63,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out KeyCredential) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyCredential, IKeyCredential_Ptr);
    begin
       if this.m_IKeyCredential /= null then
          if this.m_IKeyCredential.all /= null then
-            RefCount := this.m_IKeyCredential.all.Release;
+            temp := this.m_IKeyCredential.all.Release;
             Free (this.m_IKeyCredential);
          end if;
       end if;
@@ -83,13 +83,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IKeyCredential.all.get_Name (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -99,10 +103,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyCredential.all.RetrievePublicKey (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -113,10 +121,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyCredential.all.RetrievePublicKey (blobType, m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -127,13 +139,13 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_KeyCredentialOperationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -151,7 +163,7 @@ package body WinRt.Windows.Security.Credentials is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_KeyCredentialOperationResult.Kind_Delegate, AsyncOperationCompletedHandler_KeyCredentialOperationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -165,7 +177,7 @@ package body WinRt.Windows.Security.Credentials is
          Hr := this.m_IKeyCredential.all.RequestSignAsync (data, m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -177,9 +189,9 @@ package body WinRt.Windows.Security.Credentials is
                   Retval.m_IKeyCredentialOperationResult := new Windows.Security.Credentials.IKeyCredentialOperationResult;
                   Retval.m_IKeyCredentialOperationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -193,13 +205,13 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialAttestationResult'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_KeyCredentialAttestationResult.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -217,7 +229,7 @@ package body WinRt.Windows.Security.Credentials is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_KeyCredentialAttestationResult.Kind_Delegate, AsyncOperationCompletedHandler_KeyCredentialAttestationResult.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -231,7 +243,7 @@ package body WinRt.Windows.Security.Credentials is
          Hr := this.m_IKeyCredential.all.GetAttestationAsync (m_ComRetVal'Access);
          if Hr = S_OK then
             m_AsyncOperation := QI (m_ComRetVal);
-            m_RefCount := m_ComRetVal.Release;
+            temp := m_ComRetVal.Release;
             if m_AsyncOperation /= null then
                Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                while m_Captured = m_Compare loop
@@ -243,9 +255,9 @@ package body WinRt.Windows.Security.Credentials is
                   Retval.m_IKeyCredentialAttestationResult := new Windows.Security.Credentials.IKeyCredentialAttestationResult;
                   Retval.m_IKeyCredentialAttestationResult.all := m_RetVal;
                end if;
-               m_RefCount := m_AsyncOperation.Release;
-               m_RefCount := m_Handler.Release;
-               if m_RefCount = 0 then
+               temp := m_AsyncOperation.Release;
+               temp := m_Handler.Release;
+               if temp = 0 then
                   Free (m_Handler);
                end if;
             end if;
@@ -262,12 +274,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out KeyCredentialAttestationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyCredentialAttestationResult, IKeyCredentialAttestationResult_Ptr);
    begin
       if this.m_IKeyCredentialAttestationResult /= null then
          if this.m_IKeyCredentialAttestationResult.all /= null then
-            RefCount := this.m_IKeyCredentialAttestationResult.all.Release;
+            temp := this.m_IKeyCredentialAttestationResult.all.Release;
             Free (this.m_IKeyCredentialAttestationResult);
          end if;
       end if;
@@ -282,10 +294,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyCredentialAttestationResult.all.get_CertificateChainBuffer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -295,10 +311,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyCredentialAttestationResult.all.get_AttestationBuffer (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -308,10 +328,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialAttestationStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.KeyCredentialAttestationStatus;
    begin
       Hr := this.m_IKeyCredentialAttestationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -322,15 +346,15 @@ package body WinRt.Windows.Security.Credentials is
       function IsSupportedAsync
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
          m_Factory        : access WinRt.Windows.Security.Credentials.IKeyCredentialManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_Boolean.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -348,7 +372,7 @@ package body WinRt.Windows.Security.Credentials is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_Boolean.Kind_Delegate, AsyncOperationCompletedHandler_Boolean.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -361,10 +385,10 @@ package body WinRt.Windows.Security.Credentials is
          Hr := RoGetActivationFactory (m_hString, IID_IKeyCredentialManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.IsSupportedAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_AsyncOperation := QI (m_ComRetVal);
-               m_RefCount := m_ComRetVal.Release;
+               temp := m_ComRetVal.Release;
                if m_AsyncOperation /= null then
                   Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                   while m_Captured = m_Compare loop
@@ -374,23 +398,24 @@ package body WinRt.Windows.Security.Credentials is
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
                   end if;
-                  m_RefCount := m_AsyncOperation.Release;
-                  m_RefCount := m_Handler.Release;
-                  if m_RefCount = 0 then
+                  temp := m_AsyncOperation.Release;
+                  temp := m_Handler.Release;
+                  if temp = 0 then
                      Free (m_Handler);
                   end if;
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
          return m_RetVal;
       end;
 
       procedure RenewAttestationAsync is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
          m_Factory        : access WinRt.Windows.Security.Credentials.IKeyCredentialManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
+         temp             : WinRt.UInt32 := 0;
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -398,7 +423,6 @@ package body WinRt.Windows.Security.Credentials is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -414,7 +438,7 @@ package body WinRt.Windows.Security.Credentials is
          Hr := RoGetActivationFactory (m_hString, IID_IKeyCredentialManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.RenewAttestationAsync (m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -422,14 +446,14 @@ package body WinRt.Windows.Security.Credentials is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end;
 
       function RequestCreateAsync
@@ -439,16 +463,16 @@ package body WinRt.Windows.Security.Credentials is
       )
       return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
          m_Factory        : access WinRt.Windows.Security.Credentials.IKeyCredentialManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_name : WinRt.HString := To_HString (name);
+         temp             : WinRt.UInt32 := 0;
+         HStr_name : constant WinRt.HString := To_HString (name);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_KeyCredentialRetrievalResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -466,7 +490,7 @@ package body WinRt.Windows.Security.Credentials is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_KeyCredentialRetrievalResult.Kind_Delegate, AsyncOperationCompletedHandler_KeyCredentialRetrievalResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -480,10 +504,10 @@ package body WinRt.Windows.Security.Credentials is
             Hr := RoGetActivationFactory (m_hString, IID_IKeyCredentialManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.RequestCreateAsync (HStr_name, option, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -495,16 +519,16 @@ package body WinRt.Windows.Security.Credentials is
                         Retval.m_IKeyCredentialRetrievalResult := new Windows.Security.Credentials.IKeyCredentialRetrievalResult;
                         Retval.m_IKeyCredentialRetrievalResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_name);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_name);
          end return;
       end;
 
@@ -514,16 +538,16 @@ package body WinRt.Windows.Security.Credentials is
       )
       return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
          m_Factory        : access WinRt.Windows.Security.Credentials.IKeyCredentialManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_name : WinRt.HString := To_HString (name);
+         temp             : WinRt.UInt32 := 0;
+         HStr_name : constant WinRt.HString := To_HString (name);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
          m_Compare        : constant WinRt.UInt32 := 0;
 
-         use type WinRt.Windows.Foundation.AsyncStatus;
          use type IAsyncOperation_KeyCredentialRetrievalResult.Kind;
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -541,7 +565,7 @@ package body WinRt.Windows.Security.Credentials is
          procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_KeyCredentialRetrievalResult.Kind_Delegate, AsyncOperationCompletedHandler_KeyCredentialRetrievalResult.Kind);
 
          procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
+            pragma unreferenced (asyncInfo);
          begin
             if asyncStatus = Completed_e then
                m_AsyncStatus := AsyncStatus;
@@ -555,10 +579,10 @@ package body WinRt.Windows.Security.Credentials is
             Hr := RoGetActivationFactory (m_hString, IID_IKeyCredentialManagerStatics'Access , m_Factory'Address);
             if Hr = S_OK then
                Hr := m_Factory.OpenAsync (HStr_name, m_ComRetVal'Access);
-               m_RefCount := m_Factory.Release;
+               temp := m_Factory.Release;
                if Hr = S_OK then
                   m_AsyncOperation := QI (m_ComRetVal);
-                  m_RefCount := m_ComRetVal.Release;
+                  temp := m_ComRetVal.Release;
                   if m_AsyncOperation /= null then
                      Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
                      while m_Captured = m_Compare loop
@@ -570,16 +594,16 @@ package body WinRt.Windows.Security.Credentials is
                         Retval.m_IKeyCredentialRetrievalResult := new Windows.Security.Credentials.IKeyCredentialRetrievalResult;
                         Retval.m_IKeyCredentialRetrievalResult.all := m_RetVal;
                      end if;
-                     m_RefCount := m_AsyncOperation.Release;
-                     m_RefCount := m_Handler.Release;
-                     if m_RefCount = 0 then
+                     temp := m_AsyncOperation.Release;
+                     temp := m_Handler.Release;
+                     if temp = 0 then
                         Free (m_Handler);
                      end if;
                   end if;
                end if;
             end if;
-            Hr := WindowsDeleteString (m_hString);
-            Hr := WindowsDeleteString (HStr_name);
+            tmp := WindowsDeleteString (m_hString);
+            tmp := WindowsDeleteString (HStr_name);
          end return;
       end;
 
@@ -588,10 +612,11 @@ package body WinRt.Windows.Security.Credentials is
          name : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
-         m_hString        : WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
+         tmp              : WinRt.HResult := S_OK;
+         m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Credentials.KeyCredentialManager");
          m_Factory        : access WinRt.Windows.Security.Credentials.IKeyCredentialManagerStatics_Interface'Class := null;
-         m_RefCount       : WinRt.UInt32 := 0;
-         HStr_name : WinRt.HString := To_HString (name);
+         temp             : WinRt.UInt32 := 0;
+         HStr_name : constant WinRt.HString := To_HString (name);
          m_Temp           : WinRt.Int32 := 0;
          m_Completed      : WinRt.UInt32 := 0;
          m_Captured       : WinRt.UInt32 := 0;
@@ -599,7 +624,6 @@ package body WinRt.Windows.Security.Credentials is
          m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
          procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-            Hr        : WinRt.HResult := 0;
          begin
             if asyncStatus = Completed_e then
                Hr := asyncInfo.GetResults;
@@ -615,7 +639,7 @@ package body WinRt.Windows.Security.Credentials is
          Hr := RoGetActivationFactory (m_hString, IID_IKeyCredentialManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.DeleteAsync (HStr_name, m_ComRetVal'Access);
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
             if Hr = S_OK then
                m_Captured := m_Completed;
                Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -623,15 +647,15 @@ package body WinRt.Windows.Security.Credentials is
                   m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
                   m_Captured := m_Completed;
                end loop;
-               m_RefCount := m_ComRetVal.Release;
-               m_RefCount := m_CompletedHandler.Release;
-               if m_RefCount = 0 then
+               temp := m_ComRetVal.Release;
+               temp := m_CompletedHandler.Release;
+               if temp = 0 then
                   Free (m_CompletedHandler);
                end if;
             end if;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_name);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_name);
       end;
 
    end KeyCredentialManager;
@@ -645,12 +669,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out KeyCredentialOperationResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyCredentialOperationResult, IKeyCredentialOperationResult_Ptr);
    begin
       if this.m_IKeyCredentialOperationResult /= null then
          if this.m_IKeyCredentialOperationResult.all /= null then
-            RefCount := this.m_IKeyCredentialOperationResult.all.Release;
+            temp := this.m_IKeyCredentialOperationResult.all.Release;
             Free (this.m_IKeyCredentialOperationResult);
          end if;
       end if;
@@ -665,10 +689,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyCredentialOperationResult.all.get_Result (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -678,10 +706,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.KeyCredentialStatus;
    begin
       Hr := this.m_IKeyCredentialOperationResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -694,12 +726,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out KeyCredentialRetrievalResult) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IKeyCredentialRetrievalResult, IKeyCredentialRetrievalResult_Ptr);
    begin
       if this.m_IKeyCredentialRetrievalResult /= null then
          if this.m_IKeyCredentialRetrievalResult.all /= null then
-            RefCount := this.m_IKeyCredentialRetrievalResult.all.Release;
+            temp := this.m_IKeyCredentialRetrievalResult.all.Release;
             Free (this.m_IKeyCredentialRetrievalResult);
          end if;
       end if;
@@ -714,11 +746,15 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredential'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IKeyCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.KeyCredential do
          Hr := this.m_IKeyCredentialRetrievalResult.all.get_Credential (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IKeyCredential := new Windows.Security.Credentials.IKeyCredential;
          Retval.m_IKeyCredential.all := m_ComRetVal;
       end return;
@@ -730,10 +766,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialStatus is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.KeyCredentialStatus;
    begin
       Hr := this.m_IKeyCredentialRetrievalResult.all.get_Status (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -746,12 +786,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out PasswordCredential) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPasswordCredential, IPasswordCredential_Ptr);
    begin
       if this.m_IPasswordCredential /= null then
          if this.m_IPasswordCredential.all /= null then
-            RefCount := this.m_IPasswordCredential.all.Release;
+            temp := this.m_IPasswordCredential.all.Release;
             Free (this.m_IPasswordCredential);
          end if;
       end if;
@@ -762,7 +802,8 @@ package body WinRt.Windows.Security.Credentials is
 
    function Constructor return PasswordCredential is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredential");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredential");
       m_ComRetVal  : aliased Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : PasswordCredential do
@@ -771,7 +812,7 @@ package body WinRt.Windows.Security.Credentials is
             Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
             Retval.m_IPasswordCredential.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -783,13 +824,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return PasswordCredential is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredential");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredential");
       m_Factory    : access ICredentialFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Credentials.IPasswordCredential;
-      HStr_resource : WinRt.HString := To_HString (resource);
-      HStr_userName : WinRt.HString := To_HString (userName);
-      HStr_password : WinRt.HString := To_HString (password);
+      HStr_resource : constant WinRt.HString := To_HString (resource);
+      HStr_userName : constant WinRt.HString := To_HString (userName);
+      HStr_password : constant WinRt.HString := To_HString (password);
    begin
       return RetVal : PasswordCredential do
          Hr := RoGetActivationFactory (m_hString, IID_ICredentialFactory'Access , m_Factory'Address);
@@ -797,12 +839,12 @@ package body WinRt.Windows.Security.Credentials is
             Hr := m_Factory.CreatePasswordCredential (HStr_resource, HStr_userName, HStr_password, m_ComRetVal'Access);
             Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
             Retval.m_IPasswordCredential.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_resource);
-         Hr := WindowsDeleteString (HStr_userName);
-         Hr := WindowsDeleteString (HStr_password);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_resource);
+         tmp := WindowsDeleteString (HStr_userName);
+         tmp := WindowsDeleteString (HStr_password);
       end return;
    end;
 
@@ -815,13 +857,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPasswordCredential.all.get_Resource (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -831,11 +877,15 @@ package body WinRt.Windows.Security.Credentials is
       resource : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_resource : WinRt.HString := To_HString (resource);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_resource : constant WinRt.HString := To_HString (resource);
    begin
       Hr := this.m_IPasswordCredential.all.put_Resource (HStr_resource);
-      Hr := WindowsDeleteString (HStr_resource);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_resource);
    end;
 
    function get_UserName
@@ -844,13 +894,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPasswordCredential.all.get_UserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -860,11 +914,15 @@ package body WinRt.Windows.Security.Credentials is
       userName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_userName : WinRt.HString := To_HString (userName);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_userName : constant WinRt.HString := To_HString (userName);
    begin
       Hr := this.m_IPasswordCredential.all.put_UserName (HStr_userName);
-      Hr := WindowsDeleteString (HStr_userName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_userName);
    end;
 
    function get_Password
@@ -873,13 +931,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IPasswordCredential.all.get_Password (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -889,11 +951,15 @@ package body WinRt.Windows.Security.Credentials is
       password : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_password : WinRt.HString := To_HString (password);
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
+      HStr_password : constant WinRt.HString := To_HString (password);
    begin
       Hr := this.m_IPasswordCredential.all.put_Password (HStr_password);
-      Hr := WindowsDeleteString (HStr_password);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_password);
    end;
 
    procedure RetrievePassword
@@ -901,9 +967,13 @@ package body WinRt.Windows.Security.Credentials is
       this : in out PasswordCredential
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPasswordCredential.all.RetrievePassword;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function get_Properties
@@ -912,10 +982,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Foundation.Collections.IPropertySet is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IPasswordCredential.all.get_Properties (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -928,13 +1002,13 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out PasswordCredentialPropertyStore) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       use type WinRt.Windows.Foundation.Collections.IPropertySet;
       procedure Free is new Ada.Unchecked_Deallocation (WinRt.Windows.Foundation.Collections.IPropertySet, WinRt.Windows.Foundation.Collections.IPropertySet_Ptr);
    begin
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
-            RefCount := this.m_IPropertySet.all.Release;
+            temp := this.m_IPropertySet.all.Release;
             Free (this.m_IPropertySet);
          end if;
       end if;
@@ -945,7 +1019,8 @@ package body WinRt.Windows.Security.Credentials is
 
    function Constructor return PasswordCredentialPropertyStore is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredentialPropertyStore");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordCredentialPropertyStore");
       m_ComRetVal  : aliased Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : PasswordCredentialPropertyStore do
@@ -954,7 +1029,7 @@ package body WinRt.Windows.Security.Credentials is
             Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
             Retval.m_IPropertySet.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -969,15 +1044,19 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.add_MapChanged (vhnd, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -987,14 +1066,18 @@ package body WinRt.Windows.Security.Credentials is
       token : Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.remove_MapChanged (token);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -1005,17 +1088,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased IInspectable;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Lookup (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1025,15 +1112,19 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.get_Size (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1044,17 +1135,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.HasKey (HStr_key, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1064,15 +1159,19 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.GetView (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1084,17 +1183,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
-      HStr_key : WinRt.HString := To_HString (key);
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Insert (HStr_key, value, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
       return m_ComRetVal;
    end;
 
@@ -1104,16 +1207,20 @@ package body WinRt.Windows.Security.Credentials is
       key : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_key : WinRt.HString := To_HString (key);
+      temp             : WinRt.UInt32 := 0;
+      HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Remove (HStr_key);
-      m_RefCount := m_Interface.Release;
-      Hr := WindowsDeleteString (HStr_key);
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_key);
    end;
 
    procedure Clear
@@ -1121,14 +1228,18 @@ package body WinRt.Windows.Security.Credentials is
       this : in out PasswordCredentialPropertyStore
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPropertySet.all);
       Hr := m_Interface.Clear;
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    -----------------------------------------------------------------------------
@@ -1140,12 +1251,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out PasswordVault) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IPasswordVault, IPasswordVault_Ptr);
    begin
       if this.m_IPasswordVault /= null then
          if this.m_IPasswordVault.all /= null then
-            RefCount := this.m_IPasswordVault.all.Release;
+            temp := this.m_IPasswordVault.all.Release;
             Free (this.m_IPasswordVault);
          end if;
       end if;
@@ -1156,7 +1267,8 @@ package body WinRt.Windows.Security.Credentials is
 
    function Constructor return PasswordVault is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordVault");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.PasswordVault");
       m_ComRetVal  : aliased Windows.Security.Credentials.IPasswordVault;
    begin
       return RetVal : PasswordVault do
@@ -1165,7 +1277,7 @@ package body WinRt.Windows.Security.Credentials is
             Retval.m_IPasswordVault := new Windows.Security.Credentials.IPasswordVault;
             Retval.m_IPasswordVault.all := m_ComRetVal;
          end if;
-         Hr := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -1178,9 +1290,13 @@ package body WinRt.Windows.Security.Credentials is
       credential : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPasswordVault.all.Add (credential.m_IPasswordCredential.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    procedure Remove
@@ -1189,9 +1305,13 @@ package body WinRt.Windows.Security.Credentials is
       credential : Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPasswordVault.all.Remove (credential.m_IPasswordCredential.all);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
    end;
 
    function Retrieve
@@ -1202,17 +1322,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.PasswordCredential'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
-      HStr_resource : WinRt.HString := To_HString (resource);
-      HStr_userName : WinRt.HString := To_HString (userName);
+      HStr_resource : constant WinRt.HString := To_HString (resource);
+      HStr_userName : constant WinRt.HString := To_HString (userName);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IPasswordVault.all.Retrieve (HStr_resource, HStr_userName, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
-         Hr := WindowsDeleteString (HStr_resource);
-         Hr := WindowsDeleteString (HStr_userName);
+         tmp := WindowsDeleteString (HStr_resource);
+         tmp := WindowsDeleteString (HStr_userName);
       end return;
    end;
 
@@ -1223,15 +1347,19 @@ package body WinRt.Windows.Security.Credentials is
    )
    return IVectorView_IPasswordCredential.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPasswordCredential.Kind;
-      HStr_resource : WinRt.HString := To_HString (resource);
+      HStr_resource : constant WinRt.HString := To_HString (resource);
    begin
       Hr := this.m_IPasswordVault.all.FindAllByResource (HStr_resource, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_resource);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_resource);
       m_GenericRetVal := QInterface_IVectorView_IPasswordCredential (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1242,15 +1370,19 @@ package body WinRt.Windows.Security.Credentials is
    )
    return IVectorView_IPasswordCredential.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPasswordCredential.Kind;
-      HStr_userName : WinRt.HString := To_HString (userName);
+      HStr_userName : constant WinRt.HString := To_HString (userName);
    begin
       Hr := this.m_IPasswordVault.all.FindAllByUserName (HStr_userName, m_ComRetVal'Access);
-      Hr := WindowsDeleteString (HStr_userName);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
+      tmp := WindowsDeleteString (HStr_userName);
       m_GenericRetVal := QInterface_IVectorView_IPasswordCredential (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1260,13 +1392,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return IVectorView_IPasswordCredential.Kind is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IVectorView_IPasswordCredential.Kind;
    begin
       Hr := this.m_IPasswordVault.all.RetrieveAll (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IVectorView_IPasswordCredential (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1279,12 +1415,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out WebAccount) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebAccount, IWebAccount_Ptr);
    begin
       if this.m_IWebAccount /= null then
          if this.m_IWebAccount.all /= null then
-            RefCount := this.m_IWebAccount.all.Release;
+            temp := this.m_IWebAccount.all.Release;
             Free (this.m_IWebAccount);
          end if;
       end if;
@@ -1301,11 +1437,12 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WebAccount is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.WebAccount");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.WebAccount");
       m_Factory    : access IWebAccountFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Credentials.IWebAccount;
-      HStr_userName : WinRt.HString := To_HString (userName);
+      HStr_userName : constant WinRt.HString := To_HString (userName);
    begin
       return RetVal : WebAccount do
          Hr := RoGetActivationFactory (m_hString, IID_IWebAccountFactory'Access , m_Factory'Address);
@@ -1313,10 +1450,10 @@ package body WinRt.Windows.Security.Credentials is
             Hr := m_Factory.CreateWebAccount (webAccountProvider_p.m_IWebAccountProvider.all, HStr_userName, state, m_ComRetVal'Access);
             Retval.m_IWebAccount := new Windows.Security.Credentials.IWebAccount;
             Retval.m_IWebAccount.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_userName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_userName);
       end return;
    end;
 
@@ -1329,11 +1466,15 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.WebAccountProvider'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.IWebAccountProvider;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.WebAccountProvider do
          Hr := this.m_IWebAccount.all.get_WebAccountProvider (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
          Retval.m_IWebAccountProvider.all := m_ComRetVal;
       end return;
@@ -1345,13 +1486,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebAccount.all.get_UserName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1361,10 +1506,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Security.Credentials.WebAccountState is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Security.Credentials.WebAccountState;
    begin
       Hr := this.m_IWebAccount.all.get_State (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
@@ -1374,17 +1523,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Credentials.IWebAccount_Interface, WinRt.Windows.Security.Credentials.IWebAccount2, WinRt.Windows.Security.Credentials.IID_IWebAccount2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccount.all);
       Hr := m_Interface.get_Id (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1394,17 +1547,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return IMapView_HString_HString.Kind is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Credentials.IWebAccount_Interface, WinRt.Windows.Security.Credentials.IWebAccount2, WinRt.Windows.Security.Credentials.IID_IWebAccount2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccount.all);
       Hr := m_Interface.get_Properties (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       m_GenericRetVal := QInterface_IMapView_HString_HString (m_ComRetVal);
-      m_RefCount := m_ComRetVal.Release;
+      temp := m_ComRetVal.Release;
       return m_GenericRetVal;
    end;
 
@@ -1415,14 +1572,14 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
       m_Compare        : constant WinRt.UInt32 := 0;
 
-      use type WinRt.Windows.Foundation.AsyncStatus;
       use type IAsyncOperation_IRandomAccessStream.Kind;
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus);
@@ -1440,7 +1597,7 @@ package body WinRt.Windows.Security.Credentials is
       procedure Free is new Ada.Unchecked_Deallocation (AsyncOperationCompletedHandler_IRandomAccessStream.Kind_Delegate, AsyncOperationCompletedHandler_IRandomAccessStream.Kind);
 
       procedure IAsyncOperation_Callback (asyncInfo : WinRt.GenericObject; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
+         pragma unreferenced (asyncInfo);
       begin
          if asyncStatus = Completed_e then
             m_AsyncStatus := AsyncStatus;
@@ -1453,10 +1610,10 @@ package body WinRt.Windows.Security.Credentials is
    begin
       m_Interface := QInterface (this.m_IWebAccount.all);
       Hr := m_Interface.GetPictureAsync (desizedSize, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_AsyncOperation := QI (m_ComRetVal);
-         m_RefCount := m_ComRetVal.Release;
+         temp := m_ComRetVal.Release;
          if m_AsyncOperation /= null then
             Hr := m_AsyncOperation.Put_Completed (Convert (m_Handler));
             while m_Captured = m_Compare loop
@@ -1466,9 +1623,9 @@ package body WinRt.Windows.Security.Credentials is
             if m_AsyncStatus = Completed_e then
                Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
             end if;
-            m_RefCount := m_AsyncOperation.Release;
-            m_RefCount := m_Handler.Release;
-            if m_RefCount = 0 then
+            temp := m_AsyncOperation.Release;
+            temp := m_Handler.Release;
+            if temp = 0 then
                Free (m_Handler);
             end if;
          end if;
@@ -1481,8 +1638,9 @@ package body WinRt.Windows.Security.Credentials is
       this : in out WebAccount
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1490,7 +1648,6 @@ package body WinRt.Windows.Security.Credentials is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1506,7 +1663,7 @@ package body WinRt.Windows.Security.Credentials is
    begin
       m_Interface := QInterface (this.m_IWebAccount.all);
       Hr := m_Interface.SignOutAsync (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1514,9 +1671,9 @@ package body WinRt.Windows.Security.Credentials is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
@@ -1528,9 +1685,10 @@ package body WinRt.Windows.Security.Credentials is
       clientId : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccount2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
-      HStr_clientId : WinRt.HString := To_HString (clientId);
+      temp             : WinRt.UInt32 := 0;
+      HStr_clientId : constant WinRt.HString := To_HString (clientId);
       m_Temp           : WinRt.Int32 := 0;
       m_Completed      : WinRt.UInt32 := 0;
       m_Captured       : WinRt.UInt32 := 0;
@@ -1538,7 +1696,6 @@ package body WinRt.Windows.Security.Credentials is
       m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction := null;
 
       procedure IAsyncAction_Callback (asyncInfo : WinRt.Windows.Foundation.IAsyncAction; asyncStatus: WinRt.Windows.Foundation.AsyncStatus) is
-         Hr        : WinRt.HResult := 0;
       begin
          if asyncStatus = Completed_e then
             Hr := asyncInfo.GetResults;
@@ -1554,7 +1711,7 @@ package body WinRt.Windows.Security.Credentials is
    begin
       m_Interface := QInterface (this.m_IWebAccount.all);
       Hr := m_Interface.SignOutAsync (HStr_clientId, m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
       if Hr = S_OK then
          m_Captured := m_Completed;
          Hr := m_ComRetVal.Put_Completed (m_CompletedHandler);
@@ -1562,13 +1719,13 @@ package body WinRt.Windows.Security.Credentials is
             m_Temp := WaitOnAddress (m_Completed'Address, m_Compare'Address, 4, 4294967295);
             m_Captured := m_Completed;
          end loop;
-         m_RefCount := m_ComRetVal.Release;
-         m_RefCount := m_CompletedHandler.Release;
-         if m_RefCount = 0 then
+         temp := m_ComRetVal.Release;
+         temp := m_CompletedHandler.Release;
+         if temp = 0 then
             Free (m_CompletedHandler);
          end if;
       end if;
-      Hr := WindowsDeleteString (HStr_clientId);
+      tmp := WindowsDeleteString (HStr_clientId);
    end;
 
    -----------------------------------------------------------------------------
@@ -1580,12 +1737,12 @@ package body WinRt.Windows.Security.Credentials is
    end;
 
    procedure Finalize (this : in out WebAccountProvider) is
-      RefCount : WinRt.UInt32 := 0;
+      temp : WinRt.UInt32 := 0;
       procedure Free is new Ada.Unchecked_Deallocation (IWebAccountProvider, IWebAccountProvider_Ptr);
    begin
       if this.m_IWebAccountProvider /= null then
          if this.m_IWebAccountProvider.all /= null then
-            RefCount := this.m_IWebAccountProvider.all.Release;
+            temp := this.m_IWebAccountProvider.all.Release;
             Free (this.m_IWebAccountProvider);
          end if;
       end if;
@@ -1602,12 +1759,13 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WebAccountProvider is
       Hr           : WinRt.HResult := S_OK;
-      m_hString    : WinRt.HString := To_HString ("Windows.Security.Credentials.WebAccountProvider");
+      tmp          : WinRt.HResult := S_OK;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.WebAccountProvider");
       m_Factory    : access IWebAccountProviderFactory_Interface'Class := null;
-      m_RefCount   : WinRt.UInt32 := 0;
+      temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased Windows.Security.Credentials.IWebAccountProvider;
-      HStr_id : WinRt.HString := To_HString (id);
-      HStr_displayName : WinRt.HString := To_HString (displayName);
+      HStr_id : constant WinRt.HString := To_HString (id);
+      HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : WebAccountProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IWebAccountProviderFactory'Access , m_Factory'Address);
@@ -1615,11 +1773,11 @@ package body WinRt.Windows.Security.Credentials is
             Hr := m_Factory.CreateWebAccountProvider (HStr_id, HStr_displayName, iconUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
             Retval.m_IWebAccountProvider := new Windows.Security.Credentials.IWebAccountProvider;
             Retval.m_IWebAccountProvider.all := m_ComRetVal;
-            m_RefCount := m_Factory.Release;
+            temp := m_Factory.Release;
          end if;
-         Hr := WindowsDeleteString (m_hString);
-         Hr := WindowsDeleteString (HStr_id);
-         Hr := WindowsDeleteString (HStr_displayName);
+         tmp := WindowsDeleteString (m_hString);
+         tmp := WindowsDeleteString (HStr_id);
+         tmp := WindowsDeleteString (HStr_displayName);
       end return;
    end;
 
@@ -1632,13 +1790,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebAccountProvider.all.get_Id (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1648,13 +1810,17 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
    begin
       Hr := this.m_IWebAccountProvider.all.get_DisplayName (m_ComRetVal'Access);
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1664,11 +1830,15 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.Foundation.Uri'Class is
       Hr               : WinRt.HResult := S_OK;
-      m_RefCount       : WinRt.UInt32 := 0;
+      tmp              : WinRt.HResult := S_OK;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IWebAccountProvider.all.get_IconUri (m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
@@ -1680,17 +1850,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccountProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Credentials.IWebAccountProvider_Interface, WinRt.Windows.Security.Credentials.IWebAccountProvider2, WinRt.Windows.Security.Credentials.IID_IWebAccountProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProvider.all);
       Hr := m_Interface.get_DisplayPurpose (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1700,17 +1874,21 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccountProvider2 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Credentials.IWebAccountProvider_Interface, WinRt.Windows.Security.Credentials.IWebAccountProvider2, WinRt.Windows.Security.Credentials.IID_IWebAccountProvider2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProvider.all);
       Hr := m_Interface.get_Authority (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       AdaRetval := To_Ada (m_ComRetVal);
-      Hr := WindowsDeleteString (m_ComRetVal);
+      tmp := WindowsDeleteString (m_ComRetVal);
       return AdaRetVal;
    end;
 
@@ -1720,15 +1898,19 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Windows.System.User'Class is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccountProvider3 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Credentials.IWebAccountProvider_Interface, WinRt.Windows.Security.Credentials.IWebAccountProvider3, WinRt.Windows.Security.Credentials.IID_IWebAccountProvider3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
          m_Interface := QInterface (this.m_IWebAccountProvider.all);
          Hr := m_Interface.get_User (m_ComRetVal'Access);
-         m_RefCount := m_Interface.Release;
+         temp := m_Interface.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
          Retval.m_IUser := new Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
@@ -1740,14 +1922,18 @@ package body WinRt.Windows.Security.Credentials is
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
+      tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Credentials.IWebAccountProvider4 := null;
-      m_RefCount       : WinRt.UInt32 := 0;
+      temp             : WinRt.UInt32 := 0;
       m_ComRetVal      : aliased WinRt.Boolean;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Credentials.IWebAccountProvider_Interface, WinRt.Windows.Security.Credentials.IWebAccountProvider4, WinRt.Windows.Security.Credentials.IID_IWebAccountProvider4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProvider.all);
       Hr := m_Interface.get_IsSystemProvider (m_ComRetVal'Access);
-      m_RefCount := m_Interface.Release;
+      temp := m_Interface.Release;
+      if Hr /= S_OK then
+         raise Program_Error;
+      end if;
       return m_ComRetVal;
    end;
 
